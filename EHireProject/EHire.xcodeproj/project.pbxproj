@@ -1,0 +1,646 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		41A97FF51C1956B70016CAB4 /* EHInterviewDateCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF41C1956B70016CAB4 /* EHInterviewDateCustomCell.swift */; };
+		41A97FF91C195E500016CAB4 /* EHTechnologyCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF81C195E500016CAB4 /* EHTechnologyCustomCell.swift */; };
+		41A97FFE1C1971FF0016CAB4 /* BlueCalendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A97FFD1C1971FF0016CAB4 /* BlueCalendar.png */; };
+		41A980001C1974020016CAB4 /* deleteDate.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A97FFF1C1974020016CAB4 /* deleteDate.png */; };
+		4F2536E51C2179E0000E8C95 /* EHInterviewDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536E31C2179E0000E8C95 /* EHInterviewDate.swift */; };
+		4F2536E61C2179E0000E8C95 /* EHTechnology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536E41C2179E0000E8C95 /* EHTechnology.swift */; };
+		4F2536EB1C2179EC000E8C95 /* EHAddTechnology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536E81C2179EC000E8C95 /* EHAddTechnology.swift */; };
+		4F2536EC1C2179EC000E8C95 /* EHPopOverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536E91C2179EC000E8C95 /* EHPopOverController.swift */; };
+		4F2536ED1C2179EC000E8C95 /* EHTechnologyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536EA1C2179EC000E8C95 /* EHTechnologyViewController.swift */; };
+		4F2536F01C2179F3000E8C95 /* EHCoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536EF1C2179F3000E8C95 /* EHCoreDataHelper.swift */; };
+		4F2536F61C2179FC000E8C95 /* Date+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536F21C2179FC000E8C95 /* Date+CoreDataProperties.swift */; };
+		4F2536F71C2179FC000E8C95 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536F31C2179FC000E8C95 /* Date.swift */; };
+		4F2536F81C2179FC000E8C95 /* Technology+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536F41C2179FC000E8C95 /* Technology+CoreDataProperties.swift */; };
+		4F2536F91C2179FC000E8C95 /* Technology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536F51C2179FC000E8C95 /* Technology.swift */; };
+		4F2536FB1C218172000E8C95 /* DataCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536FA1C218172000E8C95 /* DataCommunicator.swift */; };
+		804288051C17EBC0003033B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804288041C17EBC0003033B4 /* AppDelegate.swift */; };
+		8042880A1C17EBC0003033B4 /* EHire.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 804288081C17EBC0003033B4 /* EHire.xcdatamodeld */; };
+		8042880C1C17EBC0003033B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8042880B1C17EBC0003033B4 /* Assets.xcassets */; };
+		8042880F1C17EBC0003033B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8042880D1C17EBC0003033B4 /* Main.storyboard */; };
+		8042881A1C17EBC0003033B4 /* EHireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804288191C17EBC0003033B4 /* EHireTests.swift */; };
+		804288251C17EBC0003033B4 /* EHireUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804288241C17EBC0003033B4 /* EHireUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		804288161C17EBC0003033B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 804287F91C17EBC0003033B4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 804288001C17EBC0003033B4;
+			remoteInfo = EHire;
+		};
+		804288211C17EBC0003033B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 804287F91C17EBC0003033B4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 804288001C17EBC0003033B4;
+			remoteInfo = EHire;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4136DE551C21284800BDB8B7 /* EHire-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EHire-Bridging-Header.h"; sourceTree = "<group>"; };
+		41A97FF41C1956B70016CAB4 /* EHInterviewDateCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHInterviewDateCustomCell.swift; sourceTree = "<group>"; };
+		41A97FF81C195E500016CAB4 /* EHTechnologyCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnologyCustomCell.swift; sourceTree = "<group>"; };
+		41A97FFD1C1971FF0016CAB4 /* BlueCalendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlueCalendar.png; sourceTree = "<group>"; };
+		41A97FFF1C1974020016CAB4 /* deleteDate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteDate.png; sourceTree = "<group>"; };
+		4F2536E31C2179E0000E8C95 /* EHInterviewDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHInterviewDate.swift; sourceTree = "<group>"; };
+		4F2536E41C2179E0000E8C95 /* EHTechnology.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnology.swift; sourceTree = "<group>"; };
+		4F2536E81C2179EC000E8C95 /* EHAddTechnology.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHAddTechnology.swift; sourceTree = "<group>"; };
+		4F2536E91C2179EC000E8C95 /* EHPopOverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHPopOverController.swift; sourceTree = "<group>"; };
+		4F2536EA1C2179EC000E8C95 /* EHTechnologyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnologyViewController.swift; sourceTree = "<group>"; };
+		4F2536EF1C2179F3000E8C95 /* EHCoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCoreDataHelper.swift; sourceTree = "<group>"; };
+		4F2536F21C2179FC000E8C95 /* Date+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4F2536F31C2179FC000E8C95 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		4F2536F41C2179FC000E8C95 /* Technology+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Technology+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4F2536F51C2179FC000E8C95 /* Technology.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Technology.swift; sourceTree = "<group>"; };
+		4F2536FA1C218172000E8C95 /* DataCommunicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataCommunicator.swift; sourceTree = "<group>"; };
+		804288011C17EBC0003033B4 /* EHire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EHire.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		804288041C17EBC0003033B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		804288091C17EBC0003033B4 /* EHire.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EHire.xcdatamodel; sourceTree = "<group>"; };
+		8042880B1C17EBC0003033B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8042880E1C17EBC0003033B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		804288101C17EBC0003033B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		804288151C17EBC0003033B4 /* EHireTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EHireTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		804288191C17EBC0003033B4 /* EHireTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EHireTests.swift; sourceTree = "<group>"; };
+		8042881B1C17EBC0003033B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		804288201C17EBC0003033B4 /* EHireUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EHireUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		804288241C17EBC0003033B4 /* EHireUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EHireUITests.swift; sourceTree = "<group>"; };
+		804288261C17EBC0003033B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		804287FE1C17EBC0003033B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		804288121C17EBC0003033B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8042881D1C17EBC0003033B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		41A97FFC1C1971E90016CAB4 /* Imgaes */ = {
+			isa = PBXGroup;
+			children = (
+				41A97FFD1C1971FF0016CAB4 /* BlueCalendar.png */,
+				41A97FFF1C1974020016CAB4 /* deleteDate.png */,
+			);
+			name = Imgaes;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		4F2536E21C2179E0000E8C95 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4F2536E31C2179E0000E8C95 /* EHInterviewDate.swift */,
+				4F2536E41C2179E0000E8C95 /* EHTechnology.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4F2536E71C2179EC000E8C95 /* Technology */ = {
+			isa = PBXGroup;
+			children = (
+				4F2536E81C2179EC000E8C95 /* EHAddTechnology.swift */,
+				4F2536E91C2179EC000E8C95 /* EHPopOverController.swift */,
+				4F2536EA1C2179EC000E8C95 /* EHTechnologyViewController.swift */,
+				4F2536FA1C218172000E8C95 /* DataCommunicator.swift */,
+			);
+			path = Technology;
+			sourceTree = "<group>";
+		};
+		4F2536EE1C2179F3000E8C95 /* HelperClass */ = {
+			isa = PBXGroup;
+			children = (
+				4F2536EF1C2179F3000E8C95 /* EHCoreDataHelper.swift */,
+			);
+			path = HelperClass;
+			sourceTree = "<group>";
+		};
+		4F2536F11C2179FC000E8C95 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				4F2536F21C2179FC000E8C95 /* Date+CoreDataProperties.swift */,
+				4F2536F31C2179FC000E8C95 /* Date.swift */,
+				4F2536F41C2179FC000E8C95 /* Technology+CoreDataProperties.swift */,
+				4F2536F51C2179FC000E8C95 /* Technology.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		804287F81C17EBC0003033B4 = {
+			isa = PBXGroup;
+			children = (
+				804288031C17EBC0003033B4 /* EHire */,
+				804288181C17EBC0003033B4 /* EHireTests */,
+				804288231C17EBC0003033B4 /* EHireUITests */,
+				804288021C17EBC0003033B4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		804288021C17EBC0003033B4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				804288011C17EBC0003033B4 /* EHire.app */,
+				804288151C17EBC0003033B4 /* EHireTests.xctest */,
+				804288201C17EBC0003033B4 /* EHireUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		804288031C17EBC0003033B4 /* EHire */ = {
+			isa = PBXGroup;
+			children = (
+				4F2536F11C2179FC000E8C95 /* Entity */,
+				4F2536EE1C2179F3000E8C95 /* HelperClass */,
+				4F2536E71C2179EC000E8C95 /* Technology */,
+				4F2536E21C2179E0000E8C95 /* Model */,
+				41A97FFC1C1971E90016CAB4 /* Imgaes */,
+				804288041C17EBC0003033B4 /* AppDelegate.swift */,
+				8042880D1C17EBC0003033B4 /* Main.storyboard */,
+				8042884B1C17F17A003033B4 /* Custom Cells */,
+				8042884A1C17F150003033B4 /* Nibs */,
+				804288481C17F139003033B4 /* Supporting Files */,
+			);
+			path = EHire;
+			sourceTree = "<group>";
+		};
+		804288181C17EBC0003033B4 /* EHireTests */ = {
+			isa = PBXGroup;
+			children = (
+				804288191C17EBC0003033B4 /* EHireTests.swift */,
+				8042881B1C17EBC0003033B4 /* Info.plist */,
+			);
+			path = EHireTests;
+			sourceTree = "<group>";
+		};
+		804288231C17EBC0003033B4 /* EHireUITests */ = {
+			isa = PBXGroup;
+			children = (
+				804288241C17EBC0003033B4 /* EHireUITests.swift */,
+				804288261C17EBC0003033B4 /* Info.plist */,
+			);
+			path = EHireUITests;
+			sourceTree = "<group>";
+		};
+		804288481C17F139003033B4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				804288101C17EBC0003033B4 /* Info.plist */,
+				804288081C17EBC0003033B4 /* EHire.xcdatamodeld */,
+				8042880B1C17EBC0003033B4 /* Assets.xcassets */,
+				4136DE551C21284800BDB8B7 /* EHire-Bridging-Header.h */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8042884A1C17F150003033B4 /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Nibs;
+			sourceTree = "<group>";
+		};
+		8042884B1C17F17A003033B4 /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				41A97FF41C1956B70016CAB4 /* EHInterviewDateCustomCell.swift */,
+				41A97FF81C195E500016CAB4 /* EHTechnologyCustomCell.swift */,
+			);
+			name = "Custom Cells";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		804288001C17EBC0003033B4 /* EHire */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 804288291C17EBC0003033B4 /* Build configuration list for PBXNativeTarget "EHire" */;
+			buildPhases = (
+				804287FD1C17EBC0003033B4 /* Sources */,
+				804287FE1C17EBC0003033B4 /* Frameworks */,
+				804287FF1C17EBC0003033B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EHire;
+			productName = EHire;
+			productReference = 804288011C17EBC0003033B4 /* EHire.app */;
+			productType = "com.apple.product-type.application";
+		};
+		804288141C17EBC0003033B4 /* EHireTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8042882C1C17EBC0003033B4 /* Build configuration list for PBXNativeTarget "EHireTests" */;
+			buildPhases = (
+				804288111C17EBC0003033B4 /* Sources */,
+				804288121C17EBC0003033B4 /* Frameworks */,
+				804288131C17EBC0003033B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				804288171C17EBC0003033B4 /* PBXTargetDependency */,
+			);
+			name = EHireTests;
+			productName = EHireTests;
+			productReference = 804288151C17EBC0003033B4 /* EHireTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8042881F1C17EBC0003033B4 /* EHireUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8042882F1C17EBC0003033B4 /* Build configuration list for PBXNativeTarget "EHireUITests" */;
+			buildPhases = (
+				8042881C1C17EBC0003033B4 /* Sources */,
+				8042881D1C17EBC0003033B4 /* Frameworks */,
+				8042881E1C17EBC0003033B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				804288221C17EBC0003033B4 /* PBXTargetDependency */,
+			);
+			name = EHireUITests;
+			productName = EHireUITests;
+			productReference = 804288201C17EBC0003033B4 /* EHireUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		804287F91C17EBC0003033B4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = "Exilant Technologies";
+				TargetAttributes = {
+					804288001C17EBC0003033B4 = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					804288141C17EBC0003033B4 = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = 804288001C17EBC0003033B4;
+					};
+					8042881F1C17EBC0003033B4 = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = 804288001C17EBC0003033B4;
+					};
+				};
+			};
+			buildConfigurationList = 804287FC1C17EBC0003033B4 /* Build configuration list for PBXProject "EHire" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 804287F81C17EBC0003033B4;
+			productRefGroup = 804288021C17EBC0003033B4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				804288001C17EBC0003033B4 /* EHire */,
+				804288141C17EBC0003033B4 /* EHireTests */,
+				8042881F1C17EBC0003033B4 /* EHireUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		804287FF1C17EBC0003033B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41A980001C1974020016CAB4 /* deleteDate.png in Resources */,
+				41A97FFE1C1971FF0016CAB4 /* BlueCalendar.png in Resources */,
+				8042880C1C17EBC0003033B4 /* Assets.xcassets in Resources */,
+				8042880F1C17EBC0003033B4 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		804288131C17EBC0003033B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8042881E1C17EBC0003033B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		804287FD1C17EBC0003033B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F2536E61C2179E0000E8C95 /* EHTechnology.swift in Sources */,
+				41A97FF91C195E500016CAB4 /* EHTechnologyCustomCell.swift in Sources */,
+				4F2536ED1C2179EC000E8C95 /* EHTechnologyViewController.swift in Sources */,
+				4F2536FB1C218172000E8C95 /* DataCommunicator.swift in Sources */,
+				4F2536EB1C2179EC000E8C95 /* EHAddTechnology.swift in Sources */,
+				4F2536F91C2179FC000E8C95 /* Technology.swift in Sources */,
+				804288051C17EBC0003033B4 /* AppDelegate.swift in Sources */,
+				4F2536F61C2179FC000E8C95 /* Date+CoreDataProperties.swift in Sources */,
+				4F2536F01C2179F3000E8C95 /* EHCoreDataHelper.swift in Sources */,
+				4F2536E51C2179E0000E8C95 /* EHInterviewDate.swift in Sources */,
+				8042880A1C17EBC0003033B4 /* EHire.xcdatamodeld in Sources */,
+				41A97FF51C1956B70016CAB4 /* EHInterviewDateCustomCell.swift in Sources */,
+				4F2536F71C2179FC000E8C95 /* Date.swift in Sources */,
+				4F2536EC1C2179EC000E8C95 /* EHPopOverController.swift in Sources */,
+				4F2536F81C2179FC000E8C95 /* Technology+CoreDataProperties.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		804288111C17EBC0003033B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8042881A1C17EBC0003033B4 /* EHireTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8042881C1C17EBC0003033B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				804288251C17EBC0003033B4 /* EHireUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		804288171C17EBC0003033B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 804288001C17EBC0003033B4 /* EHire */;
+			targetProxy = 804288161C17EBC0003033B4 /* PBXContainerItemProxy */;
+		};
+		804288221C17EBC0003033B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 804288001C17EBC0003033B4 /* EHire */;
+			targetProxy = 804288211C17EBC0003033B4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8042880D1C17EBC0003033B4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8042880E1C17EBC0003033B4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		804288271C17EBC0003033B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		804288281C17EBC0003033B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		8042882A1C17EBC0003033B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = EHire/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ExilantTechnologies.EHire;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "EHire/EHire-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8042882B1C17EBC0003033B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = EHire/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ExilantTechnologies.EHire;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "EHire/EHire-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		8042882D1C17EBC0003033B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = EHireTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ExilantTechnologies.EHireTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EHire.app/Contents/MacOS/EHire";
+			};
+			name = Debug;
+		};
+		8042882E1C17EBC0003033B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = EHireTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ExilantTechnologies.EHireTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EHire.app/Contents/MacOS/EHire";
+			};
+			name = Release;
+		};
+		804288301C17EBC0003033B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = EHireUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ExilantTechnologies.EHireUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = EHire;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		804288311C17EBC0003033B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = EHireUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ExilantTechnologies.EHireUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = EHire;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		804287FC1C17EBC0003033B4 /* Build configuration list for PBXProject "EHire" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				804288271C17EBC0003033B4 /* Debug */,
+				804288281C17EBC0003033B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		804288291C17EBC0003033B4 /* Build configuration list for PBXNativeTarget "EHire" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8042882A1C17EBC0003033B4 /* Debug */,
+				8042882B1C17EBC0003033B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8042882C1C17EBC0003033B4 /* Build configuration list for PBXNativeTarget "EHireTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8042882D1C17EBC0003033B4 /* Debug */,
+				8042882E1C17EBC0003033B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8042882F1C17EBC0003033B4 /* Build configuration list for PBXNativeTarget "EHireUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				804288301C17EBC0003033B4 /* Debug */,
+				804288311C17EBC0003033B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		804288081C17EBC0003033B4 /* EHire.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				804288091C17EBC0003033B4 /* EHire.xcdatamodel */,
+			);
+			currentVersion = 804288091C17EBC0003033B4 /* EHire.xcdatamodel */;
+			path = EHire.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 804287F91C17EBC0003033B4 /* Project object */;
+}
