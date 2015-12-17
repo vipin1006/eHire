@@ -26,6 +26,17 @@ class EHireBasics: XCTestCase {
         managedObjectContext?.persistentStoreCoordinator = persistentCoordinator
     }
     
+    func testApplication()
+    {
+        XCTAssertNotNil(application, "Can not create a application object")
+    }
+    
+    func testTechnologyEntity()
+    {
+        let technology = NSEntityDescription.entityForName("Technology", inManagedObjectContext: self.managedObjectContext!)
+        XCTAssertNotNil(technology, "Technology entity is not created")
+    }
+    
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
