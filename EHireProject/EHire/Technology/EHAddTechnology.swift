@@ -32,20 +32,56 @@ class EHAddTechnology: NSViewController {
     
     @IBAction func submitTechnology(sender: AnyObject)
     {
-        self.newTechnologyName = self.txtTechnologyName.stringValue
+//        self.newTechnologyName = self.txtTechnologyName.stringValue
+//        
+//  
+//        
+//        if let del = self.delegate{
+//          
+//            del.sendData(self.newTechnologyName,sender: NSStringFromClass(EHAddTechnology))
+//        }
+//        else{
+//            
+//            print("Delegate Not set")
+//        }
+//   
+//    
+//        self.dismissController(self)
         
-  
         
-        if let del = self.delegate{
-          
-            del.sendData(self.newTechnologyName,sender: NSStringFromClass(EHAddTechnology))
-        }
-        else{
+        if self.txtTechnologyName.stringValue == ""
+        {
+            let alert: NSAlert = NSAlert()
+            alert.messageText = "Alert Message"
+            alert.informativeText = "Text Field Should not be Empty"
+            alert.alertStyle = NSAlertStyle.WarningAlertStyle
+            alert.addButtonWithTitle("Ok")
+            alert.addButtonWithTitle("Cancel")
+            alert.runModal()
             
-            print("Delegate Not set")
         }
-   
-    
+        else
+        {
+            self.newTechnologyName = self.txtTechnologyName.stringValue
+            
+            if let del = self.delegate{
+                
+                del.sendData(self.newTechnologyName,sender: NSStringFromClass(EHAddTechnology))
+            }
+            else{
+                
+                print("Delegate Not set")
+            }
+            
+            
+        }
+        
+        
+        
+        
+        
+        
+        
         self.dismissController(self)
     
     }

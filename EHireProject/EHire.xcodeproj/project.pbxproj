@@ -125,9 +125,9 @@
 		4F2536E71C2179EC000E8C95 /* Technology */ = {
 			isa = PBXGroup;
 			children = (
-				4F2536E81C2179EC000E8C95 /* EHAddTechnology.swift */,
-				4F2536E91C2179EC000E8C95 /* EHPopOverController.swift */,
 				4F2536EA1C2179EC000E8C95 /* EHTechnologyViewController.swift */,
+				4F2536E91C2179EC000E8C95 /* EHPopOverController.swift */,
+				4F2536E81C2179EC000E8C95 /* EHAddTechnology.swift */,
 				4F2536FA1C218172000E8C95 /* DataCommunicator.swift */,
 			);
 			path = Technology;
