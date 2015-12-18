@@ -40,19 +40,28 @@ class EHFeedbackViewController: NSViewController {
     {
     super.viewDidLoad()
     
-    scrollViewHr.documentView?.scrollPoint(NSPoint(x: 0, y: 700))
+      
     
-    techFeedback = storyboard?.instantiateControllerWithIdentifier("TechnicalFeedback") as? EHTechnicalFeedbackViewController
     
-    self.scrollViewHr.documentView? = (techFeedback?.view)!
-    scrollViewHr.frame = self.view.frame
+    }
     
-    self.typeOfInterview.selectedSegment = 0
-    
-    self.subRound.selectedSegment = 0
-    
-    self.scrollViewHr.hasVerticalScroller = true
-    
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        
+        techFeedback = storyboard?.instantiateControllerWithIdentifier("TechnicalFeedback") as? EHTechnicalFeedbackViewController
+        
+        
+        
+        self.scrollViewHr.documentView? = (techFeedback?.view)!
+        
+        self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1081))
+        
+        
+        self.typeOfInterview.selectedSegment = 0
+        
+        self.subRound.selectedSegment = 0
+        
+        self.scrollViewHr.hasVerticalScroller = true
     }
     
     override var representedObject: AnyObject? {
@@ -63,70 +72,87 @@ class EHFeedbackViewController: NSViewController {
     
     @IBAction func roundType(sender: AnyObject) {
     
-    self.subRound.hidden = false
-    
-    let mainRound:NSSegmentedControl = sender as! NSSegmentedControl
-    
-    switch mainRound.selectedSegment{
-    
-    case 0 :
-    if !isTechnicalLoaded
-    {
-    self.scrollViewHr.documentView? = (techFeedback?.view)!
-    }
-    if isHrLoaded
-    {
-    self.hrView?.removeFromSuperview()
-    }
-    if isManagerLoaded
-    {
-    self.managerFeedback?.view.removeFromSuperview()
-    }
-    
-    self.subRound.segmentCount = 3
-    
-    self.subRound.setWidth(200, forSegment: 2)
-    
-    self.subRound.setWidth(200, forSegment: 0)
-    
-    self.subRound.setWidth(200, forSegment: 1)
-    
-    self.subRound.setLabel("Round 3", forSegment:2)
-    
-    isHrLoaded = false
-    
-    case 1:
-    if !isManagerLoaded
-    {
-    managerFeedback = storyboard?.instantiateControllerWithIdentifier("ManagerFeedback") as? EHManagerFeedbackViewController
-    self.scrollViewHr.documentView = managerFeedback?.view            }
-    self.hrView?.removeFromSuperview()
-    self.techFeedback?.view.removeFromSuperview()
-    
-    self.subRound.segmentCount = 2
-    
-    self.subRound.selectedSegment = 0
-    
-    self.subRound.setWidth(300, forSegment: 0)
-    
-    self.subRound.setWidth(300, forSegment: 1)
-    
-    isHrLoaded = false
-    
-    case 2:
-    
-    if !isHrLoaded{
-    
-    self.addHrFeedBackView()
-    }
-    self.managerFeedback?.view.removeFromSuperview()
-    self.techFeedback?.view.removeFromSuperview()
-    
-    self.subRound.hidden = true
-    
-    default:
-    print("Other")
-    }
+        
+        self.subRound.hidden = false
+        
+        let mainRound:NSSegmentedControl = sender as! NSSegmentedControl
+        
+        switch mainRound.selectedSegment{
+            
+        case 0 :
+            
+            print("T")
+            
+            if !isTechnicalLoaded
+            {
+                self.scrollViewHr.documentView? = (techFeedback?.view)!
+            }
+            if isHrLoaded
+            {
+                self.hrView?.removeFromSuperview()
+            }
+            if isManagerLoaded
+            {
+                self.managerFeedback?.view.removeFromSuperview()
+            }
+            
+            self.subRound.segmentCount = 3
+            
+            self.subRound.setWidth(200, forSegment: 2)
+            
+            self.subRound.setWidth(200, forSegment: 0)
+            
+            self.subRound.setWidth(200, forSegment: 1)
+            
+            self.subRound.setLabel("Round 3", forSegment:2)
+            
+            isHrLoaded = false
+            
+        case 1:
+            
+            print("M")
+
+            
+            if !isManagerLoaded
+            {
+                managerFeedback = storyboard?.instantiateControllerWithIdentifier("ManagerFeedback") as? EHManagerFeedbackViewController
+                self.scrollViewHr.documentView = managerFeedback?.view
+                
+                self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1626))
+                
+
+            }
+            self.hrView?.removeFromSuperview()
+            self.techFeedback?.view.removeFromSuperview()
+            
+            self.subRound.segmentCount = 2
+            
+            self.subRound.selectedSegment = 0
+            
+            self.subRound.setWidth(300, forSegment: 0)
+            
+            self.subRound.setWidth(300, forSegment: 1)
+            
+            isHrLoaded = false
+            
+        case 2:
+            
+            print("H")
+
+            
+            if !isHrLoaded{
+                
+                self.addHrFeedBackView()
+            }
+            self.managerFeedback?.view.removeFromSuperview()
+            self.techFeedback?.view.removeFromSuperview()
+            
+            self.subRound.hidden = true
+            
+        default:
+            print("Other")
+        }
+
     
     }
     

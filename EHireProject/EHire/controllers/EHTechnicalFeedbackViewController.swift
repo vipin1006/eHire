@@ -241,11 +241,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             skillsAndRatingsTitleArray.addObject("Enter Title")
             tableView.reloadData()
         }
-        //        if cell?.feedback.stringValue == ""
-        //        {
-        //            alertPopup("Select Stars", informativeText: "Please select stars to provide your feedback")
-        //        }
-        
     }
     
     @IBAction func removeSkills(sender: NSButton) {
@@ -293,12 +288,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             return false
         }
             
-            //        else if overallAssessmentOnTechTextView.string != "[0-9_]*"
-            //        {
-            //            alertPopup("Overall Feedback On Technology", informativeText: "Overall assessment on Technology field should not be Number and Special Charater")
-            //            return false
-            //        }
-            //
         else if textViewOfCandidateAssessment.string == ""
         {
             alertPopup("Overall Feedback Of Candidate", informativeText: "Overall assessment of Candidate field shold not be blank")
@@ -310,12 +299,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             alertPopup("Overall Feedback Of Candidate", informativeText: "Overall assessment of Candidate field length shoud be more than 5 charaters")
             return false
         }
-            
-            //        else if overallAssessmentOfCandidateTextView.string != "[A-Z0-9a-z_]*"
-            //        {
-            //            alertPopup("Overall Feedback On Technology", informativeText: "Overall assessment of Candidate field should not be Number/Special Charater")
-            //            return false
-            //        }
             
         else if designationField.stringValue == ""
         {
@@ -329,13 +312,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             return false
         }
             
-            //        else if designationField.stringValue != "[A-Z0-9a-z_]*"
-            //        {
-            //
-            //            alertPopup("Designation of Candidate", informativeText: "Designation of Candidate should not be Number/Special Character")
-            //            return false
-            //        }
-            
         else if interviewedByField.stringValue.characters.count == 0
         {
             alertPopup("Interviewer Name", informativeText: "Please enter the interviewer field should not be blank")
@@ -347,14 +323,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             alertPopup("Interviewer Name", informativeText: "Interviewer Name should be more than 3 character")
             return false
         }
-        
-        //        else if interviewdBy.stringValue != "[A-Z0-9a-z_]*"
-        //        {
-        //            alertPopup("Interviewer Name", informativeText: "Interviewer Name should be more than 3 character")
-        //            return false
-        //        }
-        
-        // isValidString(interviewdBy.stringValue)
         
         return true
     }

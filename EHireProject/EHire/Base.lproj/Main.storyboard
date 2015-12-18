@@ -1155,7 +1155,7 @@ Gw
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="35" rowSizeStyle="automatic" headerView="haY-GH-M9R" viewBased="YES" id="BNP-Pz-40V">
-                                                    <rect key="frame" x="0.0" y="0.0" width="521" height="0.0"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="522" height="0.0"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <animations/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -1402,6 +1402,9 @@ Gw
                                                 <segment label="Round 3" width="200"/>
                                             </segments>
                                         </segmentedCell>
+                                        <connections>
+                                            <action selector="subRound:" target="h0V-rg-Tmf" id="ZQv-0y-Pid"/>
+                                        </connections>
                                     </segmentedControl>
                                     <segmentedControl verticalHuggingPriority="750" id="S3n-ii-hmR">
                                         <rect key="frame" x="26" y="49" width="608" height="24"/>
@@ -1415,6 +1418,9 @@ Gw
                                                 <segment label=" HR" width="200"/>
                                             </segments>
                                         </segmentedCell>
+                                        <connections>
+                                            <action selector="roundType:" target="h0V-rg-Tmf" id="kvP-mz-hAh"/>
+                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                                 <animations/>
