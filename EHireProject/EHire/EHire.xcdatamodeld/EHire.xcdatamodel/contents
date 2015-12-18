@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15C50" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Automatic">
     <entity name="Candidate" representedClassName=".Candidate" syncable="YES">
         <attribute name="interviewDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="interviewTime" optional="YES" attributeType="Date" syncable="YES"/>
@@ -12,6 +12,7 @@
     </entity>
     <entity name="Date" representedClassName=".Date" syncable="YES">
         <attribute name="interviewDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="technologies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Technology" inverseName="interviewDates" inverseEntity="Technology" syncable="YES"/>
     </entity>
     <entity name="HrFeedBack" representedClassName=".HrFeedBack" syncable="YES">
         <attribute name="businessUnit" optional="YES" attributeType="String" syncable="YES"/>
@@ -83,14 +84,14 @@
     </entity>
     <entity name="Technology" representedClassName=".Technology" syncable="YES">
         <attribute name="technologyName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="interviewDates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Date" syncable="YES"/>
+        <relationship name="interviewDates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Date" inverseName="technologies" inverseEntity="Date" syncable="YES"/>
     </entity>
     <elements>
         <element name="Candidate" positionX="34" positionY="384" width="128" height="163"/>
+        <element name="Date" positionX="-468" positionY="-0" width="128" height="75"/>
         <element name="HrFeedBack" positionX="-459" positionY="189" width="128" height="628"/>
         <element name="ManagerFeedBack" positionX="-216" positionY="-291" width="128" height="253"/>
         <element name="TechnicalFeedBack" positionX="-308" positionY="9" width="128" height="178"/>
-        <element name="Technology" positionX="-477" positionY="-135" width="117" height="73"/>
-        <element name="Date" positionX="-468" positionY="-0" width="128" height="58"/>
+        <element name="Technology" positionX="-477" positionY="-135" width="117" height="75"/>
     </elements>
 </model>

@@ -8,20 +8,31 @@
 
 import Cocoa
 
-class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutlineViewDataSource,DataCommunicator {
+class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutlineViewDataSource,DataCommunicator,FeedbackDelegate {
     
     @IBOutlet weak var sourceList: NSOutlineView!
+   
     var sourceListArray = [EHTechnology]()
+    @IBOutlet weak var contentViewOfSourceList: NSView!
+    
+    var candidatesView:EHCandidateController?
     
     var addTechnology:EHAddTechnology?
+    
     var contentPopOver : EHPopOverController?
+   
     var popOver:NSPopover = NSPopover()
     
     var selectedTechnology:Int?
     
+    var isCandidatesViewLoaded = false
+    
+    var feedbackViewController:EHFeedbackViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
+        
+           }
     
     override func viewWillAppear() {
         super.viewWillAppear()
@@ -90,6 +101,49 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     
     func outlineView(outlineView: NSOutlineView, shouldSelectItem item: AnyObject) -> Bool {
         
+        switch item{
+            
+        case  _ as EHTechnology:
+            
+            print("Its a Technology ")
+            
+            if isCandidatesViewLoaded{
+                
+                candidatesView?.view.removeFromSuperview()
+                
+                print("Removed")
+                
+                isCandidatesViewLoaded = false
+                
+            }
+            
+            
+            
+        case  _ as EHInterviewDate:
+            
+            if !isCandidatesViewLoaded{
+                
+                print("Loaded")
+            
+            candidatesView = self.storyboard?.instantiateControllerWithIdentifier("candidateObject") as? EHCandidateController
+                
+            candidatesView?.delegate = self
+            
+                self.contentViewOfSourceList.addSubview((candidatesView?.view)!)
+                
+                isCandidatesViewLoaded = true
+                
+                
+            
+            }
+            
+            
+            
+        default:
+            
+            print("Never")
+            
+     }
         
         return true
     }
@@ -131,10 +185,13 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     
     func outlineView(outlineView: NSOutlineView, heightOfRowByItem item: AnyObject) -> CGFloat
     {
-        return  45
+        
+        
+        return 50
+    
     }
     
-    //PRAGMAMARK: - Custom Protocol methods
+   //MARK: - Custom Protocol methods
     
     func sendData<T>(sendingData: T,sender:String)
     {
@@ -245,6 +302,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         
         selectedTechnology  =  getTechnologyIndex(selectedTechView)
+        
         print (selectedTechnology)
         
         popOver.behavior = NSPopoverBehavior.Transient
@@ -375,6 +433,25 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             }
         }
     }
+    
+    func showFeedbackViewController(){
+        
+        print("Implement")
+        
+        for views in self.view.subviews{
+            
+            views.removeFromSuperview()
+            
+        }
+        
+        feedbackViewController = self.storyboard?.instantiateControllerWithIdentifier("feedback") as? EHFeedbackViewController
+        
+        self.view.addSubview((feedbackViewController?.view)!)
+        
+        
+        
+    }
+    
 }
 
 
