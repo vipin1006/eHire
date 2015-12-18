@@ -39,11 +39,11 @@ class EHTechnologyCustomCell: NSTableCellView,DataCommunicator {
         
         
         
-        let button:NSButton = sender as! NSButton
+       // let button:NSButton = sender as! NSButton
         
-        let storyBoard:NSStoryboard = NSStoryboard(name:"Main", bundle:NSBundle.mainBundle())
+       // let storyBoard:NSStoryboard = NSStoryboard(name:"Main", bundle:NSBundle.mainBundle())
         
-        let pop = storyBoard.instantiateControllerWithIdentifier("popover") as! EHPopOverController
+       // let pop = storyBoard.instantiateControllerWithIdentifier("popover") as! EHPopOverController
         
         //pop.showPopOver(button)
     }
