@@ -243,7 +243,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         let selectedTechView = button.superview as! EHTechnologyCustomCell
         
-        selectedTechnology  =  self.sourceList.rowForView(selectedTechView)
+        
+        selectedTechnology  =  getTechnologyIndex(selectedTechView)
+        print (selectedTechnology)
         
         popOver.behavior = NSPopoverBehavior.Transient
         
@@ -259,6 +261,19 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
     }
     
+    func getTechnologyIndex(inView :EHTechnologyCustomCell) -> Int{
+        var selectedIndex = 0
+        let selectedTechName = inView.textField?.stringValue
+        for var index = 0; index < sourceListArray.count; ++index {
+            
+            let aTech = sourceListArray[index]  as EHTechnology
+            if selectedTechName == aTech.technologyName
+            {
+                selectedIndex = index
+            }
+        }
+        return selectedIndex
+    }
     
     //PRAGMAMARK:- Coredata
     
