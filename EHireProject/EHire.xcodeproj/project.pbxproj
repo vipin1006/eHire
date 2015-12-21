@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D88131D1C27F5EB0086BA65 /* EHCoreDataTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D88131C1C27F5EB0086BA65 /* EHCoreDataTestCase.swift */; settings = {ASSET_TAGS = (); }; };
 		2D88131F1C2800CE0086BA65 /* EHCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D88131E1C2800CE0086BA65 /* EHCoreData.swift */; settings = {ASSET_TAGS = (); }; };
 		41A97FF51C1956B70016CAB4 /* EHInterviewDateCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF41C1956B70016CAB4 /* EHInterviewDateCustomCell.swift */; };
 		41A97FF91C195E500016CAB4 /* EHTechnologyCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF81C195E500016CAB4 /* EHTechnologyCustomCell.swift */; };
@@ -69,7 +68,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2D88131C1C27F5EB0086BA65 /* EHCoreDataTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCoreDataTestCase.swift; sourceTree = "<group>"; };
 		2D88131E1C2800CE0086BA65 /* EHCoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCoreData.swift; sourceTree = "<group>"; };
 		4136DE551C21284800BDB8B7 /* EHire-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EHire-Bridging-Header.h"; sourceTree = "<group>"; };
 		41A97FF41C1956B70016CAB4 /* EHInterviewDateCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHInterviewDateCustomCell.swift; sourceTree = "<group>"; };
@@ -509,7 +507,6 @@
 			children = (
 				804288241C17EBC0003033B4 /* EHireUITests.swift */,
 				804288261C17EBC0003033B4 /* Info.plist */,
-				2D88131C1C27F5EB0086BA65 /* EHCoreDataTestCase.swift */,
 			);
 			path = EHireUITests;
 			sourceTree = "<group>";
@@ -728,7 +725,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				804288251C17EBC0003033B4 /* EHireUITests.swift in Sources */,
-				2D88131D1C27F5EB0086BA65 /* EHCoreDataTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
