@@ -1,6 +1,8 @@
 //
-//  ViewController.swift
+//  EHTechnologyViewController.swift
 //  EHire
+//  This is the ViewController for handling Technology list and Dates. This is the delegate for Date popover and AddTechnology sheet.
+//  This is a data source for the Outline view.
 //
 //  Created by ajaybabu singineedi on 09/12/15.
 //  Copyright © 2015 Exilant Technologies. All rights reserved.
@@ -10,29 +12,30 @@ import Cocoa
 
 class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutlineViewDataSource,DataCommunicator,FeedbackDelegate {
     
+    // Technology View
     @IBOutlet weak var sourceList: NSOutlineView!
-   
-    var sourceListArray = [EHTechnology]()
-    @IBOutlet weak var contentViewOfSourceList: NSView!
     
-    var candidatesView:EHCandidateController?
+    //Set the content of source list in the outlineVew as the technology list/array
+    var technologyArray = [EHTechnology]()
+    var addTechnologyController:EHAddTechnologyController?
+    var selectedTechnologyIndex:Int?
     
-    var addTechnology:EHAddTechnology?
+    // Add Interview Date
+    var datePopOverController : EHPopOverController?
+    var datePopOver:NSPopover = NSPopover()
     
-    var contentPopOver : EHPopOverController?
-   
-    var popOver:NSPopover = NSPopover()
-    
-    var selectedTechnology:Int?
-    
+    //View for listing the canditates
+    @IBOutlet weak var candidateView: NSView!
+    var candidateController:EHCandidateController?
     var isCandidatesViewLoaded = false
     
+    //Feedback View related
     var feedbackViewController:EHFeedbackViewController?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-           }
+    }
     
     override func viewWillAppear() {
         super.viewWillAppear()
@@ -40,65 +43,48 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     }
     
     //PRAGMAMARK: - outlineview datasource  methods
-    
+    // This datasource method returns the child at a given index
     func outlineView(outlineView: NSOutlineView, child index: Int, ofItem item: AnyObject?) -> AnyObject
     {
-        if let parent = item
-            
+        // it 'item' is nil, technology has to be returned. Else, item's(technology) child(date) at that index has to be returned.
+        if   item != nil
         {
-            switch parent
-            {
-            case let technology as EHTechnology :
-                
+            if item is EHTechnology{
+                let technology = item as! EHTechnology
                 return technology.interviewDates[index]
-                
-            default :
-                
-                print("case not found")
             }
-            
         }
-        return sourceListArray[index]
+        return technologyArray[index]
         
     }
     
     
-    
+    // This datasource method returns true if the item(technology) has any children(date)
     func outlineView(outlineView: NSOutlineView, isItemExpandable item: AnyObject) -> Bool
     {
         if item is EHTechnology{
-            
             let technology = item as! EHTechnology
-            
             return (technology.interviewDates.count) > 0 ? true : false
         }
-        
         return false
     }
     
-    
+    // This datasource method returns the count of items (when called for parent/technology) 
+    // or number of children(dates) when called for interview dates.
     func outlineView(outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int
     {
-        if let parent = item
-            
+        if   item != nil
         {
-            switch parent
-            {
-            case let technology as EHTechnology :
-                
+            if item is EHTechnology{
+                let technology = item as! EHTechnology
                 return technology.interviewDates.count
-                
-            default :
-                
-                print("case not found")
             }
-            
         }
-        return sourceListArray.count
-        
+        return technologyArray.count
     }
     
-    
+    //PRAGMAMARK: - outlineview delegate  methods
+    //This delegate method sets isCandidatesViewLoaded based on which item (technology/date) is selected.
     func outlineView(outlineView: NSOutlineView, shouldSelectItem item: AnyObject) -> Bool {
         
         switch item{
@@ -109,46 +95,38 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
             if isCandidatesViewLoaded{
                 
-                candidatesView?.view.removeFromSuperview()
+                candidateController?.view.removeFromSuperview()
                 
                 print("Removed")
                 
                 isCandidatesViewLoaded = false
-                
             }
-            
-            
-            
+           
         case  _ as EHInterviewDate:
             
             if !isCandidatesViewLoaded{
                 
                 print("Loaded")
-            
-            candidatesView = self.storyboard?.instantiateControllerWithIdentifier("candidateObject") as? EHCandidateController
                 
-            candidatesView?.delegate = self
-            
-                self.contentViewOfSourceList.addSubview((candidatesView?.view)!)
+                candidateController = self.storyboard?.instantiateControllerWithIdentifier("candidateObject") as? EHCandidateController
+                
+                candidateController?.delegate = self
+                
+                self.candidateView.addSubview((candidateController?.view)!)
                 
                 isCandidatesViewLoaded = true
-                
-                
-            
             }
-            
-            
             
         default:
             
             print("Never")
             
-     }
+        }
         
         return true
     }
     
-    
+    // This delgate provides the content for each item (technology/date) of the outline view
     func outlineView(outlineView: NSOutlineView, viewForTableColumn tableColumn: NSTableColumn?, item: AnyObject) -> NSView?
     {
         
@@ -183,16 +161,15 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
     }
     
+    //This delegate returns the height of a row for the outlineView.
     func outlineView(outlineView: NSOutlineView, heightOfRowByItem item: AnyObject) -> CGFloat
     {
-        
-        
         return 50
-    
+        
     }
     
-   //MARK: - Custom Protocol methods
-    
+    //MARK: - Custom Protocol methods
+    //This delegate method passed the data from another view controller to this controller as it confirms to the custom DataCommunicator protocol.
     func sendData<T>(sendingData: T,sender:String)
     {
         
@@ -204,42 +181,41 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
             let newTechnology = sendingData as! String
             let firstTechnology = EHTechnology(technology:newTechnology)
-            sourceListArray .append(firstTechnology)
-            print(sourceListArray.count)
-            addTechnologyAndInterviewDateTocoreData(nil, content: newTechnology)
+            technologyArray .append(firstTechnology)
+            print(technologyArray.count)
+            addTechnologyAndInterviewDateToCoreData(nil, content: newTechnology)
             sourceList.reloadData()
             
             
         case "EHire.EHPopOverController": // adding interview dates
             
-            
             let scheduledDate = sendingData as! NSDate
-            let technology = sourceListArray[selectedTechnology!]
+            let technology = technologyArray[selectedTechnologyIndex!]
             technology.interviewDates.append(EHInterviewDate(date:scheduledDate))
             
             self.sourceList.reloadData()
-            addTechnologyAndInterviewDateTocoreData(technology, content: scheduledDate)
+            addTechnologyAndInterviewDateToCoreData(technology, content: scheduledDate)
             
         default:
             
-            print("Nouthing")
+            print("Nothing")
             
         }
         
     }
     //PRAGMAMARK: - Segue
-    
+    // This function is called automatically when a segue connection is made in the storyboard
     override  func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
         
         print("Coming here Segue")
         
-        addTechnology = segue.destinationController as? EHAddTechnology
+        addTechnologyController = segue.destinationController as? EHAddTechnologyController
         
-        self.addTechnology!.delegate = self
+        self.addTechnologyController!.delegate = self
         
     }
     
-    //PRAGMAMARK: - Button Action
+    //PRAGMAMARK: - Button Actions
     @IBAction func deleteSelectedDate(sender: NSButton)
     {
         
@@ -257,6 +233,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             if selectedDate == aInterviewDate
             {
                 technologyObject.interviewDates.removeAtIndex(count)
+                break
             }
             count++
         }
@@ -268,63 +245,54 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     
     @IBAction func deleteSelectedTechnology(sender: AnyObject)
     {
-        let item = self.sourceList.itemAtRow(self.sourceList.selectedRow)
-        
-        print(item)
-        
-        if let someItem = item
+        //this if statement is added to avoid crash. To be removed once - is disabled when no technology is selected
+        if self.sourceList.selectedRow == -1
         {
-            switch someItem
-            {
-                
-            case let technologyObject as EHTechnology:
-                
-                
-                sourceListArray.removeAtIndex(self.sourceList.selectedRow)
-                
-                self.sourceList.reloadData()
-                
-                deleteTechnologyFromCoreData(technologyObject.technologyName)
-                
-            default:
-                
-                print("Never")
-            }
-            
+          return
         }
+        
+        let seletedTechnology = self.sourceList.itemAtRow(self.sourceList.selectedRow) as! EHTechnology
+        
+        technologyArray.removeAtIndex(self.sourceList.selectedRow)
+        
+        self.sourceList.reloadData()
+        
+        deleteTechnologyFromCoreData(seletedTechnology.technologyName)
     }
     
     @IBAction func addDateAction(button: NSButton)
     {
-        popOver = NSPopover()
+        datePopOver = NSPopover()
         
         let selectedTechView = button.superview as! EHTechnologyCustomCell
         
         
-        selectedTechnology  =  getTechnologyIndex(selectedTechView)
+        selectedTechnologyIndex  =  getTechnologyIndex(selectedTechView)
         
-        print (selectedTechnology)
+        print (selectedTechnologyIndex)
         
-        popOver.behavior = NSPopoverBehavior.Transient
+        //Make the calendar popover go away when clicked elsewhere
+        datePopOver.behavior = NSPopoverBehavior.Transient
         
-        contentPopOver = self.storyboard?.instantiateControllerWithIdentifier("popover") as? EHPopOverController
+        datePopOverController = self.storyboard?.instantiateControllerWithIdentifier("popover") as? EHPopOverController
         
-        popOver.contentViewController = contentPopOver
+        datePopOver.contentViewController = datePopOverController
         
-        contentPopOver!.delegate = self
+        datePopOverController!.delegate = self
         
-        popOver.showRelativeToRect(button.bounds, ofView:button, preferredEdge:NSRectEdge.MaxX)
+        datePopOver.showRelativeToRect(button.bounds, ofView:button, preferredEdge:NSRectEdge.MaxX)
         
-        print(contentPopOver?.scheduleDatePicker.dateValue)
+        print(datePopOverController?.scheduleDatePicker.dateValue)
         
     }
     
+    // This function returns the index of the selected technology
     func getTechnologyIndex(inView :EHTechnologyCustomCell) -> Int{
         var selectedIndex = 0
         let selectedTechName = inView.textField?.stringValue
-        for var index = 0; index < sourceListArray.count; ++index {
+        for var index = 0; index < technologyArray.count; ++index {
             
-            let aTech = sourceListArray[index]  as EHTechnology
+            let aTech = technologyArray[index]  as EHTechnology
             if selectedTechName == aTech.technologyName
             {
                 selectedIndex = index
@@ -334,12 +302,12 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     }
     
     //PRAGMAMARK:- Coredata
-    
+    // This method loads the saved data from Core data
     func getSourceListContent(){
         
-        if let appDel = NSApplication.sharedApplication().delegate as? AppDelegate {
-            let context = appDel.managedObjectContext
-            let technologyEntity = EHCoreDataHelper.createEntity("Technology", moc: context)
+        if let appDelegate = NSApplication.sharedApplication().delegate as? AppDelegate {
+            let context = appDelegate.managedObjectContext
+            let technologyEntity = EHCoreDataHelper.createEntity("Technology", managedObjectContext: context)
             
             let records = EHCoreDataHelper.fetchRecords(nil, sortDes: nil, entity: technologyEntity!, moc: context)
             if records?.count > 0{
@@ -347,20 +315,19 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 for aRec in records!{
                     
                     let aTechnologyEntity = aRec as! Technology
-                    let childrens = aTechnologyEntity.interviewDates
-                    let arr = childrens!.allObjects
+                    let children = aTechnologyEntity.interviewDates
                     
                     //  mapping coredata content to our custom model
                     let technologyModel = EHTechnology(technology: aTechnologyEntity.technologyName!)
                     
-                    for object in arr
+                    for object in children!
                     {
-                        let indate = object as! Date
+                        let inDate = object as! Date
                         
-                        let dateObject = EHInterviewDate(date: indate.interviewDate!)
+                        let dateObject = EHInterviewDate(date: inDate.interviewDate!)
                         technologyModel.interviewDates.append(dateObject)
                     }
-                    sourceListArray.append(technologyModel)
+                    technologyArray.append(technologyModel)
                 }
             }
             sourceList.reloadData()
@@ -368,36 +335,36 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         }
     }
     
-    func addTechnologyAndInterviewDateTocoreData(sender : AnyObject?,content:AnyObject){
+    func addTechnologyAndInterviewDateToCoreData(sender : AnyObject?,content:AnyObject){
         
+        //if the sender is nil, there is no parent. THat means a new techonlogy is being added.
         if sender == nil {
-            // Adding technology in to coredata
-            if let appDel = NSApplication.sharedApplication().delegate as? AppDelegate {
-                let entity1 = EHCoreDataHelper.createEntity("Technology", moc: appDel.managedObjectContext)
-                let newTechnology:Technology = Technology(entity:entity1!, insertIntoManagedObjectContext:appDel.managedObjectContext) as Technology
-                newTechnology.technologyName = content as? String
-                EHCoreDataHelper.saveToCoreData(newTechnology)
+            // Adding a new technology in to coredata
+            if let appDelegate = NSApplication.sharedApplication().delegate as? AppDelegate {
+                let newTechnologyEntityDescription = EHCoreDataHelper.createEntity("Technology", managedObjectContext: appDelegate.managedObjectContext)
+                let newTechnologyManagedObject:Technology = Technology(entity:newTechnologyEntityDescription!, insertIntoManagedObjectContext:appDelegate.managedObjectContext) as Technology
+                newTechnologyManagedObject.technologyName = content as? String
+                EHCoreDataHelper.saveToCoreData(newTechnologyManagedObject)
             }
             
         }
         else {
-            if let appDel = NSApplication.sharedApplication().delegate as? AppDelegate {
-                let moc = appDel.managedObjectContext
-                let name:String = (sender?.technologyName)!
-                let predi = NSPredicate(format: "technologyName = %@",name)
-                let technologyRecords = EHCoreDataHelper.fetchRecordsWithPredicate(predi, sortDes: nil, entityName: "Technology", moc: moc)
+            if let appDelegate = NSApplication.sharedApplication().delegate as? AppDelegate {
+                let parentTechnologyName:String = (sender?.technologyName)!
+                let predicate = NSPredicate(format: "technologyName = %@",parentTechnologyName)
+                let technologyRecords = EHCoreDataHelper.fetchRecordsWithPredicate(predicate, sortDes: nil, entityName: "Technology", managedObjectContext: appDelegate.managedObjectContext)
                 
-                let entity2 = EHCoreDataHelper.createEntity("Date", moc: moc)
-                for aTechnology in technologyRecords!
+                let newDateEntityDescription = EHCoreDataHelper.createEntity("Date", managedObjectContext: appDelegate.managedObjectContext)
+                for item in technologyRecords!
                 {
-                    let dateEntity:Date = Date(entity:entity2!, insertIntoManagedObjectContext:moc) as Date
+                    let newDateManagedObject:Date = Date(entity:newDateEntityDescription!, insertIntoManagedObjectContext:appDelegate.managedObjectContext) as Date
                     
-                    dateEntity.interviewDate = content as? NSDate
-                    let technology = aTechnology as! Technology
+                    newDateManagedObject.interviewDate = content as? NSDate
+                    let technology = item as! Technology
                     
-                    let newSet = NSMutableSet(set: technology.interviewDates!)
-                    newSet.addObject(dateEntity)
-                    technology.interviewDates = newSet
+                    let newDateSet = NSMutableSet(set: technology.interviewDates!)
+                    newDateSet.addObject(newDateManagedObject)
+                    technology.interviewDates = newDateSet
                     EHCoreDataHelper.saveToCoreData(technology)
                 }
             }
@@ -405,30 +372,30 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     }
     
     func deleteTechnologyFromCoreData(inTechnologyName:String) {
-        let appDel = NSApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
         
         // deleting technology from coredata
-        let predi = NSPredicate(format: "technologyName = %@",inTechnologyName)
-        let records = EHCoreDataHelper.fetchRecordsWithPredicate(predi, sortDes: nil, entityName: "Technology", moc: appDel.managedObjectContext)
+        let predicate = NSPredicate(format: "technologyName = %@",inTechnologyName)
+        let records = EHCoreDataHelper.fetchRecordsWithPredicate(predicate, sortDes: nil, entityName: "Technology", managedObjectContext: appDelegate.managedObjectContext)
         
-        for aRec in records!{
-            let aTechnology = aRec as! Technology
-            appDel.managedObjectContext.deleteObject(aTechnology)
+        for record in records!{
+            let aTechnology = record as! Technology
+            appDelegate.managedObjectContext.deleteObject(aTechnology)
             EHCoreDataHelper.saveToCoreData(aTechnology)
         }
     }
     
     func deleteInterviewDateFromCoreData(inInterviewdate:EHInterviewDate) {
         
-        let appDel = NSApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
         // creating predicate to filter the fetching result from core data
-        let predi = NSPredicate(format: "interviewDate = %@",(inInterviewdate.scheduleInterviewDate))
+        let predicate = NSPredicate(format: "interviewDate = %@",(inInterviewdate.scheduleInterviewDate))
         
-        let fetchResults =  EHCoreDataHelper.fetchRecordsWithPredicate(predi, sortDes: nil, entityName: "Date", moc: appDel.managedObjectContext)
+        let fetchResults =  EHCoreDataHelper.fetchRecordsWithPredicate(predicate, sortDes: nil, entityName: "Date", managedObjectContext: appDelegate.managedObjectContext)
         
         if let managedObjects = fetchResults as? [NSManagedObject] {
             for aInterviewDate in managedObjects {
-                appDel.managedObjectContext.deleteObject(aInterviewDate)
+                appDelegate.managedObjectContext.deleteObject(aInterviewDate)
                 EHCoreDataHelper.saveToCoreData(aInterviewDate)
             }
         }

@@ -77,7 +77,7 @@ class EHCoreDataHelper {
     }
     
     
-    class func fetchRecordsWithPredicate(predi:NSPredicate?,sortDes:NSSortDescriptor?,entityName:String,moc:NSManagedObjectContext)->NSArray?{
+    class func fetchRecordsWithPredicate(predi:NSPredicate?,sortDes:NSSortDescriptor?,entityName:String,managedObjectContext:NSManagedObjectContext)->NSArray?{
         
         var records:[AnyObject]? = nil
         
@@ -87,7 +87,7 @@ class EHCoreDataHelper {
         
         do{
             
-            records = try moc.executeFetchRequest(fetch)
+            records = try managedObjectContext.executeFetchRequest(fetch)
             
             
         }
@@ -109,9 +109,9 @@ class EHCoreDataHelper {
     }
     
      // PRAGMAMARK: - Method to create NSManaged Object in coredata
-    class func createEntity(name:String,moc:NSManagedObjectContext)->NSEntityDescription?{
+    class func createEntity(name:String,managedObjectContext:NSManagedObjectContext)->NSEntityDescription?{
         
-        let entity = NSEntityDescription.entityForName(name, inManagedObjectContext:moc)
+        let entity = NSEntityDescription.entityForName(name, inManagedObjectContext:managedObjectContext)
         
         if entity != nil{
             

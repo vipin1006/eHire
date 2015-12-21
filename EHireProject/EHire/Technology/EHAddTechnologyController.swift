@@ -1,6 +1,8 @@
 //
-//  EHAddTechnology.swift
+//  EHAddTechnologyController.swift
 //  EHire
+//   
+//  For adding a new Technology
 //
 //  Created by Sudhanshu Saraswat on 10/12/15.
 //  Copyright © 2015 Exilant Technologies. All rights reserved.
@@ -14,7 +16,7 @@ import Cocoa
 
 
 
-class EHAddTechnology: NSViewController {
+class EHAddTechnologyController: NSViewController {
     
        var delegate:DataCommunicator?
 
@@ -66,7 +68,7 @@ class EHAddTechnology: NSViewController {
             
             if let del = self.delegate{
                 
-                del.sendData(self.newTechnologyName,sender: NSStringFromClass(EHAddTechnology))
+                del.sendData(self.newTechnologyName,sender: NSStringFromClass(EHAddTechnologyController))
             }
             else{
                 
