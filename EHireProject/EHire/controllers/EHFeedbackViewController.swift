@@ -39,35 +39,18 @@ class EHFeedbackViewController: NSViewController {
     override func viewDidLoad()
     {
     super.viewDidLoad()
+
+    techFeedback = storyboard?.instantiateControllerWithIdentifier("TechnicalFeedback") as? EHTechnicalFeedbackViewController
+        
+    self.scrollViewHr.documentView? = (techFeedback?.view)!
+        
+    self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1081))
     
-      
-    
-    
-    }
-    
-    override func viewWillAppear() {
-        super.viewWillAppear()
+    self.typeOfInterview.selectedSegment = 0
         
-        techFeedback = storyboard?.instantiateControllerWithIdentifier("TechnicalFeedback") as? EHTechnicalFeedbackViewController
+    self.subRound.selectedSegment = 0
         
-        
-        
-        self.scrollViewHr.documentView? = (techFeedback?.view)!
-        
-        self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1081))
-        
-        
-        self.typeOfInterview.selectedSegment = 0
-        
-        self.subRound.selectedSegment = 0
-        
-        self.scrollViewHr.hasVerticalScroller = true
-    }
-    
-    override var representedObject: AnyObject? {
-    didSet {
-    
-    }
+    self.scrollViewHr.hasVerticalScroller = true
     }
     
     @IBAction func roundType(sender: AnyObject) {
@@ -80,8 +63,6 @@ class EHFeedbackViewController: NSViewController {
         switch mainRound.selectedSegment{
             
         case 0 :
-            
-            print("T")
             
             if !isTechnicalLoaded
             {
@@ -110,16 +91,12 @@ class EHFeedbackViewController: NSViewController {
             
         case 1:
             
-            print("M")
-
-            
             if !isManagerLoaded
             {
                 managerFeedback = storyboard?.instantiateControllerWithIdentifier("ManagerFeedback") as? EHManagerFeedbackViewController
                 self.scrollViewHr.documentView = managerFeedback?.view
                 
                 self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1626))
-                
 
             }
             self.hrView?.removeFromSuperview()
@@ -137,9 +114,6 @@ class EHFeedbackViewController: NSViewController {
             
         case 2:
             
-            print("H")
-
-            
             if !isHrLoaded{
                 
                 self.addHrFeedBackView()
@@ -152,8 +126,6 @@ class EHFeedbackViewController: NSViewController {
         default:
             print("Other")
         }
-
-    
     }
     
     @IBAction func subRound(sender: AnyObject) {
@@ -204,11 +176,9 @@ class EHFeedbackViewController: NSViewController {
     
     }
     
-    
     func addHrFeedBackView(){
-    
-    print("Added Hr View")
-    
+   
+        
     hrFeedBackViewController = self.storyboard?.instantiateControllerWithIdentifier("hrFeedback") as? EHHrFeedbackViewController
     
     if let hrViewController = hrFeedBackViewController {
@@ -226,7 +196,5 @@ class EHFeedbackViewController: NSViewController {
     }
     
     }
-    
-
     
 }
