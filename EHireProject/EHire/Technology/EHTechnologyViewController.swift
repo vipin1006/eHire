@@ -29,6 +29,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     var candidateController:EHCandidateController?
     var isCandidatesViewLoaded = false
     
+    let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
     //Feedback View related
     var feedbackViewController:EHFeedbackViewController?
     
@@ -273,7 +274,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     // This method loads the saved data from Core data
     func getSourceListContent(){
         
-        if let appDelegate = NSApplication.sharedApplication().delegate as? AppDelegate {
             let context = appDelegate.managedObjectContext
             let technologyEntity = EHCoreDataHelper.createEntity("Technology", managedObjectContext: context)
             
@@ -299,8 +299,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 }
             }
             sourceList.reloadData()
-            
-        }
+    
     }
     
     func addTechnologyAndInterviewDateToCoreData(sender : AnyObject?,content:AnyObject){
@@ -308,16 +307,15 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         //if the sender is nil, there is no parent. THat means a new techonlogy is being added.
         if sender == nil {
             // Adding a new technology in to coredata
-            if let appDelegate = NSApplication.sharedApplication().delegate as? AppDelegate {
                 let newTechnologyEntityDescription = EHCoreDataHelper.createEntity("Technology", managedObjectContext: appDelegate.managedObjectContext)
                 let newTechnologyManagedObject:Technology = Technology(entity:newTechnologyEntityDescription!, insertIntoManagedObjectContext:appDelegate.managedObjectContext) as Technology
                 newTechnologyManagedObject.technologyName = content as? String
                 EHCoreDataHelper.saveToCoreData(newTechnologyManagedObject)
-            }
+            
             
         }
         else {
-            if let appDelegate = NSApplication.sharedApplication().delegate as? AppDelegate {
+            
                 let parentTechnologyName:String = (sender?.technologyName)!
                 let predicate = NSPredicate(format: "technologyName = %@",parentTechnologyName)
                 let technologyRecords = EHCoreDataHelper.fetchRecordsWithPredicate(predicate, sortDes: nil, entityName: "Technology", managedObjectContext: appDelegate.managedObjectContext)
@@ -336,11 +334,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                     EHCoreDataHelper.saveToCoreData(technology)
                 }
             }
-        }
     }
     
     func deleteTechnologyFromCoreData(inTechnologyName:String) {
-        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
         
         // deleting technology from coredata
         let predicate = NSPredicate(format: "technologyName = %@",inTechnologyName)
@@ -355,7 +351,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     
     func deleteInterviewDateFromCoreData(inInterviewdate:EHInterviewDate) {
         
-        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
         // creating predicate to filter the fetching result from core data
         let predicate = NSPredicate(format: "interviewDate = %@",(inInterviewdate.scheduleInterviewDate))
         
