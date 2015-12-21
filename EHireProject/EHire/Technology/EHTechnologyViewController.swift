@@ -29,6 +29,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     var candidateController:EHCandidateController?
     var isCandidatesViewLoaded = false
     
+    let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
     //Feedback View related
     var feedbackViewController:EHFeedbackViewController?
     
@@ -91,14 +92,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
         case  _ as EHTechnology:
             
-            print("Its a Technology ")
-            
             if isCandidatesViewLoaded{
-                
                 candidateController?.view.removeFromSuperview()
-                
-                print("Removed")
-                
                 isCandidatesViewLoaded = false
             }
            
@@ -106,14 +101,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
             if !isCandidatesViewLoaded{
                 
-                print("Loaded")
-                
                 candidateController = self.storyboard?.instantiateControllerWithIdentifier("candidateObject") as? EHCandidateController
-                
                 candidateController?.delegate = self
-                
                 self.candidateView.addSubview((candidateController?.view)!)
-                
                 isCandidatesViewLoaded = true
             }
             
@@ -172,9 +162,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     //This delegate method passed the data from another view controller to this controller as it confirms to the custom DataCommunicator protocol.
     func sendData<T>(sendingData: T,sender:String)
     {
-        
-        print(sender)
-        
         switch sender{
             
         case "EHire.EHAddTechnologyController": // adding technology
@@ -182,10 +169,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             let newTechnology = sendingData as! String
             let firstTechnology = EHTechnology(technology:newTechnology)
             technologyArray .append(firstTechnology)
-            print(technologyArray.count)
             addTechnologyAndInterviewDateToCoreData(nil, content: newTechnology)
             sourceList.reloadData()
-            
             
         case "EHire.EHPopOverController": // adding interview dates
             
@@ -207,12 +192,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     // This function is called automatically when a segue connection is made in the storyboard
     override  func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
         
-        print("Coming here Segue")
-        
         addTechnologyController = segue.destinationController as? EHAddTechnologyController
-        
         self.addTechnologyController!.delegate = self
-        
     }
     
     //PRAGMAMARK: - Button Actions
@@ -265,25 +246,14 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         datePopOver = NSPopover()
         
         let selectedTechView = button.superview as! EHTechnologyCustomCell
-        
-        
         selectedTechnologyIndex  =  getTechnologyIndex(selectedTechView)
-        
-        print (selectedTechnologyIndex)
         
         //Make the calendar popover go away when clicked elsewhere
         datePopOver.behavior = NSPopoverBehavior.Transient
-        
         datePopOverController = self.storyboard?.instantiateControllerWithIdentifier("popover") as? EHPopOverController
-        
         datePopOver.contentViewController = datePopOverController
-        
         datePopOverController!.delegate = self
-        
         datePopOver.showRelativeToRect(button.bounds, ofView:button, preferredEdge:NSRectEdge.MaxX)
-        
-        print(datePopOverController?.scheduleDatePicker.dateValue)
-        
     }
     
     // This function returns the index of the selected technology
@@ -291,7 +261,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         var selectedIndex = 0
         let selectedTechName = inView.textField?.stringValue
         for var index = 0; index < technologyArray.count; ++index {
-            
             let aTech = technologyArray[index]  as EHTechnology
             if selectedTechName == aTech.technologyName
             {
@@ -305,7 +274,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     // This method loads the saved data from Core data
     func getSourceListContent(){
         
-        if let appDelegate = NSApplication.sharedApplication().delegate as? AppDelegate {
             let context = appDelegate.managedObjectContext
             let technologyEntity = EHCoreDataHelper.createEntity("Technology", managedObjectContext: context)
             
@@ -331,8 +299,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 }
             }
             sourceList.reloadData()
-            
-        }
+    
     }
     
     func addTechnologyAndInterviewDateToCoreData(sender : AnyObject?,content:AnyObject){
@@ -340,16 +307,15 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         //if the sender is nil, there is no parent. THat means a new techonlogy is being added.
         if sender == nil {
             // Adding a new technology in to coredata
-            if let appDelegate = NSApplication.sharedApplication().delegate as? AppDelegate {
                 let newTechnologyEntityDescription = EHCoreDataHelper.createEntity("Technology", managedObjectContext: appDelegate.managedObjectContext)
                 let newTechnologyManagedObject:Technology = Technology(entity:newTechnologyEntityDescription!, insertIntoManagedObjectContext:appDelegate.managedObjectContext) as Technology
                 newTechnologyManagedObject.technologyName = content as? String
                 EHCoreDataHelper.saveToCoreData(newTechnologyManagedObject)
-            }
+            
             
         }
         else {
-            if let appDelegate = NSApplication.sharedApplication().delegate as? AppDelegate {
+            
                 let parentTechnologyName:String = (sender?.technologyName)!
                 let predicate = NSPredicate(format: "technologyName = %@",parentTechnologyName)
                 let technologyRecords = EHCoreDataHelper.fetchRecordsWithPredicate(predicate, sortDes: nil, entityName: "Technology", managedObjectContext: appDelegate.managedObjectContext)
@@ -368,11 +334,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                     EHCoreDataHelper.saveToCoreData(technology)
                 }
             }
-        }
     }
     
     func deleteTechnologyFromCoreData(inTechnologyName:String) {
-        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
         
         // deleting technology from coredata
         let predicate = NSPredicate(format: "technologyName = %@",inTechnologyName)
@@ -387,7 +351,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     
     func deleteInterviewDateFromCoreData(inInterviewdate:EHInterviewDate) {
         
-        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
         // creating predicate to filter the fetching result from core data
         let predicate = NSPredicate(format: "interviewDate = %@",(inInterviewdate.scheduleInterviewDate))
         
@@ -403,22 +366,13 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     
     func showFeedbackViewController(){
         
-        print("Implement")
-        
         for views in self.view.subviews{
-            
             views.removeFromSuperview()
-            
         }
-        
         feedbackViewController = self.storyboard?.instantiateControllerWithIdentifier("feedback") as? EHFeedbackViewController
         
         self.view.addSubview((feedbackViewController?.view)!)
-        
-        
-        
     }
-    
 }
 
 
