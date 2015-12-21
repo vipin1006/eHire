@@ -177,7 +177,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         switch sender{
             
-        case "EHire.EHAddTechnology": // adding technology
+        case "EHire.EHAddTechnologyController": // adding technology
             
             let newTechnology = sendingData as! String
             let firstTechnology = EHTechnology(technology:newTechnology)
