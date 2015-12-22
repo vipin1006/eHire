@@ -33,7 +33,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     var skillsAndRatingsTitleArray = NSMutableArray()
     var cell : EHRatingsTableCellView?
     
-    //initial setup of view to load the basic views of Technical Feedback
+    //initial setup of view to load the basic views of Technical Feedback.
     
     override func viewDidLoad() {
         super.viewDidLoad()
