@@ -171,11 +171,27 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         case "EHire.EHPopOverController": // adding interview dates
             
             let scheduledDate = sendingData as! NSDate
-            let technology = technologyArray[selectedTechnologyIndex!]
-            technology.interviewDates.append(EHInterviewDate(date:scheduledDate))
+//            let technology = technologyArray[selectedTechnologyIndex!]
+//            technology.interviewDates.append(EHInterviewDate(date:scheduledDate))
             
-            self.sourceList.reloadData()
-            addTechnologyAndInterviewDateToCoreData(technology, content: scheduledDate)
+//            self.sourceList.reloadData()
+//            addTechnologyAndInterviewDateToCoreData(technology, content: scheduledDate)
+            
+            
+            
+                    if let selectedItem = sourceList.itemAtRow(sourceList.selectedRow) as? EHTechnology {
+                        let aString = sendingData as! NSDate
+                        print(aString)
+                        selectedItem.interviewDates.append(EHInterviewDate(date:scheduledDate))
+                        addTechnologyAndInterviewDateToCoreData(selectedItem, content: scheduledDate)
+
+                        self.sourceList.reloadData()
+            }
+                        
+                        
+                        
+            
+            
             
         default:
             
@@ -193,6 +209,21 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     }
     
     //PRAGMAMARK: - Button Actions
+    
+    @IBAction func addBtnAction(sender: AnyObject) {
+        
+        if  ((sourceList.itemAtRow(sourceList.selectedRow) as? EHTechnology) != nil){ // adding new date
+            
+            addDateAction(sender as! NSButton)
+            
+        }
+        else{ // adding new technology
+            
+        }
+
+    }
+    
+    
     @IBAction func deleteSelectedDate(sender: NSButton)
     {
         
@@ -241,15 +272,15 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     {
         datePopOver = NSPopover()
         
-        let selectedTechView = button.superview as! EHTechnologyCustomCell
-        selectedTechnologyIndex  =  getTechnologyIndex(selectedTechView)
+       // let selectedTechView = button.superview as! EHTechnologyCustomCell
+        //selectedTechnologyIndex  =  getTechnologyIndex(selectedTechView)
         
         //Make the calendar popover go away when clicked elsewhere
         datePopOver.behavior = NSPopoverBehavior.Transient
         datePopOverController = self.storyboard?.instantiateControllerWithIdentifier("popover") as? EHPopOverController
         datePopOver.contentViewController = datePopOverController
         datePopOverController!.delegate = self
-        datePopOver.showRelativeToRect(button.bounds, ofView:button, preferredEdge:NSRectEdge.MaxX)
+        datePopOver.showRelativeToRect(button.bounds, ofView:button, preferredEdge:NSRectEdge.MaxY)
     }
     
     // This function returns the index of the selected technology

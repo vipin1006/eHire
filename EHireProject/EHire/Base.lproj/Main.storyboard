@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="box content view" minToolsVersion="7.0"/>
@@ -685,7 +685,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <segue destination="Cu5-x1-Qfx" kind="sheet" id="ZG1-G4-dih"/>
+                                    <action selector="addBtnAction:" target="XfG-lQ-9wD" id="BTd-GC-FyX"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XqD-dp-fcu">
@@ -955,7 +955,7 @@ Gw
                 </viewController>
                 <customObject id="YzJ-ot-mhN" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-398" y="503.5"/>
+            <point key="canvasLocation" x="-831" y="1204.5"/>
         </scene>
         <!--Pop Over Controller-->
         <scene sceneID="Tiy-78-YvD">
@@ -989,7 +989,7 @@ Gw
                 </viewController>
                 <customObject id="CzF-P9-kRe" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-377.5" y="832.5"/>
+            <point key="canvasLocation" x="-484.5" y="955.5"/>
         </scene>
         <!--Candidate Basic Info-->
         <scene sceneID="ocd-EH-dkT">
@@ -3989,7 +3989,7 @@ DQ
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="zYB-nQ-v2C">
-                                                    <rect key="frame" x="229" y="0.0" width="4" height="103"/>
+                                                    <rect key="frame" x="229" y="0.0" width="5" height="103"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -4358,7 +4358,7 @@ DQ
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="eNs-qS-ZTJ">
-                                                    <rect key="frame" x="444" y="0.0" width="5" height="96"/>
+                                                    <rect key="frame" x="444" y="0.0" width="4" height="96"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
