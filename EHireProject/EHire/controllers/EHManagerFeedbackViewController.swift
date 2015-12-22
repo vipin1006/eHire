@@ -10,6 +10,7 @@ import Cocoa
 
 class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource,NSTextFieldDelegate {
 
+    @IBOutlet var managerFeedbackMainView: NSView!
     @IBOutlet weak var enterCG: NSTextField!
     @IBOutlet weak var enterPosition: NSTextField!
     @IBOutlet weak var enterInterviewBy: NSTextField!
@@ -17,31 +18,43 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     @IBOutlet var justificationForHire: NSTextView!
     @IBOutlet weak var enterGrossSalary: NSTextField!
     @IBOutlet weak var enterDesignation: NSTextField!
-    
     @IBOutlet weak var assestmentCandLabel: NSTextField!
     @IBOutlet weak var assessmentCandView: NSView!
     @IBOutlet weak var assessmentTechView: NSView!
     @IBOutlet weak var assessmentTechLabel: NSTextField!
-    var ratingTitle = [String]()
-    var selectRow : Int?
+    
+    var ratingTitle = NSMutableArray()
+    
     @IBOutlet weak var tableView: NSTableView!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        managerFeedbackMainView.wantsLayer = true
+        managerFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
+        if ratingTitle.count == 0
+        {
+            self.ratingTitle.addObject("Communication")
+            self.ratingTitle.addObject("Organisation Stability")
+            self.ratingTitle.addObject("Leadership(if applicable)")
+            self.ratingTitle.addObject("Growth Potential")
+        }
+        tableView.reloadData()
     }
     func numberOfRowsInTableView(tableView: NSTableView) -> Int
     {
         return ratingTitle.count
     }
     
-    func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        return 35
+    func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat
+    {
+        return 25
     }
     
-    func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
+    func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView?
+    {
         let cell = tableView.makeViewWithIdentifier("DataCell", owner: self) as! EHManagerFeedBackCustomTableView
-        cell.titleName.stringValue = ratingTitle[row]
+        cell.titleName.stringValue = ratingTitle[row] as! String
         cell.titleName.tag = row
         cell.titleName.target = self
         cell.titleName.delegate = self
@@ -76,14 +89,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             return
         }
         displayStar(ratingCell.selectStar, lbl: ratingCell.feedBackRating, btn: sender )
-        
-        
-    }
-    
-    func tableView(tableView: NSTableView, shouldSelectRow row: Int) -> Bool
-    {
-        selectRow = row
-        return true
     }
     
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
@@ -92,21 +97,17 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         return true
     }
     
-    
-    
     @IBAction func addRating(sender: NSButton)
     {
-        ratingTitle.append("Enter Title")
+        ratingTitle.addObject("Enter Title")
         tableView.reloadData()
-        
     }
+    
     @IBAction func deleteRating(sender: NSButton)
     {
-        ratingTitle.removeAtIndex(selectRow!)
+        ratingTitle.removeObjectAtIndex(tableView.selectedRow)
         tableView.reloadData()
     }
-    
-    
     
     @IBAction func assessmentBtn(sender: AnyObject)
     {
@@ -115,7 +116,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             let view = ratingsView as! NSButton
             view.target = self
             displayStar(assessmentTechView, lbl:assessmentTechLabel, btn: sender as! NSButton)
-            
         }
     }
     

@@ -51,10 +51,11 @@ class EHFeedbackViewController: NSViewController {
     self.subRound.selectedSegment = 0
         
     self.scrollViewHr.hasVerticalScroller = true
+    self.scrollViewHr.hasHorizontalScroller = true
     }
     
-    @IBAction func roundType(sender: AnyObject) {
-    
+    @IBAction func roundType(sender: AnyObject)
+    {
         
         self.subRound.hidden = false
         
@@ -67,6 +68,7 @@ class EHFeedbackViewController: NSViewController {
             if !isTechnicalLoaded
             {
                 self.scrollViewHr.documentView? = (techFeedback?.view)!
+                self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1081))
             }
             if isHrLoaded
             {
@@ -96,7 +98,7 @@ class EHFeedbackViewController: NSViewController {
                 managerFeedback = storyboard?.instantiateControllerWithIdentifier("ManagerFeedback") as? EHManagerFeedbackViewController
                 self.scrollViewHr.documentView = managerFeedback?.view
                 
-                self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1626))
+                self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1565))
 
             }
             self.hrView?.removeFromSuperview()
