@@ -12,7 +12,7 @@ import CoreData
 class EHCoreDataHelper {
     
     
-    // PRAGMAMARK: - Method to save data in coredata
+    //MARK: - Method to save data in coredata
     
     class  func saveToCoreData(managedobj:NSManagedObject)->String{
         
@@ -30,79 +30,26 @@ class EHCoreDataHelper {
     }
     
     
-    // PRAGMAMARK: - Method to fetch data from coredata
-    class func fetchRecords(predi:NSPredicate?,sortDes:NSSortDescriptor?,entity:NSEntityDescription,moc:NSManagedObjectContext)->NSArray?{
-        
-        var records:[AnyObject]? = nil
-        
-        let fetch = NSFetchRequest()
-        
-        fetch.entity = entity
-        
-        if let x = predi {
-            
-            
-            fetch.predicate = x
-            
-                   }
-        
-        if let y = sortDes {
-            
-            
-            
-            fetch.sortDescriptors = [y]
-        }
-        
-        do{
-            
-            records = try moc.executeFetchRequest(fetch)
-            
-            
-        }
-            
-        catch{
-            
-            print("error when fetching")
-        }
-        
-        if records?.count > 0{
-            
-            return records
-        }
-        else{
-            
-            return nil
-        }
-        
-    }
-    
-    
     class func fetchRecordsWithPredicate(predi:NSPredicate?,sortDes:NSSortDescriptor?,entityName:String,managedObjectContext:NSManagedObjectContext)->NSArray?{
         
         var records:[AnyObject]? = nil
         
         let fetch = NSFetchRequest(entityName: entityName)
-        
-        fetch.predicate = predi
+        if predi != nil{
+            fetch.predicate = predi
+        }
         
         do{
-            
             records = try managedObjectContext.executeFetchRequest(fetch)
-            
-            
         }
             
         catch{
-            
-            print("error when fetching")
         }
         
         if records?.count > 0{
-            
             return records
         }
         else{
-            
             return nil
         }
         
