@@ -62,6 +62,8 @@ class EHFeedbackViewController: NSViewController {
         self.subRound.selectedSegment = 0
         
         self.scrollViewHr.hasVerticalScroller = true
+        
+        
     }
     
     override var representedObject: AnyObject? {
@@ -119,7 +121,7 @@ class EHFeedbackViewController: NSViewController {
                 self.scrollViewHr.documentView = managerFeedback?.view
                 
                 self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1626))
-                
+                createConstraintsForManagerFeedbackController(0.0, trailing: 0.0, top: 0.0, bottom: 0.0)
 
             }
             self.hrView?.removeFromSuperview()
@@ -225,6 +227,24 @@ class EHFeedbackViewController: NSViewController {
     
     }
     
+    }
+    
+    func createConstraintsForManagerFeedbackController(leading:CGFloat,trailing:CGFloat,top:CGFloat,bottom:CGFloat){
+        
+//        managerFeedback!.view.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        let width = NSLayoutConstraint(item: (managerFeedback?.view)!, attribute: NSLayoutAttribute.Width, relatedBy: .Equal , toItem: self.scrollViewHr, attribute:NSLayoutAttribute.Width, multiplier: 1.0, constant: 0)
+//        
+//        let height = NSLayoutConstraint(item: (managerFeedback?.view)!, attribute: NSLayoutAttribute.Height, relatedBy: .Equal, toItem: self.scrollViewHr, attribute:NSLayoutAttribute.Height, multiplier: 1.0, constant: 400)
+//        let xLeadingSpace = NSLayoutConstraint(item: (managerFeedback?.view)!, attribute: .Leading, relatedBy: .Equal, toItem:self.scrollViewHr, attribute: .Leading, multiplier: 1, constant: leading)
+//        
+//        let xTrailingSpace = NSLayoutConstraint(item: (managerFeedback?.view)!, attribute: .Trailing, relatedBy: .Equal, toItem: self.scrollViewHr, attribute: .Trailing, multiplier: 1, constant: trailing)
+//        
+//        let yTopSpace = NSLayoutConstraint(item: (managerFeedback?.view)!, attribute:  .Top, relatedBy: .Equal, toItem: self.scrollViewHr, attribute: .Top, multiplier: 1, constant: top)
+//        
+//        let yBottomSpace = NSLayoutConstraint(item: (managerFeedback?.view)!, attribute: .Bottom, relatedBy: .Equal, toItem: self.scrollViewHr, attribute: .Bottom, multiplier: 1, constant: bottom)
+//        self.view .addConstraints([xLeadingSpace,yTopSpace,width,height])
+        
     }
     
 
