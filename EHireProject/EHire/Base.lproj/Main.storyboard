@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
@@ -674,7 +675,7 @@
             <objects>
                 <viewController storyboardIdentifier="mainView" id="XfG-lQ-9wD" customClass="EHTechnologyViewController" customModule="EHire" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="741" height="700"/>
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="700"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eBm-x4-76f">
@@ -756,7 +757,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZzN-oS-NS7">
-                                                                    <rect key="frame" x="10" y="14" width="91" height="16"/>
+                                                                    <rect key="frame" x="10" y="14" width="174" height="16"/>
                                                                     <animations/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="OaO-7S-sJt">
                                                                         <font key="font" metaFont="cellTitle"/>
@@ -766,8 +767,10 @@
                                                                 </textField>
                                                             </subviews>
                                                             <constraints>
+                                                                <constraint firstAttribute="bottom" secondItem="ZzN-oS-NS7" secondAttribute="bottom" constant="14" id="Hh9-3f-c9d"/>
                                                                 <constraint firstItem="ZzN-oS-NS7" firstAttribute="leading" secondItem="YEb-im-Ksw" secondAttribute="leading" constant="12" id="aCw-Rc-cjk"/>
                                                                 <constraint firstItem="ZzN-oS-NS7" firstAttribute="top" secondItem="YEb-im-Ksw" secondAttribute="top" constant="5" id="pJN-dE-R8m"/>
+                                                                <constraint firstAttribute="trailing" secondItem="ZzN-oS-NS7" secondAttribute="trailing" constant="13" id="yda-Gg-cwh"/>
                                                             </constraints>
                                                             <animations/>
                                                             <connections>
@@ -787,6 +790,9 @@
                                     <animations/>
                                     <nil key="backgroundColor"/>
                                 </clipView>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="750" constant="200" id="Q2H-oS-Enm"/>
+                                </constraints>
                                 <animations/>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="ago-M5-Nue">
                                     <rect key="frame" x="1" y="7" width="0.0" height="16"/>
@@ -805,23 +811,24 @@
                                 </tableHeaderView>
                             </scrollView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="5ml-91-1WV">
-                                <rect key="frame" x="211" y="12" width="524" height="680"/>
+                                <rect key="frame" x="211" y="46" width="583" height="646"/>
                                 <animations/>
                             </customView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="5ml-91-1WV" firstAttribute="leading" secondItem="yhg-wP-rCj" secondAttribute="trailing" constant="8" symbolic="YES" id="5wb-iU-gG1"/>
-                            <constraint firstItem="eBm-x4-76f" firstAttribute="leading" secondItem="yhg-wP-rCj" secondAttribute="leading" id="9kc-8D-qks"/>
-                            <constraint firstAttribute="trailing" secondItem="5ml-91-1WV" secondAttribute="trailing" constant="6" id="Gu4-W2-NjH"/>
-                            <constraint firstItem="5ml-91-1WV" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="211" id="LYF-FW-nBb"/>
-                            <constraint firstItem="yhg-wP-rCj" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="8" id="TFy-yZ-Iur"/>
-                            <constraint firstItem="yhg-wP-rCj" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="3" id="fRm-OY-3Ol"/>
-                            <constraint firstItem="eBm-x4-76f" firstAttribute="top" secondItem="yhg-wP-rCj" secondAttribute="bottom" constant="13" id="h20-gq-2PF"/>
-                            <constraint firstItem="XqD-dp-fcu" firstAttribute="leading" secondItem="eBm-x4-76f" secondAttribute="trailing" constant="12" symbolic="YES" id="hwN-1C-5s1"/>
-                            <constraint firstItem="XqD-dp-fcu" firstAttribute="baseline" secondItem="eBm-x4-76f" secondAttribute="baseline" id="i72-g1-BLC"/>
-                            <constraint firstAttribute="bottom" secondItem="eBm-x4-76f" secondAttribute="bottom" constant="12" id="meE-bP-Meb"/>
-                            <constraint firstItem="yhg-wP-rCj" firstAttribute="top" secondItem="5ml-91-1WV" secondAttribute="top" id="oey-ZA-ChT"/>
-                            <constraint firstItem="XqD-dp-fcu" firstAttribute="bottom" secondItem="5ml-91-1WV" secondAttribute="bottom" id="vyb-3d-Aiw"/>
+                            <constraint firstItem="XqD-dp-fcu" firstAttribute="baseline" secondItem="eBm-x4-76f" secondAttribute="baseline" id="0Mc-rd-4mI"/>
+                            <constraint firstItem="5ml-91-1WV" firstAttribute="leading" secondItem="yhg-wP-rCj" secondAttribute="trailing" constant="8" id="5Tw-ay-xjA"/>
+                            <constraint firstItem="5ml-91-1WV" firstAttribute="height" secondItem="Jsz-AD-4om" secondAttribute="height" constant="24" id="7Uu-iv-mgT"/>
+                            <constraint firstItem="5ml-91-1WV" firstAttribute="baseline" secondItem="Jsz-AD-4om" secondAttribute="baseline" constant="1" id="DFs-zb-sIA"/>
+                            <constraint firstItem="XqD-dp-fcu" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="52" id="PaL-22-C2X"/>
+                            <constraint firstItem="5ml-91-1WV" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="8" id="Rin-G1-aEB"/>
+                            <constraint firstAttribute="bottom" secondItem="XqD-dp-fcu" secondAttribute="bottom" constant="12" id="UgP-6E-LI4"/>
+                            <constraint firstItem="XqD-dp-fcu" firstAttribute="top" secondItem="yhg-wP-rCj" secondAttribute="bottom" constant="13" id="ZKc-Gj-CPx"/>
+                            <constraint firstItem="yhg-wP-rCj" firstAttribute="width" secondItem="m2S-Jp-Qdl" secondAttribute="width" multiplier="1:4" id="cRa-Pd-PpH"/>
+                            <constraint firstAttribute="trailing" secondItem="5ml-91-1WV" secondAttribute="trailing" constant="6" id="cqd-sN-nNk"/>
+                            <constraint firstItem="yhg-wP-rCj" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="3" id="hnM-pX-HLn"/>
+                            <constraint firstItem="XqD-dp-fcu" firstAttribute="leading" secondItem="eBm-x4-76f" secondAttribute="trailing" constant="12" symbolic="YES" id="j7S-Ob-29L"/>
+                            <constraint firstItem="yhg-wP-rCj" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="8" id="ojz-EX-Hb0"/>
                         </constraints>
                         <animations/>
                     </view>
@@ -832,7 +839,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1041.5" y="648"/>
+            <point key="canvasLocation" x="-1042" y="648"/>
         </scene>
         <!--Add Technology Controller-->
         <scene sceneID="iWU-sk-qJi">

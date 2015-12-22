@@ -38,6 +38,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     override func viewDidLoad() {
         super.viewDidLoad()
          getSourceListContent()
+        candidateView.wantsLayer = true
+        candidateView.layer?.backgroundColor = NSColor.yellowColor().CGColor
     }
     
     
