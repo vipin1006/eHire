@@ -39,41 +39,24 @@ class EHFeedbackViewController: NSViewController {
     override func viewDidLoad()
     {
     super.viewDidLoad()
+
+    techFeedback = storyboard?.instantiateControllerWithIdentifier("TechnicalFeedback") as? EHTechnicalFeedbackViewController
+        
+    self.scrollViewHr.documentView? = (techFeedback?.view)!
+        
+    self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1081))
     
-      
-    
-    
+    self.typeOfInterview.selectedSegment = 0
+        
+    self.subRound.selectedSegment = 0
+        
+
+    self.scrollViewHr.hasVerticalScroller = true
+    self.scrollViewHr.hasHorizontalScroller = true
     }
     
-    override func viewWillAppear() {
-        super.viewWillAppear()
-        
-        techFeedback = storyboard?.instantiateControllerWithIdentifier("TechnicalFeedback") as? EHTechnicalFeedbackViewController
-        
-        
-        
-        self.scrollViewHr.documentView? = (techFeedback?.view)!
-        
-        self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1081))
-        
-        
-        self.typeOfInterview.selectedSegment = 0
-        
-        self.subRound.selectedSegment = 0
-        
-        self.scrollViewHr.hasVerticalScroller = true
-        
-        
-    }
-    
-    override var representedObject: AnyObject? {
-    didSet {
-    
-    }
-    }
-    
-    @IBAction func roundType(sender: AnyObject) {
-    
+    @IBAction func roundType(sender: AnyObject)
+    {
         
         self.subRound.hidden = false
         
@@ -83,11 +66,10 @@ class EHFeedbackViewController: NSViewController {
             
         case 0 :
             
-            print("T")
-            
             if !isTechnicalLoaded
             {
                 self.scrollViewHr.documentView? = (techFeedback?.view)!
+                self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1081))
             }
             if isHrLoaded
             {
@@ -112,16 +94,17 @@ class EHFeedbackViewController: NSViewController {
             
         case 1:
             
-            print("M")
-
-            
             if !isManagerLoaded
             {
                 managerFeedback = storyboard?.instantiateControllerWithIdentifier("ManagerFeedback") as? EHManagerFeedbackViewController
                 self.scrollViewHr.documentView = managerFeedback?.view
                 
-                self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1626))
+
+              
                 createConstraintsForManagerFeedbackController(0.0, trailing: 0.0, top: 0.0, bottom: 0.0)
+
+                self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1565))
+
 
             }
             self.hrView?.removeFromSuperview()
@@ -139,9 +122,6 @@ class EHFeedbackViewController: NSViewController {
             
         case 2:
             
-            print("H")
-
-            
             if !isHrLoaded{
                 
                 self.addHrFeedBackView()
@@ -154,8 +134,6 @@ class EHFeedbackViewController: NSViewController {
         default:
             print("Other")
         }
-
-    
     }
     
     @IBAction func subRound(sender: AnyObject) {
@@ -206,11 +184,9 @@ class EHFeedbackViewController: NSViewController {
     
     }
     
-    
     func addHrFeedBackView(){
-    
-    print("Added Hr View")
-    
+   
+        
     hrFeedBackViewController = self.storyboard?.instantiateControllerWithIdentifier("hrFeedback") as? EHHrFeedbackViewController
     
     if let hrViewController = hrFeedBackViewController {
@@ -229,6 +205,7 @@ class EHFeedbackViewController: NSViewController {
     
     }
     
+
     func createConstraintsForManagerFeedbackController(leading:CGFloat,trailing:CGFloat,top:CGFloat,bottom:CGFloat){
         
 //        managerFeedback!.view.translatesAutoresizingMaskIntoConstraints = false

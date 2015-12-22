@@ -16,13 +16,13 @@ class EHCoreDataHelper {
     
     class  func saveToCoreData(managedobj:NSManagedObject)->String{
         
-        do{
-            
-            try  managedobj.managedObjectContext?.save()
+        do
+        {
+          try  managedobj.managedObjectContext?.save()
         }
             
-        catch{
-            
+        catch
+        {
             return "Error when Saving"
         }
         
@@ -31,98 +31,88 @@ class EHCoreDataHelper {
     
     
     // PRAGMAMARK: - Method to fetch data from coredata
-    class func fetchRecords(predi:NSPredicate?,sortDes:NSSortDescriptor?,entity:NSEntityDescription,moc:NSManagedObjectContext)->NSArray?{
-        
+    
+    class func fetchRecords(predicate:NSPredicate?,sortDescriptor:NSSortDescriptor?,entity:NSEntityDescription,managedObjectContext:NSManagedObjectContext) -> NSArray?
+    {
         var records:[AnyObject]? = nil
         
         let fetch = NSFetchRequest()
         
         fetch.entity = entity
         
-        if let x = predi {
-            
-            
+        if let x = predicate
+        {
             fetch.predicate = x
-            
-                   }
+        }
         
-        if let y = sortDes {
-            
-            
-            
+        if let y = sortDescriptor
+        {
             fetch.sortDescriptors = [y]
         }
         
-        do{
-            
-            records = try moc.executeFetchRequest(fetch)
-            
-            
+        do
+        {
+            records = try managedObjectContext.executeFetchRequest(fetch)
         }
             
-        catch{
-            
+        catch
+        {
             print("error when fetching")
         }
         
-        if records?.count > 0{
-            
-            return records
+        if records?.count > 0
+        {
+          return records
         }
-        else{
-            
+        else
+        {
             return nil
         }
         
     }
     
-    
-    class func fetchRecordsWithPredicate(predi:NSPredicate?,sortDes:NSSortDescriptor?,entityName:String,managedObjectContext:NSManagedObjectContext)->NSArray?{
+    class func fetchRecordsWithPredicate(predicate:NSPredicate?,sortDescriptor:NSSortDescriptor?,entityName:String,managedObjectContext:NSManagedObjectContext) -> NSArray?
+    {
         
         var records:[AnyObject]? = nil
         
         let fetch = NSFetchRequest(entityName: entityName)
         
-        fetch.predicate = predi
+        fetch.predicate = predicate
         
-        do{
-            
-            records = try managedObjectContext.executeFetchRequest(fetch)
-            
-            
+        do
+        {
+          records = try managedObjectContext.executeFetchRequest(fetch)
         }
             
-        catch{
-            
+        catch
+        {
             print("error when fetching")
         }
         
-        if records?.count > 0{
-            
-            return records
+        if records?.count > 0
+        {
+          return records
         }
-        else{
-            
+        else
+        {
             return nil
         }
-        
     }
     
      // PRAGMAMARK: - Method to create NSManaged Object in coredata
-    class func createEntity(name:String,managedObjectContext:NSManagedObjectContext)->NSEntityDescription?{
+    class func createEntity(name:String,managedObjectContext:NSManagedObjectContext)->NSEntityDescription?
+      {
         
         let entity = NSEntityDescription.entityForName(name, inManagedObjectContext:managedObjectContext)
-        
-        if entity != nil{
-            
+        if entity != nil
+        {
             return entity
         }
             
-        else{
-            
+        else
+        {
             return nil
         }
-        
     }
-    
 }

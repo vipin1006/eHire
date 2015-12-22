@@ -30,18 +30,16 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     var isCandidatesViewLoaded = false
     
     let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+    
     //Feedback View related
     var feedbackViewController:EHFeedbackViewController?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+         getSourceListContent()
     }
     
-    override func viewWillAppear() {
-        super.viewWillAppear()
-        getSourceListContent()
-    }
     
     //PRAGMAMARK: - outlineview datasource  methods
     // This datasource method returns the child at a given index
@@ -56,7 +54,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             }
         }
         return technologyArray[index]
-        
     }
     
     
@@ -154,8 +151,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     //This delegate returns the height of a row for the outlineView.
     func outlineView(outlineView: NSOutlineView, heightOfRowByItem item: AnyObject) -> CGFloat
     {
-        return 50
-        
+        return 35
     }
     
     //MARK: - Custom Protocol methods
@@ -277,7 +273,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             let context = appDelegate.managedObjectContext
             let technologyEntity = EHCoreDataHelper.createEntity("Technology", managedObjectContext: context)
             
-            let records = EHCoreDataHelper.fetchRecords(nil, sortDes: nil, entity: technologyEntity!, moc: context)
+            let records = EHCoreDataHelper.fetchRecords(nil, sortDescriptor: nil, entity: technologyEntity!, managedObjectContext: context)
             if records?.count > 0{
                 
                 for aRec in records!{
@@ -318,7 +314,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
                 let parentTechnologyName:String = (sender?.technologyName)!
                 let predicate = NSPredicate(format: "technologyName = %@",parentTechnologyName)
-                let technologyRecords = EHCoreDataHelper.fetchRecordsWithPredicate(predicate, sortDes: nil, entityName: "Technology", managedObjectContext: appDelegate.managedObjectContext)
+                let technologyRecords = EHCoreDataHelper.fetchRecordsWithPredicate(predicate, sortDescriptor: nil, entityName: "Technology", managedObjectContext: appDelegate.managedObjectContext)
                 
                 let newDateEntityDescription = EHCoreDataHelper.createEntity("Date", managedObjectContext: appDelegate.managedObjectContext)
                 for item in technologyRecords!
@@ -340,7 +336,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         // deleting technology from coredata
         let predicate = NSPredicate(format: "technologyName = %@",inTechnologyName)
-        let records = EHCoreDataHelper.fetchRecordsWithPredicate(predicate, sortDes: nil, entityName: "Technology", managedObjectContext: appDelegate.managedObjectContext)
+        let records = EHCoreDataHelper.fetchRecordsWithPredicate(predicate, sortDescriptor: nil, entityName: "Technology", managedObjectContext: appDelegate.managedObjectContext)
         
         for record in records!{
             let aTechnology = record as! Technology
@@ -354,7 +350,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         // creating predicate to filter the fetching result from core data
         let predicate = NSPredicate(format: "interviewDate = %@",(inInterviewdate.scheduleInterviewDate))
         
-        let fetchResults =  EHCoreDataHelper.fetchRecordsWithPredicate(predicate, sortDes: nil, entityName: "Date", managedObjectContext: appDelegate.managedObjectContext)
+        let fetchResults =  EHCoreDataHelper.fetchRecordsWithPredicate(predicate, sortDescriptor: nil, entityName: "Date", managedObjectContext: appDelegate.managedObjectContext)
         
         if let managedObjects = fetchResults as? [NSManagedObject] {
             for aInterviewDate in managedObjects {
