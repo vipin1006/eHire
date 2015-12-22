@@ -8,23 +8,21 @@
 
 import Cocoa
 
-protocol FeedbackDelegate{
-    
+protocol FeedbackDelegate
+{
   func showFeedbackViewController()
-    
 }
 
 class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewDelegate,Callback
 {
-
+    //MARK: IBOutlets
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var candidateView: NSView!
     
+    //MARK: Properties
     var candidateArray = NSMutableArray()
-    
     var candidateBasicInfo:EHCandidateBasicInfo?
     var candidate:EHCandidateDetails?
-    
     var delegate:FeedbackDelegate?
     
     override func viewDidLoad()
@@ -51,13 +49,21 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
 
     }
     
+    //MARK: This data source method returns tableview rows
     func numberOfRowsInTableView(tableView: NSTableView) -> Int
     {
         return candidateArray.count
     }
     
+    //Mark: This delegate method provides the content for each item of the table view
+
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView?
     {
+        if candidateArray.count > 0
+        {
+            candidate  = candidateArray[row] as? EHCandidateDetails
+        }
+
         let cell = self.tableView.makeViewWithIdentifier((tableColumn?.identifier)!, owner: self) as! NSTableCellView
         
         if tableColumn?.identifier == "name"
@@ -82,12 +88,13 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         return cell
     }
     
+    //MARK: This method returns the height of the tableview row
     func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat
     {
         return 35
     }
   
-
+    //MARK:Actions
     @IBAction func addCandidate(sender: AnyObject)
     {
        self.view.addSubview(candidateBasicInfo!.view)
@@ -95,6 +102,8 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
        tableView.reloadData()
        self.candidateView.hidden = true
     }
+    
+    //Delegate Method for Callback Mechanism
     
     func getData(name: String, experience: String, interViewTime: String, phoneNum: String)
     {
@@ -121,19 +130,18 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
                 self.candidateView.hidden = false
                 candidateBasicInfo?.saveButton.title = "Save"
             }
-            
         }
         tableView.reloadData()
     }
     
    @IBAction func removeCandidate(sender: AnyObject)
    {
-    if tableView.selectedRow > -1
-    {
+     if tableView.selectedRow > -1
+     {
         candidateArray.removeObjectAtIndex(tableView.selectedRow)
-    }
-    tableView.reloadData()
-   }
+     }
+     tableView.reloadData()
+  }
     
     @IBAction func showCandidateFeedbackView(sender: AnyObject)
     {
@@ -141,7 +149,5 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             
             delegate.showFeedbackViewController()
         }
-        
     }
-    
- }
+}

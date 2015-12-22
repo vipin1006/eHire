@@ -8,28 +8,27 @@
 
 import Cocoa
 
+ //MARK: Custom Protocol
+
 protocol Callback
 {
     func getData(name:String ,experience:String, interViewTime:String ,phoneNum:String)
 }
 
-
 class EHCandidateBasicInfo: NSViewController,NSTextFieldDelegate
 {
+      //MARK: Variables
+    
     weak var candidateObject:EHCandidateController?
     var delegate:Callback?
     
+      //MARK: IBOutlets
     
     @IBOutlet weak var mainView: NSView!
-    
     @IBOutlet weak var nameField: NSTextField!
-    
     @IBOutlet weak var experienceField: NSTextField!
-    
     @IBOutlet weak var phoneNumField: NSTextField!
-    
     @IBOutlet weak var datePicker: NSDatePicker!
-    
     @IBOutlet weak var saveButton: NSButton!
     
     override func viewDidLoad()
@@ -37,9 +36,10 @@ class EHCandidateBasicInfo: NSViewController,NSTextFieldDelegate
         super.viewDidLoad()
     }
     
+      //MARK: Actions
+    
     @IBAction func saveInfo(sender: AnyObject)
     {
-        
         let dateFormatter = NSDateFormatter()
         dateFormatter.locale = NSLocale.systemLocale()
         dateFormatter.dateFormat = "hh:mm a"
@@ -48,10 +48,6 @@ class EHCandidateBasicInfo: NSViewController,NSTextFieldDelegate
         if let del = self.delegate
         {
             del.getData(nameField.stringValue, experience: experienceField.stringValue, interViewTime:str, phoneNum: phoneNumField.stringValue)
-        }
-        else
-        {
-            print("Delegate not set")
         }
         
         nameField.stringValue = ""
@@ -80,8 +76,6 @@ class EHCandidateBasicInfo: NSViewController,NSTextFieldDelegate
           phoneNumField.stringValue = ""
         }
     }
-    
-    
 }
             
             
