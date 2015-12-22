@@ -11,7 +11,10 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-
+    class func getDelegate() -> AppDelegate
+    {
+        return (NSApplication.sharedApplication().delegate as? AppDelegate)!
+    }
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application

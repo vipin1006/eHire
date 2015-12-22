@@ -1356,11 +1356,11 @@ Gw
             <objects>
                 <viewController storyboardIdentifier="feedback" id="h0V-rg-Tmf" customClass="EHFeedbackViewController" customModule="EHire" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="0FV-nR-jet">
-                        <rect key="frame" x="0.0" y="0.0" width="741" height="700"/>
+                        <rect key="frame" x="0.0" y="0.0" width="741" height="726"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gJl-Gf-eui">
-                                <rect key="frame" x="40" y="613" width="660" height="83"/>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="gJl-Gf-eui">
+                                <rect key="frame" x="40" y="639" width="660" height="83"/>
                                 <subviews>
                                     <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bnU-9t-JE3">
                                         <rect key="frame" x="26" y="15" width="608" height="24"/>
@@ -1395,14 +1395,14 @@ Gw
                                 </subviews>
                                 <animations/>
                             </customView>
-                            <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGd-S5-g6H">
-                                <rect key="frame" x="0.0" y="0.0" width="741" height="605"/>
-                                <clipView key="contentView" ambiguous="YES" id="5KC-Jl-tte">
-                                    <rect key="frame" x="1" y="1" width="724" height="588"/>
+                            <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGd-S5-g6H">
+                                <rect key="frame" x="0.0" y="41" width="741" height="590"/>
+                                <clipView key="contentView" id="5KC-Jl-tte">
+                                    <rect key="frame" x="1" y="1" width="724" height="573"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b7J-7G-Jc2">
-                                            <rect key="frame" x="0.0" y="509" width="166" height="79"/>
+                                            <rect key="frame" x="0.0" y="494" width="166" height="79"/>
                                             <animations/>
                                         </view>
                                     </subviews>
@@ -1410,17 +1410,40 @@ Gw
                                 </clipView>
                                 <animations/>
                                 <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="fYW-qz-HTa">
-                                    <rect key="frame" x="1" y="589" width="724" height="15"/>
+                                    <rect key="frame" x="1" y="574" width="724" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="JRH-ua-Jpy">
-                                    <rect key="frame" x="725" y="1" width="15" height="588"/>
+                                    <rect key="frame" x="725" y="1" width="15" height="573"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                 </scroller>
                             </scrollView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Zvf-qO-7sT">
+                                <rect key="frame" x="335" y="8" width="70" height="32"/>
+                                <animations/>
+                                <buttonCell key="cell" type="push" title="Back" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hr7-eC-UuT">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="dismissFeedbackView:" target="h0V-rg-Tmf" id="1jT-4P-gDy"/>
+                                </connections>
+                            </button>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="gJl-Gf-eui" firstAttribute="top" secondItem="0FV-nR-jet" secondAttribute="top" constant="4" id="7j5-GQ-vvb"/>
+                            <constraint firstItem="iGd-S5-g6H" firstAttribute="top" secondItem="gJl-Gf-eui" secondAttribute="bottom" constant="8" symbolic="YES" id="GxE-65-PxF"/>
+                            <constraint firstItem="iGd-S5-g6H" firstAttribute="top" secondItem="0FV-nR-jet" secondAttribute="top" constant="95" id="IQB-Ip-6NU"/>
+                            <constraint firstItem="iGd-S5-g6H" firstAttribute="centerX" secondItem="gJl-Gf-eui" secondAttribute="centerX" id="Ilc-0u-suo"/>
+                            <constraint firstAttribute="bottom" secondItem="iGd-S5-g6H" secondAttribute="bottom" constant="41" id="PJ4-5D-Y00"/>
+                            <constraint firstAttribute="trailing" secondItem="iGd-S5-g6H" secondAttribute="trailing" id="QMT-FY-fBb"/>
+                            <constraint firstItem="Zvf-qO-7sT" firstAttribute="top" secondItem="iGd-S5-g6H" secondAttribute="bottom" constant="5" id="TBf-r8-OhC"/>
+                            <constraint firstItem="Zvf-qO-7sT" firstAttribute="centerX" secondItem="gJl-Gf-eui" secondAttribute="centerX" id="V5t-px-pgt"/>
+                            <constraint firstItem="iGd-S5-g6H" firstAttribute="leading" secondItem="0FV-nR-jet" secondAttribute="leading" id="opj-6p-yy6"/>
+                            <constraint firstItem="gJl-Gf-eui" firstAttribute="leading" secondItem="0FV-nR-jet" secondAttribute="leading" constant="40" id="t0q-af-uFA"/>
+                        </constraints>
                         <animations/>
                     </view>
                     <connections>
@@ -1431,7 +1454,7 @@ Gw
                 </viewController>
                 <customObject id="Uo4-PG-IFA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-390.5" y="370"/>
+            <point key="canvasLocation" x="-390.5" y="383"/>
         </scene>
         <!--Technical Feedback View Controller-->
         <scene sceneID="0C3-N2-S9z">
@@ -2124,12 +2147,16 @@ DQ
                         <animations/>
                     </customView>
                     <connections>
+                        <outlet property="candidateNameField" destination="8Ss-O3-aYj" id="Xq3-jX-Rfc"/>
+                        <outlet property="dateOfInterviewField" destination="NbJ-n1-PSS" id="kDq-nb-LRa"/>
                         <outlet property="designationField" destination="IFh-qR-St7" id="Ua3-wb-R1v"/>
                         <outlet property="interviewedByField" destination="q3q-4S-Vsd" id="9hf-Fm-q8b"/>
+                        <outlet property="modeOfInterviewField" destination="qtD-UB-IDk" id="rEI-2u-eGe"/>
                         <outlet property="overallAssessmentOfCandidateStarView" destination="tLO-hP-qXF" id="QIF-xV-kdS"/>
                         <outlet property="overallAssessmentOnTechnologyStarView" destination="9TP-I2-mVw" id="fbP-xy-X8l"/>
                         <outlet property="ratingOfCandidateField" destination="NCg-No-Mu4" id="XFQ-bY-acl"/>
                         <outlet property="ratingOnTechnologyField" destination="WIG-5A-A75" id="uSm-Mv-WHd"/>
+                        <outlet property="requisitionNameField" destination="N33-f2-XzK" id="fnb-st-sJp"/>
                         <outlet property="tableView" destination="2Zk-Rn-2d9" id="aHW-fg-Cic"/>
                         <outlet property="technicalFeedbackMainView" destination="TA5-L1-aWy" id="kGa-31-jDe"/>
                         <outlet property="textViewOfCandidateAssessment" destination="k5G-My-Zu5" id="6Tr-04-ltx"/>

@@ -10,41 +10,35 @@ import Cocoa
 
 class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,NSTableViewDelegate,NSTextFieldDelegate
 {
+    //IBOutlets
     @IBOutlet weak var tableView: NSTableView!
     
-    @IBOutlet var technicalFeedbackMainView: NSView!
-    
+@IBOutlet var technicalFeedbackMainView: NSView!
     @IBOutlet var textViewOfTechnologyAssessment: NSTextView!
-    
     @IBOutlet var textViewOfCandidateAssessment: NSTextView!
-    
     @IBOutlet weak var designationField: NSTextField!
-    
     @IBOutlet weak var interviewedByField: NSTextField!
-    
     @IBOutlet weak var ratingOfCandidateField: NSTextField!
-    
     @IBOutlet weak var ratingOnTechnologyField: NSTextField!
-    
     @IBOutlet weak var overallAssessmentOfCandidateStarView: NSView!
-    
     @IBOutlet weak var overallAssessmentOnTechnologyStarView: NSView!
+    @IBOutlet weak var candidateNameField: NSTextField!
+    @IBOutlet weak var requisitionNameField: NSTextField!
+    @IBOutlet weak var modeOfInterviewField: NSMatrix!
+    @IBOutlet weak var dateOfInterviewField: NSTextField!
     
+    //Variables
     var skillsAndRatingsTitleArray = NSMutableArray()
     var cell : EHRatingsTableCellView?
+    var technicalFeedbackDetails = [String : Any]()
     
     //initial setup of view to load the basic views of Technical Feedback.
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         technicalFeedbackMainView.wantsLayer = true
         technicalFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
-        
-        tableView.headerView?.wantsLayer = true
-        tableView.headerView?.layer?.backgroundColor = NSColor.blueColor().colorWithAlphaComponent(0.5).CGColor
-        
-        self.ratingOfCandidateField.delegate = self
-        self.ratingOnTechnologyField.delegate = self
         
         for rating in overallAssessmentOnTechnologyStarView.subviews
         {
@@ -66,6 +60,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             self.skillsAndRatingsTitleArray.addObject("Leadership(if applicable)")
             self.skillsAndRatingsTitleArray.addObject("Growth Potential")
         }
+        
         tableView.reloadData()
     }
     
@@ -92,7 +87,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     }
     
     //MARK: This method returns the height of the tableview row
-    func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+    func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat
+    {
         return 25
     }
     
@@ -150,7 +146,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     
     func toDisplayRatingStar(totalView : [NSView], sender : NSButton,label : NSTextField)
     {
-        func countingOfRatingStarr(total : Int, deselectStar : Int?...)
+        func countingOfRatingStar(total : Int, deselectStar : Int?...)
         {
             if deselectStar.count == 0
             {
@@ -186,7 +182,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                     let star = totalView[stars!] as! NSButton
                     if star.image?.name() == "selectStar"
                     {
-                        star.image = NSImage(named: "deselectStar")
+                       star.image = NSImage(named: "deselectStar")
                     }
                 }
             }
@@ -200,38 +196,30 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             sender.image = NSImage(named: "selectStar")
         }
         
-        
         switch (sender.tag)
         {
-            
         case 0:
-            countingOfRatingStarr(0)
-            
+            countingOfRatingStar(0)
             label.stringValue = "Not Satisfactory"
             
         case 1:
-            countingOfRatingStarr(1)
+            countingOfRatingStar(1)
             label.stringValue = "Satisfactory"
-            
-            countingOfRatingStarr(0, deselectStar: 2,3,4)
+            countingOfRatingStar(0, deselectStar: 2,3,4)
             
         case 2:
-            countingOfRatingStarr(2)
-            
+            countingOfRatingStar(2)
             label.stringValue = "Good"
             
-            countingOfRatingStarr(0, deselectStar: 3,4)
+            countingOfRatingStar(0, deselectStar: 3,4)
             
         case 3:
-            countingOfRatingStarr(3)
-            
+            countingOfRatingStar(3)
             label.stringValue = "Very Good"
-            
-            countingOfRatingStarr(0, deselectStar: 4)
+            countingOfRatingStar(0, deselectStar: 4)
             
         case 4:
-            countingOfRatingStarr(4)
-            
+            countingOfRatingStar(4)
             label.stringValue = "Excellent"
             
         default : print("")
@@ -274,66 +262,97 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     
     @IBAction func saveDetailsAction(sender: NSButton)
     {
-        validateFields()
+       validateFields()
+       technicalFeedbackDetails["commentsOnTechnology"] = textViewOfTechnologyAssessment.string
+       technicalFeedbackDetails["commentsOfCandidate"] = textViewOfCandidateAssessment.string
+        
+       if TechnicalFeedBack.technicalFeedbackDetails(technicalFeedbackDetails)
+       {
+         print("Saved")
+       }
+        else
+       {
+        print ("Not saved")
+        }
     }
+    
+    //To give Color to the SubViews
+    func setBoarderColor(subView:NSTextField)
+    {
+        subView.wantsLayer = true
+        subView.layer?.borderColor = NSColor.orangeColor().CGColor
+        subView.layer?.borderWidth = 2
+    }
+    func setBoarderColorForTextView(subView:NSTextView)
+    {
+        subView.wantsLayer = true
+        subView.layer?.borderColor = NSColor.orangeColor().CGColor
+        subView.layer?.borderWidth = 2
+    }
+
     
     // Mark: To Validate all fields of Technical Feedback Controller
 
     func validateFields()
     {
+//        if candidateNameField.stringValue == ""
+//        {
+//            setBoarderColor(candidateNameField)
+//        }
+//        else if requisitionNameField.stringValue == ""
+//        {
+//            setBoarderColor(requisitionNameField)
+//        }
+//        else if dateOfInterviewField.stringValue == ""
+//        {
+//            setBoarderColor(dateOfInterviewField)
+//        }
         
-        if cell?.feedback.stringValue == ""
+        if textViewOfTechnologyAssessment.string == ""
         {
-            alertPopup("Select Stars", informativeText: "Please select stars inside tableview to provide your feedback")
+            setBoarderColorForTextView(textViewOfTechnologyAssessment)
         }
-            
         else if ratingOnTechnologyField.stringValue == ""
         {
-            alertPopup("Select Stars", informativeText: "Please select stars to provide your feedback inside overall assessment on Technology")
-        }
-            
-        else if ratingOfCandidateField.stringValue == ""
-        {
-            alertPopup("Select Stars", informativeText: "Please select stars to provide your feedback inside overall assessment of Candidate")
-        }
-            
-        else if textViewOfTechnologyAssessment.string == ""
-        {
-            alertPopup("Overall Feedback On Technology", informativeText: "Please enter your feedback on Technology")
+            setBoarderColor(ratingOnTechnologyField)
         }
         else if textViewOfTechnologyAssessment.string?.characters.count < 5
         {
-            alertPopup("Overall Feedback On Technology", informativeText: "Overall assessment on Technology field length shoud be more than 5 charaters")
+             setBoarderColorForTextView(textViewOfTechnologyAssessment)
         }
             
         else if textViewOfCandidateAssessment.string == ""
         {
-            alertPopup("Overall Feedback Of Candidate", informativeText: "Overall assessment of Candidate field shold not be blank")
+            setBoarderColorForTextView(textViewOfCandidateAssessment)
         }
             
         else if textViewOfCandidateAssessment.string?.characters.count < 5
         {
-            alertPopup("Overall Feedback Of Candidate", informativeText: "Overall assessment of Candidate field length shoud be more than 5 charaters")
+            setBoarderColorForTextView(textViewOfCandidateAssessment)
         }
-            
+        else if ratingOfCandidateField.stringValue == ""
+        {
+            setBoarderColor(ratingOfCandidateField)
+        }
+        
         else if designationField.stringValue == ""
         {
-            alertPopup("Designation of Candidate", informativeText: "Designation Field should not be blank")
+            setBoarderColor(designationField)
         }
             
         else if designationField.stringValue.characters.count < 8
         {
-            alertPopup("Designation of Candidate", informativeText: "Designation of the Candidate length should be more than 8 Character")
+            setBoarderColor(designationField)
         }
             
-        else if interviewedByField.stringValue.characters.count == 0
+        else if interviewedByField.stringValue == ""
         {
-            alertPopup("Interviewer Name", informativeText: "Please enter the interviewer field should not be blank")
+            setBoarderColor(interviewedByField)
         }
             
         else if interviewedByField.stringValue.characters.count < 3
         {
-            alertPopup("Interviewer Name", informativeText: "Interviewer Name should be more than 3 character")
+            setBoarderColor(interviewedByField)
         }
     }
     

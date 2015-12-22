@@ -42,6 +42,7 @@ class EHFeedbackViewController: NSViewController {
 
     techFeedback = storyboard?.instantiateControllerWithIdentifier("TechnicalFeedback") as? EHTechnicalFeedbackViewController
         
+        
     self.scrollViewHr.documentView? = (techFeedback?.view)!
         
     self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1081))
@@ -50,6 +51,7 @@ class EHFeedbackViewController: NSViewController {
         
     self.subRound.selectedSegment = 0
         
+    
 
     self.scrollViewHr.hasVerticalScroller = true
     self.scrollViewHr.hasHorizontalScroller = true
@@ -203,6 +205,12 @@ class EHFeedbackViewController: NSViewController {
     
     }
     
+    }
+    @IBAction func dismissFeedbackView(sender: AnyObject)
+    {
+        let mainController = self.storyboard?.instantiateControllerWithIdentifier("mainView") as! EHTechnologyViewController
+        
+        mainController.setAllContent()
     }
     
 

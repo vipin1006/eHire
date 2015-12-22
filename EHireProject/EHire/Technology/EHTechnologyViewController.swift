@@ -437,6 +437,24 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         self.view .addConstraints([yTopSpace,xLeadingSpace,xTrailingSpace,yBottomSpace])
         
     }
+    
+    //To display the CandidateDetailsView
+    
+    func setAllContent()
+    {
+        let mainWindow = NSApp.windows.first
+        
+        mainWindow?.contentViewController = self
+        
+        candidateController = self.storyboard?.instantiateControllerWithIdentifier("candidateObject") as? EHCandidateController
+        candidateController?.delegate = self
+        self.candidateView.addSubview((candidateController?.view)!)
+        isCandidatesViewLoaded = true
+
+        
+    }
+
+
 }
 
 

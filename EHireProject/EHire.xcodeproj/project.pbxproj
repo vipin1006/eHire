@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D88131F1C2800CE0086BA65 /* EHCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D88131E1C2800CE0086BA65 /* EHCoreData.swift */; settings = {ASSET_TAGS = (); }; };
+		2D88131F1C2800CE0086BA65 /* EHCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D88131E1C2800CE0086BA65 /* EHCoreData.swift */; };
 		41A97FF51C1956B70016CAB4 /* EHInterviewDateCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF41C1956B70016CAB4 /* EHInterviewDateCustomCell.swift */; };
 		41A97FF91C195E500016CAB4 /* EHTechnologyCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF81C195E500016CAB4 /* EHTechnologyCustomCell.swift */; };
 		41A97FFE1C1971FF0016CAB4 /* BlueCalendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A97FFD1C1971FF0016CAB4 /* BlueCalendar.png */; };
@@ -48,6 +48,7 @@
 		806C9CAC1C2434BB0039FCF2 /* EHCandidateDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806C9CA91C2434BB0039FCF2 /* EHCandidateDetails.swift */; };
 		8070F59A1C24194C00FCEA98 /* selectStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8070F5981C24194C00FCEA98 /* selectStar.png */; };
 		8070F59B1C24194C00FCEA98 /* deselectStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8070F5991C24194C00FCEA98 /* deselectStar.png */; };
+		949C7E271C298ADF009D4393 /* HrFeedbackDataAccessLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949C7E261C298ADF009D4393 /* HrFeedbackDataAccessLayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		806C9CA91C2434BB0039FCF2 /* EHCandidateDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHCandidateDetails.swift; path = EHire/candidate/EHCandidateDetails.swift; sourceTree = SOURCE_ROOT; };
 		8070F5981C24194C00FCEA98 /* selectStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selectStar.png; sourceTree = "<group>"; };
 		8070F5991C24194C00FCEA98 /* deselectStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deselectStar.png; sourceTree = "<group>"; };
+		949C7E261C298ADF009D4393 /* HrFeedbackDataAccessLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HrFeedbackDataAccessLayer.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +217,7 @@
 		8001C3EB1C23E96E00D62243 /* Data Access Layer */ = {
 			isa = PBXGroup;
 			children = (
+				949C7E261C298ADF009D4393 /* HrFeedbackDataAccessLayer.swift */,
 			);
 			name = "Data Access Layer";
 			sourceTree = "<group>";
@@ -679,6 +682,7 @@
 				806C9C8D1C2431EF0039FCF2 /* ManagerFeedBack.swift in Sources */,
 				806C9C981C24329C0039FCF2 /* EHCoreDataHelper.swift in Sources */,
 				4F2536E61C2179E0000E8C95 /* EHTechnology.swift in Sources */,
+				949C7E271C298ADF009D4393 /* HrFeedbackDataAccessLayer.swift in Sources */,
 				41A97FF91C195E500016CAB4 /* EHTechnologyCustomCell.swift in Sources */,
 				806C9CAB1C2434BB0039FCF2 /* EHCandidateController.swift in Sources */,
 				806C9C8E1C2431EF0039FCF2 /* ManagerFeedBack+CoreDataProperties.swift in Sources */,

@@ -14,7 +14,7 @@ class EHCoreDataHelper {
     
     //MARK: - Method to save data in coredata
     
-    class  func saveToCoreData(managedobj:NSManagedObject)->String{
+    class  func saveToCoreData(managedobj:NSManagedObject)->Bool{
         
         do
         {
@@ -23,10 +23,10 @@ class EHCoreDataHelper {
             
         catch
         {
-            return "Error when Saving"
+            return false
         }
         
-        return "Saved"
+        return true
     }
     
     
