@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutlineViewDataSource,DataCommunicator,FeedbackDelegate {
+class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutlineViewDataSource,DataCommunicator,FeedbackDelegate,NSTextFieldDelegate {
     
     // Technology View
     @IBOutlet weak var sourceList: NSOutlineView!
@@ -34,7 +34,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     //Feedback View related
     var feedbackViewController:EHFeedbackViewController?
     
-    
+    var cellTechnology:EHTechnologyCustomCell?
     override func viewDidLoad() {
         super.viewDidLoad()
          getSourceListContent()
@@ -139,7 +139,18 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             let parent = sourceList.makeViewWithIdentifier("Parent", owner: nil) as! EHTechnologyCustomCell
             
             let x = item as! EHTechnology
-            parent.lblParent.stringValue = x.technologyName
+            if x.technologyName == ""{
+                 parent.textFieldTechnology.editable = true
+                
+
+            }else{
+                parent.textFieldTechnology.editable = false
+                parent.textFieldTechnology.backgroundColor = NSColor.clearColor()
+            }
+            parent.textFieldTechnology.stringValue = x.technologyName
+            parent.textFieldTechnology.tag = outlineView.rowForItem(item)
+            parent.textFieldTechnology.delegate = self
+            cellTechnology = parent
             cell = parent
             
         }
@@ -250,6 +261,20 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         datePopOver.contentViewController = datePopOverController
         datePopOverController!.delegate = self
         datePopOver.showRelativeToRect(button.bounds, ofView:button, preferredEdge:NSRectEdge.MaxX)
+    }
+    
+    
+    // Adding technology in sourcelist
+    @IBAction func addTechnologyAction(sender: AnyObject) {
+        
+         if technologyArray.count > 0 && cellTechnology?.textFieldTechnology.stringValue == ""{
+            alertPopup("Enter Technology", informativeText: "Please enter previous selected technology")
+         }else{
+        let technologyObject = EHTechnology(technology:"")
+        technologyArray .append(technologyObject)
+        self.sourceList.reloadData()
+        }
+        
     }
     
     // This function returns the index of the selected technology
@@ -372,6 +397,34 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         self.view.addSubview((feedbackViewController?.view)!)
         
         createConstraintsForFeedbackController(0, trailing:0.0, top: 0.0, bottom: 0)
+    }
+    //MARK: TextField Delegate methods
+    func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
+    {
+         let textFieldObject = control as! NSTextField
+        if (fieldEditor.string == nil){
+            textFieldObject.removeFromSuperview()
+        }else{
+        let technologyObject = technologyArray[control.tag]
+       technologyObject.technologyName = fieldEditor.string!
+        control.wantsLayer = true
+       
+        textFieldObject.backgroundColor = NSColor.clearColor()
+        
+        addTechnologyAndInterviewDateToCoreData(nil, content: fieldEditor.string!)
+        }
+                return true
+    }
+    
+    // Alert Popup
+    func alertPopup(data:String, informativeText:String)
+    {
+        let alert:NSAlert = NSAlert()
+        alert.messageText = data
+        alert.informativeText = informativeText
+        alert.addButtonWithTitle("OK")
+        alert.addButtonWithTitle("Cancel")
+        alert.runModal()
     }
     
     func createConstraintsForFeedbackController(leading:CGFloat,trailing:CGFloat,top:CGFloat,bottom:CGFloat){

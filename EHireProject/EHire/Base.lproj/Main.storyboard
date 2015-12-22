@@ -685,7 +685,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <segue destination="Cu5-x1-Qfx" kind="sheet" id="ZG1-G4-dih"/>
+                                    <action selector="addTechnologyAction:" target="XfG-lQ-9wD" id="ZeS-nx-uGl"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XqD-dp-fcu">
@@ -710,7 +710,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
                                             <size key="intercellSpacing" width="3" height="2"/>
-                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn width="195" minWidth="16" maxWidth="1000" id="Sgx-Fk-dFC">
@@ -727,51 +727,32 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="Parent" id="Swg-Pc-vo7" customClass="EHTechnologyCustomCell" customModule="EHire" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="1" width="195" height="35"/>
+                                                            <rect key="frame" x="1" y="1" width="195" height="28"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="RzF-Ep-DmQ">
-                                                                    <rect key="frame" x="136" y="2" width="30" height="30"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="30" id="ubA-uU-cbs"/>
-                                                                    </constraints>
+                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g9O-dA-liV">
+                                                                    <rect key="frame" x="12" y="6" width="171" height="18"/>
                                                                     <animations/>
-                                                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="BlueCalendar" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Ybs-Fc-utW">
-                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                        <font key="font" metaFont="system"/>
-                                                                    </buttonCell>
-                                                                    <connections>
-                                                                        <action selector="addDateAction:" target="XfG-lQ-9wD" id="BeY-eS-h8u"/>
-                                                                    </connections>
-                                                                </button>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PD0-vQ-gpo">
-                                                                    <rect key="frame" x="18" y="9" width="105" height="17"/>
-                                                                    <animations/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="RQe-dc-khX">
-                                                                        <font key="font" metaFont="system"/>
-                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" drawsBackground="YES" id="P84-aY-GR6">
+                                                                        <font key="font" metaFont="system" size="14"/>
+                                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="PD0-vQ-gpo" firstAttribute="leading" secondItem="Swg-Pc-vo7" secondAttribute="leading" constant="20" id="AKU-ue-veE"/>
-                                                                <constraint firstItem="RzF-Ep-DmQ" firstAttribute="leading" secondItem="PD0-vQ-gpo" secondAttribute="trailing" constant="15" id="AeH-Cg-eeh"/>
-                                                                <constraint firstItem="PD0-vQ-gpo" firstAttribute="centerY" secondItem="Swg-Pc-vo7" secondAttribute="centerY" id="TnK-Wf-IQz"/>
-                                                                <constraint firstItem="RzF-Ep-DmQ" firstAttribute="top" secondItem="Swg-Pc-vo7" secondAttribute="top" constant="3" id="aCi-kL-zso"/>
-                                                                <constraint firstAttribute="trailing" secondItem="RzF-Ep-DmQ" secondAttribute="trailing" constant="29" id="pW9-7i-ayF"/>
-                                                                <constraint firstItem="PD0-vQ-gpo" firstAttribute="top" secondItem="Swg-Pc-vo7" secondAttribute="top" constant="9" id="wGI-hN-8O0"/>
-                                                                <constraint firstItem="RzF-Ep-DmQ" firstAttribute="centerY" secondItem="PD0-vQ-gpo" secondAttribute="centerY" id="zqM-VK-hjj"/>
+                                                                <constraint firstItem="g9O-dA-liV" firstAttribute="leading" secondItem="Swg-Pc-vo7" secondAttribute="leading" constant="12" id="Bst-yo-Ugh"/>
+                                                                <constraint firstItem="g9O-dA-liV" firstAttribute="centerY" secondItem="Swg-Pc-vo7" secondAttribute="centerY" constant="-1" id="Js2-zu-72g"/>
+                                                                <constraint firstItem="g9O-dA-liV" firstAttribute="centerX" secondItem="Swg-Pc-vo7" secondAttribute="centerX" id="O0A-gS-r4c"/>
+                                                                <constraint firstAttribute="bottom" secondItem="g9O-dA-liV" secondAttribute="bottom" constant="6" id="cUr-u1-hY6"/>
                                                             </constraints>
                                                             <animations/>
                                                             <connections>
-                                                                <outlet property="btnParent" destination="RzF-Ep-DmQ" id="bNj-xX-icK"/>
-                                                                <outlet property="lblParent" destination="PD0-vQ-gpo" id="79X-8g-ife"/>
-                                                                <outlet property="textField" destination="PD0-vQ-gpo" id="iA2-lS-zN7"/>
+                                                                <outlet property="textFieldTechnology" destination="g9O-dA-liV" id="rfG-zX-1AW"/>
                                                             </connections>
                                                         </tableCellView>
                                                         <tableCellView identifier="child" id="YEb-im-Ksw" customClass="EHInterviewDateCustomCell" customModule="EHire" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="38" width="195" height="35"/>
+                                                            <rect key="frame" x="1" y="31" width="195" height="35"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZzN-oS-NS7">
@@ -4680,7 +4661,6 @@ DQ
         </scene>
     </scenes>
     <resources>
-        <image name="BlueCalendar" width="223" height="221"/>
         <image name="NSInfo" width="32" height="32"/>
         <image name="deleteDate" width="102" height="99"/>
         <image name="deselectStar" width="16" height="16"/>
