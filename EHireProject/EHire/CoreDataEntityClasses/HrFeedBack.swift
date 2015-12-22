@@ -50,7 +50,7 @@ class HrFeedBack: NSManagedObject {
         candidateHrFeedback.isLegalObligationWithCurrentCompany = candidateInfo["anyLegalObligations"] as? NSNumber
         candidateHrFeedback.isPassportAvailable = candidateInfo["isVisaAvailable"] as? NSNumber
         
-        return HrFeedbackDataAccess.saveHrFeedbackForCandidate(candidateHrFeedback)
+        return true//HrFeedbackDataAccess.saveHrFeedbackForCandidate(candidateHrFeedback)
         
     }
     
