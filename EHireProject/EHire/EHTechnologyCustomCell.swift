@@ -17,7 +17,8 @@ class EHTechnologyCustomCell: NSTableCellView,DataCommunicator {
     }
     
 
-    @IBOutlet weak var lblParent: NSTextField!
+    
+    @IBOutlet weak var textFieldTechnology: NSTextField!
     
     @IBOutlet weak var btnParent: NSButton!
     
