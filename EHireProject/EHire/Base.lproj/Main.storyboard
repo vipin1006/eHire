@@ -733,7 +733,7 @@
                                                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g9O-dA-liV">
                                                                     <rect key="frame" x="12" y="6" width="171" height="18"/>
                                                                     <animations/>
-                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" drawsBackground="YES" id="P84-aY-GR6">
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Enter Technology" drawsBackground="YES" id="P84-aY-GR6">
                                                                         <font key="font" metaFont="system" size="14"/>
                                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -755,8 +755,8 @@
                                                             <rect key="frame" x="1" y="31" width="195" height="35"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZzN-oS-NS7">
-                                                                    <rect key="frame" x="10" y="14" width="125" height="16"/>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZzN-oS-NS7">
+                                                                    <rect key="frame" x="10" y="14" width="91" height="16"/>
                                                                     <animations/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="OaO-7S-sJt">
                                                                         <font key="font" metaFont="cellTitle"/>
