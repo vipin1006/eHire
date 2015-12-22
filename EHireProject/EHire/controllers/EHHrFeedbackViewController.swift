@@ -153,7 +153,7 @@ class EHHrFeedbackViewController: NSViewController {
     }
 
     
-    //MARK: IBActions
+    //MARK: IBActions.
     
     
     @IBAction func saveCandidateDetails(sender: AnyObject) {
