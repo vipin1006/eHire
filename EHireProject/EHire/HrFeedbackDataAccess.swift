@@ -28,10 +28,11 @@ class HrFeedbackDataAccess: NSObject {
     class func fetchHrFeedbackForCandidate(candidate:Candidate) -> HrFeedBack
     {
         
-        // Here fetching happens..
+        // Here fetching happens
         
         return HrFeedBack()
         
     }
+
 
 }
