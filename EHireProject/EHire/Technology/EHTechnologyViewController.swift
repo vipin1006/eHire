@@ -296,10 +296,13 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     func getSourceListContent(){
         
             let context = appDelegate.managedObjectContext
-            let technologyEntity = EHCoreDataHelper.createEntity("Technology", managedObjectContext: context)
+            //let technologyEntity = EHCoreDataHelper.createEntity("Technology", managedObjectContext: context)
             
-            let records = EHCoreDataHelper.fetchRecords(nil, sortDescriptor: nil, entity: technologyEntity!, managedObjectContext: context)
-            if records?.count > 0{
+
+            let records = EHCoreDataHelper.fetchRecordsWithPredicate(nil, sortDescriptor: nil, entityName: "Technology", managedObjectContext: context)
+        
+        if records?.count > 0{
+
                 
                 for aRec in records!{
                     

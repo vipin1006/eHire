@@ -12,7 +12,7 @@ import CoreData
 class EHCoreDataHelper {
     
     
-    // PRAGMAMARK: - Method to save data in coredata
+    //MARK: - Method to save data in coredata
     
     class  func saveToCoreData(managedobj:NSManagedObject)->String{
         
@@ -30,74 +30,33 @@ class EHCoreDataHelper {
     }
     
     
-    // PRAGMAMARK: - Method to fetch data from coredata
+
+       // PRAGMAMARK: - Method to fetch data from coredata
     
-    class func fetchRecords(predicate:NSPredicate?,sortDescriptor:NSSortDescriptor?,entity:NSEntityDescription,managedObjectContext:NSManagedObjectContext) -> NSArray?
-    {
-        var records:[AnyObject]? = nil
-        
-        let fetch = NSFetchRequest()
-        
-        fetch.entity = entity
-        
-        if let x = predicate
-        {
-            fetch.predicate = x
-        }
-        
-        if let y = sortDescriptor
-        {
-            fetch.sortDescriptors = [y]
-        }
-        
-        do
-        {
-            records = try managedObjectContext.executeFetchRequest(fetch)
-        }
-            
-        catch
-        {
-            print("error when fetching")
-        }
-        
-        if records?.count > 0
-        {
-          return records
-        }
-        else
-        {
-            return nil
-        }
-        
-    }
-    
+      
     class func fetchRecordsWithPredicate(predicate:NSPredicate?,sortDescriptor:NSSortDescriptor?,entityName:String,managedObjectContext:NSManagedObjectContext) -> NSArray?
     {
         
         var records:[AnyObject]? = nil
         
         let fetch = NSFetchRequest(entityName: entityName)
+        if predicate != nil{
+            fetch.predicate = predicate
+        }
         
-        fetch.predicate = predicate
-        
-        do
-        {
-          records = try managedObjectContext.executeFetchRequest(fetch)
+        do{
+            records = try managedObjectContext.executeFetchRequest(fetch)
         }
             
-        catch
-        {
-            print("error when fetching")
+        catch{
         }
         
-        if records?.count > 0
-        {
-          return records
+        if records?.count > 0{
+            return records
         }
-        else
-        {
-            return nil
-        }
+        
+        return nil
+        
     }
     
      // PRAGMAMARK: - Method to create NSManaged Object in coredata

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="box content view" minToolsVersion="7.0"/>
@@ -1045,7 +1045,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DkN-ni-XM1">
-                                <rect key="frame" x="157" y="239" width="70" height="32"/>
+                                <rect key="frame" x="157" y="239" width="77" height="32"/>
                                 <animations/>
                                 <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WfP-LX-Gib">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1100,6 +1100,7 @@ Gw
                         <outlet property="mainView" destination="2c3-Vk-Adq" id="IOR-5e-WHK"/>
                         <outlet property="nameField" destination="lPZ-fF-Wn6" id="W4b-E1-jdc"/>
                         <outlet property="phoneNumField" destination="7zs-IF-qUd" id="dCT-wq-amc"/>
+                        <outlet property="saveButton" destination="DkN-ni-XM1" id="n12-6j-ldX"/>
                     </connections>
                 </viewController>
             </objects>
@@ -1333,7 +1334,7 @@ Gw
                                         </clipView>
                                         <animations/>
                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="i6J-W9-13L">
-                                            <rect key="frame" x="1" y="7" width="0.0" height="16"/>
+                                            <rect key="frame" x="1" y="8" width="0.0" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
                                         </scroller>
@@ -1743,7 +1744,7 @@ CA
                                             </clipView>
                                             <animations/>
                                             <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="8Qf-9y-atl">
-                                                <rect key="frame" x="2" y="9" width="0.0" height="16"/>
+                                                <rect key="frame" x="2" y="10" width="0.0" height="15"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <animations/>
                                             </scroller>
@@ -3969,7 +3970,7 @@ DQ
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="zYB-nQ-v2C">
-                                                    <rect key="frame" x="229" y="0.0" width="5" height="103"/>
+                                                    <rect key="frame" x="229" y="0.0" width="4" height="103"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
