@@ -199,9 +199,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                         self.sourceList.reloadData()
             }
                         
-                        
-                        
-            
             
             
         default:
@@ -211,13 +208,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         }
         
     }
-    //PRAGMAMARK: - Segue
-    // This function is called automatically when a segue connection is made in the storyboard
-    override  func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
-        
-        addTechnologyController = segue.destinationController as? EHAddTechnologyController
-        self.addTechnologyController!.delegate = self
-    }
+
     
     //PRAGMAMARK: - Button Actions
     
@@ -229,62 +220,57 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
         }
         else{ // adding new technology
-            
-        }
-
-    }
-    
-    
-    @IBAction func deleteSelectedDate(sender: NSButton)
-    {
-        
-        
-        let selectedChildCell = sender.superview as! EHInterviewDateCustomCell
-        
-        let selectedDate = self.sourceList.itemAtRow(self.sourceList.rowForView(selectedChildCell)) as! EHInterviewDate
-        
-        
-        let technologyObject = self.sourceList.parentForItem(selectedDate) as! EHTechnology
-        
-        var count = 0
-        for aInterviewDate in technologyObject.interviewDates
-        {
-            if selectedDate == aInterviewDate
-            {
-                technologyObject.interviewDates.removeAtIndex(count)
-                break
+            if technologyArray.count > 0 && cellTechnology?.textFieldTechnology.stringValue == ""{
+                alertPopup("Enter Technology", informativeText: "Please enter previous selected technology")
+            }else{
+                let technologyObject = EHTechnology(technology:"")
+                technologyArray .append(technologyObject)
+                self.sourceList.reloadData()
+                
             }
-            count++
         }
-        
-        self.sourceList.reloadData()
-        deleteInterviewDateFromCoreData(selectedDate)
     }
     
-    
-    @IBAction func deleteSelectedTechnology(sender: AnyObject)
-    {
+    @IBAction func deleteAction(sender: AnyObject) {
+        
         //this if statement is added to avoid crash. To be removed once - is disabled when no technology is selected
         if self.sourceList.selectedRow == -1
         {
-          return
+            return
         }
         
-        let seletedTechnology = self.sourceList.itemAtRow(self.sourceList.selectedRow) as! EHTechnology
+        if let selectedItem = sourceList.itemAtRow(sourceList.selectedRow) as? EHTechnology{
+           
+            
+            technologyArray.removeAtIndex(self.sourceList.selectedRow)
+            
+            
+            deleteTechnologyFromCoreData(selectedItem.technologyName)
+        }
         
-        technologyArray.removeAtIndex(self.sourceList.selectedRow)
-        
+        else
+        {
+            let selectedInterviewDate = sourceList.itemAtRow(sourceList.selectedRow) as? EHInterviewDate
+            for aTechnology in technologyArray{
+                var count = 0
+                for aInterviewDate in aTechnology.interviewDates{
+                    
+                    if selectedInterviewDate == aInterviewDate{
+                        aTechnology.interviewDates.removeAtIndex(count)
+                        deleteInterviewDateFromCoreData(selectedInterviewDate!)
+                    }
+                    count++
+                }
+            }
+
+        }
         self.sourceList.reloadData()
-        
-        deleteTechnologyFromCoreData(seletedTechnology.technologyName)
     }
     
     @IBAction func addDateAction(button: NSButton)
     {
         datePopOver = NSPopover()
         
-       // let selectedTechView = button.superview as! EHTechnologyCustomCell
-        //selectedTechnologyIndex  =  getTechnologyIndex(selectedTechView)
         
         //Make the calendar popover go away when clicked elsewhere
         datePopOver.behavior = NSPopoverBehavior.Transient
@@ -294,32 +280,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         datePopOver.showRelativeToRect(button.bounds, ofView:button, preferredEdge:NSRectEdge.MaxY)
     }
     
-    
-    // Adding technology in sourcelist
-    @IBAction func addTechnologyAction(sender: AnyObject) {
-        
-         if technologyArray.count > 0 && cellTechnology?.textFieldTechnology.stringValue == ""{
-            alertPopup("Enter Technology", informativeText: "Please enter previous selected technology")
-         }else{
-        let technologyObject = EHTechnology(technology:"")
-        technologyArray .append(technologyObject)
-        self.sourceList.reloadData()
-        }
-    }
-    
-    // This function returns the index of the selected technology
-    func getTechnologyIndex(inView :EHTechnologyCustomCell) -> Int{
-        var selectedIndex = 0
-        let selectedTechName = inView.textField?.stringValue
-        for var index = 0; index < technologyArray.count; ++index {
-            let aTech = technologyArray[index]  as EHTechnology
-            if selectedTechName == aTech.technologyName
-            {
-                selectedIndex = index
-            }
-        }
-        return selectedIndex
-    }
     
     //PRAGMAMARK:- Coredata
     // This method loads the saved data from Core data
@@ -431,7 +391,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         createConstraintsForFeedbackController(0, trailing:0.0, top: 0.0, bottom: 0)
     }
-    //MARK: TextField Delegate methods
+    //MARK:- TextField Delegate methods
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
     {
          let textFieldObject = control as! NSTextField
