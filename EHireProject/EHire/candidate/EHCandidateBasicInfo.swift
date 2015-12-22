@@ -30,13 +30,12 @@ class EHCandidateBasicInfo: NSViewController,NSTextFieldDelegate
     
     @IBOutlet weak var datePicker: NSDatePicker!
     
+    @IBOutlet weak var saveButton: NSButton!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
     }
-    
     
     @IBAction func saveInfo(sender: AnyObject)
     {
@@ -62,16 +61,13 @@ class EHCandidateBasicInfo: NSViewController,NSTextFieldDelegate
         self.view.removeFromSuperview()
     }
     
-  
-    
     @IBAction func reset(sender: AnyObject)
     {
         nameField.stringValue = ""
         experienceField.stringValue = ""
         phoneNumField.stringValue = ""
     }
-  
-    
+      
     @IBAction func back(sender: AnyObject)
     {
       if let del = self.delegate

@@ -18,24 +18,37 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
 {
 
     @IBOutlet weak var tableView: NSTableView!
-    @IBOutlet weak var scrollView: NSScrollView!
     @IBOutlet weak var candidateView: NSView!
     
-    var candidateArray = [String]()
-    var candidateExperianceArray = [String]()
-    var candidateInterViewTimingArray = [String]()
-    var candidatePhoneNoArray = [String]()
+    var candidateArray = NSMutableArray()
     
     var candidateBasicInfo:EHCandidateBasicInfo?
-    var employee:EHCandidateDetails?
+    var candidate:EHCandidateDetails?
     
     var delegate:FeedbackDelegate?
     
-   
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        tableView.doubleAction = "performDoubleClickAction"
         candidateBasicInfo   = self.storyboard!.instantiateControllerWithIdentifier("basicInfo") as? EHCandidateBasicInfo
+    }
+    
+    func performDoubleClickAction()
+    {
+        if tableView.selectedRow != -1
+        {
+            self.view.addSubview(candidateBasicInfo!.view)
+            let editCandidate = candidateArray.objectAtIndex(tableView.selectedRow) as? EHCandidateDetails
+            candidateBasicInfo!.delegate = self
+            candidateBasicInfo?.nameField.stringValue = editCandidate!.name
+            candidateBasicInfo?.experienceField.stringValue = (editCandidate?.experience)!
+            candidateBasicInfo?.datePicker.stringValue = (editCandidate?.interViewTime)!
+            candidateBasicInfo?.phoneNumField.stringValue = (editCandidate?.phoneNum)!
+            candidateBasicInfo?.saveButton.title = "Update"
+            self.candidateView.hidden = true
+        }
+
     }
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int
@@ -47,33 +60,30 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     {
         let cell = self.tableView.makeViewWithIdentifier((tableColumn?.identifier)!, owner: self) as! NSTableCellView
         
-        
         if tableColumn?.identifier == "name"
         {
-            cell.textField?.stringValue = candidateArray[row]
-            
+            cell.textField?.stringValue = (candidate?.name)!
         }
             
         else if tableColumn?.identifier == "experience"
         {
-            cell.textField?.stringValue = candidateExperianceArray[row]
+            cell.textField?.stringValue = (candidate?.experience)!
         }
             
         else if tableColumn?.identifier == "interviewTime"
         {
-            cell.textField?.stringValue = candidateInterViewTimingArray[row]
+            cell.textField?.stringValue = (candidate?.interViewTime)!
         }
             
-              else
+        else
         {
-            cell.textField?.stringValue = candidatePhoneNoArray[row]
+            cell.textField?.stringValue = (candidate?.phoneNum)!
         }
-             
         return cell
     }
     
-    func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        
+    func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat
+    {
         return 35
     }
   
@@ -84,42 +94,49 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
        candidateBasicInfo!.delegate = self
        tableView.reloadData()
        self.candidateView.hidden = true
-        
     }
     
     func getData(name: String, experience: String, interViewTime: String, phoneNum: String)
     {
-       if name == "" && experience == "" && interViewTime == "" && phoneNum == ""
-       {
-         self.candidateView.hidden = false
-       }
-       else
-       {
-          self.candidateView.hidden = false
-          candidateArray.append(name)
-          candidateExperianceArray.append(experience)
-          candidateInterViewTimingArray.append(interViewTime)
-          candidatePhoneNoArray.append(phoneNum)
-          tableView.reloadData()
-       }
+        let newCandidate = EHCandidateDetails(inName:name, candidateExperience:experience , candidateInterviewTiming: interViewTime, candidatePhoneNo:phoneNum)
+        if name == "" && experience == "" && interViewTime == "" && phoneNum == ""
+        {
+            self.candidateView.hidden = false
+        }
+            
+        else
+        {
+            if candidateBasicInfo?.saveButton.title == "Save"
+            {
+                self.candidateView.hidden = false
+                candidateArray.addObject(newCandidate)
+            }
+            else
+            {
+                let editCandidate = candidateArray.objectAtIndex(tableView.selectedRow) as? EHCandidateDetails
+                editCandidate?.name = name
+                editCandidate?.experience = experience
+                editCandidate?.interViewTime = interViewTime
+                editCandidate?.phoneNum = phoneNum
+                self.candidateView.hidden = false
+                candidateBasicInfo?.saveButton.title = "Save"
+            }
+            
+        }
+        tableView.reloadData()
     }
     
    @IBAction func removeCandidate(sender: AnyObject)
    {
-       if tableView.selectedRow > -1
-        {
-           candidateArray.removeAtIndex(tableView.selectedRow)
-           candidateExperianceArray.removeAtIndex(tableView.selectedRow)
-           candidateInterViewTimingArray.removeAtIndex(tableView.selectedRow)
-           candidatePhoneNoArray.removeAtIndex(tableView.selectedRow)
-        }
-           tableView.reloadData()
+    if tableView.selectedRow > -1
+    {
+        candidateArray.removeObjectAtIndex(tableView.selectedRow)
+    }
+    tableView.reloadData()
    }
     
-    @IBAction func showCandidateFeedbackView(sender: AnyObject) {
-        
-        print("Its working")
-        
+    @IBAction func showCandidateFeedbackView(sender: AnyObject)
+    {
         if let delegate = self.delegate{
             
             delegate.showFeedbackViewController()

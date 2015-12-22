@@ -16,13 +16,13 @@ class EHCoreDataHelper {
     
     class  func saveToCoreData(managedobj:NSManagedObject)->String{
         
-        do{
-            
-            try  managedobj.managedObjectContext?.save()
+        do
+        {
+          try  managedobj.managedObjectContext?.save()
         }
             
-        catch{
-            
+        catch
+        {
             return "Error when Saving"
         }
         
@@ -30,13 +30,18 @@ class EHCoreDataHelper {
     }
     
     
-    class func fetchRecordsWithPredicate(predi:NSPredicate?,sortDes:NSSortDescriptor?,entityName:String,managedObjectContext:NSManagedObjectContext)->NSArray?{
+
+       // PRAGMAMARK: - Method to fetch data from coredata
+    
+      
+    class func fetchRecordsWithPredicate(predicate:NSPredicate?,sortDescriptor:NSSortDescriptor?,entityName:String,managedObjectContext:NSManagedObjectContext) -> NSArray?
+    {
         
         var records:[AnyObject]? = nil
         
         let fetch = NSFetchRequest(entityName: entityName)
-        if predi != nil{
-            fetch.predicate = predi
+        if predicate != nil{
+            fetch.predicate = predicate
         }
         
         do{
@@ -49,27 +54,24 @@ class EHCoreDataHelper {
         if records?.count > 0{
             return records
         }
-        else{
-            return nil
-        }
+        
+        return nil
         
     }
     
      // PRAGMAMARK: - Method to create NSManaged Object in coredata
-    class func createEntity(name:String,managedObjectContext:NSManagedObjectContext)->NSEntityDescription?{
+    class func createEntity(name:String,managedObjectContext:NSManagedObjectContext)->NSEntityDescription?
+      {
         
         let entity = NSEntityDescription.entityForName(name, inManagedObjectContext:managedObjectContext)
-        
-        if entity != nil{
-            
+        if entity != nil
+        {
             return entity
         }
             
-        else{
-            
+        else
+        {
             return nil
         }
-        
     }
-    
 }

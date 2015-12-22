@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D88131F1C2800CE0086BA65 /* EHCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D88131E1C2800CE0086BA65 /* EHCoreData.swift */; settings = {ASSET_TAGS = (); }; };
 		41A97FF51C1956B70016CAB4 /* EHInterviewDateCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF41C1956B70016CAB4 /* EHInterviewDateCustomCell.swift */; };
 		41A97FF91C195E500016CAB4 /* EHTechnologyCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF81C195E500016CAB4 /* EHTechnologyCustomCell.swift */; };
 		41A97FFE1C1971FF0016CAB4 /* BlueCalendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A97FFD1C1971FF0016CAB4 /* BlueCalendar.png */; };
@@ -67,6 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D88131E1C2800CE0086BA65 /* EHCoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCoreData.swift; sourceTree = "<group>"; };
 		4136DE551C21284800BDB8B7 /* EHire-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EHire-Bridging-Header.h"; sourceTree = "<group>"; };
 		41A97FF41C1956B70016CAB4 /* EHInterviewDateCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHInterviewDateCustomCell.swift; sourceTree = "<group>"; };
 		41A97FF81C195E500016CAB4 /* EHTechnologyCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnologyCustomCell.swift; sourceTree = "<group>"; };
@@ -495,6 +497,7 @@
 			children = (
 				804288191C17EBC0003033B4 /* EHireTests.swift */,
 				8042881B1C17EBC0003033B4 /* Info.plist */,
+				2D88131E1C2800CE0086BA65 /* EHCoreData.swift */,
 			);
 			path = EHireTests;
 			sourceTree = "<group>";
@@ -713,6 +716,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8042881A1C17EBC0003033B4 /* EHireTests.swift in Sources */,
+				2D88131F1C2800CE0086BA65 /* EHCoreData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

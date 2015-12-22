@@ -8,10 +8,8 @@
 
 import Cocoa
 
-class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,NSTableViewDelegate,NSTextFieldDelegate {
-
-   
-    
+class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,NSTableViewDelegate,NSTextFieldDelegate
+{
     @IBOutlet weak var tableView: NSTableView!
     
     @IBOutlet var technicalFeedbackMainView: NSView!
@@ -34,6 +32,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     
     var skillsAndRatingsTitleArray = NSMutableArray()
     var cell : EHRatingsTableCellView?
+    
+    //initial setup of view to load the basic views of Technical Feedback
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,11 +69,14 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         tableView.reloadData()
     }
     
+    // To Dispaly the Star Rating insided the TextView Of Overall Assessment On Technology
+    
     func accessmentOnTechnology(sender : NSButton)
     {
         let totalView = overallAssessmentOnTechnologyStarView.subviews
         toDisplayRatingStar(totalView, sender: sender, label: ratingOnTechnologyField)
     }
+    // To Dispaly the Star Rating insided the TextView Of Overall Assessment Of Candidate
     
     func accessmentOfCandidate(sender : NSButton)
     {
@@ -81,13 +84,20 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         toDisplayRatingStar(totalView, sender: sender, label: ratingOfCandidateField)
     }
     
+    //MARK: This data source method returns tableview rows
+    
     func numberOfRowsInTableView(tableView: NSTableView) -> Int
     {
         return skillsAndRatingsTitleArray.count
     }
+    
+    //MARK: This method returns the height of the tableview row
     func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         return 25
     }
+    
+    //Mark: This delegate method provides the content for each item of the table view
+    
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView?
     {
         let cellView : EHRatingsTableCellView?
@@ -108,6 +118,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         return cellView
     }
     
+    //Mark: To Display the Alert Message
+    
     func alertPopup(data:String, informativeText:String)
     {
         let alert:NSAlert = NSAlert()
@@ -117,6 +129,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         alert.addButtonWithTitle("Cancel")
         alert.runModal()
     }
+    
+    //Mark: To Display The Stars inside TableView
     
     func starRatingCount(sender : NSButton)
     {
@@ -131,6 +145,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         
         toDisplayRatingStar(totalView, sender: sender,label: ratingCell.feedback)
     }
+    
+    //MARK: To Dispaly the Star Rating to Technical&Personality And Overall Assessment On Technology and also for Overall Assessment Of Candidate
     
     func toDisplayRatingStar(totalView : [NSView], sender : NSButton,label : NSTextField)
     {
@@ -222,13 +238,14 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }
     }
     
-    
+    //MARK: TextField Delegate methods
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
     {
         skillsAndRatingsTitleArray[control.tag] = fieldEditor.string!
         return true
     }
     
+    // Mark: To add new skills inside TableView
     
     @IBAction func addSkills(sender: NSButton) {
         
@@ -243,6 +260,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }
     }
     
+    // Mark: To remove the existing skills inside TableView
+
     @IBAction func removeSkills(sender: NSButton) {
         if tableView.selectedRow != -1
         {
@@ -251,81 +270,71 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }
     }
     
-    @IBAction func saveDetailsAction(sender: NSButton) {
+    // Mark: To save details of Technical Feedback
+    
+    @IBAction func saveDetailsAction(sender: NSButton)
+    {
         validateFields()
     }
     
-    func validateFields() -> Bool
+    // Mark: To Validate all fields of Technical Feedback Controller
+
+    func validateFields()
     {
         
         if cell?.feedback.stringValue == ""
         {
             alertPopup("Select Stars", informativeText: "Please select stars inside tableview to provide your feedback")
-            return false
         }
             
         else if ratingOnTechnologyField.stringValue == ""
         {
             alertPopup("Select Stars", informativeText: "Please select stars to provide your feedback inside overall assessment on Technology")
-            return false
         }
             
         else if ratingOfCandidateField.stringValue == ""
         {
             alertPopup("Select Stars", informativeText: "Please select stars to provide your feedback inside overall assessment of Candidate")
-            return false
         }
             
         else if textViewOfTechnologyAssessment.string == ""
         {
             alertPopup("Overall Feedback On Technology", informativeText: "Please enter your feedback on Technology")
-            return false
         }
-            
         else if textViewOfTechnologyAssessment.string?.characters.count < 5
         {
             alertPopup("Overall Feedback On Technology", informativeText: "Overall assessment on Technology field length shoud be more than 5 charaters")
-            return false
         }
             
         else if textViewOfCandidateAssessment.string == ""
         {
             alertPopup("Overall Feedback Of Candidate", informativeText: "Overall assessment of Candidate field shold not be blank")
-            return false
         }
             
         else if textViewOfCandidateAssessment.string?.characters.count < 5
         {
             alertPopup("Overall Feedback Of Candidate", informativeText: "Overall assessment of Candidate field length shoud be more than 5 charaters")
-            return false
         }
             
         else if designationField.stringValue == ""
         {
             alertPopup("Designation of Candidate", informativeText: "Designation Field should not be blank")
-            return false
         }
             
         else if designationField.stringValue.characters.count < 8
         {
             alertPopup("Designation of Candidate", informativeText: "Designation of the Candidate length should be more than 8 Character")
-            return false
         }
             
         else if interviewedByField.stringValue.characters.count == 0
         {
             alertPopup("Interviewer Name", informativeText: "Please enter the interviewer field should not be blank")
-            return false
         }
             
         else if interviewedByField.stringValue.characters.count < 3
         {
             alertPopup("Interviewer Name", informativeText: "Interviewer Name should be more than 3 character")
-            return false
         }
-        
-        return true
     }
-
     
 }
