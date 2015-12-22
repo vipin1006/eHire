@@ -131,14 +131,29 @@ class EHHrFeedbackViewController: NSViewController {
     
     @IBOutlet weak var dummySpecifyLegalObligations: NSTextField!
     
+    var candidateInfo:Dictionary<String,AnyObject> = [:]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
     }
     
+    override func viewWillAppear()
+    {
+        super.viewWillAppear()
+        candidateInfo["isVisaAvailable"] = NSNumber(int:0)
+        candidateInfo["isRelocationRequested"] = NSNumber(int:0)
+        candidateInfo["isInterviewedBefore"] = NSNumber(int:0)
+        candidateInfo["isAnyLeavePlans"] = NSNumber(int:0)
+        candidateInfo["backgroundCheck"] = NSNumber(int:0)
+        candidateInfo["isAnyDocumentMissing"] = NSNumber(int:0)
+        candidateInfo["entitledBonus"] = NSNumber(int:0)
+        candidateInfo["anyLegalObligations"] = NSNumber(int:0)
+    }
+
     
-    //MARK: IBActions
+    //MARK: IBActions.
     
     
     @IBAction func saveCandidateDetails(sender: AnyObject) {
@@ -146,6 +161,56 @@ class EHHrFeedbackViewController: NSViewController {
         if validations() {
             
             print(candidateName.stringValue)
+            
+            candidateInfo["candidateName"] = candidateName.stringValue
+            candidateInfo["candidateBusinessUnit"] = candidateBusinessUnit.stringValue
+            candidateInfo["candidateSkillOrTechnology"] = candidateSkillOrTechnology.stringValue
+            candidateInfo["candidateTotalItExperience"] = candidateTotalItExperience.stringValue
+            candidateInfo["candidateRelevantItExperience"] = candidateRelevantItExperience.stringValue
+            candidateInfo["candidateMobile"] = candidateMobile.stringValue
+            candidateInfo["candidateCurrentLocation"] = candidateCurrentLocation.stringValue
+            candidateInfo["companyName"] = companyName.stringValue
+            candidateInfo["currentDesignation"] = currentDesignation.stringValue
+            candidateInfo["currentJobType"] = currentJobType.stringValue
+            candidateInfo["officialMailid"] = officialMailid.stringValue
+            candidateInfo["visaTypeAndValidity"] = visaTypeAndValidity.stringValue
+            candidateInfo["previousEmployerName"] = previousEmployerName.stringValue
+            candidateInfo["previousEmployerFromDate"] = previousEmployerFromDate.dateValue
+            candidateInfo["previousEmployerToDate"] = previousEmployerToDate.dateValue
+            candidateInfo["highestEducationQualificationTitle"] = highestEducationQualificationTitle.stringValue
+            candidateInfo["highestEducationFromDate"] = highestEducationFromDate.stringValue
+            candidateInfo["highestEducationToDate"] = highestEducationToDate.stringValue
+            candidateInfo["highestEducationBoardOrUniversity"] = highestEducationBoardOrUniversity.stringValue
+            candidateInfo["highestEducationPercentage"] = highestEducationPercentage.stringValue
+            candidateInfo["educationGapDetails"] = educationGapDetails.stringValue
+            candidateInfo["jobChangeReasons"] = jobChangeReasons.stringValue
+            if interviewedBeforeYes.integerValue == 1
+            {
+                candidateInfo["pastInterviewdDate"] = pastInterviedDate.dateValue
+                
+            }
+            candidateInfo["jobChangeReasons"] = jobChangeReasons.stringValue
+            candidateInfo["missingDocuments"] = missingDocuments.stringValue
+            candidateInfo["currentFixedSalary"] = currentFixedSalary.stringValue
+            candidateInfo["currentSalaryVariable"] = currentSalaryVariable.stringValue
+            candidateInfo["expectedSalary"] = currentFixedSalary.stringValue
+            candidateInfo["LegalObligations"] = legalObligationDetails.stringValue
+            candidateInfo["candidateNoticePeriod"] = candidateNoticePeriod.stringValue
+            candidateInfo["candidateJoinngPeriod"] = candidateJoinngPeriod.stringValue
+            candidateInfo["questionsAskedByCandidate"] = questionsAskedByCandidate.string
+            candidateInfo["inetrviewedBy"] = inetrviewedBy.stringValue
+            
+            if HrFeedBack.hrFeedbackInfo(candidateInfo)
+            {
+                print("Saved successfully")
+            }
+            else
+            {
+                
+                print("Some Error to handle")
+            }
+
+            
         }else{
             
             showAlert("Some fileds are missing", info:"Please fill up all the required fileds")
@@ -155,152 +220,155 @@ class EHHrFeedbackViewController: NSViewController {
         }
     }
     
-    @IBAction func passportAvailability(sender:NSButton) {
+    @IBAction func passportAvailability(sender:NSButton)
         
-        
-        
+    {
         if sender.tag == 0{
             
             performCheckAndUncheck(passportYes, unCheck:passportNo)
+            candidateInfo["isVisaAvailable"] = 1
             
         }else{
             
             performCheckAndUncheck(passportNo, unCheck:passportYes)
+            candidateInfo["isVisaAvailable"] = 0
         }
-        
-        
     }
     
-    @IBAction func relocationRequest(sender: NSButton) {
+    @IBAction func relocationRequest(sender: NSButton)
         
-        if sender.tag == 0{
+    {
+        if sender.tag == 0
+        {
             
             performCheckAndUncheck(relocationYes, unCheck:relocationNo)
+            candidateInfo["isRelocationRequested"] = 1
+            
             
         }else{
             
             performCheckAndUncheck(relocationNo, unCheck:relocationYes)
+            candidateInfo["isRelocationRequested"] = 0
+            
             
         }
-        
     }
     
-    @IBAction func backgroundCheck(sender:NSButton) {
-        
+    @IBAction func backgroundCheck(sender:NSButton)
+    {
         if sender.tag == 0{
             
             performCheckAndUncheck(backgroundCheckYes, unCheck:backgroundCheckNo)
+            candidateInfo["backgroundCheck"] = 1
             
         }else{
             
             performCheckAndUncheck(backgroundCheckNo, unCheck:backgroundCheckYes)
+            candidateInfo["backgroundCheck"] = 0
         }
     }
     
-    @IBAction func entitledBonus(sender:NSButton) {
-        
-        if sender.tag == 0{
-            
+    @IBAction func entitledBonus(sender:NSButton)
+    {
+        if sender.tag == 0
+        {
             performCheckAndUncheck(entitledBonusYes, unCheck:entitledBonusNo)
+            candidateInfo["entitledBonus"] = 1
             
-        }else{
-            
-            performCheckAndUncheck(entitledBonusNo, unCheck:entitledBonusYes)
         }
-        
-        
+        else
+        {
+            performCheckAndUncheck(entitledBonusNo, unCheck:entitledBonusYes)
+            candidateInfo["entitledBonus"] = 0
+        }
     }
     
     
-    @IBAction func interviewedBefore(sender: NSButton) {
+    @IBAction func interviewedBefore(sender: NSButton)
         
+    {
         if sender.tag == 0{
             
             performCheckAndUncheck(interviewedBeforeYes, unCheck:interviewdBeforeNo)
             
             pastInterviedDate.hidden = false
+            candidateInfo["isInterviewedBefore"] = 1
             
             
-        }else{
+        }else
+        {
             
             performCheckAndUncheck(interviewdBeforeNo, unCheck:interviewedBeforeYes)
             
             pastInterviedDate.hidden = true
+            candidateInfo["isInterviewedBefore"] = 0
         }
-        
     }
     
     
     
-    @IBAction func leavePlan(sender:NSButton) {
-        
-        if sender.tag == 0{
-            
+    @IBAction func leavePlan(sender:NSButton)
+    {
+        if sender.tag == 0
+        {
             performCheckAndUncheck(leavePlanYes, unCheck:leavePlanNo)
-            
             leavePlanReasons.hidden = false
-            
             dummyPleaseSpecify.hidden = false
+            candidateInfo["isAnyLeavePlans"] = 1
             
-        }else{
-            
+        }else
+        {
             performCheckAndUncheck(leavePlanNo, unCheck:leavePlanYes)
-            
             leavePlanReasons.hidden = true
-            
             dummyPleaseSpecify.hidden = true
+            candidateInfo["isAnyLeavePlans"] = 0
         }
-        
     }
     
     
     
-    @IBAction func allDocumentsExist(sender: NSButton) {
+    @IBAction func allDocumentsExist(sender: NSButton)
+    {
         
-        if sender.tag == 0{
-            
+        if sender.tag == 0
+        {
             performCheckAndUncheck(allDocumentsYes, unCheck:allDocumentsNo)
-            
             allDocumentsYes.hidden = false
-            
             dummySpecifyMissingDocuments.hidden = false
-            
             missingDocuments.hidden = false
+            candidateInfo["isAnyDocumentMissing"] = 1
             
-        }else{
-            
+        }else
+        {
             performCheckAndUncheck(allDocumentsNo, unCheck:allDocumentsYes)
-            
             dummySpecifyMissingDocuments.hidden = true
-            
             missingDocuments.hidden = true
+            candidateInfo["isAnyDocumentMissing"] = 0
         }
     }
     
     
     
-    @IBAction func legalObligations(sender:NSButton) {
+    @IBAction func legalObligations(sender:NSButton)
+    {
         
-        if sender.tag == 0{
-            
+        if sender.tag == 0
+        {
             performCheckAndUncheck(anyLegalObligationsYes, unCheck:anyLegalObligationsNo)
-            
             legalObligationDetails.hidden = false
-            
             dummyLegalObligations.hidden = false
-            
             dummySpecifyLegalObligations.hidden = false
+            candidateInfo["anyLegalObligations"] = 1
             
             
-        }else{
-            
+        }else
+        {
             performCheckAndUncheck(anyLegalObligationsNo, unCheck:anyLegalObligationsYes)
-            
             legalObligationDetails.hidden = true
-            
             dummyLegalObligations.hidden = true
-            
             dummySpecifyLegalObligations.hidden = true
+            candidateInfo["anyLegalObligations"] = 0
+            
         }
         
     }
@@ -308,7 +376,8 @@ class EHHrFeedbackViewController: NSViewController {
     
     //MARK: HR Form Validations
     
-    func validations()->Bool{
+    func validations()->Bool
+    {
         
         var result:Bool = true
         
@@ -391,6 +460,7 @@ class EHHrFeedbackViewController: NSViewController {
             
             result = false
             
+            
         }
         
         if candidateCurrentLocation.stringValue == ""
@@ -403,18 +473,13 @@ class EHHrFeedbackViewController: NSViewController {
         }
         if passportYes.intValue == 1
         {
-            
             if visaTypeAndValidity.stringValue == ""
                 
             {
                 setBoarderColor(visaTypeAndValidity)
                 
                 result = false
-                
             }
-            
-            
-            
         }
         
         if previousEmployerName.stringValue == ""
@@ -423,7 +488,6 @@ class EHHrFeedbackViewController: NSViewController {
             setBoarderColor(previousEmployerName)
             
             result = false
-            
         }
         
         if highestEducationQualificationTitle.stringValue == ""
@@ -432,7 +496,6 @@ class EHHrFeedbackViewController: NSViewController {
             setBoarderColor(highestEducationQualificationTitle)
             
             result = false
-            
         }
         
         if highestEducationBoardOrUniversity.stringValue == ""
@@ -446,29 +509,24 @@ class EHHrFeedbackViewController: NSViewController {
             setBoarderColor(highestEducationPercentage)
             
             result = false
-            
         }
         if jobChangeReasons.stringValue == ""
         {
             setBoarderColor(jobChangeReasons)
             
             result = false
-            
         }
         if candidateNoticePeriod.stringValue == ""
         {
             setBoarderColor(candidateNoticePeriod)
             
             result = false
-            
-            
         }
         if candidateJoinngPeriod.stringValue == ""
         {
             setBoarderColor(candidateJoinngPeriod)
             
             result = false
-            
         }
         if inetrviewedBy.stringValue == ""
         {
@@ -484,10 +542,7 @@ class EHHrFeedbackViewController: NSViewController {
                 setBoarderColor(missingDocuments)
                 
                 result = false
-                
             }
-            
-            
         }
         
         if leavePlanYes.intValue == 1{
@@ -499,8 +554,6 @@ class EHHrFeedbackViewController: NSViewController {
                 
                 result = false
             }
-            
-            
         }
         
         if anyLegalObligationsYes.intValue == 1{
@@ -512,7 +565,6 @@ class EHHrFeedbackViewController: NSViewController {
                 
                 result = false
             }
-            
         }
         
         if result{
@@ -525,18 +577,18 @@ class EHHrFeedbackViewController: NSViewController {
     
     
     
-    func setBoarderColor(hrTextFiled:NSTextField){
+    func setBoarderColor(hrTextFiled:NSTextField)
+    {
         
         hrTextFiled.wantsLayer = true
         
         hrTextFiled.layer?.borderColor = NSColor.orangeColor().CGColor
         
         hrTextFiled.layer?.borderWidth = 2.0
-        
-        
     }
     
-    func setClearColor(hrTextFiled:NSTextField){
+    func setClearColor(hrTextFiled:NSTextField)
+    {
         
         hrTextFiled.wantsLayer = false
         
@@ -547,7 +599,8 @@ class EHHrFeedbackViewController: NSViewController {
     }
     
     
-    func showAlert(mes:String,info:String){
+    func showAlert(mes:String,info:String)
+    {
         
         let alert:NSAlert = NSAlert()
         
@@ -560,7 +613,8 @@ class EHHrFeedbackViewController: NSViewController {
         alert.runModal()
     }
     
-    func performCheckAndUncheck(check:NSButton,unCheck:NSButton){
+    func performCheckAndUncheck(check:NSButton,unCheck:NSButton)
+    {
         
         switch check.tag{
             
@@ -585,7 +639,7 @@ class EHHrFeedbackViewController: NSViewController {
         }
         
     }
-
+    
     
     
 }

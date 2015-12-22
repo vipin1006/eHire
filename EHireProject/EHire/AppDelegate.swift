@@ -164,6 +164,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // If we got here, it is time to quit.
         return .TerminateNow
     }
+    
+    class func getAppdelegate()->AppDelegate{
+        
+        return (NSApplication.sharedApplication().delegate as? AppDelegate)!
+        
+    }
+    
+
 
 }
 
