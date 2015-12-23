@@ -38,8 +38,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     override func viewDidLoad() {
         super.viewDidLoad()
          getSourceListContent()
-        candidateView.wantsLayer = true
-        candidateView.layer?.backgroundColor = NSColor.yellowColor().CGColor
     }
     
     
@@ -103,6 +101,10 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 candidateController = self.storyboard?.instantiateControllerWithIdentifier("candidateObject") as? EHCandidateController
                 candidateController?.delegate = self
                 self.candidateView.addSubview((candidateController?.view)!)
+                //createConstraintsForCandidateController(0.0, trailing: 0.0, top: 0.0, bottom: 0.0)
+                
+                createConstraintsForController(candidateView, subView: (candidateController?.view)!, leading: 0.0, trailing: 0.0, top: 0.0, bottom: 0.0)
+                
                 isCandidatesViewLoaded = true
             }
             
@@ -394,11 +396,14 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         }
         feedbackViewController = self.storyboard?.instantiateControllerWithIdentifier("feedback") as? EHFeedbackViewController
         
-//        feedbackViewController?.view.frame = self.view.bounds
+        feedbackViewController?.view.frame = self.view.bounds
         
         self.view.addSubview((feedbackViewController?.view)!)
         
         createConstraintsForFeedbackController(0, trailing:0.0, top: 0.0, bottom: 0)
+//         createConstraintsForController(self.view, subView: (feedbackViewController?.view)!, leading: 0.0, trailing: 0.0, top: 0.0, bottom: 0.0)
+//
+        
     }
     //MARK:- TextField Delegate methods
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
@@ -457,6 +462,23 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         self.view .addConstraints([yTopSpace,xLeadingSpace,xTrailingSpace,yBottomSpace])
         
     }
+    
+    
+    func createConstraintsForController(superView:NSView ,subView:NSView ,leading:CGFloat,trailing:CGFloat,top:CGFloat,bottom:CGFloat){
+        subView.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        
+        let xLeadingSpace = NSLayoutConstraint(item: subView, attribute: .Leading, relatedBy: .Equal, toItem: candidateView, attribute: .Leading, multiplier: 1, constant: leading)
+        
+        let xTrailingSpace = NSLayoutConstraint(item: subView, attribute: .Trailing, relatedBy: .Equal, toItem: superView, attribute: .Trailing, multiplier: 1, constant: trailing)
+        
+        let yTopSpace = NSLayoutConstraint(item: subView, attribute:  .Top, relatedBy: .Equal, toItem: superView, attribute: .Top, multiplier: 1, constant: top)
+        
+        let yBottomSpace = NSLayoutConstraint(item: subView, attribute: .Bottom, relatedBy: .Equal, toItem: superView, attribute: .Bottom, multiplier: 1, constant: bottom)
+        superView .addConstraints([yTopSpace,xLeadingSpace,xTrailingSpace,yBottomSpace])
+    }
+    
     
     //To display the CandidateDetailsView
     
