@@ -82,6 +82,7 @@
         <attribute name="commentsOnCandidate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="commentsOnTechnology" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="commitments" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="designation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="grossAnnualSalary" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="isCgDeviation" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="jestificationForHire" optional="YES" attributeType="String" syncable="YES"/>
@@ -103,6 +104,7 @@
     <entity name="TechnicalFeedBack" representedClassName=".TechnicalFeedBack" syncable="YES">
         <attribute name="commentsOnCandidate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="commentsOnTechnology" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="designation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="modeOfInterview" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ratingOnCandidate" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="ratingOnTechnical" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -118,16 +120,16 @@
     </entity>
     <elements>
         <element name="Candidate" positionX="-236" positionY="116" width="128" height="253"/>
-        <element name="Date" positionX="-531" positionY="-36" width="128" height="73"/>
-        <element name="ManagerFeedBack" positionX="-0" positionY="-109" width="128" height="253"/>
-        <element name="TechnicalFeedBack" positionX="232" positionY="416" width="128" height="178"/>
-        <element name="Technology" positionX="-513" positionY="-207" width="117" height="88"/>
-        <element name="CandidatePersonalInfo" positionX="-801" positionY="407" width="128" height="133"/>
         <element name="CandidateBasicProfessionalInfo" positionX="-801" positionY="729" width="128" height="223"/>
+        <element name="CandidateDocuments" positionX="-801" positionY="-16" width="128" height="88"/>
+        <element name="CandidateMiscellaneous" positionX="-801" positionY="117" width="128" height="268"/>
+        <element name="CandidatePersonalInfo" positionX="-801" positionY="407" width="128" height="133"/>
         <element name="CandidatePreviousEmploymentInfo" positionX="-801" positionY="584" width="128" height="118"/>
         <element name="CandidateQualification" positionX="-191" positionY="458" width="128" height="118"/>
-        <element name="CandidateMiscellaneous" positionX="-801" positionY="117" width="128" height="268"/>
-        <element name="CandidateDocuments" positionX="-801" positionY="-16" width="128" height="88"/>
+        <element name="Date" positionX="-531" positionY="-36" width="128" height="73"/>
+        <element name="ManagerFeedBack" positionX="-0" positionY="-109" width="128" height="268"/>
         <element name="SkillSet" positionX="241" positionY="153" width="128" height="103"/>
+        <element name="TechnicalFeedBack" positionX="232" positionY="416" width="128" height="193"/>
+        <element name="Technology" positionX="-513" positionY="-207" width="117" height="88"/>
     </elements>
 </model>

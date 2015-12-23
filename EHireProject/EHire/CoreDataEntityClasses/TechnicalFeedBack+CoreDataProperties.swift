@@ -23,5 +23,6 @@ extension TechnicalFeedBack {
     @NSManaged var recommendation: String?
     @NSManaged var candidate: Candidate?
     @NSManaged var candidateSkills: NSSet?
+    @NSManaged var designation: String?
 
 }
