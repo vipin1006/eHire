@@ -143,6 +143,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             let x = item as! EHTechnology
             if x.technologyName == ""{
                  parent.textFieldTechnology.editable = true
+                 parent.textFieldTechnology.backgroundColor = NSColor.whiteColor()
                 
 
             }else{
@@ -218,7 +219,10 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         if  ((sourceList.itemAtRow(sourceList.selectedRow) as? EHTechnology) != nil){ // adding new date
             
-            addDateAction(sender as! NSButton)
+            // Condition to check dates cannot be added when technology is editing
+            if !cellTechnology!.textFieldTechnology.editable{
+                addDateAction(sender as! NSButton)
+            }
             
         }
         else{ // adding new technology
@@ -243,11 +247,14 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         if let selectedItem = sourceList.itemAtRow(sourceList.selectedRow) as? EHTechnology{
            
+            // Condition to check new added technology is deletable
+            if !cellTechnology!.textFieldTechnology.editable{
+                technologyArray.removeAtIndex(self.sourceList.selectedRow)
+                
+                
+                deleteTechnologyFromCoreData(selectedItem.technologyName)
+            }
             
-            technologyArray.removeAtIndex(self.sourceList.selectedRow)
-            
-            
-            deleteTechnologyFromCoreData(selectedItem.technologyName)
         }
         
         else
@@ -328,7 +335,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 newTechnologyManagedObject.technologyName = content as? String
                 EHCoreDataHelper.saveToCoreData(newTechnologyManagedObject)
             
-            
         }
         else {
             
@@ -396,21 +402,46 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     //MARK:- TextField Delegate methods
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
     {
-         let textFieldObject = control as! NSTextField
-        if (fieldEditor.string == nil){
-            textFieldObject.removeFromSuperview()
-        }else{
-        let technologyObject = technologyArray[control.tag]
-       technologyObject.technologyName = fieldEditor.string!
-        control.wantsLayer = true
-       
-        textFieldObject.backgroundColor = NSColor.clearColor()
-        
-        addTechnologyAndInterviewDateToCoreData(nil, content: fieldEditor.string!)
-        }
-                return true
+//        let textFieldObject = control as! NSTextField
+//        if (fieldEditor.string == nil){
+//            textFieldObject.removeFromSuperview()
+//        }else{
+//            let technologyObject = technologyArray[control.tag]
+//            technologyObject.technologyName = fieldEditor.string!
+//            control.wantsLayer = true
+//            
+//            textFieldObject.backgroundColor = NSColor.clearColor()
+//            
+//            addTechnologyAndInterviewDateToCoreData(nil, content: fieldEditor.string!)
+//        }
+            return true
     }
     
+    override func controlTextDidEndEditing(obj: NSNotification)
+    {
+        print(obj.userInfo)
+        print(obj.object)
+        
+        let textFieldObject = obj.object as! NSTextField
+        
+        if (textFieldObject.stringValue == ""){
+            textFieldObject.removeFromSuperview()
+        }else{
+            let technologyObject = technologyArray[textFieldObject.tag]
+            technologyObject.technologyName = textFieldObject.stringValue
+            textFieldObject.wantsLayer = true
+            
+            textFieldObject.backgroundColor = NSColor.clearColor()
+            
+            addTechnologyAndInterviewDateToCoreData(nil, content: textFieldObject.stringValue)
+        }
+
+        cellTechnology?.textFieldTechnology.editable = false
+        
+            //            self.sourceList.reloadData()
+        
+
+    }
     // Alert Popup
     func alertPopup(data:String, informativeText:String)
     {
