@@ -1,5 +1,5 @@
 //
-//  Technology+CoreDataProperties.swift
+//  CandidateDocuments+CoreDataProperties.swift
 //  EHire
 //
 //  Created by ajaybabu singineedi on 23/12/15.
@@ -12,10 +12,10 @@
 import Foundation
 import CoreData
 
-extension Technology {
+extension CandidateDocuments {
 
-    @NSManaged var technologyName: String?
-    @NSManaged var interviewDates: NSSet?
-    @NSManaged var candidates: NSSet?
+    @NSManaged var missingDocumentsOfEmploymentAndEducation: String?
+    @NSManaged var documentsOfEmploymentAndEducationPresent: NSNumber?
+    @NSManaged var candidate: Candidate?
 
 }

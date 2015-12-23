@@ -1,5 +1,5 @@
 //
-//  Technology+CoreDataProperties.swift
+//  CandidateQualification+CoreDataProperties.swift
 //  EHire
 //
 //  Created by ajaybabu singineedi on 23/12/15.
@@ -12,10 +12,12 @@
 import Foundation
 import CoreData
 
-extension Technology {
+extension CandidateQualification {
 
-    @NSManaged var technologyName: String?
-    @NSManaged var interviewDates: NSSet?
-    @NSManaged var candidates: NSSet?
+    @NSManaged var highestEducation: String?
+    @NSManaged var educationStartFrom: NSDate?
+    @NSManaged var educationEnd: NSDate?
+    @NSManaged var educationGap: String?
+    @NSManaged var candidate: Candidate?
 
 }

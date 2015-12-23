@@ -6,92 +6,128 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="requisition" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="technologyName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="hr" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="HrFeedBack" inverseName="candidate" inverseEntity="HrFeedBack" syncable="YES"/>
-        <relationship name="managers" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ManagerFeedBack" inverseName="candidate" inverseEntity="ManagerFeedBack" syncable="YES"/>
-        <relationship name="techleads" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TechnicalFeedBack" inverseName="candidate" inverseEntity="TechnicalFeedBack" syncable="YES"/>
+        <relationship name="documentDetails" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CandidateDocuments" inverseName="candidate" inverseEntity="CandidateDocuments" syncable="YES"/>
+        <relationship name="educationQualification" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CandidateQualification" inverseName="candidate" inverseEntity="CandidateQualification" syncable="YES"/>
+        <relationship name="interviewedByManagers" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ManagerFeedBack" inverseName="candidate" inverseEntity="ManagerFeedBack" syncable="YES"/>
+        <relationship name="interviewedByTechLeads" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TechnicalFeedBack" inverseName="candidate" inverseEntity="TechnicalFeedBack" syncable="YES"/>
+        <relationship name="miscellaneousInfo" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CandidateMiscellaneous" inverseName="candidate" inverseEntity="CandidateMiscellaneous" syncable="YES"/>
+        <relationship name="personalInfo" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CandidatePersonalInfo" inverseName="candidate" inverseEntity="CandidatePersonalInfo" syncable="YES"/>
+        <relationship name="previousEmployment" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CandidatePreviousEmploymentInfo" inverseName="candidate" inverseEntity="CandidatePreviousEmploymentInfo" syncable="YES"/>
+        <relationship name="professionalInfo" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CandidateBasicProfessionalInfo" inverseName="candidate" inverseEntity="CandidateBasicProfessionalInfo" syncable="YES"/>
+        <relationship name="technology" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Technology" inverseName="candidates" inverseEntity="Technology" syncable="YES"/>
+    </entity>
+    <entity name="CandidateBasicProfessionalInfo" representedClassName=".CandidateBasicProfessionalInfo" syncable="YES">
+        <attribute name="companyName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="currentDesignation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="currentJobType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="employmentGap" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fixedSalary" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="officialEmailId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="officialNoticePeriod" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="primarySkill" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="relevantITExperience" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="totalITExperience" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="variableSalary" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="candidate" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Candidate" inverseName="professionalInfo" inverseEntity="Candidate" syncable="YES"/>
+    </entity>
+    <entity name="CandidateDocuments" representedClassName=".CandidateDocuments" syncable="YES">
+        <attribute name="documentsOfEmploymentAndEducationPresent" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="missingDocumentsOfEmploymentAndEducation" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="candidate" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Candidate" inverseName="documentDetails" inverseEntity="Candidate" syncable="YES"/>
+    </entity>
+    <entity name="CandidateMiscellaneous" representedClassName=".CandidateMiscellaneous" syncable="YES">
+        <attribute name="anyLeavePlanInSixMonths" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="anyLegalObligationWithCurrentEmployer" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="anyPendingBonusFromCurrentEmployer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="backgroundVerification" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="businessUnit" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="candidateRequestForRelocation" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="expectedSalary" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="interviewedBy" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="joiningPeriod" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="leavePlanInSixMonths" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="legalObligationWithCurrentEmployer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reasonForJobChange" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="wasInterviewdBeforeOn" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="wasInterviewedBefore" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="candidate" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Candidate" inverseName="miscellaneousInfo" inverseEntity="Candidate" syncable="YES"/>
+    </entity>
+    <entity name="CandidatePersonalInfo" representedClassName=".CandidatePersonalInfo" syncable="YES">
+        <attribute name="candidateMobile" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="candidateName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="currentLocation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="passport" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="visaTypeAndValidity" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="candidate" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Candidate" inverseName="personalInfo" inverseEntity="Candidate" syncable="YES"/>
+    </entity>
+    <entity name="CandidatePreviousEmploymentInfo" representedClassName=".CandidatePreviousEmploymentInfo" syncable="YES">
+        <attribute name="employmentEnd" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="employmentStartsFrom" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="previousCompany" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="previousCompanyDesignation" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="candidate" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Candidate" inverseName="previousEmployment" inverseEntity="Candidate" syncable="YES"/>
+    </entity>
+    <entity name="CandidateQualification" representedClassName=".CandidateQualification" syncable="YES">
+        <attribute name="educationEnd" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="educationGap" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="educationStartFrom" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="highestEducation" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="candidate" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Candidate" inverseName="educationQualification" inverseEntity="Candidate" syncable="YES"/>
     </entity>
     <entity name="Date" representedClassName=".Date" syncable="YES">
         <attribute name="interviewDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <relationship name="technologies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Technology" inverseName="interviewDates" inverseEntity="Technology" syncable="YES"/>
-    </entity>
-    <entity name="HrFeedBack" representedClassName=".HrFeedBack" syncable="YES">
-        <attribute name="businessUnit" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="currentAnnualSalary" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="currentDesignation" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="currentEmployerFromDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="currentEmployerName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="currentEmployerToDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="currentJobType" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="currentLocation" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="educationGap" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="emailId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="employeeGap" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="entitledForAnyBonusFromCurrentEmployer" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="highestEducationFromDate" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="highestEducationPercentage" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="highestEducationQualificationTitle" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="highestEducationToDate" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="highestEducationUniversity" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="interviewedBy" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="isAgreeBackgroundCheck" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="isAnyLeavePlan" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="isAnyrelocationRequest" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="isEveryDocumentChecked" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="isInterviewPast" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="isLegalObligationWithCurrentCompany" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="isPassportAvailable" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="joiningPeriod" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="leavePlanReasons" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="legalObligationDetails" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="missingDocumentsList" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="mobile" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="officialNoticePeriod" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="pastInterviewdDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="questionsFromCandidate" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="reasonFromJobchange" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="recentDesignation" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="relevantItExperience" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="totalItExperience" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="visaTypeAndValidity" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="candidate" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Candidate" inverseName="hr" inverseEntity="Candidate" syncable="YES"/>
+        <relationship name="technologies" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Technology" inverseName="interviewDates" inverseEntity="Technology" syncable="YES"/>
     </entity>
     <entity name="ManagerFeedBack" representedClassName=".ManagerFeedBack" syncable="YES">
         <attribute name="commentsOnCandidate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="commentsOnTechnology" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="commitments" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="grossAnnualSalary" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="interviewedBy" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isCgDeviation" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="jestificationForHire" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="managerName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="modeOfInterview" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ratingOnCandidate" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="ratingOnTechnical" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="recommendation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="recommendedCg" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="skillSet" optional="YES" attributeType="Binary" syncable="YES"/>
-        <relationship name="candidate" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Candidate" inverseName="managers" inverseEntity="Candidate" syncable="YES"/>
+        <relationship name="candidate" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Candidate" inverseName="interviewedByManagers" inverseEntity="Candidate" syncable="YES"/>
+        <relationship name="candidateSkills" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SkillSet" inverseName="manager" inverseEntity="SkillSet" syncable="YES"/>
+    </entity>
+    <entity name="SkillSet" representedClassName=".SkillSet" syncable="YES">
+        <attribute name="skillName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="skillRating" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="manager" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ManagerFeedBack" inverseName="candidateSkills" inverseEntity="ManagerFeedBack" syncable="YES"/>
+        <relationship name="techLead" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="TechnicalFeedBack" inverseName="candidateSkills" inverseEntity="TechnicalFeedBack" syncable="YES"/>
     </entity>
     <entity name="TechnicalFeedBack" representedClassName=".TechnicalFeedBack" syncable="YES">
         <attribute name="commentsOnCandidate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="commentsOnTechnology" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="interviewedBy" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="modeOfInterview" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ratingOnCandidate" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="ratingOnTechnical" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="recommendation" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="skillSet" optional="YES" attributeType="Binary" syncable="YES"/>
-        <relationship name="candidate" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Candidate" inverseName="techleads" inverseEntity="Candidate" syncable="YES"/>
+        <attribute name="techLeadName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="candidate" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Candidate" inverseName="interviewedByTechLeads" inverseEntity="Candidate" syncable="YES"/>
+        <relationship name="candidateSkills" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SkillSet" inverseName="techLead" inverseEntity="SkillSet" syncable="YES"/>
     </entity>
     <entity name="Technology" representedClassName=".Technology" syncable="YES">
         <attribute name="technologyName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="interviewDates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Date" inverseName="technologies" inverseEntity="Date" syncable="YES"/>
+        <relationship name="candidates" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Candidate" inverseName="technology" inverseEntity="Candidate" syncable="YES"/>
+        <relationship name="interviewDates" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Date" inverseName="technologies" inverseEntity="Date" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Candidate" positionX="34" positionY="384" width="128" height="163"/>
-        <element name="Date" positionX="-468" positionY="-0" width="128" height="75"/>
-        <element name="HrFeedBack" positionX="-459" positionY="189" width="128" height="628"/>
-        <element name="ManagerFeedBack" positionX="-216" positionY="-291" width="128" height="253"/>
-        <element name="TechnicalFeedBack" positionX="-308" positionY="9" width="128" height="178"/>
-        <element name="Technology" positionX="-477" positionY="-135" width="117" height="75"/>
+        <element name="Candidate" positionX="-236" positionY="116" width="128" height="253"/>
+        <element name="Date" positionX="-531" positionY="-36" width="128" height="73"/>
+        <element name="ManagerFeedBack" positionX="-0" positionY="-109" width="128" height="253"/>
+        <element name="TechnicalFeedBack" positionX="232" positionY="416" width="128" height="178"/>
+        <element name="Technology" positionX="-513" positionY="-207" width="117" height="88"/>
+        <element name="CandidatePersonalInfo" positionX="-801" positionY="407" width="128" height="133"/>
+        <element name="CandidateBasicProfessionalInfo" positionX="-801" positionY="729" width="128" height="223"/>
+        <element name="CandidatePreviousEmploymentInfo" positionX="-801" positionY="584" width="128" height="118"/>
+        <element name="CandidateQualification" positionX="-191" positionY="458" width="128" height="118"/>
+        <element name="CandidateMiscellaneous" positionX="-801" positionY="117" width="128" height="268"/>
+        <element name="CandidateDocuments" positionX="-801" positionY="-16" width="128" height="88"/>
+        <element name="SkillSet" positionX="241" positionY="153" width="128" height="103"/>
     </elements>
 </model>

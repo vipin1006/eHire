@@ -1,5 +1,5 @@
 //
-//  Technology+CoreDataProperties.swift
+//  SkillSet+CoreDataProperties.swift
 //  EHire
 //
 //  Created by ajaybabu singineedi on 23/12/15.
@@ -12,10 +12,11 @@
 import Foundation
 import CoreData
 
-extension Technology {
+extension SkillSet {
 
-    @NSManaged var technologyName: String?
-    @NSManaged var interviewDates: NSSet?
-    @NSManaged var candidates: NSSet?
+    @NSManaged var skillName: String?
+    @NSManaged var skillRating: NSNumber?
+    @NSManaged var manager: ManagerFeedBack?
+    @NSManaged var techLead: TechnicalFeedBack?
 
 }
