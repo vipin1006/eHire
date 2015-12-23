@@ -200,6 +200,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                         addTechnologyAndInterviewDateToCoreData(selectedItem, content: scheduledDate)
 
                         self.sourceList.reloadData()
+                        datePopOver.close()
             }
                         
             
@@ -402,18 +403,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     //MARK:- TextField Delegate methods
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
     {
-//        let textFieldObject = control as! NSTextField
-//        if (fieldEditor.string == nil){
-//            textFieldObject.removeFromSuperview()
-//        }else{
-//            let technologyObject = technologyArray[control.tag]
-//            technologyObject.technologyName = fieldEditor.string!
-//            control.wantsLayer = true
-//            
-//            textFieldObject.backgroundColor = NSColor.clearColor()
-//            
-//            addTechnologyAndInterviewDateToCoreData(nil, content: fieldEditor.string!)
-//        }
             return true
     }
     
@@ -436,9 +425,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             addTechnologyAndInterviewDateToCoreData(nil, content: textFieldObject.stringValue)
         }
 
-        cellTechnology?.textFieldTechnology.editable = false
+//        cellTechnology?.textFieldTechnology.editable = false
         
-            //            self.sourceList.reloadData()
+                        self.sourceList.reloadData()
         
 
     }
