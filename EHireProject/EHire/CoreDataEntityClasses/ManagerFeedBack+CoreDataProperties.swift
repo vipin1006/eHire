@@ -28,5 +28,5 @@ extension ManagerFeedBack {
     @NSManaged var recommendedCg: String?
     @NSManaged var candidate: Candidate?
     @NSManaged var candidateSkills: NSSet?
-
+    @NSManaged var designation: String?
 }

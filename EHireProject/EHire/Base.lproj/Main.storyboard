@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -3964,7 +3964,7 @@ DQ
                                         <font key="titleFont" metaFont="system" size="14"/>
                                     </box>
                                     <box fixedFrame="YES" title="Highest Education Qualification" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="Upt-eH-Xuy">
-                                        <rect key="frame" x="17" y="797" width="666" height="122"/>
+                                        <rect key="frame" x="17" y="760" width="666" height="122"/>
                                         <view key="contentView" id="vtU-HQ-vdw">
                                             <rect key="frame" x="1" y="1" width="664" height="102"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4111,7 +4111,7 @@ DQ
                                         <font key="titleFont" metaFont="system" size="14"/>
                                     </box>
                                     <box fixedFrame="YES" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="ROK-5g-veo">
-                                        <rect key="frame" x="17" y="497" width="666" height="296"/>
+                                        <rect key="frame" x="17" y="460" width="666" height="296"/>
                                         <view key="contentView" id="opb-O2-XQK">
                                             <rect key="frame" x="1" y="1" width="664" height="280"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4333,7 +4333,7 @@ DQ
                                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </box>
                                     <box fixedFrame="YES" title="Current Annual Salary" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="0Nn-sR-CDF">
-                                        <rect key="frame" x="17" y="379" width="666" height="114"/>
+                                        <rect key="frame" x="17" y="342" width="666" height="114"/>
                                         <view key="contentView" id="yeb-zS-0sC">
                                             <rect key="frame" x="1" y="1" width="664" height="94"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4422,7 +4422,7 @@ DQ
                                         <font key="titleFont" metaFont="system" size="14"/>
                                     </box>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Hi-LB-Evq">
-                                        <rect key="frame" x="18" y="350" width="476" height="19"/>
+                                        <rect key="frame" x="18" y="313" width="476" height="19"/>
                                         <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Are you entitled for Bonus or any other cash allowance from your Current Employer?" id="mzY-mc-Abt">
                                             <font key="font" size="12" name="HelveticaNeue-Medium"/>
@@ -4431,7 +4431,7 @@ DQ
                                         </textFieldCell>
                                     </textField>
                                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EQO-Rp-fbg">
-                                        <rect key="frame" x="498" y="351" width="44" height="18"/>
+                                        <rect key="frame" x="498" y="314" width="44" height="18"/>
                                         <animations/>
                                         <buttonCell key="cell" type="check" title="Yes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="TXb-Sr-E6B">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -4442,7 +4442,7 @@ DQ
                                         </connections>
                                     </button>
                                     <button fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="iLp-r2-BWg">
-                                        <rect key="frame" x="557" y="351" width="40" height="18"/>
+                                        <rect key="frame" x="557" y="314" width="40" height="18"/>
                                         <animations/>
                                         <buttonCell key="cell" type="check" title="No" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ILO-fZ-s5I">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -4453,7 +4453,7 @@ DQ
                                         </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tRQ-DH-98U">
-                                        <rect key="frame" x="18" y="309" width="135" height="19"/>
+                                        <rect key="frame" x="18" y="272" width="135" height="19"/>
                                         <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Official Notice Period" id="sNh-N2-avl">
                                             <font key="font" size="12" name="HelveticaNeue-Medium"/>
@@ -4462,7 +4462,7 @@ DQ
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mpo-jQ-HF6">
-                                        <rect key="frame" x="375" y="309" width="98" height="19"/>
+                                        <rect key="frame" x="375" y="272" width="98" height="19"/>
                                         <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Joining Period" id="Lpq-CY-Dqp">
                                             <font key="font" size="12" name="HelveticaNeue-Medium"/>
@@ -4471,7 +4471,7 @@ DQ
                                         </textFieldCell>
                                     </textField>
                                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ybO-Sq-0lH">
-                                        <rect key="frame" x="165" y="307" width="160" height="22"/>
+                                        <rect key="frame" x="165" y="270" width="160" height="22"/>
                                         <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" drawsBackground="YES" id="jf7-Ea-0pi">
                                             <font key="font" metaFont="system"/>
@@ -4480,7 +4480,7 @@ DQ
                                         </textFieldCell>
                                     </textField>
                                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GWX-lG-sUp">
-                                        <rect key="frame" x="479" y="307" width="160" height="22"/>
+                                        <rect key="frame" x="479" y="270" width="160" height="22"/>
                                         <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" drawsBackground="YES" id="3V1-HG-kzV">
                                             <font key="font" metaFont="system"/>
@@ -4489,7 +4489,7 @@ DQ
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wn0-WQ-nCF">
-                                        <rect key="frame" x="18" y="263" width="362" height="19"/>
+                                        <rect key="frame" x="18" y="226" width="362" height="19"/>
                                         <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Do you have any legal obligation with your Current Employer ?" id="D2o-I3-AnE">
                                             <font key="font" size="12" name="HelveticaNeue-Medium"/>
@@ -4498,7 +4498,7 @@ DQ
                                         </textFieldCell>
                                     </textField>
                                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UoB-bM-Lqs">
-                                        <rect key="frame" x="376" y="263" width="44" height="18"/>
+                                        <rect key="frame" x="376" y="226" width="44" height="18"/>
                                         <animations/>
                                         <buttonCell key="cell" type="check" title="Yes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Ab4-Us-X3K">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -4509,7 +4509,7 @@ DQ
                                         </connections>
                                     </button>
                                     <button fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="6pf-dB-fSZ">
-                                        <rect key="frame" x="435" y="263" width="40" height="18"/>
+                                        <rect key="frame" x="435" y="226" width="40" height="18"/>
                                         <animations/>
                                         <buttonCell key="cell" type="check" title="No" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="eJB-HN-Mll">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -4520,7 +4520,7 @@ DQ
                                         </connections>
                                     </button>
                                     <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B75-vY-nvL">
-                                        <rect key="frame" x="18" y="233" width="135" height="19"/>
+                                        <rect key="frame" x="18" y="196" width="135" height="19"/>
                                         <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Please specify" id="dLQ-Oe-Wgr">
                                             <font key="font" size="12" name="HelveticaNeue-Medium"/>
@@ -4529,7 +4529,7 @@ DQ
                                         </textFieldCell>
                                     </textField>
                                     <textField hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gLd-Aw-RZS">
-                                        <rect key="frame" x="165" y="231" width="474" height="22"/>
+                                        <rect key="frame" x="165" y="194" width="474" height="22"/>
                                         <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" drawsBackground="YES" id="Cnd-kG-Sdr">
                                             <font key="font" metaFont="system"/>
@@ -4538,7 +4538,7 @@ DQ
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pBi-hN-zEG">
-                                        <rect key="frame" x="18" y="197" width="457" height="19"/>
+                                        <rect key="frame" x="18" y="160" width="457" height="19"/>
                                         <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Recommendations/ Specific Feedback. Record questions asked by the candidate" id="ED8-7N-h1S">
                                             <font key="font" size="12" name="HelveticaNeue-Medium"/>
@@ -4547,7 +4547,7 @@ DQ
                                         </textFieldCell>
                                     </textField>
                                     <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgK-qI-j6k">
-                                        <rect key="frame" x="20" y="132" width="660" height="57"/>
+                                        <rect key="frame" x="20" y="95" width="660" height="57"/>
                                         <clipView key="contentView" ambiguous="YES" id="G6T-KY-dIS">
                                             <rect key="frame" x="1" y="1" width="643" height="55"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4580,7 +4580,7 @@ DQ
                                         </scroller>
                                     </scrollView>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XPJ-s1-Jt6">
-                                        <rect key="frame" x="18" y="86" width="98" height="19"/>
+                                        <rect key="frame" x="18" y="63" width="98" height="19"/>
                                         <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Interviewed By :" id="Rqi-Op-T0q">
                                             <font key="font" size="12" name="HelveticaNeue-Medium"/>
@@ -4589,7 +4589,7 @@ DQ
                                         </textFieldCell>
                                     </textField>
                                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m3f-wT-zql">
-                                        <rect key="frame" x="122" y="83" width="203" height="22"/>
+                                        <rect key="frame" x="122" y="58" width="203" height="22"/>
                                         <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" drawsBackground="YES" id="jk5-OC-31b">
                                             <font key="font" metaFont="system"/>
@@ -4608,6 +4608,24 @@ DQ
                                             <action selector="saveCandidateDetails:" target="2N2-KU-HrI" id="oMc-nx-cga"/>
                                         </connections>
                                     </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hvr-h1-ahh">
+                                        <rect key="frame" x="18" y="895" width="204" height="25"/>
+                                        <animations/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Specify employment gap if any :" id="adf-wg-7mt">
+                                            <font key="font" size="13" name="HelveticaNeue-Medium"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BsD-WN-Nes">
+                                        <rect key="frame" x="228" y="896" width="445" height="22"/>
+                                        <animations/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" drawsBackground="YES" id="HSj-lY-aln">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
                                 </subviews>
                                 <animations/>
                             </customView>
@@ -4640,6 +4658,7 @@ DQ
                         <outlet property="dummySpecifyLegalObligations" destination="B75-vY-nvL" id="oqI-WU-d4t"/>
                         <outlet property="dummySpecifyMissingDocuments" destination="hyf-gA-zZX" id="Del-i5-fWA"/>
                         <outlet property="educationGapDetails" destination="wWz-Gd-yqh" id="sOd-TU-Kbr"/>
+                        <outlet property="employmentGap" destination="BsD-WN-Nes" id="99M-Yk-eEH"/>
                         <outlet property="entitledBonusNo" destination="iLp-r2-BWg" id="j3B-Fz-IJK"/>
                         <outlet property="entitledBonusYes" destination="EQO-Rp-fbg" id="CPm-4J-oYr"/>
                         <outlet property="expectedSalary" destination="MOQ-Ij-awj" id="B6E-A7-cGr"/>
