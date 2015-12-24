@@ -3049,7 +3049,7 @@ DQ
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PpM-MF-Fnn">
                                             <rect key="frame" x="366" y="7" width="70" height="32"/>
                                             <animations/>
-                                            <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TdD-WM-cTE">
+                                            <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="left" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TdD-WM-cTE">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -3923,7 +3923,7 @@ DQ
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="tW8-co-12o">
-                                                    <rect key="frame" x="322" y="0.0" width="4" height="139"/>
+                                                    <rect key="frame" x="322" y="0.0" width="5" height="139"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
