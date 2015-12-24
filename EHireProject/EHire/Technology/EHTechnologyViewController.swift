@@ -400,8 +400,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         self.view.addSubview((feedbackViewController?.view)!)
         
-        createConstraintsForFeedbackController(0, trailing:0.0, top: 0.0, bottom: 0)
-//         createConstraintsForController(self.view, subView: (feedbackViewController?.view)!, leading: 0.0, trailing: 0.0, top: 0.0, bottom: 0.0)
+//        createConstraintsForFeedbackController(0, trailing:0.0, top: 0.0, bottom: 0)
+        createConstraintsForController(self.view, subView: (feedbackViewController?.view)!, leading: 0.0, trailing: 0.0, top: 0.0, bottom: 0.0)
 //
         
     }
@@ -469,7 +469,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         
         
-        let xLeadingSpace = NSLayoutConstraint(item: subView, attribute: .Leading, relatedBy: .Equal, toItem: candidateView, attribute: .Leading, multiplier: 1, constant: leading)
+        let xLeadingSpace = NSLayoutConstraint(item: subView, attribute: .Leading, relatedBy: .Equal, toItem: superView, attribute: .Leading, multiplier: 1, constant: leading)
         
         let xTrailingSpace = NSLayoutConstraint(item: subView, attribute: .Trailing, relatedBy: .Equal, toItem: superView, attribute: .Trailing, multiplier: 1, constant: trailing)
         

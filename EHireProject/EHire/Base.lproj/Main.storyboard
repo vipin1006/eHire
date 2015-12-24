@@ -1180,8 +1180,8 @@ Gw
                                                                     <rect key="frame" x="1" y="1" width="120" height="35"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
-                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="js1-gW-BeE">
-                                                                            <rect key="frame" x="0.0" y="7" width="148" height="22"/>
+                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="js1-gW-BeE">
+                                                                            <rect key="frame" x="0.0" y="7" width="149" height="22"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="22" id="ftF-df-dyv"/>
                                                                             </constraints>
@@ -1222,8 +1222,8 @@ Gw
                                                                     <rect key="frame" x="124" y="1" width="121" height="35"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
-                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q1R-OD-uAh">
-                                                                            <rect key="frame" x="0.0" y="7" width="97" height="22"/>
+                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="q1R-OD-uAh">
+                                                                            <rect key="frame" x="0.0" y="7" width="98" height="22"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="22" id="yTn-TO-Mus"/>
                                                                             </constraints>
@@ -1349,7 +1349,7 @@ Gw
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lB5-0e-aAU">
-                                                                            <rect key="frame" x="24" y="3" width="25" height="23"/>
+                                                                            <rect key="frame" x="24" y="3" width="23" height="23"/>
                                                                             <animations/>
                                                                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSInfo" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="dLU-lv-QDM">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1437,7 +1437,7 @@ Gw
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="gJl-Gf-eui">
                                 <rect key="frame" x="40" y="639" width="660" height="83"/>
                                 <subviews>
-                                    <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bnU-9t-JE3">
+                                    <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bnU-9t-JE3">
                                         <rect key="frame" x="26" y="15" width="608" height="24"/>
                                         <animations/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="9ds-xO-qCj">
@@ -1452,7 +1452,7 @@ Gw
                                             <action selector="subRound:" target="h0V-rg-Tmf" id="ZQv-0y-Pid"/>
                                         </connections>
                                     </segmentedControl>
-                                    <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S3n-ii-hmR">
+                                    <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="S3n-ii-hmR">
                                         <rect key="frame" x="26" y="49" width="608" height="24"/>
                                         <animations/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="bAA-OO-HDE">
@@ -1468,29 +1468,43 @@ Gw
                                         </connections>
                                     </segmentedControl>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="bnU-9t-JE3" secondAttribute="bottom" constant="17" id="NXp-on-HYb"/>
+                                    <constraint firstAttribute="trailing" secondItem="bnU-9t-JE3" secondAttribute="trailing" constant="28" id="VMZ-1z-f9B"/>
+                                    <constraint firstAttribute="trailing" secondItem="S3n-ii-hmR" secondAttribute="trailing" constant="28" id="VPR-MS-ZhP"/>
+                                    <constraint firstItem="bnU-9t-JE3" firstAttribute="top" secondItem="S3n-ii-hmR" secondAttribute="bottom" constant="13" id="VfL-MZ-C5n"/>
+                                    <constraint firstItem="S3n-ii-hmR" firstAttribute="leading" secondItem="gJl-Gf-eui" secondAttribute="leading" constant="28" id="nOe-ZE-1qa"/>
+                                    <constraint firstItem="bnU-9t-JE3" firstAttribute="leading" secondItem="gJl-Gf-eui" secondAttribute="leading" constant="28" id="pAz-fS-UxA"/>
+                                    <constraint firstItem="bnU-9t-JE3" firstAttribute="top" secondItem="S3n-ii-hmR" secondAttribute="bottom" constant="13" id="rg1-gE-zsP"/>
+                                    <constraint firstItem="S3n-ii-hmR" firstAttribute="top" secondItem="gJl-Gf-eui" secondAttribute="top" constant="11" id="xnB-aD-E66"/>
+                                </constraints>
                                 <animations/>
                             </customView>
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGd-S5-g6H">
-                                <rect key="frame" x="0.0" y="41" width="741" height="590"/>
+                                <rect key="frame" x="0.0" y="60" width="741" height="570"/>
                                 <clipView key="contentView" id="5KC-Jl-tte">
-                                    <rect key="frame" x="1" y="1" width="724" height="573"/>
+                                    <rect key="frame" x="1" y="1" width="724" height="553"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b7J-7G-Jc2">
-                                            <rect key="frame" x="0.0" y="494" width="166" height="79"/>
+                                            <rect key="frame" x="0.0" y="474" width="166" height="79"/>
                                             <animations/>
                                         </view>
                                     </subviews>
                                     <animations/>
+                                    <color key="backgroundColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="741" id="unf-IE-pig"/>
+                                </constraints>
                                 <animations/>
                                 <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="fYW-qz-HTa">
-                                    <rect key="frame" x="1" y="574" width="724" height="15"/>
+                                    <rect key="frame" x="1" y="554" width="724" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="JRH-ua-Jpy">
-                                    <rect key="frame" x="725" y="1" width="15" height="573"/>
+                                    <rect key="frame" x="725" y="1" width="15" height="553"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                 </scroller>
@@ -1508,16 +1522,13 @@ Gw
                             </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="iGd-S5-g6H" firstAttribute="centerX" secondItem="gJl-Gf-eui" secondAttribute="centerX" id="5Pc-wK-Xjh"/>
                             <constraint firstItem="gJl-Gf-eui" firstAttribute="top" secondItem="0FV-nR-jet" secondAttribute="top" constant="4" id="7j5-GQ-vvb"/>
-                            <constraint firstItem="iGd-S5-g6H" firstAttribute="top" secondItem="gJl-Gf-eui" secondAttribute="bottom" constant="8" symbolic="YES" id="GxE-65-PxF"/>
-                            <constraint firstItem="iGd-S5-g6H" firstAttribute="top" secondItem="0FV-nR-jet" secondAttribute="top" constant="95" id="IQB-Ip-6NU"/>
-                            <constraint firstItem="iGd-S5-g6H" firstAttribute="centerX" secondItem="gJl-Gf-eui" secondAttribute="centerX" id="Ilc-0u-suo"/>
-                            <constraint firstAttribute="bottom" secondItem="iGd-S5-g6H" secondAttribute="bottom" constant="41" id="PJ4-5D-Y00"/>
-                            <constraint firstAttribute="trailing" secondItem="iGd-S5-g6H" secondAttribute="trailing" id="QMT-FY-fBb"/>
-                            <constraint firstItem="Zvf-qO-7sT" firstAttribute="top" secondItem="iGd-S5-g6H" secondAttribute="bottom" constant="5" id="TBf-r8-OhC"/>
-                            <constraint firstItem="Zvf-qO-7sT" firstAttribute="centerX" secondItem="gJl-Gf-eui" secondAttribute="centerX" id="V5t-px-pgt"/>
-                            <constraint firstItem="iGd-S5-g6H" firstAttribute="leading" secondItem="0FV-nR-jet" secondAttribute="leading" id="opj-6p-yy6"/>
-                            <constraint firstItem="gJl-Gf-eui" firstAttribute="leading" secondItem="0FV-nR-jet" secondAttribute="leading" constant="40" id="t0q-af-uFA"/>
+                            <constraint firstItem="Zvf-qO-7sT" firstAttribute="top" secondItem="iGd-S5-g6H" secondAttribute="bottom" constant="24" id="Bj6-jQ-ui6"/>
+                            <constraint firstItem="gJl-Gf-eui" firstAttribute="centerX" secondItem="0FV-nR-jet" secondAttribute="centerX" id="NY4-o8-u2T"/>
+                            <constraint firstItem="iGd-S5-g6H" firstAttribute="top" secondItem="gJl-Gf-eui" secondAttribute="bottom" constant="9" id="T9X-Lm-Ckm"/>
+                            <constraint firstAttribute="bottom" secondItem="Zvf-qO-7sT" secondAttribute="bottom" constant="15" id="Xce-f8-jZ5"/>
+                            <constraint firstItem="Zvf-qO-7sT" firstAttribute="centerX" secondItem="0FV-nR-jet" secondAttribute="centerX" id="gNR-qJ-OCS"/>
                         </constraints>
                         <animations/>
                     </view>
@@ -3912,7 +3923,7 @@ DQ
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="tW8-co-12o">
-                                                    <rect key="frame" x="322" y="0.0" width="5" height="139"/>
+                                                    <rect key="frame" x="322" y="0.0" width="4" height="139"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -4066,7 +4077,7 @@ DQ
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="IkI-SV-GgS">
-                                                    <rect key="frame" x="338" y="0.0" width="4" height="103"/>
+                                                    <rect key="frame" x="338" y="0.0" width="5" height="103"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
