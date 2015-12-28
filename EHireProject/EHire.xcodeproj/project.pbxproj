@@ -7,32 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D32201B1C2BAF8500679432 /* EHireBasicsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32201A1C2BAF8500679432 /* EHireBasicsTest.swift */; settings = {ASSET_TAGS = (); }; };
-		2D32201E1C2BC9EF00679432 /* EHireTechnologyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32201D1C2BC9EF00679432 /* EHireTechnologyTest.swift */; settings = {ASSET_TAGS = (); }; };
-		2D32203C1C2BCBFE00679432 /* CandidatePersonalInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220241C2BCBFE00679432 /* CandidatePersonalInfo+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
-		2D32203D1C2BCBFE00679432 /* CandidatePersonalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220251C2BCBFE00679432 /* CandidatePersonalInfo.swift */; settings = {ASSET_TAGS = (); }; };
-		2D32203E1C2BCBFE00679432 /* CandidateMiscellaneous+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220261C2BCBFE00679432 /* CandidateMiscellaneous+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
-		2D32203F1C2BCBFE00679432 /* CandidateMiscellaneous.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220271C2BCBFE00679432 /* CandidateMiscellaneous.swift */; settings = {ASSET_TAGS = (); }; };
-		2D3220401C2BCBFE00679432 /* CandidateQualification+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220281C2BCBFE00679432 /* CandidateQualification+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
-		2D3220411C2BCBFE00679432 /* CandidateQualification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220291C2BCBFE00679432 /* CandidateQualification.swift */; settings = {ASSET_TAGS = (); }; };
-		2D3220421C2BCBFE00679432 /* Technology+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32202A1C2BCBFE00679432 /* Technology+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
-		2D3220431C2BCBFE00679432 /* Technology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32202B1C2BCBFE00679432 /* Technology.swift */; settings = {ASSET_TAGS = (); }; };
-		2D3220441C2BCBFE00679432 /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32202C1C2BCBFE00679432 /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
-		2D3220451C2BCBFE00679432 /* CandidatePreviousEmploymentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32202D1C2BCBFE00679432 /* CandidatePreviousEmploymentInfo.swift */; settings = {ASSET_TAGS = (); }; };
-		2D3220461C2BCBFE00679432 /* TechnicalFeedBack+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32202E1C2BCBFE00679432 /* TechnicalFeedBack+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
-		2D3220471C2BCBFE00679432 /* TechnicalFeedBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32202F1C2BCBFE00679432 /* TechnicalFeedBack.swift */; settings = {ASSET_TAGS = (); }; };
-		2D3220481C2BCBFE00679432 /* Date+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220301C2BCBFE00679432 /* Date+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
-		2D3220491C2BCBFE00679432 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220311C2BCBFE00679432 /* Date.swift */; settings = {ASSET_TAGS = (); }; };
-		2D32204A1C2BCBFE00679432 /* CandidateBasicProfessionalInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220321C2BCBFE00679432 /* CandidateBasicProfessionalInfo+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
-		2D32204B1C2BCBFE00679432 /* CandidateBasicProfessionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220331C2BCBFE00679432 /* CandidateBasicProfessionalInfo.swift */; settings = {ASSET_TAGS = (); }; };
-		2D32204C1C2BCBFE00679432 /* Candidate+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220341C2BCBFE00679432 /* Candidate+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
-		2D32204D1C2BCBFE00679432 /* Candidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220351C2BCBFE00679432 /* Candidate.swift */; settings = {ASSET_TAGS = (); }; };
-		2D32204E1C2BCBFE00679432 /* CandidateDocuments+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220361C2BCBFE00679432 /* CandidateDocuments+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
-		2D32204F1C2BCBFE00679432 /* CandidateDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220371C2BCBFE00679432 /* CandidateDocuments.swift */; settings = {ASSET_TAGS = (); }; };
-		2D3220501C2BCBFE00679432 /* ManagerFeedBack+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220381C2BCBFE00679432 /* ManagerFeedBack+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
-		2D3220511C2BCBFE00679432 /* ManagerFeedBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220391C2BCBFE00679432 /* ManagerFeedBack.swift */; settings = {ASSET_TAGS = (); }; };
-		2D3220521C2BCBFE00679432 /* SkillSet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32203A1C2BCBFE00679432 /* SkillSet+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
-		2D3220531C2BCBFE00679432 /* SkillSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32203B1C2BCBFE00679432 /* SkillSet.swift */; settings = {ASSET_TAGS = (); }; };
+		2D32201B1C2BAF8500679432 /* EHireBasicsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32201A1C2BAF8500679432 /* EHireBasicsTest.swift */; };
+		2D32201E1C2BC9EF00679432 /* EHireTechnologyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32201D1C2BC9EF00679432 /* EHireTechnologyTest.swift */; };
+		2D32203C1C2BCBFE00679432 /* CandidatePersonalInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220241C2BCBFE00679432 /* CandidatePersonalInfo+CoreDataProperties.swift */; };
+		2D32203D1C2BCBFE00679432 /* CandidatePersonalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220251C2BCBFE00679432 /* CandidatePersonalInfo.swift */; };
+		2D32203E1C2BCBFE00679432 /* CandidateMiscellaneous+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220261C2BCBFE00679432 /* CandidateMiscellaneous+CoreDataProperties.swift */; };
+		2D32203F1C2BCBFE00679432 /* CandidateMiscellaneous.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220271C2BCBFE00679432 /* CandidateMiscellaneous.swift */; };
+		2D3220401C2BCBFE00679432 /* CandidateQualification+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220281C2BCBFE00679432 /* CandidateQualification+CoreDataProperties.swift */; };
+		2D3220411C2BCBFE00679432 /* CandidateQualification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220291C2BCBFE00679432 /* CandidateQualification.swift */; };
+		2D3220421C2BCBFE00679432 /* Technology+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32202A1C2BCBFE00679432 /* Technology+CoreDataProperties.swift */; };
+		2D3220431C2BCBFE00679432 /* Technology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32202B1C2BCBFE00679432 /* Technology.swift */; };
+		2D3220441C2BCBFE00679432 /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32202C1C2BCBFE00679432 /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift */; };
+		2D3220451C2BCBFE00679432 /* CandidatePreviousEmploymentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32202D1C2BCBFE00679432 /* CandidatePreviousEmploymentInfo.swift */; };
+		2D3220461C2BCBFE00679432 /* TechnicalFeedBack+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32202E1C2BCBFE00679432 /* TechnicalFeedBack+CoreDataProperties.swift */; };
+		2D3220471C2BCBFE00679432 /* TechnicalFeedBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32202F1C2BCBFE00679432 /* TechnicalFeedBack.swift */; };
+		2D3220481C2BCBFE00679432 /* Date+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220301C2BCBFE00679432 /* Date+CoreDataProperties.swift */; };
+		2D3220491C2BCBFE00679432 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220311C2BCBFE00679432 /* Date.swift */; };
+		2D32204A1C2BCBFE00679432 /* CandidateBasicProfessionalInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220321C2BCBFE00679432 /* CandidateBasicProfessionalInfo+CoreDataProperties.swift */; };
+		2D32204B1C2BCBFE00679432 /* CandidateBasicProfessionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220331C2BCBFE00679432 /* CandidateBasicProfessionalInfo.swift */; };
+		2D32204C1C2BCBFE00679432 /* Candidate+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220341C2BCBFE00679432 /* Candidate+CoreDataProperties.swift */; };
+		2D32204D1C2BCBFE00679432 /* Candidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220351C2BCBFE00679432 /* Candidate.swift */; };
+		2D32204E1C2BCBFE00679432 /* CandidateDocuments+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220361C2BCBFE00679432 /* CandidateDocuments+CoreDataProperties.swift */; };
+		2D32204F1C2BCBFE00679432 /* CandidateDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220371C2BCBFE00679432 /* CandidateDocuments.swift */; };
+		2D3220501C2BCBFE00679432 /* ManagerFeedBack+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220381C2BCBFE00679432 /* ManagerFeedBack+CoreDataProperties.swift */; };
+		2D3220511C2BCBFE00679432 /* ManagerFeedBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220391C2BCBFE00679432 /* ManagerFeedBack.swift */; };
+		2D3220521C2BCBFE00679432 /* SkillSet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32203A1C2BCBFE00679432 /* SkillSet+CoreDataProperties.swift */; };
+		2D3220531C2BCBFE00679432 /* SkillSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32203B1C2BCBFE00679432 /* SkillSet.swift */; };
 		2D88131F1C2800CE0086BA65 /* EHCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D88131E1C2800CE0086BA65 /* EHCoreData.swift */; };
 		41A97FF51C1956B70016CAB4 /* EHInterviewDateCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF41C1956B70016CAB4 /* EHInterviewDateCustomCell.swift */; };
 		41A97FF91C195E500016CAB4 /* EHTechnologyCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF81C195E500016CAB4 /* EHTechnologyCustomCell.swift */; };
@@ -44,6 +44,9 @@
 		4F2536EC1C2179EC000E8C95 /* EHPopOverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536E91C2179EC000E8C95 /* EHPopOverController.swift */; };
 		4F2536ED1C2179EC000E8C95 /* EHTechnologyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536EA1C2179EC000E8C95 /* EHTechnologyViewController.swift */; };
 		4F2536FB1C218172000E8C95 /* DataCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536FA1C218172000E8C95 /* DataCommunicator.swift */; };
+		4F7BCA841C2BED8B00D60546 /* EHManagerFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BCA831C2BED8B00D60546 /* EHManagerFeedbackViewController.swift */; };
+		4F7BCA881C2BEE6700D60546 /* EHManagerialFeedbackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BCA871C2BEE6700D60546 /* EHManagerialFeedbackModel.swift */; };
+		4F7BCA8A1C2BF62000D60546 /* EHSkillSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BCA891C2BF62000D60546 /* EHSkillSet.swift */; };
 		802900001C2A83A10041C74C /* EHHrFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFFA1C2A83A10041C74C /* EHHrFeedbackViewController.swift */; };
 		802900021C2A83CE0041C74C /* HrFeedbackDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802900011C2A83CE0041C74C /* HrFeedbackDataAccess.swift */; };
 		8029FFC51C2A80E90041C74C /* EHCoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFC41C2A80E90041C74C /* EHCoreDataHelper.swift */; };
@@ -78,7 +81,6 @@
 		8042881A1C17EBC0003033B4 /* EHireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804288191C17EBC0003033B4 /* EHireTests.swift */; };
 		804288251C17EBC0003033B4 /* EHireUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804288241C17EBC0003033B4 /* EHireUITests.swift */; };
 		806C9C9A1C2433690039FCF2 /* EHFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806C9C991C2433690039FCF2 /* EHFeedbackViewController.swift */; };
-		806C9CA01C2433BF0039FCF2 /* EHManagerFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806C9C9F1C2433BF0039FCF2 /* EHManagerFeedbackViewController.swift */; };
 		806C9CA31C2433D80039FCF2 /* EHManagerFeedBackCustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806C9CA11C2433D80039FCF2 /* EHManagerFeedBackCustomTableView.swift */; };
 		806C9CA41C2433D80039FCF2 /* EHRatingsTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806C9CA21C2433D80039FCF2 /* EHRatingsTableCellView.swift */; };
 		806C9CA61C2433FF0039FCF2 /* EHTechnicalFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806C9CA51C2433FF0039FCF2 /* EHTechnicalFeedbackViewController.swift */; };
@@ -146,6 +148,9 @@
 		4F2536E91C2179EC000E8C95 /* EHPopOverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHPopOverController.swift; sourceTree = "<group>"; };
 		4F2536EA1C2179EC000E8C95 /* EHTechnologyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnologyViewController.swift; sourceTree = "<group>"; };
 		4F2536FA1C218172000E8C95 /* DataCommunicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataCommunicator.swift; sourceTree = "<group>"; };
+		4F7BCA831C2BED8B00D60546 /* EHManagerFeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHManagerFeedbackViewController.swift; path = EHire/ManagerFeedbackModule/Controller/EHManagerFeedbackViewController.swift; sourceTree = SOURCE_ROOT; };
+		4F7BCA871C2BEE6700D60546 /* EHManagerialFeedbackModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHManagerialFeedbackModel.swift; path = EHire/ManagerFeedbackModule/Model/EHManagerialFeedbackModel.swift; sourceTree = SOURCE_ROOT; };
+		4F7BCA891C2BF62000D60546 /* EHSkillSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHSkillSet.swift; path = EHire/ManagerFeedbackModule/Model/EHSkillSet.swift; sourceTree = SOURCE_ROOT; };
 		802900011C2A83CE0041C74C /* HrFeedbackDataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HrFeedbackDataAccess.swift; sourceTree = "<group>"; };
 		8029FFC41C2A80E90041C74C /* EHCoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCoreDataHelper.swift; sourceTree = "<group>"; };
 		8029FFC61C2A81970041C74C /* Candidate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Candidate.swift; sourceTree = "<group>"; };
@@ -186,7 +191,6 @@
 		804288241C17EBC0003033B4 /* EHireUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EHireUITests.swift; sourceTree = "<group>"; };
 		804288261C17EBC0003033B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		806C9C991C2433690039FCF2 /* EHFeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHFeedbackViewController.swift; path = EHire/controllers/EHFeedbackViewController.swift; sourceTree = SOURCE_ROOT; };
-		806C9C9F1C2433BF0039FCF2 /* EHManagerFeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHManagerFeedbackViewController.swift; path = EHire/controllers/EHManagerFeedbackViewController.swift; sourceTree = SOURCE_ROOT; };
 		806C9CA11C2433D80039FCF2 /* EHManagerFeedBackCustomTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHManagerFeedBackCustomTableView.swift; path = EHire/controllers/EHManagerFeedBackCustomTableView.swift; sourceTree = SOURCE_ROOT; };
 		806C9CA21C2433D80039FCF2 /* EHRatingsTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHRatingsTableCellView.swift; path = EHire/controllers/EHRatingsTableCellView.swift; sourceTree = SOURCE_ROOT; };
 		806C9CA51C2433FF0039FCF2 /* EHTechnicalFeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHTechnicalFeedbackViewController.swift; path = EHire/controllers/EHTechnicalFeedbackViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -291,7 +295,7 @@
 		8001C3F01C23E96E00D62243 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				806C9C9F1C2433BF0039FCF2 /* EHManagerFeedbackViewController.swift */,
+				4F7BCA831C2BED8B00D60546 /* EHManagerFeedbackViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -299,6 +303,8 @@
 		8001C3F11C23E96E00D62243 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4F7BCA871C2BEE6700D60546 /* EHManagerialFeedbackModel.swift */,
+				4F7BCA891C2BF62000D60546 /* EHSkillSet.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -332,7 +338,7 @@
 			name = "Support Files";
 			sourceTree = "<group>";
 		};
-		8001C3F61C23E96E00D62243 /* Manager Feedback Module */ = {
+		8001C3F61C23E96E00D62243 /* ManagerFeedbackModule */ = {
 			isa = PBXGroup;
 			children = (
 				8001C3F01C23E96E00D62243 /* Controller */,
@@ -342,7 +348,7 @@
 				8001C3F41C23E96E00D62243 /* Nibs */,
 				8001C3F51C23E96E00D62243 /* Support Files */,
 			);
-			name = "Manager Feedback Module";
+			name = ManagerFeedbackModule;
 			path = "../../../../Documents/EHire-Git/EHireProject/EHire";
 			sourceTree = "<group>";
 		};
@@ -615,7 +621,7 @@
 				8042880D1C17EBC0003033B4 /* Main.storyboard */,
 				8029FFC21C2A80E90041C74C /* CoreDataEntityClasses */,
 				8029FFF81C2A83A10041C74C /* Hr Feedback Module */,
-				8001C3F61C23E96E00D62243 /* Manager Feedback Module */,
+				8001C3F61C23E96E00D62243 /* ManagerFeedbackModule */,
 				8001C3FD1C23E96E00D62243 /* Technical Feedback Module */,
 				8001C4041C23E96E00D62243 /* Candidate Module */,
 				4F2536E71C2179EC000E8C95 /* Technology */,
@@ -822,11 +828,13 @@
 				8029FFE51C2A81970041C74C /* CandidateMiscellaneous.swift in Sources */,
 				8029FFF41C2A81970041C74C /* TechnicalFeedBack.swift in Sources */,
 				8029FFE31C2A81970041C74C /* CandidateDocuments.swift in Sources */,
+				4F7BCA881C2BEE6700D60546 /* EHManagerialFeedbackModel.swift in Sources */,
 				4F2536FB1C218172000E8C95 /* DataCommunicator.swift in Sources */,
 				8029FFF71C2A81970041C74C /* Technology+CoreDataProperties.swift in Sources */,
 				8029FFC51C2A80E90041C74C /* EHCoreDataHelper.swift in Sources */,
 				944783131C2A9A1C00AE33FA /* TechnicalFeedbackDataAccess.swift in Sources */,
 				8029FFDF1C2A81970041C74C /* Candidate.swift in Sources */,
+				4F7BCA8A1C2BF62000D60546 /* EHSkillSet.swift in Sources */,
 				806C9CAC1C2434BB0039FCF2 /* EHCandidateDetails.swift in Sources */,
 				806C9CA31C2433D80039FCF2 /* EHManagerFeedBackCustomTableView.swift in Sources */,
 				8029FFE91C2A81970041C74C /* CandidatePreviousEmploymentInfo.swift in Sources */,
@@ -841,13 +849,13 @@
 				8029FFEA1C2A81970041C74C /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift in Sources */,
 				8029FFE11C2A81970041C74C /* CandidateBasicProfessionalInfo.swift in Sources */,
 				8029FFE01C2A81970041C74C /* Candidate+CoreDataProperties.swift in Sources */,
+				4F7BCA841C2BED8B00D60546 /* EHManagerFeedbackViewController.swift in Sources */,
 				8029FFE71C2A81970041C74C /* CandidatePersonalInfo.swift in Sources */,
 				4F2536E51C2179E0000E8C95 /* EHInterviewDate.swift in Sources */,
 				802900021C2A83CE0041C74C /* HrFeedbackDataAccess.swift in Sources */,
 				8029FFF61C2A81970041C74C /* Technology.swift in Sources */,
 				8029FFEE1C2A81970041C74C /* Date+CoreDataProperties.swift in Sources */,
 				806C9CA41C2433D80039FCF2 /* EHRatingsTableCellView.swift in Sources */,
-				806C9CA01C2433BF0039FCF2 /* EHManagerFeedbackViewController.swift in Sources */,
 				8042880A1C17EBC0003033B4 /* EHire.xcdatamodeld in Sources */,
 				8029FFE81C2A81970041C74C /* CandidatePersonalInfo+CoreDataProperties.swift in Sources */,
 				41A97FF51C1956B70016CAB4 /* EHInterviewDateCustomCell.swift in Sources */,
