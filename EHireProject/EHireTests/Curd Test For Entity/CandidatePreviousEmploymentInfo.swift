@@ -1,15 +1,15 @@
 //
-//  Technology.swift
+//  CandidatePreviousEmploymentInfo.swift
 //  EHire
 //
-//  Created by padalingam agasthian on 24/12/15.
+//  Created by padalingam agasthian on 28/12/15.
 //  Copyright © 2015 Exilant Technologies. All rights reserved.
 //
 
 import Foundation
 import CoreData
 
-class Technology: NSManagedObject {
+class CandidatePreviousEmploymentInfo: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
 
