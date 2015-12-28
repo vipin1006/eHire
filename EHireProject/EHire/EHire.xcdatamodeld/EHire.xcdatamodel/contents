@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15C50" minimumToolsVersion="Automatic">
     <entity name="Candidate" representedClassName=".Candidate" syncable="YES">
+        <attribute name="experience" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="interviewDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="interviewTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="requisition" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="technologyName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="documentDetails" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CandidateDocuments" inverseName="candidate" inverseEntity="CandidateDocuments" syncable="YES"/>
@@ -119,7 +121,7 @@
         <relationship name="interviewDates" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Date" inverseName="technologies" inverseEntity="Date" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Candidate" positionX="-236" positionY="116" width="128" height="253"/>
+        <element name="Candidate" positionX="-236" positionY="116" width="128" height="283"/>
         <element name="CandidateBasicProfessionalInfo" positionX="-801" positionY="729" width="128" height="223"/>
         <element name="CandidateDocuments" positionX="-801" positionY="-16" width="128" height="88"/>
         <element name="CandidateMiscellaneous" positionX="-801" positionY="117" width="128" height="268"/>
