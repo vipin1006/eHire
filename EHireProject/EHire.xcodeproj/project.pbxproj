@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+
 		2D32201B1C2BAF8500679432 /* EHireBasicsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32201A1C2BAF8500679432 /* EHireBasicsTest.swift */; };
 		2D32201E1C2BC9EF00679432 /* EHireTechnologyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32201D1C2BC9EF00679432 /* EHireTechnologyTest.swift */; };
 		2D32203C1C2BCBFE00679432 /* CandidatePersonalInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220241C2BCBFE00679432 /* CandidatePersonalInfo+CoreDataProperties.swift */; };
@@ -33,7 +34,34 @@
 		2D3220511C2BCBFE00679432 /* ManagerFeedBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3220391C2BCBFE00679432 /* ManagerFeedBack.swift */; };
 		2D3220521C2BCBFE00679432 /* SkillSet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32203A1C2BCBFE00679432 /* SkillSet+CoreDataProperties.swift */; };
 		2D3220531C2BCBFE00679432 /* SkillSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32203B1C2BCBFE00679432 /* SkillSet.swift */; };
+
+		2D32201B1C2BAF8500679432 /* EHireBasicsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32201A1C2BAF8500679432 /* EHireBasicsTest.swift */; settings = {ASSET_TAGS = (); }; };
+		2D32201E1C2BC9EF00679432 /* EHireTechnologyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32201D1C2BC9EF00679432 /* EHireTechnologyTest.swift */; settings = {ASSET_TAGS = (); }; };
 		2D88131F1C2800CE0086BA65 /* EHCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D88131E1C2800CE0086BA65 /* EHCoreData.swift */; };
+		2D8C5D9F1C30E7E70018184E /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D871C30E7E70018184E /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DA01C30E7E70018184E /* CandidatePreviousEmploymentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D881C30E7E70018184E /* CandidatePreviousEmploymentInfo.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DA11C30E7E70018184E /* CandidatePersonalInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D891C30E7E70018184E /* CandidatePersonalInfo+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DA21C30E7E70018184E /* CandidatePersonalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D8A1C30E7E70018184E /* CandidatePersonalInfo.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DA31C30E7E70018184E /* CandidateBasicProfessionalInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D8B1C30E7E70018184E /* CandidateBasicProfessionalInfo+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DA41C30E7E70018184E /* CandidateBasicProfessionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D8C1C30E7E70018184E /* CandidateBasicProfessionalInfo.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DA51C30E7E70018184E /* CandidateDocuments+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D8D1C30E7E70018184E /* CandidateDocuments+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DA61C30E7E70018184E /* CandidateDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D8E1C30E7E70018184E /* CandidateDocuments.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DA71C30E7E70018184E /* ManagerFeedBack+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D8F1C30E7E70018184E /* ManagerFeedBack+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DA81C30E7E70018184E /* ManagerFeedBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D901C30E7E70018184E /* ManagerFeedBack.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DA91C30E7E70018184E /* SkillSet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D911C30E7E70018184E /* SkillSet+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DAA1C30E7E70018184E /* SkillSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D921C30E7E70018184E /* SkillSet.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DAB1C30E7E70018184E /* CandidateQualification+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D931C30E7E70018184E /* CandidateQualification+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DAC1C30E7E70018184E /* CandidateQualification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D941C30E7E70018184E /* CandidateQualification.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DAD1C30E7E70018184E /* Candidate+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D951C30E7E70018184E /* Candidate+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DAE1C30E7E70018184E /* Candidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D961C30E7E70018184E /* Candidate.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DAF1C30E7E70018184E /* TechnicalFeedBack+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D971C30E7E70018184E /* TechnicalFeedBack+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DB01C30E7E70018184E /* TechnicalFeedBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D981C30E7E70018184E /* TechnicalFeedBack.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DB11C30E7E70018184E /* Technology+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D991C30E7E70018184E /* Technology+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DB21C30E7E70018184E /* Technology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D9A1C30E7E70018184E /* Technology.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DB31C30E7E70018184E /* Date+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D9B1C30E7E70018184E /* Date+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DB41C30E7E70018184E /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D9C1C30E7E70018184E /* Date.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DB51C30E7E70018184E /* CandidateMiscellaneous+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D9D1C30E7E70018184E /* CandidateMiscellaneous+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DB61C30E7E70018184E /* CandidateMiscellaneous.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D9E1C30E7E70018184E /* CandidateMiscellaneous.swift */; settings = {ASSET_TAGS = (); }; };
 		41A97FF51C1956B70016CAB4 /* EHInterviewDateCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF41C1956B70016CAB4 /* EHInterviewDateCustomCell.swift */; };
 		41A97FF91C195E500016CAB4 /* EHTechnologyCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF81C195E500016CAB4 /* EHTechnologyCustomCell.swift */; };
 		41A97FFE1C1971FF0016CAB4 /* BlueCalendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A97FFD1C1971FF0016CAB4 /* BlueCalendar.png */; };
@@ -112,31 +140,31 @@
 /* Begin PBXFileReference section */
 		2D32201A1C2BAF8500679432 /* EHireBasicsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHireBasicsTest.swift; sourceTree = "<group>"; };
 		2D32201D1C2BC9EF00679432 /* EHireTechnologyTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHireTechnologyTest.swift; sourceTree = "<group>"; };
-		2D3220241C2BCBFE00679432 /* CandidatePersonalInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CandidatePersonalInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		2D3220251C2BCBFE00679432 /* CandidatePersonalInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidatePersonalInfo.swift; sourceTree = "<group>"; };
-		2D3220261C2BCBFE00679432 /* CandidateMiscellaneous+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CandidateMiscellaneous+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		2D3220271C2BCBFE00679432 /* CandidateMiscellaneous.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidateMiscellaneous.swift; sourceTree = "<group>"; };
-		2D3220281C2BCBFE00679432 /* CandidateQualification+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CandidateQualification+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		2D3220291C2BCBFE00679432 /* CandidateQualification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidateQualification.swift; sourceTree = "<group>"; };
-		2D32202A1C2BCBFE00679432 /* Technology+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Technology+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		2D32202B1C2BCBFE00679432 /* Technology.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Technology.swift; sourceTree = "<group>"; };
-		2D32202C1C2BCBFE00679432 /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CandidatePreviousEmploymentInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		2D32202D1C2BCBFE00679432 /* CandidatePreviousEmploymentInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidatePreviousEmploymentInfo.swift; sourceTree = "<group>"; };
-		2D32202E1C2BCBFE00679432 /* TechnicalFeedBack+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TechnicalFeedBack+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		2D32202F1C2BCBFE00679432 /* TechnicalFeedBack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TechnicalFeedBack.swift; sourceTree = "<group>"; };
-		2D3220301C2BCBFE00679432 /* Date+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		2D3220311C2BCBFE00679432 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
-		2D3220321C2BCBFE00679432 /* CandidateBasicProfessionalInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CandidateBasicProfessionalInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		2D3220331C2BCBFE00679432 /* CandidateBasicProfessionalInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidateBasicProfessionalInfo.swift; sourceTree = "<group>"; };
-		2D3220341C2BCBFE00679432 /* Candidate+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Candidate+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		2D3220351C2BCBFE00679432 /* Candidate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Candidate.swift; sourceTree = "<group>"; };
-		2D3220361C2BCBFE00679432 /* CandidateDocuments+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CandidateDocuments+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		2D3220371C2BCBFE00679432 /* CandidateDocuments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidateDocuments.swift; sourceTree = "<group>"; };
-		2D3220381C2BCBFE00679432 /* ManagerFeedBack+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagerFeedBack+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		2D3220391C2BCBFE00679432 /* ManagerFeedBack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerFeedBack.swift; sourceTree = "<group>"; };
-		2D32203A1C2BCBFE00679432 /* SkillSet+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SkillSet+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		2D32203B1C2BCBFE00679432 /* SkillSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillSet.swift; sourceTree = "<group>"; };
 		2D88131E1C2800CE0086BA65 /* EHCoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCoreData.swift; sourceTree = "<group>"; };
+		2D8C5D871C30E7E70018184E /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CandidatePreviousEmploymentInfo+CoreDataProperties.swift"; path = "Curd Test For Entity/CandidatePreviousEmploymentInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D8C5D881C30E7E70018184E /* CandidatePreviousEmploymentInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CandidatePreviousEmploymentInfo.swift; path = "Curd Test For Entity/CandidatePreviousEmploymentInfo.swift"; sourceTree = "<group>"; };
+		2D8C5D891C30E7E70018184E /* CandidatePersonalInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CandidatePersonalInfo+CoreDataProperties.swift"; path = "Curd Test For Entity/CandidatePersonalInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D8C5D8A1C30E7E70018184E /* CandidatePersonalInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CandidatePersonalInfo.swift; path = "Curd Test For Entity/CandidatePersonalInfo.swift"; sourceTree = "<group>"; };
+		2D8C5D8B1C30E7E70018184E /* CandidateBasicProfessionalInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CandidateBasicProfessionalInfo+CoreDataProperties.swift"; path = "Curd Test For Entity/CandidateBasicProfessionalInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D8C5D8C1C30E7E70018184E /* CandidateBasicProfessionalInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CandidateBasicProfessionalInfo.swift; path = "Curd Test For Entity/CandidateBasicProfessionalInfo.swift"; sourceTree = "<group>"; };
+		2D8C5D8D1C30E7E70018184E /* CandidateDocuments+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CandidateDocuments+CoreDataProperties.swift"; path = "Curd Test For Entity/CandidateDocuments+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D8C5D8E1C30E7E70018184E /* CandidateDocuments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CandidateDocuments.swift; path = "Curd Test For Entity/CandidateDocuments.swift"; sourceTree = "<group>"; };
+		2D8C5D8F1C30E7E70018184E /* ManagerFeedBack+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ManagerFeedBack+CoreDataProperties.swift"; path = "Curd Test For Entity/ManagerFeedBack+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D8C5D901C30E7E70018184E /* ManagerFeedBack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManagerFeedBack.swift; path = "Curd Test For Entity/ManagerFeedBack.swift"; sourceTree = "<group>"; };
+		2D8C5D911C30E7E70018184E /* SkillSet+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SkillSet+CoreDataProperties.swift"; path = "Curd Test For Entity/SkillSet+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D8C5D921C30E7E70018184E /* SkillSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SkillSet.swift; path = "Curd Test For Entity/SkillSet.swift"; sourceTree = "<group>"; };
+		2D8C5D931C30E7E70018184E /* CandidateQualification+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CandidateQualification+CoreDataProperties.swift"; path = "Curd Test For Entity/CandidateQualification+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D8C5D941C30E7E70018184E /* CandidateQualification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CandidateQualification.swift; path = "Curd Test For Entity/CandidateQualification.swift"; sourceTree = "<group>"; };
+		2D8C5D951C30E7E70018184E /* Candidate+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Candidate+CoreDataProperties.swift"; path = "Curd Test For Entity/Candidate+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D8C5D961C30E7E70018184E /* Candidate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Candidate.swift; path = "Curd Test For Entity/Candidate.swift"; sourceTree = "<group>"; };
+		2D8C5D971C30E7E70018184E /* TechnicalFeedBack+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TechnicalFeedBack+CoreDataProperties.swift"; path = "Curd Test For Entity/TechnicalFeedBack+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D8C5D981C30E7E70018184E /* TechnicalFeedBack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TechnicalFeedBack.swift; path = "Curd Test For Entity/TechnicalFeedBack.swift"; sourceTree = "<group>"; };
+		2D8C5D991C30E7E70018184E /* Technology+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Technology+CoreDataProperties.swift"; path = "Curd Test For Entity/Technology+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D8C5D9A1C30E7E70018184E /* Technology.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Technology.swift; path = "Curd Test For Entity/Technology.swift"; sourceTree = "<group>"; };
+		2D8C5D9B1C30E7E70018184E /* Date+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Date+CoreDataProperties.swift"; path = "Curd Test For Entity/Date+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D8C5D9C1C30E7E70018184E /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Date.swift; path = "Curd Test For Entity/Date.swift"; sourceTree = "<group>"; };
+		2D8C5D9D1C30E7E70018184E /* CandidateMiscellaneous+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CandidateMiscellaneous+CoreDataProperties.swift"; path = "Curd Test For Entity/CandidateMiscellaneous+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D8C5D9E1C30E7E70018184E /* CandidateMiscellaneous.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CandidateMiscellaneous.swift; path = "Curd Test For Entity/CandidateMiscellaneous.swift"; sourceTree = "<group>"; };
 		4136DE551C21284800BDB8B7 /* EHire-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EHire-Bridging-Header.h"; sourceTree = "<group>"; };
 		41A97FF41C1956B70016CAB4 /* EHInterviewDateCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHInterviewDateCustomCell.swift; sourceTree = "<group>"; };
 		41A97FF81C195E500016CAB4 /* EHTechnologyCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnologyCustomCell.swift; sourceTree = "<group>"; };
@@ -230,42 +258,34 @@
 		2D32201C1C2BC61000679432 /* Curd Test For Entity */ = {
 			isa = PBXGroup;
 			children = (
-				2D32201F1C2BCA9700679432 /* CoreDataModels */,
 				2D88131E1C2800CE0086BA65 /* EHCoreData.swift */,
 				2D32201D1C2BC9EF00679432 /* EHireTechnologyTest.swift */,
+				2D8C5D871C30E7E70018184E /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift */,
+				2D8C5D881C30E7E70018184E /* CandidatePreviousEmploymentInfo.swift */,
+				2D8C5D891C30E7E70018184E /* CandidatePersonalInfo+CoreDataProperties.swift */,
+				2D8C5D8A1C30E7E70018184E /* CandidatePersonalInfo.swift */,
+				2D8C5D8B1C30E7E70018184E /* CandidateBasicProfessionalInfo+CoreDataProperties.swift */,
+				2D8C5D8C1C30E7E70018184E /* CandidateBasicProfessionalInfo.swift */,
+				2D8C5D8D1C30E7E70018184E /* CandidateDocuments+CoreDataProperties.swift */,
+				2D8C5D8E1C30E7E70018184E /* CandidateDocuments.swift */,
+				2D8C5D8F1C30E7E70018184E /* ManagerFeedBack+CoreDataProperties.swift */,
+				2D8C5D901C30E7E70018184E /* ManagerFeedBack.swift */,
+				2D8C5D911C30E7E70018184E /* SkillSet+CoreDataProperties.swift */,
+				2D8C5D921C30E7E70018184E /* SkillSet.swift */,
+				2D8C5D931C30E7E70018184E /* CandidateQualification+CoreDataProperties.swift */,
+				2D8C5D941C30E7E70018184E /* CandidateQualification.swift */,
+				2D8C5D951C30E7E70018184E /* Candidate+CoreDataProperties.swift */,
+				2D8C5D961C30E7E70018184E /* Candidate.swift */,
+				2D8C5D971C30E7E70018184E /* TechnicalFeedBack+CoreDataProperties.swift */,
+				2D8C5D981C30E7E70018184E /* TechnicalFeedBack.swift */,
+				2D8C5D991C30E7E70018184E /* Technology+CoreDataProperties.swift */,
+				2D8C5D9A1C30E7E70018184E /* Technology.swift */,
+				2D8C5D9B1C30E7E70018184E /* Date+CoreDataProperties.swift */,
+				2D8C5D9C1C30E7E70018184E /* Date.swift */,
+				2D8C5D9D1C30E7E70018184E /* CandidateMiscellaneous+CoreDataProperties.swift */,
+				2D8C5D9E1C30E7E70018184E /* CandidateMiscellaneous.swift */,
 			);
 			name = "Curd Test For Entity";
-			sourceTree = "<group>";
-		};
-		2D32201F1C2BCA9700679432 /* CoreDataModels */ = {
-			isa = PBXGroup;
-			children = (
-				2D3220241C2BCBFE00679432 /* CandidatePersonalInfo+CoreDataProperties.swift */,
-				2D3220251C2BCBFE00679432 /* CandidatePersonalInfo.swift */,
-				2D3220261C2BCBFE00679432 /* CandidateMiscellaneous+CoreDataProperties.swift */,
-				2D3220271C2BCBFE00679432 /* CandidateMiscellaneous.swift */,
-				2D3220281C2BCBFE00679432 /* CandidateQualification+CoreDataProperties.swift */,
-				2D3220291C2BCBFE00679432 /* CandidateQualification.swift */,
-				2D32202A1C2BCBFE00679432 /* Technology+CoreDataProperties.swift */,
-				2D32202B1C2BCBFE00679432 /* Technology.swift */,
-				2D32202C1C2BCBFE00679432 /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift */,
-				2D32202D1C2BCBFE00679432 /* CandidatePreviousEmploymentInfo.swift */,
-				2D32202E1C2BCBFE00679432 /* TechnicalFeedBack+CoreDataProperties.swift */,
-				2D32202F1C2BCBFE00679432 /* TechnicalFeedBack.swift */,
-				2D3220301C2BCBFE00679432 /* Date+CoreDataProperties.swift */,
-				2D3220311C2BCBFE00679432 /* Date.swift */,
-				2D3220321C2BCBFE00679432 /* CandidateBasicProfessionalInfo+CoreDataProperties.swift */,
-				2D3220331C2BCBFE00679432 /* CandidateBasicProfessionalInfo.swift */,
-				2D3220341C2BCBFE00679432 /* Candidate+CoreDataProperties.swift */,
-				2D3220351C2BCBFE00679432 /* Candidate.swift */,
-				2D3220361C2BCBFE00679432 /* CandidateDocuments+CoreDataProperties.swift */,
-				2D3220371C2BCBFE00679432 /* CandidateDocuments.swift */,
-				2D3220381C2BCBFE00679432 /* ManagerFeedBack+CoreDataProperties.swift */,
-				2D3220391C2BCBFE00679432 /* ManagerFeedBack.swift */,
-				2D32203A1C2BCBFE00679432 /* SkillSet+CoreDataProperties.swift */,
-				2D32203B1C2BCBFE00679432 /* SkillSet.swift */,
-			);
-			name = CoreDataModels;
 			sourceTree = "<group>";
 		};
 		4F2536E21C2179E0000E8C95 /* Model */ = {
@@ -870,34 +890,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D3220531C2BCBFE00679432 /* SkillSet.swift in Sources */,
-				2D3220511C2BCBFE00679432 /* ManagerFeedBack.swift in Sources */,
-				2D32203F1C2BCBFE00679432 /* CandidateMiscellaneous.swift in Sources */,
+				2D8C5DA11C30E7E70018184E /* CandidatePersonalInfo+CoreDataProperties.swift in Sources */,
+				2D8C5DA91C30E7E70018184E /* SkillSet+CoreDataProperties.swift in Sources */,
+				2D8C5DA71C30E7E70018184E /* ManagerFeedBack+CoreDataProperties.swift in Sources */,
+				2D8C5DAE1C30E7E70018184E /* Candidate.swift in Sources */,
 				2D32201B1C2BAF8500679432 /* EHireBasicsTest.swift in Sources */,
-				2D32204F1C2BCBFE00679432 /* CandidateDocuments.swift in Sources */,
-				2D3220481C2BCBFE00679432 /* Date+CoreDataProperties.swift in Sources */,
-				2D32204C1C2BCBFE00679432 /* Candidate+CoreDataProperties.swift in Sources */,
-				2D3220471C2BCBFE00679432 /* TechnicalFeedBack.swift in Sources */,
-				2D3220461C2BCBFE00679432 /* TechnicalFeedBack+CoreDataProperties.swift in Sources */,
-				2D3220401C2BCBFE00679432 /* CandidateQualification+CoreDataProperties.swift in Sources */,
-				2D32204E1C2BCBFE00679432 /* CandidateDocuments+CoreDataProperties.swift in Sources */,
+				2D8C5DB31C30E7E70018184E /* Date+CoreDataProperties.swift in Sources */,
+				2D8C5DAF1C30E7E70018184E /* TechnicalFeedBack+CoreDataProperties.swift in Sources */,
+				2D8C5DAB1C30E7E70018184E /* CandidateQualification+CoreDataProperties.swift in Sources */,
+				2D8C5DB61C30E7E70018184E /* CandidateMiscellaneous.swift in Sources */,
+				2D8C5DB21C30E7E70018184E /* Technology.swift in Sources */,
+				2D8C5DB51C30E7E70018184E /* CandidateMiscellaneous+CoreDataProperties.swift in Sources */,
+				2D8C5DAA1C30E7E70018184E /* SkillSet.swift in Sources */,
+				2D8C5DA61C30E7E70018184E /* CandidateDocuments.swift in Sources */,
+				2D8C5DB41C30E7E70018184E /* Date.swift in Sources */,
 				2D32201E1C2BC9EF00679432 /* EHireTechnologyTest.swift in Sources */,
-				2D3220491C2BCBFE00679432 /* Date.swift in Sources */,
-				2D32204D1C2BCBFE00679432 /* Candidate.swift in Sources */,
-				2D3220441C2BCBFE00679432 /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift in Sources */,
-				2D3220421C2BCBFE00679432 /* Technology+CoreDataProperties.swift in Sources */,
-				2D32203E1C2BCBFE00679432 /* CandidateMiscellaneous+CoreDataProperties.swift in Sources */,
-				2D3220521C2BCBFE00679432 /* SkillSet+CoreDataProperties.swift in Sources */,
-				2D3220411C2BCBFE00679432 /* CandidateQualification.swift in Sources */,
-				2D3220431C2BCBFE00679432 /* Technology.swift in Sources */,
-				2D3220501C2BCBFE00679432 /* ManagerFeedBack+CoreDataProperties.swift in Sources */,
-				2D32203C1C2BCBFE00679432 /* CandidatePersonalInfo+CoreDataProperties.swift in Sources */,
-				2D32204A1C2BCBFE00679432 /* CandidateBasicProfessionalInfo+CoreDataProperties.swift in Sources */,
-				2D32204B1C2BCBFE00679432 /* CandidateBasicProfessionalInfo.swift in Sources */,
-				2D3220451C2BCBFE00679432 /* CandidatePreviousEmploymentInfo.swift in Sources */,
-				2D32203D1C2BCBFE00679432 /* CandidatePersonalInfo.swift in Sources */,
+				2D8C5DA21C30E7E70018184E /* CandidatePersonalInfo.swift in Sources */,
+				2D8C5DA31C30E7E70018184E /* CandidateBasicProfessionalInfo+CoreDataProperties.swift in Sources */,
+				2D8C5DA41C30E7E70018184E /* CandidateBasicProfessionalInfo.swift in Sources */,
+				2D8C5DA01C30E7E70018184E /* CandidatePreviousEmploymentInfo.swift in Sources */,
 				8042881A1C17EBC0003033B4 /* EHireTests.swift in Sources */,
+				2D8C5DB11C30E7E70018184E /* Technology+CoreDataProperties.swift in Sources */,
+				2D8C5DA51C30E7E70018184E /* CandidateDocuments+CoreDataProperties.swift in Sources */,
+				2D8C5DB01C30E7E70018184E /* TechnicalFeedBack.swift in Sources */,
 				2D88131F1C2800CE0086BA65 /* EHCoreData.swift in Sources */,
+				2D8C5DA81C30E7E70018184E /* ManagerFeedBack.swift in Sources */,
+				2D8C5DAD1C30E7E70018184E /* Candidate+CoreDataProperties.swift in Sources */,
+				2D8C5D9F1C30E7E70018184E /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift in Sources */,
+				2D8C5DAC1C30E7E70018184E /* CandidateQualification.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

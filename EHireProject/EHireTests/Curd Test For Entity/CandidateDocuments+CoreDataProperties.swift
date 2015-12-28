@@ -1,8 +1,8 @@
 //
-//  CandidateQualification+CoreDataProperties.swift
+//  CandidateDocuments+CoreDataProperties.swift
 //  EHire
 //
-//  Created by padalingam agasthian on 24/12/15.
+//  Created by padalingam agasthian on 28/12/15.
 //  Copyright © 2015 Exilant Technologies. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -12,12 +12,10 @@
 import Foundation
 import CoreData
 
-extension CandidateQualification {
+extension CandidateDocuments {
 
-    @NSManaged var educationEnd: NSDate?
-    @NSManaged var educationGap: String?
-    @NSManaged var educationStartFrom: NSDate?
-    @NSManaged var highestEducation: String?
+    @NSManaged var documentsOfEmploymentAndEducationPresent: NSNumber?
+    @NSManaged var missingDocumentsOfEmploymentAndEducation: String?
     @NSManaged var candidate: Candidate?
 
 }

@@ -1,8 +1,8 @@
 //
-//  SkillSet+CoreDataProperties.swift
+//  Technology+CoreDataProperties.swift
 //  EHire
 //
-//  Created by padalingam agasthian on 24/12/15.
+//  Created by padalingam agasthian on 28/12/15.
 //  Copyright © 2015 Exilant Technologies. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -12,11 +12,10 @@
 import Foundation
 import CoreData
 
-extension SkillSet {
+extension Technology {
 
-    @NSManaged var skillName: String?
-    @NSManaged var skillRating: NSNumber?
-    @NSManaged var manager: ManagerFeedBack?
-    @NSManaged var techLead: TechnicalFeedBack?
+    @NSManaged var technologyName: String?
+    @NSManaged var candidates: NSSet?
+    @NSManaged var interviewDates: NSSet?
 
 }

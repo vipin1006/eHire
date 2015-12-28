@@ -10,7 +10,6 @@ import XCTest
 
 class EHireTechnologyTest: EHCoreData
 {
-
     var technology: Technology?
     var date : Date?
     var entityTechnology:NSEntityDescription?
@@ -33,6 +32,66 @@ class EHireTechnologyTest: EHCoreData
     {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+    }
+    
+    func testTechnologyInsertion()
+    {
+        technology?.technologyName = "Java"
+        date?.interviewDate = NSDate()
+        technology?.interviewDates?.setByAddingObject(date!)
+        date?.technologies?.setByAddingObject(technology!)
+        self.saveTechnology()
+    }
+    
+    func saveTechnology()
+    {
+        do
+        {
+            try managedObjectContext?.save()
+        }
+        catch
+        {
+            XCTFail("Insertion got failure")
+        }
+    }
+    
+    func testTechnologyRetrival()
+    {
+        let fetchRequest = NSFetchRequest(entityName: "Technology")
+        do
+        {
+            let technologyList = try managedObjectContext?.executeFetchRequest(fetchRequest)
+            if technologyList == nil
+            {
+                XCTFail("BossList is nil")
+            }
+            else
+            {
+                for technologyRetrival in (technologyList as? [NSManagedObject])!
+                {
+                    print(technologyRetrival)
+                }
+            }
+        }
+        catch
+        {
+            XCTFail("Retrival is failed")
+        }
+    }
+    
+    func testTechnologyEdit()
+    {
+        technology?.technologyName = "C++"
+        date?.interviewDate = NSDate()
+        technology?.interviewDates?.setByAddingObject(date!)
+        date?.technologies?.setByAddingObject(technology!)
+        self.saveTechnology()
+    }
+    
+    func testTechnologyDeletion()
+    {
+        managedObjectContext?.deleteObject(technology!)
+        self.saveTechnology()
     }
 
     override func testPerformanceExample()
