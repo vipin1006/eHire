@@ -27,6 +27,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     @IBOutlet weak var tableView: NSTableView!
     
+    let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -221,41 +223,63 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         }
         
     }
-    func validateField()->Bool
+    func validateInputs()->Bool
     {
         if enterPosition.stringValue == ""
         {
             alertPopup("enterPosition", informativeText: "Please enter valid Position")
+            return false
         }else if enterInterviewBy.stringValue == ""
         {
             alertPopup("enterInterViewBy", informativeText: "Please enter valid Name")
+            return false
         }
         else if enterCG.stringValue == ""
         {
             alertPopup("enterCG", informativeText: "Please enter valid data valid CG")
+            return false
         }
         else if( enterCommitments.string == "")
         {
             alertPopup("enterCommitments", informativeText: "Please enter valid data Commitments Field")
+            return false
         }else if justificationForHire.string == ""
         {
             alertPopup("justificationForHire", informativeText: "Please enter valid data justificationForHire Field")
+            return false
         }else if enterGrossSalary.stringValue == ""
         {
             alertPopup("enterGrossSalary", informativeText: "Please enter valid data in GrossSalary Field")
+            return false
         }else if enterDesignation.stringValue == ""
         {
             alertPopup("enterDesignation", informativeText: "Please enter valid data in designation Field")
+            return false
         }
         return true
     }
+    
     @IBAction func saveData(sender: AnyObject)
     {
-        validateField()
+        //if validateInputs(){
+            saveManegerFeedbackToToCoreData()
+        //}
     }
-   
     
+    //MARK:- CoreDataMethods
+    func saveManegerFeedbackToToCoreData(){
+        
+//        let newTechnologyEntityDescription = EHCoreDataHelper.createEntity("ManagerFeedBack", managedObjectContext: appDelegate.managedObjectContext)
+        
+        let newTechnologyEntityDescription = EHCoreDataHelper.createEntity("ManagerFeedBack", managedObjectContext: appDelegate.managedObjectContext)
+        let newMangerFeedbackManagedObject:ManagerFeedBack = ManagerFeedBack(entity:newTechnologyEntityDescription!, insertIntoManagedObjectContext:appDelegate.managedObjectContext) as ManagerFeedBack
+        
+        newMangerFeedbackManagedObject.managerName = "pavi"
+        EHCoreDataHelper.saveToCoreData(newMangerFeedbackManagedObject)
+
+    }
     
-    
-    
+    func fetchManagerFeedbackFromCoreData(){
+        
+    }
 }
