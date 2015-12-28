@@ -9,5 +9,6 @@
 import Cocoa
 
 class EHSkillSet: NSObject {
-
+    var skillName:String?
+    var skillRating:Int16?
 }

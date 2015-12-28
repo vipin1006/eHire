@@ -11,41 +11,85 @@ import Cocoa
 class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource,NSTextFieldDelegate {
 
     @IBOutlet var managerFeedbackMainView: NSView!
-    @IBOutlet weak var enterCG: NSTextField!
-    @IBOutlet weak var enterPosition: NSTextField!
-    @IBOutlet weak var enterInterviewBy: NSTextField!
-    @IBOutlet var enterCommitments: NSTextView!
-    @IBOutlet var justificationForHire: NSTextView!
-    @IBOutlet weak var enterGrossSalary: NSTextField!
-    @IBOutlet weak var enterDesignation: NSTextField!
-    @IBOutlet weak var assestmentCandLabel: NSTextField!
-    @IBOutlet weak var assessmentCandView: NSView!
-    @IBOutlet weak var assessmentTechView: NSView!
-    @IBOutlet weak var assessmentTechLabel: NSTextField!
+   
+    @IBOutlet weak var textFieldCorporateGrade: NSTextField!
+    @IBOutlet weak var textFieldDesignation: NSTextField!
+    
+    @IBOutlet weak var textFieldGrossAnnualSalary: NSTextField!
+    
+    @IBOutlet weak var textFieldInterviewedBy: NSTextField!
+   
+    @IBOutlet weak var textFieldPosition: NSTextField!
+   
+    @IBOutlet var textViewCommitments: NSTextView!
+    
+    
+    @IBOutlet var textViewJustificationForHire: NSTextView!
+    
+    @IBOutlet weak var viewOverAllAssessmentOfCandidateStar: NSView!
+    
+    @IBOutlet weak var labelOverAllAssessmentOfCandidate: NSTextField!
+    
+    @IBOutlet weak var viewOverAllAssessmentOfTechnologyStar: NSView!
+    
+    @IBOutlet weak var labelOverAllAssessmentOfTechnology: NSTextField!
     
     var ratingTitle = NSMutableArray()
     
     @IBOutlet weak var tableView: NSTableView!
     
     let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
-
+    
+    let candidateDetails = EHCandidateDetails(inName: "vipin",candidateExperience:"1" , candidateInterviewTiming: "1023.22", candidatePhoneNo:"33131231312") as EHCandidateDetails
+    var managerialFeedbackModel:EHManagerialFeedbackModel?
+    
+    override func loadView() {
+        
+        
+        
+        managerialFeedbackModel = EHManagerialFeedbackModel(candidateDetails:candidateDetails)
+        let communicationSkill = EHSkillSet()
+        communicationSkill.skillName = "Communication"
+//        communicationSkill.skillRating = 3
+        let organisationStabilitySkill = EHSkillSet()
+        organisationStabilitySkill.skillName = "Organisation Stability"
+        organisationStabilitySkill.skillRating = 1
+        
+        let leaderShipSkill = EHSkillSet()
+        leaderShipSkill.skillName = "Leadership(if applicable)"
+//        leaderShipSkill.skillRating = 4
+        
+        let growthPotentialSkill = EHSkillSet()
+        growthPotentialSkill.skillName = "Growth Potential"
+//        growthPotentialSkill.skillRating = 2
+        
+        managerialFeedbackModel!.skillSet.append(communicationSkill)
+        managerialFeedbackModel!.skillSet.append(organisationStabilitySkill)
+        managerialFeedbackModel!.skillSet.append(leaderShipSkill)
+        managerialFeedbackModel!.skillSet.append(growthPotentialSkill)
+        
+        //            self.ratingTitle.addObject("Communication")
+        //            self.ratingTitle.addObject("Organisation Stability")
+        //            self.ratingTitle.addObject("Leadership(if applicable)")
+        //            self.ratingTitle.addObject("Growth Potential")
+        //        }
+        
+        super.loadView()
+    }
     override func viewDidLoad()
     {
         super.viewDidLoad()
         managerFeedbackMainView.wantsLayer = true
         managerFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
-        if ratingTitle.count == 0
-        {
-            self.ratingTitle.addObject("Communication")
-            self.ratingTitle.addObject("Organisation Stability")
-            self.ratingTitle.addObject("Leadership(if applicable)")
-            self.ratingTitle.addObject("Growth Potential")
-        }
         tableView.reloadData()
+//        if ratingTitle.count == 0
+//        {
+        
+        
     }
     func numberOfRowsInTableView(tableView: NSTableView) -> Int
     {
-        return ratingTitle.count
+        return (managerialFeedbackModel?.skillSet.count)!
     }
     
     func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat
@@ -56,12 +100,22 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView?
     {
         let cell = tableView.makeViewWithIdentifier("DataCell", owner: self) as! EHManagerFeedBackCustomTableView
-        cell.titleName.stringValue = ratingTitle[row] as! String
+        
+        let skillSetObject = managerialFeedbackModel!.skillSet[row] as EHSkillSet
+        cell.titleName.stringValue = skillSetObject.skillName!
         cell.titleName.tag = row
         cell.titleName.target = self
         cell.titleName.delegate = self
         cell.titleName.editable = true
         
+        if !(skillSetObject.skillRating == nil) {
+            for starBtn in cell.selectStar.subviews{
+                let tempBtn = starBtn as! NSButton
+                if tempBtn.tag == (skillSetObject.skillRating!-1){
+                    displayStar(cell, lbl: cell.feedBackRating, sender: tempBtn )
+                }
+            }
+        }
         for ratingsView in cell.selectStar.subviews
         {
             let view = ratingsView as! NSButton
@@ -90,7 +144,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             alertPopup("Enter the Title", informativeText: "Please select and click on Enter Title field to give title name")
             return
         }
-        displayStar(ratingCell.selectStar, lbl: ratingCell.feedBackRating, btn: sender )
+        displayStar(ratingCell, lbl: ratingCell.feedBackRating, sender: sender )
     }
     
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
@@ -99,159 +153,187 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         return true
     }
     
-    @IBAction func addRating(sender: NSButton)
+    @IBAction func addSkillSet(sender: NSButton)
     {
-        ratingTitle.addObject("Enter Title")
+        let skillSetObject = EHSkillSet()
+        skillSetObject.skillName = "Enter Title"
+        managerialFeedbackModel?.skillSet.append(skillSetObject)
         tableView.reloadData()
     }
     
-    @IBAction func deleteRating(sender: NSButton)
+    @IBAction func deleteSkillSet(sender: NSButton)
     {
-        ratingTitle.removeObjectAtIndex(tableView.selectedRow)
-        tableView.reloadData()
+        managerialFeedbackModel?.skillSet.removeAtIndex(tableView.selectedRow)
+            tableView.reloadData()
     }
     
-    @IBAction func assessmentBtn(sender: AnyObject)
+    @IBAction func addOverAllAssessmentForTechnology(sender: AnyObject)
     {
-        for ratingsView in assessmentTechView.subviews
-        {
-            let view = ratingsView as! NSButton
-            view.target = self
-            displayStar(assessmentTechView, lbl:assessmentTechLabel, btn: sender as! NSButton)
-        }
-    }
-    
-    @IBAction func assessmentCandidateBtn(sender: AnyObject)
-    {
-        for ratingsView in assessmentCandView.subviews
-        {
-            let view = ratingsView as! NSButton
-            view.target = self
-            displayStar(assessmentCandView, lbl:assestmentCandLabel, btn: sender as! NSButton)
-            
-        }
+        
+            displayStar(viewOverAllAssessmentOfTechnologyStar, lbl:labelOverAllAssessmentOfTechnology, sender: sender as! NSButton)
         
     }
-    func displayStar(customView:NSView,lbl:NSTextField,btn:NSButton)
+    
+    @IBAction func addOverAllAssessmentForCandidate(sender: AnyObject)
     {
-        let totalView = customView.subviews
+       
+            displayStar(viewOverAllAssessmentOfCandidateStar, lbl:labelOverAllAssessmentOfCandidate, sender: sender as! NSButton)
+            
+       
+        
+    }
+    func displayStar(customView:AnyObject,lbl:NSTextField,sender:NSButton)
+    {
+        var totalView = customView.subviews
+        if customView is EHManagerFeedBackCustomTableView{
+            totalView = customView.selectStar!.subviews
+        }
+        
         var totalStarCount : Int?
-        func countingOfStars(total: Int, deselectStars : Int?...)
+        
+        
+        func countingOfRatingStar(total: Int, deselectStar : Int?...)
         {
-            print(total)
-            print(deselectStars)
-            if deselectStars.count == 0
+            if deselectStar.count == 0
             {
-                if total == -1
+                if total == 0
                 {
-                    btn.image = NSImage(named: "selectStar")
+                    sender.image = NSImage(named: "selectStar")
                     
                     for starCount in 1...4
                     {
-                        let countBtn = totalView[starCount] as! NSButton
-                        if countBtn.image?.name() == "selectStar"
+                        let countOfBtn = totalView[starCount] as! NSButton
+                        if countOfBtn.image?.name() == "selectStar"
                         {
-                            countBtn.image = NSImage(named: "deselectStar")
+                            countOfBtn.image = NSImage(named: "deselectStar")
                         }
                     }
                 }
-                    
                 else
                 {
-                    for countStar in 0...total
+                    for countOfStar in 0...total
                     {
-                        let countBtn = totalView[countStar] as! NSButton
-                        if countBtn.image?.name() == "deselectStar"
-                        {
-                            countBtn.image = NSImage(named: "selectStar")
+//                        let countOfBtn = totalView[countOfStar] as! NSButton
+                        for  countOfBtn  in totalView {
+                            
+                            let tempButton = countOfBtn as! NSButton
+                            print("btnTag=\(tempButton.tag)")
+                            if tempButton.tag == countOfStar{
+                                tempButton.image = NSImage(named: "selectStar")
+
+                            }
                         }
+                        
                     }
                 }
             }
             else
             {
-                for stars in deselectStars{
-                    
-                    let star = totalView[stars!] as! NSButton
-                    
-                    if star.image?.name() == "selectStar"{
-                        
-                        star.image = NSImage(named: "deselectStar")
+                for stars in deselectStar
+                {
+                    for countOfBtn in totalView{
+                       let tempButton = countOfBtn as! NSButton
+                        if tempButton.tag == stars{
+                            tempButton.image = NSImage(named: "deselectStar")
+                            
+                        }
                     }
+//                    let star = totalView[stars!] as! NSButton
+//                    if star.image?.name() == "selectStar"
+//                    {
+//                        star.image = NSImage(named: "deselectStar")
+//                    }
                 }
             }
         }
-        if btn.image?.name() == "selectStar"
+        if sender.image?.name() == "selectStar"
         {
-            btn.image = NSImage(named: "deselectStar")
+            sender.image = NSImage(named: "deselectStar")
         }
         else
         {
-            btn.image = NSImage(named: "deselectStar")
+            sender.image = NSImage(named: "selectStar")
         }
-        print(btn.tag)
         
         
         
-        switch (btn.tag)
+        switch (sender.tag)
         {
         case 0:
-            countingOfStars(-1)
+            countingOfRatingStar(0)
             
             lbl.stringValue = "Not Satisfactory"
-            
+           setSkillRating(customView,ratingValue: 1)
             
         case 1:
-            countingOfStars(1)
+            countingOfRatingStar(1)
             lbl.stringValue = "Satisfactory"
-            countingOfStars(0, deselectStars: 2,3,4)
+            countingOfRatingStar(0, deselectStar: 2,3,4)
+            setSkillRating(customView,ratingValue: 2)
             
         case 2:
-            countingOfStars(2)
+            countingOfRatingStar(2)
             lbl.stringValue = "Good"
-            countingOfStars(0, deselectStars: 3,4)
+            countingOfRatingStar(0, deselectStar: 3,4)
+             setSkillRating(customView,ratingValue: 3)
             
         case 3:
-            countingOfStars(3)
+            countingOfRatingStar(3)
             lbl.stringValue = "Very Good"
-            countingOfStars(0, deselectStars: 4)
-            
+            countingOfRatingStar(0, deselectStar: 4)
+             setSkillRating(customView,ratingValue: 4)
         case 4:
-            countingOfStars(4)
+            countingOfRatingStar(4)
             lbl.stringValue = "Excellent"
+             setSkillRating(customView,ratingValue: 5)
         default : print("")
         }
         
     }
+    
+    func setSkillRating(customView:AnyObject,ratingValue:Int16){
+        if customView is EHManagerFeedBackCustomTableView{
+            let textFieldObject = customView.titleName as NSTextField
+            let skillSetObject = managerialFeedbackModel!.skillSet[textFieldObject.tag] as EHSkillSet
+            skillSetObject.skillRating = ratingValue
+            print("name = \(skillSetObject.skillName)")
+        }
+        else if customView as! NSView == viewOverAllAssessmentOfTechnologyStar{
+            managerialFeedbackModel!.ratingOnTechnical=ratingValue
+        }
+        else if customView as! NSView == viewOverAllAssessmentOfCandidateStar{
+            managerialFeedbackModel!.ratingOnCandidate=ratingValue
+        }
+    }
     func validateInputs()->Bool
     {
-        if enterPosition.stringValue == ""
+        if textFieldPosition.stringValue == ""
         {
             alertPopup("enterPosition", informativeText: "Please enter valid Position")
             return false
-        }else if enterInterviewBy.stringValue == ""
+        }else if textFieldInterviewedBy.stringValue == ""
         {
             alertPopup("enterInterViewBy", informativeText: "Please enter valid Name")
             return false
         }
-        else if enterCG.stringValue == ""
+        else if textFieldCorporateGrade.stringValue == ""
         {
             alertPopup("enterCG", informativeText: "Please enter valid data valid CG")
             return false
         }
-        else if( enterCommitments.string == "")
+        else if( textViewCommitments.string == "")
         {
             alertPopup("enterCommitments", informativeText: "Please enter valid data Commitments Field")
             return false
-        }else if justificationForHire.string == ""
+        }else if textViewJustificationForHire.string == ""
         {
             alertPopup("justificationForHire", informativeText: "Please enter valid data justificationForHire Field")
             return false
-        }else if enterGrossSalary.stringValue == ""
+        }else if textFieldGrossAnnualSalary.stringValue == ""
         {
             alertPopup("enterGrossSalary", informativeText: "Please enter valid data in GrossSalary Field")
             return false
-        }else if enterDesignation.stringValue == ""
+        }else if textFieldDesignation.stringValue == ""
         {
             alertPopup("enterDesignation", informativeText: "Please enter valid data in designation Field")
             return false

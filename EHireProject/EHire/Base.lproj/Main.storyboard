@@ -715,7 +715,7 @@
                                             <color key="backgroundColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="195.13573593303366" minWidth="16" maxWidth="1000" id="Sgx-Fk-dFC">
+                                                <tableColumn width="193.31340772877888" minWidth="16" maxWidth="1000" id="Sgx-Fk-dFC">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Technology">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -729,10 +729,10 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="Parent" id="Swg-Pc-vo7" customClass="EHTechnologyCustomCell" customModule="EHire" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="1" width="195.29992641374727" height="28"/>
+                                                            <rect key="frame" x="1" y="1" width="192.55071965290128" height="28"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g9O-dA-liV">
+                                                                <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g9O-dA-liV">
                                                                     <rect key="frame" x="12" y="6" width="171" height="18"/>
                                                                     <animations/>
                                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Enter Technology" drawsBackground="YES" id="P84-aY-GR6">
@@ -754,10 +754,10 @@
                                                             </connections>
                                                         </tableCellView>
                                                         <tableCellView identifier="child" id="YEb-im-Ksw" customClass="EHInterviewDateCustomCell" customModule="EHire" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="31" width="195.29992641374727" height="35"/>
+                                                            <rect key="frame" x="1" y="31" width="192.55071965290128" height="35"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZzN-oS-NS7">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZzN-oS-NS7">
                                                                     <rect key="frame" x="10" y="14" width="174" height="16"/>
                                                                     <animations/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="OaO-7S-sJt">
@@ -1163,7 +1163,7 @@ Gw
                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                     <tableColumns>
-                                                        <tableColumn identifier="name" width="120.1705848776067" minWidth="40" maxWidth="1000" id="JA6-gJ-jhg">
+                                                        <tableColumn identifier="name" width="118.17077525409225" minWidth="40" maxWidth="1000" id="JA6-gJ-jhg">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Name">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1177,7 +1177,7 @@ Gw
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
                                                                 <tableCellView id="yZo-bg-wql">
-                                                                    <rect key="frame" x="1" y="1" width="120" height="35"/>
+                                                                    <rect key="frame" x="1" y="1" width="118.5127751869295" height="35"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="js1-gW-BeE">
@@ -1205,7 +1205,7 @@ Gw
                                                                 </tableCellView>
                                                             </prototypeCellViews>
                                                         </tableColumn>
-                                                        <tableColumn identifier="experience" width="121.49132442040843" minWidth="40" maxWidth="1000" id="IWV-0a-B9n">
+                                                        <tableColumn identifier="experience" width="120.89063407012556" minWidth="40" maxWidth="1000" id="IWV-0a-B9n">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Experience">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1219,7 +1219,7 @@ Gw
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
                                                                 <tableCellView id="uHt-Sk-6I0">
-                                                                    <rect key="frame" x="124" y="1" width="121" height="35"/>
+                                                                    <rect key="frame" x="122.5127751869295" y="1" width="120.5127751869295" height="35"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="q1R-OD-uAh">
@@ -1247,7 +1247,7 @@ Gw
                                                                 </tableCellView>
                                                             </prototypeCellViews>
                                                         </tableColumn>
-                                                        <tableColumn identifier="interviewTime" width="89.375334699672919" minWidth="10" maxWidth="3.4028234663852886e+38" id="olH-c5-ZQb">
+                                                        <tableColumn identifier="interviewTime" width="90.576887204409616" minWidth="10" maxWidth="3.4028234663852886e+38" id="olH-c5-ZQb">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="InterView Time">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1261,10 +1261,10 @@ Gw
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
                                                                 <tableCellView id="TkU-hh-g7t">
-                                                                    <rect key="frame" x="248" y="1" width="89" height="35"/>
+                                                                    <rect key="frame" x="246.02555037385901" y="1" width="90.512775186929503" height="35"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
-                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Kox-bJ-utl">
+                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kox-bJ-utl">
                                                                             <rect key="frame" x="1" y="7" width="100" height="22"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="22" id="51T-bE-V6U"/>
@@ -1303,7 +1303,7 @@ Gw
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
                                                                 <tableCellView id="Jca-DF-5lp">
-                                                                    <rect key="frame" x="340" y="1" width="89" height="31"/>
+                                                                    <rect key="frame" x="339.53832556078851" y="1" width="89.512775186929503" height="31"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="cNY-8W-jem">
@@ -1345,7 +1345,7 @@ Gw
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
                                                                 <tableCellView id="k5e-Cj-t0H">
-                                                                    <rect key="frame" x="432" y="1" width="88" height="31"/>
+                                                                    <rect key="frame" x="432.05110074771801" y="1" width="87.512775186929503" height="31"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lB5-0e-aAU">
@@ -1381,7 +1381,7 @@ Gw
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </clipView>
                                         <animations/>
-                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="i6J-W9-13L">
+                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="0.40000000028720523" horizontal="YES" id="i6J-W9-13L">
                                             <rect key="frame" x="1" y="647" width="522" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
@@ -1747,7 +1747,7 @@ CA
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <prototypeCellViews>
                                                                     <tableCellView identifier="RatingCell" id="dAB-kh-68i" customClass="EHRatingsTableCellView" customModule="EHire" customModuleProvider="target">
-                                                                        <rect key="frame" x="1" y="1" width="761.13861311257369" height="34"/>
+                                                                        <rect key="frame" x="1" y="1" width="763.3049794748498" height="34"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
                                                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I09-Oe-NcD" userLabel="Field">
@@ -2510,7 +2510,7 @@ DQ
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
                                                             <connections>
-                                                                <action selector="assessmentCandidateBtn:" target="Xv2-bq-xG1" id="SVT-YH-gSI"/>
+                                                                <action selector="addOverAllAssessmentForCandidate:" target="Xv2-bq-xG1" id="FJz-QA-DFI"/>
                                                             </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="rhM-TI-b0o">
@@ -2524,7 +2524,7 @@ DQ
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
                                                             <connections>
-                                                                <action selector="assessmentCandidateBtn:" target="Xv2-bq-xG1" id="jgd-ah-GV8"/>
+                                                                <action selector="addOverAllAssessmentForCandidate:" target="Xv2-bq-xG1" id="eNS-bd-D1d"/>
                                                             </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="fIs-IV-gj8">
@@ -2535,7 +2535,7 @@ DQ
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
                                                             <connections>
-                                                                <action selector="assessmentCandidateBtn:" target="Xv2-bq-xG1" id="oF2-Bx-LQE"/>
+                                                                <action selector="addOverAllAssessmentForCandidate:" target="Xv2-bq-xG1" id="AIU-XE-wBs"/>
                                                             </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="H1W-yL-8xd">
@@ -2546,7 +2546,7 @@ DQ
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
                                                             <connections>
-                                                                <action selector="assessmentCandidateBtn:" target="Xv2-bq-xG1" id="meM-7F-wzE"/>
+                                                                <action selector="addOverAllAssessmentForCandidate:" target="Xv2-bq-xG1" id="zzL-te-rXC"/>
                                                             </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="Gqx-xp-wET">
@@ -2557,7 +2557,7 @@ DQ
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
                                                             <connections>
-                                                                <action selector="assessmentCandidateBtn:" target="Xv2-bq-xG1" id="NS4-dK-kYw"/>
+                                                                <action selector="addOverAllAssessmentForCandidate:" target="Xv2-bq-xG1" id="epG-Y6-lQQ"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -3162,7 +3162,7 @@ DQ
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
                                                             <connections>
-                                                                <action selector="assessmentBtn:" target="Xv2-bq-xG1" id="I02-o5-JAJ"/>
+                                                                <action selector="addOverAllAssessmentForTechnology:" target="Xv2-bq-xG1" id="Q5y-Ph-ktQ"/>
                                                             </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="VN9-NN-vZg">
@@ -3176,7 +3176,7 @@ DQ
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
                                                             <connections>
-                                                                <action selector="assessmentBtn:" target="Xv2-bq-xG1" id="R2s-cf-MoJ"/>
+                                                                <action selector="addOverAllAssessmentForTechnology:" target="Xv2-bq-xG1" id="sb9-BL-VnM"/>
                                                             </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="399-Gi-iUf">
@@ -3190,7 +3190,7 @@ DQ
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
                                                             <connections>
-                                                                <action selector="assessmentBtn:" target="Xv2-bq-xG1" id="L9K-07-kEz"/>
+                                                                <action selector="addOverAllAssessmentForTechnology:" target="Xv2-bq-xG1" id="ZCO-sf-ugy"/>
                                                             </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="q0D-xU-Svr">
@@ -3204,7 +3204,7 @@ DQ
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
                                                             <connections>
-                                                                <action selector="assessmentBtn:" target="Xv2-bq-xG1" id="7Z2-3P-QxI"/>
+                                                                <action selector="addOverAllAssessmentForTechnology:" target="Xv2-bq-xG1" id="PSj-Q6-deP"/>
                                                             </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="ngu-t4-vjU">
@@ -3218,7 +3218,7 @@ DQ
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
                                                             <connections>
-                                                                <action selector="assessmentBtn:" target="Xv2-bq-xG1" id="Wyc-Sp-iCc"/>
+                                                                <action selector="addOverAllAssessmentForTechnology:" target="Xv2-bq-xG1" id="vgk-8u-1LW"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -3299,7 +3299,7 @@ DQ
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="addRating:" target="Xv2-bq-xG1" id="ndA-v5-Wro"/>
+                                                <action selector="addSkillSet:" target="Xv2-bq-xG1" id="aT5-pi-xJD"/>
                                             </connections>
                                         </button>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="38" horizontalPageScroll="10" verticalLineScroll="38" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pwe-X1-Si7">
@@ -3316,7 +3316,7 @@ DQ
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn width="756.6980042919414" minWidth="40" maxWidth="1000" id="6Nj-iM-Y5D">
+                                                            <tableColumn width="755.00279076183801" minWidth="40" maxWidth="1000" id="6Nj-iM-Y5D">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <string key="title">Title                                                                                           SelectStar                                                         Ratings               </string>
@@ -3331,7 +3331,7 @@ DQ
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <prototypeCellViews>
                                                                     <tableCellView identifier="DataCell" id="SKk-sF-Yi0" customClass="EHManagerFeedBackCustomTableView" customModule="EHire" customModuleProvider="target">
-                                                                        <rect key="frame" x="1" y="1" width="756.51296224619864" height="33"/>
+                                                                        <rect key="frame" x="1" y="1" width="754.85512020449539" height="33"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
                                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J06-rJ-EFt">
@@ -3350,10 +3350,10 @@ DQ
                                                                                     <outlet property="delegate" destination="Xv2-bq-xG1" id="lPr-ld-aWI"/>
                                                                                 </connections>
                                                                             </textField>
-                                                                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="8NH-rH-099">
+                                                                            <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8NH-rH-099">
                                                                                 <rect key="frame" x="270" y="3" width="170" height="30"/>
                                                                                 <subviews>
-                                                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IzD-pZ-a9x">
+                                                                                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IzD-pZ-a9x">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="35" height="21"/>
                                                                                         <animations/>
                                                                                         <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="deselectStar" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="HpK-fk-uYa">
@@ -3361,7 +3361,7 @@ DQ
                                                                                             <font key="font" metaFont="system"/>
                                                                                         </buttonCell>
                                                                                     </button>
-                                                                                    <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="aXi-0I-1ab">
+                                                                                    <button verticalHuggingPriority="750" misplaced="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="aXi-0I-1ab">
                                                                                         <rect key="frame" x="35" y="0.0" width="34" height="21"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="width" constant="34" id="YV3-XA-AHI"/>
@@ -3372,7 +3372,7 @@ DQ
                                                                                             <font key="font" metaFont="system"/>
                                                                                         </buttonCell>
                                                                                     </button>
-                                                                                    <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="Fgm-cv-9nD">
+                                                                                    <button verticalHuggingPriority="750" misplaced="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="Fgm-cv-9nD">
                                                                                         <rect key="frame" x="72" y="0.0" width="33" height="21"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="width" constant="33" id="noL-Bp-vRI"/>
@@ -3383,7 +3383,7 @@ DQ
                                                                                             <font key="font" metaFont="system"/>
                                                                                         </buttonCell>
                                                                                     </button>
-                                                                                    <button verticalHuggingPriority="750" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="4SL-S5-XnP">
+                                                                                    <button verticalHuggingPriority="750" misplaced="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="4SL-S5-XnP">
                                                                                         <rect key="frame" x="106" y="0.0" width="27" height="21"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="width" constant="27" id="MlU-zD-aDG"/>
@@ -3394,7 +3394,7 @@ DQ
                                                                                             <font key="font" metaFont="system"/>
                                                                                         </buttonCell>
                                                                                     </button>
-                                                                                    <button verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="kQe-uA-Mr2">
+                                                                                    <button verticalHuggingPriority="750" misplaced="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="kQe-uA-Mr2">
                                                                                         <rect key="frame" x="140" y="0.0" width="23" height="21"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="width" constant="23" id="k4g-eS-RBD"/>
@@ -3426,7 +3426,7 @@ DQ
                                                                                 </constraints>
                                                                                 <animations/>
                                                                             </customView>
-                                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fFC-vn-cqe">
+                                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fFC-vn-cqe">
                                                                                 <rect key="frame" x="488" y="3" width="196" height="27"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="192" id="kAz-Jq-xiA"/>
@@ -3462,7 +3462,7 @@ DQ
                                                                         </connections>
                                                                     </tableCellView>
                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="4hh-zA-sGR">
-                                                                        <rect key="frame" x="1" y="36" width="756.51296224619864" height="36"/>
+                                                                        <rect key="frame" x="1" y="36" width="754.85512020449539" height="36"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <animations/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="    " id="aCo-e5-Ag0">
@@ -3475,7 +3475,7 @@ DQ
                                                             </tableColumn>
                                                         </tableColumns>
                                                         <connections>
-                                                            <outlet property="dataSource" destination="Xv2-bq-xG1" id="oqh-tK-r4f"/>
+                                                            <outlet property="dataSource" destination="Xv2-bq-xG1" id="arl-DZ-qKc"/>
                                                             <outlet property="delegate" destination="Xv2-bq-xG1" id="qBT-23-G3V"/>
                                                         </connections>
                                                     </tableView>
@@ -3484,7 +3484,7 @@ DQ
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
                                             <animations/>
-                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="0.25648112309932003" horizontal="YES" id="GEk-zd-Ygz">
+                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="GEk-zd-Ygz">
                                                 <rect key="frame" x="1" y="229" width="760" height="15"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <animations/>
@@ -3508,7 +3508,7 @@ DQ
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="deleteRating:" target="Xv2-bq-xG1" id="1RC-0V-QeN"/>
+                                                <action selector="deleteSkillSet:" target="Xv2-bq-xG1" id="11w-lQ-pz8"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -3578,19 +3578,19 @@ DQ
                         <animations/>
                     </view>
                     <connections>
-                        <outlet property="assessmentCandView" destination="NXl-Es-m3d" id="3dD-lr-eff"/>
-                        <outlet property="assessmentTechLabel" destination="jf7-9R-CFr" id="SFL-Yp-har"/>
-                        <outlet property="assessmentTechView" destination="ya3-fx-dck" id="Gyq-GK-BbU"/>
-                        <outlet property="assestmentCandLabel" destination="v02-Ct-8H0" id="B2W-BK-QBp"/>
-                        <outlet property="enterCG" destination="yXQ-PR-0Ho" id="1LI-7a-XoF"/>
-                        <outlet property="enterCommitments" destination="zs5-ad-WHR" id="cE6-qN-d5d"/>
-                        <outlet property="enterDesignation" destination="xuJ-cv-bSo" id="mss-Aa-GRn"/>
-                        <outlet property="enterGrossSalary" destination="cKe-yU-lBm" id="itd-xM-c11"/>
-                        <outlet property="enterInterviewBy" destination="HHd-M5-NmX" id="Ahg-aL-gZW"/>
-                        <outlet property="enterPosition" destination="5Ce-BT-BU1" id="79D-20-uG8"/>
-                        <outlet property="justificationForHire" destination="0mP-4O-d2r" id="vNl-EU-OLH"/>
+                        <outlet property="labelOverAllAssessmentOfCandidate" destination="v02-Ct-8H0" id="Pwb-oU-Ay1"/>
+                        <outlet property="labelOverAllAssessmentOfTechnology" destination="jf7-9R-CFr" id="Qor-YI-XSj"/>
                         <outlet property="managerFeedbackMainView" destination="CXt-am-yMK" id="LKD-y1-NKx"/>
                         <outlet property="tableView" destination="586-x1-tdU" id="vAb-uf-Ff3"/>
+                        <outlet property="textFieldCorporateGrade" destination="yXQ-PR-0Ho" id="IJ4-2J-UgM"/>
+                        <outlet property="textFieldDesignation" destination="xuJ-cv-bSo" id="eo2-RH-90d"/>
+                        <outlet property="textFieldGrossAnnualSalary" destination="cKe-yU-lBm" id="dar-H4-rZD"/>
+                        <outlet property="textFieldInterviewedBy" destination="HHd-M5-NmX" id="XcP-Ls-hoW"/>
+                        <outlet property="textFieldPosition" destination="5Ce-BT-BU1" id="5hv-rq-jpw"/>
+                        <outlet property="textViewCommitments" destination="zs5-ad-WHR" id="Q2k-yr-SSl"/>
+                        <outlet property="textViewJustificationForHire" destination="0mP-4O-d2r" id="a3Y-8T-sqq"/>
+                        <outlet property="viewOverAllAssessmentOfCandidateStar" destination="NXl-Es-m3d" id="iv3-0d-nlj"/>
+                        <outlet property="viewOverAllAssessmentOfTechnologyStar" destination="ya3-fx-dck" id="p51-NM-Q2J"/>
                     </connections>
                 </viewController>
                 <customObject id="zeO-9e-SNs" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -3923,7 +3923,7 @@ DQ
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="tW8-co-12o">
-                                                    <rect key="frame" x="322" y="0.0" width="5" height="139"/>
+                                                    <rect key="frame" x="322" y="0.0" width="4" height="139"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
