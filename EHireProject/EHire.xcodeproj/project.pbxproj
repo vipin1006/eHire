@@ -90,6 +90,7 @@
 		8070F59B1C24194C00FCEA98 /* deselectStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8070F5991C24194C00FCEA98 /* deselectStar.png */; };
 		944783131C2A9A1C00AE33FA /* TechnicalFeedbackDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944783121C2A9A1C00AE33FA /* TechnicalFeedbackDataAccess.swift */; };
 		9C4B97FF1C324EE20033412F /* EHCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B97FE1C324EE20033412F /* EHCoreDataStack.swift */; };
+		9CB11FC51C328C1100939D42 /* EHManagerFeedbackDataAccessLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB11FC41C328C1100939D42 /* EHManagerFeedbackDataAccessLayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -200,6 +201,7 @@
 		8070F5991C24194C00FCEA98 /* deselectStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deselectStar.png; sourceTree = "<group>"; };
 		944783121C2A9A1C00AE33FA /* TechnicalFeedbackDataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TechnicalFeedbackDataAccess.swift; sourceTree = SOURCE_ROOT; };
 		9C4B97FE1C324EE20033412F /* EHCoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCoreDataStack.swift; sourceTree = "<group>"; };
+		9CB11FC41C328C1100939D42 /* EHManagerFeedbackDataAccessLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHManagerFeedbackDataAccessLayer.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -362,6 +364,7 @@
 		8001C3F21C23E96E00D62243 /* Data Access Layer */ = {
 			isa = PBXGroup;
 			children = (
+				9CB11FC41C328C1100939D42 /* EHManagerFeedbackDataAccessLayer.swift */,
 			);
 			name = "Data Access Layer";
 			sourceTree = "<group>";
@@ -811,6 +814,7 @@
 				4F2536E61C2179E0000E8C95 /* EHTechnology.swift in Sources */,
 				4F7BCAC91C325CBD00D60546 /* EHCandidateDetails.swift in Sources */,
 				41A97FF91C195E500016CAB4 /* EHTechnologyCustomCell.swift in Sources */,
+				9CB11FC51C328C1100939D42 /* EHManagerFeedbackDataAccessLayer.swift in Sources */,
 				4F2536ED1C2179EC000E8C95 /* EHTechnologyViewController.swift in Sources */,
 				8029FFED1C2A81970041C74C /* Date.swift in Sources */,
 				802900001C2A83A10041C74C /* EHHrFeedbackViewController.swift in Sources */,

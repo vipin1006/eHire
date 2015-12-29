@@ -34,6 +34,11 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     @IBOutlet weak var labelOverAllAssessmentOfTechnology: NSTextField!
     
+    
+    @IBOutlet var textViewCommentsForOverAllCandidateAssessment: NSTextView!
+    
+    @IBOutlet var textViewCommentsForOverAllTechnologyassessment: NSTextView!
+    
     var ratingTitle = NSMutableArray()
     
     @IBOutlet weak var tableView: NSTableView!

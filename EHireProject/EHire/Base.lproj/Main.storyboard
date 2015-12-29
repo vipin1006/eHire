@@ -3421,6 +3421,8 @@ DQ
                         <outlet property="textFieldGrossAnnualSalary" destination="cKe-yU-lBm" id="dar-H4-rZD"/>
                         <outlet property="textFieldInterviewedBy" destination="HHd-M5-NmX" id="XcP-Ls-hoW"/>
                         <outlet property="textFieldPosition" destination="5Ce-BT-BU1" id="5hv-rq-jpw"/>
+                        <outlet property="textViewCommentsForOverAllCandidateAssessment" destination="Z5A-BF-7b2" id="cjI-IN-ld2"/>
+                        <outlet property="textViewCommentsForOverAllTechnologyassessment" destination="noH-5G-txn" id="fN8-Im-iLM"/>
                         <outlet property="textViewCommitments" destination="zs5-ad-WHR" id="Q2k-yr-SSl"/>
                         <outlet property="textViewJustificationForHire" destination="0mP-4O-d2r" id="a3Y-8T-sqq"/>
                         <outlet property="viewOverAllAssessmentOfCandidateStar" destination="NXl-Es-m3d" id="iv3-0d-nlj"/>
