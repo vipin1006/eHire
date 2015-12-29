@@ -1043,11 +1043,7 @@ Gw
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
                                                                 <tableCellView id="yZo-bg-wql">
-<<<<<<< Updated upstream
-                                                                    <rect key="frame" x="1" y="1" width="118.5127751869295" height="35"/>
-=======
-                                                                    <rect key="frame" x="1" y="1" width="118" height="35"/>
->>>>>>> Stashed changes
+
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="js1-gW-BeE">
