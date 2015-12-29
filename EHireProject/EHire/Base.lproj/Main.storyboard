@@ -879,7 +879,7 @@
         <!--Candidate Controller-->
         <scene sceneID="3sb-Ci-qTI">
             <objects>
-                <viewController storyboardIdentifier="candidateObject" id="eaX-tr-f6l" customClass="EHCandidateController" customModule="EHire" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EHCandidateController" id="eaX-tr-f6l" customClass="EHCandidateController" customModule="EHire" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="rpR-SN-IKf">
                         <rect key="frame" x="0.0" y="0.0" width="635" height="707"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1264,7 +1264,7 @@
         <!--Feedback View Controller-->
         <scene sceneID="1Sj-b6-RYM">
             <objects>
-                <viewController storyboardIdentifier="feedback" id="h0V-rg-Tmf" customClass="EHFeedbackViewController" customModule="EHire" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EHFeedbackViewController" id="h0V-rg-Tmf" customClass="EHFeedbackViewController" customModule="EHire" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="0FV-nR-jet">
                         <rect key="frame" x="0.0" y="0.0" width="741" height="726"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1380,7 +1380,7 @@
         <!--Technical Feedback View Controller-->
         <scene sceneID="0C3-N2-S9z">
             <objects>
-                <viewController storyboardIdentifier="TechnicalFeedback" id="tZu-Jo-Cyq" customClass="EHTechnicalFeedbackViewController" customModule="EHire" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EHTechnicalFeedbackViewController" id="tZu-Jo-Cyq" customClass="EHTechnicalFeedbackViewController" customModule="EHire" sceneMemberID="viewController">
                     <customView key="view" id="TA5-L1-aWy">
                         <rect key="frame" x="0.0" y="0.0" width="823" height="1081"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -2091,7 +2091,7 @@ DQ
         <!--Manager Feedback View Controller-->
         <scene sceneID="gZE-bt-UgE">
             <objects>
-                <viewController storyboardIdentifier="ManagerFeedback" id="Xv2-bq-xG1" customClass="EHManagerFeedbackViewController" customModule="EHire" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EHManagerFeedbackViewController" id="Xv2-bq-xG1" customClass="EHManagerFeedbackViewController" customModule="EHire" sceneMemberID="viewController">
                     <view key="view" id="CXt-am-yMK">
                         <rect key="frame" x="0.0" y="0.0" width="823" height="1565"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -3436,7 +3436,7 @@ DQ
         <!--Hr Feedback View Controller-->
         <scene sceneID="fQl-Du-rLj">
             <objects>
-                <viewController storyboardIdentifier="hrFeedback" id="2N2-KU-HrI" customClass="EHHrFeedbackViewController" customModule="EHire" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EHHrFeedbackViewController" id="2N2-KU-HrI" customClass="EHHrFeedbackViewController" customModule="EHire" sceneMemberID="viewController">
                     <view key="view" id="9OQ-jc-Y2H">
                         <rect key="frame" x="0.0" y="0.0" width="700" height="1456"/>
                         <autoresizingMask key="autoresizingMask"/>
