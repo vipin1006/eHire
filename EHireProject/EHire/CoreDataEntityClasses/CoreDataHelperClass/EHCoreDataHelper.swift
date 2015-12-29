@@ -59,6 +59,13 @@ class EHCoreDataHelper {
         
     }
     
+    class func deleteEntity(managedObjectContext:NSManagedObjectContext,managedObject:NSManagedObject) {
+       
+            managedObjectContext.deleteObject(managedObject)
+        
+       
+           }
+    
      // PRAGMAMARK: - Method to create NSManaged Object in coredata
     class func createEntity(name:String,managedObjectContext:NSManagedObjectContext)->NSEntityDescription?
       {

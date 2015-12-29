@@ -2167,6 +2167,9 @@ DQ
                                                     </buttonCell>
                                                 </column>
                                             </cells>
+                                            <connections>
+                                                <action selector="getInterviewMode:" target="Xv2-bq-xG1" id="g6g-iW-9wj"/>
+                                            </connections>
                                         </matrix>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IoX-lZ-ckz">
                                             <rect key="frame" x="410" y="28" width="117" height="17"/>
@@ -2211,6 +2214,9 @@ DQ
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <binding destination="FMP-R4-GZw" name="value" keyPath="self.candidate.name" id="zFO-Cf-j4C"/>
+                                            </connections>
                                         </textField>
                                         <box horizontalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="9aR-FT-Txf">
                                             <rect key="frame" x="399" y="0.0" width="5" height="111"/>
@@ -2311,6 +2317,9 @@ DQ
                                                         <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <size key="minSize" width="754" height="119"/>
                                                         <size key="maxSize" width="771" height="10000000"/>
+                                                        <connections>
+                                                            <binding destination="FMP-R4-GZw" name="attributedString" keyPath="self.commentsOnTechnology" id="hih-Ew-6JQ"/>
+                                                        </connections>
                                                     </textView>
                                                 </subviews>
                                                 <animations/>
@@ -2488,7 +2497,21 @@ DQ
                                                 <font key="font" metaFont="system" size="14"/>
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                <connections>
+                                                    <binding destination="FMP-R4-GZw" name="value" keyPath="designation" id="gq1-Jj-vMd">
+                                                        <dictionary key="options">
+                                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                        </dictionary>
+                                                    </binding>
+                                                </connections>
                                             </textFieldCell>
+                                            <connections>
+                                                <binding destination="FMP-R4-GZw" name="value" keyPath="designation" id="42p-Px-E1b">
+                                                    <dictionary key="options">
+                                                        <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GrJ-ke-wtk">
                                             <rect key="frame" x="405" y="5" width="139" height="25"/>
@@ -2600,6 +2623,9 @@ DQ
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <binding destination="FMP-R4-GZw" name="value" keyPath="self.grossAnnualSalary" id="NxV-N7-WUO"/>
+                                            </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dDN-kg-YyI">
                                             <rect key="frame" x="170" y="62" width="27" height="29"/>
@@ -2637,6 +2663,9 @@ DQ
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <binding destination="FMP-R4-GZw" name="value" keyPath="self.designation" id="KUH-4A-62H"/>
+                                            </connections>
                                         </textField>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yXQ-PR-0Ho">
                                             <rect key="frame" x="228" y="62" width="214" height="29"/>
@@ -2649,6 +2678,9 @@ DQ
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <binding destination="FMP-R4-GZw" name="value" keyPath="self.recommendedCg" id="HIm-DX-8n8"/>
+                                            </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1re-sB-9I6">
                                             <rect key="frame" x="496" y="61" width="129" height="29"/>
@@ -2754,6 +2786,9 @@ DQ
                                                         <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <size key="minSize" width="751" height="71"/>
                                                         <size key="maxSize" width="793" height="10000000"/>
+                                                        <connections>
+                                                            <binding destination="FMP-R4-GZw" name="attributedString" keyPath="self.jestificationForHire" id="pXc-Xm-dGA"/>
+                                                        </connections>
                                                     </textView>
                                                 </subviews>
                                                 <animations/>
@@ -2800,6 +2835,9 @@ DQ
                                                         <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <size key="minSize" width="751" height="71"/>
                                                         <size key="maxSize" width="793" height="10000000"/>
+                                                        <connections>
+                                                            <binding destination="FMP-R4-GZw" name="attributedString" keyPath="self.commitments" id="rZB-Q3-VD1"/>
+                                                        </connections>
                                                     </textView>
                                                 </subviews>
                                                 <animations/>
@@ -2880,6 +2918,9 @@ DQ
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <binding destination="FMP-R4-GZw" name="value" keyPath="self.managerName" id="Ulq-Ky-VCj"/>
+                                            </connections>
                                         </textField>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PpM-MF-Fnn">
                                             <rect key="frame" x="366" y="7" width="70" height="32"/>
@@ -2939,6 +2980,9 @@ DQ
                                                         <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <size key="minSize" width="752" height="115"/>
                                                         <size key="maxSize" width="772" height="10000000"/>
+                                                        <connections>
+                                                            <binding destination="FMP-R4-GZw" name="attributedString" keyPath="self.commentsOnTechnology" id="TrZ-WJ-drT"/>
+                                                        </connections>
                                                     </textView>
                                                 </subviews>
                                                 <animations/>
@@ -3415,6 +3459,7 @@ DQ
                         <outlet property="labelOverAllAssessmentOfCandidate" destination="v02-Ct-8H0" id="Pwb-oU-Ay1"/>
                         <outlet property="labelOverAllAssessmentOfTechnology" destination="jf7-9R-CFr" id="Qor-YI-XSj"/>
                         <outlet property="managerFeedbackMainView" destination="CXt-am-yMK" id="LKD-y1-NKx"/>
+                        <outlet property="managerialFeedbackModel" destination="FMP-R4-GZw" id="HIi-OQ-nTe"/>
                         <outlet property="tableView" destination="586-x1-tdU" id="vAb-uf-Ff3"/>
                         <outlet property="textFieldCorporateGrade" destination="yXQ-PR-0Ho" id="IJ4-2J-UgM"/>
                         <outlet property="textFieldDesignation" destination="xuJ-cv-bSo" id="eo2-RH-90d"/>
@@ -3430,6 +3475,7 @@ DQ
                     </connections>
                 </viewController>
                 <customObject id="zeO-9e-SNs" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="FMP-R4-GZw" customClass="EHManagerialFeedbackModel" customModule="EHire" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="-1183.5" y="1398.5"/>
         </scene>

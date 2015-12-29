@@ -34,10 +34,10 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     @IBOutlet weak var labelOverAllAssessmentOfTechnology: NSTextField!
     
+    @IBOutlet weak var matrixForInterviewMode: NSMatrix!
     
     @IBOutlet var textViewCommentsForOverAllCandidateAssessment: NSTextView!
     
-    @IBOutlet var textViewCommentsForOverAllTechnologyassessment: NSTextView!
     
     var ratingTitle = NSMutableArray()
     
@@ -45,14 +45,16 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
     
+    @IBOutlet var managerialFeedbackModel: EHManagerialFeedbackModel!
     let candidateDetails = EHCandidateDetails(inName: "vipin",candidateExperience:"1" , candidateInterviewTiming: "1023.22", candidatePhoneNo:"33131231312") as EHCandidateDetails
-    var managerialFeedbackModel:EHManagerialFeedbackModel?
+   
     
     override func loadView() {
         
         
         
-        managerialFeedbackModel = EHManagerialFeedbackModel(candidateDetails:candidateDetails)
+        
+       
         let communicationSkill = EHSkillSet()
         communicationSkill.skillName = "Communication"
 //        communicationSkill.skillRating = 3
@@ -154,7 +156,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
     {
-        ratingTitle[control.tag] = fieldEditor.string!
+        let skillSetObject =  managerialFeedbackModel?.skillSet[control.tag]
+        skillSetObject?.skillName = fieldEditor.string!
         return true
     }
     
@@ -340,11 +343,27 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         return true
     }
     
+    
+    @IBAction func getInterviewMode(sender: AnyObject) {
+        
+        let selectedColoumn = sender.selectedColumn
+        if selectedColoumn == 0{
+          managerialFeedbackModel.modeOfInterview = "Telephonic"
+        }else{
+            managerialFeedbackModel.modeOfInterview = "Face To Face"
+        }
+        
+     
+    }
+    
+   
+    
     @IBAction func saveData(sender: AnyObject)
     {
-        //if validateInputs(){
-            saveManegerFeedbackToToCoreData()
-        //}
+//        //if validateInputs(){
+//            saveManegerFeedbackToToCoreData()
+//        //}
+        tableView.reloadData()
     }
     
     //MARK:- CoreDataMethods
