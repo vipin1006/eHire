@@ -10,30 +10,35 @@
 		2D32201B1C2BAF8500679432 /* EHireBasicsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32201A1C2BAF8500679432 /* EHireBasicsTest.swift */; };
 		2D32201E1C2BC9EF00679432 /* EHireTechnologyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32201D1C2BC9EF00679432 /* EHireTechnologyTest.swift */; };
 		2D88131F1C2800CE0086BA65 /* EHCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D88131E1C2800CE0086BA65 /* EHCoreData.swift */; };
-		2D8C5D9F1C30E7E70018184E /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D871C30E7E70018184E /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift */; };
-		2D8C5DA01C30E7E70018184E /* CandidatePreviousEmploymentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D881C30E7E70018184E /* CandidatePreviousEmploymentInfo.swift */; };
-		2D8C5DA11C30E7E70018184E /* CandidatePersonalInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D891C30E7E70018184E /* CandidatePersonalInfo+CoreDataProperties.swift */; };
-		2D8C5DA21C30E7E70018184E /* CandidatePersonalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D8A1C30E7E70018184E /* CandidatePersonalInfo.swift */; };
-		2D8C5DA31C30E7E70018184E /* CandidateBasicProfessionalInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D8B1C30E7E70018184E /* CandidateBasicProfessionalInfo+CoreDataProperties.swift */; };
-		2D8C5DA41C30E7E70018184E /* CandidateBasicProfessionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D8C1C30E7E70018184E /* CandidateBasicProfessionalInfo.swift */; };
-		2D8C5DA51C30E7E70018184E /* CandidateDocuments+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D8D1C30E7E70018184E /* CandidateDocuments+CoreDataProperties.swift */; };
-		2D8C5DA61C30E7E70018184E /* CandidateDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D8E1C30E7E70018184E /* CandidateDocuments.swift */; };
-		2D8C5DA71C30E7E70018184E /* ManagerFeedBack+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D8F1C30E7E70018184E /* ManagerFeedBack+CoreDataProperties.swift */; };
-		2D8C5DA81C30E7E70018184E /* ManagerFeedBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D901C30E7E70018184E /* ManagerFeedBack.swift */; };
-		2D8C5DA91C30E7E70018184E /* SkillSet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D911C30E7E70018184E /* SkillSet+CoreDataProperties.swift */; };
-		2D8C5DAA1C30E7E70018184E /* SkillSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D921C30E7E70018184E /* SkillSet.swift */; };
-		2D8C5DAB1C30E7E70018184E /* CandidateQualification+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D931C30E7E70018184E /* CandidateQualification+CoreDataProperties.swift */; };
-		2D8C5DAC1C30E7E70018184E /* CandidateQualification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D941C30E7E70018184E /* CandidateQualification.swift */; };
-		2D8C5DAD1C30E7E70018184E /* Candidate+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D951C30E7E70018184E /* Candidate+CoreDataProperties.swift */; };
-		2D8C5DAE1C30E7E70018184E /* Candidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D961C30E7E70018184E /* Candidate.swift */; };
-		2D8C5DAF1C30E7E70018184E /* TechnicalFeedBack+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D971C30E7E70018184E /* TechnicalFeedBack+CoreDataProperties.swift */; };
-		2D8C5DB01C30E7E70018184E /* TechnicalFeedBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D981C30E7E70018184E /* TechnicalFeedBack.swift */; };
-		2D8C5DB11C30E7E70018184E /* Technology+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D991C30E7E70018184E /* Technology+CoreDataProperties.swift */; };
-		2D8C5DB21C30E7E70018184E /* Technology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D9A1C30E7E70018184E /* Technology.swift */; };
-		2D8C5DB31C30E7E70018184E /* Date+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D9B1C30E7E70018184E /* Date+CoreDataProperties.swift */; };
-		2D8C5DB41C30E7E70018184E /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D9C1C30E7E70018184E /* Date.swift */; };
-		2D8C5DB51C30E7E70018184E /* CandidateMiscellaneous+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D9D1C30E7E70018184E /* CandidateMiscellaneous+CoreDataProperties.swift */; };
-		2D8C5DB61C30E7E70018184E /* CandidateMiscellaneous.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D9E1C30E7E70018184E /* CandidateMiscellaneous.swift */; };
+
+		2D8C5D9F1C30E7E70018184E /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D871C30E7E70018184E /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DA01C30E7E70018184E /* CandidatePreviousEmploymentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D881C30E7E70018184E /* CandidatePreviousEmploymentInfo.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DA11C30E7E70018184E /* CandidatePersonalInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D891C30E7E70018184E /* CandidatePersonalInfo+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DA21C30E7E70018184E /* CandidatePersonalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D8A1C30E7E70018184E /* CandidatePersonalInfo.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DA31C30E7E70018184E /* CandidateBasicProfessionalInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D8B1C30E7E70018184E /* CandidateBasicProfessionalInfo+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DA41C30E7E70018184E /* CandidateBasicProfessionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D8C1C30E7E70018184E /* CandidateBasicProfessionalInfo.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DA51C30E7E70018184E /* CandidateDocuments+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D8D1C30E7E70018184E /* CandidateDocuments+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DA61C30E7E70018184E /* CandidateDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D8E1C30E7E70018184E /* CandidateDocuments.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DA71C30E7E70018184E /* ManagerFeedBack+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D8F1C30E7E70018184E /* ManagerFeedBack+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DA81C30E7E70018184E /* ManagerFeedBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D901C30E7E70018184E /* ManagerFeedBack.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DA91C30E7E70018184E /* SkillSet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D911C30E7E70018184E /* SkillSet+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DAA1C30E7E70018184E /* SkillSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D921C30E7E70018184E /* SkillSet.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DAB1C30E7E70018184E /* CandidateQualification+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D931C30E7E70018184E /* CandidateQualification+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DAC1C30E7E70018184E /* CandidateQualification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D941C30E7E70018184E /* CandidateQualification.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DAD1C30E7E70018184E /* Candidate+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D951C30E7E70018184E /* Candidate+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DAE1C30E7E70018184E /* Candidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D961C30E7E70018184E /* Candidate.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DAF1C30E7E70018184E /* TechnicalFeedBack+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D971C30E7E70018184E /* TechnicalFeedBack+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DB01C30E7E70018184E /* TechnicalFeedBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D981C30E7E70018184E /* TechnicalFeedBack.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DB11C30E7E70018184E /* Technology+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D991C30E7E70018184E /* Technology+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DB21C30E7E70018184E /* Technology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D9A1C30E7E70018184E /* Technology.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DB31C30E7E70018184E /* Date+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D9B1C30E7E70018184E /* Date+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DB41C30E7E70018184E /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D9C1C30E7E70018184E /* Date.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DB51C30E7E70018184E /* CandidateMiscellaneous+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D9D1C30E7E70018184E /* CandidateMiscellaneous+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DB61C30E7E70018184E /* CandidateMiscellaneous.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D9E1C30E7E70018184E /* CandidateMiscellaneous.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DB81C30EA400018184E /* EHireDateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5DB71C30EA400018184E /* EHireDateTest.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DBC1C3249810018184E /* EHireCandiateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5DBB1C3249810018184E /* EHireCandiateTest.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DBE1C3290D50018184E /* EHireManagerFeedBackTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5DBD1C3290D50018184E /* EHireManagerFeedBackTest.swift */; settings = {ASSET_TAGS = (); }; };
+		2D8C5DC01C32951A0018184E /* EHireTechnicalFeedBackTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5DBF1C32951A0018184E /* EHireTechnicalFeedBackTest.swift */; settings = {ASSET_TAGS = (); }; };
 		41A97FF51C1956B70016CAB4 /* EHInterviewDateCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF41C1956B70016CAB4 /* EHInterviewDateCustomCell.swift */; };
 		41A97FF91C195E500016CAB4 /* EHTechnologyCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF81C195E500016CAB4 /* EHTechnologyCustomCell.swift */; };
 		41A97FFE1C1971FF0016CAB4 /* BlueCalendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A97FFD1C1971FF0016CAB4 /* BlueCalendar.png */; };
@@ -43,6 +48,7 @@
 		4F2536EC1C2179EC000E8C95 /* EHPopOverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536E91C2179EC000E8C95 /* EHPopOverController.swift */; };
 		4F2536ED1C2179EC000E8C95 /* EHTechnologyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536EA1C2179EC000E8C95 /* EHTechnologyViewController.swift */; };
 		4F2536FB1C218172000E8C95 /* DataCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536FA1C218172000E8C95 /* DataCommunicator.swift */; };
+		4F69D1291C3299880003389E /* EhTechnologyDataLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F69D1281C3299880003389E /* EhTechnologyDataLayer.swift */; };
 		4F7BCA841C2BED8B00D60546 /* EHManagerFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BCA831C2BED8B00D60546 /* EHManagerFeedbackViewController.swift */; };
 		4F7BCA881C2BEE6700D60546 /* EHManagerialFeedbackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BCA871C2BEE6700D60546 /* EHManagerialFeedbackModel.swift */; };
 		4F7BCA8A1C2BF62000D60546 /* EHSkillSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BCA891C2BF62000D60546 /* EHSkillSet.swift */; };
@@ -138,6 +144,10 @@
 		2D8C5D9C1C30E7E70018184E /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Date.swift; path = "Curd Test For Entity/Date.swift"; sourceTree = "<group>"; };
 		2D8C5D9D1C30E7E70018184E /* CandidateMiscellaneous+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CandidateMiscellaneous+CoreDataProperties.swift"; path = "Curd Test For Entity/CandidateMiscellaneous+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2D8C5D9E1C30E7E70018184E /* CandidateMiscellaneous.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CandidateMiscellaneous.swift; path = "Curd Test For Entity/CandidateMiscellaneous.swift"; sourceTree = "<group>"; };
+		2D8C5DB71C30EA400018184E /* EHireDateTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHireDateTest.swift; sourceTree = "<group>"; };
+		2D8C5DBB1C3249810018184E /* EHireCandiateTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHireCandiateTest.swift; path = "Curd Test For Entity/EHireCandiateTest.swift"; sourceTree = "<group>"; };
+		2D8C5DBD1C3290D50018184E /* EHireManagerFeedBackTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHireManagerFeedBackTest.swift; sourceTree = "<group>"; };
+		2D8C5DBF1C32951A0018184E /* EHireTechnicalFeedBackTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHireTechnicalFeedBackTest.swift; path = "Curd Test For Entity/EHireTechnicalFeedBackTest.swift"; sourceTree = "<group>"; };
 		4136DE551C21284800BDB8B7 /* EHire-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EHire-Bridging-Header.h"; sourceTree = "<group>"; };
 		41A97FF41C1956B70016CAB4 /* EHInterviewDateCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHInterviewDateCustomCell.swift; sourceTree = "<group>"; };
 		41A97FF81C195E500016CAB4 /* EHTechnologyCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnologyCustomCell.swift; sourceTree = "<group>"; };
@@ -148,6 +158,7 @@
 		4F2536E91C2179EC000E8C95 /* EHPopOverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHPopOverController.swift; sourceTree = "<group>"; };
 		4F2536EA1C2179EC000E8C95 /* EHTechnologyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnologyViewController.swift; sourceTree = "<group>"; };
 		4F2536FA1C218172000E8C95 /* DataCommunicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataCommunicator.swift; sourceTree = "<group>"; };
+		4F69D1281C3299880003389E /* EhTechnologyDataLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EhTechnologyDataLayer.swift; path = DataAcessLayer/EhTechnologyDataLayer.swift; sourceTree = "<group>"; };
 		4F7BCA831C2BED8B00D60546 /* EHManagerFeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHManagerFeedbackViewController.swift; path = EHire/ManagerFeedbackModule/Controller/EHManagerFeedbackViewController.swift; sourceTree = SOURCE_ROOT; };
 		4F7BCA871C2BEE6700D60546 /* EHManagerialFeedbackModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHManagerialFeedbackModel.swift; path = EHire/ManagerFeedbackModule/Model/EHManagerialFeedbackModel.swift; sourceTree = SOURCE_ROOT; };
 		4F7BCA891C2BF62000D60546 /* EHSkillSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHSkillSet.swift; path = EHire/ManagerFeedbackModule/Model/EHSkillSet.swift; sourceTree = SOURCE_ROOT; };
@@ -258,6 +269,10 @@
 				2D8C5D9C1C30E7E70018184E /* Date.swift */,
 				2D8C5D9D1C30E7E70018184E /* CandidateMiscellaneous+CoreDataProperties.swift */,
 				2D8C5D9E1C30E7E70018184E /* CandidateMiscellaneous.swift */,
+				2D8C5DB71C30EA400018184E /* EHireDateTest.swift */,
+				2D8C5DBB1C3249810018184E /* EHireCandiateTest.swift */,
+				2D8C5DBD1C3290D50018184E /* EHireManagerFeedBackTest.swift */,
+				2D8C5DBF1C32951A0018184E /* EHireTechnicalFeedBackTest.swift */,
 			);
 			name = "Curd Test For Entity";
 			sourceTree = "<group>";
@@ -277,7 +292,7 @@
 			children = (
 				8001C41C1C23EB0900D62243 /* Controllers */,
 				4F2536E21C2179E0000E8C95 /* Model */,
-				8001C41B1C23EABB00D62243 /* Data Access Layer */,
+				8001C41B1C23EABB00D62243 /* DataAccessLayer */,
 				8042884B1C17F17A003033B4 /* CustomViewCells */,
 				8042884A1C17F150003033B4 /* Nibs */,
 				8001C41A1C23EAAF00D62243 /* Support Files */,
@@ -474,11 +489,12 @@
 			name = "Support Files";
 			sourceTree = "<group>";
 		};
-		8001C41B1C23EABB00D62243 /* Data Access Layer */ = {
+		8001C41B1C23EABB00D62243 /* DataAccessLayer */ = {
 			isa = PBXGroup;
 			children = (
+				4F69D1281C3299880003389E /* EhTechnologyDataLayer.swift */,
 			);
-			name = "Data Access Layer";
+			name = DataAccessLayer;
 			sourceTree = "<group>";
 		};
 		8001C41C1C23EB0900D62243 /* Controllers */ = {
@@ -854,6 +870,7 @@
 				8042880A1C17EBC0003033B4 /* EHire.xcdatamodeld in Sources */,
 				8029FFE81C2A81970041C74C /* CandidatePersonalInfo+CoreDataProperties.swift in Sources */,
 				41A97FF51C1956B70016CAB4 /* EHInterviewDateCustomCell.swift in Sources */,
+				4F69D1291C3299880003389E /* EhTechnologyDataLayer.swift in Sources */,
 				4F2536EC1C2179EC000E8C95 /* EHPopOverController.swift in Sources */,
 				806C9CA61C2433FF0039FCF2 /* EHTechnicalFeedbackViewController.swift in Sources */,
 				8029FFF31C2A81970041C74C /* SkillSet+CoreDataProperties.swift in Sources */,
@@ -870,16 +887,20 @@
 				2D8C5DA71C30E7E70018184E /* ManagerFeedBack+CoreDataProperties.swift in Sources */,
 				2D8C5DAE1C30E7E70018184E /* Candidate.swift in Sources */,
 				2D32201B1C2BAF8500679432 /* EHireBasicsTest.swift in Sources */,
+				2D8C5DBE1C3290D50018184E /* EHireManagerFeedBackTest.swift in Sources */,
 				2D8C5DB31C30E7E70018184E /* Date+CoreDataProperties.swift in Sources */,
 				2D8C5DAF1C30E7E70018184E /* TechnicalFeedBack+CoreDataProperties.swift in Sources */,
 				2D8C5DAB1C30E7E70018184E /* CandidateQualification+CoreDataProperties.swift in Sources */,
+				2D8C5DB81C30EA400018184E /* EHireDateTest.swift in Sources */,
 				2D8C5DB61C30E7E70018184E /* CandidateMiscellaneous.swift in Sources */,
 				2D8C5DB21C30E7E70018184E /* Technology.swift in Sources */,
 				2D8C5DB51C30E7E70018184E /* CandidateMiscellaneous+CoreDataProperties.swift in Sources */,
 				2D8C5DAA1C30E7E70018184E /* SkillSet.swift in Sources */,
 				2D8C5DA61C30E7E70018184E /* CandidateDocuments.swift in Sources */,
 				2D8C5DB41C30E7E70018184E /* Date.swift in Sources */,
+				2D8C5DC01C32951A0018184E /* EHireTechnicalFeedBackTest.swift in Sources */,
 				2D32201E1C2BC9EF00679432 /* EHireTechnologyTest.swift in Sources */,
+				2D8C5DBC1C3249810018184E /* EHireCandiateTest.swift in Sources */,
 				2D8C5DA21C30E7E70018184E /* CandidatePersonalInfo.swift in Sources */,
 				2D8C5DA31C30E7E70018184E /* CandidateBasicProfessionalInfo+CoreDataProperties.swift in Sources */,
 				2D8C5DA41C30E7E70018184E /* CandidateBasicProfessionalInfo.swift in Sources */,

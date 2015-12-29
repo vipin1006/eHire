@@ -27,9 +27,20 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        tableView.doubleAction = "PerformDoubleAction"
       
     }
     
+    func PerformDoubleAction()
+    {
+        if tableView.selectedRow != -1
+        {
+            if let delegate = self.delegate
+            {
+                delegate.showFeedbackViewController()
+            }
+        }
+    }
     
     //MARK: This data source method returns tableview rows
     func numberOfRowsInTableView(tableView: NSTableView) -> Int
@@ -180,6 +191,8 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
         
+        //Check
+        
        let textField = control as! NSTextField
         
         let candidate = self.candidateArray.objectAtIndex(self.tableView.selectedRow) as! Candidate
@@ -193,16 +206,9 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         candidate.experience = fieldEditor.string
 
         case 3:
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.locale = NSLocale.systemLocale()
-        dateFormatter.dateFormat = "hh:mm a"
-        let str = dateFormatter.dateFromString(fieldEditor.string!)
-        candidate.interviewTime = str
-
-        case 4:
         candidate.phoneNumber = fieldEditor.string
 
-        case 5:
+        case 4:
         candidate.requisition = fieldEditor.string
 
         default:
