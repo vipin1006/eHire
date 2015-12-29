@@ -9,7 +9,8 @@
 import XCTest
 @testable import EHire
 
-class EHireTests: XCTestCase {
+class EHireTests: XCTestCase
+{
     
     override func setUp() {
         super.setUp()
