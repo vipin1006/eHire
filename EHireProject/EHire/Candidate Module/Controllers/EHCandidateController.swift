@@ -180,6 +180,8 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
         
+        //Check
+        
        let textField = control as! NSTextField
         
         let candidate = self.candidateArray.objectAtIndex(self.tableView.selectedRow) as! Candidate
