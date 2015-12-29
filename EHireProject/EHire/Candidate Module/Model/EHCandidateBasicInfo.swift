@@ -44,15 +44,15 @@ class EHCandidateBasicInfo: NSViewController,NSTextFieldDelegate
     {
         candidateInfo["CandidateName"] = nameField.stringValue
         //candidateInfo["CandidateInterviewTime"] = datePicker.stringValue
-        if Candidate.getCandidateInformation(candidateInfo)
-        {
-            print("saved")
-        }
-        else
-        {
-            print("not saved")
-        }
-        
+//        if Candidate.getCandidateInformation(candidateInfo)
+//        {
+//            print("saved")
+//        }
+//        else
+//        {
+//            print("not saved")
+//        }
+//        
 
         
         let dateFormatter = NSDateFormatter()
