@@ -67,7 +67,12 @@ class EHHrFeedbackViewController: NSViewController {
     @IBOutlet weak var dummyLegalObligations: NSTextField!
     @IBOutlet weak var dummySpecifyLegalObligations: NSTextField!
     
+    @IBOutlet weak var lastDesignation: NSTextField!
+    
+    
+    
     var candidateInfo:Dictionary<String,AnyObject> = [:]
+    var candidate:Candidate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,6 +134,16 @@ class EHHrFeedbackViewController: NSViewController {
             candidateInfo["questionsAskedByCandidate"] = questionsAskedByCandidate.string
             candidateInfo["inetrviewedBy"] = inetrviewedBy.stringValue
             candidateInfo["EmploymentGap"] = employmentGap.stringValue
+            candidateInfo["lastDesignation"] = lastDesignation.stringValue
+            //CoreData Candidate Object Comes here from Selected Candidate (Future Reference)
+            
+            //Dummy Candidate Object for Code Developing
+            
+            candidate = Candidate(entity:EHCoreDataHelper.createEntity("Candidate",managedObjectContext: AppDelegate.getAppdelegate().managedObjectContext)!, insertIntoManagedObjectContext:AppDelegate.getAppdelegate().managedObjectContext)
+            
+            
+            HrFeedbackDataAccess.saveHrFeedbackOfCandidate(candidate!,candidateInfo: candidateInfo)
+
             
            }
            else
