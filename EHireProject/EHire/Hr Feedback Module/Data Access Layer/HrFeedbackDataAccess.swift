@@ -23,6 +23,15 @@ class HrFeedbackDataAccess: NSObject {
         
     HrFeedbackDataAccess.candidateDocumentsInfo(candidate, candidateInfo: candidateInfo)
         
+        do
+        {
+            try candidate.managedObjectContext?.save()
+        }
+        catch let error as NSError
+        {
+            print(error.localizedDescription)
+        }
+        
     }
     
   class  func candidateProfessionalInfo(candidate:Candidate,candidateInfo:[String:AnyObject])
@@ -97,6 +106,25 @@ class HrFeedbackDataAccess: NSObject {
         documentsInfo.documentsOfEmploymentAndEducationPresent = candidateInfo["isAnyDocumentMissing"] as? NSNumber
         
         candidate.documentDetails = documentsInfo
+    }
+    
+    class func candidateMiscellaneousInfo(candidate:Candidate,candidateInfo:[String:AnyObject])
+    {
+        
+        
+        let miscellaneousInfo = CandidateMiscellaneous(entity:EHCoreDataHelper.createEntity("CandidateMiscellaneous", managedObjectContext:AppDelegate.getAppdelegate().managedObjectContext)!,insertIntoManagedObjectContext:AppDelegate.getAppdelegate().managedObjectContext)
+        miscellaneousInfo.businessUnit = candidateInfo["candidateBusinessUnit"] as? String
+        miscellaneousInfo.leavePlanInSixMonths = candidateInfo["leavePlanReasons"] as? String
+        miscellaneousInfo.reasonForJobChange = candidateInfo["jobChangeReasons"] as? String
+        miscellaneousInfo.joiningPeriod = candidateInfo["candidateJoinngPeriod"] as? String
+        miscellaneousInfo.interviewedBy = candidateInfo["inetrviewedBy"] as? String
+        miscellaneousInfo.legalObligationWithCurrentEmployer = candidateInfo["LegalObligations"] as? String
+        miscellaneousInfo.candidateRequestForRelocation = candidateInfo["isRelocationRequested"] as? NSNumber
+        miscellaneousInfo.backgroundVerification = candidateInfo["backgroundCheck"] as? NSNumber
+        miscellaneousInfo.wasInterviewedBefore = candidateInfo["isInterviewedBefore"] as? NSNumber
+        miscellaneousInfo.anyLeavePlanInSixMonths = candidateInfo["isAnyLeavePlans"] as? NSNumber
+        miscellaneousInfo.anyLegalObligationWithCurrentEmployer = candidateInfo["anyLegalObligations"] as? NSNumber
+        miscellaneousInfo.expectedSalary = NSNumber(int:Int32((candidateInfo["expectedSalary"] as? String)!)!)
     }
     
  

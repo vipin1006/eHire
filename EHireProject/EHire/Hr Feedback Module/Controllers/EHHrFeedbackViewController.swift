@@ -135,6 +135,7 @@ class EHHrFeedbackViewController: NSViewController {
             candidateInfo["inetrviewedBy"] = inetrviewedBy.stringValue
             candidateInfo["EmploymentGap"] = employmentGap.stringValue
             candidateInfo["lastDesignation"] = lastDesignation.stringValue
+            candidateInfo["leavePlanReasons"] = leavePlanReasons.stringValue
             //CoreData Candidate Object Comes here from Selected Candidate (Future Reference)
             
             //Dummy Candidate Object for Code Developing
