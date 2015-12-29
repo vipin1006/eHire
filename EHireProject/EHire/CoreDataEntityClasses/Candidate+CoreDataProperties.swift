@@ -14,11 +14,11 @@ import CoreData
 
 extension Candidate {
 
-    @NSManaged var experience: NSNumber?
+    @NSManaged var experience: String?
     @NSManaged var interviewDate: NSDate?
     @NSManaged var interviewTime: NSDate?
     @NSManaged var name: String?
-    @NSManaged var phoneNumber: NSNumber?
+    @NSManaged var phoneNumber: String?
     @NSManaged var requisition: String?
     @NSManaged var technologyName: String?
     @NSManaged var interviewedByManagers: NSSet?

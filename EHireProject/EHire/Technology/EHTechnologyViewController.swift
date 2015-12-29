@@ -107,6 +107,14 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 
                 isCandidatesViewLoaded = true
             }
+            //added
+            if let tempItem = item as? EHInterviewDate {
+                candidateController?.interviewDate = tempItem.scheduleInterviewDate
+                let techItem = outlineView.parentForItem(item) as? EHTechnology
+                candidateController?.technologyName = techItem?.technologyName
+            }
+            
+            candidateController!.refresh()
             
         default:
             
