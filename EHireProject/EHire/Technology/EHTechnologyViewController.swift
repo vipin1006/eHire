@@ -17,7 +17,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     
     //Set the content of source list in the outlineVew as the technology list/array
     var technologyArray = [EHTechnology]()
-    var addTechnologyController:EHAddTechnologyController?
     var selectedTechnologyIndex:Int?
     
     // Add Interview Date

@@ -40,7 +40,6 @@
 		41A980001C1974020016CAB4 /* deleteDate.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A97FFF1C1974020016CAB4 /* deleteDate.png */; };
 		4F2536E51C2179E0000E8C95 /* EHInterviewDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536E31C2179E0000E8C95 /* EHInterviewDate.swift */; };
 		4F2536E61C2179E0000E8C95 /* EHTechnology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536E41C2179E0000E8C95 /* EHTechnology.swift */; };
-		4F2536EB1C2179EC000E8C95 /* EHAddTechnologyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536E81C2179EC000E8C95 /* EHAddTechnologyController.swift */; };
 		4F2536EC1C2179EC000E8C95 /* EHPopOverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536E91C2179EC000E8C95 /* EHPopOverController.swift */; };
 		4F2536ED1C2179EC000E8C95 /* EHTechnologyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536EA1C2179EC000E8C95 /* EHTechnologyViewController.swift */; };
 		4F2536FB1C218172000E8C95 /* DataCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536FA1C218172000E8C95 /* DataCommunicator.swift */; };
@@ -145,7 +144,6 @@
 		41A97FFF1C1974020016CAB4 /* deleteDate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = deleteDate.png; path = ../../deleteDate.png; sourceTree = "<group>"; };
 		4F2536E31C2179E0000E8C95 /* EHInterviewDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHInterviewDate.swift; sourceTree = "<group>"; };
 		4F2536E41C2179E0000E8C95 /* EHTechnology.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnology.swift; sourceTree = "<group>"; };
-		4F2536E81C2179EC000E8C95 /* EHAddTechnologyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHAddTechnologyController.swift; sourceTree = "<group>"; };
 		4F2536E91C2179EC000E8C95 /* EHPopOverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHPopOverController.swift; sourceTree = "<group>"; };
 		4F2536EA1C2179EC000E8C95 /* EHTechnologyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnologyViewController.swift; sourceTree = "<group>"; };
 		4F2536FA1C218172000E8C95 /* DataCommunicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataCommunicator.swift; sourceTree = "<group>"; };
@@ -485,7 +483,6 @@
 			children = (
 				4F2536EA1C2179EC000E8C95 /* EHTechnologyViewController.swift */,
 				4F2536E91C2179EC000E8C95 /* EHPopOverController.swift */,
-				4F2536E81C2179EC000E8C95 /* EHAddTechnologyController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -831,7 +828,6 @@
 				806C9CA31C2433D80039FCF2 /* EHManagerFeedBackCustomTableView.swift in Sources */,
 				8029FFE91C2A81970041C74C /* CandidatePreviousEmploymentInfo.swift in Sources */,
 				8029FFEB1C2A81970041C74C /* CandidateQualification.swift in Sources */,
-				4F2536EB1C2179EC000E8C95 /* EHAddTechnologyController.swift in Sources */,
 				8029FFF11C2A81970041C74C /* ManagerFeedBack+CoreDataProperties.swift in Sources */,
 				8029FFF21C2A81970041C74C /* SkillSet.swift in Sources */,
 				806C9C9A1C2433690039FCF2 /* EHFeedbackViewController.swift in Sources */,
