@@ -2527,6 +2527,17 @@ DQ
                                                                 <action selector="addOverAllAssessmentForCandidate:" target="Xv2-bq-xG1" id="eNS-bd-D1d"/>
                                                             </connections>
                                                         </button>
+                                                        <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="Gqx-xp-wET">
+                                                            <rect key="frame" x="86" y="6" width="48" height="25"/>
+                                                            <animations/>
+                                                            <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="deselectStar" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="pHJ-C8-kZC">
+                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                            <connections>
+                                                                <action selector="addOverAllAssessmentForCandidate:" target="Xv2-bq-xG1" id="epG-Y6-lQQ"/>
+                                                            </connections>
+                                                        </button>
                                                         <button verticalHuggingPriority="750" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="fIs-IV-gj8">
                                                             <rect key="frame" x="126" y="2" width="55" height="32"/>
                                                             <animations/>
@@ -2547,17 +2558,6 @@ DQ
                                                             </buttonCell>
                                                             <connections>
                                                                 <action selector="addOverAllAssessmentForCandidate:" target="Xv2-bq-xG1" id="zzL-te-rXC"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="Gqx-xp-wET">
-                                                            <rect key="frame" x="86" y="6" width="48" height="25"/>
-                                                            <animations/>
-                                                            <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="deselectStar" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="pHJ-C8-kZC">
-                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                <font key="font" metaFont="system"/>
-                                                            </buttonCell>
-                                                            <connections>
-                                                                <action selector="addOverAllAssessmentForCandidate:" target="Xv2-bq-xG1" id="epG-Y6-lQQ"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -3165,6 +3165,20 @@ DQ
                                                                 <action selector="addOverAllAssessmentForTechnology:" target="Xv2-bq-xG1" id="Q5y-Ph-ktQ"/>
                                                             </connections>
                                                         </button>
+                                                        <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="q0D-xU-Svr">
+                                                            <rect key="frame" x="51" y="5" width="30" height="27"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="30" id="ZCS-B3-1Vj"/>
+                                                            </constraints>
+                                                            <animations/>
+                                                            <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="deselectStar" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="BjN-As-yhH">
+                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                            <connections>
+                                                                <action selector="addOverAllAssessmentForTechnology:" target="Xv2-bq-xG1" id="PSj-Q6-deP"/>
+                                                            </connections>
+                                                        </button>
                                                         <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="VN9-NN-vZg">
                                                             <rect key="frame" x="82" y="6" width="36" height="26"/>
                                                             <constraints>
@@ -3191,20 +3205,6 @@ DQ
                                                             </buttonCell>
                                                             <connections>
                                                                 <action selector="addOverAllAssessmentForTechnology:" target="Xv2-bq-xG1" id="ZCO-sf-ugy"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="q0D-xU-Svr">
-                                                            <rect key="frame" x="51" y="5" width="30" height="27"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="30" id="ZCS-B3-1Vj"/>
-                                                            </constraints>
-                                                            <animations/>
-                                                            <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="deselectStar" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="BjN-As-yhH">
-                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                <font key="font" metaFont="system"/>
-                                                            </buttonCell>
-                                                            <connections>
-                                                                <action selector="addOverAllAssessmentForTechnology:" target="Xv2-bq-xG1" id="PSj-Q6-deP"/>
                                                             </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="ngu-t4-vjU">
@@ -3923,7 +3923,7 @@ DQ
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="tW8-co-12o">
-                                                    <rect key="frame" x="322" y="0.0" width="4" height="139"/>
+                                                    <rect key="frame" x="322" y="0.0" width="5" height="139"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -4084,7 +4084,7 @@ DQ
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="0ON-WU-C7t">
-                                                    <rect key="frame" x="485" y="0.0" width="5" height="101"/>
+                                                    <rect key="frame" x="485" y="0.0" width="4" height="101"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

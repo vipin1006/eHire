@@ -211,38 +211,30 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                 }
                 else
                 {
-                    for countOfStar in 0...total
-                    {
-//                        let countOfBtn = totalView[countOfStar] as! NSButton
-                        for  countOfBtn  in totalView {
-                            
-                            let tempButton = countOfBtn as! NSButton
-                            print("btnTag=\(tempButton.tag)")
-                            if tempButton.tag == countOfStar{
-                                tempButton.image = NSImage(named: "selectStar")
 
-                            }
+                    
+                    for countStar in 0...total
+                    {
+                        let countBtn = totalView[countStar] as! NSButton
+                        if countBtn.image?.name() == "deselectStar"
+                        {
+                            countBtn.image = NSImage(named: "selectStar")
                         }
-                        
                     }
                 }
             }
             else
             {
-                for stars in deselectStar
-                {
-                    for countOfBtn in totalView{
-                       let tempButton = countOfBtn as! NSButton
-                        if tempButton.tag == stars{
-                            tempButton.image = NSImage(named: "deselectStar")
-                            
-                        }
+
+                
+                for stars in deselectStar{
+                    
+                    let star = totalView[stars!] as! NSButton
+                    
+                    if star.image?.name() == "selectStar"{
+                        
+                        star.image = NSImage(named: "deselectStar")
                     }
-//                    let star = totalView[stars!] as! NSButton
-//                    if star.image?.name() == "selectStar"
-//                    {
-//                        star.image = NSImage(named: "deselectStar")
-//                    }
                 }
             }
         }
