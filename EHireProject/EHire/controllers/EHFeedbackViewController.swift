@@ -39,7 +39,7 @@ class EHFeedbackViewController: NSViewController {
     override func viewDidLoad()
     {
     super.viewDidLoad()
-    techFeedback = storyboard?.instantiateControllerWithIdentifier("TechnicalFeedback") as? EHTechnicalFeedbackViewController
+    techFeedback = storyboard?.instantiateControllerWithIdentifier("EHTechnicalFeedbackViewController") as? EHTechnicalFeedbackViewController
         
         
     self.scrollViewHr.documentView? = (techFeedback?.view)!
@@ -97,7 +97,7 @@ class EHFeedbackViewController: NSViewController {
             
             if !isManagerLoaded
             {
-                managerFeedback = storyboard?.instantiateControllerWithIdentifier("ManagerFeedback") as? EHManagerFeedbackViewController
+                managerFeedback = storyboard?.instantiateControllerWithIdentifier("EHManagerFeedbackViewController") as? EHManagerFeedbackViewController
                 self.scrollViewHr.documentView = managerFeedback?.view
                 
 
@@ -188,7 +188,7 @@ class EHFeedbackViewController: NSViewController {
     func addHrFeedBackView(){
    
         
-    hrFeedBackViewController = self.storyboard?.instantiateControllerWithIdentifier("hrFeedback") as? EHHrFeedbackViewController
+    hrFeedBackViewController = self.storyboard?.instantiateControllerWithIdentifier("EHHrFeedbackViewController") as? EHHrFeedbackViewController
     
     if let hrViewController = hrFeedBackViewController {
     

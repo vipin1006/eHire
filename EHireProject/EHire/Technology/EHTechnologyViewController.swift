@@ -97,7 +97,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
             if !isCandidatesViewLoaded{
                 
-                candidateController = self.storyboard?.instantiateControllerWithIdentifier("candidateObject") as? EHCandidateController
+                candidateController = self.storyboard?.instantiateControllerWithIdentifier("EHCandidateController") as? EHCandidateController
                 candidateController?.delegate = self
                 self.candidateView.addSubview((candidateController?.view)!)
                 //createConstraintsForCandidateController(0.0, trailing: 0.0, top: 0.0, bottom: 0.0)
@@ -401,7 +401,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         for views in self.view.subviews{
             views.removeFromSuperview()
         }
-        feedbackViewController = self.storyboard?.instantiateControllerWithIdentifier("feedback") as? EHFeedbackViewController
+        feedbackViewController = self.storyboard?.instantiateControllerWithIdentifier("EHFeedbackViewController") as? EHFeedbackViewController
         
         feedbackViewController?.view.frame = self.view.bounds
         
@@ -495,7 +495,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         mainWindow?.contentViewController = self
         
-        candidateController = self.storyboard?.instantiateControllerWithIdentifier("candidateObject") as? EHCandidateController
+        candidateController = self.storyboard?.instantiateControllerWithIdentifier("EHCandidateController") as? EHCandidateController
         candidateController?.delegate = self
         self.candidateView.addSubview((candidateController?.view)!)
         isCandidatesViewLoaded = true
