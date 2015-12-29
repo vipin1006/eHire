@@ -191,7 +191,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         
         var totalStarCount : Int?
         
-        
+        // Logic for selecting and deselecting stars
         func countingOfRatingStar(total: Int, deselectStar : Int?...)
         {
             if deselectStar.count == 0
@@ -248,7 +248,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         }
         
         
-        
+        // Logic for checking which star rating clicked
         switch (sender.tag)
         {
         case 0:
@@ -283,6 +283,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         
     }
     
+    
+    //MARK:- Method to set skillSet into model class
     func setSkillRating(customView:AnyObject,ratingValue:Int16){
         if customView is EHManagerFeedBackCustomTableView{
             let textFieldObject = customView.titleName as NSTextField
