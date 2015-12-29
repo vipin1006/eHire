@@ -149,7 +149,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             for aRec in records!{
                 let cEntity = aRec as! Candidate
                 
-                candidateArray.addObject(cEntity);
+                candidateArray.addObject(cEntity);//
             }
         }
     }
