@@ -39,7 +39,8 @@ class EHManagerFeedbackDataAccessLayer: NSObject {
             let skillSetDecription = EHCoreDataHelper.createEntity("SkillSet", managedObjectContext: coreDataStack.managedObjectContext)
             let skillSetObject:SkillSet = SkillSet(entity:skillSetDecription!, insertIntoManagedObjectContext:coreDataStack.managedObjectContext) as SkillSet
             skillSetObject.skillName = object.skillName
-            skillSetObject.skillRating = 1
+            print("Name=%@,Rating=%@",object.skillName,object.skillRating)
+            skillSetObject.skillRating = NSNumber(short: object.skillRating!)
             skillSetarray.append(skillSetObject)
 
         }

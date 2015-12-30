@@ -61,15 +61,15 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
 //        communicationSkill.skillRating = 3
         let organisationStabilitySkill = EHSkillSet()
         organisationStabilitySkill.skillName = "Organisation Stability"
-        organisationStabilitySkill.skillRating = 1
+        
         
         let leaderShipSkill = EHSkillSet()
         leaderShipSkill.skillName = "Leadership(if applicable)"
-//        leaderShipSkill.skillRating = 4
+
         
         let growthPotentialSkill = EHSkillSet()
         growthPotentialSkill.skillName = "Growth Potential"
-//        growthPotentialSkill.skillRating = 2
+
         
         managerialFeedbackModel!.skillSet.append(communicationSkill)
         managerialFeedbackModel!.skillSet.append(organisationStabilitySkill)
