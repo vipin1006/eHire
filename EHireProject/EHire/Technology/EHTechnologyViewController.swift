@@ -36,7 +36,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     var cellTechnology:EHTechnologyCustomCell?
     override func viewDidLoad() {
         super.viewDidLoad()
-         technologyArray = EHTechnologyDataLayer.getSourceListContent() as! [EHTechnology]
+        technologyArray = EHTechnologyDataLayer.getSourceListContent() as! [EHTechnology]
     }
     
     
@@ -66,7 +66,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         return false
     }
     
-    // This datasource method returns the count of items (when called for parent/technology) 
+    // This datasource method returns the count of items (when called for parent/technology)
     // or number of children(dates) when called for interview dates.
     func outlineView(outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int
     {
@@ -92,7 +92,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 candidateController?.view.removeFromSuperview()
                 isCandidatesViewLoaded = false
             }
-           
+            
         case  _ as EHInterviewDate:
             
             if !isCandidatesViewLoaded{
@@ -151,16 +151,15 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
             let x = item as! EHTechnology
             if x.technologyName == ""{
-                 parent.textFieldTechnology.editable = true
-                 parent.textFieldTechnology.backgroundColor = NSColor.whiteColor()
+                parent.textFieldTechnology.editable = true
+                parent.textFieldTechnology.backgroundColor = NSColor.whiteColor()
                 
-
+                
             }else{
                 parent.textFieldTechnology.editable = false
                 parent.textFieldTechnology.backgroundColor = NSColor.clearColor()
             }
             parent.textFieldTechnology.stringValue = x.technologyName
-            parent.textFieldTechnology.tag = outlineView.rowForItem(item)
             parent.textFieldTechnology.delegate = self
             cellTechnology = parent
             cell = parent
@@ -181,37 +180,20 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     //This delegate method passed the data from another view controller to this controller as it confirms to the custom DataCommunicator protocol.
     func sendData<T>(sendingData: T,sender:String)
     {
-        switch sender{
+        let scheduledDate = sendingData as! NSDate
+        
+        if let selectedItem = sourceList.itemAtRow(sourceList.selectedRow) as? EHTechnology {
+            let aString = sendingData as! NSDate
+            print(aString)
+            selectedItem.interviewDates.append(EHInterviewDate(date:scheduledDate))
+            EHTechnologyDataLayer.addInterviewDateToCoreData(selectedItem.technologyName ,dateToAdd: scheduledDate)
             
-        case "EHire.EHAddTechnologyController": // adding technology
-            
-            let newTechnologyName = sendingData as! String
-            let newTechnology = EHTechnology(technology:newTechnologyName)
-            technologyArray .append(newTechnology)
-            EHTechnologyDataLayer.addTechnologyToCoreData(newTechnologyName)
-            
-            sourceList.reloadData()
-            
-        case "EHire.EHPopOverController": // adding interview dates
-            
-            let scheduledDate = sendingData as! NSDate
-            
-                    if let selectedItem = sourceList.itemAtRow(sourceList.selectedRow) as? EHTechnology {
-                        let aString = sendingData as! NSDate
-                        print(aString)
-                        selectedItem.interviewDates.append(EHInterviewDate(date:scheduledDate))
-                        EHTechnologyDataLayer.addInterviewDateToCoreData(selectedItem.technologyName ,dateToAdd: scheduledDate)
-                        
-                        self.sourceList.reloadData()
-                        datePopOver.close()
-            }
-                        
-        default:
-            
-            print("Nothing")
+            self.sourceList.reloadData()
+            datePopOver.close()
         }
+        
     }
-
+    
     
     //PRAGMAMARK: - Button Actions
     
@@ -246,17 +228,14 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         }
         
         if let selectedItem = sourceList.itemAtRow(sourceList.selectedRow) as? EHTechnology{
-           
+            
             // Condition to check new added technology is deletable
             if !cellTechnology!.textFieldTechnology.editable{
                 technologyArray.removeAtIndex(self.sourceList.selectedRow)
-                
-                
                 EHTechnologyDataLayer.deleteTechnologyFromCoreData(selectedItem.technologyName)
             }
-            
         }
-        
+            
         else
         {
             let selectedInterviewDate = sourceList.itemAtRow(sourceList.selectedRow) as? EHInterviewDate
@@ -272,7 +251,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                     count++
                 }
             }
-
+            
         }
         self.sourceList.reloadData()
     }
@@ -280,8 +259,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     @IBAction func addDateAction(button: NSButton)
     {
         datePopOver = NSPopover()
-        
-        
         //Make the calendar popover go away when clicked elsewhere
         datePopOver.behavior = NSPopoverBehavior.Transient
         datePopOverController = self.storyboard?.instantiateControllerWithIdentifier("popover") as? EHPopOverController
@@ -289,12 +266,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         datePopOverController!.delegate = self
         datePopOver.showRelativeToRect(button.bounds, ofView:button, preferredEdge:NSRectEdge.MaxY)
     }
-    
-    
-   
-   
-    
-        
     
     func showFeedbackViewController(){
         
@@ -307,15 +278,15 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         self.view.addSubview((feedbackViewController?.view)!)
         
-//        createConstraintsForFeedbackController(0, trailing:0.0, top: 0.0, bottom: 0)
+        //        createConstraintsForFeedbackController(0, trailing:0.0, top: 0.0, bottom: 0)
         createConstraintsForController(self.view, subView: (feedbackViewController?.view)!, leading: 0.0, trailing: 0.0, top: 0.0, bottom: 0.0)
-//
+        //
         
     }
     //MARK:- TextField Delegate methods
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
     {
-            return true
+        return true
     }
     
     override func controlTextDidEndEditing(obj: NSNotification)
@@ -327,21 +298,24 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         if (textFieldObject.stringValue == ""){
             textFieldObject.removeFromSuperview()
-        }else{
-            let technologyObject = technologyArray[textFieldObject.tag]
-            technologyObject.technologyName = textFieldObject.stringValue
-            textFieldObject.wantsLayer = true
-            
-            textFieldObject.backgroundColor = NSColor.clearColor()
-            
-            EHTechnologyDataLayer.addTechnologyToCoreData(textFieldObject.stringValue)
         }
+        else{
+            if isValidTechnologyName(textFieldObject.stringValue)
+            {
+                let technologyObject = technologyArray[technologyArray.count-1]
+                technologyObject.technologyName = textFieldObject.stringValue
+                textFieldObject.wantsLayer = true
+                
+                textFieldObject.backgroundColor = NSColor.clearColor()
+                
+                EHTechnologyDataLayer.addTechnologyToCoreData(textFieldObject.stringValue)
 
-//        cellTechnology?.textFieldTechnology.editable = false
-        
-                        self.sourceList.reloadData()
-        
-
+            }
+            else{
+                alertPopup("Error", informativeText: "Technology name should be unique")
+            }
+        }
+        self.sourceList.reloadData()
     }
     // Alert Popup
     func alertPopup(data:String, informativeText:String)
@@ -355,9 +329,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     }
     
     func createConstraintsForFeedbackController(leading:CGFloat,trailing:CGFloat,top:CGFloat,bottom:CGFloat){
-         feedbackViewController!.view.translatesAutoresizingMaskIntoConstraints = false
+        feedbackViewController!.view.translatesAutoresizingMaskIntoConstraints = false
         
-              
+        
         
         let xLeadingSpace = NSLayoutConstraint(item: (feedbackViewController?.view)!, attribute: .Leading, relatedBy: .Equal, toItem: self.view, attribute: .Leading, multiplier: 1, constant: leading)
         
@@ -399,11 +373,27 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         candidateController?.delegate = self
         self.candidateView.addSubview((candidateController?.view)!)
         isCandidatesViewLoaded = true
-
-        
     }
-
-
+    
+    //MARk:- Validation methods
+    // this method will check for duplication of technology name
+    func isValidTechnologyName(inputString :String) -> Bool
+    {
+        var isValid = true
+        
+        for  object in technologyArray
+        {
+            let technology = object as EHTechnology
+            
+            //we are lowercaseString to avoid adding duplicate technology name with capital letters
+            if technology.technologyName.lowercaseString == inputString.lowercaseString
+            {
+                isValid =  false
+                break
+            }
+        }
+        return isValid
+    }
 }
 
 

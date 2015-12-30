@@ -12,7 +12,6 @@ import XCTest
 
 class EHireBasicsTest: XCTestCase
 {
-
     //MARK: - Overridden Methods
     
     override func setUp()
