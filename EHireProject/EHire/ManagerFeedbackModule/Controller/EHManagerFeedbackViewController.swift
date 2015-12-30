@@ -45,7 +45,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
     
-    @IBOutlet var managerialFeedbackModel: EHManagerialFeedbackModel!
+    @IBOutlet dynamic var  managerialFeedbackModel: EHManagerialFeedbackModel!
     let candidateDetails = EHCandidateDetails(inName: "vipin",candidateExperience:"1" , candidateInterviewTiming: "1023.22", candidatePhoneNo:"33131231312") as EHCandidateDetails
    
    
@@ -93,8 +93,24 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
 //        if ratingTitle.count == 0
 //        {
         
+        let managerFeedbackAccessLayer = EHManagerFeedbackDataAccessLayer(managerFeedbackModel: managerialFeedbackModel)
+
+       let managerFeedbackArray =  managerFeedbackAccessLayer.fetchManagerFeedback()
+        
+            let feedback =  managerFeedbackArray[0] as! ManagerFeedBack
+            
+            print (feedback.candidate?.name)
+        managerialFeedbackModel.commentsOnCandidate = NSAttributedString(string: feedback.commentsOnCandidate!)
+        
+        //managerialFeedbackModel.managerName = feedback.managerName!
+        managerialFeedbackModel.designation = feedback.designation!
+        
+        
+        print("name = \(managerialFeedbackModel.designation)")
+
         
     }
+    
     func numberOfRowsInTableView(tableView: NSTableView) -> Int
     {
         return (managerialFeedbackModel?.skillSet.count)!
@@ -388,7 +404,4 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
 
     }
     
-    func fetchManagerFeedbackFromCoreData(){
-        
-    }
 }

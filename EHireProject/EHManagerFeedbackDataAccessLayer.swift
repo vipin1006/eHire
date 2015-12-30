@@ -89,7 +89,7 @@ class EHManagerFeedbackDataAccessLayer: NSObject {
     func fetchManagerFeedback()->[AnyObject]{
         
         
-        let predicate = NSPredicate(format:"name = %@ AND interviewDate = %@" , (self.managerFeedbackmodel?.candidate?.name)!,(self.managerFeedbackmodel?.candidate?.interviewDate)!)
+        let predicate = NSPredicate(format:"candidate.name = %@", (self.managerFeedbackmodel?.candidate?.name)!)
         
         let managerFeedbackRecords = EHCoreDataHelper.fetchRecordsWithPredicate(predicate, sortDescriptor: nil, entityName: "ManagerFeedBack", managedObjectContext: coreDataStack.managedObjectContext)
         
@@ -104,5 +104,13 @@ class EHManagerFeedbackDataAccessLayer: NSObject {
         
         return managerFeedbackRecords as! [Candidate]
     }
+    
+    func fetchManagerialFeedback() ->EHManagerialFeedbackModel
+    {
+        
+        
+        return self.managerFeedbackmodel!
+    }
+    
 
 }
