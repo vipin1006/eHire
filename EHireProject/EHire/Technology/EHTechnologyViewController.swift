@@ -385,7 +385,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         {
             let technology = object as EHTechnology
             
-            if technology.technologyName == inputString
+            //we are lowercaseString to avoid adding duplicate technology name with capital letters
+            if technology.technologyName.lowercaseString == inputString.lowercaseString
             {
                 isValid =  false
                 break
