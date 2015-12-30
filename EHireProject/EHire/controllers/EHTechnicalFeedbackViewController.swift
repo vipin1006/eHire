@@ -24,25 +24,27 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     @IBOutlet weak var candidateNameField: NSTextField!
     @IBOutlet weak var requisitionNameField: NSTextField!
     @IBOutlet weak var dateOfInterviewField: NSTextField!
-    
     @IBOutlet weak var modeOfInterview: NSMatrix!
     @IBOutlet weak var recommentationField: NSMatrix!
     
     //Variables
     var cell : EHRatingsTableCellView?
-    var technicalFeedbackDetails = [String : Any]()
     var feedback = EHFeedbackViewController()
-    let skill = EHSkillSetModel()
     var technicalFeedbackModel = EHTechnicalFeedbackModel()
     let dataAccessModel = TechnicalFeedbackDataAccess()
     
     var name : String?
-    var overallTechnicalRating : Int = 0
-    var overallCandidateRating : Int = 0
-    var overallCandidateRatingOnSkills : Int = 0
+    var overallTechnicalRating : Int?
+    var overallCandidateRating : Int?
+    var overallCandidateRatingOnSkills : Int?
     var interviewModeState : String?
     var recommentationState : String?
-    var skillsAndRatingsTitleArray = NSMutableArray()
+    //var skillsAndRatingsTitleArray = NSMutableArray()
+    var skillsAndRatingsTitleArray = [SkillSet]()
+    
+    
+    var feedbackData : [AnyObject]?
+    let candidateDetails = EHCandidateDetails(inName: "Tharani",candidateExperience:"" , candidateInterviewTiming: "12", candidatePhoneNo:"") as EHCandidateDetails
     
    //ModeOfInterview Action
     @IBAction func modeOfInterviewAction(sender: NSMatrix)
@@ -74,54 +76,41 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
    
     override func loadView()
     {
-//        let communicationSkill = EHSkillSetModel()
-//        communicationSkill.skillName = "Communication"
-//        communicationSkill.skillRating = 0
-//        let stabilitySkill = EHSkillSetModel()
-//        stabilitySkill.skillName = "Stability"
-//        stabilitySkill.skillRating = 0
-//        let leadershipSkill = EHSkillSetModel()
-//        leadershipSkill.skillName = "Leadership"
-//        leadershipSkill.skillRating = 0
-//        let growthSkill = EHSkillSetModel()
-//        growthSkill.skillName = "Growth"
-//        growthSkill.skillRating = 0
-//
-//        technicalFeedbackModel.skills.append(communicationSkill)
-//        technicalFeedbackModel.skills.append(stabilitySkill)
-//        technicalFeedbackModel.skills.append(leadershipSkill)
-//        technicalFeedbackModel.skills.append(growthSkill)
+     technicalFeedbackModel.candidate = candidateDetails
+     let skillArray = [ "Communication","Stability","Leadership","Growth"]
+        
+    
+        
      if skillsAndRatingsTitleArray.count == 0
      {
-      let communication = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)!,insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)
+        let communication = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)!,insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)
     
-      communication.skillName = "Communication"
-      communication.skillRating = overallCandidateRatingOnSkills
-    
-      self.skillsAndRatingsTitleArray.addObject(communication)
+        communication.skillName = "Communication"
+        skillsAndRatingsTitleArray.append(communication)
+        
      
       let organisationStability = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)!,insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)
     
-     organisationStability.skillName = "Stability"
+      organisationStability.skillName = "Stability"
     
-      organisationStability.skillRating = overallCandidateRatingOnSkills
-    
-     self.skillsAndRatingsTitleArray.addObject(organisationStability)
+        
+       skillsAndRatingsTitleArray.append(organisationStability)
+
       
-     let leadership = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)!,insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)
+      let leadership = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)!,insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)
+     
+      leadership.skillName = "Leadership"
     
-     leadership.skillName = "Leadership"
+      leadership.skillRating = overallCandidateRatingOnSkills
     
-     leadership.skillRating = overallCandidateRatingOnSkills
-    
-     self.skillsAndRatingsTitleArray.addObject(leadership)
-    
-    
-     let growth = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)!,insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)
+        skillsAndRatingsTitleArray.append(leadership)
+
+    let growth = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)!,insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)
     
      growth.skillName = "Growth"
      growth.skillRating = overallCandidateRatingOnSkills
-     self.skillsAndRatingsTitleArray.addObject(growth)
+    skillsAndRatingsTitleArray.append(growth)
+
       }
         super.loadView()
     }
@@ -130,6 +119,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
         cell?.skilsAndRatingsTitlefield.delegate = self
         textViewOfTechnologyAssessment.delegate = self
         textViewOfCandidateAssessment.delegate = self
@@ -149,6 +139,30 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             view.action = "assessmentOfCandidate:"
         }
         tableView.reloadData()
+        fetching()
+        if feedbackData?.count != 0
+        {
+            let managerFeedbackArray =  dataAccessModel.fetch()
+            print(technicalFeedbackModel)
+            let feedback =  managerFeedbackArray[0] as! TechnicalFeedBack
+            
+            print (feedback.candidate?.name)
+            
+            technicalFeedbackModel.commentsOnCandidate = feedback.commentsOnCandidate 
+            
+            
+            technicalFeedbackModel.designation = feedback.designation!
+            
+            for obj in feedback.candidateSkills!{
+                print(obj)
+                
+            }
+            designationField.stringValue = technicalFeedbackModel.designation!
+            print("name = \(technicalFeedbackModel.designation)")
+            
+        }
+
+        
     }
    
     // To Dispaly the Star Rating insided the TextView Of Overall Assessment On Technology
@@ -184,9 +198,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView?
     {
         let cellView : EHRatingsTableCellView = tableView.makeViewWithIdentifier("RatingCell", owner: self) as! EHRatingsTableCellView
-        //cellView?.skilsAndRatingsTitlefield.stringValue = skillsAndRatingsTitleArray.objectAtIndex(row) as! String
-        let skill = skillsAndRatingsTitleArray.objectAtIndex(row) as! SkillSet
-       // let skill = technicalFeedbackModel.skills[row] as EHSkillSetModel
+        let skill = skillsAndRatingsTitleArray[row]
         cellView.skilsAndRatingsTitlefield.stringValue = skill.skillName!
         cellView.skilsAndRatingsTitlefield.editable = true
         cellView.skilsAndRatingsTitlefield.delegate = self
@@ -306,8 +318,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             {
                 cell = view.superview as? EHRatingsTableCellView
                 overallCandidateRatingOnSkills = 1
-                let skill = skillsAndRatingsTitleArray.objectAtIndex((cell?.skilsAndRatingsTitlefield.tag)!) as! SkillSet
-                
+                let skill = skillsAndRatingsTitleArray[(cell?.skilsAndRatingsTitlefield.tag)!]
                 skill.skillRating = overallCandidateRatingOnSkills
                
             }
@@ -326,9 +337,10 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             }
              else if view.superview is EHRatingsTableCellView
             {
-                 cell = view.superview as? EHRatingsTableCellView
+                cell = view.superview as? EHRatingsTableCellView
                 overallCandidateRatingOnSkills = 2
-                let skill = skillsAndRatingsTitleArray.objectAtIndex((cell?.skilsAndRatingsTitlefield.tag)!) as! SkillSet
+                let skill = skillsAndRatingsTitleArray[(cell?.skilsAndRatingsTitlefield.tag)!]
+
                 
                 skill.skillRating = overallCandidateRatingOnSkills
             }
@@ -351,7 +363,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             {
                 cell = view.superview as? EHRatingsTableCellView
                 overallCandidateRatingOnSkills = 3
-                let skill = skillsAndRatingsTitleArray.objectAtIndex((cell?.skilsAndRatingsTitlefield.tag)!) as! SkillSet
+                let skill = skillsAndRatingsTitleArray[(cell?.skilsAndRatingsTitlefield.tag)!]
                 
                 skill.skillRating = overallCandidateRatingOnSkills
             }
@@ -370,9 +382,10 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             }
             else if view.superview is EHRatingsTableCellView
             {
-                 cell = view.superview as? EHRatingsTableCellView
+                cell = view.superview as? EHRatingsTableCellView
                 overallCandidateRatingOnSkills = 4
-                let skill = skillsAndRatingsTitleArray.objectAtIndex((cell?.skilsAndRatingsTitlefield.tag)!) as! SkillSet
+
+                let skill = skillsAndRatingsTitleArray[(cell?.skilsAndRatingsTitlefield.tag)!]
                
                 skill.skillRating = overallCandidateRatingOnSkills
             }
@@ -394,8 +407,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 cell = view.superview as? EHRatingsTableCellView
                 
                 overallCandidateRatingOnSkills = 5
-                let skill = skillsAndRatingsTitleArray.objectAtIndex((cell?.skilsAndRatingsTitlefield.tag)!) as! SkillSet
-                
+                let skill = skillsAndRatingsTitleArray[(cell?.skilsAndRatingsTitlefield.tag)!]
                 skill.skillRating = overallCandidateRatingOnSkills
             }
             
@@ -406,13 +418,12 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     //MARK: TextField Delegate methods
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
     {
-        let skill = skillsAndRatingsTitleArray.objectAtIndex(self.tableView.selectedRow) as! SkillSet
+        let skill = skillsAndRatingsTitleArray[self.tableView.selectedRow]
+
         skill.skillName = fieldEditor.string
         skill.skillRating = overallCandidateRatingOnSkills
         print(skill.skillRating)
         EHCoreDataHelper.saveToCoreData(skill)
-//      let skill = technicalFeedbackModel.skills[self.tableView.selectedRow]
-//      skill.skillName = fieldEditor.string
         return true
     }
     
@@ -432,24 +443,12 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             
             newSkill.skillRating = overallCandidateRatingOnSkills
             
-            self.skillsAndRatingsTitleArray.addObject(newSkill)
+            self.skillsAndRatingsTitleArray.append(newSkill)
             
             print(skillsAndRatingsTitleArray)
             
             tableView.reloadData()
         }
-
-//        if technicalFeedbackModel.skills.count > 0 && cell?.skilsAndRatingsTitlefield.stringValue == "Enter Title"
-//        {
-//            alertPopup("Enter Title", informativeText: "Please enter previous selected title")
-//        }
-//        else
-//        {
-//            skill.skillName = "Enter Title"
-//            skill.skillRating = 0
-//            technicalFeedbackModel.skills.append(skill)
-//            tableView.reloadData()
-//        }
     }
     
     //Mark: To remove the existing skills inside TableView
@@ -458,7 +457,10 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     {
         if tableView.selectedRow != -1
         {
-            skillsAndRatingsTitleArray.removeObjectAtIndex(tableView.selectedRow)
+            skillsAndRatingsTitleArray.removeAtIndex(tableView.selectedRow)
+                //removeObjectAtIndex(tableView.selectedRow)
+            
+            
             tableView.reloadData()
         }
     }
@@ -486,16 +488,17 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     
     @IBAction func saveDetailsAction(sender: NSButton)
     {
-        for object in skillsAndRatingsTitleArray{
+        for object in skillsAndRatingsTitleArray
+        {
             let skillSetObject = object as! SkillSet
             print(skillSetObject.skillRating)
             print(skillSetObject.skillName)
         }
        
-        if validation()
+       if validation()
        {
        technicalFeedbackModel.modeOfInterview         = interviewModeState
-       technicalFeedbackModel.skills = skillsAndRatingsTitleArray as [AnyObject]
+       technicalFeedbackModel.skills = skillsAndRatingsTitleArray as [SkillSet]
        technicalFeedbackModel.commentsOnTechnology = textViewOfTechnologyAssessment.string
        technicalFeedbackModel.ratingOnTechnical    = overallTechnicalRating
        technicalFeedbackModel.commentsOnCandidate  = textViewOfCandidateAssessment.string
@@ -529,11 +532,12 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         do {
             let results =
             try managedContext.executeFetchRequest(fetchRequest)
-            let feedbackData = results as! [NSManagedObject]
-            if feedbackData.count != 0
+            feedbackData = results as! [NSManagedObject]
+            if feedbackData!.count != 0
             {
                print(feedbackData)
             }
+            
         }
         catch let error as NSError
         {
@@ -580,19 +584,19 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     {
       if subView.stringValue == ""
      {
-     setBoarderColor(subView)
+         setBoarderColor(subView)
          return false
      }
      else if subView.stringValue.characters.count < 5
      {
-     setBoarderColor(subView)
+        setBoarderColor(subView)
          return false
      }
      else
      {
-     subView.wantsLayer = true
-     subView.layer?.backgroundColor = NSColor.clearColor().CGColor
-     return true
+        subView.wantsLayer = true
+        subView.layer?.backgroundColor = NSColor.clearColor().CGColor
+        return true
      }
     }
 

@@ -29,29 +29,25 @@ class EHFeedbackViewController: NSViewController {
     var isTechnicalLoaded  = false
     var isManagerLoaded = false
     
-    var hrFeedBackViewController:EHHrFeedbackViewController? = nil
-    var managerFeedback : EHManagerFeedbackViewController? = nil
-    var  techFeedback : EHTechnicalFeedbackViewController? = nil
+    var hrFeedBackViewController:EHHrFeedbackViewController?
+    var managerFeedback : EHManagerFeedbackViewController?
+    var techFeedback : EHTechnicalFeedbackViewController?
+    
+    let dataAccess = TechnicalFeedbackDataAccess()
+    var technicalFeedbackModel = EHTechnicalFeedbackModel()
+    
     
     
     //MARK: View Life Cycle
-    
     override func viewDidLoad()
     {
     super.viewDidLoad()
     techFeedback = storyboard?.instantiateControllerWithIdentifier("EHTechnicalFeedbackViewController") as? EHTechnicalFeedbackViewController
         
-        
     self.scrollViewHr.documentView? = (techFeedback?.view)!
-        
     self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1081))
-    
     self.typeOfInterview.selectedSegment = 0
-        
     self.subRound.selectedSegment = 0
-        
-    
-
     self.scrollViewHr.hasVerticalScroller = true
     self.scrollViewHr.hasHorizontalScroller = true
     }
@@ -151,6 +147,18 @@ class EHFeedbackViewController: NSViewController {
     
     case 1:
     
+        var employeeRecords:[AnyObject]?
+        let fetchRequest = NSFetchRequest(entityName:"TechnicalFeedBack")
+        do
+        {
+            employeeRecords = try EHCoreDataStack.sharedInstance.managedObjectContext.executeFetchRequest(fetchRequest)
+        }
+        catch let error as NSError
+        {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        print(employeeRecords)
+                
     print("Round Two")
     
     case 2:
@@ -184,6 +192,8 @@ class EHFeedbackViewController: NSViewController {
     }
     
     }
+    
+    
     
     func addHrFeedBackView(){
    
