@@ -80,6 +80,8 @@ class EHireCandiateTest: EHCoreData
         XCTAssertNotNil(candidate,        "Candidate Entity is not created")
         XCTAssertNotNil(entityTechnical,  "Technical Feedback Entity description is not created")
         XCTAssertNotNil(technicalFeedBack,"Technical Feedback is not created")
+        XCTAssertNotNil(entityQualification,"Qualification Entity description is not created")
+        XCTAssertNotNil(qualification,    "qualification is not created")
     }
     
     override func tearDown()
