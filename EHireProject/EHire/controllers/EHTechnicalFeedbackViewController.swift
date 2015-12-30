@@ -302,12 +302,14 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 overallCandidateRating = 1
             }
             
-            else if view as? NSView == cell?.starCustomView
+            else if view.superview is EHRatingsTableCellView
             {
+                cell = view.superview as? EHRatingsTableCellView
                 overallCandidateRatingOnSkills = 1
-//                let skill = skillsAndRatingsTitleArray.objectAtIndex(self.tableView.selectedRow) as! SkillSet
-//                skill.skillRating = overallCandidateRatingOnSkills
-//                EHCoreDataHelper.saveToCoreData(skill)
+                let skill = skillsAndRatingsTitleArray.objectAtIndex((cell?.skilsAndRatingsTitlefield.tag)!) as! SkillSet
+                
+                skill.skillRating = overallCandidateRatingOnSkills
+               
             }
         case 1:
             countingOfRatingStar(1)
@@ -322,9 +324,13 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             {
                 overallCandidateRating = 2
             }
-            else if view as? NSView == cell?.starCustomView
+             else if view.superview is EHRatingsTableCellView
             {
+                 cell = view.superview as? EHRatingsTableCellView
                 overallCandidateRatingOnSkills = 2
+                let skill = skillsAndRatingsTitleArray.objectAtIndex((cell?.skilsAndRatingsTitlefield.tag)!) as! SkillSet
+                
+                skill.skillRating = overallCandidateRatingOnSkills
             }
             
         case 2:
@@ -341,9 +347,13 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             {
                 overallCandidateRating = 3
             }
-            else if view as? NSView == cell?.starCustomView
+             else if view.superview is EHRatingsTableCellView
             {
+                cell = view.superview as? EHRatingsTableCellView
                 overallCandidateRatingOnSkills = 3
+                let skill = skillsAndRatingsTitleArray.objectAtIndex((cell?.skilsAndRatingsTitlefield.tag)!) as! SkillSet
+                
+                skill.skillRating = overallCandidateRatingOnSkills
             }
         case 3:
             countingOfRatingStar(3)
@@ -358,9 +368,13 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             {
                 overallCandidateRating = 4
             }
-            else if view as? NSView == cell?.starCustomView
+            else if view.superview is EHRatingsTableCellView
             {
+                 cell = view.superview as? EHRatingsTableCellView
                 overallCandidateRatingOnSkills = 4
+                let skill = skillsAndRatingsTitleArray.objectAtIndex((cell?.skilsAndRatingsTitlefield.tag)!) as! SkillSet
+               
+                skill.skillRating = overallCandidateRatingOnSkills
             }
             
         case 4:
@@ -375,9 +389,14 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             {
                 overallCandidateRating = 5
             }
-            else if view as? NSView == cell?.starCustomView
+            else if view.superview is EHRatingsTableCellView
             {
+                cell = view.superview as? EHRatingsTableCellView
+                
                 overallCandidateRatingOnSkills = 5
+                let skill = skillsAndRatingsTitleArray.objectAtIndex((cell?.skilsAndRatingsTitlefield.tag)!) as! SkillSet
+                
+                skill.skillRating = overallCandidateRatingOnSkills
             }
             
            default : print("")
@@ -467,6 +486,11 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     
     @IBAction func saveDetailsAction(sender: NSButton)
     {
+        for object in skillsAndRatingsTitleArray{
+            let skillSetObject = object as! SkillSet
+            print(skillSetObject.skillRating)
+            print(skillSetObject.skillName)
+        }
        
         if validation()
        {
