@@ -10,52 +10,57 @@ import Cocoa
 
 class TechnicalFeedbackDataAccess: NSObject
 {
+//    var commentsOnCandidate: String?
+//    var commentsOnTechnology: String?
+//    var techLeadName: String?
+//    var modeOfInterview: String?
+//    var ratingOnCandidate: Int16?
+//    var ratingOnTechnical: Int16?
+//    var recommendation: String?
+//    var candidate: EHCandidateDetails?
+//    var skills : [EHSkillSetModel] = []
+//    var designation: String?
     let coreDataStack = EHCoreDataStack.sharedInstance
     
-    let technicalFeedbackmodel:EHTechnicalFeedbackModel?
-    init(managerFeedbackModel:EHTechnicalFeedbackModel)
+    func insertIntoTechnicalFeedback(technicalFeedbackmodel : EHTechnicalFeedbackModel) -> Bool
     {
-        self.technicalFeedbackmodel = managerFeedbackModel
-    }
-
-    
-    func insertIntoTechnicalFeedback() -> Bool
-    {
-        
         let technicalFeedbackentity = EHCoreDataHelper.createEntity("TechnicalFeedBack", managedObjectContext: coreDataStack.managedObjectContext)
-        let technicalFeedback:ManagerFeedBack = ManagerFeedBack(entity:technicalFeedbackentity!, insertIntoManagedObjectContext:coreDataStack.managedObjectContext) as ManagerFeedBack
+        let technicalFeedback = TechnicalFeedBack(entity:technicalFeedbackentity!, insertIntoManagedObjectContext:coreDataStack.managedObjectContext)
         
-        technicalFeedback.setValue(self.technicalFeedbackmodel?.commentsOnCandidate, forKey: "commentsOnCandidate")
+        technicalFeedback.setValue(technicalFeedbackmodel.commentsOnCandidate, forKey: "commentsOnCandidate")
         
-        technicalFeedback.setValue(self.technicalFeedbackmodel?.commentsOnTechnology, forKey: "commentsOnTechnology")
+        technicalFeedback.setValue(technicalFeedbackmodel.commentsOnTechnology, forKey: "commentsOnTechnology")
         
-        technicalFeedback.setValue(self.technicalFeedbackmodel?.techLeadName, forKey: "managerName")
+        technicalFeedback.setValue(technicalFeedbackmodel.techLeadName, forKey: "techLeadName")
         
-        technicalFeedback.setValue(self.technicalFeedbackmodel?.modeOfInterview, forKey: "modeOfInterview")
+        technicalFeedback.setValue(technicalFeedbackmodel.modeOfInterview, forKey: "modeOfInterview")
         
-        technicalFeedback.setValue(NSNumber(short: (self.technicalFeedbackmodel?.ratingOnCandidate)!), forKey: "ratingOnCandidate")
+        technicalFeedback.setValue(NSNumber(integer: technicalFeedbackmodel.ratingOnCandidate!), forKey: "ratingOnCandidate")
         
-        technicalFeedback.setValue(NSNumber(short: (self.technicalFeedbackmodel?.ratingOnTechnical)!), forKey: "ratingOnTechnical")
+        technicalFeedback.setValue(NSNumber(integer: technicalFeedbackmodel.ratingOnTechnical!), forKey: "ratingOnTechnical")
         
-        technicalFeedback.setValue(self.technicalFeedbackmodel?.recommendation, forKey: "recommendation")
+        technicalFeedback.setValue(technicalFeedbackmodel.recommendation, forKey: "recommendation")
         
-        technicalFeedback.setValue(self.technicalFeedbackmodel?.candidate, forKey: "candidate")
+       // technicalFeedback.setValue(technicalFeedbackmodel.candidate, forKey: "candidate")
         
-        technicalFeedback.setValue(self.technicalFeedbackmodel?.skillSet, forKey: "candidateSkills")
+        technicalFeedback.candidateSkills?.setByAddingObjectsFromArray(technicalFeedbackmodel.skills!)
+        print(technicalFeedback.candidateSkills)
         
-        technicalFeedback.setValue(self.technicalFeedbackmodel?.designation, forKey: "designation")
+        technicalFeedback.setValue(technicalFeedbackmodel.designation, forKey: "designation")
         
         EHCoreDataHelper.saveToCoreData(technicalFeedback)
+       
+       // fetchFromTechnicalFeedback(technicalFeedbackmodel)
         
         return true
     }
     
-    func fetchFromTechnicalFeedback() -> [AnyObject]
+    func fetchFromTechnicalFeedback(technicalFeedbackmodel : EHTechnicalFeedbackModel) -> [AnyObject]
     {
-        let predicate = NSPredicate(format:"name = %@" , (self.technicalFeedbackmodel?.candidate?.name)!)
+        let predicate = NSPredicate(format:"name = %@" , (technicalFeedbackmodel.candidate?.name)!)
         
         let technicalFeedbackRecords = EHCoreDataHelper.fetchRecordsWithPredicate(predicate, sortDescriptor: nil, entityName: "TechnicalFeedBack", managedObjectContext: coreDataStack.managedObjectContext)
-        
+        print(technicalFeedbackRecords)
         return technicalFeedbackRecords as! [AnyObject]
         
     }
