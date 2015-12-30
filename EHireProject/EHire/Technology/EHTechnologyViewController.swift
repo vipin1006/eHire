@@ -298,21 +298,24 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         if (textFieldObject.stringValue == ""){
             textFieldObject.removeFromSuperview()
-        }else{
-            let technologyObject = technologyArray[technologyArray.count-1]
-            technologyObject.technologyName = textFieldObject.stringValue
-            textFieldObject.wantsLayer = true
-            
-            textFieldObject.backgroundColor = NSColor.clearColor()
-            
-            EHTechnologyDataLayer.addTechnologyToCoreData(textFieldObject.stringValue)
         }
-        
-        //        cellTechnology?.textFieldTechnology.editable = false
-        
+        else{
+            if isValidTechnologyName(textFieldObject.stringValue)
+            {
+                let technologyObject = technologyArray[technologyArray.count-1]
+                technologyObject.technologyName = textFieldObject.stringValue
+                textFieldObject.wantsLayer = true
+                
+                textFieldObject.backgroundColor = NSColor.clearColor()
+                
+                EHTechnologyDataLayer.addTechnologyToCoreData(textFieldObject.stringValue)
+
+            }
+            else{
+                alertPopup("Error", informativeText: "Technology name should be unique")
+            }
+        }
         self.sourceList.reloadData()
-        
-        
     }
     // Alert Popup
     func alertPopup(data:String, informativeText:String)
@@ -370,11 +373,26 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         candidateController?.delegate = self
         self.candidateView.addSubview((candidateController?.view)!)
         isCandidatesViewLoaded = true
-        
-        
     }
     
-    
+    //MARk:- Validation methods
+    // this method will check for duplication of technology name
+    func isValidTechnologyName(inputString :String) -> Bool
+    {
+        var isValid = true
+        
+        for  object in technologyArray
+        {
+            let technology = object as EHTechnology
+            
+            if technology.technologyName == inputString
+            {
+                isValid =  false
+                break
+            }
+        }
+        return isValid
+    }
 }
 
 
