@@ -14,6 +14,7 @@ class EHCandidateDetails: NSObject
     var experience:String
     var interViewTime:String
     var phoneNum:String
+    var interviewDate : NSDate?
     init(inName:String, candidateExperience:String, candidateInterviewTiming:String, candidatePhoneNo:String)
     {
         self.name = inName

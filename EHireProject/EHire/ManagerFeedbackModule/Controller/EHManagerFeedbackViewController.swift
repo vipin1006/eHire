@@ -48,12 +48,12 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     @IBOutlet var managerialFeedbackModel: EHManagerialFeedbackModel!
     let candidateDetails = EHCandidateDetails(inName: "vipin",candidateExperience:"1" , candidateInterviewTiming: "1023.22", candidatePhoneNo:"33131231312") as EHCandidateDetails
    
-    
+   
     override func loadView() {
         
         
         
-        
+        candidateDetails.interviewDate = NSDate()
        
         let communicationSkill = EHSkillSet()
         communicationSkill.skillName = "Communication"
@@ -363,7 +363,15 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
 //        //if validateInputs(){
 //            saveManegerFeedbackToToCoreData()
 //        //}
-        tableView.reloadData()
+        let managerFeedbackAccessLayer = EHManagerFeedbackDataAccessLayer(managerFeedbackModel: managerialFeedbackModel)
+        if managerFeedbackAccessLayer.insertManagerFeedback(){
+            print("Suceeded")
+        }
+                
+//        tableView.reloadData()
+        
+       
+       
     }
     
     //MARK:- CoreDataMethods

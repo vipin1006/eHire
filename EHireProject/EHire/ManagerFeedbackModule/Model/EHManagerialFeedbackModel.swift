@@ -9,13 +9,13 @@
 import Cocoa
 
 class EHManagerialFeedbackModel: NSObject {
-      var commentsOnCandidate: String?
-      var commentsOnTechnology: String?
-      var commitments: String?
-      var grossAnnualSalary: NSNumber?
+      var commentsOnCandidate: NSAttributedString?
+      var commentsOnTechnology: NSAttributedString?
+      var commitments: NSAttributedString?
+      var grossAnnualSalary: String?
       var managerName: String?
       var isCgDeviation: NSNumber?
-      var jestificationForHire: String?
+      var jestificationForHire: NSAttributedString?
       var modeOfInterview: String?
       var ratingOnCandidate: Int16?
       var ratingOnTechnical: Int16?

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -715,7 +715,7 @@
                                             <color key="backgroundColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="192.31340772877888" minWidth="16" maxWidth="1000" id="Sgx-Fk-dFC">
+                                                <tableColumn width="195.31340772877888" minWidth="16" maxWidth="1000" id="Sgx-Fk-dFC">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Technology">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -729,10 +729,10 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="Parent" id="Swg-Pc-vo7" customClass="EHTechnologyCustomCell" customModule="EHire" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="1" width="191.45302517971021" height="28"/>
+                                                            <rect key="frame" x="1" y="1" width="195" height="28"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g9O-dA-liV">
+                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g9O-dA-liV">
                                                                     <rect key="frame" x="12" y="6" width="171" height="18"/>
                                                                     <animations/>
                                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Enter Technology" drawsBackground="YES" id="P84-aY-GR6">
@@ -754,10 +754,10 @@
                                                             </connections>
                                                         </tableCellView>
                                                         <tableCellView identifier="child" id="YEb-im-Ksw" customClass="EHInterviewDateCustomCell" customModule="EHire" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="31" width="191.45302517971021" height="35"/>
+                                                            <rect key="frame" x="1" y="31" width="195" height="35"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZzN-oS-NS7">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZzN-oS-NS7">
                                                                     <rect key="frame" x="10" y="14" width="174" height="16"/>
                                                                     <animations/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="OaO-7S-sJt">
@@ -945,7 +945,7 @@
                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                     <tableColumns>
-                                                        <tableColumn identifier="name" width="155.41361464411989" minWidth="40" maxWidth="1000" id="JA6-gJ-jhg">
+                                                        <tableColumn identifier="name" width="157.41361464411989" minWidth="40" maxWidth="1000" id="JA6-gJ-jhg">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Name">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -990,7 +990,7 @@
                                                                 </tableCellView>
                                                             </prototypeCellViews>
                                                         </tableColumn>
-                                                        <tableColumn identifier="experience" width="80.81021992199851" minWidth="40" maxWidth="1000" id="IWV-0a-B9n">
+                                                        <tableColumn identifier="experience" width="82.81021992199851" minWidth="40" maxWidth="1000" id="IWV-0a-B9n">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Experience">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1035,7 +1035,7 @@
                                                                 </tableCellView>
                                                             </prototypeCellViews>
                                                         </tableColumn>
-                                                        <tableColumn identifier="phoneNo" width="129.57116937931897" minWidth="10" maxWidth="3.4028234663852886e+38" id="6Hk-C0-lDm">
+                                                        <tableColumn identifier="phoneNo" width="132.57116937931897" minWidth="10" maxWidth="3.4028234663852886e+38" id="6Hk-C0-lDm">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Phone No">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1080,7 +1080,7 @@
                                                                 </tableCellView>
                                                             </prototypeCellViews>
                                                         </tableColumn>
-                                                        <tableColumn identifier="requisition" width="119" minWidth="10" maxWidth="3.4028234663852886e+38" id="veZ-W4-4Xd">
+                                                        <tableColumn identifier="requisition" width="122" minWidth="10" maxWidth="3.4028234663852886e+38" id="veZ-W4-4Xd">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Requisition">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1117,7 +1117,7 @@
                                                                 </tableCellView>
                                                             </prototypeCellViews>
                                                         </tableColumn>
-                                                        <tableColumn identifier="interviewTime" width="119.97849546435137" minWidth="10" maxWidth="3.4028234663852886e+38" id="olH-c5-ZQb">
+                                                        <tableColumn identifier="interviewTime" width="122.97849546435137" minWidth="10" maxWidth="3.4028234663852886e+38" id="olH-c5-ZQb">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="InterView Time">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2275,7 +2275,7 @@ DQ
                                                         <size key="minSize" width="754" height="119"/>
                                                         <size key="maxSize" width="771" height="10000000"/>
                                                         <connections>
-                                                            <binding destination="FMP-R4-GZw" name="attributedString" keyPath="self.commentsOnTechnology" id="hih-Ew-6JQ"/>
+                                                            <binding destination="FMP-R4-GZw" name="attributedString" keyPath="self.commentsOnCandidate" id="N1a-Jd-Z4Q"/>
                                                         </connections>
                                                     </textView>
                                                 </subviews>
@@ -2579,9 +2579,13 @@ DQ
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                <allowedInputSourceLocales>
+                                                    <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                                </allowedInputSourceLocales>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="FMP-R4-GZw" name="value" keyPath="self.grossAnnualSalary" id="NxV-N7-WUO"/>
+                                                <binding destination="FMP-R4-GZw" name="value" keyPath="self.grossAnnualSalary" id="AhV-cc-CRM"/>
+                                                <outlet property="formatter" destination="1Fh-Q2-9mS" id="g47-A8-WK8"/>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dDN-kg-YyI">
@@ -3432,6 +3436,7 @@ DQ
                     </connections>
                 </viewController>
                 <customObject id="zeO-9e-SNs" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customFormatter id="1Fh-Q2-9mS" customClass="NSNumberFormatter"/>
                 <customObject id="FMP-R4-GZw" customClass="EHManagerialFeedbackModel" customModule="EHire" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="-1183.5" y="1398.5"/>
