@@ -2592,7 +2592,6 @@ DQ
                                             </textFieldCell>
                                             <connections>
                                                 <binding destination="FMP-R4-GZw" name="value" keyPath="self.grossAnnualSalary" id="AhV-cc-CRM"/>
-                                                <outlet property="formatter" destination="1Fh-Q2-9mS" id="g47-A8-WK8"/>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dDN-kg-YyI">
@@ -3443,7 +3442,6 @@ DQ
                     </connections>
                 </viewController>
                 <customObject id="zeO-9e-SNs" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <customFormatter id="1Fh-Q2-9mS" customClass="NSNumberFormatter"/>
                 <customObject id="FMP-R4-GZw" customClass="EHManagerialFeedbackModel" customModule="EHire" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="-1183.5" y="1398.5"/>
@@ -4290,7 +4288,7 @@ DQ
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="eNs-qS-ZTJ">
-                                                    <rect key="frame" x="444" y="0.0" width="5" height="96"/>
+                                                    <rect key="frame" x="444" y="0.0" width="4" height="96"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

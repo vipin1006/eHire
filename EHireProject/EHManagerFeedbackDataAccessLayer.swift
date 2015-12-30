@@ -63,8 +63,19 @@ class EHManagerFeedbackDataAccessLayer: NSObject {
         managerFeedback.setValue(self.managerFeedbackmodel?.recommendation, forKey: "recommendation")
             
         managerFeedback.setValue(self.managerFeedbackmodel?.recommendedCg, forKey: "recommendedCg")
-            
-        managerFeedback.setValue(self.managerFeedbackmodel?.candidate, forKey: "candidate")
+        
+        
+        // mapping ehCandidate to candidate core data class 
+        
+        let candidateDecription = EHCoreDataHelper.createEntity("Candidate", managedObjectContext: coreDataStack.managedObjectContext)
+        let candidateObject:Candidate = Candidate(entity:candidateDecription!, insertIntoManagedObjectContext:coreDataStack.managedObjectContext) as Candidate
+        candidateObject.name = self.managerFeedbackmodel?.candidate?.name
+        candidateObject.phoneNumber = self.managerFeedbackmodel?.candidate?.phoneNum
+        candidateObject.experience = self.managerFeedbackmodel?.candidate?.experience
+
+
+        
+        managerFeedback.setValue(candidateObject, forKey: "candidate")
 
        managerFeedback.setValue(self.managerFeedbackmodel?.designation, forKey: "designation")
         

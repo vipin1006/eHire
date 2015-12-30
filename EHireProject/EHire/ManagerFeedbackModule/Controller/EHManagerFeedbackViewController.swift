@@ -54,6 +54,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         
         
         candidateDetails.interviewDate = NSDate()
+        managerialFeedbackModel.candidate = candidateDetails
        
         let communicationSkill = EHSkillSet()
         communicationSkill.skillName = "Communication"
