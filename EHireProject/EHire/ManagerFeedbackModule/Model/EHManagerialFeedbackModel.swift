@@ -25,20 +25,20 @@ class EHManagerialFeedbackModel: NSObject {
     var skillSet : [EHSkillSet] = []
     var designation: String?
     
-     init(candidateDetails:EHCandidateDetails) {
-        self.commentsOnCandidate = ""
-        self.commentsOnTechnology = ""
-        self.commitments = ""
-        self.grossAnnualSalary = 0.0
-        self.managerName = ""
-        self.isCgDeviation = 0
-        self.jestificationForHire = ""
-        self.modeOfInterview = ""
-        self.ratingOnCandidate = 0
-        self.ratingOnTechnical = 0
-        self.recommendation = ""
-        self.recommendedCg = ""
-        self.candidate = candidateDetails
-        self.designation = ""
-    }
+//     init(candidateDetails:EHCandidateDetails) {
+//        self.commentsOnCandidate = ""
+//        self.commentsOnTechnology = ""
+//        self.commitments = ""
+//        self.grossAnnualSalary = 0.0
+//        self.managerName = ""
+//        self.isCgDeviation = 0
+//        self.jestificationForHire = ""
+//        self.modeOfInterview = ""
+//        self.ratingOnCandidate = 0
+//        self.ratingOnTechnical = 0
+//        self.recommendation = ""
+//        self.recommendedCg = ""
+//        self.candidate = candidateDetails
+//        self.designation = ""
+//    }
 }
