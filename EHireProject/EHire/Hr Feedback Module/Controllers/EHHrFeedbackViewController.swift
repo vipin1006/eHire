@@ -85,6 +85,8 @@ class EHHrFeedbackViewController: NSViewController {
         
         print("The Candidate for HR feedback is \(candidate)")
         
+        self.candidateName.stringValue = (candidate?.name)!
+        
         candidateInfo["isVisaAvailable"] = NSNumber(int:0)
         candidateInfo["isRelocationRequested"] = NSNumber(int:0)
         candidateInfo["isInterviewedBefore"] = NSNumber(int:0)
@@ -137,7 +139,7 @@ class EHHrFeedbackViewController: NSViewController {
             candidateInfo["questionsAskedByCandidate"] = questionsAskedByCandidate.string
             candidateInfo["inetrviewedBy"] = inetrviewedBy.stringValue
             candidateInfo["EmploymentGap"] = employmentGap.stringValue
-            candidateInfo["lastDesignation"] = lastDesignation.stringValue
+            candidateInfo["lastDesignation"] = ""
             candidateInfo["leavePlanReasons"] = leavePlanReasons.stringValue
          
             HrFeedbackDataAccess.saveHrFeedbackOfCandidate(candidate!,candidateInfo: candidateInfo)
