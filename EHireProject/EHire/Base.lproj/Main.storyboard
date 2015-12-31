@@ -2119,13 +2119,13 @@ DQ
                                             </buttonCell>
                                             <cells>
                                                 <column>
-                                                    <buttonCell type="radio" title="Telephonic" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="1Tn-SV-rfa">
+                                                    <buttonCell type="radio" title="Telephonic" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1Tn-SV-rfa">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                 </column>
                                                 <column>
-                                                    <buttonCell type="radio" title="Face To Face" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="IIs-i6-TJQ">
+                                                    <buttonCell type="radio" title="Face To Face" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="IIs-i6-TJQ">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
@@ -2390,9 +2390,9 @@ DQ
                                                     <animations/>
                                                 </customView>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="v02-Ct-8H0">
-                                                    <rect key="frame" x="591" y="10" width="99" height="17"/>
+                                                    <rect key="frame" x="534" y="10" width="211" height="17"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="95" id="cf7-Ad-NFT"/>
+                                                        <constraint firstAttribute="width" constant="207" id="cf7-Ad-NFT"/>
                                                     </constraints>
                                                     <animations/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Rating" id="PPE-Ip-mZQ">
@@ -2412,7 +2412,7 @@ DQ
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="v02-Ct-8H0" secondAttribute="trailing" constant="83" id="A8k-oO-DRt"/>
+                                                <constraint firstAttribute="trailing" secondItem="v02-Ct-8H0" secondAttribute="trailing" constant="28" id="A8k-oO-DRt"/>
                                                 <constraint firstAttribute="bottom" secondItem="NXl-Es-m3d" secondAttribute="bottom" id="C2Y-A5-cEn"/>
                                                 <constraint firstItem="v02-Ct-8H0" firstAttribute="centerY" secondItem="NXl-Es-m3d" secondAttribute="centerY" id="COd-4c-zUf"/>
                                                 <constraint firstItem="6Yo-Ob-foK" firstAttribute="top" secondItem="ag2-4p-klz" secondAttribute="top" constant="6" id="P9R-iS-bgp"/>
@@ -2676,18 +2676,21 @@ DQ
                                             </buttonCell>
                                             <cells>
                                                 <column>
-                                                    <buttonCell type="radio" title="Yes" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="xZj-4y-fj4">
+                                                    <buttonCell type="radio" title="Yes" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="xZj-4y-fj4">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="systemMedium" size="12"/>
                                                     </buttonCell>
                                                 </column>
                                                 <column>
-                                                    <buttonCell type="radio" title="No" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="BHC-dm-SXR">
+                                                    <buttonCell type="radio" title="No" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="BHC-dm-SXR">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="systemMedium" size="12"/>
                                                     </buttonCell>
                                                 </column>
                                             </cells>
+                                            <connections>
+                                                <action selector="selectCgDeviation:" target="Xv2-bq-xG1" id="jEn-3H-egV"/>
+                                            </connections>
                                         </matrix>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0bW-Fh-fhx">
                                             <rect key="frame" x="117" y="23" width="89" height="18"/>
@@ -2971,9 +2974,9 @@ DQ
                                             <rect key="frame" x="0.0" y="15" width="769" height="37"/>
                                             <subviews>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jf7-9R-CFr">
-                                                    <rect key="frame" x="548" y="11" width="171" height="17"/>
+                                                    <rect key="frame" x="531" y="11" width="188" height="17"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="167" id="uf8-ff-sgj"/>
+                                                        <constraint firstAttribute="width" constant="184" id="uf8-ff-sgj"/>
                                                     </constraints>
                                                     <animations/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Rating" id="O2X-Hr-xS5">
@@ -3090,13 +3093,13 @@ DQ
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="ya3-fx-dck" secondAttribute="bottom" id="6SB-qT-m6Z"/>
-                                                <constraint firstItem="jf7-9R-CFr" firstAttribute="baseline" secondItem="GAf-n5-MfY" secondAttribute="firstBaseline" id="76Z-7d-6ng"/>
+                                                <constraint firstItem="jf7-9R-CFr" firstAttribute="baseline" secondItem="GAf-n5-MfY" secondAttribute="firstBaseline" constant="-1" id="76Z-7d-6ng"/>
                                                 <constraint firstItem="GAf-n5-MfY" firstAttribute="centerY" secondItem="fQx-r4-4QG" secondAttribute="centerY" id="8ue-22-mD4"/>
                                                 <constraint firstAttribute="trailing" secondItem="jf7-9R-CFr" secondAttribute="trailing" constant="52" id="Duu-tV-D1V"/>
                                                 <constraint firstItem="GAf-n5-MfY" firstAttribute="centerY" secondItem="ya3-fx-dck" secondAttribute="centerY" id="KJ3-jf-rou"/>
                                                 <constraint firstItem="ya3-fx-dck" firstAttribute="leading" secondItem="GAf-n5-MfY" secondAttribute="trailing" constant="26" id="dru-FI-NCK"/>
                                                 <constraint firstItem="GAf-n5-MfY" firstAttribute="leading" secondItem="fQx-r4-4QG" secondAttribute="leading" id="eWH-CB-fNY"/>
-                                                <constraint firstItem="jf7-9R-CFr" firstAttribute="leading" secondItem="ya3-fx-dck" secondAttribute="trailing" constant="77" id="gnd-ep-QI7"/>
+                                                <constraint firstItem="jf7-9R-CFr" firstAttribute="leading" secondItem="ya3-fx-dck" secondAttribute="trailing" constant="60" id="gnd-ep-QI7"/>
                                                 <constraint firstItem="GAf-n5-MfY" firstAttribute="top" secondItem="fQx-r4-4QG" secondAttribute="top" constant="6" id="llo-wA-EPM"/>
                                             </constraints>
                                             <animations/>
@@ -3434,7 +3437,7 @@ DQ
                         <outlet property="textFieldInterviewedBy" destination="HHd-M5-NmX" id="XcP-Ls-hoW"/>
                         <outlet property="textFieldPosition" destination="5Ce-BT-BU1" id="5hv-rq-jpw"/>
                         <outlet property="textViewCommentsForOverAllCandidateAssessment" destination="Z5A-BF-7b2" id="cjI-IN-ld2"/>
-                        <outlet property="textViewCommentsForOverAllTechnologyassessment" destination="noH-5G-txn" id="fN8-Im-iLM"/>
+                        <outlet property="textViewCommentsForOverAllTechnologyAssessment" destination="noH-5G-txn" id="XXb-UI-aDR"/>
                         <outlet property="textViewCommitments" destination="zs5-ad-WHR" id="Q2k-yr-SSl"/>
                         <outlet property="textViewJustificationForHire" destination="0mP-4O-d2r" id="a3Y-8T-sqq"/>
                         <outlet property="viewOverAllAssessmentOfCandidateStar" destination="NXl-Es-m3d" id="iv3-0d-nlj"/>
@@ -4281,7 +4284,7 @@ DQ
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ShH-j0-WGI">
-                                                    <rect key="frame" x="205" y="0.0" width="5" height="96"/>
+                                                    <rect key="frame" x="205" y="0.0" width="4" height="96"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

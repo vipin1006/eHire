@@ -93,8 +93,11 @@ class EHManagerFeedbackDataAccessLayer: NSObject {
         
         let managerFeedbackRecords = EHCoreDataHelper.fetchRecordsWithPredicate(predicate, sortDescriptor: nil, entityName: "ManagerFeedBack", managedObjectContext: coreDataStack.managedObjectContext)
         
+        if managerFeedbackRecords?.count > 0{
         return managerFeedbackRecords as! [AnyObject]
+        }
         
+        return []
     }
     
     func fetchCandidate()->[Candidate]{

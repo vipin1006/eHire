@@ -38,6 +38,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     @IBOutlet var textViewCommentsForOverAllCandidateAssessment: NSTextView!
     
+    @IBOutlet var textViewCommentsForOverAllTechnologyAssessment: NSTextView!
     
     var ratingTitle = NSMutableArray()
     
@@ -90,6 +91,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         managerFeedbackMainView.wantsLayer = true
         managerFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
         tableView.reloadData()
+        setDefaultCgDeviationAndInterviewMode()
 //        if ratingTitle.count == 0
 //        {
         
@@ -97,6 +99,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
 
        let managerFeedbackArray =  managerFeedbackAccessLayer.fetchManagerFeedback()
         
+        if managerFeedbackArray.count>0{
             let feedback =  managerFeedbackArray[0] as! ManagerFeedBack
             
             print (feedback.candidate?.name)
@@ -104,7 +107,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         
         //managerialFeedbackModel.managerName = feedback.managerName!
         managerialFeedbackModel.designation = feedback.designation!
-        
+        }
         
         print("name = \(managerialFeedbackModel.designation)")
 
@@ -324,41 +327,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             managerialFeedbackModel!.ratingOnCandidate=ratingValue
         }
     }
-    func validateInputs()->Bool
-    {
-        if textFieldPosition.stringValue == ""
-        {
-            alertPopup("enterPosition", informativeText: "Please enter valid Position")
-            return false
-        }else if textFieldInterviewedBy.stringValue == ""
-        {
-            alertPopup("enterInterViewBy", informativeText: "Please enter valid Name")
-            return false
-        }
-        else if textFieldCorporateGrade.stringValue == ""
-        {
-            alertPopup("enterCG", informativeText: "Please enter valid data valid CG")
-            return false
-        }
-        else if( textViewCommitments.string == "")
-        {
-            alertPopup("enterCommitments", informativeText: "Please enter valid data Commitments Field")
-            return false
-        }else if textViewJustificationForHire.string == ""
-        {
-            alertPopup("justificationForHire", informativeText: "Please enter valid data justificationForHire Field")
-            return false
-        }else if textFieldGrossAnnualSalary.stringValue == ""
-        {
-            alertPopup("enterGrossSalary", informativeText: "Please enter valid data in GrossSalary Field")
-            return false
-        }else if textFieldDesignation.stringValue == ""
-        {
-            alertPopup("enterDesignation", informativeText: "Please enter valid data in designation Field")
-            return false
-        }
-        return true
-    }
+   
     
     
     @IBAction func getInterviewMode(sender: AnyObject) {
@@ -374,17 +343,109 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     }
     
    
+    @IBAction func selectCgDeviation(sender: AnyObject) {
+        
+        let selectedColoumn = sender.selectedColumn
+        if selectedColoumn == 0{
+            managerialFeedbackModel.isCgDeviation = true
+        }else{
+            managerialFeedbackModel.isCgDeviation = false
+        }
+    }
+    
+    
+    func setDefaultCgDeviationAndInterviewMode(){
+        managerialFeedbackModel.modeOfInterview = "Face To Face"
+        managerialFeedbackModel.isCgDeviation = false
+    }
+    
+    
+    //MARK:- Validation Methods
+    
+    func validation() -> Bool
+    {
+        var isValid : Bool = false
+        isValid =  validationForTextView(textViewCommentsForOverAllCandidateAssessment)
+        isValid =  validationForTextView(textViewCommentsForOverAllTechnologyAssessment)
+        isValid =  validationForTextView(textViewJustificationForHire)
+        isValid =  validationForTextView(textViewCommitments)
+        isValid =  validationForTextfield(textFieldCorporateGrade)
+        isValid =  validationForTextfield(textFieldDesignation)
+        isValid =  validationForTextfield(textFieldGrossAnnualSalary)
+        isValid =  validationForTextfield(textFieldInterviewedBy)
+        isValid =  validationForTextfield(textFieldPosition)
+        isValid =  validationForTextfield(labelOverAllAssessmentOfCandidate)
+        isValid =  validationForTextfield(labelOverAllAssessmentOfTechnology)
+        
+        //        if modeOfInterview.cells.
+        //        {
+        //            return false
+        //        }
+        //        else if recommentationField.selectedCell()?.state
+        //        {
+        //            return false
+        //        }
+        return isValid
+    }
+    func validationForTextView(subView : NSTextView) -> Bool
+    {
+        if subView.string == ""
+        {
+            setBoarderColorForTextView(subView)
+            return false
+        }
+        
+        else
+        {
+            subView.wantsLayer = true
+            subView.layer?.borderColor = NSColor.clearColor().CGColor
+            subView.layer?.borderWidth = 2
+            return true
+        }
+    }
+    
+    func validationForTextfield(subView : NSTextField) -> Bool
+    {
+        if subView.stringValue == ""
+        {
+            setBoarderColor(subView)
+            return false
+        }
+        
+        else
+        {
+            subView.wantsLayer = true
+            subView.layer?.backgroundColor = NSColor.clearColor().CGColor
+            return true
+        }
+    }
+   
+    func setBoarderColor(subView:NSTextField)
+    {
+        subView.wantsLayer = true
+        subView.layer?.backgroundColor = NSColor.orangeColor().CGColor
+    }
+    
+    func setBoarderColorForTextView(subView:NSTextView)
+    {
+        subView.wantsLayer = true
+        subView.layer?.borderColor = NSColor.orangeColor().CGColor
+        subView.layer?.borderWidth = 2
+    }
+    
+    //MARK:- Core Data Saving Methods
     
     @IBAction func saveData(sender: AnyObject)
     {
-//        //if validateInputs(){
-//            saveManegerFeedbackToToCoreData()
-//        //}
+        
+        
+        if validation(){
         let managerFeedbackAccessLayer = EHManagerFeedbackDataAccessLayer(managerFeedbackModel: managerialFeedbackModel)
         if managerFeedbackAccessLayer.insertManagerFeedback(){
             print("Suceeded")
         }
-                
+        }
+        
 //        tableView.reloadData()
         
        
