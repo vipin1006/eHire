@@ -46,7 +46,8 @@ class EHFeedbackViewController: NSViewController {
     print("The candidate came to Feedback is \(selectedCandidate)")
         
     techFeedback = storyboard?.instantiateControllerWithIdentifier("EHTechnicalFeedbackViewController") as? EHTechnicalFeedbackViewController
-        
+    techFeedback!.selectedCandidate = selectedCandidate
+  
     self.scrollViewHr.documentView? = (techFeedback?.view)!
     self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1081))
     self.typeOfInterview.selectedSegment = 0
