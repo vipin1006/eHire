@@ -40,6 +40,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     @IBOutlet var textViewCommentsForOverAllTechnologyAssessment: NSTextView!
     
+    @IBOutlet weak var recommendationState: NSMatrix!
+    
     var ratingTitle = NSMutableArray()
     
     @IBOutlet weak var tableView: NSTableView!
@@ -47,14 +49,19 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
     
     @IBOutlet dynamic var  managerialFeedbackModel: EHManagerialFeedbackModel!
-    let candidateDetails = EHCandidateDetails(inName: "vipin",candidateExperience:"1" , candidateInterviewTiming: "1023.22", candidatePhoneNo:"33131231312") as EHCandidateDetails
+    var candidateDetails : EHCandidateDetails?
+    
+    
+    var selectedCandidate : Candidate?
    
    
     override func loadView() {
         
+       candidateDetails = EHCandidateDetails(inName: selectedCandidate!.name!,candidateExperience:(selectedCandidate?.experience)! , candidateInterviewTiming: "1023.22", candidatePhoneNo:(selectedCandidate?.phoneNumber)!) as EHCandidateDetails
         
         
-        candidateDetails.interviewDate = NSDate()
+        
+        candidateDetails!.interviewDate = NSDate()
         managerialFeedbackModel.candidate = candidateDetails
        
         let communicationSkill = EHSkillSet()
@@ -95,11 +102,13 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
 //        if ratingTitle.count == 0
 //        {
         
+        
         let managerFeedbackAccessLayer = EHManagerFeedbackDataAccessLayer(managerFeedbackModel: managerialFeedbackModel)
 
        let managerFeedbackArray =  managerFeedbackAccessLayer.fetchManagerFeedback()
         
-        if managerFeedbackArray.count>0{
+        if managerFeedbackArray.count>0 {
+            
             let feedback =  managerFeedbackArray[0] as! ManagerFeedBack
             
             print (feedback.candidate?.name)
@@ -398,6 +407,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     func setDefaultCgDeviationAndInterviewMode(){
         managerialFeedbackModel.modeOfInterview = "Face To Face"
         managerialFeedbackModel.isCgDeviation = false
+        managerialFeedbackModel.recommendation = "Shortlisted"
     }
     
     
@@ -481,6 +491,15 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         
         
         if validation(){
+            
+            let selectedColoumn = recommendationState.selectedColumn
+            if selectedColoumn != 0
+            {
+                managerialFeedbackModel.recommendation = "Rejected"
+            }else
+            {
+                managerialFeedbackModel.recommendation = "Shortlisted"
+            }
         let managerFeedbackAccessLayer = EHManagerFeedbackDataAccessLayer(managerFeedbackModel: managerialFeedbackModel)
         if managerFeedbackAccessLayer.insertManagerFeedback(){
             print("Suceeded")

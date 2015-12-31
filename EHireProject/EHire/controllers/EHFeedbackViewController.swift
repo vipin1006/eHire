@@ -98,9 +98,8 @@ class EHFeedbackViewController: NSViewController {
             if !isManagerLoaded
             {
                 managerFeedback = storyboard?.instantiateControllerWithIdentifier("EHManagerFeedbackViewController") as? EHManagerFeedbackViewController
+                managerFeedback?.selectedCandidate = selectedCandidate
                 self.scrollViewHr.documentView = managerFeedback?.view
-                
-
               
 //                createConstraintsForManagerFeedbackController(0.0, trailing: 0.0, top: 0.0, bottom: 0.0)
 
