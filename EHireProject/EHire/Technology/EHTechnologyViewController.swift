@@ -182,14 +182,23 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     {
         let scheduledDate = sendingData as! NSDate
         
+      
         if let selectedItem = sourceList.itemAtRow(sourceList.selectedRow) as? EHTechnology {
-            let aString = sendingData as! NSDate
-            print(aString)
-            selectedItem.interviewDates.append(EHInterviewDate(date:scheduledDate))
-            EHTechnologyDataLayer.addInterviewDateToCoreData(selectedItem.technologyName ,dateToAdd: scheduledDate)
             
-            self.sourceList.reloadData()
-            datePopOver.close()
+            if isValidInterviewDate(selectedItem.technologyName,inputDate: scheduledDate){
+                let aString = sendingData as! NSDate
+                print(aString)
+                selectedItem.interviewDates.append(EHInterviewDate(date:scheduledDate))
+                EHTechnologyDataLayer.addInterviewDateToCoreData(selectedItem.technologyName ,dateToAdd: scheduledDate)
+                
+                self.sourceList.reloadData()
+
+            }
+            else
+            {
+                alertPopup("Error", informativeText: "Interview date cannot be same")
+            }
+                        datePopOver.close()
         }
         
     }
@@ -396,6 +405,30 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             {
                 isValid =  false
                 break
+            }
+        }
+        return isValid
+    }
+    
+    // this method will check for duplication of interview date 6
+
+    func isValidInterviewDate(inputParentTechnology :String , inputDate:NSDate) -> Bool
+    {
+        var isValid = true
+        
+        for  object in technologyArray
+        {
+            let technology = object as EHTechnology
+            
+            //we are lowercaseString to avoid adding duplicate technology name with capital letters
+            if technology.technologyName.lowercaseString == inputParentTechnology.lowercaseString
+            {
+                for date in technology.interviewDates{
+                    if  date.scheduleInterviewDate.compare(inputDate) == .OrderedSame{
+                        isValid =  false
+                        break
+                    }
+                }
             }
         }
         return isValid
