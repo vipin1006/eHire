@@ -36,12 +36,15 @@ class EHFeedbackViewController: NSViewController {
     let dataAccess = TechnicalFeedbackDataAccess()
     var technicalFeedbackModel = EHTechnicalFeedbackModel()
     
-    
+    var selectedCandidate:Candidate?
     
     //MARK: View Life Cycle
     override func viewDidLoad()
     {
     super.viewDidLoad()
+        
+    print("The candidate came to Feedback is \(selectedCandidate)")
+        
     techFeedback = storyboard?.instantiateControllerWithIdentifier("EHTechnicalFeedbackViewController") as? EHTechnicalFeedbackViewController
         
     self.scrollViewHr.documentView? = (techFeedback?.view)!
@@ -199,6 +202,8 @@ class EHFeedbackViewController: NSViewController {
    
         
     hrFeedBackViewController = self.storyboard?.instantiateControllerWithIdentifier("EHHrFeedbackViewController") as? EHHrFeedbackViewController
+        
+    hrFeedBackViewController?.candidate = selectedCandidate
     
     if let hrViewController = hrFeedBackViewController {
     

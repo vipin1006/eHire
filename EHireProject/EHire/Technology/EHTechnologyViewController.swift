@@ -267,14 +267,20 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         datePopOver.showRelativeToRect(button.bounds, ofView:button, preferredEdge:NSRectEdge.MaxY)
     }
     
-    func showFeedbackViewController(){
+    func showFeedbackViewController(selectedCandidate:Candidate){
+        
+        print("The candidate is \(selectedCandidate)")
         
         for views in self.view.subviews{
             views.removeFromSuperview()
         }
         feedbackViewController = self.storyboard?.instantiateControllerWithIdentifier("EHFeedbackViewController") as? EHFeedbackViewController
         
+        feedbackViewController!.selectedCandidate = selectedCandidate
+        
         feedbackViewController?.view.frame = self.view.bounds
+        
+        
         
         self.view.addSubview((feedbackViewController?.view)!)
         

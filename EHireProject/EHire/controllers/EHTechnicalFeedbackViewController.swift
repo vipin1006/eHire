@@ -41,6 +41,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     var recommentationState : String?
     //var skillsAndRatingsTitleArray = NSMutableArray()
     var skillsAndRatingsTitleArray = [SkillSet]()
+   
+    
     
     
     var feedbackData : [AnyObject]?

@@ -10,7 +10,7 @@ import Cocoa
 
 protocol FeedbackDelegate
 {
-  func showFeedbackViewController()
+    func showFeedbackViewController(selectedCandidate:Candidate)
 }
 
 class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewDelegate,NSTextFieldDelegate{
@@ -37,7 +37,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         {
             if let delegate = self.delegate
             {
-                delegate.showFeedbackViewController()
+                delegate.showFeedbackViewController(self.candidateArray.objectAtIndex(self.tableView.selectedRow) as! Candidate)
             }
         }
     }
@@ -183,10 +183,10 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     
     @IBAction func showCandidateFeedbackView(sender: AnyObject)
     {
-        if let delegate = self.delegate{
+       /* if let delegate = self.delegate{
             
             delegate.showFeedbackViewController()
-        }
+        }*/
     }
     
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {

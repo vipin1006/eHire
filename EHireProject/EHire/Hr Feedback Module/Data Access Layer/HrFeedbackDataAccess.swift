@@ -23,6 +23,8 @@ class HrFeedbackDataAccess: NSObject {
         
     HrFeedbackDataAccess.candidateDocumentsInfo(candidate, candidateInfo: candidateInfo)
         
+    HrFeedbackDataAccess.candidateMiscellaneousInfo(candidate, candidateInfo: candidateInfo)
+        
         do
         {
             try candidate.managedObjectContext?.save()
