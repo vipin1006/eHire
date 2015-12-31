@@ -39,11 +39,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     var overallCandidateRatingOnSkills : Int?
     var interviewModeState : String?
     var recommentationState : String?
-    //var skillsAndRatingsTitleArray = NSMutableArray()
     var skillsAndRatingsTitleArray = [SkillSet]()
-   
-    
-    
+    var selectedCandidate : Candidate?
     
     var feedbackData : [AnyObject]?
     let candidateDetails = EHCandidateDetails(inName: "Tharani",candidateExperience:"" , candidateInterviewTiming: "12", candidatePhoneNo:"") as EHCandidateDetails
@@ -76,12 +73,11 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         print(recommentationState)
     }
    
+    //initial setup of view to load the basic views of Technical Feedback.
     override func loadView()
     {
      technicalFeedbackModel.candidate = candidateDetails
      let skillArray = [ "Communication","Stability","Leadership","Growth"]
-        
-    
         
      if skillsAndRatingsTitleArray.count == 0
      {
@@ -112,15 +108,17 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
      growth.skillName = "Growth"
      growth.skillRating = overallCandidateRatingOnSkills
     skillsAndRatingsTitleArray.append(growth)
-
+       
       }
+        
         super.loadView()
     }
 
-    //initial setup of view to load the basic views of Technical Feedback.
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        candidateNameField.stringValue = (selectedCandidate?.name)!
         
         cell?.skilsAndRatingsTitlefield.delegate = self
         textViewOfTechnologyAssessment.delegate = self
@@ -148,22 +146,26 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             print(technicalFeedbackModel)
             let feedback =  managerFeedbackArray[0] as! TechnicalFeedBack
             
-            print (feedback.candidate?.name)
+            print (feedback.candidate!.name)
             
-            technicalFeedbackModel.commentsOnCandidate = feedback.commentsOnCandidate 
-            
-            
-            technicalFeedbackModel.designation = feedback.designation!
-            
-            for obj in feedback.candidateSkills!{
-                print(obj)
-                
-            }
-            designationField.stringValue = technicalFeedbackModel.designation!
-            print("name = \(technicalFeedbackModel.designation)")
+//            technicalFeedbackModel.commentsOnCandidate = feedback.commentsOnCandidate 
+//            technicalFeedbackModel.commentsOnTechnology = feedback.commentsOnTechnology
+//            technicalFeedbackModel.designation = feedback.designation!
+//            technicalFeedbackModel.modeOfInterview = feedback.modeOfInterview
+//            technicalFeedbackModel.recommendation = feedback.recommendation
+//            technicalFeedbackModel.ratingOnTechnical = feedback.ratingOnTechnical
+//            technicalFeedbackModel.ratingOnCandidate = feedback.ratingOnCandidate
+//            technicalFeedbackModel.
+//            for obj in feedback.candidateSkills!{
+//                print(obj)
+//                
+//            }
+//            
+//            designationField.stringValue = technicalFeedbackModel.designation!
+//            
+//            print("name = \(technicalFeedbackModel.designation)")
             
         }
-
         
     }
    
@@ -496,10 +498,27 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             print(skillSetObject.skillRating)
             print(skillSetObject.skillName)
         }
-       
+        let selectedMode = modeOfInterview.selectedColumn
+        if selectedMode != 0
+        {
+            interviewModeState = "Face To Face"
+        }else
+        {
+            interviewModeState = "Telephonic"
+        }
+        
+        let selectedColoumn = recommentationField.selectedColumn
+        if selectedColoumn != 0
+        {
+            recommentationState = "Rejected"
+        }else
+        {
+            recommentationState = "Shortlisted"
+        }
+
        if validation()
        {
-       technicalFeedbackModel.modeOfInterview         = interviewModeState
+       technicalFeedbackModel.modeOfInterview      = interviewModeState
        technicalFeedbackModel.skills = skillsAndRatingsTitleArray as [SkillSet]
        technicalFeedbackModel.commentsOnTechnology = textViewOfTechnologyAssessment.string
        technicalFeedbackModel.ratingOnTechnical    = overallTechnicalRating
@@ -617,14 +636,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
       isValid =  validationForTextfield(ratingOnTechnologyField)
       isValid =  validationForTextfield(interviewedByField)
       isValid =  validationForTextfield(designationField)
-//        if modeOfInterview.cells.
-//        {
-//            return false
-//        }
-//        else if recommentationField.selectedCell()?.state
-//        {
-//            return false
-//        }
       return isValid
     }
 }
