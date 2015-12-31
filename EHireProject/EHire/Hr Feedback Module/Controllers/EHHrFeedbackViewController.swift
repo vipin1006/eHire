@@ -82,6 +82,11 @@ class EHHrFeedbackViewController: NSViewController {
     override func viewWillAppear()
     {
         super.viewWillAppear()
+        
+        print("The Candidate for HR feedback is \(candidate)")
+        
+        self.candidateName.stringValue = (candidate?.name)!
+        
         candidateInfo["isVisaAvailable"] = NSNumber(int:0)
         candidateInfo["isRelocationRequested"] = NSNumber(int:0)
         candidateInfo["isInterviewedBefore"] = NSNumber(int:0)
@@ -134,19 +139,11 @@ class EHHrFeedbackViewController: NSViewController {
             candidateInfo["questionsAskedByCandidate"] = questionsAskedByCandidate.string
             candidateInfo["inetrviewedBy"] = inetrviewedBy.stringValue
             candidateInfo["EmploymentGap"] = employmentGap.stringValue
-            candidateInfo["lastDesignation"] = lastDesignation.stringValue
+            candidateInfo["lastDesignation"] = ""
             candidateInfo["leavePlanReasons"] = leavePlanReasons.stringValue
-            //CoreData Candidate Object Comes here from Selected Candidate (Future Reference)
-            
-            //Dummy Candidate Object for Code Developing
-            
-            candidate = Candidate(entity:EHCoreDataHelper.createEntity("Candidate",managedObjectContext: AppDelegate.getAppdelegate().managedObjectContext)!, insertIntoManagedObjectContext:AppDelegate.getAppdelegate().managedObjectContext)
-            
-            
+         
             HrFeedbackDataAccess.saveHrFeedbackOfCandidate(candidate!,candidateInfo: candidateInfo)
-
-            
-           }
+    }
            else
         {
             showAlert("Some fileds are missing", info:"Please fill up all the required fileds")

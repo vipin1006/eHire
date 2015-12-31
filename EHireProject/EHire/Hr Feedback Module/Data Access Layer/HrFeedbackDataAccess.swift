@@ -23,9 +23,13 @@ class HrFeedbackDataAccess: NSObject {
         
     HrFeedbackDataAccess.candidateDocumentsInfo(candidate, candidateInfo: candidateInfo)
         
+    HrFeedbackDataAccess.candidateMiscellaneousInfo(candidate, candidateInfo: candidateInfo)
+        
         do
         {
             try candidate.managedObjectContext?.save()
+            
+            print("Candidate Complete Details are \(candidate)")
         }
         catch let error as NSError
         {
@@ -112,6 +116,7 @@ class HrFeedbackDataAccess: NSObject {
     {
         
         
+        
         let miscellaneousInfo = CandidateMiscellaneous(entity:EHCoreDataHelper.createEntity("CandidateMiscellaneous", managedObjectContext:AppDelegate.getAppdelegate().managedObjectContext)!,insertIntoManagedObjectContext:AppDelegate.getAppdelegate().managedObjectContext)
         miscellaneousInfo.businessUnit = candidateInfo["candidateBusinessUnit"] as? String
         miscellaneousInfo.leavePlanInSixMonths = candidateInfo["leavePlanReasons"] as? String
@@ -125,6 +130,7 @@ class HrFeedbackDataAccess: NSObject {
         miscellaneousInfo.anyLeavePlanInSixMonths = candidateInfo["isAnyLeavePlans"] as? NSNumber
         miscellaneousInfo.anyLegalObligationWithCurrentEmployer = candidateInfo["anyLegalObligations"] as? NSNumber
         miscellaneousInfo.expectedSalary = NSNumber(int:Int32((candidateInfo["expectedSalary"] as? String)!)!)
+        candidate.name =  candidateInfo["candidateName"] as? String
     }
     
  
