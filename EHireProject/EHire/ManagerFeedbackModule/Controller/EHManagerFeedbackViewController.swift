@@ -107,11 +107,32 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         
         //managerialFeedbackModel.managerName = feedback.managerName!
         managerialFeedbackModel.designation = feedback.designation!
+            managerialFeedbackModel.commentsOnCandidate = NSAttributedString(string: feedback.commentsOnCandidate!)
+            managerialFeedbackModel.commentsOnTechnology = NSAttributedString(string: feedback.commentsOnTechnology!)
+            managerialFeedbackModel.commitments = NSAttributedString(string: feedback.commitments!)
+            managerialFeedbackModel.ratingOnTechnical = Int16((feedback.ratingOnTechnical?.integerValue)!)
+            managerialFeedbackModel.ratingOnCandidate = Int16((feedback.ratingOnCandidate?.integerValue)!)
+            managerialFeedbackModel.grossAnnualSalary = String(stringInterpolationSegment: feedback.grossAnnualSalary)
+            managerialFeedbackModel.recommendedCg = feedback.recommendedCg
+            managerialFeedbackModel.jestificationForHire = NSAttributedString(string: feedback.jestificationForHire!)
+            managerialFeedbackModel.managerName = feedback.managerName
+
+        
+            
+            managerialFeedbackModel!.skillSet.removeAll()
+            for object in feedback.candidateSkills!{
+                let skillset = object as! SkillSet
+                
+                let communicationSkill = EHSkillSet()
+                communicationSkill.skillName = skillset.skillName
+                communicationSkill.skillRating = Int16((skillset.skillRating?.integerValue)!)
+                managerialFeedbackModel!.skillSet.append(communicationSkill)
+        }
+            
+            tableView.reloadData()
         }
         
         print("name = \(managerialFeedbackModel.designation)")
-
-        
     }
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int
