@@ -114,7 +114,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             managerialFeedbackModel.ratingOnCandidate = Int16((feedback.ratingOnCandidate?.integerValue)!)
             managerialFeedbackModel.grossAnnualSalary = String(stringInterpolationSegment: feedback.grossAnnualSalary)
             managerialFeedbackModel.recommendedCg = feedback.recommendedCg
-            managerialFeedbackModel.jestificationForHire = NSAttributedString(string: feedback.jestificationForHire!)
+           // managerialFeedbackModel.jestificationForHire = NSAttributedString(string: feedback.jestificationForHire!)
             managerialFeedbackModel.managerName = feedback.managerName
 
         
@@ -128,6 +128,26 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                 communicationSkill.skillRating = Int16((skillset.skillRating?.integerValue)!)
                 managerialFeedbackModel!.skillSet.append(communicationSkill)
         }
+            
+            if !(managerialFeedbackModel.ratingOnTechnical == nil) {
+                for starBtn in viewOverAllAssessmentOfTechnologyStar.subviews{
+                    let tempBtn = starBtn as! NSButton
+                    if tempBtn.tag == (managerialFeedbackModel.ratingOnTechnical!-1){
+                        displayStar(viewOverAllAssessmentOfTechnologyStar, lbl: labelOverAllAssessmentOfTechnology, sender: tempBtn )
+                    }
+                }
+            }
+            
+            
+            if !(managerialFeedbackModel.ratingOnCandidate == nil) {
+                for starBtn in viewOverAllAssessmentOfCandidateStar.subviews{
+                    let tempBtn = starBtn as! NSButton
+                    if tempBtn.tag == (managerialFeedbackModel.ratingOnCandidate!-1){
+                        displayStar(viewOverAllAssessmentOfCandidateStar, lbl: labelOverAllAssessmentOfCandidate, sender: tempBtn )
+                    }
+                }
+            }
+
             
             tableView.reloadData()
         }
