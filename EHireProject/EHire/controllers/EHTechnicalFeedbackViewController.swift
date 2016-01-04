@@ -8,9 +8,9 @@
 
 import Cocoa
 
-class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,NSTableViewDelegate,NSTextFieldDelegate,NSTextViewDelegate
+class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,NSTableViewDelegate,NSTextFieldDelegate
 {
-    //IBOutlets
+    //MARK: IBOutlets
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet var technicalFeedbackMainView: NSView!
     @IBOutlet var textViewOfTechnologyAssessment: NSTextView!
@@ -27,12 +27,11 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     @IBOutlet weak var modeOfInterview: NSMatrix!
     @IBOutlet weak var recommentationField: NSMatrix!
     
-    //Variables
+    //MARK: Variables
     var cell : EHRatingsTableCellView?
     var feedback = EHFeedbackViewController()
     var technicalFeedbackModel = EHTechnicalFeedbackModel()
     let dataAccessModel = TechnicalFeedbackDataAccess()
-    
     var name : String?
     var overallTechnicalRating : Int?
     var overallCandidateRating : Int?
@@ -41,85 +40,28 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     var recommentationState : String?
     var skillsAndRatingsTitleArray = [SkillSet]()
     var selectedCandidate : Candidate?
-    
     var feedbackData : [AnyObject]?
-   // let candidateDetails = EHCandidateDetails(inName: "Tharani",candidateExperience:"" , candidateInterviewTiming: "12", candidatePhoneNo:"") as EHCandidateDetails
     
-   //ModeOfInterview Action
-    @IBAction func modeOfInterviewAction(sender: NSMatrix)
-    {
-        if (sender.selectedCell() == sender.cells[0])
-        {
-            interviewModeState = sender.cells[0].title
-        }
-        else
-        {
-           interviewModeState = sender.cells[1].title
-        }
-        print(interviewModeState)
-    }
-        
-    //Recommentation Field Action
-    @IBAction func recommentationAction(sender: AnyObject)
-    {
-        if (sender.selectedCell() == sender.cells[0])
-        {
-            recommentationState = sender.cells[0].title
-        }
-        else
-        {
-            recommentationState = sender.cells[1].title
-        }
-        print(recommentationState)
-    }
-   
-    //initial setup of view to load the basic views of Technical Feedback.
+    //MARK: initial setup of views
     override func loadView()
     {
-    // technicalFeedbackModel.candidate = selectedCandidate
-     let skillArray = [ "Communication","Stability","Leadership","Growth"]
-        
-     if skillsAndRatingsTitleArray.count == 0
-     {
+        let skillArray = [ "Communication","Organisation Stability","Leadership(if applicable)","Growth Potential"] as NSMutableArray
+     
+        for index in 0...3
+        {
         let communication = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:(selectedCandidate?.managedObjectContext)!)!,insertIntoManagedObjectContext:selectedCandidate?.managedObjectContext)
-    
-        communication.skillName = "Communication"
-        skillsAndRatingsTitleArray.append(communication)
-        
-     
-      let organisationStability = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:(selectedCandidate?.managedObjectContext)!)!,insertIntoManagedObjectContext:selectedCandidate?.managedObjectContext)
-    
-      organisationStability.skillName = "Stability"
-    
-      skillsAndRatingsTitleArray.append(organisationStability)
-        
-      let leadership = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:(selectedCandidate?.managedObjectContext)!)!,insertIntoManagedObjectContext:selectedCandidate?.managedObjectContext)
-     
-      leadership.skillName = "Leadership"
-    
-      leadership.skillRating = overallCandidateRatingOnSkills
-    
-        skillsAndRatingsTitleArray.append(leadership)
-
-    let growth = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:(selectedCandidate?.managedObjectContext)!)!,insertIntoManagedObjectContext:selectedCandidate?.managedObjectContext)    
-      growth.skillName = "Growth"
-      growth.skillRating = overallCandidateRatingOnSkills
-      skillsAndRatingsTitleArray.append(growth)
-     }
+        communication.skillName = skillArray.objectAtIndex(index) as? String
+         skillsAndRatingsTitleArray.append(communication)
+        }
         super.loadView()
     }
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        print(selectedCandidate?.interviewedByTechLeads?.count)
         candidateNameField.stringValue = (selectedCandidate?.name)!
         requisitionNameField.stringValue = (selectedCandidate?.requisition)!
-        
         cell?.skilsAndRatingsTitlefield.delegate = self
-        textViewOfTechnologyAssessment.delegate = self
-        textViewOfCandidateAssessment.delegate = self
         technicalFeedbackMainView.wantsLayer = true
         technicalFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
         for rating in overallAssessmentOnTechnologyStarView.subviews
@@ -148,9 +90,11 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         technicalFeedbackModel.ratingOnCandidate = Int((feedback.ratingOnCandidate?.integerValue)!)
         designationField.stringValue = feedback.designation!
         interviewedByField.stringValue = feedback.techLeadName!
-        modeOfInterview.selectedCell()?.stringValue = feedback.modeOfInterview!
-       // modeOfInterview.cell?.title = feedback.modeOfInterview!
-        recommentationField.stringValue = feedback.recommendation!
+        technicalFeedbackModel.modeOfInterview = feedback.modeOfInterview!
+        technicalFeedbackModel.recommendation = feedback.recommendation!
+        
+        fetchingModeOfInterview(technicalFeedbackModel.modeOfInterview!)
+        fetchingRecommendation(technicalFeedbackModel.recommendation!)
             
         skillsAndRatingsTitleArray.removeAll()
         for object in feedback.candidateSkills!
@@ -177,7 +121,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             }
         }
             
-            
          if !(technicalFeedbackModel.ratingOnCandidate == nil)
             {
               for starBtn in overallAssessmentOfCandidateStarView.subviews
@@ -186,15 +129,17 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                     let totalView = overallAssessmentOfCandidateStarView.subviews
                     if tempBtn.tag == (technicalFeedbackModel.ratingOnCandidate! - 1)
                     {
-                       toDisplayRatingStar(totalView, sender: tempBtn, label: self.ratingOnTechnologyField, view: overallAssessmentOnTechnologyStarView)
+                       toDisplayRatingStar(totalView, sender: tempBtn, label: self.ratingOfCandidateField, view: overallAssessmentOnTechnologyStarView)
                     }
-                }
-            }
-         }
+                 }
+              }
+           }
         }
         tableView.reloadData()
     }
-   
+    
+    //MARK: To Dispaly the Stars
+    
     // To Dispaly the Star Rating insided the TextView Of Overall Assessment On Technology
     
     func assessmentOnTechnology(sender : NSButton)
@@ -210,20 +155,21 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         toDisplayRatingStar(totalView, sender: sender, label: ratingOfCandidateField,view: overallAssessmentOfCandidateStarView)
     }
     
-    //MARK: This data source method returns tableview rows
+    //MARK: Delegate And DataSource Methods
+    // To return tableview rows
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int
     {
         return skillsAndRatingsTitleArray.count
     }
     
-    //MARK: This method returns the height of the tableview row
+    //To returns the height of the tableview row
     func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat
     {
         return 25
     }
     
-    //Mark: This delegate method provides the content for each item of the table view
+    // To provide the content for each item of the table view
     
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView?
     {
@@ -245,7 +191,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 }
             }
         }
-
         
         for ratingsView in cellView.starCustomView.subviews
         {
@@ -257,7 +202,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         return cellView
     }
 
-    //Mark: To Display the Alert Message
+    // To Display the Alert Message
     
     func alertPopup(data:String, informativeText:String)
     {
@@ -269,7 +214,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         alert.runModal()
     }
     
-    //Mark: To Display The Stars inside TableView
+    // To Display The Stars inside TableView
     
     func starRatingCount(sender : NSButton)
     {
@@ -456,23 +401,19 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }
     }
     
-    //MARK: TextField Delegate methods
+    //MARK: TextField Delegate method
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
     {
         let skill = skillsAndRatingsTitleArray[self.tableView.selectedRow]
-
         skill.skillName = fieldEditor.string
-        skill.skillRating = overallCandidateRatingOnSkills
-        print(skill.skillRating)
-        EHCoreDataHelper.saveToCoreData(skill)
         return true
     }
     
-    // Mark: To add new skills inside TableView
+    //MARK: Button Actions
+    //To add new skills inside TableView
     
     @IBAction func addSkills(sender: NSButton)
     {
-        
         if skillsAndRatingsTitleArray.count > 0 && cell?.skilsAndRatingsTitlefield.stringValue == "Enter Title"
         {
             alertPopup("Enter Title", informativeText: "Please enter previous selected title")
@@ -481,10 +422,35 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         {
             let newSkill = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)!,insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)
             
-            newSkill.skillName = "Enter Title"
-            newSkill.skillRating = 0
-            self.skillsAndRatingsTitleArray.append(newSkill)
-            tableView.reloadData()
+                newSkill.skillName = "Enter Title"
+                newSkill.skillRating = 0
+                self.skillsAndRatingsTitleArray.append(newSkill)
+                tableView.reloadData()
+        }
+    }
+    //ModeOfInterview Action
+    @IBAction func modeOfInterviewAction(sender: NSMatrix)
+    {
+        if (sender.selectedCell() == sender.cells[0])
+        {
+            interviewModeState = sender.cells[0].title
+        }
+        else
+        {
+            interviewModeState = sender.cells[1].title
+        }
+    }
+    
+    //Recommentation Field Action
+    @IBAction func recommentationAction(sender: AnyObject)
+    {
+        if (sender.selectedCell() == sender.cells[0])
+        {
+            recommentationState = sender.cells[0].title
+        }
+        else
+        {
+            recommentationState = sender.cells[1].title
         }
     }
     
@@ -495,9 +461,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         if tableView.selectedRow != -1
         {
             skillsAndRatingsTitleArray.removeAtIndex(tableView.selectedRow)
-                //removeObjectAtIndex(tableView.selectedRow)
-            
-            
             tableView.reloadData()
         }
     }
@@ -526,27 +489,55 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
 
        if validation()
        {
-       technicalFeedbackModel.modeOfInterview      = interviewModeState
-       technicalFeedbackModel.skills = skillsAndRatingsTitleArray as [SkillSet]
-       technicalFeedbackModel.commentsOnTechnology = textViewOfTechnologyAssessment.string
-       technicalFeedbackModel.ratingOnTechnical    = overallTechnicalRating
-       technicalFeedbackModel.commentsOnCandidate  = textViewOfCandidateAssessment.string
-       technicalFeedbackModel.ratingOnCandidate    = overallCandidateRating
-       technicalFeedbackModel.recommendation       = recommentationState
-       technicalFeedbackModel.designation          = designationField.stringValue
-       technicalFeedbackModel.techLeadName         = interviewedByField.stringValue
+        technicalFeedbackModel.modeOfInterview      = interviewModeState
+        technicalFeedbackModel.skills = skillsAndRatingsTitleArray as [SkillSet]
+        technicalFeedbackModel.commentsOnTechnology = textViewOfTechnologyAssessment.string
+        technicalFeedbackModel.ratingOnTechnical    = overallTechnicalRating
+        technicalFeedbackModel.commentsOnCandidate  = textViewOfCandidateAssessment.string
+        technicalFeedbackModel.ratingOnCandidate    = overallCandidateRating
+        technicalFeedbackModel.recommendation       = recommentationState
+        technicalFeedbackModel.designation          = designationField.stringValue
+        technicalFeedbackModel.techLeadName         = interviewedByField.stringValue
       
-        if dataAccessModel.insertIntoTechnicalFeedback(technicalFeedbackModel, selectedCandidate: selectedCandidate!)
-        {
-           alertPopup("Data Saved", informativeText: "Saved Successfully")
-        }
-        else
-         {
-             alertPopup("Data not Saved", informativeText: "Some Problem is there while saving")
-         }
+            if dataAccessModel.insertIntoTechnicalFeedback(technicalFeedbackModel, selectedCandidate: selectedCandidate!)
+            {
+                alertPopup("Data Saved", informativeText: "Saved Successfully")
+            }
+            else
+            {
+                alertPopup("Data not Saved", informativeText: "Some Problem is there while saving")
+            }
         }
     }
     
+    //MARK:- Setting Matrix Value
+    func fetchingModeOfInterview(value : String)
+    {
+        if value == "Telephonic"
+        {
+            modeOfInterview.setState(NSOnState, atRow: 0, column: 0)
+            modeOfInterview.setState(NSOffState, atRow: 0, column: 1)
+            
+        }else{
+            modeOfInterview.setState(NSOnState, atRow: 0, column: 1)
+            modeOfInterview.setState(NSOffState, atRow: 0, column: 0)
+        }
+    }
+    
+    func fetchingRecommendation(value : String)
+    {
+        if value == "Shortlisted"
+        {
+            recommentationField.setState(NSOnState, atRow: 0, column: 0)
+            recommentationField.setState(NSOffState, atRow: 0, column: 1)
+            
+        }else{
+            recommentationField.setState(NSOnState, atRow: 0, column: 1)
+            recommentationField.setState(NSOffState, atRow: 0, column: 0)
+        }
+    }
+    
+    //MARK: Validation
     func validation() -> Bool
     {
       let isValid = false
