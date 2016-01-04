@@ -1,8 +1,7 @@
 //
 //  EHireTechnologyTest.swift
 //  EHire
-//  This is class is mainly used to test the curd operation
-
+//  Here we can perform a curd operation based on the Technology Model
 //  Created by padalingam agasthian on 24/12/15.
 //  Copyright © 2015 Exilant Technologies. All rights reserved.
 //

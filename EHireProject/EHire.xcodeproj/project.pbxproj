@@ -393,6 +393,7 @@
 		8001C3F21C23E96E00D62243 /* Data Access Layer */ = {
 			isa = PBXGroup;
 			children = (
+				8001C3F11C23E96E00D62243 /* Model */,
 				9CB11FC41C328C1100939D42 /* EHManagerFeedbackDataAccessLayer.swift */,
 			);
 			name = "Data Access Layer";
@@ -424,7 +425,6 @@
 			isa = PBXGroup;
 			children = (
 				8001C3F01C23E96E00D62243 /* Controller */,
-				8001C3F11C23E96E00D62243 /* Model */,
 				8001C3F21C23E96E00D62243 /* Data Access Layer */,
 				8001C3F31C23E96E00D62243 /* CustomViewCells */,
 				8001C3F41C23E96E00D62243 /* Nibs */,
