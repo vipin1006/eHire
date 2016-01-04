@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D3A3D7D1C3A389C00AA56E1 /* EHTechnologyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3A3D7C1C3A389C00AA56E1 /* EHTechnologyViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		2D3A3D7D1C3A389C00AA56E1 /* EHTechnologyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3A3D7C1C3A389C00AA56E1 /* EHTechnologyViewController.swift */; };
 		2D8C5D9F1C30E7E70018184E /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D871C30E7E70018184E /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift */; };
 		2D8C5DA01C30E7E70018184E /* CandidatePreviousEmploymentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D881C30E7E70018184E /* CandidatePreviousEmploymentInfo.swift */; };
 		2D8C5DA11C30E7E70018184E /* CandidatePersonalInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D891C30E7E70018184E /* CandidatePersonalInfo+CoreDataProperties.swift */; };
@@ -44,8 +44,6 @@
 		41A97FF91C195E500016CAB4 /* EHTechnologyCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF81C195E500016CAB4 /* EHTechnologyCustomCell.swift */; };
 		41A97FFE1C1971FF0016CAB4 /* BlueCalendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A97FFD1C1971FF0016CAB4 /* BlueCalendar.png */; };
 		41A980001C1974020016CAB4 /* deleteDate.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A97FFF1C1974020016CAB4 /* deleteDate.png */; };
-		4F2536E51C2179E0000E8C95 /* EHInterviewDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536E31C2179E0000E8C95 /* EHInterviewDate.swift */; };
-		4F2536E61C2179E0000E8C95 /* EHTechnology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536E41C2179E0000E8C95 /* EHTechnology.swift */; };
 		4F2536EC1C2179EC000E8C95 /* EHPopOverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536E91C2179EC000E8C95 /* EHPopOverController.swift */; };
 		4F2536ED1C2179EC000E8C95 /* EHTechnologyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536EA1C2179EC000E8C95 /* EHTechnologyViewController.swift */; };
 		4F2536FB1C218172000E8C95 /* DataCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536FA1C218172000E8C95 /* DataCommunicator.swift */; };
@@ -157,8 +155,6 @@
 		41A97FF81C195E500016CAB4 /* EHTechnologyCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnologyCustomCell.swift; sourceTree = "<group>"; };
 		41A97FFD1C1971FF0016CAB4 /* BlueCalendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlueCalendar.png; path = ../../BlueCalendar.png; sourceTree = "<group>"; };
 		41A97FFF1C1974020016CAB4 /* deleteDate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = deleteDate.png; path = ../../deleteDate.png; sourceTree = "<group>"; };
-		4F2536E31C2179E0000E8C95 /* EHInterviewDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHInterviewDate.swift; sourceTree = "<group>"; };
-		4F2536E41C2179E0000E8C95 /* EHTechnology.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnology.swift; sourceTree = "<group>"; };
 		4F2536E91C2179EC000E8C95 /* EHPopOverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHPopOverController.swift; sourceTree = "<group>"; };
 		4F2536EA1C2179EC000E8C95 /* EHTechnologyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnologyViewController.swift; sourceTree = "<group>"; };
 		4F2536FA1C218172000E8C95 /* DataCommunicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataCommunicator.swift; sourceTree = "<group>"; };
@@ -299,21 +295,10 @@
 			name = "Test Cases";
 			sourceTree = "<group>";
 		};
-		4F2536E21C2179E0000E8C95 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				4F2536E31C2179E0000E8C95 /* EHInterviewDate.swift */,
-				4F2536E41C2179E0000E8C95 /* EHTechnology.swift */,
-			);
-			name = Model;
-			path = ../Model;
-			sourceTree = "<group>";
-		};
 		4F2536E71C2179EC000E8C95 /* Technology */ = {
 			isa = PBXGroup;
 			children = (
 				8001C41C1C23EB0900D62243 /* Controllers */,
-				4F2536E21C2179E0000E8C95 /* Model */,
 				8001C41B1C23EABB00D62243 /* DataAccessLayer */,
 				8042884B1C17F17A003033B4 /* CustomViewCells */,
 				8042884A1C17F150003033B4 /* Nibs */,
@@ -851,7 +836,6 @@
 			files = (
 				8029FFF01C2A81970041C74C /* ManagerFeedBack.swift in Sources */,
 				8029FFE21C2A81970041C74C /* CandidateBasicProfessionalInfo+CoreDataProperties.swift in Sources */,
-				4F2536E61C2179E0000E8C95 /* EHTechnology.swift in Sources */,
 				4F7BCAC91C325CBD00D60546 /* EHCandidateDetails.swift in Sources */,
 				41A97FF91C195E500016CAB4 /* EHTechnologyCustomCell.swift in Sources */,
 				94544B471C338B78008E3FA8 /* EHSkillSetModel.swift in Sources */,
@@ -887,7 +871,6 @@
 				8029FFE01C2A81970041C74C /* Candidate+CoreDataProperties.swift in Sources */,
 				4F7BCA841C2BED8B00D60546 /* EHManagerFeedbackViewController.swift in Sources */,
 				8029FFE71C2A81970041C74C /* CandidatePersonalInfo.swift in Sources */,
-				4F2536E51C2179E0000E8C95 /* EHInterviewDate.swift in Sources */,
 				802900021C2A83CE0041C74C /* HrFeedbackDataAccess.swift in Sources */,
 				8029FFF61C2A81970041C74C /* Technology.swift in Sources */,
 				52CB4A581C31379800934A84 /* EHCandidateController.swift in Sources */,

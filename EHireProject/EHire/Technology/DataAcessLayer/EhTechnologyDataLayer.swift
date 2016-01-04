@@ -10,95 +10,52 @@ import Cocoa
 
 class EHTechnologyDataLayer: NSObject {
     
-    static var technologyArray = [EHTechnology]()
+    static var technologyArray = [Technology]()
    static let managedObjectContext =  EHCoreDataStack.sharedInstance.managedObjectContext
 
     //PRAGMAMARK:- Coredata
     // This method loads the saved data from Core data
     class func getSourceListContent() -> NSArray{
         
-        //let technologyEntity = EHCoreDataHelper.createEntity("Technology", managedObjectContext: context)
-       
-        
         let records = EHCoreDataHelper.fetchRecordsWithPredicate(nil, sortDescriptor: nil, entityName: "Technology", managedObjectContext: managedObjectContext)
         
         if records?.count > 0{
-            
-            
             for aRec in records!{
-                
                 let aTechnologyEntity = aRec as! Technology
-                let children = aTechnologyEntity.interviewDates
-                
-                //  mapping coredata content to our custom model
-                let technologyModel = EHTechnology(technology: aTechnologyEntity.technologyName!)
-                
-                for object in children!
-                {
-                    let inDate = object as! Date
-                    
-                    let dateObject = EHInterviewDate(date: inDate.interviewDate!)
-                    technologyModel.interviewDates.append(dateObject)
-                }
-                technologyArray.append(technologyModel)
+                technologyArray.append(aTechnologyEntity)
             }
         }
-        
-        return technologyArray as [EHTechnology]
+        return technologyArray as [Technology]
     }
     
     
-    class  func addTechnologyToCoreData(techName:String){
-        
-        //if the sender is nil, there is no parent. THat means a new techonlogy is being added.
-        // Adding a new technology in to coredata
-        let newTechnologyEntityDescription = EHCoreDataHelper.createEntity("Technology", managedObjectContext: managedObjectContext)
-        let newTechnologyManagedObject:Technology = Technology(entity:newTechnologyEntityDescription!, insertIntoManagedObjectContext:managedObjectContext) as Technology
-        newTechnologyManagedObject.technologyName = techName
-        EHCoreDataHelper.saveToCoreData(newTechnologyManagedObject)
-        
+    class  func addTechnologyToCoreData(techObjectToAdd:Technology){
+        managedObjectContext.insertObject(techObjectToAdd)
+        EHCoreDataHelper.saveToCoreData(techObjectToAdd)
     }
     
-    class func addInterviewDateToCoreData(parentTechnologyName:String , dateToAdd: NSDate){
-        
-        let predicate = NSPredicate(format: "technologyName = %@",parentTechnologyName)
-        let technologyRecords = EHCoreDataHelper.fetchRecordsWithPredicate(predicate, sortDescriptor: nil, entityName: "Technology", managedObjectContext: managedObjectContext)
-        
-        let newDateEntityDescription = EHCoreDataHelper.createEntity("Date", managedObjectContext: managedObjectContext)
-        for item in technologyRecords!
-        {
-            let newDateManagedObject:Date = Date(entity:newDateEntityDescription!, insertIntoManagedObjectContext:managedObjectContext) as Date
+    class func addInterviewDateToCoreData(parenttechnology
+        :Technology, dateToAdd: Date){
             
-            newDateManagedObject.interviewDate = dateToAdd
-            let technology = item as! Technology
+        parenttechnology.interviewDates?.addObject(dateToAdd)
             
-            let newDateSet = NSMutableSet(set: technology.interviewDates!)
-            newDateSet.addObject(newDateManagedObject)
-            technology.interviewDates = newDateSet
-            EHCoreDataHelper.saveToCoreData(technology)
-        }
-        
-        
+            let newDateSet = NSMutableSet(set: parenttechnology.interviewDates!)
+            newDateSet.addObject(dateToAdd)
+            parenttechnology.interviewDates = newDateSet
+            EHCoreDataHelper.saveToCoreData(parenttechnology)
+            
+          }
+    
+    
+    class func deleteTechnologyFromCoreData(technologyToDelete : Technology) {
+        managedObjectContext.deleteObject(technologyToDelete)
+        EHCoreDataHelper.saveToCoreData(technologyToDelete)
     }
     
-    
-    class func deleteTechnologyFromCoreData(inTechnologyName:String) {
-        
-        // deleting technology from coredata
-        let predicate = NSPredicate(format: "technologyName = %@",inTechnologyName)
-        let records = EHCoreDataHelper.fetchRecordsWithPredicate(predicate, sortDescriptor: nil, entityName: "Technology", managedObjectContext: managedObjectContext)
-        
-        for record in records!{
-            let aTechnology = record as! Technology
-            managedObjectContext.deleteObject(aTechnology)
-            EHCoreDataHelper.saveToCoreData(aTechnology)
-        }
-    }
-    
-    class func deleteInterviewDateFromCoreData(inInterviewdate:EHInterviewDate) {
+    class func deleteInterviewDateFromCoreData(inInterviewdate:Date) {
         
         // creating predicate to filter the fetching result from core data
-        let predicate = NSPredicate(format: "interviewDate = %@",(inInterviewdate.scheduleInterviewDate))
+        let predicate = NSPredicate(format: "interviewDate = %@",(inInterviewdate.interviewDate)!)
         
         let fetchResults =  EHCoreDataHelper.fetchRecordsWithPredicate(predicate, sortDescriptor: nil, entityName: "Date", managedObjectContext: managedObjectContext)
         

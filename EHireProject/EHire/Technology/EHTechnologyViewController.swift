@@ -16,7 +16,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     @IBOutlet weak var sourceList: NSOutlineView!
     
     //Set the content of source list in the outlineVew as the technology list/array
-    var technologyArray = [EHTechnology]()
+    var technologyArray = [Technology]()
     var selectedTechnologyIndex:Int?
     
     // Add Interview Date
@@ -36,21 +36,24 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     var cellTechnology:EHTechnologyCustomCell?
     override func viewDidLoad() {
         super.viewDidLoad()
-        technologyArray = EHTechnologyDataLayer.getSourceListContent() as! [EHTechnology]
-        
+        technologyArray = EHTechnologyDataLayer.getSourceListContent() as! [Technology]
+        self.sourceList.reloadData()
+
     }
     
     
     //PRAGMAMARK: - outlineview datasource  methods
-    // This datasource method returns the child at a given index
+     //This datasource method returns the child at a given index
     func outlineView(outlineView: NSOutlineView, child index: Int, ofItem item: AnyObject?) -> AnyObject
     {
         // it 'item' is nil, technology has to be returned. Else, item's(technology) child(date) at that index has to be returned.
         if   item != nil
         {
-            if item is EHTechnology{
-                let technology = item as! EHTechnology
-                return technology.interviewDates[index]
+            if item is Technology{
+                let technology = item as! Technology
+                let allObjectsAraay = technology.interviewDates?.allObjects
+                
+                return allObjectsAraay![index]
             }
         }
         return technologyArray[index]
@@ -60,9 +63,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     // This datasource method returns true if the item(technology) has any children(date)
     func outlineView(outlineView: NSOutlineView, isItemExpandable item: AnyObject) -> Bool
     {
-        if item is EHTechnology{
-            let technology = item as! EHTechnology
-            return (technology.interviewDates.count) > 0 ? true : false
+        if item is Technology{
+            let technology = item as! Technology
+            return (technology.interviewDates!.count) > 0 ? true : false
         }
         return false
     }
@@ -73,9 +76,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     {
         if   item != nil
         {
-            if item is EHTechnology{
-                let technology = item as! EHTechnology
-                return technology.interviewDates.count
+            if item is Technology{
+                let technology = item as! Technology
+                return technology.interviewDates!.count
             }
         }
         return technologyArray.count
@@ -87,14 +90,14 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         switch item{
             
-        case  _ as EHTechnology:
+        case  _ as Technology:
             
             if isCandidatesViewLoaded{
                 candidateController?.view.removeFromSuperview()
                 isCandidatesViewLoaded = false
             }
             
-        case  _ as EHInterviewDate:
+        case  _ as Date:
             
             if !isCandidatesViewLoaded{
                 
@@ -108,9 +111,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 isCandidatesViewLoaded = true
             }
             //added
-            if let tempItem = item as? EHInterviewDate {
-                candidateController?.interviewDate = tempItem.scheduleInterviewDate
-                let techItem = outlineView.parentForItem(item) as? EHTechnology
+            if let tempItem = item as? Date {
+                candidateController?.interviewDate = tempItem.interviewDate
+                let techItem = outlineView.parentForItem(item) as? Technology
                 candidateController?.technologyName = techItem?.technologyName
             }
             
@@ -131,15 +134,15 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         
         let cell:NSTableCellView?
-        if item is EHInterviewDate
+        if item is Date
         {
             let child = sourceList.makeViewWithIdentifier("child", owner: nil) as! EHInterviewDateCustomCell
             
-            let x  = item as! EHInterviewDate
+            let x  = item as! Date
             
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "dd-MMM-yyyy"
-            let dateString = dateFormatter.stringFromDate(x.scheduleInterviewDate)
+            let dateString = dateFormatter.stringFromDate(x.interviewDate!)
             child.lblName.stringValue = dateString
             
             cell = child
@@ -150,7 +153,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         {
             let parent = sourceList.makeViewWithIdentifier("Parent", owner: nil) as! EHTechnologyCustomCell
             
-            let x = item as! EHTechnology
+            let x = item as! Technology
             if x.technologyName == ""{
                 parent.textFieldTechnology.editable = true
                 parent.textFieldTechnology.backgroundColor = NSColor.whiteColor()
@@ -160,7 +163,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 parent.textFieldTechnology.editable = false
                 parent.textFieldTechnology.backgroundColor = NSColor.clearColor()
             }
-            parent.textFieldTechnology.stringValue = x.technologyName
+            parent.textFieldTechnology.stringValue = x.technologyName!
             parent.textFieldTechnology.delegate = self
             cellTechnology = parent
             cell = parent
@@ -184,13 +187,27 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         let scheduledDate = sendingData as! NSDate
         
         
-        if let selectedItem = sourceList.itemAtRow(sourceList.selectedRow) as? EHTechnology {
+        if let selectedItem = sourceList.itemAtRow(sourceList.selectedRow) as? Technology {
             
-            if isValidInterviewDate(selectedItem.technologyName,inputDate: scheduledDate){
+            if isValidInterviewDate(selectedItem.technologyName!,inputDate: scheduledDate){
                 let aString = sendingData as! NSDate
                 print(aString)
-                selectedItem.interviewDates.append(EHInterviewDate(date:scheduledDate))
-                EHTechnologyDataLayer.addInterviewDateToCoreData(selectedItem.technologyName ,dateToAdd: scheduledDate)
+                
+                let newTechnologyEntityDescription = EHCoreDataHelper.createEntity("Date", managedObjectContext: EHCoreDataStack.sharedInstance.managedObjectContext
+)
+                let newDateManagedObject:Date = Date(entity:newTechnologyEntityDescription!, insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext
+) as Date
+                
+                
+                
+                newDateManagedObject.interviewDate = scheduledDate
+
+                
+                selectedItem.interviewDates?.addObject(newDateManagedObject)
+                EHCoreDataHelper.saveToCoreData(selectedItem)
+
+                
+                EHTechnologyDataLayer.addInterviewDateToCoreData(selectedItem, dateToAdd: newDateManagedObject)
                 
                 self.sourceList.reloadData()
                 
@@ -209,7 +226,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     
     @IBAction func addBtnAction(sender: AnyObject) {
         
-        if  ((sourceList.itemAtRow(sourceList.selectedRow) as? EHTechnology) != nil){ // adding new date
+        if  ((sourceList.itemAtRow(sourceList.selectedRow) as? Technology) != nil){ // adding new date
             
             // Condition to check dates cannot be added when technology is editing
             if !cellTechnology!.textFieldTechnology.editable{
@@ -221,9 +238,15 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             if technologyArray.count > 0 && cellTechnology?.textFieldTechnology.stringValue == ""{
                 alertPopup("Enter Technology", informativeText: "Please enter previous selected technology",inTag: 0)
             }else{
-                let technologyObject = EHTechnology(technology:"")
-                technologyArray .append(technologyObject)
+
+                
+                let newTechnologyEntityDescription = EHCoreDataHelper.createEntity("Technology", managedObjectContext: EHCoreDataStack.sharedInstance.managedObjectContext)
+                let newTechnologyManagedObject:Technology = Technology(entity:newTechnologyEntityDescription!, insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext) as Technology
+                newTechnologyManagedObject.technologyName = ""
+                technologyArray.append(newTechnologyManagedObject)
+                
                 self.sourceList.reloadData()
+
             }
         }
     }
@@ -242,27 +265,38 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     
     
     func deleteItem() {
-        if let selectedItem = sourceList.itemAtRow(sourceList.selectedRow) as? EHTechnology{
+        if let selectedItem = sourceList.itemAtRow(sourceList.selectedRow) as? Technology{
             // Condition to check new added technology is deletable
             if !cellTechnology!.textFieldTechnology.editable{
                 technologyArray.removeAtIndex(self.sourceList.selectedRow)
-                EHTechnologyDataLayer.deleteTechnologyFromCoreData(selectedItem.technologyName)
+                EHTechnologyDataLayer.deleteTechnologyFromCoreData(selectedItem)
             }
         }
             
         else
         {
-            let selectedInterviewDate = sourceList.itemAtRow(sourceList.selectedRow) as? EHInterviewDate
+            let selectedInterviewDate = sourceList.itemAtRow(sourceList.selectedRow) as? Date
             for aTechnology in technologyArray{
                 var count = 0
-                for aInterviewDate in aTechnology.interviewDates{
+                for aInterviewDate in aTechnology.interviewDates!{
                     
-                    if selectedInterviewDate == aInterviewDate{
-                        aTechnology.interviewDates.removeAtIndex(count)
+                    
+                    
+                    let aDate = aInterviewDate as! Date
+                    let dateFormatter = NSDateFormatter()
+                    dateFormatter.dateFormat = "dd-MMM-yyyy"
+                    let dateString = dateFormatter.stringFromDate(aDate.interviewDate!)
+                    let dateStringToCompare = dateFormatter.stringFromDate((selectedInterviewDate?.interviewDate)!)
+                    
+                    if  dateString == dateStringToCompare{
+                        aTechnology.interviewDates?.removeObject(aInterviewDate)
                         EHTechnologyDataLayer.deleteInterviewDateFromCoreData(selectedInterviewDate!)
-                        break;
+                        break
                     }
-                    count++
+
+                    
+                    
+
                 }
             }
             
@@ -324,7 +358,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 
                 textFieldObject.backgroundColor = NSColor.clearColor()
                 
-                EHTechnologyDataLayer.addTechnologyToCoreData(textFieldObject.stringValue)
+                EHTechnologyDataLayer.addTechnologyToCoreData(technologyObject)
                 
             }
             else{
@@ -408,10 +442,10 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         for  object in technologyArray
         {
-            let technology = object as EHTechnology
+            let technology = object as Technology
             
             //we are lowercaseString to avoid adding duplicate technology name with capital letters
-            if technology.technologyName.lowercaseString == inputString.lowercaseString
+            if technology.technologyName!.lowercaseString == inputString.lowercaseString
             {
                 isValid =  false
                 break
@@ -428,16 +462,17 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         for  object in technologyArray
         {
-            let technology = object as EHTechnology
+            let technology = object as Technology
             
             //we are lowercaseString to avoid adding duplicate technology name with capital letters
-            if technology.technologyName.lowercaseString == inputParentTechnology.lowercaseString
+            if technology.technologyName!.lowercaseString == inputParentTechnology.lowercaseString
             {
-                for date in technology.interviewDates{
+                for date in technology.interviewDates!{
                     
+                    let aDate = date as! Date
                     let dateFormatter = NSDateFormatter()
                     dateFormatter.dateFormat = "dd-MMM-yyyy"
-                    let dateString = dateFormatter.stringFromDate(date.scheduleInterviewDate)
+                    let dateString = dateFormatter.stringFromDate(aDate.interviewDate!)
                     let dateStringToCompare = dateFormatter.stringFromDate(inputDate)
                     
                     if  dateString == dateStringToCompare{
