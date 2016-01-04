@@ -972,9 +972,6 @@
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                                <connections>
-                                                                                    <action selector="onEnteringNameField:" target="eaX-tr-f6l" id="DpO-C6-hZ2"/>
-                                                                                </connections>
                                                                             </textFieldCell>
                                                                         </textField>
                                                                     </subviews>
@@ -1017,9 +1014,6 @@
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                                <connections>
-                                                                                    <action selector="onEnteringExperienceField:" target="eaX-tr-f6l" id="fmJ-ko-oBp"/>
-                                                                                </connections>
                                                                             </textFieldCell>
                                                                         </textField>
                                                                     </subviews>
@@ -1062,9 +1056,6 @@
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                                <connections>
-                                                                                    <action selector="onEnteringPhoneNumberField:" target="eaX-tr-f6l" id="NiH-sX-tc4"/>
-                                                                                </connections>
                                                                             </textFieldCell>
                                                                         </textField>
                                                                     </subviews>
@@ -1104,9 +1095,6 @@
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                                <connections>
-                                                                                    <action selector="onEnteringRequisitionField:" target="eaX-tr-f6l" id="d1s-Ot-fwz"/>
-                                                                                </connections>
                                                                             </textFieldCell>
                                                                         </textField>
                                                                     </subviews>
@@ -1144,9 +1132,6 @@
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                                <connections>
-                                                                                    <action selector="onEnteringInterviewTimeField:" target="eaX-tr-f6l" id="SHG-wy-Jq1"/>
-                                                                                </connections>
                                                                             </textFieldCell>
                                                                         </textField>
                                                                     </subviews>
@@ -3916,7 +3901,7 @@ CA
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="V9M-eh-Zzp">
-                                                    <rect key="frame" x="117" y="0.0" width="5" height="102"/>
+                                                    <rect key="frame" x="117" y="0.0" width="4" height="102"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -3930,7 +3915,7 @@ CA
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="IkI-SV-GgS">
-                                                    <rect key="frame" x="338" y="0.0" width="4" height="103"/>
+                                                    <rect key="frame" x="338" y="0.0" width="5" height="103"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
