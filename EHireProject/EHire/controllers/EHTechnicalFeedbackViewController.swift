@@ -79,7 +79,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }
         if selectedCandidate != nil
         {
-        let feedbackArray = dataAccessModel.fetchManagerFeedback(selectedCandidate!)
+        let feedbackArray = dataAccessModel.fetchFeedback(selectedCandidate!)
         if feedbackArray.count > 0
         {
         let feedback =  feedbackArray[0] as! TechnicalFeedBack
@@ -110,13 +110,13 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
 
         if !(technicalFeedbackModel.ratingOnTechnical == nil)
          {
-           for starBtn in overallAssessmentOnTechnologyStarView.subviews
+           for stars in overallAssessmentOnTechnologyStarView.subviews
            {
-               let tempBtn = starBtn as! NSButton
-               if tempBtn.tag == (technicalFeedbackModel.ratingOnTechnical! - 1)
+               let starButton = stars as! NSButton
+               if starButton.tag == (technicalFeedbackModel.ratingOnTechnical! - 1)
                {
                    let totalView = overallAssessmentOnTechnologyStarView.subviews
-                   toDisplayRatingStar(totalView, sender: tempBtn, label: self.ratingOnTechnologyField, view: overallAssessmentOnTechnologyStarView)
+                   toDisplayRatingStar(totalView, sender: starButton, feedbackText: self.ratingOnTechnologyField, view: overallAssessmentOnTechnologyStarView)
                 }
             }
         }
@@ -129,7 +129,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                     let totalView = overallAssessmentOfCandidateStarView.subviews
                     if tempBtn.tag == (technicalFeedbackModel.ratingOnCandidate! - 1)
                     {
-                       toDisplayRatingStar(totalView, sender: tempBtn, label: self.ratingOfCandidateField, view: overallAssessmentOnTechnologyStarView)
+                       toDisplayRatingStar(totalView, sender: tempBtn, feedbackText: self.ratingOfCandidateField, view: overallAssessmentOnTechnologyStarView)
                     }
                  }
               }
@@ -145,14 +145,14 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     func assessmentOnTechnology(sender : NSButton)
     {
         let totalView = overallAssessmentOnTechnologyStarView.subviews
-        toDisplayRatingStar(totalView, sender: sender, label: ratingOnTechnologyField, view: overallAssessmentOnTechnologyStarView)
+        toDisplayRatingStar(totalView, sender: sender, feedbackText: ratingOnTechnologyField, view: overallAssessmentOnTechnologyStarView)
     }
     // To Dispaly the Star Rating insided the TextView Of Overall Assessment Of Candidate
     
     func assessmentOfCandidate(sender : NSButton)
     {
         let totalView = overallAssessmentOfCandidateStarView.subviews
-        toDisplayRatingStar(totalView, sender: sender, label: ratingOfCandidateField,view: overallAssessmentOfCandidateStarView)
+        toDisplayRatingStar(totalView, sender: sender, feedbackText: ratingOfCandidateField,view: overallAssessmentOfCandidateStarView)
     }
     
     //MARK: Delegate And DataSource Methods
@@ -181,17 +181,15 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         cellView.skilsAndRatingsTitlefield.target = self
         cellView.skilsAndRatingsTitlefield.tag = row
         cell = cellView
-        
         if !(skill.skillRating == nil) {
             for starBtn in (cell?.starCustomView.subviews)!{
                 let tempBtn = starBtn as! NSButton
                 if tempBtn.tag+1 == skill.skillRating
                 {
-                   toDisplayRatingStar((cell?.starCustomView.subviews)!, sender: tempBtn, label: cellView.feedback, view: (cell?.starCustomView!)!)
+                   toDisplayRatingStar((cell?.starCustomView.subviews)!, sender: tempBtn, feedbackText: cellView.feedback, view: (cell?.starCustomView!)!)
                 }
             }
         }
-        
         for ratingsView in cellView.starCustomView.subviews
         {
             let view = ratingsView as! NSButton
@@ -224,15 +222,13 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             alertPopup("Enter the Title", informativeText: "Please select and click on Enter Title field to give title name")
             return
         }
-        
         let totalView = ratingCell.starCustomView.subviews
-        
-        toDisplayRatingStar(totalView, sender: sender,label: ratingCell.feedback,view: ratingCell.starCustomView)
+        toDisplayRatingStar(totalView, sender: sender,feedbackText: ratingCell.feedback,view: ratingCell.starCustomView)
     }
     
     // To Dispaly the Star Rating to Technical&Personality And Overall Assessment On Technology and also for Overall Assessment Of Candidate
     
-    func toDisplayRatingStar(totalView : [NSView], sender : NSButton,label : NSTextField,view : AnyObject)
+    func toDisplayRatingStar(totalView : [NSView], sender : NSButton,feedbackText : NSTextField,view : AnyObject)
     {
         func countingOfRatingStar(total : Int, deselectStar : Int?...)
         {
@@ -289,7 +285,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         {
         case 0:
             countingOfRatingStar(0)
-            label.stringValue = "Not Satisfactory"
+            feedbackText.stringValue = "Not Satisfactory"
             if view as! NSView == overallAssessmentOnTechnologyStarView
             {
               overallTechnicalRating = 1
@@ -310,7 +306,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             }
         case 1:
             countingOfRatingStar(1)
-            label.stringValue = "Satisfactory"
+            feedbackText.stringValue = "Satisfactory"
             countingOfRatingStar(0, deselectStar: 2,3,4)
             if view as! NSView == overallAssessmentOnTechnologyStarView
             {
@@ -333,7 +329,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             
         case 2:
             countingOfRatingStar(2)
-            label.stringValue = "Good"
+            feedbackText.stringValue = "Good"
             
             countingOfRatingStar(0, deselectStar: 3,4)
             if view as! NSView == overallAssessmentOnTechnologyStarView
@@ -355,7 +351,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             }
         case 3:
             countingOfRatingStar(3)
-            label.stringValue = "Very Good"
+            feedbackText.stringValue = "Very Good"
             countingOfRatingStar(0, deselectStar: 4)
             if view as! NSView == overallAssessmentOnTechnologyStarView
             {
@@ -378,7 +374,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             
         case 4:
             countingOfRatingStar(4)
-            label.stringValue = "Excellent"
+            feedbackText.stringValue = "Excellent"
             if view as! NSView == overallAssessmentOnTechnologyStarView
             {
                 overallTechnicalRating = 5
