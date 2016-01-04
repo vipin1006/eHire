@@ -972,9 +972,6 @@
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                                <connections>
-                                                                                    <action selector="onEnteringNameField:" target="eaX-tr-f6l" id="DpO-C6-hZ2"/>
-                                                                                </connections>
                                                                             </textFieldCell>
                                                                         </textField>
                                                                     </subviews>
@@ -1017,9 +1014,6 @@
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                                <connections>
-                                                                                    <action selector="onEnteringExperienceField:" target="eaX-tr-f6l" id="fmJ-ko-oBp"/>
-                                                                                </connections>
                                                                             </textFieldCell>
                                                                         </textField>
                                                                     </subviews>
@@ -1062,9 +1056,6 @@
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                                <connections>
-                                                                                    <action selector="onEnteringPhoneNumberField:" target="eaX-tr-f6l" id="NiH-sX-tc4"/>
-                                                                                </connections>
                                                                             </textFieldCell>
                                                                         </textField>
                                                                     </subviews>
@@ -1104,9 +1095,6 @@
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                                <connections>
-                                                                                    <action selector="onEnteringRequisitionField:" target="eaX-tr-f6l" id="d1s-Ot-fwz"/>
-                                                                                </connections>
                                                                             </textFieldCell>
                                                                         </textField>
                                                                     </subviews>
@@ -1144,9 +1132,6 @@
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                                <connections>
-                                                                                    <action selector="onEnteringInterviewTimeField:" target="eaX-tr-f6l" id="SHG-wy-Jq1"/>
-                                                                                </connections>
                                                                             </textFieldCell>
                                                                         </textField>
                                                                     </subviews>
@@ -1736,9 +1721,6 @@ CA
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="tZu-Jo-Cyq" id="DIE-Sb-W5K"/>
-                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <animations/>
@@ -1973,9 +1955,6 @@ CA
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
-                                            <connections>
-                                                <outlet property="delegate" destination="Ouo-kr-IbR" id="lt7-fv-t1S"/>
-                                            </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fQg-qo-hf9">
                                             <rect key="frame" x="173" y="104" width="140" height="17"/>
@@ -1994,9 +1973,6 @@ CA
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
-                                            <connections>
-                                                <outlet property="delegate" destination="6QW-nH-m8W" id="R8G-dx-ZWF"/>
-                                            </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9lE-X5-jXk">
                                             <rect key="frame" x="217" y="74" width="96" height="17"/>
@@ -2079,7 +2055,7 @@ CA
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Muo-dQ-xq4">
                                             <rect key="frame" x="18" y="29" width="112" height="17"/>
                                             <animations/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Date Of Joining" id="aUz-1V-Ynp">
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Date Of Interview" id="aUz-1V-Ynp">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -2091,7 +2067,7 @@ CA
                                                 <constraint firstAttribute="width" constant="236" id="zyN-8R-TCP"/>
                                             </constraints>
                                             <animations/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Date Of Joining" id="KPl-NA-cby">
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Date Of Interview" id="KPl-NA-cby">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -2541,7 +2517,7 @@ CA
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="i9X-R2-LZT">
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="775" translatesAutoresizingMaskIntoConstraints="NO" id="i9X-R2-LZT">
                                             <rect key="frame" x="10" y="-1" width="779" height="126"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="775" id="0AR-10-yJP"/>
@@ -2823,7 +2799,7 @@ CA
                                                 <animations/>
                                             </scroller>
                                         </scrollView>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ayA-gJ-Gyy">
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="193" translatesAutoresizingMaskIntoConstraints="NO" id="ayA-gJ-Gyy">
                                             <rect key="frame" x="-2" y="190" width="197" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="XYE-6i-OGP"/>
@@ -3428,7 +3404,9 @@ CA
                         <outlet property="labelOverAllAssessmentOfTechnology" destination="jf7-9R-CFr" id="Qor-YI-XSj"/>
                         <outlet property="managerFeedbackMainView" destination="CXt-am-yMK" id="LKD-y1-NKx"/>
                         <outlet property="managerialFeedbackModel" destination="FMP-R4-GZw" id="HIi-OQ-nTe"/>
-                        <outlet property="recommendationState" destination="fO4-Z7-OVK" id="QsL-Ck-0Dd"/>
+                        <outlet property="matrixForCgDeviation" destination="PWV-vg-Gr9" id="zIm-ln-7vP"/>
+                        <outlet property="matrixForInterviewMode" destination="3PJ-7l-7Oe" id="3B7-QZ-TqB"/>
+                        <outlet property="matrixForRecommendationState" destination="fO4-Z7-OVK" id="nE1-K5-oIj"/>
                         <outlet property="tableView" destination="586-x1-tdU" id="vAb-uf-Ff3"/>
                         <outlet property="textFieldCorporateGrade" destination="yXQ-PR-0Ho" id="IJ4-2J-UgM"/>
                         <outlet property="textFieldDesignation" destination="xuJ-cv-bSo" id="eo2-RH-90d"/>
@@ -3803,7 +3781,7 @@ CA
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KuZ-tU-jBc">
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="140" translatesAutoresizingMaskIntoConstraints="NO" id="KuZ-tU-jBc">
                                                     <rect key="frame" x="13" y="78" width="144" height="25"/>
                                                     <animations/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="X7o-me-W4M">
@@ -3812,7 +3790,7 @@ CA
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NJv-Al-V5e">
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="146" translatesAutoresizingMaskIntoConstraints="NO" id="NJv-Al-V5e">
                                                     <rect key="frame" x="10" y="77" width="150" height="26"/>
                                                     <animations/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="(if contract specify the Name of the Parent Company)" id="GWE-Ju-IWs">
@@ -3921,7 +3899,7 @@ CA
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="zYB-nQ-v2C">
-                                                    <rect key="frame" x="229" y="0.0" width="4" height="103"/>
+                                                    <rect key="frame" x="229" y="0.0" width="5" height="103"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -4213,7 +4191,7 @@ CA
                                                         <action selector="backgroundCheck:" target="2N2-KU-HrI" id="qYZ-yK-zwt"/>
                                                     </connections>
                                                 </button>
-                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="seu-D7-R4f">
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="476" translatesAutoresizingMaskIntoConstraints="NO" id="seu-D7-R4f">
                                                     <rect key="frame" x="6" y="50" width="480" height="25"/>
                                                     <animations/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Specify if candidate has all the documents related to Employment &amp; Education" id="2Yw-4x-75m">
@@ -4608,6 +4586,7 @@ CA
                         <outlet property="interviewdBeforeNo" destination="jJJ-sd-TVF" id="iSe-7H-x1d"/>
                         <outlet property="interviewedBeforeYes" destination="ZlM-vd-3XX" id="5RQ-wy-QL7"/>
                         <outlet property="jobChangeReasons" destination="YOf-mb-yXR" id="xeE-oL-UVK"/>
+                        <outlet property="lastDesignation" destination="BL0-9x-UJr" id="w2P-qF-NzR"/>
                         <outlet property="leavePlanNo" destination="NZc-UT-iuk" id="80E-KK-KRf"/>
                         <outlet property="leavePlanReasons" destination="5u0-XH-MFN" id="Oqw-Py-19t"/>
                         <outlet property="leavePlanYes" destination="OVJ-hL-v0r" id="KB8-x9-Okv"/>

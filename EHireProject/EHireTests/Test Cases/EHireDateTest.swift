@@ -1,7 +1,7 @@
 //
 //  EHireDateTest.swift
 //  EHire
-//  Here we can perform a curd operation based on the Date Model
+//  Here we can perform a crud operation based on the Date Model
 //  Created by padalingam agasthian on 28/12/15.
 //  Copyright © 2015 Exilant Technologies. All rights reserved.
 //
@@ -44,7 +44,7 @@ class EHireDateTest: EHCoreData
         super.tearDown()
     }
     
-    //MARK: - Date Curd Operation
+    //MARK: - Date Crud Operation
     
     func testDateInsertion()
     {

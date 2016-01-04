@@ -28,6 +28,7 @@ extension CandidateMiscellaneous {
     @NSManaged var anyPendingBonusFromCurrentEmployer: String?
     @NSManaged var anyLegalObligationWithCurrentEmployer: NSNumber?
     @NSManaged var legalObligationWithCurrentEmployer: String?
+    @NSManaged var questionsByCandidate:String?
     @NSManaged var candidate: Candidate?
 
 }

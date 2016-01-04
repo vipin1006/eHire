@@ -18,6 +18,8 @@ extension CandidateQualification {
     @NSManaged var educationStartFrom: NSDate?
     @NSManaged var educationEnd: NSDate?
     @NSManaged var educationGap: String?
+    @NSManaged var university:String?
+    @NSManaged var percentage:NSNumber?
     @NSManaged var candidate: Candidate?
 
 }

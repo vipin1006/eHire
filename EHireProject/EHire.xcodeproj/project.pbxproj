@@ -93,9 +93,9 @@
 		8070F59A1C24194C00FCEA98 /* selectStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8070F5981C24194C00FCEA98 /* selectStar.png */; };
 		8070F59B1C24194C00FCEA98 /* deselectStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8070F5991C24194C00FCEA98 /* deselectStar.png */; };
 		944783131C2A9A1C00AE33FA /* TechnicalFeedbackDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944783121C2A9A1C00AE33FA /* TechnicalFeedbackDataAccess.swift */; };
-		94544B471C338B78008E3FA8 /* EHSkillSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94544B461C338B78008E3FA8 /* EHSkillSetModel.swift */; };
 		9491D7D01C32D22C0088D61A /* EHTechnicalFeedbackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9491D7CF1C32D22C0088D61A /* EHTechnicalFeedbackModel.swift */; };
 		9C4B97FF1C324EE20033412F /* EHCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B97FE1C324EE20033412F /* EHCoreDataStack.swift */; };
+		9C527DF01C3A431B001B62B2 /* OnlyDecimalValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C527DEF1C3A431B001B62B2 /* OnlyDecimalValueFormatter.swift */; };
 		9CB11FC51C328C1100939D42 /* EHManagerFeedbackDataAccessLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB11FC41C328C1100939D42 /* EHManagerFeedbackDataAccessLayer.swift */; };
 /* End PBXBuildFile section */
 
@@ -210,9 +210,9 @@
 		8070F5981C24194C00FCEA98 /* selectStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selectStar.png; sourceTree = "<group>"; };
 		8070F5991C24194C00FCEA98 /* deselectStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deselectStar.png; sourceTree = "<group>"; };
 		944783121C2A9A1C00AE33FA /* TechnicalFeedbackDataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TechnicalFeedbackDataAccess.swift; sourceTree = SOURCE_ROOT; };
-		94544B461C338B78008E3FA8 /* EHSkillSetModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHSkillSetModel.swift; sourceTree = SOURCE_ROOT; };
 		9491D7CF1C32D22C0088D61A /* EHTechnicalFeedbackModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnicalFeedbackModel.swift; sourceTree = SOURCE_ROOT; };
 		9C4B97FE1C324EE20033412F /* EHCoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCoreDataStack.swift; sourceTree = "<group>"; };
+		9C527DEF1C3A431B001B62B2 /* OnlyDecimalValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnlyDecimalValueFormatter.swift; sourceTree = "<group>"; };
 		9CB11FC41C328C1100939D42 /* EHManagerFeedbackDataAccessLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHManagerFeedbackDataAccessLayer.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -241,7 +241,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2D32201C1C2BC61000679432 /* Curd Test For Entity */ = {
+		2D32201C1C2BC61000679432 /* Crud Test For Entity */ = {
 			isa = PBXGroup;
 			children = (
 				2D8C5D871C30E7E70018184E /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift */,
@@ -269,7 +269,7 @@
 				2D8C5D9D1C30E7E70018184E /* CandidateMiscellaneous+CoreDataProperties.swift */,
 				2D8C5D9E1C30E7E70018184E /* CandidateMiscellaneous.swift */,
 			);
-			name = "Curd Test For Entity";
+			name = "Crud Test For Entity";
 			sourceTree = "<group>";
 		};
 		2D3A3D7B1C3A380000AA56E1 /* View Controllers Test Cases */ = {
@@ -440,7 +440,6 @@
 			isa = PBXGroup;
 			children = (
 				9491D7CF1C32D22C0088D61A /* EHTechnicalFeedbackModel.swift */,
-				94544B461C338B78008E3FA8 /* EHSkillSetModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -636,6 +635,7 @@
 		804288031C17EBC0003033B4 /* EHire */ = {
 			isa = PBXGroup;
 			children = (
+				9C527DEE1C3A42E0001B62B2 /* Utilities */,
 				8042880D1C17EBC0003033B4 /* Main.storyboard */,
 				804288041C17EBC0003033B4 /* AppDelegate.swift */,
 				8029FFC21C2A80E90041C74C /* CoreDataEntityClasses */,
@@ -654,7 +654,7 @@
 			children = (
 				2D3A3D7B1C3A380000AA56E1 /* View Controllers Test Cases */,
 				2DE189551C33D98B005F90D0 /* Test Cases */,
-				2D32201C1C2BC61000679432 /* Curd Test For Entity */,
+				2D32201C1C2BC61000679432 /* Crud Test For Entity */,
 				8042881B1C17EBC0003033B4 /* Info.plist */,
 			);
 			path = EHireTests;
@@ -698,6 +698,14 @@
 			);
 			name = CustomViewCells;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		9C527DEE1C3A42E0001B62B2 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				9C527DEF1C3A431B001B62B2 /* OnlyDecimalValueFormatter.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -838,7 +846,6 @@
 				8029FFE21C2A81970041C74C /* CandidateBasicProfessionalInfo+CoreDataProperties.swift in Sources */,
 				4F7BCAC91C325CBD00D60546 /* EHCandidateDetails.swift in Sources */,
 				41A97FF91C195E500016CAB4 /* EHTechnologyCustomCell.swift in Sources */,
-				94544B471C338B78008E3FA8 /* EHSkillSetModel.swift in Sources */,
 				9CB11FC51C328C1100939D42 /* EHManagerFeedbackDataAccessLayer.swift in Sources */,
 				4F2536ED1C2179EC000E8C95 /* EHTechnologyViewController.swift in Sources */,
 				8029FFED1C2A81970041C74C /* Date.swift in Sources */,
@@ -864,6 +871,7 @@
 				9491D7D01C32D22C0088D61A /* EHTechnicalFeedbackModel.swift in Sources */,
 				8029FFEC1C2A81970041C74C /* CandidateQualification+CoreDataProperties.swift in Sources */,
 				8029FFF51C2A81970041C74C /* TechnicalFeedBack+CoreDataProperties.swift in Sources */,
+				9C527DF01C3A431B001B62B2 /* OnlyDecimalValueFormatter.swift in Sources */,
 				9C4B97FF1C324EE20033412F /* EHCoreDataStack.swift in Sources */,
 				4F7BCAC81C325CBD00D60546 /* EHCandidateBasicInfo.swift in Sources */,
 				8029FFEA1C2A81970041C74C /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift in Sources */,

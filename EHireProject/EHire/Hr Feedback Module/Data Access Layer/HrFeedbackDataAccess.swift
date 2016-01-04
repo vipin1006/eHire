@@ -95,9 +95,15 @@ class HrFeedbackDataAccess: NSObject {
         
         dateFormatter.dateFormat = "dd-MM-yyyy"
         
-        qualificationInfo.educationStartFrom = dateFormatter.dateFromString((candidateInfo["highestEducationFromDate"] as? String)!)
+        qualificationInfo.educationStartFrom = candidateInfo["highestEducationFromDate"] as? NSDate
         
-        qualificationInfo.educationEnd =  dateFormatter.dateFromString((candidateInfo["highestEducationToDate"] as? String)!)
+        qualificationInfo.educationEnd = candidateInfo["highestEducationToDate"] as? NSDate
+        
+        qualificationInfo.university = candidateInfo["highestEducationBoardOrUniversity"] as? String
+        
+        qualificationInfo.percentage = NSNumber(int:Int32((candidateInfo["highestEducationPercentage"] as? String)!)!)
+            
+       
         
         candidate.educationQualification = qualificationInfo
     }
@@ -130,7 +136,18 @@ class HrFeedbackDataAccess: NSObject {
         miscellaneousInfo.anyLeavePlanInSixMonths = candidateInfo["isAnyLeavePlans"] as? NSNumber
         miscellaneousInfo.anyLegalObligationWithCurrentEmployer = candidateInfo["anyLegalObligations"] as? NSNumber
         miscellaneousInfo.expectedSalary = NSNumber(int:Int32((candidateInfo["expectedSalary"] as? String)!)!)
+        
+        miscellaneousInfo.questionsByCandidate = candidateInfo["questionsAskedByCandidate"] as? String
+       
+        miscellaneousInfo.anyPendingBonusFromCurrentEmployer =
+            
+            String(candidateInfo["entitledBonus"])
+        
         candidate.name =  candidateInfo["candidateName"] as? String
+        
+        
+        candidate.miscellaneousInfo = miscellaneousInfo
+        
     }
     
  

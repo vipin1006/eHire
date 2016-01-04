@@ -150,18 +150,6 @@ class EHFeedbackViewController: NSViewController {
     
     case 1:
     
-        var employeeRecords:[AnyObject]?
-        let fetchRequest = NSFetchRequest(entityName:"TechnicalFeedBack")
-        do
-        {
-            employeeRecords = try EHCoreDataStack.sharedInstance.managedObjectContext.executeFetchRequest(fetchRequest)
-        }
-        catch let error as NSError
-        {
-            print("Could not fetch \(error), \(error.userInfo)")
-        }
-        print(employeeRecords)
-                
     print("Round Two")
     
     case 2:
