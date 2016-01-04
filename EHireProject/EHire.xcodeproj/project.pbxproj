@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D3A3D7D1C3A389C00AA56E1 /* EHTechnologyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3A3D7C1C3A389C00AA56E1 /* EHTechnologyViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		2D8C5D9F1C30E7E70018184E /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D871C30E7E70018184E /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift */; };
 		2D8C5DA01C30E7E70018184E /* CandidatePreviousEmploymentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D881C30E7E70018184E /* CandidatePreviousEmploymentInfo.swift */; };
 		2D8C5DA11C30E7E70018184E /* CandidatePersonalInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D891C30E7E70018184E /* CandidatePersonalInfo+CoreDataProperties.swift */; };
@@ -118,6 +119,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D3A3D7C1C3A389C00AA56E1 /* EHTechnologyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHTechnologyViewController.swift; path = "View Controllers Test Cases/EHTechnologyViewController.swift"; sourceTree = "<group>"; };
 		2D8C5D871C30E7E70018184E /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CandidatePreviousEmploymentInfo+CoreDataProperties.swift"; path = "Curd Test For Entity/CandidatePreviousEmploymentInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2D8C5D881C30E7E70018184E /* CandidatePreviousEmploymentInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CandidatePreviousEmploymentInfo.swift; path = "Curd Test For Entity/CandidatePreviousEmploymentInfo.swift"; sourceTree = "<group>"; };
 		2D8C5D891C30E7E70018184E /* CandidatePersonalInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CandidatePersonalInfo+CoreDataProperties.swift"; path = "Curd Test For Entity/CandidatePersonalInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -272,6 +274,14 @@
 				2D8C5D9E1C30E7E70018184E /* CandidateMiscellaneous.swift */,
 			);
 			name = "Curd Test For Entity";
+			sourceTree = "<group>";
+		};
+		2D3A3D7B1C3A380000AA56E1 /* View Controllers Test Cases */ = {
+			isa = PBXGroup;
+			children = (
+				2D3A3D7C1C3A389C00AA56E1 /* EHTechnologyViewController.swift */,
+			);
+			name = "View Controllers Test Cases";
 			sourceTree = "<group>";
 		};
 		2DE189551C33D98B005F90D0 /* Test Cases */ = {
@@ -657,6 +667,7 @@
 		804288181C17EBC0003033B4 /* EHireTests */ = {
 			isa = PBXGroup;
 			children = (
+				2D3A3D7B1C3A380000AA56E1 /* View Controllers Test Cases */,
 				2DE189551C33D98B005F90D0 /* Test Cases */,
 				2D32201C1C2BC61000679432 /* Curd Test For Entity */,
 				8042881B1C17EBC0003033B4 /* Info.plist */,
@@ -929,6 +940,7 @@
 				2D8C5DAC1C30E7E70018184E /* CandidateQualification.swift in Sources */,
 				2DE189601C33D9A6005F90D0 /* EHireCandiateTest.swift in Sources */,
 				2DE1895E1C33D9A6005F90D0 /* EHCoreData.swift in Sources */,
+				2D3A3D7D1C3A389C00AA56E1 /* EHTechnologyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
