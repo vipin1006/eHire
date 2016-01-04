@@ -1,7 +1,7 @@
 //
 //  EHireBasicsTest.swift
 //  EHire
-//
+//  This class is used to write a test cases needed for the ehire basic stuff 
 //  Created by padalingam agasthian on 24/12/15.
 //  Copyright © 2015 Exilant Technologies. All rights reserved.
 //
