@@ -9,5 +9,14 @@
 import Cocoa
 
 class OnlyDecimalValueFormatter: NSNumberFormatter {
-
+    override func isPartialStringValid(partialString: String, newEditingString newString: AutoreleasingUnsafeMutablePointer<NSString?>, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>) -> Bool {
+        
+        
+        if (partialString.rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet) != nil) {
+            NSBeep()
+            return false
+        }
+        
+        return true
+    }
 }

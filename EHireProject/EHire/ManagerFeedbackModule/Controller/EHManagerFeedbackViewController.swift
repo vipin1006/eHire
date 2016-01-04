@@ -99,6 +99,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         managerFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
         tableView.reloadData()
         setDefaultCgDeviationAndInterviewMode()
+        numberFieldVilidation()
 //        if ratingTitle.count == 0
 //        {
         
@@ -482,6 +483,17 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         subView.wantsLayer = true
         subView.layer?.borderColor = NSColor.orangeColor().CGColor
         subView.layer?.borderWidth = 2
+    }
+    
+    //MARK:- NumberField Validation for Textfields
+    
+    func numberFieldVilidation(){
+        // create NUMBER FORMATTER OBJECT
+        
+        let formatter = OnlyDecimalValueFormatter()
+        self.textFieldGrossAnnualSalary.formatter = formatter
+        self.textFieldCorporateGrade.formatter = formatter
+
     }
     
     //MARK:- Core Data Saving Methods
