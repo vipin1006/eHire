@@ -40,8 +40,9 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     @IBOutlet var textViewCommentsForOverAllTechnologyAssessment: NSTextView!
     
-    @IBOutlet weak var recommendationState: NSMatrix!
+    @IBOutlet weak var matrixForRecommendationState: NSMatrix!
     
+    @IBOutlet weak var matrixForCgDeviation: NSMatrix!
     var ratingTitle = NSMutableArray()
     
     @IBOutlet weak var tableView: NSTableView!
@@ -99,7 +100,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         managerFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
         tableView.reloadData()
         setDefaultCgDeviationAndInterviewMode()
-        numberFieldVilidation()
+//        numberFieldVilidation()
 //        if ratingTitle.count == 0
 //        {
         
@@ -126,7 +127,13 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             managerialFeedbackModel.recommendedCg = feedback.recommendedCg
            // managerialFeedbackModel.jestificationForHire = NSAttributedString(string: feedback.jestificationForHire!)
             managerialFeedbackModel.managerName = feedback.managerName
+            managerialFeedbackModel.modeOfInterview = feedback.modeOfInterview
+            managerialFeedbackModel.recommendation = feedback.recommendation
+             managerialFeedbackModel.isCgDeviation = feedback.isCgDeviation
 
+            setModeOfInterview(managerialFeedbackModel.modeOfInterview!)
+            setRecommendationState(managerialFeedbackModel.recommendation!)
+            setCgDeviation(Bool(managerialFeedbackModel.isCgDeviation!.boolValue))
         
             
             managerialFeedbackModel!.skillSet.removeAll()
@@ -381,19 +388,25 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
    
     
     
+    //MARK:- Getting Matrix Value
     @IBAction func getInterviewMode(sender: AnyObject) {
         
-        let selectedColoumn = sender.selectedColumn
-        if selectedColoumn == 0{
-          managerialFeedbackModel.modeOfInterview = "Telephonic"
-        }else{
-            managerialFeedbackModel.modeOfInterview = "Face To Face"
+       
+        
+        
+        if (sender.selectedCell() == sender.cells[0])
+        {
+            managerialFeedbackModel.modeOfInterview = sender.cells[0].title
+        }
+        else
+        {
+           managerialFeedbackModel.modeOfInterview = sender.cells[1].title
         }
         
      
     }
     
-   
+    
     @IBAction func selectCgDeviation(sender: AnyObject) {
         
         let selectedColoumn = sender.selectedColumn
@@ -403,6 +416,43 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             managerialFeedbackModel.isCgDeviation = false
         }
     }
+    
+    //MARK:- Setting Matrix Value
+    func setModeOfInterview(value:String){
+        if value == "Telephonic"{
+            matrixForInterviewMode.setState(NSOnState, atRow: 0, column: 0)
+            matrixForInterviewMode.setState(NSOffState, atRow: 0, column: 1)
+            
+        }else{
+             matrixForInterviewMode.setState(NSOnState, atRow: 0, column: 1)
+            matrixForInterviewMode.setState(NSOffState, atRow: 0, column: 0)
+        }
+    }
+    
+    
+
+    
+    func setRecommendationState(value:String){
+        if value == "Shortlisted"{
+            matrixForRecommendationState.setState(NSOnState, atRow: 0, column: 0)
+             matrixForRecommendationState.setState(NSOffState, atRow: 0, column: 1)
+        }else{
+            matrixForRecommendationState.setState(NSOnState, atRow: 0, column: 1)
+             matrixForRecommendationState.setState(NSOffState, atRow: 0, column: 0)
+        }
+    }
+    
+    func setCgDeviation(value:Bool){
+        if value{
+            matrixForCgDeviation.setState(NSOnState, atRow: 0, column: 0)
+             matrixForCgDeviation.setState(NSOffState, atRow: 0, column: 1)
+        }else{
+            matrixForCgDeviation.setState(NSOnState, atRow: 0, column: 1)
+             matrixForCgDeviation.setState(NSOffState, atRow: 0, column: 0)
+        }
+    }
+    
+   
     
     
     func setDefaultCgDeviationAndInterviewMode(){
@@ -504,7 +554,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         
         if validation(){
             
-            let selectedColoumn = recommendationState.selectedColumn
+            let selectedColoumn = matrixForRecommendationState.selectedColumn
             if selectedColoumn != 0
             {
                 managerialFeedbackModel.recommendation = "Rejected"
