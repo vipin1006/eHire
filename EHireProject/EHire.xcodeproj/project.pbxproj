@@ -32,14 +32,14 @@
 		2D8C5DB41C30E7E70018184E /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D9C1C30E7E70018184E /* Date.swift */; };
 		2D8C5DB51C30E7E70018184E /* CandidateMiscellaneous+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D9D1C30E7E70018184E /* CandidateMiscellaneous+CoreDataProperties.swift */; };
 		2D8C5DB61C30E7E70018184E /* CandidateMiscellaneous.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D9E1C30E7E70018184E /* CandidateMiscellaneous.swift */; };
-		2DE1895E1C33D9A6005F90D0 /* EHCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE189561C33D9A6005F90D0 /* EHCoreData.swift */; settings = {ASSET_TAGS = (); }; };
-		2DE1895F1C33D9A6005F90D0 /* EHireBasicsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE189571C33D9A6005F90D0 /* EHireBasicsTest.swift */; settings = {ASSET_TAGS = (); }; };
-		2DE189601C33D9A6005F90D0 /* EHireCandiateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE189581C33D9A6005F90D0 /* EHireCandiateTest.swift */; settings = {ASSET_TAGS = (); }; };
-		2DE189611C33D9A6005F90D0 /* EHireDateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE189591C33D9A6005F90D0 /* EHireDateTest.swift */; settings = {ASSET_TAGS = (); }; };
-		2DE189621C33D9A6005F90D0 /* EHireManagerFeedBackTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1895A1C33D9A6005F90D0 /* EHireManagerFeedBackTest.swift */; settings = {ASSET_TAGS = (); }; };
-		2DE189631C33D9A6005F90D0 /* EHireTechnicalFeedBackTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1895B1C33D9A6005F90D0 /* EHireTechnicalFeedBackTest.swift */; settings = {ASSET_TAGS = (); }; };
-		2DE189641C33D9A6005F90D0 /* EHireTechnologyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1895C1C33D9A6005F90D0 /* EHireTechnologyTest.swift */; settings = {ASSET_TAGS = (); }; };
-		2DE189651C33D9A6005F90D0 /* EHireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1895D1C33D9A6005F90D0 /* EHireTests.swift */; settings = {ASSET_TAGS = (); }; };
+		2DE1895E1C33D9A6005F90D0 /* EHCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE189561C33D9A6005F90D0 /* EHCoreData.swift */; };
+		2DE1895F1C33D9A6005F90D0 /* EHireBasicsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE189571C33D9A6005F90D0 /* EHireBasicsTest.swift */; };
+		2DE189601C33D9A6005F90D0 /* EHireCandiateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE189581C33D9A6005F90D0 /* EHireCandiateTest.swift */; };
+		2DE189611C33D9A6005F90D0 /* EHireDateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE189591C33D9A6005F90D0 /* EHireDateTest.swift */; };
+		2DE189621C33D9A6005F90D0 /* EHireManagerFeedBackTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1895A1C33D9A6005F90D0 /* EHireManagerFeedBackTest.swift */; };
+		2DE189631C33D9A6005F90D0 /* EHireTechnicalFeedBackTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1895B1C33D9A6005F90D0 /* EHireTechnicalFeedBackTest.swift */; };
+		2DE189641C33D9A6005F90D0 /* EHireTechnologyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1895C1C33D9A6005F90D0 /* EHireTechnologyTest.swift */; };
+		2DE189651C33D9A6005F90D0 /* EHireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1895D1C33D9A6005F90D0 /* EHireTests.swift */; };
 		41A97FF51C1956B70016CAB4 /* EHInterviewDateCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF41C1956B70016CAB4 /* EHInterviewDateCustomCell.swift */; };
 		41A97FF91C195E500016CAB4 /* EHTechnologyCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF81C195E500016CAB4 /* EHTechnologyCustomCell.swift */; };
 		41A97FFE1C1971FF0016CAB4 /* BlueCalendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A97FFD1C1971FF0016CAB4 /* BlueCalendar.png */; };
@@ -401,6 +401,7 @@
 		8001C3F21C23E96E00D62243 /* Data Access Layer */ = {
 			isa = PBXGroup;
 			children = (
+				8001C3F11C23E96E00D62243 /* Model */,
 				9CB11FC41C328C1100939D42 /* EHManagerFeedbackDataAccessLayer.swift */,
 			);
 			name = "Data Access Layer";
@@ -432,7 +433,6 @@
 			isa = PBXGroup;
 			children = (
 				8001C3F01C23E96E00D62243 /* Controller */,
-				8001C3F11C23E96E00D62243 /* Model */,
 				8001C3F21C23E96E00D62243 /* Data Access Layer */,
 				8001C3F31C23E96E00D62243 /* CustomViewCells */,
 				8001C3F41C23E96E00D62243 /* Nibs */,
