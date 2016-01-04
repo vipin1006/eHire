@@ -1,10 +1,10 @@
 //
 //  EHCoreData.swift
 //  EHire
-//
+//  This class is mainly used for core data stack stack
+//  and i created persistent store type as Inmemory
 //  Created by padalingam agasthian on 21/12/15.
 //  Copyright © 2015 Exilant Technologies. All rights reserved.
-//
 
 import XCTest
 

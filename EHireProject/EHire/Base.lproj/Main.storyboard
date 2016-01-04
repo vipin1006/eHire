@@ -932,13 +932,13 @@
                                         </customSpacing>
                                     </stackView>
                                     <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="37" horizontalPageScroll="10" verticalLineScroll="37" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSI-mh-5J6">
-                                        <rect key="frame" x="0.0" y="6" width="635" height="690"/>
+                                        <rect key="frame" x="0.0" y="29" width="635" height="667"/>
                                         <clipView key="contentView" id="i5P-6U-EFN">
-                                            <rect key="frame" x="1" y="0.0" width="633" height="689"/>
+                                            <rect key="frame" x="1" y="0.0" width="633" height="666"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="35" rowSizeStyle="automatic" headerView="haY-GH-M9R" viewBased="YES" id="BNP-Pz-40V">
-                                                    <rect key="frame" x="0.0" y="0.0" width="633" height="666"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="633" height="643"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <animations/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -972,9 +972,6 @@
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                                <connections>
-                                                                                    <action selector="onEnteringNameField:" target="eaX-tr-f6l" id="DpO-C6-hZ2"/>
-                                                                                </connections>
                                                                             </textFieldCell>
                                                                         </textField>
                                                                     </subviews>
@@ -1017,9 +1014,6 @@
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                                <connections>
-                                                                                    <action selector="onEnteringExperienceField:" target="eaX-tr-f6l" id="fmJ-ko-oBp"/>
-                                                                                </connections>
                                                                             </textFieldCell>
                                                                         </textField>
                                                                     </subviews>
@@ -1062,9 +1056,6 @@
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                                <connections>
-                                                                                    <action selector="onEnteringPhoneNumberField:" target="eaX-tr-f6l" id="NiH-sX-tc4"/>
-                                                                                </connections>
                                                                             </textFieldCell>
                                                                         </textField>
                                                                     </subviews>
@@ -1104,9 +1095,6 @@
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                                <connections>
-                                                                                    <action selector="onEnteringRequisitionField:" target="eaX-tr-f6l" id="d1s-Ot-fwz"/>
-                                                                                </connections>
                                                                             </textFieldCell>
                                                                         </textField>
                                                                     </subviews>
@@ -1144,9 +1132,6 @@
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                                <connections>
-                                                                                    <action selector="onEnteringInterviewTimeField:" target="eaX-tr-f6l" id="SHG-wy-Jq1"/>
-                                                                                </connections>
                                                                             </textFieldCell>
                                                                         </textField>
                                                                     </subviews>
@@ -1211,6 +1196,7 @@
                     </view>
                     <connections>
                         <outlet property="candidateView" destination="qci-v5-CE5" id="Vu5-CW-hJc"/>
+                        <outlet property="removeButton" destination="1qR-n9-JB2" id="eW9-DB-SX9"/>
                         <outlet property="tableView" destination="BNP-Pz-40V" id="9fB-2J-1tN"/>
                     </connections>
                 </viewController>
@@ -2012,9 +1998,6 @@ CA
                                             <buttonCell key="cell" type="push" title="Submit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GT3-uL-b45">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
-                                                <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
                                             </buttonCell>
                                             <connections>
                                                 <action selector="saveDetailsAction:" target="tZu-Jo-Cyq" id="7dz-aT-ohZ"/>
@@ -2543,7 +2526,7 @@ DQ
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="i9X-R2-LZT">
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="775" translatesAutoresizingMaskIntoConstraints="NO" id="i9X-R2-LZT">
                                             <rect key="frame" x="10" y="-1" width="779" height="126"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="775" id="0AR-10-yJP"/>
@@ -2825,7 +2808,7 @@ DQ
                                                 <animations/>
                                             </scroller>
                                         </scrollView>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ayA-gJ-Gyy">
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="193" translatesAutoresizingMaskIntoConstraints="NO" id="ayA-gJ-Gyy">
                                             <rect key="frame" x="-2" y="190" width="197" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="XYE-6i-OGP"/>
@@ -3430,7 +3413,9 @@ DQ
                         <outlet property="labelOverAllAssessmentOfTechnology" destination="jf7-9R-CFr" id="Qor-YI-XSj"/>
                         <outlet property="managerFeedbackMainView" destination="CXt-am-yMK" id="LKD-y1-NKx"/>
                         <outlet property="managerialFeedbackModel" destination="FMP-R4-GZw" id="HIi-OQ-nTe"/>
-                        <outlet property="recommendationState" destination="fO4-Z7-OVK" id="QsL-Ck-0Dd"/>
+                        <outlet property="matrixForCgDeviation" destination="PWV-vg-Gr9" id="zIm-ln-7vP"/>
+                        <outlet property="matrixForInterviewMode" destination="3PJ-7l-7Oe" id="3B7-QZ-TqB"/>
+                        <outlet property="matrixForRecommendationState" destination="fO4-Z7-OVK" id="nE1-K5-oIj"/>
                         <outlet property="tableView" destination="586-x1-tdU" id="vAb-uf-Ff3"/>
                         <outlet property="textFieldCorporateGrade" destination="yXQ-PR-0Ho" id="IJ4-2J-UgM"/>
                         <outlet property="textFieldDesignation" destination="xuJ-cv-bSo" id="eo2-RH-90d"/>
@@ -3805,7 +3790,7 @@ DQ
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KuZ-tU-jBc">
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="140" translatesAutoresizingMaskIntoConstraints="NO" id="KuZ-tU-jBc">
                                                     <rect key="frame" x="13" y="78" width="144" height="25"/>
                                                     <animations/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="X7o-me-W4M">
@@ -3814,7 +3799,7 @@ DQ
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NJv-Al-V5e">
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="146" translatesAutoresizingMaskIntoConstraints="NO" id="NJv-Al-V5e">
                                                     <rect key="frame" x="10" y="77" width="150" height="26"/>
                                                     <animations/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="(if contract specify the Name of the Parent Company)" id="GWE-Ju-IWs">
@@ -3916,7 +3901,7 @@ DQ
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="V9M-eh-Zzp">
-                                                    <rect key="frame" x="117" y="0.0" width="5" height="102"/>
+                                                    <rect key="frame" x="117" y="0.0" width="4" height="102"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -4215,7 +4200,7 @@ DQ
                                                         <action selector="backgroundCheck:" target="2N2-KU-HrI" id="qYZ-yK-zwt"/>
                                                     </connections>
                                                 </button>
-                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="seu-D7-R4f">
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="476" translatesAutoresizingMaskIntoConstraints="NO" id="seu-D7-R4f">
                                                     <rect key="frame" x="6" y="50" width="480" height="25"/>
                                                     <animations/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Specify if candidate has all the documents related to Employment &amp; Education" id="2Yw-4x-75m">

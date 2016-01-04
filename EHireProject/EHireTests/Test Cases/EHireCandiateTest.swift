@@ -1,7 +1,7 @@
 //
 //  EHireCandiateTest.swift
 //  EHire
-//
+//  Here we can perform a crud operation based on the Candidate Model
 //  Created by padalingam agasthian on 29/12/15.
 //  Copyright © 2015 Exilant Technologies. All rights reserved.
 //
@@ -90,7 +90,7 @@ class EHireCandiateTest: EHCoreData
         super.tearDown()
     }
     
-    //MARK: - Technology Curd Operation
+    //MARK: - Technology Crud Operation
     
     func testCandidateInsertion()
     {

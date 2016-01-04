@@ -43,7 +43,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     var selectedCandidate : Candidate?
     
     var feedbackData : [AnyObject]?
-    let candidateDetails = EHCandidateDetails(inName: "Tharani",candidateExperience:"" , candidateInterviewTiming: "12", candidatePhoneNo:"") as EHCandidateDetails
+   // let candidateDetails = EHCandidateDetails(inName: "Tharani",candidateExperience:"" , candidateInterviewTiming: "12", candidatePhoneNo:"") as EHCandidateDetails
     
    //ModeOfInterview Action
     @IBAction func modeOfInterviewAction(sender: NSMatrix)
@@ -76,26 +76,24 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     //initial setup of view to load the basic views of Technical Feedback.
     override func loadView()
     {
-     technicalFeedbackModel.candidate = candidateDetails
+    // technicalFeedbackModel.candidate = selectedCandidate
      let skillArray = [ "Communication","Stability","Leadership","Growth"]
         
      if skillsAndRatingsTitleArray.count == 0
      {
-        let communication = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)!,insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)
+        let communication = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:(selectedCandidate?.managedObjectContext)!)!,insertIntoManagedObjectContext:selectedCandidate?.managedObjectContext)
     
         communication.skillName = "Communication"
         skillsAndRatingsTitleArray.append(communication)
         
      
-      let organisationStability = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)!,insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)
+      let organisationStability = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:(selectedCandidate?.managedObjectContext)!)!,insertIntoManagedObjectContext:selectedCandidate?.managedObjectContext)
     
       organisationStability.skillName = "Stability"
     
+      skillsAndRatingsTitleArray.append(organisationStability)
         
-       skillsAndRatingsTitleArray.append(organisationStability)
-
-      
-      let leadership = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)!,insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)
+      let leadership = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:(selectedCandidate?.managedObjectContext)!)!,insertIntoManagedObjectContext:selectedCandidate?.managedObjectContext)
      
       leadership.skillName = "Leadership"
     
@@ -103,14 +101,11 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     
         skillsAndRatingsTitleArray.append(leadership)
 
-    let growth = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)!,insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)
-    
-     growth.skillName = "Growth"
-     growth.skillRating = overallCandidateRatingOnSkills
-    skillsAndRatingsTitleArray.append(growth)
-       
-      }
-        
+    let growth = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:(selectedCandidate?.managedObjectContext)!)!,insertIntoManagedObjectContext:selectedCandidate?.managedObjectContext)    
+      growth.skillName = "Growth"
+      growth.skillRating = overallCandidateRatingOnSkills
+      skillsAndRatingsTitleArray.append(growth)
+     }
         super.loadView()
     }
 
@@ -118,14 +113,16 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     {
         super.viewDidLoad()
         
+        print(selectedCandidate?.interviewedByTechLeads?.count)
         candidateNameField.stringValue = (selectedCandidate?.name)!
+        requisitionNameField.stringValue = (selectedCandidate?.requisition)!
         
         cell?.skilsAndRatingsTitlefield.delegate = self
         textViewOfTechnologyAssessment.delegate = self
         textViewOfCandidateAssessment.delegate = self
         technicalFeedbackMainView.wantsLayer = true
         technicalFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
-               for rating in overallAssessmentOnTechnologyStarView.subviews
+        for rating in overallAssessmentOnTechnologyStarView.subviews
         {
             let view = rating as! NSButton
             view.target = self
@@ -138,35 +135,64 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             view.target = self
             view.action = "assessmentOfCandidate:"
         }
-        tableView.reloadData()
-        fetching()
-        if feedbackData?.count != 0
+        if selectedCandidate != nil
         {
-            let managerFeedbackArray =  dataAccessModel.fetch()
-            print(technicalFeedbackModel)
-            let feedback =  managerFeedbackArray[0] as! TechnicalFeedBack
-            
-            print (feedback.candidate!.name)
-            
-//            technicalFeedbackModel.commentsOnCandidate = feedback.commentsOnCandidate 
-//            technicalFeedbackModel.commentsOnTechnology = feedback.commentsOnTechnology
-//            technicalFeedbackModel.designation = feedback.designation!
-//            technicalFeedbackModel.modeOfInterview = feedback.modeOfInterview
-//            technicalFeedbackModel.recommendation = feedback.recommendation
-//            technicalFeedbackModel.ratingOnTechnical = feedback.ratingOnTechnical
-//            technicalFeedbackModel.ratingOnCandidate = feedback.ratingOnCandidate
-//            technicalFeedbackModel.
-//            for obj in feedback.candidateSkills!{
-//                print(obj)
-//                
-//            }
-//            
-//            designationField.stringValue = technicalFeedbackModel.designation!
-//            
-//            print("name = \(technicalFeedbackModel.designation)")
-            
-        }
+        let feedbackArray = dataAccessModel.fetchManagerFeedback(selectedCandidate!)
+        if feedbackArray.count > 0
+        {
+        let feedback =  feedbackArray[0] as! TechnicalFeedBack
         
+        textViewOfCandidateAssessment.string = feedback.commentsOnCandidate
+        technicalFeedbackModel.ratingOnTechnical = Int((feedback.ratingOnTechnical?.integerValue)!)
+        textViewOfTechnologyAssessment.string = feedback.commentsOnTechnology
+        technicalFeedbackModel.ratingOnCandidate = Int((feedback.ratingOnCandidate?.integerValue)!)
+        designationField.stringValue = feedback.designation!
+        interviewedByField.stringValue = feedback.techLeadName!
+        modeOfInterview.selectedCell()?.stringValue = feedback.modeOfInterview!
+       // modeOfInterview.cell?.title = feedback.modeOfInterview!
+        recommentationField.stringValue = feedback.recommendation!
+            
+        skillsAndRatingsTitleArray.removeAll()
+        for object in feedback.candidateSkills!
+        {
+        let skillset = object as! SkillSet
+                
+        let newSkill = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)!,insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)
+                
+        newSkill.skillName = skillset.skillName
+        newSkill.skillRating = skillset.skillRating
+        skillsAndRatingsTitleArray.append(newSkill)
+        }
+
+        if !(technicalFeedbackModel.ratingOnTechnical == nil)
+         {
+           for starBtn in overallAssessmentOnTechnologyStarView.subviews
+           {
+               let tempBtn = starBtn as! NSButton
+               if tempBtn.tag == (technicalFeedbackModel.ratingOnTechnical! - 1)
+               {
+                   let totalView = overallAssessmentOnTechnologyStarView.subviews
+                   toDisplayRatingStar(totalView, sender: tempBtn, label: self.ratingOnTechnologyField, view: overallAssessmentOnTechnologyStarView)
+                }
+            }
+        }
+            
+            
+         if !(technicalFeedbackModel.ratingOnCandidate == nil)
+            {
+              for starBtn in overallAssessmentOfCandidateStarView.subviews
+                {
+                    let tempBtn = starBtn as! NSButton
+                    let totalView = overallAssessmentOfCandidateStarView.subviews
+                    if tempBtn.tag == (technicalFeedbackModel.ratingOnCandidate! - 1)
+                    {
+                       toDisplayRatingStar(totalView, sender: tempBtn, label: self.ratingOnTechnologyField, view: overallAssessmentOnTechnologyStarView)
+                    }
+                }
+            }
+         }
+        }
+        tableView.reloadData()
     }
    
     // To Dispaly the Star Rating insided the TextView Of Overall Assessment On Technology
@@ -209,6 +235,17 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         cellView.skilsAndRatingsTitlefield.target = self
         cellView.skilsAndRatingsTitlefield.tag = row
         cell = cellView
+        
+        if !(skill.skillRating == nil) {
+            for starBtn in (cell?.starCustomView.subviews)!{
+                let tempBtn = starBtn as! NSButton
+                if tempBtn.tag+1 == skill.skillRating
+                {
+                   toDisplayRatingStar((cell?.starCustomView.subviews)!, sender: tempBtn, label: cellView.feedback, view: (cell?.starCustomView!)!)
+                }
+            }
+        }
+
         
         for ratingsView in cellView.starCustomView.subviews
         {
@@ -435,6 +472,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     
     @IBAction func addSkills(sender: NSButton)
     {
+        
         if skillsAndRatingsTitleArray.count > 0 && cell?.skilsAndRatingsTitlefield.stringValue == "Enter Title"
         {
             alertPopup("Enter Title", informativeText: "Please enter previous selected title")
@@ -444,13 +482,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             let newSkill = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)!,insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)
             
             newSkill.skillName = "Enter Title"
-            
-            newSkill.skillRating = overallCandidateRatingOnSkills
-            
+            newSkill.skillRating = 0
             self.skillsAndRatingsTitleArray.append(newSkill)
-            
-            print(skillsAndRatingsTitleArray)
-            
             tableView.reloadData()
         }
     }
@@ -469,35 +502,10 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }
     }
     
-    //Mark: TextField Action
-    
-    @IBAction func textFieldAction(sender: NSTextField)
-    {
-        if sender.stringValue == ""
-        {
-            setBoarderColor(sender)
-        }
-        else if sender.stringValue.characters.count < 5
-        {
-            setBoarderColor(sender)
-        }
-        else
-        {
-            sender.wantsLayer = true
-            sender.layer?.backgroundColor = NSColor.clearColor().CGColor
-        }
-    }
-    
-    // Mark: To save details of Technical Feedewback
+    // Mark: To save details of Technical Feedback
     
     @IBAction func saveDetailsAction(sender: NSButton)
     {
-        for object in skillsAndRatingsTitleArray
-        {
-            let skillSetObject = object as! SkillSet
-            print(skillSetObject.skillRating)
-            print(skillSetObject.skillName)
-        }
         let selectedMode = modeOfInterview.selectedColumn
         if selectedMode != 0
         {
@@ -528,114 +536,75 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
        technicalFeedbackModel.designation          = designationField.stringValue
        technicalFeedbackModel.techLeadName         = interviewedByField.stringValue
       
-       
-         if dataAccessModel.insertIntoTechnicalFeedback(technicalFeedbackModel)
+        if dataAccessModel.insertIntoTechnicalFeedback(technicalFeedbackModel, selectedCandidate: selectedCandidate!)
+        {
+           alertPopup("Data Saved", informativeText: "Saved Successfully")
+        }
+        else
          {
-            print("Saved")
-            fetching()
-          }
-          else
-          {
-            print ("Not saved")
-          }
+             alertPopup("Data not Saved", informativeText: "Some Problem is there while saving")
+         }
         }
-        else
-        {
-            alertPopup("Some Fields Data Are Missing", informativeText: "Enter the Proper data")
-        }
-    }
-    
-    func fetching()
-    {
-        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext
-        let fetchRequest = NSFetchRequest(entityName: "TechnicalFeedBack")
-        do {
-            let results =
-            try managedContext.executeFetchRequest(fetchRequest)
-            feedbackData = results as! [NSManagedObject]
-            if feedbackData!.count != 0
-            {
-               print(feedbackData)
-            }
-            
-        }
-        catch let error as NSError
-        {
-            print("Could not fetch \(error), \(error.userInfo)")
-        }
- }
-    
-    //To give Color to the SubViews
-    func setBoarderColor(subView:NSTextField)
-    {
-        subView.wantsLayer = true
-        subView.layer?.backgroundColor = NSColor.orangeColor().CGColor
-    }
-    
-    func setBoarderColorForTextView(subView:NSTextView)
-    {
-        subView.wantsLayer = true
-        subView.layer?.borderColor = NSColor.orangeColor().CGColor
-        subView.layer?.borderWidth = 2
-    }
-    
-    func validationForTextView(subView : NSTextView) -> Bool
-    {
-        if subView.string == ""
-        {
-            setBoarderColorForTextView(subView)
-            return false
-        }
-        else if subView.string!.characters.count < 5
-        {
-            setBoarderColorForTextView(subView)
-            return false
-        }
-        else
-        {
-            subView.wantsLayer = true
-            subView.layer?.borderColor = NSColor.clearColor().CGColor
-            subView.layer?.borderWidth = 2
-            return true
-        }   
-    }
-    
-    func validationForTextfield(subView : NSTextField) -> Bool
-    {
-      if subView.stringValue == ""
-     {
-         setBoarderColor(subView)
-         return false
-     }
-     else if subView.stringValue.characters.count < 5
-     {
-        setBoarderColor(subView)
-         return false
-     }
-     else
-     {
-        subView.wantsLayer = true
-        subView.layer?.backgroundColor = NSColor.clearColor().CGColor
-        return true
-     }
-    }
-
-    func textView(textView: NSTextView, shouldChangeTextInRange affectedCharRange: NSRange, replacementString: String?) -> Bool
-    {
-        validationForTextView(textView)
-        return true
     }
     
     func validation() -> Bool
     {
-      var isValid : Bool = false
-      isValid =  validationForTextView(textViewOfTechnologyAssessment)
-      isValid =  validationForTextView(textViewOfCandidateAssessment)
-      isValid =  validationForTextfield(ratingOfCandidateField)
-      isValid =  validationForTextfield(ratingOnTechnologyField)
-      isValid =  validationForTextfield(interviewedByField)
-      isValid =  validationForTextfield(designationField)
-      return isValid
+      let isValid = false
+        
+        if cell?.feedback.stringValue == ""
+        {
+            alertPopup("Select Stars", informativeText: "Please select stars inside tableview to provide your feedback")
+            return isValid
+        }
+            
+        else if ratingOnTechnologyField.stringValue == ""
+        {
+            alertPopup("Select Stars", informativeText: "Please select stars to provide your feedback inside overall assessment on Technology")
+            return isValid
+        }
+            
+        else if ratingOfCandidateField.stringValue == ""
+        {
+            alertPopup("Select Stars", informativeText: "Please select stars to provide your feedback inside overall assessment of Candidate")
+            return isValid
+        }
+            
+        else if textViewOfTechnologyAssessment.string == ""
+        {
+            alertPopup("Overall Feedback On Technology", informativeText: "Please enter your feedback on Technology")
+            return isValid
+        }
+            
+        else if textViewOfCandidateAssessment.string == ""
+        {
+            alertPopup("Overall Feedback Of Candidate", informativeText: "Overall assessment of Candidate field shold not be blank")
+            return isValid
+        }
+            
+        else if designationField.stringValue == ""
+        {
+            alertPopup("Designation of Candidate", informativeText: "Designation Field should not be blank")
+            return isValid
+        }
+            
+        else if interviewedByField.stringValue.characters.count == 0
+        {
+            alertPopup("Interviewer Name", informativeText: "Please enter the interviewer field should not be blank")
+            return isValid
+        }
+        else if overallCandidateRating == 0
+        {
+             alertPopup("Overall CandidateRating", informativeText: "Please provide your feedback of Candidate should not be blank")
+            return isValid
+        }
+        else if overallTechnicalRating == 0
+        {
+            alertPopup("Overall TechnicalRating", informativeText: "Please provide your feedback on Technology should not be blank")
+            return isValid
+        }
+        else
+        {
+            return true
+        }
     }
 }

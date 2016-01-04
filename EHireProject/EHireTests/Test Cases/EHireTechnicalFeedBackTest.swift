@@ -1,7 +1,7 @@
 //
 //  EHireTechnicalFeedBackTest.swift
 //  EHire
-//
+//  Here we can perform a crud operation based on the TechnicalFeedBack Model
 //  Created by padalingam agasthian on 29/12/15.
 //  Copyright © 2015 Exilant Technologies. All rights reserved.
 //
@@ -45,7 +45,7 @@ class EHireTechnicalFeedBackTest: EHCoreData
         super.tearDown()
     }
     
-    //MARK: - Curd For TechnicalFeedBack
+    //MARK: - Crud For TechnicalFeedBack
     
     func testCandidateInsertion()
     {
