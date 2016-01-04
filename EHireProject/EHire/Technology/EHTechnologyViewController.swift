@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutlineViewDataSource,DataCommunicator,FeedbackDelegate,NSTextFieldDelegate {
+class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutlineViewDataSource,DataCommunicator,FeedbackDelegate,NSTextFieldDelegate,NSAlertDelegate {
     
     // Technology View
     @IBOutlet weak var sourceList: NSOutlineView!
@@ -37,6 +37,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     override func viewDidLoad() {
         super.viewDidLoad()
         technologyArray = EHTechnologyDataLayer.getSourceListContent() as! [EHTechnology]
+        
     }
     
     
@@ -182,7 +183,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     {
         let scheduledDate = sendingData as! NSDate
         
-      
+        
         if let selectedItem = sourceList.itemAtRow(sourceList.selectedRow) as? EHTechnology {
             
             if isValidInterviewDate(selectedItem.technologyName,inputDate: scheduledDate){
@@ -192,13 +193,13 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 EHTechnologyDataLayer.addInterviewDateToCoreData(selectedItem.technologyName ,dateToAdd: scheduledDate)
                 
                 self.sourceList.reloadData()
-
+                
             }
             else
             {
                 alertPopup("Error", informativeText: "Interview date cannot be same")
             }
-                        datePopOver.close()
+            datePopOver.close()
         }
         
     }
@@ -214,8 +215,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             if !cellTechnology!.textFieldTechnology.editable{
                 addDateAction(sender as! NSButton)
             }
-            
         }
+            
         else{ // adding new technology
             if technologyArray.count > 0 && cellTechnology?.textFieldTechnology.stringValue == ""{
                 alertPopup("Enter Technology", informativeText: "Please enter previous selected technology")
@@ -223,7 +224,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 let technologyObject = EHTechnology(technology:"")
                 technologyArray .append(technologyObject)
                 self.sourceList.reloadData()
-                
             }
         }
     }
@@ -233,21 +233,23 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         //this if statement is added to avoid crash. To be removed once - is disabled when no technology is selected
         if self.sourceList.selectedRow == -1
         {
+            alertPopup("Error", informativeText: "Please select any Item to delete")
+
             return
         }
         
         if let selectedItem = sourceList.itemAtRow(sourceList.selectedRow) as? EHTechnology{
-            
+             alertPopup("Alert", informativeText: "Are you sure you want delete")
             // Condition to check new added technology is deletable
-            if !cellTechnology!.textFieldTechnology.editable{
-                technologyArray.removeAtIndex(self.sourceList.selectedRow)
-                EHTechnologyDataLayer.deleteTechnologyFromCoreData(selectedItem.technologyName)
-            }
+//            if !cellTechnology!.textFieldTechnology.editable{
+//                technologyArray.removeAtIndex(self.sourceList.selectedRow)
+//                EHTechnologyDataLayer.deleteTechnologyFromCoreData(selectedItem.technologyName)
+//            }
         }
             
         else
         {
-            let selectedInterviewDate = sourceList.itemAtRow(sourceList.selectedRow) as? EHInterviewDate
+           /* let selectedInterviewDate = sourceList.itemAtRow(sourceList.selectedRow) as? EHInterviewDate
             for aTechnology in technologyArray{
                 var count = 0
                 for aInterviewDate in aTechnology.interviewDates{
@@ -259,7 +261,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                     }
                     count++
                 }
-            }
+            }*/
             
         }
         self.sourceList.reloadData()
@@ -299,11 +301,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
     }
     //MARK:- TextField Delegate methods
-    func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
-    {
-        return true
-    }
-    
+    // this method will add new technology name to the technlogy list
     override func controlTextDidEndEditing(obj: NSNotification)
     {
         print(obj.userInfo)
@@ -324,7 +322,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 textFieldObject.backgroundColor = NSColor.clearColor()
                 
                 EHTechnologyDataLayer.addTechnologyToCoreData(textFieldObject.stringValue)
-
+                
             }
             else{
                 alertPopup("Error", informativeText: "Technology name should be unique")
@@ -337,12 +335,23 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     {
         let alert:NSAlert = NSAlert()
         alert.messageText = data
+        alert.delegate = self
+
         alert.informativeText = informativeText
         alert.addButtonWithTitle("OK")
         alert.addButtonWithTitle("Cancel")
+
         alert.runModal()
+//        alert.beginSheetModalForWindow(NSApplication.sharedApplication().mainWindow!, completionHandler: {(intdbvdsb) in
+//            
+//            })
     }
     
+    func alertShowHelp(alert: NSAlert) -> Bool
+    {
+        return true
+    }
+
     func createConstraintsForFeedbackController(leading:CGFloat,trailing:CGFloat,top:CGFloat,bottom:CGFloat){
         feedbackViewController!.view.translatesAutoresizingMaskIntoConstraints = false
         
@@ -390,7 +399,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         isCandidatesViewLoaded = true
     }
     
-    //MARk:- Validation methods
+    //MARK:- Validations
+    
     // this method will check for duplication of technology name
     func isValidTechnologyName(inputString :String) -> Bool
     {
@@ -411,7 +421,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     }
     
     // this method will check for duplication of interview date 6
-
+    
     func isValidInterviewDate(inputParentTechnology :String , inputDate:NSDate) -> Bool
     {
         var isValid = true
@@ -424,7 +434,13 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             if technology.technologyName.lowercaseString == inputParentTechnology.lowercaseString
             {
                 for date in technology.interviewDates{
-                    if  date.scheduleInterviewDate.compare(inputDate) == .OrderedSame{
+                    
+                    let dateFormatter = NSDateFormatter()
+                    dateFormatter.dateFormat = "dd-MMM-yyyy"
+                    let dateString = dateFormatter.stringFromDate(date.scheduleInterviewDate)
+                    let dateStringToCompare = dateFormatter.stringFromDate(inputDate)
+                    
+                    if  dateString == dateStringToCompare{
                         isValid =  false
                         break
                     }
@@ -433,6 +449,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         }
         return isValid
     }
+    
 }
+
 
 

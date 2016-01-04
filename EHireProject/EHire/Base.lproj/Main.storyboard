@@ -932,13 +932,13 @@
                                         </customSpacing>
                                     </stackView>
                                     <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="37" horizontalPageScroll="10" verticalLineScroll="37" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSI-mh-5J6">
-                                        <rect key="frame" x="0.0" y="6" width="635" height="690"/>
+                                        <rect key="frame" x="0.0" y="29" width="635" height="667"/>
                                         <clipView key="contentView" id="i5P-6U-EFN">
-                                            <rect key="frame" x="1" y="0.0" width="633" height="689"/>
+                                            <rect key="frame" x="1" y="0.0" width="633" height="666"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="35" rowSizeStyle="automatic" headerView="haY-GH-M9R" viewBased="YES" id="BNP-Pz-40V">
-                                                    <rect key="frame" x="0.0" y="0.0" width="633" height="666"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="633" height="643"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <animations/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -1211,6 +1211,7 @@
                     </view>
                     <connections>
                         <outlet property="candidateView" destination="qci-v5-CE5" id="Vu5-CW-hJc"/>
+                        <outlet property="removeButton" destination="1qR-n9-JB2" id="eW9-DB-SX9"/>
                         <outlet property="tableView" destination="BNP-Pz-40V" id="9fB-2J-1tN"/>
                     </connections>
                 </viewController>
@@ -2012,9 +2013,6 @@ CA
                                             <buttonCell key="cell" type="push" title="Submit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GT3-uL-b45">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
-                                                <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
                                             </buttonCell>
                                             <connections>
                                                 <action selector="saveDetailsAction:" target="tZu-Jo-Cyq" id="7dz-aT-ohZ"/>
@@ -2606,7 +2604,7 @@ DQ
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="225" translatesAutoresizingMaskIntoConstraints="NO" id="fu8-og-Oog">
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="fu8-og-Oog">
                                             <rect key="frame" x="-2" y="97" width="229" height="26"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="225" id="0gK-bI-jDp"/>
