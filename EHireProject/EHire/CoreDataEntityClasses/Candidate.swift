@@ -14,5 +14,6 @@ class Candidate: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass...
 // Insert code here to add functionality to your managed object subclass...
+    
 
 }

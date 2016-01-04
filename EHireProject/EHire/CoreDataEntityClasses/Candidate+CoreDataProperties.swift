@@ -27,7 +27,7 @@ extension Candidate {
     @NSManaged var professionalInfo: NSManagedObject?
     @NSManaged var previousEmployment: NSManagedObject?
     @NSManaged var educationQualification: CandidateQualification?
-    @NSManaged var miscellaneousInfo: NSManagedObject?
+    @NSManaged var miscellaneousInfo: CandidateMiscellaneous?
     @NSManaged var documentDetails: CandidateDocuments?
     @NSManaged var technology: Technology?
 
