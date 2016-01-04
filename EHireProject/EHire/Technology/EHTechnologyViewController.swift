@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutlineViewDataSource,DataCommunicator,FeedbackDelegate,NSTextFieldDelegate,NSAlertDelegate {
+class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutlineViewDataSource,DataCommunicator,FeedbackDelegate,NSTextFieldDelegate {
     
     // Technology View
     @IBOutlet weak var sourceList: NSOutlineView!
@@ -197,7 +197,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             }
             else
             {
-                alertPopup("Error", informativeText: "Interview date cannot be same")
+                alertPopup("Error", informativeText: "Interview date cannot be same",inTag: 0)
             }
             datePopOver.close()
         }
@@ -219,7 +219,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
         else{ // adding new technology
             if technologyArray.count > 0 && cellTechnology?.textFieldTechnology.stringValue == ""{
-                alertPopup("Enter Technology", informativeText: "Please enter previous selected technology")
+                alertPopup("Enter Technology", informativeText: "Please enter previous selected technology",inTag: 0)
             }else{
                 let technologyObject = EHTechnology(technology:"")
                 technologyArray .append(technologyObject)
@@ -233,23 +233,26 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         //this if statement is added to avoid crash. To be removed once - is disabled when no technology is selected
         if self.sourceList.selectedRow == -1
         {
-            alertPopup("Error", informativeText: "Please select any Item to delete")
+            alertPopup("Error", informativeText: "Please select any Item to delete",inTag: 0)
 
             return
         }
-        
+        alertPopup("Alert", informativeText: "Are you sure you want delete",inTag: 1)
+    }
+    
+    
+    func deleteItem() {
         if let selectedItem = sourceList.itemAtRow(sourceList.selectedRow) as? EHTechnology{
-             alertPopup("Alert", informativeText: "Are you sure you want delete")
             // Condition to check new added technology is deletable
-//            if !cellTechnology!.textFieldTechnology.editable{
-//                technologyArray.removeAtIndex(self.sourceList.selectedRow)
-//                EHTechnologyDataLayer.deleteTechnologyFromCoreData(selectedItem.technologyName)
-//            }
+            if !cellTechnology!.textFieldTechnology.editable{
+                technologyArray.removeAtIndex(self.sourceList.selectedRow)
+                EHTechnologyDataLayer.deleteTechnologyFromCoreData(selectedItem.technologyName)
+            }
         }
             
         else
         {
-           /* let selectedInterviewDate = sourceList.itemAtRow(sourceList.selectedRow) as? EHInterviewDate
+            let selectedInterviewDate = sourceList.itemAtRow(sourceList.selectedRow) as? EHInterviewDate
             for aTechnology in technologyArray{
                 var count = 0
                 for aInterviewDate in aTechnology.interviewDates{
@@ -261,7 +264,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                     }
                     count++
                 }
-            }*/
+            }
             
         }
         self.sourceList.reloadData()
@@ -325,32 +328,29 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 
             }
             else{
-                alertPopup("Error", informativeText: "Technology name should be unique")
+                alertPopup("Error", informativeText: "Technology name should be unique",inTag: 0)
             }
         }
         self.sourceList.reloadData()
     }
     // Alert Popup
-    func alertPopup(data:String, informativeText:String)
+    func alertPopup(data:String, informativeText:String , inTag:Int)
     {
         let alert:NSAlert = NSAlert()
         alert.messageText = data
-        alert.delegate = self
 
         alert.informativeText = informativeText
         alert.addButtonWithTitle("OK")
         alert.addButtonWithTitle("Cancel")
-
-        alert.runModal()
-//        alert.beginSheetModalForWindow(NSApplication.sharedApplication().mainWindow!, completionHandler: {(intdbvdsb) in
-//            
-//            })
+        alert.alertStyle = NSAlertStyle.CriticalAlertStyle
+        let res = alert.runModal()
+        if res == NSAlertFirstButtonReturn {
+            if inTag == 1{
+                deleteItem()
+            }
+        }
     }
     
-    func alertShowHelp(alert: NSAlert) -> Bool
-    {
-        return true
-    }
 
     func createConstraintsForFeedbackController(leading:CGFloat,trailing:CGFloat,top:CGFloat,bottom:CGFloat){
         feedbackViewController!.view.translatesAutoresizingMaskIntoConstraints = false
