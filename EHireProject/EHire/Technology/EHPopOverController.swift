@@ -20,7 +20,7 @@ class EHPopOverController: NSViewController {
         
         self.scheduleDatePicker.dateValue = NSDate()
         
-        self.scheduleDatePicker.sendActionOn(1)
+        //self.scheduleDatePicker.sendActionOn(1)
  
     }
     
