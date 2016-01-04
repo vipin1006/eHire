@@ -245,7 +245,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2D32201C1C2BC61000679432 /* Curd Test For Entity */ = {
+		2D32201C1C2BC61000679432 /* Crud Test For Entity */ = {
 			isa = PBXGroup;
 			children = (
 				2D8C5D871C30E7E70018184E /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift */,
@@ -273,7 +273,7 @@
 				2D8C5D9D1C30E7E70018184E /* CandidateMiscellaneous+CoreDataProperties.swift */,
 				2D8C5D9E1C30E7E70018184E /* CandidateMiscellaneous.swift */,
 			);
-			name = "Curd Test For Entity";
+			name = "Crud Test For Entity";
 			sourceTree = "<group>";
 		};
 		2D3A3D7B1C3A380000AA56E1 /* View Controllers Test Cases */ = {
@@ -669,7 +669,7 @@
 			children = (
 				2D3A3D7B1C3A380000AA56E1 /* View Controllers Test Cases */,
 				2DE189551C33D98B005F90D0 /* Test Cases */,
-				2D32201C1C2BC61000679432 /* Curd Test For Entity */,
+				2D32201C1C2BC61000679432 /* Crud Test For Entity */,
 				8042881B1C17EBC0003033B4 /* Info.plist */,
 			);
 			path = EHireTests;

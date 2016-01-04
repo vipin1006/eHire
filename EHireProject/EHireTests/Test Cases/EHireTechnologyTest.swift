@@ -1,7 +1,7 @@
 //
 //  EHireTechnologyTest.swift
 //  EHire
-//  Here we can perform a curd operation based on the Technology Model
+//  Here we can perform a crud operation based on the Technology Model
 //  Created by padalingam agasthian on 24/12/15.
 //  Copyright © 2015 Exilant Technologies. All rights reserved.
 //
@@ -52,7 +52,7 @@ class EHireTechnologyTest: EHCoreData
         super.tearDown()
     }
     
-    //MARK: - Technology Curd Operation
+    //MARK: - Technology Crud Operation
     
     func testTechnologyInsertion()
     {
