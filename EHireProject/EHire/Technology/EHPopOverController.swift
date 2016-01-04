@@ -19,8 +19,9 @@ class EHPopOverController: NSViewController {
         super.viewDidLoad()
         
         self.scheduleDatePicker.dateValue = NSDate()
+
         self.scheduleDatePicker.minDate = NSDate()
-        //self.scheduleDatePicker.sendActionOn(1)
+
     }
     
     @IBAction func dateSelection(sender: AnyObject) {
