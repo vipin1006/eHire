@@ -12,7 +12,7 @@ class EHManagerialFeedbackModel: NSObject {
      dynamic var commentsOnCandidate: NSAttributedString?
       dynamic var commentsOnTechnology: NSAttributedString?
      dynamic var commitments: NSAttributedString?
-     dynamic var grossAnnualSalary: String?
+     dynamic var grossAnnualSalary: NSNumber?
      dynamic var managerName: String?
      dynamic var isCgDeviation: NSNumber?
      dynamic var jestificationForHire: NSAttributedString?

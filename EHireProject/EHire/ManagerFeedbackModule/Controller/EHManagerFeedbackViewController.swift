@@ -123,9 +123,9 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             managerialFeedbackModel.commitments = NSAttributedString(string: feedback.commitments!)
             managerialFeedbackModel.ratingOnTechnical = Int16((feedback.ratingOnTechnical?.integerValue)!)
             managerialFeedbackModel.ratingOnCandidate = Int16((feedback.ratingOnCandidate?.integerValue)!)
-            managerialFeedbackModel.grossAnnualSalary = String(stringInterpolationSegment: feedback.grossAnnualSalary)
+            managerialFeedbackModel.grossAnnualSalary = feedback.grossAnnualSalary
             managerialFeedbackModel.recommendedCg = feedback.recommendedCg
-           // managerialFeedbackModel.jestificationForHire = NSAttributedString(string: feedback.jestificationForHire!)
+            managerialFeedbackModel.jestificationForHire = NSAttributedString(string: feedback.jestificationForHire!)
             managerialFeedbackModel.managerName = feedback.managerName
             managerialFeedbackModel.modeOfInterview = feedback.modeOfInterview
             managerialFeedbackModel.recommendation = feedback.recommendation
@@ -537,14 +537,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     //MARK:- NumberField Validation for Textfields
     
-    func numberFieldVilidation(){
-        // create NUMBER FORMATTER OBJECT
-        
-        let formatter = OnlyDecimalValueFormatter()
-        self.textFieldGrossAnnualSalary.formatter = formatter
-        self.textFieldCorporateGrade.formatter = formatter
-
-    }
+    
     
     //MARK:- Core Data Saving Methods
     
