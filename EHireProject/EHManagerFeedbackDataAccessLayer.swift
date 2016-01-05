@@ -39,8 +39,7 @@ class EHManagerFeedbackDataAccessLayer: NSObject {
 
        
         managerFeedback.setValue(NSMutableSet(array: (self.managerFeedbackmodel?.skillSet)!), forKey: "candidateSkills")
-        managerFeedback.setValue("pavi", forKey: "managerName")
-            
+        
         managerFeedback.setValue(self.managerFeedbackmodel?.isCgDeviation, forKey: "isCgDeviation")
             
         managerFeedback.setValue(self.managerFeedbackmodel?.jestificationForHire?.string, forKey: "jestificationForHire")
@@ -59,43 +58,15 @@ class EHManagerFeedbackDataAccessLayer: NSObject {
         
         managerFeedback.setValue(candidate as Candidate, forKey: "candidate")
         candidate.interviewedByManagers?.setByAddingObject(managerFeedback)
-        //candidate.interviewedByManagers?.addObject(managerFeedback)
+//        candidate.interviewedByManagers?.addObject(managerFeedback)
 
         
-        EHCoreDataHelper.saveToCoreData(candidate)
+       return EHCoreDataHelper.saveToCoreData(candidate)
         
         
-        return true
+        
     }
     
-    func fetchManagerFeedback()->[AnyObject]{
         
-        
-        let predicate = NSPredicate(format:"candidate.name = %@", (self.managerFeedbackmodel?.candidate?.name)!)
-        
-        let managerFeedbackRecords = EHCoreDataHelper.fetchRecordsWithPredicate(predicate, sortDescriptor: nil, entityName: "ManagerFeedBack", managedObjectContext: coreDataStack.managedObjectContext)
-        
-        if managerFeedbackRecords?.count > 0{
-        return managerFeedbackRecords as! [AnyObject]
-        }
-        
-        return []
-    }
-    
-    func fetchCandidate()->[Candidate]{
-        let predicate = NSPredicate(format:"name = %@ AND interviewDate = %@" , (self.managerFeedbackmodel?.candidate?.name)!,(self.managerFeedbackmodel?.candidate?.interviewDate)!)
-        
-        let managerFeedbackRecords = EHCoreDataHelper.fetchRecordsWithPredicate(predicate, sortDescriptor: nil, entityName: "Candidate", managedObjectContext: coreDataStack.managedObjectContext)
-        
-        return managerFeedbackRecords as! [Candidate]
-    }
-    
-    func fetchManagerialFeedback() ->EHManagerialFeedbackModel
-    {
-        
-        
-        return self.managerFeedbackmodel!
-    }
-    
 
 }

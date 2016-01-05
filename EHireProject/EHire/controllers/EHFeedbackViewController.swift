@@ -211,7 +211,8 @@ class EHFeedbackViewController: NSViewController {
 
                 
             case 1:
-                if managerFeedback?.selectedCandidate?.interviewedByManagers?.count < self.subRound.selectedSegment{
+                print (self.subRound.selectedSegment)
+                if managerFeedback?.selectedCandidate?.interviewedByManagers?.count > self.subRound.selectedSegment{
                     
                     let allObj = selectedCandidate?.interviewedByManagers?.allObjects
                     managerFeedback?.sortArray(allObj!, index:self.subRound.selectedSegment)

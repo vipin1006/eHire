@@ -12,6 +12,9 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
 
     @IBOutlet var managerFeedbackMainView: NSView!
    
+    @IBOutlet weak var textFieldCandidateName: NSTextField!
+    
+    @IBOutlet weak var textFieldCandidateRequisition: NSTextField!
     @IBOutlet weak var textFieldCorporateGrade: NSTextField!
     @IBOutlet weak var textFieldDesignation: NSTextField!
     
@@ -57,47 +60,23 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
    
     var cell : EHManagerFeedBackCustomTableView?
    
+    //MARK:- View Methods
     override func loadView() {
         
-       candidateDetails = EHCandidateDetails(inName: selectedCandidate!.name!,candidateExperience:(selectedCandidate?.experience)! , candidateInterviewTiming: "1023.22", candidatePhoneNo:(selectedCandidate?.phoneNumber)!) as EHCandidateDetails
-        
-        
-        
-        candidateDetails!.interviewDate = NSDate()
-        managerialFeedbackModel.candidate = candidateDetails
-        addDefalutSkillSet()
-        
-        
-        //            self.ratingTitle.addObject("Communication")
-        //            self.ratingTitle.addObject("Organisation Stability")
-        //            self.ratingTitle.addObject("Leadership(if applicable)")
-        //            self.ratingTitle.addObject("Growth Potential")
-        //        }
-        
+       addDefalutSkillSet()
         super.loadView()
     }
     
-    func addDefalutSkillSet(){
-        let skillArray = [ "Communication","Organisation Stability","Leadership(if applicable)","Growth Potential"] as NSMutableArray
-        
-        for index in 0...3
-        {
-            let skillSetObject = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:(selectedCandidate?.managedObjectContext)!)!,insertIntoManagedObjectContext:selectedCandidate?.managedObjectContext)
-            skillSetObject.skillName = skillArray.objectAtIndex(index) as? String
-            managerialFeedbackModel.skillSet.append(skillSetObject)
-        }
-
-    }
-    override func viewDidLoad()
+        override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        textFieldCandidateName.stringValue = (selectedCandidate?.name)!
+        textFieldCandidateRequisition.stringValue = (selectedCandidate?.requisition)!
         managerFeedbackMainView.wantsLayer = true
         managerFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
         tableView.reloadData()
         setDefaultCgDeviationAndInterviewMode()
-//        numberFieldVilidation()
-//        if ratingTitle.count == 0
-//        {
         
         
         
@@ -113,6 +92,20 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         print("name = \(managerialFeedbackModel.designation)")
     }
     
+    //MARK:- Method for Adding Default Skills
+    func addDefalutSkillSet(){
+        let skillArray = [ "Communication","Organisation Stability","Leadership(if applicable)","Growth Potential"] as NSMutableArray
+        
+        for index in 0...3
+        {
+            let skillSetObject = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:(selectedCandidate?.managedObjectContext)!)!,insertIntoManagedObjectContext:selectedCandidate?.managedObjectContext)
+            skillSetObject.skillName = skillArray.objectAtIndex(index) as? String
+            managerialFeedbackModel.skillSet.append(skillSetObject)
+        }
+        
+    }
+
+    //MARK:-TableView DataSource Methods
     func numberOfRowsInTableView(tableView: NSTableView) -> Int
     {
         return (managerialFeedbackModel?.skillSet.count)!
@@ -143,6 +136,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                 else
                 {
                     tempBtn.image = NSImage(named: "deselectStar")
+                    cell.feedBackRating.stringValue = ""
 
                 }
             }
@@ -157,16 +151,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         return cell
     }
     
-    func alertPopup(data:String, informativeText:String){
-        
-        let alert:NSAlert = NSAlert()
-        alert.messageText = data
-        alert.informativeText = informativeText
-        alert.addButtonWithTitle("OK")
-        alert.addButtonWithTitle("Cancel")
-        alert.runModal()
-    }
     
+    //MARK:- Method to select star in tableview
     func selectedStarCount(sender : NSButton)
     {
         let ratingCell = sender.superview?.superview as! EHManagerFeedBackCustomTableView
@@ -178,6 +164,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         displayStar(ratingCell, lbl: ratingCell.feedBackRating, sender: sender )
     }
     
+    
+    //MARK:- Textfield delegate Method
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
     {
         let skillSetObject =  managerialFeedbackModel?.skillSet[control.tag]
@@ -185,6 +173,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         return true
     }
     
+ //MARK:- Method to add new skills
     @IBAction func addSkillSet(sender: NSButton)
     {
         if managerialFeedbackModel.skillSet.count > 0 && cell?.titleName.stringValue == "Enter Title"
@@ -201,22 +190,26 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         }
     }
     
+    //MARK:-Method to delete skills
     @IBAction func deleteSkillSet(sender: NSButton)
     {
         managerialFeedbackModel?.skillSet.removeAtIndex(tableView.selectedRow)
             tableView.reloadData()
     }
     
+    //MARK:-Method to add star in overall technology assessment
     @IBAction func addOverAllAssessmentForTechnology(sender: AnyObject)
     {
             displayStar(viewOverAllAssessmentOfTechnologyStar, lbl:labelOverAllAssessmentOfTechnology, sender: sender as! NSButton)
     }
     
+    //:- Method to add star in overall candidate assessment
     @IBAction func addOverAllAssessmentForCandidate(sender: AnyObject)
     {
             displayStar(viewOverAllAssessmentOfCandidateStar, lbl:labelOverAllAssessmentOfCandidate, sender: sender as! NSButton)
     }
     
+    //MARK:- Method to enable/disable stars
     func displayStar(customView:AnyObject,lbl:NSTextField,sender:NSButton)
     {
         var totalView = customView.subviews
@@ -338,7 +331,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
    
     
     
-    //MARK:- Getting Matrix Value
+    //MARK:- Method to get interviewmode
     @IBAction func getInterviewMode(sender: AnyObject) {
         
        
@@ -356,7 +349,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
      
     }
     
-    
+    //MARK:- Method to get cgdeviation
     @IBAction func selectCgDeviation(sender: AnyObject) {
         
         let selectedColoumn = sender.selectedColumn
@@ -367,7 +360,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         }
     }
     
-    //MARK:- Setting Matrix Value
+    //MARK:- Method to set interviewmode
     func setModeOfInterview(value:String){
         if value == "Telephonic"{
             matrixForInterviewMode.setState(NSOnState, atRow: 0, column: 0)
@@ -381,7 +374,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     
 
-    
+    //MARK:- Method to set recommendation state
     func setRecommendationState(value:String){
         if value == "Shortlisted"{
             matrixForRecommendationState.setState(NSOnState, atRow: 0, column: 0)
@@ -392,6 +385,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         }
     }
     
+    //MARK:- Method to set cgdeviation
     func setCgDeviation(value:Bool){
         if value{
             matrixForCgDeviation.setState(NSOnState, atRow: 0, column: 0)
@@ -404,7 +398,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
    
     
-    
+    //MARK:- Method to set default interviewmode/cgdeviation/recommendationstate
     func setDefaultCgDeviationAndInterviewMode(){
         managerialFeedbackModel.modeOfInterview = "Face To Face"
         managerialFeedbackModel.isCgDeviation = false
@@ -412,7 +406,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     }
     
     
-    //MARK:- Validation Methods
+    //MARK:- Method to validate is any field empty
     
     func validation() -> Bool
     {
@@ -461,16 +455,10 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             isValid = true
         }
         
-        //        if modeOfInterview.cells.
-        //        {
-        //            return false
-        //        }
-        //        else if recommentationField.selectedCell()?.state
-        //        {
-        //            return false
-        //        }
-        return isValid
+                return isValid
     }
+    
+    //MARK:- TextView validation method
     func validationForTextView(subView : NSTextView,title : String,informativeText:String) -> Bool
     {
         if subView.string == ""
@@ -486,6 +474,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         }
     }
     
+    //MARK:- Textfield validation method
     func validationForTextfield(subView : NSTextField,title : String,informativeText:String) -> Bool
     {
         if subView.stringValue == ""
@@ -501,23 +490,16 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         }
     }
    
-    func setBoarderColor(subView:NSTextField)
-    {
-        subView.wantsLayer = true
-        subView.layer?.backgroundColor = NSColor.orangeColor().CGColor
+    //MARK:- Method to shoe alert
+    func alertPopup(data:String, informativeText:String){
+        
+        let alert:NSAlert = NSAlert()
+        alert.messageText = data
+        alert.informativeText = informativeText
+        alert.addButtonWithTitle("OK")
+        alert.addButtonWithTitle("Cancel")
+        alert.runModal()
     }
-    
-    func setBoarderColorForTextView(subView:NSTextView)
-    {
-        subView.wantsLayer = true
-        subView.layer?.borderColor = NSColor.orangeColor().CGColor
-        subView.layer?.borderWidth = 2
-    }
-    
-    //MARK:- NumberField Validation for Textfields
-    
-
-   
     
     //MARK:- Core Data Saving Methods
     
@@ -537,7 +519,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             }
         let managerFeedbackAccessLayer = EHManagerFeedbackDataAccessLayer(managerFeedbackModel: managerialFeedbackModel)
         if managerFeedbackAccessLayer.insertManagerFeedback(selectedCandidate!){
-            print("Suceeded")
+           alertPopup("Success",informativeText:"Data added successfully")
         }
         }
         
@@ -547,18 +529,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
        
     }
     
-    //MARK:- CoreDataMethods
-    func saveManegerFeedbackToToCoreData(){
-        
-//        let newTechnologyEntityDescription = EHCoreDataHelper.createEntity("ManagerFeedBack", managedObjectContext: appDelegate.managedObjectContext)
-        
-        let newTechnologyEntityDescription = EHCoreDataHelper.createEntity("ManagerFeedBack", managedObjectContext: appDelegate.managedObjectContext)
-        let newMangerFeedbackManagedObject:ManagerFeedBack = ManagerFeedBack(entity:newTechnologyEntityDescription!, insertIntoManagedObjectContext:appDelegate.managedObjectContext) as ManagerFeedBack
-        
-        newMangerFeedbackManagedObject.managerName = "pavi"
-        EHCoreDataHelper.saveToCoreData(newMangerFeedbackManagedObject)
-
-    }
+    
     
     //PRAGMAMARK:- Update UI 
     func updateUIElements(feedback: ManagerFeedBack){
@@ -667,6 +638,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             let tempBtn = starBtn as! NSButton
             tempBtn.image = NSImage(named: "deselectStar")
         }
+        labelOverAllAssessmentOfCandidate.stringValue = ""
+        labelOverAllAssessmentOfTechnology.stringValue = ""
         
         setRecommendationState("Rejected")
         setModeOfInterview("Face To Face")
