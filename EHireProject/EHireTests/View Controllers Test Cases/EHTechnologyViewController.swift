@@ -26,6 +26,7 @@ class EHTechnologyViewController: XCTestCase
     //MARK:- Performance Test
     func testPerformanceExample()
     {
+        @IBOutlet weak var addDate: NSButton!
         // This is an example of a performance test case.
         self.measureBlock
         {
