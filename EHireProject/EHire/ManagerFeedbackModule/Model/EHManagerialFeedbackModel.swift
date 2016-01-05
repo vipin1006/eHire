@@ -22,7 +22,7 @@ class EHManagerialFeedbackModel: NSObject {
      dynamic var recommendation: String?
      dynamic var recommendedCg: String?
       var candidate: EHCandidateDetails?
-    var skillSet : [EHSkillSet] = []
+    var skillSet : [SkillSet] = []
    dynamic var designation: String?
     
 //     init(candidateDetails:EHCandidateDetails) {

@@ -16,10 +16,12 @@ class EHManagerFeedbackDataAccessLayer: NSObject {
       self.managerFeedbackmodel = managerFeedbackModel
     }
     
-    func insertManagerFeedback() -> Bool{
+    func insertManagerFeedback(candidate:Candidate) -> Bool{
         
-        let managerFeedbackentity = EHCoreDataHelper.createEntity("ManagerFeedBack", managedObjectContext: coreDataStack.managedObjectContext)
-        let managerFeedback:ManagerFeedBack = ManagerFeedBack(entity:managerFeedbackentity!, insertIntoManagedObjectContext:coreDataStack.managedObjectContext) as ManagerFeedBack
+       
+        
+        let managerFeedbackentity = EHCoreDataHelper.createEntity("ManagerFeedBack", managedObjectContext: candidate.managedObjectContext!)
+        let managerFeedback:ManagerFeedBack = ManagerFeedBack(entity:managerFeedbackentity!, insertIntoManagedObjectContext:candidate.managedObjectContext)
        
         managerFeedback.setValue(self.managerFeedbackmodel?.commentsOnCandidate?.string, forKey: "commentsOnCandidate")
             
@@ -34,27 +36,9 @@ class EHManagerFeedbackDataAccessLayer: NSObject {
         
         print(self.managerFeedbackmodel?.skillSet)
         
-        var skillSetarray:[SkillSet]=[]
-        for object in (self.managerFeedbackmodel?.skillSet)!{
-           
-            
-            
-            let skillSetDecription = EHCoreDataHelper.createEntity("SkillSet", managedObjectContext: coreDataStack.managedObjectContext)
-            let skillSetObject:SkillSet = SkillSet(entity:skillSetDecription!, insertIntoManagedObjectContext:coreDataStack.managedObjectContext) as SkillSet
-            skillSetObject.skillName = object.skillName
-            print("Name=%@,Rating=%@",object.skillName,object.skillRating)
-            if !((object.skillRating) == nil){
-                 skillSetObject.skillRating = NSNumber(short: object.skillRating!)
-            }
-           
-            skillSetarray.append(skillSetObject)
 
-        }
-        
-        
-        let newSet = NSSet(array: (skillSetarray))
-        
-        managerFeedback.setValue(newSet, forKey: "candidateSkills")
+       
+        managerFeedback.setValue(NSMutableSet(array: (self.managerFeedbackmodel?.skillSet)!), forKey: "candidateSkills")
         managerFeedback.setValue(self.managerFeedbackmodel?.managerName, forKey: "managerName")
             
         managerFeedback.setValue(self.managerFeedbackmodel?.isCgDeviation, forKey: "isCgDeviation")
@@ -70,24 +54,13 @@ class EHManagerFeedbackDataAccessLayer: NSObject {
         managerFeedback.setValue(self.managerFeedbackmodel?.recommendation, forKey: "recommendation")
             
         managerFeedback.setValue(self.managerFeedbackmodel?.recommendedCg, forKey: "recommendedCg")
-        
-        
-        // mapping ehCandidate to candidate core data class 
-        
-        let candidateDecription = EHCoreDataHelper.createEntity("Candidate", managedObjectContext: coreDataStack.managedObjectContext)
-        let candidateObject:Candidate = Candidate(entity:candidateDecription!, insertIntoManagedObjectContext:coreDataStack.managedObjectContext) as Candidate
-        candidateObject.name = self.managerFeedbackmodel?.candidate?.name
-        candidateObject.phoneNumber = self.managerFeedbackmodel?.candidate?.phoneNum
-        candidateObject.experience = self.managerFeedbackmodel?.candidate?.experience
 
-
+        managerFeedback.setValue(self.managerFeedbackmodel?.designation, forKey: "designation")
         
-        managerFeedback.setValue(candidateObject, forKey: "candidate")
-
-       managerFeedback.setValue(self.managerFeedbackmodel?.designation, forKey: "designation")
+        managerFeedback.setValue(candidate as Candidate, forKey: "candidate")
+        candidate.interviewedByManagers?.setByAddingObject(managerFeedback)
         
-        EHCoreDataHelper.saveToCoreData(managerFeedback)
-        
+        EHCoreDataHelper.saveToCoreData(candidate)
         
         return true
     }

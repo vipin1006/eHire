@@ -64,26 +64,16 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         
         candidateDetails!.interviewDate = NSDate()
         managerialFeedbackModel.candidate = candidateDetails
-       
-        let communicationSkill = EHSkillSet()
-        communicationSkill.skillName = "Communication"
-//        communicationSkill.skillRating = 3
-        let organisationStabilitySkill = EHSkillSet()
-        organisationStabilitySkill.skillName = "Organisation Stability"
+        let skillArray = [ "Communication","Organisation Stability","Leadership(if applicable)","Growth Potential"] as NSMutableArray
+        
+        for index in 0...3
+        {
+            let skillSetObject = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:(selectedCandidate?.managedObjectContext)!)!,insertIntoManagedObjectContext:selectedCandidate?.managedObjectContext)
+            skillSetObject.skillName = skillArray.objectAtIndex(index) as? String
+            managerialFeedbackModel.skillSet.append(skillSetObject)
+        }
         
         
-        let leaderShipSkill = EHSkillSet()
-        leaderShipSkill.skillName = "Leadership(if applicable)"
-
-        
-        let growthPotentialSkill = EHSkillSet()
-        growthPotentialSkill.skillName = "Growth Potential"
-
-        
-        managerialFeedbackModel!.skillSet.append(communicationSkill)
-        managerialFeedbackModel!.skillSet.append(organisationStabilitySkill)
-        managerialFeedbackModel!.skillSet.append(leaderShipSkill)
-        managerialFeedbackModel!.skillSet.append(growthPotentialSkill)
         
         //            self.ratingTitle.addObject("Communication")
         //            self.ratingTitle.addObject("Organisation Stability")
@@ -105,21 +95,28 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
 //        {
         
         
-        let managerFeedbackAccessLayer = EHManagerFeedbackDataAccessLayer(managerFeedbackModel: managerialFeedbackModel)
-
-       let managerFeedbackArray =  managerFeedbackAccessLayer.fetchManagerFeedback()
         
-        if managerFeedbackArray.count>0 {
-            
-            let feedback =  managerFeedbackArray[0] as! ManagerFeedBack
+        if selectedCandidate != nil
+        {
+            for x in (selectedCandidate?.interviewedByManagers)!
+            {
+                let feedback = x as! ManagerFeedBack
+                print(feedback.managerName)
+
+       
             
             print (feedback.candidate?.name)
-        managerialFeedbackModel.commentsOnCandidate = NSAttributedString(string: feedback.commentsOnCandidate!)
+
         
         //managerialFeedbackModel.managerName = feedback.managerName!
         managerialFeedbackModel.designation = feedback.designation!
+                if feedback.commentsOnCandidate != nil{
             managerialFeedbackModel.commentsOnCandidate = NSAttributedString(string: feedback.commentsOnCandidate!)
+                }
+                
+                if feedback.commentsOnTechnology != nil{
             managerialFeedbackModel.commentsOnTechnology = NSAttributedString(string: feedback.commentsOnTechnology!)
+                }
             managerialFeedbackModel.commitments = NSAttributedString(string: feedback.commitments!)
             managerialFeedbackModel.ratingOnTechnical = Int16((feedback.ratingOnTechnical?.integerValue)!)
             managerialFeedbackModel.ratingOnCandidate = Int16((feedback.ratingOnCandidate?.integerValue)!)
@@ -140,10 +137,10 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             for object in feedback.candidateSkills!{
                 let skillset = object as! SkillSet
                 
-                let communicationSkill = EHSkillSet()
-                communicationSkill.skillName = skillset.skillName
-                communicationSkill.skillRating = Int16((skillset.skillRating?.integerValue)!)
-                managerialFeedbackModel!.skillSet.append(communicationSkill)
+//                let communicationSkill = EHSkillSet()
+//                communicationSkill.skillName = skillset.skillName
+//                communicationSkill.skillRating = Int16((skillset.skillRating?.integerValue)!)
+                managerialFeedbackModel!.skillSet.append(skillset)
         }
             
             if !(managerialFeedbackModel.ratingOnTechnical == nil) {
@@ -168,6 +165,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             
             tableView.reloadData()
         }
+            }
         
         print("name = \(managerialFeedbackModel.designation)")
     }
@@ -186,7 +184,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     {
         let cell = tableView.makeViewWithIdentifier("DataCell", owner: self) as! EHManagerFeedBackCustomTableView
         
-        let skillSetObject = managerialFeedbackModel!.skillSet[row] as EHSkillSet
+        let skillSetObject = managerialFeedbackModel!.skillSet[row] as SkillSet
         cell.titleName.stringValue = skillSetObject.skillName!
         cell.titleName.tag = row
         cell.titleName.target = self
@@ -196,7 +194,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         if !(skillSetObject.skillRating == nil) {
             for starBtn in cell.selectStar.subviews{
                 let tempBtn = starBtn as! NSButton
-                if tempBtn.tag == (skillSetObject.skillRating!-1){
+                if tempBtn.tag+1 == (skillSetObject.skillRating!){
                     displayStar(cell, lbl: cell.feedBackRating, sender: tempBtn )
                 }
             }
@@ -241,9 +239,11 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     @IBAction func addSkillSet(sender: NSButton)
     {
-        let skillSetObject = EHSkillSet()
-        skillSetObject.skillName = "Enter Title"
-        managerialFeedbackModel?.skillSet.append(skillSetObject)
+        
+       let newSkill = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)!,insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)
+        newSkill.skillName = "Enter Title"
+        newSkill.skillRating = 0
+        managerialFeedbackModel?.skillSet.append(newSkill)
         tableView.reloadData()
     }
     
@@ -374,8 +374,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     func setSkillRating(customView:AnyObject,ratingValue:Int16){
         if customView is EHManagerFeedBackCustomTableView{
             let textFieldObject = customView.titleName as NSTextField
-            let skillSetObject = managerialFeedbackModel!.skillSet[textFieldObject.tag] as EHSkillSet
-            skillSetObject.skillRating = ratingValue
+            let skillSetObject = managerialFeedbackModel!.skillSet[textFieldObject.tag] as SkillSet
+            skillSetObject.skillRating = NSNumber(short: ratingValue)
             print("name = \(skillSetObject.skillName)")
         }
         else if customView as! NSView == viewOverAllAssessmentOfTechnologyStar{
@@ -557,7 +557,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                 managerialFeedbackModel.recommendation = "Shortlisted"
             }
         let managerFeedbackAccessLayer = EHManagerFeedbackDataAccessLayer(managerFeedbackModel: managerialFeedbackModel)
-        if managerFeedbackAccessLayer.insertManagerFeedback(){
+        if managerFeedbackAccessLayer.insertManagerFeedback(selectedCandidate!){
             print("Suceeded")
         }
         }
