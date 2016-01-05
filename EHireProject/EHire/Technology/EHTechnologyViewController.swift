@@ -362,6 +362,13 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         else{
             if isValidTechnologyName(textFieldObject.stringValue)
             {
+                if isNumberValid(textFieldObject.stringValue) == true
+                {
+                    alertPopup("Error", informativeText: "Enter an appropriate Technology name",inTag: 0)
+ 
+                    return
+                }
+                
                 let technologyObject = technologyArray[technologyArray.count-1]
                 technologyObject.technologyName = textFieldObject.stringValue
                 textFieldObject.wantsLayer = true
@@ -496,6 +503,21 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         }
         return isValid
     }
+    
+// this method will check for  validation of  technology name
+    func isNumberValid(value:String)->Bool
+{
+    
+    let number = NSNumberFormatter()
+    let final = number.numberFromString(value)
+    if let _ = final
+   {
+    return true
+    }
+    return false
+    }
+   
+
     
 }
 

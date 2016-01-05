@@ -65,15 +65,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         
         candidateDetails!.interviewDate = NSDate()
         managerialFeedbackModel.candidate = candidateDetails
-        let skillArray = [ "Communication","Organisation Stability","Leadership(if applicable)","Growth Potential"] as NSMutableArray
-        
-        for index in 0...3
-        {
-            let skillSetObject = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:(selectedCandidate?.managedObjectContext)!)!,insertIntoManagedObjectContext:selectedCandidate?.managedObjectContext)
-            skillSetObject.skillName = skillArray.objectAtIndex(index) as? String
-            managerialFeedbackModel.skillSet.append(skillSetObject)
-        }
-        
+        addDefalutSkillSet()
         
         
         //            self.ratingTitle.addObject("Communication")
@@ -83,6 +75,18 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         //        }
         
         super.loadView()
+    }
+    
+    func addDefalutSkillSet(){
+        let skillArray = [ "Communication","Organisation Stability","Leadership(if applicable)","Growth Potential"] as NSMutableArray
+        
+        for index in 0...3
+        {
+            let skillSetObject = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:(selectedCandidate?.managedObjectContext)!)!,insertIntoManagedObjectContext:selectedCandidate?.managedObjectContext)
+            skillSetObject.skillName = skillArray.objectAtIndex(index) as? String
+            managerialFeedbackModel.skillSet.append(skillSetObject)
+        }
+
     }
     override func viewDidLoad()
     {
@@ -98,75 +102,13 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         
         
         if selectedCandidate != nil
-        {
-            for x in (selectedCandidate?.interviewedByManagers)!
-            {
-                let feedback = x as! ManagerFeedBack
-                print(feedback.managerName)
+        { if selectedCandidate?.interviewedByManagers?.count != 0{
+            sortArray((selectedCandidate?.interviewedByManagers?.allObjects)!,index: 0)
 
-       
-            
-            print (feedback.candidate?.name)
-
-        
-        //managerialFeedbackModel.managerName = feedback.managerName!
-        managerialFeedbackModel.designation = feedback.designation!
-                if feedback.commentsOnCandidate != nil{
-            managerialFeedbackModel.commentsOnCandidate = NSAttributedString(string: feedback.commentsOnCandidate!)
-                }
-                
-                if feedback.commentsOnTechnology != nil{
-            managerialFeedbackModel.commentsOnTechnology = NSAttributedString(string: feedback.commentsOnTechnology!)
-                }
-            managerialFeedbackModel.commitments = NSAttributedString(string: feedback.commitments!)
-            managerialFeedbackModel.ratingOnTechnical = Int16((feedback.ratingOnTechnical?.integerValue)!)
-            managerialFeedbackModel.ratingOnCandidate = Int16((feedback.ratingOnCandidate?.integerValue)!)
-            managerialFeedbackModel.grossAnnualSalary = feedback.grossAnnualSalary
-            managerialFeedbackModel.recommendedCg = feedback.recommendedCg
-            managerialFeedbackModel.jestificationForHire = NSAttributedString(string: feedback.jestificationForHire!)
-            managerialFeedbackModel.managerName = feedback.managerName
-            managerialFeedbackModel.modeOfInterview = feedback.modeOfInterview
-            managerialFeedbackModel.recommendation = feedback.recommendation
-             managerialFeedbackModel.isCgDeviation = feedback.isCgDeviation
-
-            setModeOfInterview(managerialFeedbackModel.modeOfInterview!)
-            setRecommendationState(managerialFeedbackModel.recommendation!)
-            setCgDeviation(Bool(managerialFeedbackModel.isCgDeviation!.boolValue))
-        
-            
-            managerialFeedbackModel!.skillSet.removeAll()
-            for object in feedback.candidateSkills!{
-                let skillset = object as! SkillSet
-                
-//                let communicationSkill = EHSkillSet()
-//                communicationSkill.skillName = skillset.skillName
-//                communicationSkill.skillRating = Int16((skillset.skillRating?.integerValue)!)
-                managerialFeedbackModel!.skillSet.append(skillset)
-        }
-            
-            if !(managerialFeedbackModel.ratingOnTechnical == nil) {
-                for starBtn in viewOverAllAssessmentOfTechnologyStar.subviews{
-                    let tempBtn = starBtn as! NSButton
-                    if tempBtn.tag == (managerialFeedbackModel.ratingOnTechnical!-1){
-                        displayStar(viewOverAllAssessmentOfTechnologyStar, lbl: labelOverAllAssessmentOfTechnology, sender: tempBtn )
-                    }
-                }
             }
-            
-            
-            if !(managerialFeedbackModel.ratingOnCandidate == nil) {
-                for starBtn in viewOverAllAssessmentOfCandidateStar.subviews{
-                    let tempBtn = starBtn as! NSButton
-                    if tempBtn.tag == (managerialFeedbackModel.ratingOnCandidate!-1){
-                        displayStar(viewOverAllAssessmentOfCandidateStar, lbl: labelOverAllAssessmentOfCandidate, sender: tempBtn )
-                    }
-                }
-            }
-
-            
             tableView.reloadData()
         }
-            }
+        
         
         print("name = \(managerialFeedbackModel.designation)")
     }
@@ -197,6 +139,11 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                 let tempBtn = starBtn as! NSButton
                 if tempBtn.tag+1 == (skillSetObject.skillRating!){
                     displayStar(cell, lbl: cell.feedBackRating, sender: tempBtn )
+                }
+                else
+                {
+                    tempBtn.image = NSImage(named: "deselectStar")
+
                 }
             }
         }
@@ -262,19 +209,14 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     @IBAction func addOverAllAssessmentForTechnology(sender: AnyObject)
     {
-        
             displayStar(viewOverAllAssessmentOfTechnologyStar, lbl:labelOverAllAssessmentOfTechnology, sender: sender as! NSButton)
-        
     }
     
     @IBAction func addOverAllAssessmentForCandidate(sender: AnyObject)
     {
-       
             displayStar(viewOverAllAssessmentOfCandidateStar, lbl:labelOverAllAssessmentOfCandidate, sender: sender as! NSButton)
-            
-       
-        
     }
+    
     func displayStar(customView:AnyObject,lbl:NSTextField,sender:NSButton)
     {
         var totalView = customView.subviews
@@ -616,6 +558,120 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         newMangerFeedbackManagedObject.managerName = "pavi"
         EHCoreDataHelper.saveToCoreData(newMangerFeedbackManagedObject)
 
+    }
+    
+    //PRAGMAMARK:- Update UI 
+    func updateUIElements(feedback: ManagerFeedBack){
+        print(feedback.managerName)
+        
+        
+        print (feedback.candidate?.name)
+        
+        
+        //managerialFeedbackModel.managerName = feedback.managerName!
+        managerialFeedbackModel.designation = feedback.designation!
+        if feedback.commentsOnCandidate != nil{
+            managerialFeedbackModel.commentsOnCandidate = NSAttributedString(string: feedback.commentsOnCandidate!)
+        }
+        
+        if feedback.commentsOnTechnology != nil{
+            managerialFeedbackModel.commentsOnTechnology = NSAttributedString(string: feedback.commentsOnTechnology!)
+        }
+        managerialFeedbackModel.commitments = NSAttributedString(string: feedback.commitments!)
+        managerialFeedbackModel.ratingOnTechnical = Int16((feedback.ratingOnTechnical?.integerValue)!)
+        managerialFeedbackModel.ratingOnCandidate = Int16((feedback.ratingOnCandidate?.integerValue)!)
+        managerialFeedbackModel.grossAnnualSalary = feedback.grossAnnualSalary
+        managerialFeedbackModel.recommendedCg = feedback.recommendedCg
+        managerialFeedbackModel.jestificationForHire = NSAttributedString(string: feedback.jestificationForHire!)
+        managerialFeedbackModel.managerName = feedback.managerName
+        managerialFeedbackModel.modeOfInterview = feedback.modeOfInterview
+        managerialFeedbackModel.recommendation = feedback.recommendation
+        managerialFeedbackModel.isCgDeviation = feedback.isCgDeviation
+        
+        setModeOfInterview(managerialFeedbackModel.modeOfInterview!)
+        setRecommendationState(managerialFeedbackModel.recommendation!)
+        setCgDeviation(Bool(managerialFeedbackModel.isCgDeviation!.boolValue))
+        
+        
+        managerialFeedbackModel!.skillSet.removeAll()
+        for object in feedback.candidateSkills!{
+            let skillset = object as! SkillSet
+            
+            //                let communicationSkill = EHSkillSet()
+            //                communicationSkill.skillName = skillset.skillName
+            //                communicationSkill.skillRating = Int16((skillset.skillRating?.integerValue)!)
+            managerialFeedbackModel!.skillSet.append(skillset)
+        }
+        
+        if !(managerialFeedbackModel.ratingOnTechnical == nil) {
+            for starBtn in viewOverAllAssessmentOfTechnologyStar.subviews{
+                let tempBtn = starBtn as! NSButton
+                if tempBtn.tag == (managerialFeedbackModel.ratingOnTechnical!-1){
+                    displayStar(viewOverAllAssessmentOfTechnologyStar, lbl: labelOverAllAssessmentOfTechnology, sender: tempBtn )
+                }
+            }
+        }
+        
+        
+        if !(managerialFeedbackModel.ratingOnCandidate == nil) {
+            for starBtn in viewOverAllAssessmentOfCandidateStar.subviews{
+                let tempBtn = starBtn as! NSButton
+                if tempBtn.tag == (managerialFeedbackModel.ratingOnCandidate!-1){
+                    displayStar(viewOverAllAssessmentOfCandidateStar, lbl: labelOverAllAssessmentOfCandidate, sender: tempBtn )
+                }
+            }
+        }
+        tableView.reloadData()
+
+    }
+    
+    func sortArray (allObj : [AnyObject],index:Int){
+        let arra = NSArray(array: allObj)
+        
+        let descriptor: NSSortDescriptor = NSSortDescriptor(key: "id", ascending: true)
+        let sortedResults: NSArray = arra.sortedArrayUsingDescriptors([descriptor])//                let feedback = allObj![0]
+        updateUIElements(sortedResults[index] as! ManagerFeedBack)
+    }
+    
+    func refreshAllFields()
+    {
+        
+        managerialFeedbackModel.commentsOnCandidate = NSAttributedString(string: "")
+
+        managerialFeedbackModel.commentsOnTechnology = NSAttributedString(string: "")
+        managerialFeedbackModel.commitments = NSAttributedString(string: "")
+        managerialFeedbackModel.grossAnnualSalary = NSNumber(integer: 0)
+        
+        managerialFeedbackModel.managerName = ""
+        //managerialFeedbackModel. isCgDeviation = NSNumber(integer: 0)
+ 
+        managerialFeedbackModel.jestificationForHire = NSAttributedString(string: "")
+        managerialFeedbackModel.modeOfInterview = ""
+        managerialFeedbackModel.ratingOnCandidate = 0
+        managerialFeedbackModel.ratingOnTechnical = 0
+        managerialFeedbackModel.recommendation = ""
+        managerialFeedbackModel.recommendedCg = ""
+        managerialFeedbackModel.designation = ""
+        managerialFeedbackModel?.skillSet.removeAll()
+        addDefalutSkillSet()
+
+        tableView.reloadData()
+        
+        for starBtn in viewOverAllAssessmentOfTechnologyStar.subviews{
+            let tempBtn = starBtn as! NSButton
+            tempBtn.image = NSImage(named: "deselectStar")
+
+            }
+        
+        for starBtn in viewOverAllAssessmentOfCandidateStar.subviews{
+            let tempBtn = starBtn as! NSButton
+            tempBtn.image = NSImage(named: "deselectStar")
+        }
+        
+        setRecommendationState("Rejected")
+        setModeOfInterview("Face To Face")
+        setCgDeviation(false)
+        
     }
     
 }

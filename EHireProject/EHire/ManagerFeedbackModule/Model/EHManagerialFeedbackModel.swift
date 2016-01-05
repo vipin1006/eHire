@@ -9,6 +9,7 @@
 import Cocoa
 
 class EHManagerialFeedbackModel: NSObject {
+    var id : Int16?
      dynamic var commentsOnCandidate: NSAttributedString?
       dynamic var commentsOnTechnology: NSAttributedString?
      dynamic var commitments: NSAttributedString?

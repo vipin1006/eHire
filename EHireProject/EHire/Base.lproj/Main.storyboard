@@ -815,8 +815,12 @@
                                 <rect key="frame" x="211" y="46" width="583" height="646"/>
                                 <animations/>
                             </customView>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yji-KJ-iak">
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Yji-KJ-iak">
                                 <rect key="frame" x="93" y="5" width="47" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Nng-PT-oZm"/>
+                                    <constraint firstAttribute="width" constant="35" id="k5T-k4-cwR"/>
+                                </constraints>
                                 <animations/>
                                 <buttonCell key="cell" type="push" title="+" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5q0-bf-uUd">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -835,12 +839,15 @@
                             <constraint firstItem="XqD-dp-fcu" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="52" id="PaL-22-C2X"/>
                             <constraint firstItem="5ml-91-1WV" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="8" id="Rin-G1-aEB"/>
                             <constraint firstAttribute="bottom" secondItem="XqD-dp-fcu" secondAttribute="bottom" constant="12" id="UgP-6E-LI4"/>
+                            <constraint firstAttribute="bottom" secondItem="Yji-KJ-iak" secondAttribute="bottom" constant="12" id="WBq-ob-GYU"/>
                             <constraint firstItem="XqD-dp-fcu" firstAttribute="top" secondItem="yhg-wP-rCj" secondAttribute="bottom" constant="13" id="ZKc-Gj-CPx"/>
+                            <constraint firstItem="Yji-KJ-iak" firstAttribute="leading" secondItem="XqD-dp-fcu" secondAttribute="trailing" constant="12" id="bmK-ZO-0Um"/>
                             <constraint firstItem="yhg-wP-rCj" firstAttribute="width" secondItem="m2S-Jp-Qdl" secondAttribute="width" multiplier="1:4" id="cRa-Pd-PpH"/>
                             <constraint firstAttribute="trailing" secondItem="5ml-91-1WV" secondAttribute="trailing" constant="6" id="cqd-sN-nNk"/>
                             <constraint firstItem="yhg-wP-rCj" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="3" id="hnM-pX-HLn"/>
                             <constraint firstItem="XqD-dp-fcu" firstAttribute="leading" secondItem="eBm-x4-76f" secondAttribute="trailing" constant="12" symbolic="YES" id="j7S-Ob-29L"/>
                             <constraint firstItem="yhg-wP-rCj" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="8" id="ojz-EX-Hb0"/>
+                            <constraint firstItem="Yji-KJ-iak" firstAttribute="top" secondItem="yhg-wP-rCj" secondAttribute="bottom" constant="13" id="uWN-Qs-YX5"/>
                         </constraints>
                         <animations/>
                     </view>
@@ -3788,7 +3795,7 @@ CA
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="u4X-3D-1xV">
-                                                    <rect key="frame" x="486" y="0.0" width="4" height="139"/>
+                                                    <rect key="frame" x="486" y="0.0" width="5" height="139"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -3942,7 +3949,7 @@ CA
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="0ON-WU-C7t">
-                                                    <rect key="frame" x="485" y="0.0" width="4" height="101"/>
+                                                    <rect key="frame" x="485" y="0.0" width="5" height="101"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
