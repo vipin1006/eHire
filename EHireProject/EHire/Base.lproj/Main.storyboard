@@ -815,6 +815,17 @@
                                 <rect key="frame" x="211" y="46" width="583" height="646"/>
                                 <animations/>
                             </customView>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yji-KJ-iak">
+                                <rect key="frame" x="93" y="5" width="47" height="32"/>
+                                <animations/>
+                                <buttonCell key="cell" type="push" title="+" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5q0-bf-uUd">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="addDateAction:" target="XfG-lQ-9wD" id="EFy-YO-R0h"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="XqD-dp-fcu" firstAttribute="baseline" secondItem="eBm-x4-76f" secondAttribute="baseline" id="0Mc-rd-4mI"/>
@@ -834,7 +845,10 @@
                         <animations/>
                     </view>
                     <connections>
+                        <outlet property="addDate" destination="Yji-KJ-iak" id="n5P-cF-Tb3"/>
+                        <outlet property="addTechnology" destination="eBm-x4-76f" id="nNa-Rx-bpH"/>
                         <outlet property="candidateView" destination="5ml-91-1WV" id="e1c-FX-bqh"/>
+                        <outlet property="deleteTechnologyDate" destination="XqD-dp-fcu" id="GXV-a3-Ig9"/>
                         <outlet property="sourceList" destination="Jsz-AD-4om" id="33r-Ep-ZwL"/>
                     </connections>
                 </viewController>
@@ -2550,7 +2564,20 @@ CA
                                     <rect key="frame" x="1" y="1" width="786" height="123"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cKe-yU-lBm">
+                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hov-J2-yYq">
+                                            <rect key="frame" x="498" y="20" width="221" height="29"/>
+                                            <animations/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="5CI-1q-GG5">
+                                                <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="uJb-9l-OhK" customClass="EHOnlyDecimalValueFormatter" customModule="EHire" customModuleProvider="target"/>
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <connections>
+                                                <binding destination="FMP-R4-GZw" name="value" keyPath="self.grossAnnualSalary" id="wnd-yq-42p"/>
+                                            </connections>
+                                        </textField>
+                                        <textField hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cKe-yU-lBm">
                                             <rect key="frame" x="498" y="20" width="221" height="29"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="221" id="s8F-Kb-x4G"/>
@@ -2564,9 +2591,6 @@ CA
                                                     <string>NSAllRomanInputSourcesLocaleIdentifier</string>
                                                 </allowedInputSourceLocales>
                                             </textFieldCell>
-                                            <connections>
-                                                <binding destination="FMP-R4-GZw" name="value" keyPath="self.grossAnnualSalary" id="AhV-cc-CRM"/>
-                                            </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dDN-kg-YyI">
                                             <rect key="frame" x="170" y="62" width="27" height="29"/>
@@ -2682,10 +2706,12 @@ CA
                                     <constraints>
                                         <constraint firstItem="PWV-vg-Gr9" firstAttribute="top" secondItem="yXQ-PR-0Ho" secondAttribute="top" id="1fW-wa-ea5"/>
                                         <constraint firstItem="xuJ-cv-bSo" firstAttribute="firstBaseline" secondItem="cKe-yU-lBm" secondAttribute="firstBaseline" id="3g6-Tv-TCr"/>
+                                        <constraint firstAttribute="bottom" secondItem="Hov-J2-yYq" secondAttribute="bottom" constant="20" id="447-Qx-QQ8"/>
                                         <constraint firstItem="1re-sB-9I6" firstAttribute="leading" secondItem="cKe-yU-lBm" secondAttribute="leading" id="5Zq-V9-HBG"/>
                                         <constraint firstItem="cKe-yU-lBm" firstAttribute="top" secondItem="PWV-vg-Gr9" secondAttribute="bottom" constant="21" id="63w-3s-bgc"/>
                                         <constraint firstAttribute="trailing" secondItem="cKe-yU-lBm" secondAttribute="trailing" constant="67" id="6J2-mj-fQX"/>
                                         <constraint firstItem="xuJ-cv-bSo" firstAttribute="top" secondItem="yXQ-PR-0Ho" secondAttribute="bottom" constant="13" id="8ow-f8-4WD"/>
+                                        <constraint firstItem="Hov-J2-yYq" firstAttribute="leading" secondItem="xuJ-cv-bSo" secondAttribute="trailing" constant="56" id="OZj-hv-pdW"/>
                                         <constraint firstItem="cKe-yU-lBm" firstAttribute="leading" secondItem="xuJ-cv-bSo" secondAttribute="trailing" constant="56" id="Obv-yw-KWN"/>
                                         <constraint firstAttribute="bottom" secondItem="xuJ-cv-bSo" secondAttribute="bottom" constant="20" symbolic="YES" id="Tfn-f5-627"/>
                                         <constraint firstItem="0bW-Fh-fhx" firstAttribute="top" secondItem="dDN-kg-YyI" secondAttribute="bottom" constant="21" id="clU-wV-d5k"/>
@@ -2694,6 +2720,7 @@ CA
                                         <constraint firstItem="dDN-kg-YyI" firstAttribute="top" secondItem="fu8-og-Oog" secondAttribute="bottom" constant="6" id="dDx-jd-uaY"/>
                                         <constraint firstItem="xuJ-cv-bSo" firstAttribute="baseline" secondItem="0bW-Fh-fhx" secondAttribute="firstBaseline" id="fKH-hU-7J1"/>
                                         <constraint firstItem="cKe-yU-lBm" firstAttribute="baseline" secondItem="xuJ-cv-bSo" secondAttribute="baseline" id="fVj-p9-BPV"/>
+                                        <constraint firstAttribute="trailing" secondItem="Hov-J2-yYq" secondAttribute="trailing" constant="67" id="mKb-RN-xu7"/>
                                         <constraint firstAttribute="trailing" secondItem="PWV-vg-Gr9" secondAttribute="trailing" constant="70" id="pdq-tW-b4Y"/>
                                         <constraint firstItem="1re-sB-9I6" firstAttribute="firstBaseline" secondItem="dDN-kg-YyI" secondAttribute="firstBaseline" id="rHW-U7-t3l"/>
                                         <constraint firstItem="xuJ-cv-bSo" firstAttribute="leading" secondItem="0bW-Fh-fhx" secondAttribute="trailing" constant="24" id="tbb-Yl-Hvq"/>
@@ -2701,6 +2728,7 @@ CA
                                         <constraint firstItem="yXQ-PR-0Ho" firstAttribute="leading" secondItem="dDN-kg-YyI" secondAttribute="trailing" constant="33" id="w4n-95-B8s"/>
                                         <constraint firstItem="fu8-og-Oog" firstAttribute="leading" secondItem="a0j-Vk-zI6" secondAttribute="leading" id="wv0-IJ-6mm"/>
                                         <constraint firstItem="dDN-kg-YyI" firstAttribute="leading" secondItem="a0j-Vk-zI6" secondAttribute="leading" constant="172" id="yDO-5h-dBn"/>
+                                        <constraint firstItem="Hov-J2-yYq" firstAttribute="top" secondItem="1re-sB-9I6" secondAttribute="bottom" constant="12" id="z6w-yo-Ok9"/>
                                     </constraints>
                                     <animations/>
                                 </view>
@@ -3410,7 +3438,7 @@ CA
                         <outlet property="tableView" destination="586-x1-tdU" id="vAb-uf-Ff3"/>
                         <outlet property="textFieldCorporateGrade" destination="yXQ-PR-0Ho" id="IJ4-2J-UgM"/>
                         <outlet property="textFieldDesignation" destination="xuJ-cv-bSo" id="eo2-RH-90d"/>
-                        <outlet property="textFieldGrossAnnualSalary" destination="cKe-yU-lBm" id="dar-H4-rZD"/>
+                        <outlet property="textFieldGrossAnnualSalary" destination="Hov-J2-yYq" id="gWn-v7-2Ou"/>
                         <outlet property="textFieldInterviewedBy" destination="HHd-M5-NmX" id="XcP-Ls-hoW"/>
                         <outlet property="textFieldPosition" destination="5Ce-BT-BU1" id="5hv-rq-jpw"/>
                         <outlet property="textViewCommentsForOverAllCandidateAssessment" destination="Z5A-BF-7b2" id="cjI-IN-ld2"/>
@@ -3422,6 +3450,7 @@ CA
                     </connections>
                 </viewController>
                 <customObject id="zeO-9e-SNs" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <numberFormatter formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="hgv-SV-sTs"/>
                 <customObject id="FMP-R4-GZw" customClass="EHManagerialFeedbackModel" customModule="EHire" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="-1183.5" y="1398.5"/>
@@ -3759,7 +3788,7 @@ CA
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="u4X-3D-1xV">
-                                                    <rect key="frame" x="486" y="0.0" width="5" height="139"/>
+                                                    <rect key="frame" x="486" y="0.0" width="4" height="139"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -3913,7 +3942,7 @@ CA
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="0ON-WU-C7t">
-                                                    <rect key="frame" x="485" y="0.0" width="5" height="101"/>
+                                                    <rect key="frame" x="485" y="0.0" width="4" height="101"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

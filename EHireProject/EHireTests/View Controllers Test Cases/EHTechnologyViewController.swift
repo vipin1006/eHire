@@ -8,24 +8,37 @@
 
 import XCTest
 
-class EHTechnologyViewController: XCTestCase
+@testable import EHire
+
+class EHTechnologyTestViewController: XCTestCase
 {
+    var technologyViewController : EHTechnologyViewController!
+    let storyBoard = NSStoryboard(name: "Main", bundle: nil)
+    
     //MARK:- Overridden Methods
+    
     override func setUp()
     {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+         technologyViewController = storyBoard.instantiateControllerWithIdentifier("mainView") as? EHTechnologyViewController
+        technologyViewController.performSelectorOnMainThread(Selector("loadView"), withObject: nil, waitUntilDone: true)
+        XCTAssertNotNil(technologyViewController, "Technology View Controller is not created")
+    }
+    
+    func testThatViewLoads()
+    {
+    XCTAssertNotNil(technologyViewController.view, "View not initiated properly");
     }
     
     override func tearDown()
     {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
 
     //MARK:- Performance Test
     func testPerformanceExample()
     {
+        @IBOutlet weak var addDate: NSButton!
         // This is an example of a performance test case.
         self.measureBlock
         {

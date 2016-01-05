@@ -15,6 +15,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     // Technology View
     @IBOutlet weak var sourceList: NSOutlineView!
     
+    //@IBAction func addDateAction(sender: AnyObject) {
+    //}
     //Set the content of source list in the outlineVew as the technology list/array
     var technologyArray = [Technology]()
     var selectedTechnologyIndex:Int?
@@ -24,7 +26,11 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     var datePopOver:NSPopover = NSPopover()
     
     //View for listing the canditates
-    @IBOutlet weak var candidateView: NSView!
+    @IBOutlet weak var candidateView        : NSView!
+    @IBOutlet weak var addDate              : NSButton!
+    @IBOutlet weak var deleteTechnologyDate : NSButton!
+    @IBOutlet weak var addTechnology        : NSButton!
+    
     var candidateController:EHCandidateController?
     var isCandidatesViewLoaded = false
     
@@ -35,9 +41,14 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     
     var cellTechnology:EHTechnologyCustomCell?
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         technologyArray = EHTechnologyDataLayer.getSourceListContent() as! [Technology]
+        addDate.toolTip = "Add New Date"
+        addTechnology.toolTip = "Add New Technology"
+        deleteTechnologyDate.toolTip = "Delete Date or Technology"
+        addDate.enabled = false
         self.sourceList.reloadData()
     }
     
@@ -85,20 +96,45 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     
     //PRAGMAMARK: - outlineview delegate  methods
     //This delegate method sets isCandidatesViewLoaded based on which item (technology/date) is selected.
+
+    
+    func outlineViewSelectionIsChanging(notification: NSNotification)
+    {
+        if let _ = sourceList.itemAtRow(sourceList.selectedRow) as? Technology
+        {
+            addDate.enabled = true
+            addTechnology.enabled = false
+           
+        }
+        else
+        {
+            addDate.enabled = false
+            addTechnology.enabled = true
+        }
+    }
+    
+    func outlineViewSelectionDidChange(notification: NSNotification)
+    {
+        
+    }
+    
     func outlineView(outlineView: NSOutlineView, shouldSelectItem item: AnyObject) -> Bool {
         
         switch item{
             
         case  _ as Technology:
             
-            if isCandidatesViewLoaded{
+            if isCandidatesViewLoaded
+            {
+                
                 candidateController?.view.removeFromSuperview()
-                isCandidatesViewLoaded = false
+                 isCandidatesViewLoaded = false
             }
             
         case  _ as Date:
             
-            if !isCandidatesViewLoaded{
+            if !isCandidatesViewLoaded
+            {
                 
                 candidateController = self.storyboard?.instantiateControllerWithIdentifier("EHCandidateController") as? EHCandidateController
                 candidateController?.delegate = self
@@ -194,6 +230,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 EHCoreDataHelper.saveToCoreData(selectedItem)
                 
                 EHTechnologyDataLayer.addInterviewDateToCoreData(selectedItem, dateToAdd: newDateManagedObject)
+                addDate.enabled = false
+                addTechnology.enabled = true
                 
                 self.sourceList.reloadData()
             }
@@ -329,7 +367,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 textFieldObject.wantsLayer = true
                 
                 textFieldObject.backgroundColor = NSColor.clearColor()
-                
+                addDate.enabled = false
+                addTechnology.enabled = true
                 EHTechnologyDataLayer.addTechnologyToCoreData(technologyObject)
                 
             }

@@ -42,20 +42,25 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     var selectedCandidate : Candidate?
     var feedbackData : [AnyObject]?
     
+    func initialSetupOfTableView()
+    {
+        let skillArray = [ "Communication","Organisation Stability","Leadership(if applicable)","Growth Potential"] as NSMutableArray
+        
+        for index in 0...3
+        {
+            let communication = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:(selectedCandidate?.managedObjectContext)!)!,insertIntoManagedObjectContext:selectedCandidate?.managedObjectContext)
+            communication.skillName = skillArray.objectAtIndex(index) as? String
+            skillsAndRatingsTitleArray.append(communication)
+        }
+ 
+    }
     //MARK: initial setup of views
     override func loadView()
     {
-        let skillArray = [ "Communication","Organisation Stability","Leadership(if applicable)","Growth Potential"] as NSMutableArray
-     
-        for index in 0...3
-        {
-        let communication = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:(selectedCandidate?.managedObjectContext)!)!,insertIntoManagedObjectContext:selectedCandidate?.managedObjectContext)
-        communication.skillName = skillArray.objectAtIndex(index) as? String
-         skillsAndRatingsTitleArray.append(communication)
-        }
+        initialSetupOfTableView()
         super.loadView()
     }
-
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -601,31 +606,32 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }
     }
     
+    
     //MARK: Refresh
     
     func refreshAllFields()
     {
         skillsAndRatingsTitleArray = []
+        initialSetupOfTableView()
         textViewOfCandidateAssessment.string = ""
         textViewOfTechnologyAssessment.string = ""
         designationField.stringValue = ""
         interviewedByField.stringValue = ""
-        overallTechnicalRating = 0
-        overallCandidateRating = 0
-        technicalFeedbackModel.ratingOnTechnical = 0
-        if !(technicalFeedbackModel.ratingOnTechnical == nil)
-        {
-            for stars in overallAssessmentOnTechnologyStarView.subviews
-            {
-                let starButton = stars as! NSButton
-                if starButton.tag == (technicalFeedbackModel.ratingOnTechnical! - 1)
-                {
-                    let totalView = overallAssessmentOnTechnologyStarView.subviews
-                    toDisplayRatingStar(totalView, sender: starButton, feedbackText: self.ratingOnTechnologyField, view: overallAssessmentOnTechnologyStarView)
-                }
-            }
-        }
-
-       
+//        overallTechnicalRating = 0
+//        overallCandidateRating = 0
+//        technicalFeedbackModel.ratingOnTechnical = overallTechnicalRating
+//        if !(technicalFeedbackModel.ratingOnTechnical == nil)
+//        {
+//            for stars in overallAssessmentOnTechnologyStarView.subviews
+//            {
+//                let starButton = stars as! NSButton
+//                if starButton.tag == (technicalFeedbackModel.ratingOnTechnical! - 1)
+//                {
+//                    let totalView = overallAssessmentOnTechnologyStarView.subviews
+//                    toDisplayRatingStar(totalView, sender: starButton, feedbackText: self.ratingOnTechnologyField, view: overallAssessmentOnTechnologyStarView)
+//                }
+//            }
+//        }
+        tableView.reloadData()
     }
 }
