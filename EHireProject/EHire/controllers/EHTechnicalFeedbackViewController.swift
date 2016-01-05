@@ -33,28 +33,31 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     var technicalFeedbackModel = EHTechnicalFeedbackModel()
     let dataAccessModel = TechnicalFeedbackDataAccess()
     var name : String?
-    var overallTechnicalRating : Int?
-    var overallCandidateRating : Int?
+    var overallTechnicalRating : Int32?
+    var overallCandidateRating : Int32?
     var overallCandidateRatingOnSkills : Int?
     var interviewModeState : String?
     var recommentationState : String?
     var skillsAndRatingsTitleArray = [SkillSet]()
     var selectedCandidate : Candidate?
     var feedbackData : [AnyObject]?
+    var skillArray = NSMutableArray()
     
+    //MARK: initial setup of views
     func initialSetupOfTableView()
     {
-        let skillArray = [ "Communication","Organisation Stability","Leadership(if applicable)","Growth Potential"] as NSMutableArray
+         skillArray = [ "Communication","Organisation Stability","Leadership(if applicable)","Growth Potential"]
         
         for index in 0...3
         {
             let communication = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:(selectedCandidate?.managedObjectContext)!)!,insertIntoManagedObjectContext:selectedCandidate?.managedObjectContext)
             communication.skillName = skillArray.objectAtIndex(index) as? String
+           
             skillsAndRatingsTitleArray.append(communication)
         }
- 
+       
     }
-    //MARK: initial setup of views
+    
     override func loadView()
     {
         initialSetupOfTableView()
@@ -64,6 +67,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        candidateNameField.stringValue = (selectedCandidate?.name)!
+        requisitionNameField.stringValue = (selectedCandidate?.requisition)!
         cell?.skilsAndRatingsTitlefield.delegate = self
         technicalFeedbackMainView.wantsLayer = true
         technicalFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
@@ -80,25 +85,28 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             view.target = self
             view.action = "assessmentOfCandidate:"
         }
-        roundOneRetrieval()
+        if selectedCandidate != nil
+        {
+            if selectedCandidate?.interviewedByTechLeads?.count != 0
+            {
+            sortArray((selectedCandidate?.interviewedByTechLeads?.allObjects)!,index: 0)
+            }
+        }
         tableView.reloadData()
     }
     
-    func roundOneRetrieval()
+    //MARK: Retrieval Of Round One
+    func retrievalOfInterviewData(feedback : TechnicalFeedBack)
     {
-        candidateNameField.stringValue = (selectedCandidate?.name)!
-        requisitionNameField.stringValue = (selectedCandidate?.requisition)!
         if selectedCandidate != nil
         {
             for x in (selectedCandidate?.interviewedByTechLeads)!
             {
                 let feedback = x as! TechnicalFeedBack
-                print(feedback.techLeadName)
-                
                 textViewOfCandidateAssessment.string = feedback.commentsOnCandidate
-                technicalFeedbackModel.ratingOnTechnical = Int((feedback.ratingOnTechnical?.integerValue)!)
+                technicalFeedbackModel.ratingOnTechnical = Int32((feedback.ratingOnTechnical?.integerValue)!)
                 textViewOfTechnologyAssessment.string = feedback.commentsOnTechnology
-                technicalFeedbackModel.ratingOnCandidate = Int((feedback.ratingOnCandidate?.integerValue)!)
+                technicalFeedbackModel.ratingOnCandidate = Int32((feedback.ratingOnCandidate?.integerValue)!)
                 designationField.stringValue = feedback.designation!
                 interviewedByField.stringValue = feedback.techLeadName!
                 technicalFeedbackModel.modeOfInterview = feedback.modeOfInterview!
@@ -207,7 +215,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             view.target = self
             view.action = "starRatingCount:"
         }
-        
         return cellView
     }
 
@@ -313,7 +320,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 overallCandidateRatingOnSkills = 1
                 let skill = skillsAndRatingsTitleArray[(cell?.skilsAndRatingsTitlefield.tag)!]
                 skill.skillRating = overallCandidateRatingOnSkills
-               
             }
         case 1:
             countingOfRatingStar(1)
@@ -333,8 +339,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 cell = view.superview as? EHRatingsTableCellView
                 overallCandidateRatingOnSkills = 2
                 let skill = skillsAndRatingsTitleArray[(cell?.skilsAndRatingsTitlefield.tag)!]
-
-                
                 skill.skillRating = overallCandidateRatingOnSkills
             }
             
@@ -472,6 +476,18 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }
     }
     
+    //Mark: To sort
+    func sortArray (allObj : [AnyObject],index:Int)
+    {
+        let sortingArray = NSArray(array: allObj)
+        
+        let descriptor: NSSortDescriptor = NSSortDescriptor(key: "id", ascending: true)
+        let sortedResults: NSArray = sortingArray.sortedArrayUsingDescriptors([descriptor])
+        retrievalOfInterviewData(sortedResults[index] as! TechnicalFeedBack)
+    }
+
+    
+    
     // Mark: To save details of Technical Feedback
     
     @IBAction func saveDetailsAction(sender: NSButton)
@@ -494,8 +510,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             recommentationState = "Shortlisted"
         }
 
-       if validation()
-       {
+        if validation()
+        {
         technicalFeedbackModel.modeOfInterview      = interviewModeState
         technicalFeedbackModel.skills = skillsAndRatingsTitleArray as [SkillSet]
         technicalFeedbackModel.commentsOnTechnology = textViewOfTechnologyAssessment.string
@@ -506,14 +522,14 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         technicalFeedbackModel.designation          = designationField.stringValue
         technicalFeedbackModel.techLeadName         = interviewedByField.stringValue
       
-            if dataAccessModel.insertIntoTechnicalFeedback(technicalFeedbackModel, selectedCandidate: selectedCandidate!)
-            {
-                alertPopup("Data Saved", informativeText: "Saved Successfully")
-            }
-            else
-            {
-                alertPopup("Data not Saved", informativeText: "Some Problem is there while saving")
-            }
+         if dataAccessModel.insertIntoTechnicalFeedback(technicalFeedbackModel, selectedCandidate: selectedCandidate!)
+          {
+            alertPopup("Data Saved", informativeText: "Saved Successfully")
+          }
+          else
+          {
+            alertPopup("Data not Saved", informativeText: "Some Problem is there while saving")
+          }
         }
     }
     
@@ -606,32 +622,33 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }
     }
     
-    
     //MARK: Refresh
     
     func refreshAllFields()
     {
-        skillsAndRatingsTitleArray = []
-        initialSetupOfTableView()
-        textViewOfCandidateAssessment.string = ""
-        textViewOfTechnologyAssessment.string = ""
-        designationField.stringValue = ""
-        interviewedByField.stringValue = ""
-//        overallTechnicalRating = 0
-//        overallCandidateRating = 0
-//        technicalFeedbackModel.ratingOnTechnical = overallTechnicalRating
-//        if !(technicalFeedbackModel.ratingOnTechnical == nil)
-//        {
-//            for stars in overallAssessmentOnTechnologyStarView.subviews
-//            {
-//                let starButton = stars as! NSButton
-//                if starButton.tag == (technicalFeedbackModel.ratingOnTechnical! - 1)
-//                {
-//                    let totalView = overallAssessmentOnTechnologyStarView.subviews
-//                    toDisplayRatingStar(totalView, sender: starButton, feedbackText: self.ratingOnTechnologyField, view: overallAssessmentOnTechnologyStarView)
-//                }
-//            }
-//        }
-        tableView.reloadData()
-    }
+      textViewOfCandidateAssessment.string = ""
+      textViewOfTechnologyAssessment.string = ""
+      designationField.stringValue = ""
+      interviewedByField.stringValue = ""
+      fetchingModeOfInterview("Face To Face")
+      fetchingRecommendation("Rejected")
+      technicalFeedbackModel.ratingOnCandidate = 0
+      technicalFeedbackModel.ratingOnTechnical = 0
+      skillsAndRatingsTitleArray.removeAll()
+      initialSetupOfTableView()
+      tableView.reloadData()
+        
+      ratingOfCandidateField.stringValue = ""
+      ratingOnTechnologyField.stringValue = ""
+     for starBtn in overallAssessmentOfCandidateStarView.subviews
+     {
+        let tempBtn = starBtn as! NSButton
+        tempBtn.image = NSImage(named: "deselectStar")
+     }
+     for starBtn in overallAssessmentOnTechnologyStarView.subviews
+     {
+        let tempBtn = starBtn as! NSButton
+        tempBtn.image = NSImage(named: "deselectStar")
+     }
+   }
 }

@@ -111,6 +111,7 @@
         <attribute name="commentsOnCandidate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="commentsOnTechnology" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="designation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="modeOfInterview" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ratingOnCandidate" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="ratingOnTechnical" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -135,7 +136,7 @@
         <element name="Date" positionX="-531" positionY="-36" width="128" height="73"/>
         <element name="ManagerFeedBack" positionX="-0" positionY="-109" width="128" height="283"/>
         <element name="SkillSet" positionX="241" positionY="153" width="128" height="103"/>
-        <element name="TechnicalFeedBack" positionX="232" positionY="416" width="128" height="193"/>
+        <element name="TechnicalFeedBack" positionX="232" positionY="416" width="128" height="210"/>
         <element name="Technology" positionX="-513" positionY="-207" width="117" height="88"/>
     </elements>
 </model>

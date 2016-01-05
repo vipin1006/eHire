@@ -157,6 +157,7 @@ class EHFeedbackViewController: NSViewController {
             case 0:
                 
                 print("Round One")
+               
                 
             case 1:
                 
@@ -164,27 +165,39 @@ class EHFeedbackViewController: NSViewController {
                 
                 let techLeadCount = (selectedCandidate?.interviewedByTechLeads)!.count
                 
-                if techLeadCount == 0
+                
+                print(techLeadCount)
+                
+                switch techLeadCount
                 {
-                    techFeedback?.alertPopup("Sorry", informativeText: "Round One not yet Completed")
-                }
-                else if techLeadCount > 0
-                {
-                    techFeedback?.refreshAllFields()
-                }
-                else
-                {
+                case 0:
                     
-                    for x in (selectedCandidate?.interviewedByTechLeads)!
+                    techFeedback?.alertPopup("Alert", informativeText: "Round One not yet Completed")
+                    
+                case 1:
+                    
+                    for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
                     {
-                        let feedBack = x as! TechnicalFeedBack
+                        let feedback = feedbackOfTechLead as! TechnicalFeedBack
                         
-                        if feedBack.recommendation == "Rejected"
+                        if feedback.recommendation == "Rejected"
                         {
                             techFeedback?.alertPopup("Candidate Rejected", informativeText: "Selected Candidate Rejected in Round One")
+                            subRound.selectedSegment = 0
+                        }
+                        else
+                        {
+                            techFeedback?.refreshAllFields()
                             
                         }
+                        
+                        break
                     }
+                    
+                    
+                default:
+                    
+                    print("")
                 }
                 
             case 2:
@@ -194,6 +207,8 @@ class EHFeedbackViewController: NSViewController {
             default:
                 
                 print("Nothing")
+                
+            
             }
             
         case 1: // for managerial feedback sub rounds

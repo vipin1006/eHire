@@ -372,9 +372,9 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         }
     }
     
-    
 
     //MARK:- Method to set recommendation state
+
     func setRecommendationState(value:String){
         if value == "Shortlisted"{
             matrixForRecommendationState.setState(NSOnState, atRow: 0, column: 0)
