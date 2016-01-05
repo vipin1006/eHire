@@ -20,15 +20,14 @@ class TechnicalFeedbackDataAccess: NSObject
         technicalFeedback.setValue(technicalFeedbackmodel.commentsOnTechnology, forKey: "commentsOnTechnology")
         technicalFeedback.setValue(technicalFeedbackmodel.techLeadName, forKey: "techLeadName")
         technicalFeedback.setValue(technicalFeedbackmodel.modeOfInterview, forKey: "modeOfInterview")
-        technicalFeedback.setValue(NSNumber(integer: technicalFeedbackmodel.ratingOnCandidate!), forKey: "ratingOnCandidate")
-        technicalFeedback.setValue(NSNumber(integer: technicalFeedbackmodel.ratingOnTechnical!), forKey: "ratingOnTechnical")
+        technicalFeedback.setValue(NSNumber(int: technicalFeedbackmodel.ratingOnCandidate!), forKey: "ratingOnCandidate")
+        technicalFeedback.setValue(NSNumber(int: technicalFeedbackmodel.ratingOnTechnical!), forKey: "ratingOnTechnical")
         technicalFeedback.setValue(technicalFeedbackmodel.recommendation, forKey: "recommendation")
         technicalFeedback.setValue(selectedCandidate, forKey: "candidate")
         technicalFeedback.candidateSkills = NSMutableSet(array: technicalFeedbackmodel.skills!)
         technicalFeedback.setValue(technicalFeedbackmodel.designation, forKey: "designation")
-        selectedCandidate.interviewedByTechLeads?.setByAddingObject(technicalFeedback)
+        selectedCandidate.interviewedByTechLeads?.addObject(technicalFeedback)
         EHCoreDataHelper.saveToCoreData(selectedCandidate)
-      
         return true
     }
 }
