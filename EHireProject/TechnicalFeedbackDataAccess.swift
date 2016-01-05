@@ -26,7 +26,8 @@ class TechnicalFeedbackDataAccess: NSObject
         technicalFeedback.setValue(selectedCandidate, forKey: "candidate")
         technicalFeedback.candidateSkills = NSMutableSet(array: technicalFeedbackmodel.skills!)
         technicalFeedback.setValue(technicalFeedbackmodel.designation, forKey: "designation")
-        selectedCandidate.interviewedByTechLeads?.addObject(technicalFeedback)
+        selectedCandidate.interviewedByTechLeads?.setByAddingObject(technicalFeedback)
+        technicalFeedback.setValue((selectedCandidate.interviewedByTechLeads?.count)!+1, forKey: "id")
         EHCoreDataHelper.saveToCoreData(selectedCandidate)
         return true
     }

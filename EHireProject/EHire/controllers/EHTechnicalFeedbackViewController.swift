@@ -67,6 +67,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        candidateNameField.stringValue = (selectedCandidate?.name)!
+        requisitionNameField.stringValue = (selectedCandidate?.requisition)!
         cell?.skilsAndRatingsTitlefield.delegate = self
         technicalFeedbackMainView.wantsLayer = true
         technicalFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
@@ -83,15 +85,19 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             view.target = self
             view.action = "assessmentOfCandidate:"
         }
-        roundOneRetrieval()
+        if selectedCandidate != nil
+        {
+            if selectedCandidate?.interviewedByTechLeads?.count != 0
+            {
+            sortArray((selectedCandidate?.interviewedByTechLeads?.allObjects)!,index: 0)
+            }
+        }
         tableView.reloadData()
     }
     
     //MARK: Retrieval Of Round One
-    func roundOneRetrieval()
+    func retrievalOfInterviewData(feedback : TechnicalFeedBack)
     {
-        candidateNameField.stringValue = (selectedCandidate?.name)!
-        requisitionNameField.stringValue = (selectedCandidate?.requisition)!
         if selectedCandidate != nil
         {
             for x in (selectedCandidate?.interviewedByTechLeads)!
@@ -469,6 +475,18 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             tableView.reloadData()
         }
     }
+    
+    //Mark: To sort
+    func sortArray (allObj : [AnyObject],index:Int)
+    {
+        let sortingArray = NSArray(array: allObj)
+        
+        let descriptor: NSSortDescriptor = NSSortDescriptor(key: "id", ascending: true)
+        let sortedResults: NSArray = sortingArray.sortedArrayUsingDescriptors([descriptor])
+        retrievalOfInterviewData(sortedResults[index] as! TechnicalFeedBack)
+    }
+
+    
     
     // Mark: To save details of Technical Feedback
     

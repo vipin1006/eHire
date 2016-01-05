@@ -24,4 +24,5 @@ extension TechnicalFeedBack {
     @NSManaged var candidate: Candidate?
     @NSManaged var candidateSkills: NSMutableSet?
     @NSManaged var designation: String?
+    @NSManaged var id: NSNumber?
 }

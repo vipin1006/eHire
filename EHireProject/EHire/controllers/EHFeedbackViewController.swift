@@ -157,7 +157,7 @@ class EHFeedbackViewController: NSViewController {
             case 0:
                 
                 print("Round One")
-                
+               
                 
             case 1:
                 
@@ -176,9 +176,9 @@ class EHFeedbackViewController: NSViewController {
                     
                 case 1:
                     
-                    for x in (selectedCandidate?.interviewedByTechLeads)!
+                    for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
                     {
-                        let feedback = x as! TechnicalFeedBack
+                        let feedback = feedbackOfTechLead as! TechnicalFeedBack
                         
                         if feedback.recommendation == "Rejected"
                         {
@@ -197,7 +197,7 @@ class EHFeedbackViewController: NSViewController {
                     
                 default:
                     
-                    print("Hello")
+                    print("")
                 }
                 
             case 2:
