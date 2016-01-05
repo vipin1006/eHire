@@ -136,22 +136,58 @@ class EHFeedbackViewController: NSViewController {
         }
     }
     
-    @IBAction func subRound(sender: AnyObject) {
+    @IBAction func subRound(sender: AnyObject)
+    {
     
-    switch self.typeOfInterview.selectedSegment{
+    switch self.typeOfInterview.selectedSegment
+    {
     
     case 0:
     
-    switch self.subRound.selectedSegment{
+    switch self.subRound.selectedSegment
+    {
     
     case 0:
     
     print("Round One")
-    
+        
     case 1:
     
     print("Round Two")
     
+    let c = (selectedCandidate?.interviewedByTechLeads)!.count
+    
+    if c == 0
+    {
+        
+        
+    }
+    else{
+        
+          for x in (selectedCandidate?.interviewedByTechLeads)!
+        {
+        
+        let feedBack = x as! TechnicalFeedBack
+        
+         if feedBack.recommendation == "Rejected"
+         {
+            
+        
+        }
+            
+        
+        }
+        
+    }
+   
+  
+
+    
+    
+    
+    
+    
+    techFeedback?.refreshAllFields()
     case 2:
     
     print("Round Three")
@@ -184,6 +220,7 @@ class EHFeedbackViewController: NSViewController {
     
     }
     
+     
     
     
     func addHrFeedBackView(){
