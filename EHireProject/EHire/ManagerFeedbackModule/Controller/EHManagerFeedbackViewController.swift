@@ -370,10 +370,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             matrixForInterviewMode.setState(NSOffState, atRow: 0, column: 0)
         }
     }
-    
-    
-
-    
+     
     func setRecommendationState(value:String){
         if value == "Shortlisted"{
             matrixForRecommendationState.setState(NSOnState, atRow: 0, column: 0)

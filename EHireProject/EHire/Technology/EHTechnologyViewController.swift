@@ -237,7 +237,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             }
             else
             {
-                alertPopup("Error", informativeText: "Interview date cannot be same",inTag: 0)
+                Utility.alertPopup("Error", informativeText: "Interview date cannot be same",okCompletionHandler: nil)
+
             }
             datePopOver.close()
         }
@@ -258,7 +259,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
         else{ // adding new technology
             if technologyArray.count > 0 && cellTechnology?.textFieldTechnology.stringValue == ""{
-                alertPopup("Enter Technology", informativeText: "Please enter previous selected technology",inTag: 0)
+                Utility.alertPopup("Error", informativeText: "Please enter previous selected technology",okCompletionHandler: nil)
             }else{
                 let newTechnologyEntityDescription = EHCoreDataHelper.createEntity("Technology", managedObjectContext: EHCoreDataStack.sharedInstance.managedObjectContext)
                 let newTechnologyManagedObject:Technology = Technology(entity:newTechnologyEntityDescription!, insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext) as Technology
@@ -276,10 +277,16 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         //this if statement is added to avoid crash. To be removed once - is disabled when no technology is selected
         if self.sourceList.selectedRow == -1
         {
-            alertPopup("Error", informativeText: "Please select any Item to delete",inTag: 0)
+            Utility.alertPopup("Error", informativeText: "Please select any Item to delete",okCompletionHandler: nil)
             return
         }
-        alertPopup("Alert", informativeText: "Are you sure you want delete",inTag: 1)
+        
+        Utility.alertPopup("Alert", informativeText: "Are you sure you want delete",okCompletionHandler: {() -> Void in
+            
+            print("ok btn")
+            self.deleteItem()
+            
+            })
     }
     
     
@@ -293,24 +300,13 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         }
             
         else{
+
             let selectedInterviewDate = sourceList.itemAtRow(sourceList.selectedRow) as? Date
-            for aTechnology in technologyArray{
-                for aInterviewDate in aTechnology.interviewDates!{
-                    let aDate = aInterviewDate as! Date
-                    let dateFormatter = NSDateFormatter()
-                    dateFormatter.dateFormat = "dd-MMM-yyyy"
-                    let dateString = dateFormatter.stringFromDate(aDate.interviewDate!)
-                    let dateStringToCompare = dateFormatter.stringFromDate((selectedInterviewDate?.interviewDate)!)
-                    
-                    if  dateString == dateStringToCompare{
-                        aTechnology.interviewDates?.removeObject(aInterviewDate)
-                        EHTechnologyDataLayer.deleteInterviewDateFromCoreData(selectedInterviewDate!)
-                        break
-                    }
-                }
-            }
-            
+            let parentTechnology = sourceList.parentForItem(selectedInterviewDate)
+            parentTechnology!.interviewDates?!.removeObject(selectedInterviewDate!)
+            EHTechnologyDataLayer.deleteInterviewDateFromCoreData(selectedInterviewDate!)
         }
+        
         self.sourceList.reloadData()
     }
     
@@ -364,8 +360,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             {
                 if isNumberValid(textFieldObject.stringValue) == true
                 {
-                    alertPopup("Error", informativeText: "Enter an appropriate Technology name",inTag: 0)
- 
+                    Utility.alertPopup("Error", informativeText: "Enter an appropriate Technology name",okCompletionHandler: nil)
                     return
                 }
                 
@@ -380,29 +375,13 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 
             }
             else{
-                alertPopup("Error", informativeText: "Technology name should be unique",inTag: 0)
+                Utility.alertPopup("Error", informativeText: "Technology name should be unique",okCompletionHandler: nil)
+
             }
         }
         self.sourceList.reloadData()
     }
     
-    // Alert Popup
-    func alertPopup(data:String, informativeText:String , inTag:Int)
-    {
-        let alert:NSAlert = NSAlert()
-        alert.messageText = data
-        
-        alert.informativeText = informativeText
-        alert.addButtonWithTitle("OK")
-        alert.addButtonWithTitle("Cancel")
-        alert.alertStyle = NSAlertStyle.CriticalAlertStyle
-        let res = alert.runModal()
-        if res == NSAlertFirstButtonReturn {
-            if inTag == 1{
-                deleteItem()
-            }
-        }
-    }
     
     
     func createConstraintsForFeedbackController(leading:CGFloat,trailing:CGFloat,top:CGFloat,bottom:CGFloat){

@@ -10,7 +10,7 @@ import Cocoa
 
 class Utility: NSObject {
     
-    class func alertPopup(data:String,informativeText:String){
+    class func alertPopup(data:String,informativeText:String ,let okCompletionHandler:(() -> Void)?){
         let alert:NSAlert = NSAlert()
         alert.messageText = data
         
@@ -20,9 +20,10 @@ class Utility: NSObject {
         alert.alertStyle = NSAlertStyle.CriticalAlertStyle
         let res = alert.runModal()
         if res == NSAlertFirstButtonReturn {
-//            if inTag == 1{
-//                deleteItem()
-//            }
+            if let completion = okCompletionHandler{
+                print("hello")
+                completion()
+            }
         }
     }
 }
