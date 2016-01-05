@@ -43,7 +43,7 @@ class EHireBasicsTest: XCTestCase
     
     func testTechnologyViewController()
     {
-        let technologyViewController = storyBoard.instantiateControllerWithIdentifier("mainView")
+        let technologyViewController = storyBoard.instantiateControllerWithIdentifier("mainView") as? EHTechnologyViewController
         XCTAssertNotNil(technologyViewController, "Technology View Controller is not created")
     }
     
