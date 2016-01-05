@@ -14,8 +14,8 @@ class EHTechnicalFeedbackModel: NSObject
     var commentsOnTechnology: String?
     var techLeadName: String?
     var modeOfInterview: String?
-    var ratingOnCandidate: Int?
-    var ratingOnTechnical: Int?
+    var ratingOnCandidate: Int32?
+    var ratingOnTechnical: Int32?
     var recommendation: String?
     var candidate: Candidate?
     var skills : [SkillSet]?
