@@ -42,8 +42,6 @@
 		2DE189651C33D9A6005F90D0 /* EHireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1895D1C33D9A6005F90D0 /* EHireTests.swift */; };
 		41A97FF51C1956B70016CAB4 /* EHInterviewDateCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF41C1956B70016CAB4 /* EHInterviewDateCustomCell.swift */; };
 		41A97FF91C195E500016CAB4 /* EHTechnologyCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF81C195E500016CAB4 /* EHTechnologyCustomCell.swift */; };
-		41A97FFE1C1971FF0016CAB4 /* BlueCalendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A97FFD1C1971FF0016CAB4 /* BlueCalendar.png */; };
-		41A980001C1974020016CAB4 /* deleteDate.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A97FFF1C1974020016CAB4 /* deleteDate.png */; };
 		4F2536EC1C2179EC000E8C95 /* EHPopOverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536E91C2179EC000E8C95 /* EHPopOverController.swift */; };
 		4F2536ED1C2179EC000E8C95 /* EHTechnologyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536EA1C2179EC000E8C95 /* EHTechnologyViewController.swift */; };
 		4F2536FB1C218172000E8C95 /* DataCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536FA1C218172000E8C95 /* DataCommunicator.swift */; };
@@ -153,8 +151,6 @@
 		4136DE551C21284800BDB8B7 /* EHire-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EHire-Bridging-Header.h"; sourceTree = "<group>"; };
 		41A97FF41C1956B70016CAB4 /* EHInterviewDateCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHInterviewDateCustomCell.swift; sourceTree = "<group>"; };
 		41A97FF81C195E500016CAB4 /* EHTechnologyCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnologyCustomCell.swift; sourceTree = "<group>"; };
-		41A97FFD1C1971FF0016CAB4 /* BlueCalendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlueCalendar.png; path = ../../BlueCalendar.png; sourceTree = "<group>"; };
-		41A97FFF1C1974020016CAB4 /* deleteDate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = deleteDate.png; path = ../../deleteDate.png; sourceTree = "<group>"; };
 		4F2536E91C2179EC000E8C95 /* EHPopOverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHPopOverController.swift; sourceTree = "<group>"; };
 		4F2536EA1C2179EC000E8C95 /* EHTechnologyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnologyViewController.swift; sourceTree = "<group>"; };
 		4F2536FA1C218172000E8C95 /* DataCommunicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataCommunicator.swift; sourceTree = "<group>"; };
@@ -491,8 +487,6 @@
 		8001C41A1C23EAAF00D62243 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				41A97FFD1C1971FF0016CAB4 /* BlueCalendar.png */,
-				41A97FFF1C1974020016CAB4 /* deleteDate.png */,
 			);
 			name = "Support Files";
 			sourceTree = "<group>";
@@ -812,10 +806,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41A980001C1974020016CAB4 /* deleteDate.png in Resources */,
 				8070F59A1C24194C00FCEA98 /* selectStar.png in Resources */,
 				8070F59B1C24194C00FCEA98 /* deselectStar.png in Resources */,
-				41A97FFE1C1971FF0016CAB4 /* BlueCalendar.png in Resources */,
 				8042880C1C17EBC0003033B4 /* Assets.xcassets in Resources */,
 				8042880F1C17EBC0003033B4 /* Main.storyboard in Resources */,
 			);
