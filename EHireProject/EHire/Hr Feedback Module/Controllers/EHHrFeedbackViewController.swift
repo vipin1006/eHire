@@ -77,6 +77,18 @@ class EHHrFeedbackViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        
+        let right = isNumberValid("1")
+        
+        print(right)
+        
+        let wrong = isNumberValid("hello")
+        
+        print(wrong)
+        
+        
+        
+        
     }
     
     override func viewWillAppear()
@@ -103,6 +115,28 @@ class EHHrFeedbackViewController: NSViewController {
     @IBAction func saveCandidateDetails(sender: AnyObject) {
         
         if validations() {
+            
+            if isNumberValid(self.currentFixedSalary.stringValue) == false
+            {
+               showAlert("Invalid data entered", info:"Please enter Fixed Salary in numbers")
+               setBoarderColor(self.currentFixedSalary)
+                return
+            }
+            if isNumberValid(self.currentSalaryVariable.stringValue) == false
+            {
+                showAlert("Invalid data entered", info:"Please enter Variable Salary in numbers")
+                setBoarderColor(self.currentSalaryVariable)
+                setClearColor(self.currentFixedSalary)
+                return
+            }
+            if isNumberValid(self.expectedSalary.stringValue) == false
+            {
+                showAlert("Invalid data entered", info:"Please enter Expected Salary in numbers")
+                setBoarderColor(self.expectedSalary)
+                setClearColor(self.currentSalaryVariable)
+                return
+            }
+            
             candidateInfo["candidateName"] = candidateName.stringValue
             candidateInfo["candidateBusinessUnit"] = candidateBusinessUnit.stringValue
             candidateInfo["candidateSkillOrTechnology"] = candidateSkillOrTechnology.stringValue
@@ -125,11 +159,10 @@ class EHHrFeedbackViewController: NSViewController {
             candidateInfo["highestEducationPercentage"] = highestEducationPercentage.stringValue
             candidateInfo["educationGapDetails"] = educationGapDetails.stringValue
             candidateInfo["jobChangeReasons"] = jobChangeReasons.stringValue
-            if interviewedBeforeYes.integerValue == 1
-            {
-                candidateInfo["pastInterviewdDate"] = pastInterviedDate.dateValue
+            
+            candidateInfo["pastInterviewdDate"] = pastInterviedDate.dateValue
                 
-            }
+            
             candidateInfo["jobChangeReasons"] = jobChangeReasons.stringValue
             candidateInfo["missingDocuments"] = missingDocuments.stringValue
             candidateInfo["currentFixedSalary"] = currentFixedSalary.stringValue
@@ -141,7 +174,7 @@ class EHHrFeedbackViewController: NSViewController {
             candidateInfo["questionsAskedByCandidate"] = questionsAskedByCandidate.string
             candidateInfo["inetrviewedBy"] = inetrviewedBy.stringValue
             candidateInfo["EmploymentGap"] = employmentGap.stringValue
-            candidateInfo["lastDesignation"] = ""
+            candidateInfo["lastDesignation"] = lastDesignation.stringValue
             candidateInfo["leavePlanReasons"] = leavePlanReasons.stringValue
          
             HrFeedbackDataAccess.saveHrFeedbackOfCandidate(candidate!,candidateInfo: candidateInfo)
@@ -221,12 +254,14 @@ class EHHrFeedbackViewController: NSViewController {
             performCheckAndUncheck(interviewedBeforeYes, unCheck:interviewdBeforeNo)
             pastInterviedDate.hidden = false
             candidateInfo["isInterviewedBefore"] = 1
+            candidateInfo["pastInterviewdDate"] = pastInterviedDate.dateValue
         }
         else
         {
             performCheckAndUncheck(interviewdBeforeNo, unCheck:interviewedBeforeYes)
             pastInterviedDate.hidden = true
             candidateInfo["isInterviewedBefore"] = 0
+            candidateInfo["pastInterviewdDate"] = pastInterviedDate.dateValue
         }
     }
     
@@ -558,9 +593,7 @@ class EHHrFeedbackViewController: NSViewController {
                 missingDocuments.hidden = false
                
                 self.missingDocuments.stringValue = info.missingDocumentsOfEmploymentAndEducation!
-              
-                
-            }
+              }
             else
             {
                 self.allDocumentsYes.integerValue = 0
@@ -605,11 +638,14 @@ class EHHrFeedbackViewController: NSViewController {
             {
                 self.interviewedBeforeYes.integerValue = 1
                 self.interviewdBeforeNo.integerValue = 0
+                pastInterviedDate.hidden = false
+                pastInterviedDate.dateValue = info.wasInterviewdBeforeOn!
             }
             else
             {
                 self.interviewedBeforeYes.integerValue = 0
                 self.interviewdBeforeNo.integerValue = 1
+                pastInterviedDate.hidden = true
             }
             
             if info.anyLeavePlanInSixMonths == 1
@@ -653,9 +689,6 @@ class EHHrFeedbackViewController: NSViewController {
                 self.entitledBonusNo.integerValue = 1
                 
             }
-
-            
-            
         }
         
         

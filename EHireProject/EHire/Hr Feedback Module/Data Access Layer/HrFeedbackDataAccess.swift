@@ -9,7 +9,8 @@
 import Cocoa
 
 class HrFeedbackDataAccess: NSObject {
-    
+  
+     
     class func saveHrFeedbackOfCandidate(candidate:Candidate,candidateInfo:[String:AnyObject])
     {
         
@@ -97,7 +98,13 @@ class HrFeedbackDataAccess: NSObject {
         
         qualificationInfo.educationStartFrom = candidateInfo["highestEducationFromDate"] as? NSDate
         
+       
+        
         qualificationInfo.educationEnd = candidateInfo["highestEducationToDate"] as? NSDate
+        
+        print(qualificationInfo.educationStartFrom)
+        
+        print(qualificationInfo.educationEnd)
         
         qualificationInfo.university = candidateInfo["highestEducationBoardOrUniversity"] as? String
         
@@ -143,7 +150,11 @@ class HrFeedbackDataAccess: NSObject {
             
             String(candidateInfo["entitledBonus"])
         
+        miscellaneousInfo.wasInterviewdBeforeOn = candidateInfo["pastInterviewdDate"] as? NSDate
+        
         candidate.name =  candidateInfo["candidateName"] as? String
+        
+        
         
         
         candidate.miscellaneousInfo = miscellaneousInfo

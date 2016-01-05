@@ -155,39 +155,31 @@ class EHFeedbackViewController: NSViewController {
     
     print("Round Two")
     
-    let c = (selectedCandidate?.interviewedByTechLeads)!.count
+    let techLeadCount = (selectedCandidate?.interviewedByTechLeads)!.count
     
-    if c == 0
+    if techLeadCount == 0
+    {
+        techFeedback?.alertPopup("Sorry", informativeText: "Round One not yet Completed")
+    }
+    else if techLeadCount > 0
+    {
+        techFeedback?.refreshAllFields()
+    }
+    else
     {
         
-        
-    }
-    else{
-        
-          for x in (selectedCandidate?.interviewedByTechLeads)!
+       for x in (selectedCandidate?.interviewedByTechLeads)!
         {
+            let feedBack = x as! TechnicalFeedBack
         
-        let feedBack = x as! TechnicalFeedBack
+            if feedBack.recommendation == "Rejected"
+            {
+            techFeedback?.alertPopup("Candidate Rejected", informativeText: "Selected Candidate Rejected in Round One")
         
-         if feedBack.recommendation == "Rejected"
-         {
-            
+            }
+         }
+     }
         
-        }
-            
-        
-        }
-        
-    }
-   
-  
-
-    
-    
-    
-    
-    
-    techFeedback?.refreshAllFields()
     case 2:
     
     print("Round Three")
