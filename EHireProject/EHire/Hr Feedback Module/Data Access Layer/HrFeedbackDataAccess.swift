@@ -49,8 +49,8 @@ class HrFeedbackDataAccess: NSObject {
         professionalInfo.officialEmailId = candidateInfo["officialMailid"] as? String
         professionalInfo.employmentGap   = candidateInfo["EmploymentGap"] as? String
         professionalInfo.officialNoticePeriod = candidateInfo["candidateNoticePeriod"] as? String
-        professionalInfo.totalITExperience = NSNumber(int:Int32((candidateInfo["candidateTotalItExperience"] as? String)!)!)
-        professionalInfo.relevantITExperience = NSNumber(int:Int32((candidateInfo["candidateRelevantItExperience"] as? String)!)!)
+        professionalInfo.totalITExperience =  NSNumber(float: candidateInfo["candidateTotalItExperience"] as! Float)
+        professionalInfo.relevantITExperience = NSNumber(float: candidateInfo["candidateRelevantItExperience"] as! Float)
         
         professionalInfo.fixedSalary = NSNumber(int:Int32((candidateInfo["currentFixedSalary"] as? String)!)!)
         professionalInfo.variableSalary = NSNumber(int:Int32((candidateInfo["currentSalaryVariable"] as? String)!)!)
@@ -108,8 +108,8 @@ class HrFeedbackDataAccess: NSObject {
         
         qualificationInfo.university = candidateInfo["highestEducationBoardOrUniversity"] as? String
         
-        qualificationInfo.percentage = NSNumber(int:Int32((candidateInfo["highestEducationPercentage"] as? String)!)!)
-            
+        qualificationInfo.percentage = NSNumber(float: candidateInfo["highestEducationPercentage"] as! Float)
+        
        
         
         candidate.educationQualification = qualificationInfo

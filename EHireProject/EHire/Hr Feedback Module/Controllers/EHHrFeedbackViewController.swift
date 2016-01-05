@@ -140,8 +140,8 @@ class EHHrFeedbackViewController: NSViewController {
             candidateInfo["candidateName"] = candidateName.stringValue
             candidateInfo["candidateBusinessUnit"] = candidateBusinessUnit.stringValue
             candidateInfo["candidateSkillOrTechnology"] = candidateSkillOrTechnology.stringValue
-            candidateInfo["candidateTotalItExperience"] = candidateTotalItExperience.stringValue
-            candidateInfo["candidateRelevantItExperience"] = candidateRelevantItExperience.stringValue
+            candidateInfo["candidateTotalItExperience"] = candidateTotalItExperience.floatValue
+            candidateInfo["candidateRelevantItExperience"] = candidateRelevantItExperience.floatValue
             candidateInfo["candidateMobile"] = candidateMobile.stringValue
             candidateInfo["candidateCurrentLocation"] = candidateCurrentLocation.stringValue
             candidateInfo["companyName"] = companyName.stringValue
@@ -156,7 +156,7 @@ class EHHrFeedbackViewController: NSViewController {
             candidateInfo["highestEducationFromDate"] = highestEducationFromDate.dateValue
             candidateInfo["highestEducationToDate"] = highestEducationToDate.dateValue
             candidateInfo["highestEducationBoardOrUniversity"] = highestEducationBoardOrUniversity.stringValue
-            candidateInfo["highestEducationPercentage"] = highestEducationPercentage.stringValue
+            candidateInfo["highestEducationPercentage"] = highestEducationPercentage.floatValue
             candidateInfo["educationGapDetails"] = educationGapDetails.stringValue
             candidateInfo["jobChangeReasons"] = jobChangeReasons.stringValue
             

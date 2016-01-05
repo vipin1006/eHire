@@ -22,7 +22,7 @@ extension Candidate {
     @NSManaged var requisition: String?
     @NSManaged var technologyName: String?
     @NSManaged var interviewedByManagers: NSSet?
-    @NSManaged var interviewedByTechLeads: NSMutableSet?
+    @NSManaged var interviewedByTechLeads: NSMutableOrderedSet?
     @NSManaged var personalInfo: NSManagedObject?
     @NSManaged var professionalInfo: NSManagedObject?
     @NSManaged var previousEmployment: NSManagedObject?
