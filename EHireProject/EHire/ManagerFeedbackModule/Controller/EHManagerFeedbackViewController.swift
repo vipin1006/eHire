@@ -55,6 +55,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     var selectedCandidate : Candidate?
    
+    var cell : EHManagerFeedBackCustomTableView?
    
     override func loadView() {
         
@@ -190,7 +191,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         cell.titleName.target = self
         cell.titleName.delegate = self
         cell.titleName.editable = true
-        
+      self.cell = cell
         if !(skillSetObject.skillRating == nil) {
             for starBtn in cell.selectStar.subviews{
                 let tempBtn = starBtn as! NSButton
@@ -239,12 +240,18 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     @IBAction func addSkillSet(sender: NSButton)
     {
-        
+        if managerialFeedbackModel.skillSet.count > 0 && cell?.titleName.stringValue == "Enter Title"
+        {
+            alertPopup("Enter Title", informativeText: "Please enter previous selected title")
+        }
+        else
+        {
        let newSkill = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)!,insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)
         newSkill.skillName = "Enter Title"
         newSkill.skillRating = 0
         managerialFeedbackModel?.skillSet.append(newSkill)
         tableView.reloadData()
+        }
     }
     
     @IBAction func deleteSkillSet(sender: NSButton)
@@ -373,6 +380,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     //MARK:- Method to set skillSet into model class
     func setSkillRating(customView:AnyObject,ratingValue:Int16){
         if customView is EHManagerFeedBackCustomTableView{
+            cell = customView as? EHManagerFeedBackCustomTableView
             let textFieldObject = customView.titleName as NSTextField
             let skillSetObject = managerialFeedbackModel!.skillSet[textFieldObject.tag] as SkillSet
             skillSetObject.skillRating = NSNumber(short: ratingValue)
@@ -467,17 +475,49 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     func validation() -> Bool
     {
         var isValid : Bool = false
-        isValid =  validationForTextView(textViewCommentsForOverAllCandidateAssessment)
-        isValid =  validationForTextView(textViewCommentsForOverAllTechnologyAssessment)
-        isValid =  validationForTextView(textViewJustificationForHire)
-        isValid =  validationForTextView(textViewCommitments)
-        isValid =  validationForTextfield(textFieldCorporateGrade)
-        isValid =  validationForTextfield(textFieldDesignation)
-        isValid =  validationForTextfield(textFieldGrossAnnualSalary)
-        isValid =  validationForTextfield(textFieldInterviewedBy)
-        isValid =  validationForTextfield(textFieldPosition)
-        isValid =  validationForTextfield(labelOverAllAssessmentOfCandidate)
-        isValid =  validationForTextfield(labelOverAllAssessmentOfTechnology)
+        if cell?.feedBackRating.stringValue==""{
+            alertPopup("Select Stars", informativeText: "Please select stars inside tableview to provide your feedback")
+            return isValid
+        }else if !validationForTextView(textViewCommentsForOverAllTechnologyAssessment,title: "Overall Feedback On Technology",informativeText: "Overall assessment of Technology field shold not be blank"){
+            
+            return isValid
+            
+        } else if !validationForTextView(textViewCommentsForOverAllCandidateAssessment,title: "Overall Feedback Of Candidate",informativeText: "Overall assessment of Candidate field shold not be blank"){
+            
+            return isValid
+        }else if !validationForTextView(textViewJustificationForHire,title: "Justification For Hire",informativeText: "Justification for hire field should not be blank"){
+            
+            return isValid
+            
+        }else if !validationForTextView(textViewCommitments,title: "Commitments",informativeText: "Commitments field should not be blank"){
+           
+            return isValid
+            
+        }else if !validationForTextfield(textFieldCorporateGrade,title: "Corporate Grade",informativeText: "Corporate grade field should not be blank"){
+            
+            return isValid
+            
+        }else if !validationForTextfield(textFieldDesignation,title: "Designation",informativeText: "Designation field should not be blank"){
+            
+            return isValid
+        }else if !validationForTextfield(textFieldGrossAnnualSalary,title: "Annual Salary",informativeText: "Annual Salay Field should not be empty"){
+            
+            return isValid
+            
+        }else if !validationForTextfield(textFieldInterviewedBy,title: "Interviewed By",informativeText: "Interviewed by field should not be empty"){
+                       return isValid
+        }else if !validationForTextfield(textFieldPosition,title: "Position",informativeText: "Position Field Should not be empty"){
+           
+            return isValid
+        }else if !validationForTextfield(labelOverAllAssessmentOfCandidate,title: "Select Stars",informativeText: "Please select stars to provide your feedback inside overall assessment of Candidate"){
+            
+            return isValid
+        }else if !validationForTextfield(labelOverAllAssessmentOfTechnology,title: "Select Stars",informativeText: "Please select stars to provide your feedback inside overall assessment on Technology"){
+            
+            return isValid
+        }else{
+            isValid = true
+        }
         
         //        if modeOfInterview.cells.
         //        {
@@ -489,35 +529,32 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         //        }
         return isValid
     }
-    func validationForTextView(subView : NSTextView) -> Bool
+    func validationForTextView(subView : NSTextView,title : String,informativeText:String) -> Bool
     {
         if subView.string == ""
         {
-            setBoarderColorForTextView(subView)
+            alertPopup(title,informativeText:informativeText)
             return false
         }
         
         else
         {
-            subView.wantsLayer = true
-            subView.layer?.borderColor = NSColor.clearColor().CGColor
-            subView.layer?.borderWidth = 2
+            
             return true
         }
     }
     
-    func validationForTextfield(subView : NSTextField) -> Bool
+    func validationForTextfield(subView : NSTextField,title : String,informativeText:String) -> Bool
     {
         if subView.stringValue == ""
         {
-            setBoarderColor(subView)
+            alertPopup(title,informativeText:informativeText)
             return false
         }
         
         else
         {
-            subView.wantsLayer = true
-            subView.layer?.backgroundColor = NSColor.clearColor().CGColor
+            
             return true
         }
     }
