@@ -22,7 +22,7 @@ extension TechnicalFeedBack {
     @NSManaged var ratingOnTechnical: NSNumber?
     @NSManaged var recommendation: String?
     @NSManaged var candidate: Candidate?
-    @NSManaged var candidateSkills: NSMutableSet?
+    @NSManaged var candidateSkills: NSSet?
     @NSManaged var designation: String?
 
 }

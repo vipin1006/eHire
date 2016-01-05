@@ -18,7 +18,7 @@ class EHTechnologyDataLayer: NSObject {
     class func getSourceListContent() -> NSArray{
         
         let records = EHCoreDataHelper.fetchRecordsWithPredicate(nil, sortDescriptor: nil, entityName: "Technology", managedObjectContext: managedObjectContext)
-        
+        technologyArray.removeAll()
         if records?.count > 0{
             for aRec in records!{
                 let aTechnologyEntity = aRec as! Technology

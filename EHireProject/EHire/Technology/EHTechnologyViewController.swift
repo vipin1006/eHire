@@ -34,16 +34,15 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     var feedbackViewController:EHFeedbackViewController?
     
     var cellTechnology:EHTechnologyCustomCell?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         technologyArray = EHTechnologyDataLayer.getSourceListContent() as! [Technology]
         self.sourceList.reloadData()
-
     }
     
-    
     //PRAGMAMARK: - outlineview datasource  methods
-     //This datasource method returns the child at a given index
+    //This datasource method returns the child at a given index
     func outlineView(outlineView: NSOutlineView, child index: Int, ofItem item: AnyObject?) -> AnyObject
     {
         // it 'item' is nil, technology has to be returned. Else, item's(technology) child(date) at that index has to be returned.
@@ -132,22 +131,17 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     func outlineView(outlineView: NSOutlineView, viewForTableColumn tableColumn: NSTableColumn?, item: AnyObject) -> NSView?
     {
         
-        
         let cell:NSTableCellView?
         if item is Date
         {
             let child = sourceList.makeViewWithIdentifier("child", owner: nil) as! EHInterviewDateCustomCell
             
             let x  = item as! Date
-            
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "dd-MMM-yyyy"
             let dateString = dateFormatter.stringFromDate(x.interviewDate!)
             child.lblName.stringValue = dateString
-            
             cell = child
-            
-            
         }
         else
         {
@@ -158,7 +152,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 parent.textFieldTechnology.editable = true
                 parent.textFieldTechnology.backgroundColor = NSColor.whiteColor()
                 
-                
             }else{
                 parent.textFieldTechnology.editable = false
                 parent.textFieldTechnology.backgroundColor = NSColor.clearColor()
@@ -167,11 +160,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             parent.textFieldTechnology.delegate = self
             cellTechnology = parent
             cell = parent
-            
         }
-        
         return cell
-        
     }
     
     //This delegate returns the height of a row for the outlineView.
@@ -186,7 +176,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     {
         let scheduledDate = sendingData as! NSDate
         
-        
         if let selectedItem = sourceList.itemAtRow(sourceList.selectedRow) as? Technology {
             
             if isValidInterviewDate(selectedItem.technologyName!,inputDate: scheduledDate){
@@ -194,23 +183,19 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 print(aString)
                 
                 let newTechnologyEntityDescription = EHCoreDataHelper.createEntity("Date", managedObjectContext: EHCoreDataStack.sharedInstance.managedObjectContext
-)
+                )
                 let newDateManagedObject:Date = Date(entity:newTechnologyEntityDescription!, insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext
-) as Date
-                
+                    ) as Date
                 
                 
                 newDateManagedObject.interviewDate = scheduledDate
-
                 
                 selectedItem.interviewDates?.addObject(newDateManagedObject)
                 EHCoreDataHelper.saveToCoreData(selectedItem)
-
                 
                 EHTechnologyDataLayer.addInterviewDateToCoreData(selectedItem, dateToAdd: newDateManagedObject)
                 
                 self.sourceList.reloadData()
-                
             }
             else
             {
@@ -218,7 +203,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             }
             datePopOver.close()
         }
-        
     }
     
     
@@ -238,15 +222,13 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             if technologyArray.count > 0 && cellTechnology?.textFieldTechnology.stringValue == ""{
                 alertPopup("Enter Technology", informativeText: "Please enter previous selected technology",inTag: 0)
             }else{
-
-                
                 let newTechnologyEntityDescription = EHCoreDataHelper.createEntity("Technology", managedObjectContext: EHCoreDataStack.sharedInstance.managedObjectContext)
                 let newTechnologyManagedObject:Technology = Technology(entity:newTechnologyEntityDescription!, insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext) as Technology
                 newTechnologyManagedObject.technologyName = ""
                 technologyArray.append(newTechnologyManagedObject)
                 
                 self.sourceList.reloadData()
-
+                
             }
         }
     }
@@ -257,7 +239,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         if self.sourceList.selectedRow == -1
         {
             alertPopup("Error", informativeText: "Please select any Item to delete",inTag: 0)
-
             return
         }
         alertPopup("Alert", informativeText: "Are you sure you want delete",inTag: 1)
@@ -273,15 +254,10 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             }
         }
             
-        else
-        {
+        else{
             let selectedInterviewDate = sourceList.itemAtRow(sourceList.selectedRow) as? Date
             for aTechnology in technologyArray{
-                var count = 0
                 for aInterviewDate in aTechnology.interviewDates!{
-                    
-                    
-                    
                     let aDate = aInterviewDate as! Date
                     let dateFormatter = NSDateFormatter()
                     dateFormatter.dateFormat = "dd-MMM-yyyy"
@@ -293,10 +269,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                         EHTechnologyDataLayer.deleteInterviewDateFromCoreData(selectedInterviewDate!)
                         break
                     }
-
-                    
-                    
-
                 }
             }
             
@@ -367,12 +339,13 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         }
         self.sourceList.reloadData()
     }
+    
     // Alert Popup
     func alertPopup(data:String, informativeText:String , inTag:Int)
     {
         let alert:NSAlert = NSAlert()
         alert.messageText = data
-
+        
         alert.informativeText = informativeText
         alert.addButtonWithTitle("OK")
         alert.addButtonWithTitle("Cancel")
@@ -385,7 +358,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         }
     }
     
-
+    
     func createConstraintsForFeedbackController(leading:CGFloat,trailing:CGFloat,top:CGFloat,bottom:CGFloat){
         feedbackViewController!.view.translatesAutoresizingMaskIntoConstraints = false
         

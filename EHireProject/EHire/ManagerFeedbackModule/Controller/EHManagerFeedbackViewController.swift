@@ -537,7 +537,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     //MARK:- NumberField Validation for Textfields
     
-    
+
+   
     
     //MARK:- Core Data Saving Methods
     
