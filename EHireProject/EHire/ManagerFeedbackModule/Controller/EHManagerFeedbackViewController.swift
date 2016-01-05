@@ -540,10 +540,9 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     func numberFieldVilidation(){
         // create NUMBER FORMATTER OBJECT
         
-        let formatter = OnlyDecimalValueFormatter()
-        self.textFieldGrossAnnualSalary.formatter = formatter
-        self.textFieldCorporateGrade.formatter = formatter
-
+//        let formatter = OnlyDecimalValueFormatter()
+//        self.textFieldGrossAnnualSalary.formatter = formatter
+//        self.textFieldCorporateGrade.formatter = formatter
     }
     
     //MARK:- Core Data Saving Methods
