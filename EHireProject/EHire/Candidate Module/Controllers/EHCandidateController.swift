@@ -68,12 +68,10 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             
         else if tableColumn?.identifier == "experience"
         {
-            if candidate?.experience != nil {
-                cell.textField?.stringValue = (candidate?.experience)!
-    
-                
+            if candidate?.experience != nil
+            {
+              cell.textField?.stringValue = (candidate?.experience)!
             }
-
         }
             
         else if tableColumn?.identifier == "interviewTime"
@@ -84,8 +82,6 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
            let str = dateFormatter.stringFromDate((candidate?.interviewTime)!)
             
             cell.textField?.stringValue = str
-          
-
         }
             
             else if tableColumn?.identifier == "requisition"
@@ -93,16 +89,9 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             cell.textField?.stringValue = (candidate?.requisition)!
         }
             
-        else if tableColumn?.identifier == "feedback"
-        {
-          
-        }
-
         else
         {
-           
-            cell.textField?.stringValue = (candidate?.phoneNumber)!
-            
+           cell.textField?.stringValue = (candidate?.phoneNumber)!
         }
         return cell
     }
@@ -180,19 +169,10 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     }
     }
     
-    @IBAction func showCandidateFeedbackView(sender: AnyObject)
-    {
-       /* if let delegate = self.delegate{
-            
-            delegate.showFeedbackViewController()
-        }*/
-    }
     
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
         
-        //Check
-        
-       let textField = control as! NSTextField
+        let textField = control as! NSTextField
         
         let candidate = self.candidateArray.objectAtIndex(self.tableView.selectedRow) as! Candidate
         
@@ -242,9 +222,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     
     func delete()
     {
-        
-        
-        if tableView.selectedRow > -1
+      if tableView.selectedRow > -1
         {
             let editCandidate = candidateArray.objectAtIndex(tableView.selectedRow) as? Candidate
             

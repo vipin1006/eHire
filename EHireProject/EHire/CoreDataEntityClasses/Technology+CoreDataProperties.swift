@@ -15,7 +15,7 @@ import CoreData
 extension Technology {
 
     @NSManaged var technologyName: String?
-    @NSManaged var interviewDates: NSSet?
+    @NSManaged var interviewDates: NSMutableSet?
     @NSManaged var candidates: NSSet?
 
 }

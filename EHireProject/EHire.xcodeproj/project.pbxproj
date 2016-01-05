@@ -42,10 +42,6 @@
 		2DE189651C33D9A6005F90D0 /* EHireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1895D1C33D9A6005F90D0 /* EHireTests.swift */; };
 		41A97FF51C1956B70016CAB4 /* EHInterviewDateCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF41C1956B70016CAB4 /* EHInterviewDateCustomCell.swift */; };
 		41A97FF91C195E500016CAB4 /* EHTechnologyCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF81C195E500016CAB4 /* EHTechnologyCustomCell.swift */; };
-		41A97FFE1C1971FF0016CAB4 /* BlueCalendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A97FFD1C1971FF0016CAB4 /* BlueCalendar.png */; };
-		41A980001C1974020016CAB4 /* deleteDate.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A97FFF1C1974020016CAB4 /* deleteDate.png */; };
-		4F2536E51C2179E0000E8C95 /* EHInterviewDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536E31C2179E0000E8C95 /* EHInterviewDate.swift */; };
-		4F2536E61C2179E0000E8C95 /* EHTechnology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536E41C2179E0000E8C95 /* EHTechnology.swift */; };
 		4F2536EC1C2179EC000E8C95 /* EHPopOverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536E91C2179EC000E8C95 /* EHPopOverController.swift */; };
 		4F2536ED1C2179EC000E8C95 /* EHTechnologyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536EA1C2179EC000E8C95 /* EHTechnologyViewController.swift */; };
 		4F2536FB1C218172000E8C95 /* DataCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536FA1C218172000E8C95 /* DataCommunicator.swift */; };
@@ -95,7 +91,6 @@
 		8070F59A1C24194C00FCEA98 /* selectStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8070F5981C24194C00FCEA98 /* selectStar.png */; };
 		8070F59B1C24194C00FCEA98 /* deselectStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8070F5991C24194C00FCEA98 /* deselectStar.png */; };
 		944783131C2A9A1C00AE33FA /* TechnicalFeedbackDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944783121C2A9A1C00AE33FA /* TechnicalFeedbackDataAccess.swift */; };
-		94544B471C338B78008E3FA8 /* EHSkillSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94544B461C338B78008E3FA8 /* EHSkillSetModel.swift */; };
 		9491D7D01C32D22C0088D61A /* EHTechnicalFeedbackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9491D7CF1C32D22C0088D61A /* EHTechnicalFeedbackModel.swift */; };
 		9C4B97FF1C324EE20033412F /* EHCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B97FE1C324EE20033412F /* EHCoreDataStack.swift */; };
 		9C527DF01C3A431B001B62B2 /* EHOnlyDecimalValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C527DEF1C3A431B001B62B2 /* EHOnlyDecimalValueFormatter.swift */; };
@@ -156,10 +151,6 @@
 		4136DE551C21284800BDB8B7 /* EHire-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EHire-Bridging-Header.h"; sourceTree = "<group>"; };
 		41A97FF41C1956B70016CAB4 /* EHInterviewDateCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHInterviewDateCustomCell.swift; sourceTree = "<group>"; };
 		41A97FF81C195E500016CAB4 /* EHTechnologyCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnologyCustomCell.swift; sourceTree = "<group>"; };
-		41A97FFD1C1971FF0016CAB4 /* BlueCalendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlueCalendar.png; path = ../../BlueCalendar.png; sourceTree = "<group>"; };
-		41A97FFF1C1974020016CAB4 /* deleteDate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = deleteDate.png; path = ../../deleteDate.png; sourceTree = "<group>"; };
-		4F2536E31C2179E0000E8C95 /* EHInterviewDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHInterviewDate.swift; sourceTree = "<group>"; };
-		4F2536E41C2179E0000E8C95 /* EHTechnology.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnology.swift; sourceTree = "<group>"; };
 		4F2536E91C2179EC000E8C95 /* EHPopOverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHPopOverController.swift; sourceTree = "<group>"; };
 		4F2536EA1C2179EC000E8C95 /* EHTechnologyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnologyViewController.swift; sourceTree = "<group>"; };
 		4F2536FA1C218172000E8C95 /* DataCommunicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataCommunicator.swift; sourceTree = "<group>"; };
@@ -215,7 +206,6 @@
 		8070F5981C24194C00FCEA98 /* selectStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selectStar.png; sourceTree = "<group>"; };
 		8070F5991C24194C00FCEA98 /* deselectStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deselectStar.png; sourceTree = "<group>"; };
 		944783121C2A9A1C00AE33FA /* TechnicalFeedbackDataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TechnicalFeedbackDataAccess.swift; sourceTree = SOURCE_ROOT; };
-		94544B461C338B78008E3FA8 /* EHSkillSetModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHSkillSetModel.swift; sourceTree = SOURCE_ROOT; };
 		9491D7CF1C32D22C0088D61A /* EHTechnicalFeedbackModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnicalFeedbackModel.swift; sourceTree = SOURCE_ROOT; };
 		9C4B97FE1C324EE20033412F /* EHCoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCoreDataStack.swift; sourceTree = "<group>"; };
 		9C527DEF1C3A431B001B62B2 /* EHOnlyDecimalValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHOnlyDecimalValueFormatter.swift; sourceTree = "<group>"; };
@@ -247,7 +237,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2D32201C1C2BC61000679432 /* Curd Test For Entity */ = {
+		2D32201C1C2BC61000679432 /* Crud Test For Entity */ = {
 			isa = PBXGroup;
 			children = (
 				2D8C5D871C30E7E70018184E /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift */,
@@ -275,7 +265,7 @@
 				2D8C5D9D1C30E7E70018184E /* CandidateMiscellaneous+CoreDataProperties.swift */,
 				2D8C5D9E1C30E7E70018184E /* CandidateMiscellaneous.swift */,
 			);
-			name = "Curd Test For Entity";
+			name = "Crud Test For Entity";
 			sourceTree = "<group>";
 		};
 		2D3A3D7B1C3A380000AA56E1 /* View Controllers Test Cases */ = {
@@ -301,21 +291,10 @@
 			name = "Test Cases";
 			sourceTree = "<group>";
 		};
-		4F2536E21C2179E0000E8C95 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				4F2536E31C2179E0000E8C95 /* EHInterviewDate.swift */,
-				4F2536E41C2179E0000E8C95 /* EHTechnology.swift */,
-			);
-			name = Model;
-			path = ../Model;
-			sourceTree = "<group>";
-		};
 		4F2536E71C2179EC000E8C95 /* Technology */ = {
 			isa = PBXGroup;
 			children = (
 				8001C41C1C23EB0900D62243 /* Controllers */,
-				4F2536E21C2179E0000E8C95 /* Model */,
 				8001C41B1C23EABB00D62243 /* DataAccessLayer */,
 				8042884B1C17F17A003033B4 /* CustomViewCells */,
 				8042884A1C17F150003033B4 /* Nibs */,
@@ -457,7 +436,6 @@
 			isa = PBXGroup;
 			children = (
 				9491D7CF1C32D22C0088D61A /* EHTechnicalFeedbackModel.swift */,
-				94544B461C338B78008E3FA8 /* EHSkillSetModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -509,8 +487,6 @@
 		8001C41A1C23EAAF00D62243 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				41A97FFD1C1971FF0016CAB4 /* BlueCalendar.png */,
-				41A97FFF1C1974020016CAB4 /* deleteDate.png */,
 			);
 			name = "Support Files";
 			sourceTree = "<group>";
@@ -672,7 +648,7 @@
 			children = (
 				2D3A3D7B1C3A380000AA56E1 /* View Controllers Test Cases */,
 				2DE189551C33D98B005F90D0 /* Test Cases */,
-				2D32201C1C2BC61000679432 /* Curd Test For Entity */,
+				2D32201C1C2BC61000679432 /* Crud Test For Entity */,
 				8042881B1C17EBC0003033B4 /* Info.plist */,
 			);
 			path = EHireTests;
@@ -830,10 +806,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41A980001C1974020016CAB4 /* deleteDate.png in Resources */,
 				8070F59A1C24194C00FCEA98 /* selectStar.png in Resources */,
 				8070F59B1C24194C00FCEA98 /* deselectStar.png in Resources */,
-				41A97FFE1C1971FF0016CAB4 /* BlueCalendar.png in Resources */,
 				8042880C1C17EBC0003033B4 /* Assets.xcassets in Resources */,
 				8042880F1C17EBC0003033B4 /* Main.storyboard in Resources */,
 			);
@@ -862,10 +836,8 @@
 			files = (
 				8029FFF01C2A81970041C74C /* ManagerFeedBack.swift in Sources */,
 				8029FFE21C2A81970041C74C /* CandidateBasicProfessionalInfo+CoreDataProperties.swift in Sources */,
-				4F2536E61C2179E0000E8C95 /* EHTechnology.swift in Sources */,
 				4F7BCAC91C325CBD00D60546 /* EHCandidateDetails.swift in Sources */,
 				41A97FF91C195E500016CAB4 /* EHTechnologyCustomCell.swift in Sources */,
-				94544B471C338B78008E3FA8 /* EHSkillSetModel.swift in Sources */,
 				9CB11FC51C328C1100939D42 /* EHManagerFeedbackDataAccessLayer.swift in Sources */,
 				4F2536ED1C2179EC000E8C95 /* EHTechnologyViewController.swift in Sources */,
 				8029FFED1C2A81970041C74C /* Date.swift in Sources */,
@@ -899,7 +871,6 @@
 				8029FFE01C2A81970041C74C /* Candidate+CoreDataProperties.swift in Sources */,
 				4F7BCA841C2BED8B00D60546 /* EHManagerFeedbackViewController.swift in Sources */,
 				8029FFE71C2A81970041C74C /* CandidatePersonalInfo.swift in Sources */,
-				4F2536E51C2179E0000E8C95 /* EHInterviewDate.swift in Sources */,
 				802900021C2A83CE0041C74C /* HrFeedbackDataAccess.swift in Sources */,
 				8029FFF61C2A81970041C74C /* Technology.swift in Sources */,
 				52CB4A581C31379800934A84 /* EHCandidateController.swift in Sources */,
