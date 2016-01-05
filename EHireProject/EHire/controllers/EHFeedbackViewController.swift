@@ -9,7 +9,7 @@
 import Cocoa
 
 class EHFeedbackViewController: NSViewController {
-
+    
     
     //MARK: IBOutlets
     
@@ -21,7 +21,7 @@ class EHFeedbackViewController: NSViewController {
     
     //MARK: Properties
     
-       var hrView:NSView?
+    var hrView:NSView?
     
     var topObjects:NSArray?
     
@@ -41,19 +41,19 @@ class EHFeedbackViewController: NSViewController {
     //MARK: View Life Cycle
     override func viewDidLoad()
     {
-    super.viewDidLoad()
+        super.viewDidLoad()
         
-    print("The candidate came to Feedback is \(selectedCandidate)")
+        print("The candidate came to Feedback is \(selectedCandidate)")
         
-    techFeedback = storyboard?.instantiateControllerWithIdentifier("EHTechnicalFeedbackViewController") as? EHTechnicalFeedbackViewController
-    techFeedback!.selectedCandidate = selectedCandidate
-  
-    self.scrollViewHr.documentView? = (techFeedback?.view)!
-    self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1081))
-    self.typeOfInterview.selectedSegment = 0
-    self.subRound.selectedSegment = 0
-    self.scrollViewHr.hasVerticalScroller = true
-    self.scrollViewHr.hasHorizontalScroller = true
+        techFeedback = storyboard?.instantiateControllerWithIdentifier("EHTechnicalFeedbackViewController") as? EHTechnicalFeedbackViewController
+        techFeedback!.selectedCandidate = selectedCandidate
+        
+        self.scrollViewHr.documentView? = (techFeedback?.view)!
+        self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1081))
+        self.typeOfInterview.selectedSegment = 0
+        self.subRound.selectedSegment = 0
+        self.scrollViewHr.hasVerticalScroller = true
+        self.scrollViewHr.hasHorizontalScroller = true
     }
     
     @IBAction func roundType(sender: AnyObject)
@@ -94,18 +94,25 @@ class EHFeedbackViewController: NSViewController {
             isHrLoaded = false
             
         case 1:
+            let techLeadCount = (selectedCandidate?.interviewedByTechLeads)!.count
             
+            if techLeadCount < 3{
+                techFeedback?.alertPopup("Sorry", informativeText: "Technical round is not yet Completed")
+                typeOfInterview.setSelected(true, forSegment: 0)
+                
+                return
+            }
+
             if !isManagerLoaded
             {
                 managerFeedback = storyboard?.instantiateControllerWithIdentifier("EHManagerFeedbackViewController") as? EHManagerFeedbackViewController
                 managerFeedback?.selectedCandidate = selectedCandidate
                 self.scrollViewHr.documentView = managerFeedback?.view
-              
-//                createConstraintsForManagerFeedbackController(0.0, trailing: 0.0, top: 0.0, bottom: 0.0)
-
+                
+                //                createConstraintsForManagerFeedbackController(0.0, trailing: 0.0, top: 0.0, bottom: 0.0)
+                
                 self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1565))
-
-
+                
             }
             self.hrView?.removeFromSuperview()
             self.techFeedback?.view.removeFromSuperview()
@@ -138,104 +145,137 @@ class EHFeedbackViewController: NSViewController {
     
     @IBAction func subRound(sender: AnyObject)
     {
-    
-    switch self.typeOfInterview.selectedSegment
-    {
-    
-    case 0:
-    
-    switch self.subRound.selectedSegment
-    {
-    
-    case 0:
-    
-    print("Round One")
         
-    case 1:
-    
-    print("Round Two")
-    
-    let techLeadCount = (selectedCandidate?.interviewedByTechLeads)!.count
-    
-    if techLeadCount == 0
-    {
-        techFeedback?.alertPopup("Sorry", informativeText: "Round One not yet Completed")
-    }
-    else if techLeadCount > 0
-    {
-        techFeedback?.refreshAllFields()
-    }
-    else
-    {
-        
-       for x in (selectedCandidate?.interviewedByTechLeads)!
+        switch self.typeOfInterview.selectedSegment
         {
-            let feedBack = x as! TechnicalFeedBack
-        
-            if feedBack.recommendation == "Rejected"
+            
+        case 0:
+            
+            switch self.subRound.selectedSegment
             {
-            techFeedback?.alertPopup("Candidate Rejected", informativeText: "Selected Candidate Rejected in Round One")
-        
+                
+            case 0:
+                
+                print("Round One")
+                
+            case 1:
+                
+                print("Round Two")
+                
+                let techLeadCount = (selectedCandidate?.interviewedByTechLeads)!.count
+                
+                if techLeadCount == 0
+                {
+                    techFeedback?.alertPopup("Sorry", informativeText: "Round One not yet Completed")
+                }
+                else if techLeadCount > 0
+                {
+                    techFeedback?.refreshAllFields()
+                }
+                else
+                {
+                    
+                    for x in (selectedCandidate?.interviewedByTechLeads)!
+                    {
+                        let feedBack = x as! TechnicalFeedBack
+                        
+                        if feedBack.recommendation == "Rejected"
+                        {
+                            techFeedback?.alertPopup("Candidate Rejected", informativeText: "Selected Candidate Rejected in Round One")
+                            
+                        }
+                    }
+                }
+                
+            case 2:
+                
+                print("Round Three")
+                
+            default:
+                
+                print("Nothing")
             }
-         }
-     }
+            
+        case 1: // for managerial feedback sub rounds
+                        switch self.subRound.selectedSegment{
+                
+            case 0:
+                
+                print("Round One")
+                
+                
+                if managerFeedback?.selectedCandidate?.interviewedByManagers?.count != 0{
+                    let allObj = selectedCandidate?.interviewedByManagers?.allObjects
+                    managerFeedback?.sortArray(allObj!, index:self.subRound.selectedSegment)
+                }
+
+                
+            case 1:
+                if managerFeedback?.selectedCandidate?.interviewedByManagers?.count < self.subRound.selectedSegment{
+                    
+                    let allObj = selectedCandidate?.interviewedByManagers?.allObjects
+                    managerFeedback?.sortArray(allObj!, index:self.subRound.selectedSegment)
+                }
+                else
+                {
+                    managerFeedback?.refreshAllFields()
+                }
+                
+                
+                
+//                
+//                               else
+//                {
+//                    
+//                    for x in (selectedCandidate?.interviewedByTechLeads)!
+//                    {
+//                        let feedBack = x as! TechnicalFeedBack
+//                        
+//                        if feedBack.recommendation == "Rejected"
+//                        {
+//                            techFeedback?.alertPopup("Candidate Rejected", informativeText: "Selected Candidate Rejected in Round One")
+//                            
+//                        }
+//                    }
+//                }
+                
+                print("Round Two")
+                
+            default:
+                
+                print("Nothing")
+                
+            }
+            
+        default: print("Nothing")
+        }
         
-    case 2:
-    
-    print("Round Three")
-    
-    default:
-    
-    print("Nothing")
     }
     
-    case 1:
     
-    switch self.subRound.selectedSegment{
-    
-    case 0:
-    
-    print("Round One")
-    
-    case 1:
-    
-    print("Round Two")
-    
-    default:
-    
-    print("Nothing")
-    
-    }
-    
-    default: print("Nothing")
-    }
-    
-    }
-    
-     
     
     
     func addHrFeedBackView(){
-   
         
-    hrFeedBackViewController = self.storyboard?.instantiateControllerWithIdentifier("EHHrFeedbackViewController") as? EHHrFeedbackViewController
         
-    hrFeedBackViewController?.candidate = selectedCandidate
-    
-    if let hrViewController = hrFeedBackViewController {
-    
-    hrView = hrViewController.view
-    
-    hrView!.frame = NSMakeRect(self.scrollViewHr.frame.origin.x,self.scrollViewHr.frame.origin.y,self.scrollViewHr.frame.size.width,1450)
-    
-    self.scrollViewHr.documentView = hrView
-    
-    self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1200))
-    
-    isHrLoaded = true
-    
-    }
-    
+        hrFeedBackViewController = self.storyboard?.instantiateControllerWithIdentifier("EHHrFeedbackViewController") as? EHHrFeedbackViewController
+        
+        hrFeedBackViewController?.candidate = selectedCandidate
+        
+        if let hrViewController = hrFeedBackViewController {
+            
+            hrView = hrViewController.view
+            
+            hrView!.frame = NSMakeRect(self.scrollViewHr.frame.origin.x,self.scrollViewHr.frame.origin.y,self.scrollViewHr.frame.size.width,1450)
+            
+            self.scrollViewHr.documentView = hrView
+            
+            self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1200))
+            
+            isHrLoaded = true
+            
+        }
+        
     }
     @IBAction func dismissFeedbackView(sender: AnyObject)
     {
@@ -244,7 +284,7 @@ class EHFeedbackViewController: NSViewController {
         mainController.setAllContent()
     }
     
-
+    
     func createConstraintsForManagerFeedbackController(leading:CGFloat,trailing:CGFloat,top:CGFloat,bottom:CGFloat){
         
         managerFeedback!.view.translatesAutoresizingMaskIntoConstraints = false
@@ -261,6 +301,6 @@ class EHFeedbackViewController: NSViewController {
         
     }
     
-
+    
     
 }

@@ -22,7 +22,7 @@ class EHManagerFeedbackDataAccessLayer: NSObject {
         
         let managerFeedbackentity = EHCoreDataHelper.createEntity("ManagerFeedBack", managedObjectContext: candidate.managedObjectContext!)
         let managerFeedback:ManagerFeedBack = ManagerFeedBack(entity:managerFeedbackentity!, insertIntoManagedObjectContext:candidate.managedObjectContext)
-       
+       managerFeedback.setValue((candidate.interviewedByManagers?.count)!+1, forKey: "id")
         managerFeedback.setValue(self.managerFeedbackmodel?.commentsOnCandidate?.string, forKey: "commentsOnCandidate")
             
         managerFeedback.setValue(self.managerFeedbackmodel?.commentsOnTechnology?.string, forKey: "commentsOnTechnology")
@@ -39,7 +39,7 @@ class EHManagerFeedbackDataAccessLayer: NSObject {
 
        
         managerFeedback.setValue(NSMutableSet(array: (self.managerFeedbackmodel?.skillSet)!), forKey: "candidateSkills")
-        managerFeedback.setValue(self.managerFeedbackmodel?.managerName, forKey: "managerName")
+        managerFeedback.setValue("pavi", forKey: "managerName")
             
         managerFeedback.setValue(self.managerFeedbackmodel?.isCgDeviation, forKey: "isCgDeviation")
             
@@ -59,8 +59,11 @@ class EHManagerFeedbackDataAccessLayer: NSObject {
         
         managerFeedback.setValue(candidate as Candidate, forKey: "candidate")
         candidate.interviewedByManagers?.setByAddingObject(managerFeedback)
+        //candidate.interviewedByManagers?.addObject(managerFeedback)
+
         
         EHCoreDataHelper.saveToCoreData(candidate)
+        
         
         return true
     }

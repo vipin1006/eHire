@@ -2,8 +2,8 @@
 //  ManagerFeedBack.swift
 //  EHire
 //
-//  Created by ajaybabu singineedi on 23/12/15.
-//  Copyright © 2015 Exilant Technologies. All rights reserved.
+//  Created by Pavithra G. Jayanna on 05/01/16.
+//  Copyright © 2016 Exilant Technologies. All rights reserved.
 //
 
 import Foundation
