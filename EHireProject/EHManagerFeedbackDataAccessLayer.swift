@@ -26,8 +26,11 @@ class EHManagerFeedbackDataAccessLayer: NSObject {
         managerFeedback.setValue(self.managerFeedbackmodel?.commentsOnTechnology?.string, forKey: "commentsOnTechnology")
             
         managerFeedback.setValue(self.managerFeedbackmodel?.commitments?.string, forKey: "commitments")
-            
-        managerFeedback.setValue(NSNumber(integer:Int((self.managerFeedbackmodel?.grossAnnualSalary)!)!), forKey: "grossAnnualSalary")
+        
+        print(self.managerFeedbackmodel?.grossAnnualSalary)
+        managerFeedback.setValue(self.managerFeedbackmodel?.grossAnnualSalary, forKey: "grossAnnualSalary")
+        
+//        managerFeedback.setValue(NSNumber(double: Double((self.managerFeedbackmodel?.grossAnnualSalary)!)!), forKey: "grossAnnualSalary")
         
         print(self.managerFeedbackmodel?.skillSet)
         
@@ -40,7 +43,10 @@ class EHManagerFeedbackDataAccessLayer: NSObject {
             let skillSetObject:SkillSet = SkillSet(entity:skillSetDecription!, insertIntoManagedObjectContext:coreDataStack.managedObjectContext) as SkillSet
             skillSetObject.skillName = object.skillName
             print("Name=%@,Rating=%@",object.skillName,object.skillRating)
-            skillSetObject.skillRating = NSNumber(short: object.skillRating!)
+            if !((object.skillRating) == nil){
+                 skillSetObject.skillRating = NSNumber(short: object.skillRating!)
+            }
+           
             skillSetarray.append(skillSetObject)
 
         }
