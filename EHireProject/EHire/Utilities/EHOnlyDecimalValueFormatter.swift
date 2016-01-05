@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class OnlyDecimalValueFormatter: NSNumberFormatter {
+class EHOnlyDecimalValueFormatter: NSNumberFormatter {
     override func isPartialStringValid(partialString: String, newEditingString newString: AutoreleasingUnsafeMutablePointer<NSString?>, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>) -> Bool {
         
 //        if (partialString.utf16.count) {

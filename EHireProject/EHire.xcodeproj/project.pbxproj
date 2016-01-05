@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D3A3D7D1C3A389C00AA56E1 /* EHTechnologyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3A3D7C1C3A389C00AA56E1 /* EHTechnologyViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		2D3A3D7D1C3A389C00AA56E1 /* EHTechnologyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3A3D7C1C3A389C00AA56E1 /* EHTechnologyViewController.swift */; };
 		2D8C5D9F1C30E7E70018184E /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D871C30E7E70018184E /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift */; };
 		2D8C5DA01C30E7E70018184E /* CandidatePreviousEmploymentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D881C30E7E70018184E /* CandidatePreviousEmploymentInfo.swift */; };
 		2D8C5DA11C30E7E70018184E /* CandidatePersonalInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5D891C30E7E70018184E /* CandidatePersonalInfo+CoreDataProperties.swift */; };
@@ -98,7 +98,7 @@
 		94544B471C338B78008E3FA8 /* EHSkillSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94544B461C338B78008E3FA8 /* EHSkillSetModel.swift */; };
 		9491D7D01C32D22C0088D61A /* EHTechnicalFeedbackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9491D7CF1C32D22C0088D61A /* EHTechnicalFeedbackModel.swift */; };
 		9C4B97FF1C324EE20033412F /* EHCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B97FE1C324EE20033412F /* EHCoreDataStack.swift */; };
-		9C527DF01C3A431B001B62B2 /* OnlyDecimalValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C527DEF1C3A431B001B62B2 /* OnlyDecimalValueFormatter.swift */; };
+		9C527DF01C3A431B001B62B2 /* EHOnlyDecimalValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C527DEF1C3A431B001B62B2 /* EHOnlyDecimalValueFormatter.swift */; };
 		9CB11FC51C328C1100939D42 /* EHManagerFeedbackDataAccessLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB11FC41C328C1100939D42 /* EHManagerFeedbackDataAccessLayer.swift */; };
 /* End PBXBuildFile section */
 
@@ -218,7 +218,7 @@
 		94544B461C338B78008E3FA8 /* EHSkillSetModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHSkillSetModel.swift; sourceTree = SOURCE_ROOT; };
 		9491D7CF1C32D22C0088D61A /* EHTechnicalFeedbackModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnicalFeedbackModel.swift; sourceTree = SOURCE_ROOT; };
 		9C4B97FE1C324EE20033412F /* EHCoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCoreDataStack.swift; sourceTree = "<group>"; };
-		9C527DEF1C3A431B001B62B2 /* OnlyDecimalValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnlyDecimalValueFormatter.swift; sourceTree = "<group>"; };
+		9C527DEF1C3A431B001B62B2 /* EHOnlyDecimalValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHOnlyDecimalValueFormatter.swift; sourceTree = "<group>"; };
 		9CB11FC41C328C1100939D42 /* EHManagerFeedbackDataAccessLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHManagerFeedbackDataAccessLayer.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -721,7 +721,7 @@
 		9C527DEE1C3A42E0001B62B2 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				9C527DEF1C3A431B001B62B2 /* OnlyDecimalValueFormatter.swift */,
+				9C527DEF1C3A431B001B62B2 /* EHOnlyDecimalValueFormatter.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -891,7 +891,7 @@
 				9491D7D01C32D22C0088D61A /* EHTechnicalFeedbackModel.swift in Sources */,
 				8029FFEC1C2A81970041C74C /* CandidateQualification+CoreDataProperties.swift in Sources */,
 				8029FFF51C2A81970041C74C /* TechnicalFeedBack+CoreDataProperties.swift in Sources */,
-				9C527DF01C3A431B001B62B2 /* OnlyDecimalValueFormatter.swift in Sources */,
+				9C527DF01C3A431B001B62B2 /* EHOnlyDecimalValueFormatter.swift in Sources */,
 				9C4B97FF1C324EE20033412F /* EHCoreDataStack.swift in Sources */,
 				4F7BCAC81C325CBD00D60546 /* EHCandidateBasicInfo.swift in Sources */,
 				8029FFEA1C2A81970041C74C /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift in Sources */,
