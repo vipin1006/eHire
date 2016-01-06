@@ -472,7 +472,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
 
     @IBAction func removeSkills(sender: NSButton)
     {
-        if tableView.selectedRow != -1
+        if tableView.selectedRow >= 4
         {
             skillsAndRatingsTitleArray.removeAtIndex(tableView.selectedRow)
             tableView.reloadData()
