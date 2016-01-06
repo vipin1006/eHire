@@ -81,6 +81,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         
         for ratingView in overallAssessmentOfCandidateStarView.subviews
         {
+            
             let view = ratingView as! NSButton
             view.target = self
             view.action = "assessmentOfCandidate:"
@@ -93,6 +94,16 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             }
         }
         tableView.reloadData()
+    }
+    
+    //MARK: To sort
+    func sortArray (candidateObjects : [AnyObject],index:Int)
+    {
+        let sortingArray = NSArray(array: candidateObjects)
+        
+        let descriptor: NSSortDescriptor = NSSortDescriptor(key: "id", ascending: true)
+        let sortedResults: NSArray = sortingArray.sortedArrayUsingDescriptors([descriptor])
+        retrievalOfInterviewData(sortedResults[index] as! TechnicalFeedBack)
     }
     
     //MARK: Retrieval Of Round One
@@ -465,7 +476,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }
     }
     
-    //Mark: To remove the existing skills inside TableView
+    //To remove the existing skills inside TableView
 
     @IBAction func removeSkills(sender: NSButton)
     {
@@ -476,19 +487,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }
     }
     
-    //Mark: To sort
-    func sortArray (allObj : [AnyObject],index:Int)
-    {
-        let sortingArray = NSArray(array: allObj)
-        
-        let descriptor: NSSortDescriptor = NSSortDescriptor(key: "id", ascending: true)
-        let sortedResults: NSArray = sortingArray.sortedArrayUsingDescriptors([descriptor])
-        retrievalOfInterviewData(sortedResults[index] as! TechnicalFeedBack)
-    }
-
-    
-    
-    // Mark: To save details of Technical Feedback
+    // To save details of Technical Feedback
     
     @IBAction func saveDetailsAction(sender: NSButton)
     {
@@ -640,15 +639,15 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         
       ratingOfCandidateField.stringValue = ""
       ratingOnTechnologyField.stringValue = ""
-     for starBtn in overallAssessmentOfCandidateStarView.subviews
-     {
-        let tempBtn = starBtn as! NSButton
-        tempBtn.image = NSImage(named: "deselectStar")
-     }
-     for starBtn in overallAssessmentOnTechnologyStarView.subviews
-     {
-        let tempBtn = starBtn as! NSButton
-        tempBtn.image = NSImage(named: "deselectStar")
-     }
+        for stars in overallAssessmentOfCandidateStarView.subviews
+        {
+            let starButton = stars as! NSButton
+            starButton.image = NSImage(named: "deselectStar")
+        }
+        for stars in overallAssessmentOnTechnologyStarView.subviews
+        {
+            let starButton = stars as! NSButton
+            starButton.image = NSImage(named: "deselectStar")
+        }
    }
 }
