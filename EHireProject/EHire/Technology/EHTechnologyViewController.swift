@@ -292,8 +292,18 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     {
         if let selectedItem = sourceList.itemAtRow(sourceList.selectedRow) as? Technology
         {
+            
+            if cellTechnology?.textFieldTechnology.stringValue == ""
+            {
+                technologyArray.removeLast()
+                EHTechnologyDataLayer.deleteTechnologyFromCoreData(selectedItem)
+                
+            }
+            
             // Condition to check new added technology is deletable
-            if !cellTechnology!.textFieldTechnology.editable
+            
+            //if !cellTechnology!.textFieldTechnology.editable
+            else
             {
                 technologyArray = []
                 EHTechnologyDataLayer.deleteTechnologyFromCoreData(selectedItem)
@@ -320,13 +330,13 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     
     @IBAction func addDateAction(button: NSButton)
     {
-      //  if technologyArray.count == 0
-       // {
-        //   alertPopup("Can not add a Date", informativeText: "Please add a Technology before adding a Date", inTag: 0)
+        if cellTechnology?.textFieldTechnology.stringValue == ""
+        {
+            Utility.alertPopup("Alert", informativeText: "Please add a Technology before adding a Date", okCompletionHandler: nil)
             
-           // addTechnology.enabled = true
-       // }
-       // else{
+            addTechnology.enabled = true
+        }
+       else{
         datePopOver = NSPopover()
         //Make the calendar popover go away when clicked elsewhere
         datePopOver.behavior = NSPopoverBehavior.Transient
@@ -334,7 +344,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         datePopOver.contentViewController = datePopOverController
         datePopOverController!.delegate = self
         datePopOver.showRelativeToRect(button.bounds, ofView:button, preferredEdge:NSRectEdge.MaxY)
-       // }
+       }
     }
     
     func showFeedbackViewController(selectedCandidate:Candidate){
