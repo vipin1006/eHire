@@ -10,6 +10,7 @@ import Cocoa
 
 class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource,NSTextFieldDelegate {
 
+    @IBOutlet weak var saveBtn: NSButton!
     @IBOutlet var managerFeedbackMainView: NSView!
    
     @IBOutlet weak var textFieldCandidateName: NSTextField!
@@ -596,13 +597,24 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
 
     }
     
-    func sortArray (allObj : [AnyObject],index:Int){
-        let sortingArray = NSArray(array: allObj)
+
+    func sortArray (allObj : [AnyObject],index:Int) ->Bool{
+        let arra = NSArray(array: allObj)
         
         let descriptor: NSSortDescriptor = NSSortDescriptor(key: "id", ascending: true)
-        let sortedResults: NSArray = sortingArray.sortedArrayUsingDescriptors([descriptor])//                let feedback = allObj![0]
-        updateUIElements(sortedResults[index] as! ManagerFeedBack)
+        let sortedResults: NSArray = arra.sortedArrayUsingDescriptors([descriptor])//                let feedback = allObj![0]
+        
+        if sortedResults.count != 0{
+           let managerFeedback =  sortedResults[0] as! ManagerFeedBack
+            if managerFeedback.recommendation == "Rejected" && index == 1 {
+                Utility.alertPopup("Alert", informativeText: "Candidate has been rejected", okCompletionHandler: nil)
+                return false
+            }
+        }
+        return true
+
     }
+    
     
     func refreshAllFields()
     {
@@ -644,7 +656,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         setRecommendationState("Rejected")
         setModeOfInterview("Face To Face")
         setCgDeviation(false)
-        
+        saveBtn.enabled = true
     }
     
 }
+
