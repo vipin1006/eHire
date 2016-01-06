@@ -15,6 +15,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
    
     @IBOutlet weak var textFieldCandidateName: NSTextField!
     
+    @IBOutlet weak var dateOfInterviewField: NSTextField!
     @IBOutlet weak var textFieldCandidateRequisition: NSTextField!
     @IBOutlet weak var textFieldCorporateGrade: NSTextField!
     @IBOutlet weak var textFieldDesignation: NSTextField!
@@ -74,6 +75,11 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         
         textFieldCandidateName.stringValue = (selectedCandidate?.name)!
         textFieldCandidateRequisition.stringValue = (selectedCandidate?.requisition)!
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "DD MMM YYYY"
+        let dateInStringFormat = dateFormatter.stringFromDate((selectedCandidate?.interviewDate)!)
+        dateOfInterviewField.stringValue = dateInStringFormat
+
         managerFeedbackMainView.wantsLayer = true
         managerFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
         tableView.reloadData()

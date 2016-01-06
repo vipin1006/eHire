@@ -68,6 +68,11 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         super.viewDidLoad()
         candidateNameField.stringValue = (selectedCandidate?.name)!
         requisitionNameField.stringValue = (selectedCandidate?.requisition)!
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "DD MMM YYYY"
+        let dateInStringFormat = dateFormatter.stringFromDate((selectedCandidate?.interviewDate)!)
+        dateOfInterviewField.stringValue = dateInStringFormat
         cell?.skilsAndRatingsTitlefield.delegate = self
         technicalFeedbackMainView.wantsLayer = true
         technicalFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
