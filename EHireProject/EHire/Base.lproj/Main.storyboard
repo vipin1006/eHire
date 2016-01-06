@@ -2892,13 +2892,13 @@ CA
                                                 <action selector="addSkillSet:" target="Xv2-bq-xG1" id="aT5-pi-xJD"/>
                                             </connections>
                                         </button>
-                                        <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="38" horizontalPageScroll="10" verticalLineScroll="38" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pwe-X1-Si7">
+                                        <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="45" horizontalPageScroll="10" verticalLineScroll="45" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pwe-X1-Si7">
                                             <rect key="frame" x="12" y="40" width="762" height="245"/>
                                             <clipView key="contentView" ambiguous="YES" id="T0e-dM-rfe">
                                                 <rect key="frame" x="1" y="0.0" width="760" height="244"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="36" rowSizeStyle="automatic" headerView="sie-cW-QCu" viewBased="YES" id="586-x1-tdU">
+                                                    <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="43" rowSizeStyle="automatic" headerView="sie-cW-QCu" viewBased="YES" id="586-x1-tdU">
                                                         <rect key="frame" x="0.0" y="0.0" width="760" height="221"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <animations/>
@@ -2906,7 +2906,7 @@ CA
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn width="40" minWidth="40" maxWidth="1000" id="6Nj-iM-Y5D">
+                                                            <tableColumn width="757" minWidth="40" maxWidth="1000" id="6Nj-iM-Y5D">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <string key="title">Title                                                                                           SelectStar                                                         Ratings               </string>
@@ -2921,11 +2921,11 @@ CA
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <prototypeCellViews>
                                                                     <tableCellView identifier="DataCell" id="SKk-sF-Yi0" customClass="EHManagerFeedBackCustomTableView" customModule="EHire" customModuleProvider="target">
-                                                                        <rect key="frame" x="1" y="1" width="40" height="33"/>
+                                                                        <rect key="frame" x="1" y="1" width="757" height="43"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
                                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J06-rJ-EFt">
-                                                                                <rect key="frame" x="7" y="3" width="234" height="27"/>
+                                                                                <rect key="frame" x="7" y="13" width="234" height="27"/>
                                                                                 <animations/>
                                                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Enter Title" id="Gqr-I5-GLu">
                                                                                     <font key="font" metaFont="system"/>
@@ -2937,10 +2937,10 @@ CA
                                                                                 </connections>
                                                                             </textField>
                                                                             <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8NH-rH-099">
-                                                                                <rect key="frame" x="270" y="3" width="168" height="30"/>
+                                                                                <rect key="frame" x="270" y="8" width="168" height="35"/>
                                                                                 <subviews>
                                                                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IzD-pZ-a9x">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="33" height="21"/>
+                                                                                        <rect key="frame" x="0.0" y="8" width="33" height="21"/>
                                                                                         <animations/>
                                                                                         <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="deselectStar" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="HpK-fk-uYa">
                                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2948,7 +2948,7 @@ CA
                                                                                         </buttonCell>
                                                                                     </button>
                                                                                     <button verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="aXi-0I-1ab">
-                                                                                        <rect key="frame" x="35" y="0.0" width="34" height="21"/>
+                                                                                        <rect key="frame" x="35" y="8" width="34" height="21"/>
                                                                                         <animations/>
                                                                                         <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="deselectStar" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="w16-1U-w1G">
                                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2956,7 +2956,7 @@ CA
                                                                                         </buttonCell>
                                                                                     </button>
                                                                                     <button verticalHuggingPriority="750" fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="Fgm-cv-9nD">
-                                                                                        <rect key="frame" x="70" y="0.0" width="33" height="21"/>
+                                                                                        <rect key="frame" x="70" y="8" width="33" height="21"/>
                                                                                         <animations/>
                                                                                         <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="deselectStar" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="krd-vP-5HH">
                                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2964,7 +2964,7 @@ CA
                                                                                         </buttonCell>
                                                                                     </button>
                                                                                     <button verticalHuggingPriority="750" fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="4SL-S5-XnP">
-                                                                                        <rect key="frame" x="108" y="0.0" width="27" height="21"/>
+                                                                                        <rect key="frame" x="108" y="8" width="27" height="21"/>
                                                                                         <animations/>
                                                                                         <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="deselectStar" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="Pkr-S9-XIJ">
                                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2972,7 +2972,7 @@ CA
                                                                                         </buttonCell>
                                                                                     </button>
                                                                                     <button verticalHuggingPriority="750" fixedFrame="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="kQe-uA-Mr2">
-                                                                                        <rect key="frame" x="140" y="0.0" width="23" height="21"/>
+                                                                                        <rect key="frame" x="140" y="8" width="23" height="21"/>
                                                                                         <animations/>
                                                                                         <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="deselectStar" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="XTE-fw-Oaa">
                                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2983,7 +2983,7 @@ CA
                                                                                 <animations/>
                                                                             </customView>
                                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fFC-vn-cqe">
-                                                                                <rect key="frame" x="488" y="3" width="196" height="27"/>
+                                                                                <rect key="frame" x="488" y="13" width="196" height="27"/>
                                                                                 <animations/>
                                                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Rating" id="yZs-kE-9BE">
                                                                                     <font key="font" metaFont="system"/>
@@ -3003,7 +3003,7 @@ CA
                                                                         </connections>
                                                                     </tableCellView>
                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="4hh-zA-sGR">
-                                                                        <rect key="frame" x="1" y="36" width="40" height="36"/>
+                                                                        <rect key="frame" x="1" y="46" width="757" height="36"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <animations/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="    " id="aCo-e5-Ag0">

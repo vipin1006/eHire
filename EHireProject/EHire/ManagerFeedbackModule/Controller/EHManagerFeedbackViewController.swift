@@ -133,6 +133,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                 let tempBtn = starButton as! NSButton
                 if tempBtn.tag+1 == (skillSetObject.skillRating!){
                     displayStar(cell, lbl: cell.feedBackRating, sender: tempBtn )
+                    break
                 }
                 else
                 {
@@ -183,7 +184,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         }
         else
         {
-       let newSkill = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)!,insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)
+       let newSkill = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:(selectedCandidate?.managedObjectContext)!)!,insertIntoManagedObjectContext:selectedCandidate?.managedObjectContext)
         newSkill.skillName = "Enter Title"
         newSkill.skillRating = 0
         managerialFeedbackModel?.skillSet.append(newSkill)
@@ -575,6 +576,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             managerialFeedbackModel!.skillSet.append(skillset)
         }
         
+        print(managerialFeedbackModel!.skillSet.count)
+        
         if !(managerialFeedbackModel.ratingOnTechnical == nil) {
             for starButton in viewOverAllAssessmentOfTechnologyStar.subviews{
                 let tempBtn = starButton as! NSButton
@@ -604,13 +607,15 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         let descriptor: NSSortDescriptor = NSSortDescriptor(key: "id", ascending: true)
         let sortedResults: NSArray = arra.sortedArrayUsingDescriptors([descriptor])//                let feedback = allObj![0]
         
-        if sortedResults.count != 0{
-           let managerFeedback =  sortedResults[0] as! ManagerFeedBack
-            if managerFeedback.recommendation == "Rejected" && index == 1 {
-                Utility.alertPopup("Alert", informativeText: "Candidate has been rejected", okCompletionHandler: nil)
-                return false
-            }
-        }
+//        if sortedResults.count != 0{
+//           let managerFeedback =  sortedResults[0] as! ManagerFeedBack
+//            if managerFeedback.recommendation == "Rejected" && index == 1 {
+//                Utility.alertPopup("Alert", informativeText: "Candidate has been rejected", okCompletionHandler: nil)
+//                return false
+//            }
+//        }
+        let managerFeedback =  sortedResults[index] as! ManagerFeedBack
+        updateUIElements(managerFeedback)
         return true
 
     }
@@ -656,7 +661,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         setRecommendationState("Rejected")
         setModeOfInterview("Face To Face")
         setCgDeviation(false)
-        saveBtn.enabled = true
+//        saveBtn.enabled = true
     }
     
 }
