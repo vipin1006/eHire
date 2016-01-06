@@ -45,9 +45,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     {
         super.viewDidLoad()
         technologyArray = EHTechnologyDataLayer.getSourceListContent() as! [Technology]
-        addDate.toolTip = "Add New Date"
-        addTechnology.toolTip = "Add New Technology"
-    
         deleteTechnologyDate.toolTip = "Delete Date or Technology"
         addDate.enabled = false
         self.sourceList.reloadData()
