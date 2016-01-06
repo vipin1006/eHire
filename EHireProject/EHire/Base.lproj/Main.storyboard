@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="box content view" minToolsVersion="7.0"/>
@@ -691,7 +691,7 @@
                                 <animations/>
                                 <buttonCell key="cell" type="push" title="Add Technology" bezelStyle="rounded" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="d28-FE-eC0">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system" size="12"/>
+                                    <font key="font" metaFont="cellTitle"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="addBtnAction:" target="XfG-lQ-9wD" id="7JM-P5-BDs"/>
@@ -754,7 +754,7 @@
                                                             <rect key="frame" x="1" y="31" width="228" height="35"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZzN-oS-NS7">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZzN-oS-NS7">
                                                                     <rect key="frame" x="10" y="14" width="174" height="16"/>
                                                                     <animations/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="OaO-7S-sJt">
@@ -953,7 +953,7 @@
                                             <constraint firstAttribute="width" constant="109" id="66q-bi-nDj"/>
                                         </constraints>
                                         <animations/>
-                                        <buttonCell key="cell" type="push" title="Give Feedback" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hhV-9J-mlJ">
+                                        <buttonCell key="cell" type="push" title="Enter Feedback" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hhV-9J-mlJ">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -1232,6 +1232,7 @@
                     </view>
                     <connections>
                         <outlet property="candidateView" destination="qci-v5-CE5" id="Vu5-CW-hJc"/>
+                        <outlet property="feedbackButton" destination="s8Z-a5-OR5" id="UDx-K7-H6u"/>
                         <outlet property="removeButton" destination="p93-oh-UMg" id="nVI-1A-Orz"/>
                         <outlet property="tableView" destination="BNP-Pz-40V" id="9fB-2J-1tN"/>
                     </connections>
@@ -3942,7 +3943,7 @@ CA
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="V9M-eh-Zzp">
-                                                    <rect key="frame" x="117" y="0.0" width="5" height="102"/>
+                                                    <rect key="frame" x="117" y="0.0" width="4" height="102"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -4318,7 +4319,7 @@ CA
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="eNs-qS-ZTJ">
-                                                    <rect key="frame" x="444" y="0.0" width="4" height="96"/>
+                                                    <rect key="frame" x="444" y="0.0" width="5" height="96"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
