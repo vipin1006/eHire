@@ -40,7 +40,7 @@
 		2DE189631C33D9A6005F90D0 /* EHireTechnicalFeedBackTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1895B1C33D9A6005F90D0 /* EHireTechnicalFeedBackTest.swift */; };
 		2DE189641C33D9A6005F90D0 /* EHireTechnologyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1895C1C33D9A6005F90D0 /* EHireTechnologyTest.swift */; };
 		2DE189651C33D9A6005F90D0 /* EHireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1895D1C33D9A6005F90D0 /* EHireTests.swift */; };
-		2FB0ABA41C3CD92F0027E34C /* Welcome.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FB0ABA31C3CD92F0027E34C /* Welcome.png */; settings = {ASSET_TAGS = (); }; };
+		2FB0ABA41C3CD92F0027E34C /* Welcome.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FB0ABA31C3CD92F0027E34C /* Welcome.png */; };
 		41A97FF51C1956B70016CAB4 /* EHInterviewDateCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF41C1956B70016CAB4 /* EHInterviewDateCustomCell.swift */; };
 		41A97FF91C195E500016CAB4 /* EHTechnologyCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF81C195E500016CAB4 /* EHTechnologyCustomCell.swift */; };
 		4F2536EC1C2179EC000E8C95 /* EHPopOverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536E91C2179EC000E8C95 /* EHPopOverController.swift */; };
@@ -298,6 +298,7 @@
 		4F2536E71C2179EC000E8C95 /* Technology */ = {
 			isa = PBXGroup;
 			children = (
+				8001C3F81C23E96E00D62243 /* Model */,
 				8001C41C1C23EB0900D62243 /* Controllers */,
 				8001C41B1C23EABB00D62243 /* DataAccessLayer */,
 				8042884B1C17F17A003033B4 /* CustomViewCells */,
@@ -442,6 +443,7 @@
 				9491D7CF1C32D22C0088D61A /* EHTechnicalFeedbackModel.swift */,
 			);
 			name = Model;
+			path = "../../../../../Documents/EHire-Git/EHireProject/EHire";
 			sourceTree = "<group>";
 		};
 		8001C3F91C23E96E00D62243 /* Data Access Layer */ = {
@@ -478,7 +480,6 @@
 			isa = PBXGroup;
 			children = (
 				8001C3F71C23E96E00D62243 /* Controllers */,
-				8001C3F81C23E96E00D62243 /* Model */,
 				8001C3F91C23E96E00D62243 /* Data Access Layer */,
 				8001C3FA1C23E96E00D62243 /* CustomViewCells */,
 				8001C3FB1C23E96E00D62243 /* Nibs */,

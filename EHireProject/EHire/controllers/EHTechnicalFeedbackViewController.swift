@@ -68,6 +68,11 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         super.viewDidLoad()
         candidateNameField.stringValue = (selectedCandidate?.name)!
         requisitionNameField.stringValue = (selectedCandidate?.requisition)!
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "DD MMM YYYY"
+        let dateInStringFormat = dateFormatter.stringFromDate((selectedCandidate?.interviewDate)!)
+        dateOfInterviewField.stringValue = dateInStringFormat
         cell?.skilsAndRatingsTitlefield.delegate = self
         technicalFeedbackMainView.wantsLayer = true
         technicalFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
@@ -472,7 +477,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
 
     @IBAction func removeSkills(sender: NSButton)
     {
-        if tableView.selectedRow != -1
+        if tableView.selectedRow >= 4
         {
             skillsAndRatingsTitleArray.removeAtIndex(tableView.selectedRow)
             tableView.reloadData()

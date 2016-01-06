@@ -102,31 +102,22 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
   
     func tableViewSelectionDidChange(notification: NSNotification)
     {
-        let selectedRow:NSInteger = tableView.selectedRow
+        let selectedRow = tableView.selectedRow
+       if selectedRow != -1
+       {
        if let _:Candidate = candidateArray.objectAtIndex(selectedRow) as? Candidate
        {
         feedbackButton.enabled = true
         removeButton.enabled = true
         }
-       else{
+      }
+       else
+       {
         feedbackButton.enabled = false
         removeButton.enabled = false
         }
+
     }
-//    func outlineViewSelectionIsChanging(notification: NSNotification)
-//    {
-//        if let _ = sourceList.itemAtRow(sourceList.selectedRow) as? Technology
-//        {
-//            addDate.enabled = true
-//            addTechnology.enabled = false
-//            
-//        }
-//        else
-//        {
-//            addDate.enabled = false
-//            addTechnology.enabled = true
-//        }
-//    }
 
     //MARK:Actions
     @IBAction func addCandidate(sender: AnyObject)
