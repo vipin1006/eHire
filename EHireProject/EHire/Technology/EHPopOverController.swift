@@ -15,13 +15,16 @@ class EHPopOverController: NSViewController {
 
     @IBOutlet weak var scheduleDatePicker: NSDatePicker!
    
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        
-        self.scheduleDatePicker.dateValue = NSDate()
-
         self.scheduleDatePicker.minDate = NSDate()
-
+        let calendar                    = NSCalendar(identifier: NSCalendarIdentifierGregorian)
+        let currentDate                 = NSDate()
+        let dateComponents              = NSDateComponents()
+        dateComponents.month            = 2
+        let maxDate                     = calendar?.dateByAddingComponents(dateComponents, toDate: currentDate,                                 options:NSCalendarOptions(rawValue: 0))
+        self.scheduleDatePicker.maxDate = maxDate
     }
     
     @IBAction func dateSelection(sender: AnyObject) {

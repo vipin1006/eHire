@@ -28,20 +28,8 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     override func viewDidLoad()
     {
         super.viewDidLoad()
-       // tableView.doubleAction = "PerformDoubleAction"
-      
+       
     }
-    
-//    func PerformDoubleAction()
-//    {
-//        if tableView.selectedRow != -1
-//        {
-//            if let delegate = self.delegate
-//            {
-//                delegate.showFeedbackViewController(self.candidateArray.objectAtIndex(self.tableView.selectedRow) as! Candidate)
-//            }
-//        }
-//    }
     
     //MARK: This data source method returns tableview rows
     func numberOfRowsInTableView(tableView: NSTableView) -> Int
@@ -76,12 +64,9 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             
         else if tableColumn?.identifier == "interviewTime"
         {
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.locale = NSLocale.systemLocale()
-            dateFormatter.dateFormat = "hh:mm"
-           let str = dateFormatter.stringFromDate((candidate?.interviewTime)!)
-            
-            cell.textField?.stringValue = str
+            let interviewTimePicker:NSDatePicker = cell.viewWithTag(10) as! NSDatePicker
+            interviewTimePicker.dateValue = (candidate?.interviewTime)!
+  
         }
             
             else if tableColumn?.identifier == "requisition"
@@ -105,6 +90,8 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     //MARK:Actions
     @IBAction func addCandidate(sender: AnyObject)
     {
+        func addCandidate()
+        {
         let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
         
         let entityDescription = EHCoreDataHelper.createEntity("Candidate", managedObjectContext: appDelegate.managedObjectContext)
@@ -114,7 +101,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         managedObject.phoneNumber = ""
         managedObject.experience =  ""
         managedObject.interviewTime = NSDate()
-        managedObject.requisition = "Requsition"
+        managedObject.requisition = "Requisition"
         managedObject.technologyName = self.technologyName!
         managedObject.interviewDate = self.interviewDate!
         
@@ -122,6 +109,31 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         candidateArray.addObject(managedObject)
         EHCoreDataHelper.saveToCoreData(managedObject)
         tableView.reloadData()
+        }
+        
+        if candidateArray.count > 0
+        {
+            let candidateRecord = candidateArray.lastObject as! Candidate
+            if candidateArray.count > 0 && candidateRecord.name! == "name" || candidateRecord.phoneNumber! == "" || candidateRecord.experience! == " " || candidateRecord.requisition! == "Requisition"
+            {
+                let alert:NSAlert = NSAlert()
+                alert.messageText = "Candiadte can not be added"
+                alert.informativeText = "Please fill the existing candidate details before adding a new candidate"
+                alert.addButtonWithTitle("OK")
+                alert.addButtonWithTitle("Cancel")
+                alert.alertStyle = .WarningAlertStyle
+                alert.runModal()
+            }
+            else
+            {
+                addCandidate()
+            }
+        }
+        else
+        {
+            addCandidate()
+        }
+
 
         
     }
@@ -169,13 +181,26 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     }
     }
     
+    @IBAction func addInterviewTime(sender: AnyObject)
+    {
+        let selectedRow:NSInteger = tableView.selectedRow
+        let selectedCandidate:Candidate = candidateArray.objectAtIndex(selectedRow) as! Candidate
+        selectedCandidate.interviewTime = sender.dateValue
+        EHCoreDataHelper.saveToCoreData(selectedCandidate)
+        
+    }
+    
     @IBAction func enterFeedback(sender: AnyObject)
     {
+        if tableView.selectedRow > -1
+        {
         if let delegate = self.delegate
         {
             let selectedRow:NSInteger = tableView.selectedRow
             let selectedCandidate:Candidate = candidateArray.objectAtIndex(selectedRow) as! Candidate
             delegate.showFeedbackViewController(selectedCandidate)
+            
+        }
         }
     }
     
@@ -212,6 +237,9 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     
     func showAlert(message:String,info:String)
     {
+        let selectedRow = self.tableView.selectedRow
+        if selectedRow != -1
+        {
         _ = self.candidateArray.objectAtIndex(self.tableView.selectedRow) as! Candidate
         
         let alert:NSAlert = NSAlert()
@@ -224,12 +252,13 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         
         if res == NSAlertFirstButtonReturn
         {
-            delete()
+            deleteCandidate()
             
+        }
         }
     }
     
-    func delete()
+    func deleteCandidate()
     {
       if tableView.selectedRow > -1
         {
