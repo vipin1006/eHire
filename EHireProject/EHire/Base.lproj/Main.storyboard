@@ -695,17 +695,6 @@
                                     <action selector="addBtnAction:" target="XfG-lQ-9wD" id="7JM-P5-BDs"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XqD-dp-fcu">
-                                <rect key="frame" x="46" y="5" width="47" height="32"/>
-                                <animations/>
-                                <buttonCell key="cell" type="push" title="-" bezelStyle="rounded" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="onC-nq-jGX">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="deleteAction:" target="XfG-lQ-9wD" id="0mJ-vF-4dK"/>
-                                </connections>
-                            </button>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="37" horizontalPageScroll="10" verticalLineScroll="37" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhg-wP-rCj">
                                 <rect key="frame" x="3" y="46" width="200" height="646"/>
                                 <clipView key="contentView" drawsBackground="NO" id="YXc-TJ-COZ">
@@ -823,8 +812,8 @@
                                 </subviews>
                                 <animations/>
                             </customView>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Yji-KJ-iak">
-                                <rect key="frame" x="93" y="5" width="47" height="32"/>
+                            <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yji-KJ-iak">
+                                <rect key="frame" x="46" y="5" width="47" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="tZN-6y-WnH"/>
                                 </constraints>
@@ -835,6 +824,17 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="addDateAction:" target="XfG-lQ-9wD" id="EFy-YO-R0h"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XqD-dp-fcu">
+                                <rect key="frame" x="93" y="5" width="47" height="32"/>
+                                <animations/>
+                                <buttonCell key="cell" type="push" title="-" bezelStyle="rounded" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="onC-nq-jGX">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="deleteAction:" target="XfG-lQ-9wD" id="0mJ-vF-4dK"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -3938,7 +3938,7 @@ CA
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="V9M-eh-Zzp">
-                                                    <rect key="frame" x="117" y="0.0" width="5" height="102"/>
+                                                    <rect key="frame" x="117" y="0.0" width="4" height="102"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
