@@ -18,6 +18,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var candidateView: NSView!
     
+    @IBOutlet weak var feedbackButton: NSButton!
     @IBOutlet weak var removeButton: NSButton!
     //MARK: Properties
     var candidateArray = NSMutableArray()
@@ -28,7 +29,8 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     override func viewDidLoad()
     {
         super.viewDidLoad()
-       
+       feedbackButton.enabled = false
+        removeButton.enabled = false
     }
     
     //MARK: This data source method returns tableview rows
@@ -87,6 +89,34 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         return 35
     }
   
+    func tableViewSelectionDidChange(notification: NSNotification)
+    {
+        let selectedRow:NSInteger = tableView.selectedRow
+       if let _:Candidate = candidateArray.objectAtIndex(selectedRow) as? Candidate
+       {
+        feedbackButton.enabled = true
+        removeButton.enabled = true
+        }
+       else{
+        feedbackButton.enabled = false
+        removeButton.enabled = false
+        }
+    }
+//    func outlineViewSelectionIsChanging(notification: NSNotification)
+//    {
+//        if let _ = sourceList.itemAtRow(sourceList.selectedRow) as? Technology
+//        {
+//            addDate.enabled = true
+//            addTechnology.enabled = false
+//            
+//        }
+//        else
+//        {
+//            addDate.enabled = false
+//            addTechnology.enabled = true
+//        }
+//    }
+
     //MARK:Actions
     @IBAction func addCandidate(sender: AnyObject)
     {
