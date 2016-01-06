@@ -170,9 +170,18 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     //MARK:- Textfield delegate Method
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
     {
-        let skillSetObject =  managerialFeedbackModel?.skillSet[control.tag]
-        skillSetObject?.skillName = fieldEditor.string!
+        
+       
         return true
+    }
+    
+    override func controlTextDidEndEditing(obj: NSNotification){
+        let textFieldObject = obj.object as! NSTextField
+        if textFieldObject.superview is EHManagerFeedBackCustomTableView{
+            
+            let skillSetObject =  managerialFeedbackModel?.skillSet[textFieldObject.tag]
+            skillSetObject?.skillName = textFieldObject.stringValue
+        }
     }
     
  //MARK:- Method to add new skills
@@ -414,7 +423,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     {
         var isValid : Bool = false
         if cell?.feedBackRating.stringValue==""{
-            alertPopup("Select Stars", informativeText: "Please select stars inside tableview to provide your feedback")
+            alertPopup("Select Stars", informativeText: "Please provide rating for technical skills")
             return isValid
         }else if !validationForTextView(textViewCommentsForOverAllTechnologyAssessment,title: "Overall Feedback On Technology",informativeText: "Overall assessment of Technology field shold not be blank"){
             
@@ -447,10 +456,10 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         }else if !validationForTextfield(textFieldPosition,title: "Position",informativeText: "Position Field Should not be empty"){
            
             return isValid
-        }else if !validationForTextfield(labelOverAllAssessmentOfCandidate,title: "Select Stars",informativeText: "Please select stars to provide your feedback inside overall assessment of Candidate"){
+        }else if !validationForTextfield(labelOverAllAssessmentOfCandidate,title: "Select Stars",informativeText: "Please  provide ratings for overall assessment of Candidate"){
             
             return isValid
-        }else if !validationForTextfield(labelOverAllAssessmentOfTechnology,title: "Select Stars",informativeText: "Please select stars to provide your feedback inside overall assessment on Technology"){
+        }else if !validationForTextfield(labelOverAllAssessmentOfTechnology,title: "Select Stars",informativeText: "Please  provide ratings for overall assessment on Technology"){
             
             return isValid
         }else{
@@ -521,7 +530,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             }
         let managerFeedbackAccessLayer = EHManagerFeedbackDataAccessLayer(managerFeedbackModel: managerialFeedbackModel)
         if managerFeedbackAccessLayer.insertManagerFeedback(selectedCandidate!){
-           alertPopup("Success",informativeText:"Data added successfully")
+           alertPopup("Success",informativeText:"Feedback for Managerround \((selectedCandidate?.interviewedByManagers?.count)!) has been sucessfully saved")
         }
         }
         

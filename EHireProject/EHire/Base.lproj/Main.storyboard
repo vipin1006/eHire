@@ -2391,6 +2391,7 @@ CA
                                                         <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                                     </dictionary>
                                                 </binding>
+                                                <outlet property="delegate" destination="Xv2-bq-xG1" id="A0T-ym-DwM"/>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GrJ-ke-wtk">
@@ -2480,6 +2481,9 @@ CA
                                                     <string>NSAllRomanInputSourcesLocaleIdentifier</string>
                                                 </allowedInputSourceLocales>
                                             </textFieldCell>
+                                            <connections>
+                                                <outlet property="delegate" destination="Xv2-bq-xG1" id="9CT-2h-7jy"/>
+                                            </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dDN-kg-YyI">
                                             <rect key="frame" x="170" y="62" width="27" height="29"/>
@@ -2509,6 +2513,7 @@ CA
                                             </textFieldCell>
                                             <connections>
                                                 <binding destination="FMP-R4-GZw" name="value" keyPath="self.designation" id="KUH-4A-62H"/>
+                                                <outlet property="delegate" destination="CXt-am-yMK" id="fRE-mq-GPn"/>
                                             </connections>
                                         </textField>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yXQ-PR-0Ho">
@@ -2521,6 +2526,7 @@ CA
                                             </textFieldCell>
                                             <connections>
                                                 <binding destination="FMP-R4-GZw" name="value" keyPath="self.recommendedCg" id="HIm-DX-8n8"/>
+                                                <outlet property="delegate" destination="Xv2-bq-xG1" id="mM1-3Q-0mi"/>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1re-sB-9I6">
@@ -2704,6 +2710,7 @@ CA
                                             </textFieldCell>
                                             <connections>
                                                 <binding destination="FMP-R4-GZw" name="value" keyPath="self.managerName" id="Ulq-Ky-VCj"/>
+                                                <outlet property="delegate" destination="Xv2-bq-xG1" id="Au7-Mj-dPh"/>
                                             </connections>
                                         </textField>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PpM-MF-Fnn">
@@ -3412,7 +3419,7 @@ CA
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="o8J-1Q-g57">
-                                                    <rect key="frame" x="167" y="0.0" width="4" height="139"/>
+                                                    <rect key="frame" x="167" y="0.0" width="5" height="139"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -3573,7 +3580,7 @@ CA
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="IkI-SV-GgS">
-                                                    <rect key="frame" x="338" y="0.0" width="5" height="103"/>
+                                                    <rect key="frame" x="338" y="0.0" width="4" height="103"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -3935,7 +3942,7 @@ CA
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="eNs-qS-ZTJ">
-                                                    <rect key="frame" x="444" y="0.0" width="4" height="96"/>
+                                                    <rect key="frame" x="444" y="0.0" width="5" height="96"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
