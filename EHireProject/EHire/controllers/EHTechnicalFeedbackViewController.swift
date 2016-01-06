@@ -129,9 +129,9 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 {
                     let skillset = object as! SkillSet
                     
-                    let newSkill = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)!,insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)
+                    let newSkill = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:(selectedCandidate?.managedObjectContext)!)!,insertIntoManagedObjectContext:selectedCandidate?.managedObjectContext)
                     
-                    newSkill.skillName = skillset.skillName
+                    newSkill.skillName   = skillset.skillName
                     newSkill.skillRating = skillset.skillRating
                     skillsAndRatingsTitleArray.append(newSkill)
                 }
@@ -434,10 +434,9 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }
         else
         {
-            let newSkill = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)!,insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext)
+            let newSkill = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:selectedCandidate!.managedObjectContext!)!,insertIntoManagedObjectContext:selectedCandidate?.managedObjectContext)
             
                 newSkill.skillName = "Enter Title"
-                newSkill.skillRating = 0
                 self.skillsAndRatingsTitleArray.append(newSkill)
                 tableView.reloadData()
         }
