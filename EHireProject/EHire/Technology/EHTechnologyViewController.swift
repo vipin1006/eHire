@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutlineViewDataSource,DataCommunicator,FeedbackDelegate,NSTextFieldDelegate {
+class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutlineViewDataSource,DataCommunicator,FeedbackDelegate,NSTextFieldDelegate,FeedbackControllerDelegate{
     
     // Technology View
     @IBOutlet weak var sourceList: NSOutlineView!
@@ -344,8 +344,11 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         print("The candidate is \(selectedCandidate)")
         
-        for views in self.view.subviews{
-            views.removeFromSuperview()
+        for views in self.view.subviews
+        {
+            views.hidden = true
+
+            //views.removeFromSuperview()
         }
         feedbackViewController = self.storyboard?.instantiateControllerWithIdentifier("EHFeedbackViewController") as? EHFeedbackViewController
         
@@ -353,7 +356,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         feedbackViewController?.view.frame = self.view.bounds
         
-        
+        feedbackViewController?.delegate = self
         
         self.view.addSubview((feedbackViewController?.view)!)
         
@@ -362,6 +365,15 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         //
         
     }
+    
+    func feedbackViewControllerDidFinish(selectedCandidate:Candidate)
+    {
+        for views in self.view.subviews {
+            views.hidden = false
+        }
+        candidateController?.refresh()
+    }
+    
     //MARK:- TextField Delegate methods
     // this method will add new technology name to the technlogy list
     override func controlTextDidEndEditing(obj: NSNotification)
