@@ -116,6 +116,7 @@ class EHFeedbackViewController: NSViewController
     {
         switch self.typeOfInterview.selectedSegment
         {
+        //For Technical Feedback Rounds
         case 0:
             switch self.subRound.selectedSegment
             {
@@ -258,28 +259,20 @@ class EHFeedbackViewController: NSViewController
             isHrLoaded = true
         }
     }
+    
     @IBAction func dismissFeedbackView(sender: AnyObject)
     {
         self.view.removeFromSuperview()
         self.delegate?.feedbackViewControllerDidFinish(selectedCandidate!)
     }
     
-    func createConstraintsForManagerFeedbackController(leading:CGFloat,trailing:CGFloat,top:CGFloat,bottom:CGFloat){
-        
+    func createConstraintsForManagerFeedbackController(leading:CGFloat,trailing:CGFloat,top:CGFloat,bottom:CGFloat)
+    {
         managerFeedback!.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        
         let xLeadingSpace = NSLayoutConstraint(item: (managerFeedback?.view)!, attribute: .Leading, relatedBy: .Equal, toItem:self.scrollViewHr, attribute: .Leading, multiplier: 1, constant: leading)
-        
         let xTrailingSpace = NSLayoutConstraint(item: (managerFeedback?.view)!, attribute: .Trailing, relatedBy: .Equal, toItem: self.scrollViewHr, attribute: .Trailing, multiplier: 1, constant: trailing)
-        
         let yTopSpace = NSLayoutConstraint(item: (managerFeedback?.view)!, attribute:  .Top, relatedBy: .Equal, toItem: self.scrollViewHr, attribute: .Top, multiplier: 1, constant: top)
-        
         let yBottomSpace = NSLayoutConstraint(item: (managerFeedback?.view)!, attribute: .Bottom, relatedBy: .Equal, toItem: self.scrollViewHr, attribute: .Bottom, multiplier: 1, constant: bottom)
         self.view .addConstraints([xLeadingSpace,xTrailingSpace,yTopSpace,yBottomSpace])
-        
     }
-    
-    
-    
 }

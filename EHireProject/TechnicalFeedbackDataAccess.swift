@@ -23,7 +23,6 @@ class TechnicalFeedbackDataAccess: NSObject
          technicalFeedback.setValue(technicalFeedbackmodel.recommendation,        forKey: "recommendation")
         technicalFeedback.setValue(NSNumber(int: technicalFeedbackmodel.ratingOnCandidate!), forKey: "ratingOnCandidate")
         technicalFeedback.setValue(NSNumber(int: technicalFeedbackmodel.ratingOnTechnical!), forKey: "ratingOnTechnical")
-       
         technicalFeedback.setValue(selectedCandidate, forKey: "candidate")
         technicalFeedback.candidateSkills = NSMutableSet(array: technicalFeedbackmodel.skills!)
         technicalFeedback.setValue(technicalFeedbackmodel.designation, forKey: "designation")
