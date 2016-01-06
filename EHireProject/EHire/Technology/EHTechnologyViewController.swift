@@ -290,23 +290,27 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     }
     
     
-    func deleteItem() {
-        if let selectedItem = sourceList.itemAtRow(sourceList.selectedRow) as? Technology{
+    func deleteItem()
+    {
+        if let selectedItem = sourceList.itemAtRow(sourceList.selectedRow) as? Technology
+        {
             // Condition to check new added technology is deletable
-            if !cellTechnology!.textFieldTechnology.editable{
-                technologyArray.removeAtIndex(self.sourceList.selectedRow)
+            if !cellTechnology!.textFieldTechnology.editable
+            {
+                technologyArray = []
                 EHTechnologyDataLayer.deleteTechnologyFromCoreData(selectedItem)
+                technologyArray = EHTechnologyDataLayer.getSourceListContent() as! [Technology]
+                addTechnology.enabled = true
+                addDate.enabled = false
             }
         }
-            
-        else{
-
+            else
+        {
             let selectedInterviewDate = sourceList.itemAtRow(sourceList.selectedRow) as? Date
             let parentTechnology = sourceList.parentForItem(selectedInterviewDate)
             parentTechnology!.interviewDates?!.removeObject(selectedInterviewDate!)
             EHTechnologyDataLayer.deleteInterviewDateFromCoreData(selectedInterviewDate!)
         }
-        
         self.sourceList.reloadData()
     }
     
