@@ -136,6 +136,14 @@ class EHHrFeedbackViewController: NSViewController {
                 setClearColor(self.currentSalaryVariable)
                 return
             }
+            if isNumberValid(self.highestEducationPercentage.stringValue) == false
+            {
+                showAlert("Invalid data entered", info:"Please enter percentage in numbers")
+                setBoarderColor(self.highestEducationPercentage)
+                setClearColor(self.currentSalaryVariable)
+                return
+            }
+
             
             candidateInfo["candidateName"] = candidateName.stringValue
             candidateInfo["candidateBusinessUnit"] = candidateBusinessUnit.stringValue
