@@ -253,14 +253,34 @@ class EHFeedbackViewController: NSViewController {
                 
             case 1:
                 print (self.subRound.selectedSegment)
-                let allObj = selectedCandidate?.interviewedByManagers?.allObjects
 
-                let isCandidaterRejected =   managerFeedback?.sortArray(allObj!, index:self.subRound.selectedSegment)
-                if (isCandidaterRejected == false){
-                    typeOfInterview.setSelected(true, forSegment: 1)
-                    subRound.setSelected(true, forSegment: 0)
-                    return
+                if managerFeedback?.selectedCandidate?.interviewedByManagers?.count > self.subRound.selectedSegment{
+                    
+                    let allObj = selectedCandidate?.interviewedByManagers?.allObjects
+                    let isCandidaterRejected =   managerFeedback?.sortArray(allObj!, index:self.subRound.selectedSegment)
+                    if (isCandidaterRejected == false){
+                        typeOfInterview.setSelected(true, forSegment: 1)
+                        subRound.setSelected(true, forSegment: 0)
+                        return
+                    }
 
+                }
+                    
+                else  if managerFeedback?.selectedCandidate?.interviewedByManagers?.count == 1{
+                    let allObj = selectedCandidate?.interviewedByManagers?.allObjects
+                    let isCandidaterRejected =   managerFeedback?.sortArray(allObj!, index:self.subRound.selectedSegment)
+                    if (isCandidaterRejected == false){
+                        typeOfInterview.setSelected(true, forSegment: 1)
+                        subRound.setSelected(true, forSegment: 0)
+                        return
+                    }
+                }
+                else  if managerFeedback?.selectedCandidate?.interviewedByManagers?.count == 0{
+                    Utility.alertPopup("Alert", informativeText: "Round one is not added", okCompletionHandler: nil)
+                }
+                else
+                {
+                    managerFeedback?.refreshAllFields()
                 }
 
 

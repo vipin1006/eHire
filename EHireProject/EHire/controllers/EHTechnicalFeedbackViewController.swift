@@ -111,9 +111,9 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     {
         if selectedCandidate != nil
         {
-            for x in (selectedCandidate?.interviewedByTechLeads)!
-            {
-                let feedback = x as! TechnicalFeedBack
+//            for x in (selectedCandidate?.interviewedByTechLeads)!
+//            {
+                //let feedback1 = x as! TechnicalFeedBack
                 textViewOfCandidateAssessment.string = feedback.commentsOnCandidate
                 technicalFeedbackModel.ratingOnTechnical = Int32((feedback.ratingOnTechnical?.integerValue)!)
                 textViewOfTechnologyAssessment.string = feedback.commentsOnTechnology
@@ -138,6 +138,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                     skillsAndRatingsTitleArray.append(newSkill)
                 }
                 
+                tableView.reloadData()
                 if !(technicalFeedbackModel.ratingOnTechnical == nil)
                 {
                     for stars in overallAssessmentOnTechnologyStarView.subviews
@@ -164,7 +165,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                     }
                 }
             }
-        }
+        //}
 
     }
     
