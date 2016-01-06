@@ -26,6 +26,7 @@ class EHManagerFeedbackDataAccessLayer: NSObject {
         managerFeedback.setValue(self.managerFeedbackmodel?.commentsOnCandidate?.string, forKey: "commentsOnCandidate")
             
         managerFeedback.setValue(self.managerFeedbackmodel?.commentsOnTechnology?.string, forKey: "commentsOnTechnology")
+        
             
         managerFeedback.setValue(self.managerFeedbackmodel?.commitments?.string, forKey: "commitments")
         
@@ -55,6 +56,8 @@ class EHManagerFeedbackDataAccessLayer: NSObject {
         managerFeedback.setValue(self.managerFeedbackmodel?.recommendedCg, forKey: "recommendedCg")
 
         managerFeedback.setValue(self.managerFeedbackmodel?.designation, forKey: "designation")
+        managerFeedback.setValue(self.managerFeedbackmodel?.managerName, forKey: "managerName")
+        
         
         managerFeedback.setValue(candidate as Candidate, forKey: "candidate")
         candidate.interviewedByManagers?.setByAddingObject(managerFeedback)
