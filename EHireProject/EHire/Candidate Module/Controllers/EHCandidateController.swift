@@ -28,20 +28,20 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        tableView.doubleAction = "PerformDoubleAction"
+       // tableView.doubleAction = "PerformDoubleAction"
       
     }
     
-    func PerformDoubleAction()
-    {
-        if tableView.selectedRow != -1
-        {
-            if let delegate = self.delegate
-            {
-                delegate.showFeedbackViewController(self.candidateArray.objectAtIndex(self.tableView.selectedRow) as! Candidate)
-            }
-        }
-    }
+//    func PerformDoubleAction()
+//    {
+//        if tableView.selectedRow != -1
+//        {
+//            if let delegate = self.delegate
+//            {
+//                delegate.showFeedbackViewController(self.candidateArray.objectAtIndex(self.tableView.selectedRow) as! Candidate)
+//            }
+//        }
+//    }
     
     //MARK: This data source method returns tableview rows
     func numberOfRowsInTableView(tableView: NSTableView) -> Int
@@ -169,6 +169,15 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     }
     }
     
+    @IBAction func enterFeedback(sender: AnyObject)
+    {
+        if let delegate = self.delegate
+        {
+            let selectedRow:NSInteger = tableView.selectedRow
+            let selectedCandidate:Candidate = candidateArray.objectAtIndex(selectedRow) as! Candidate
+            delegate.showFeedbackViewController(selectedCandidate)
+        }
+    }
     
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
         
