@@ -216,6 +216,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 if tempBtn.tag+1 == skill.skillRating
                 {
                    toDisplayRatingStar((cell?.starCustomView.subviews)!, sender: tempBtn, feedbackText: cellView.feedback, view: (cell?.starCustomView!)!)
+                    break
                 }
                 else
                 {
