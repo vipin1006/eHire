@@ -129,8 +129,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         cell.titleName.editable = true
       self.cell = cell
         if !(skillSetObject.skillRating == nil) {
-            for starBtn in cell.selectStar.subviews{
-                let tempBtn = starBtn as! NSButton
+            for starButton in cell.selectStar.subviews{
+                let tempBtn = starButton as! NSButton
                 if tempBtn.tag+1 == (skillSetObject.skillRating!){
                     displayStar(cell, lbl: cell.feedBackRating, sender: tempBtn )
                 }
@@ -576,8 +576,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         }
         
         if !(managerialFeedbackModel.ratingOnTechnical == nil) {
-            for starBtn in viewOverAllAssessmentOfTechnologyStar.subviews{
-                let tempBtn = starBtn as! NSButton
+            for starButton in viewOverAllAssessmentOfTechnologyStar.subviews{
+                let tempBtn = starButton as! NSButton
                 if tempBtn.tag == (managerialFeedbackModel.ratingOnTechnical!-1){
                     displayStar(viewOverAllAssessmentOfTechnologyStar, lbl: labelOverAllAssessmentOfTechnology, sender: tempBtn )
                 }
@@ -586,8 +586,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         
         
         if !(managerialFeedbackModel.ratingOnCandidate == nil) {
-            for starBtn in viewOverAllAssessmentOfCandidateStar.subviews{
-                let tempBtn = starBtn as! NSButton
+            for starButton in viewOverAllAssessmentOfCandidateStar.subviews{
+                let tempBtn = starButton as! NSButton
                 if tempBtn.tag == (managerialFeedbackModel.ratingOnCandidate!-1){
                     displayStar(viewOverAllAssessmentOfCandidateStar, lbl: labelOverAllAssessmentOfCandidate, sender: tempBtn )
                 }
@@ -597,6 +597,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
 
     }
     
+
     func sortArray (allObj : [AnyObject],index:Int) ->Bool{
         let arra = NSArray(array: allObj)
         
@@ -607,15 +608,13 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
            let managerFeedback =  sortedResults[0] as! ManagerFeedBack
             if managerFeedback.recommendation == "Rejected" && index == 1 {
                 Utility.alertPopup("Alert", informativeText: "Candidate has been rejected", okCompletionHandler: nil)
-                return false;
+                return false
             }
         }
-        
-        updateUIElements(sortedResults[index] as! ManagerFeedBack)
-        saveBtn.enabled = false
-        return true;
+        return true
 
     }
+    
     
     func refreshAllFields()
     {
@@ -641,14 +640,14 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
 
         tableView.reloadData()
         
-        for starBtn in viewOverAllAssessmentOfTechnologyStar.subviews{
-            let tempBtn = starBtn as! NSButton
+        for starButton in viewOverAllAssessmentOfTechnologyStar.subviews{
+            let tempBtn = starButton as! NSButton
             tempBtn.image = NSImage(named: "deselectStar")
 
             }
         
-        for starBtn in viewOverAllAssessmentOfCandidateStar.subviews{
-            let tempBtn = starBtn as! NSButton
+        for starButton in viewOverAllAssessmentOfCandidateStar.subviews{
+            let tempBtn = starButton as! NSButton
             tempBtn.image = NSImage(named: "deselectStar")
         }
         labelOverAllAssessmentOfCandidate.stringValue = ""
@@ -661,3 +660,4 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     }
     
 }
+
