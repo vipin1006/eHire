@@ -31,7 +31,7 @@ class EHFeedbackViewController: NSViewController
     var techFeedback : EHTechnicalFeedbackViewController?
     var technicalFeedbackModel = EHTechnicalFeedbackModel()
     var selectedCandidate:Candidate?
-    
+    //var candidateObject:EHCandidateController?
     let dataAccess = TechnicalFeedbackDataAccess()
     
     //MARK: View Life Cycle
@@ -270,8 +270,13 @@ class EHFeedbackViewController: NSViewController
     
     @IBAction func dismissFeedbackView(sender: AnyObject)
     {
+//        candidateObject = EHCandidateController()
+//        candidateObject?.feedbackButton!.enabled = false
+//        candidateObject?.removeButton!.enabled = false
+
         self.view.removeFromSuperview()
         self.delegate?.feedbackViewControllerDidFinish(selectedCandidate!)
+        
     }
     
     func createConstraintsForManagerFeedbackController(leading:CGFloat,trailing:CGFloat,top:CGFloat,bottom:CGFloat)
