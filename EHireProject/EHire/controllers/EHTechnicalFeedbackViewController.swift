@@ -55,7 +55,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
            
             skillsAndRatingsTitleArray.append(communication)
         }
-       
     }
     
     override func loadView()
@@ -81,7 +80,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         
         for ratingView in overallAssessmentOfCandidateStarView.subviews
         {
-            
             let view = ratingView as! NSButton
             view.target = self
             view.action = "assessmentOfCandidate:"
@@ -96,7 +94,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         tableView.reloadData()
     }
     
-    //MARK: To sort
+    //MARK: To Sort
     func sortArray (candidateObjects : [AnyObject],index:Int)
     {
         let sortingArray = NSArray(array: candidateObjects)
@@ -106,7 +104,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         retrievalOfInterviewData(sortedResults[index] as! TechnicalFeedBack)
     }
     
-    //MARK: Retrieval Of Round One
+    //MARK: Retrieval Of Interview feedback Details
     func retrievalOfInterviewData(feedback : TechnicalFeedBack)
     {
         if selectedCandidate != nil
@@ -235,27 +233,14 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }
         return cellView
     }
-
-    // To Display the Alert Message
-    
-    func alertPopup(data:String, informativeText:String)
-    {
-        let alert:NSAlert = NSAlert()
-        alert.messageText = data
-        alert.informativeText = informativeText
-        alert.addButtonWithTitle("OK")
-        alert.addButtonWithTitle("Cancel")
-        alert.runModal()
-    }
     
     // To Display The Stars inside TableView
-    
     func starRatingCount(sender : NSButton)
     {
         let ratingCell = sender.superview?.superview as! EHRatingsTableCellView
         if ratingCell.skilsAndRatingsTitlefield.stringValue == "Enter Title"
         {
-            alertPopup("Enter the Title", informativeText: "Please select and click on Enter Title field to give title name")
+            Utility.alertPopup("Enter the Title", informativeText: "Please select and click on Enter Title field to give title name", okCompletionHandler: nil)
             return
         }
         let totalView = ratingCell.starCustomView.subviews
@@ -445,7 +430,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     {
         if skillsAndRatingsTitleArray.count > 0 && cell?.skilsAndRatingsTitlefield.stringValue == "Enter Title"
         {
-            alertPopup("Enter Title", informativeText: "Please enter previous selected title")
+           Utility.alertPopup("Enter Title", informativeText: "Please enter previous selected title", okCompletionHandler: nil)
         }
         else
         {
@@ -530,11 +515,11 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
       
          if dataAccessModel.insertIntoTechnicalFeedback(technicalFeedbackModel, selectedCandidate: selectedCandidate!)
           {
-            alertPopup("Data Saved", informativeText: "Saved Successfully")
+            Utility.alertPopup("Data Saved", informativeText: "Saved Successfully", okCompletionHandler: nil)
           }
           else
           {
-            alertPopup("Data not Saved", informativeText: "Some Problem is there while saving")
+             Utility.alertPopup("Data not Saved", informativeText: "Some Problem is there while saving", okCompletionHandler: nil)
           }
         }
     }
@@ -573,53 +558,53 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         
         if cell?.feedback.stringValue == ""
         {
-            alertPopup("Select Stars", informativeText: "Please select stars inside tableview to provide your feedback")
+            Utility.alertPopup("Select Stars", informativeText: "Please select stars inside tableview to provide your feedback", okCompletionHandler: nil)
             return isValid
         }
             
         else if ratingOnTechnologyField.stringValue == ""
         {
-            alertPopup("Select Stars", informativeText: "Please select stars to provide your feedback inside overall assessment on Technology")
+            Utility.alertPopup("Select Stars", informativeText: "Please select stars to provide your feedback inside overall assessment on Technology", okCompletionHandler: nil)
             return isValid
         }
             
         else if ratingOfCandidateField.stringValue == ""
         {
-            alertPopup("Select Stars", informativeText: "Please select stars to provide your feedback inside overall assessment of Candidate")
+            Utility.alertPopup("Select Stars", informativeText: "Please select stars to provide your feedback inside overall assessment of Candidate", okCompletionHandler: nil)
             return isValid
         }
             
         else if textViewOfTechnologyAssessment.string == ""
         {
-            alertPopup("Overall Feedback On Technology", informativeText: "Please enter your feedback on Technology")
+             Utility.alertPopup("Overall Feedback On Technology", informativeText: "Please enter your feedback on Technology", okCompletionHandler: nil)
             return isValid
         }
             
         else if textViewOfCandidateAssessment.string == ""
         {
-            alertPopup("Overall Feedback Of Candidate", informativeText: "Overall assessment of Candidate field shold not be blank")
+            Utility.alertPopup("Overall Feedback Of Candidate", informativeText: "Overall assessment of Candidate field shold not be blank", okCompletionHandler: nil)
             return isValid
         }
             
         else if designationField.stringValue == ""
         {
-            alertPopup("Designation of Candidate", informativeText: "Designation Field should not be blank")
+            Utility.alertPopup("Designation of Candidate", informativeText: "Designation Field should not be blank", okCompletionHandler: nil)
             return isValid
         }
             
         else if interviewedByField.stringValue.characters.count == 0
         {
-            alertPopup("Interviewer Name", informativeText: "Please enter the interviewer field should not be blank")
+            Utility.alertPopup("Interviewer Name", informativeText: "Please enter the interviewer field should not be blank", okCompletionHandler: nil)
             return isValid
         }
         else if overallCandidateRating == 0
         {
-             alertPopup("Overall CandidateRating", informativeText: "Please provide your feedback of Candidate should not be blank")
+             Utility.alertPopup("Overall CandidateRating", informativeText: "Please provide your feedback of Candidate should not be blank", okCompletionHandler: nil)
             return isValid
         }
         else if overallTechnicalRating == 0
         {
-            alertPopup("Overall TechnicalRating", informativeText: "Please provide your feedback on Technology should not be blank")
+            Utility.alertPopup("Overall TechnicalRating", informativeText: "Please provide your feedback on Technology should not be blank", okCompletionHandler: nil)
             return isValid
         }
         else
@@ -643,7 +628,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
       skillsAndRatingsTitleArray.removeAll()
       initialSetupOfTableView()
       tableView.reloadData()
-        
       ratingOfCandidateField.stringValue = ""
       ratingOnTechnologyField.stringValue = ""
         for stars in overallAssessmentOfCandidateStarView.subviews
