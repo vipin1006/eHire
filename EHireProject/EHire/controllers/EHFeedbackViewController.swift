@@ -96,7 +96,7 @@ class EHFeedbackViewController: NSViewController {
         case 1:
             let techLeadCount = (selectedCandidate?.interviewedByTechLeads)!.count
             
-            if techLeadCount < 3{
+            if techLeadCount == 0{
                 techFeedback?.alertPopup("Sorry", informativeText: "Technical round is not yet Completed")
                 typeOfInterview.setSelected(true, forSegment: 0)
                 
@@ -218,7 +218,6 @@ class EHFeedbackViewController: NSViewController {
                 
                 print("Round One")
                 
-                
                 if managerFeedback?.selectedCandidate?.interviewedByManagers?.count != 0{
                     let allObj = selectedCandidate?.interviewedByManagers?.allObjects
                     managerFeedback?.sortArray(allObj!, index:self.subRound.selectedSegment)
@@ -227,34 +226,17 @@ class EHFeedbackViewController: NSViewController {
                 
             case 1:
                 print (self.subRound.selectedSegment)
-                if managerFeedback?.selectedCandidate?.interviewedByManagers?.count > self.subRound.selectedSegment{
-                    
-                    let allObj = selectedCandidate?.interviewedByManagers?.allObjects
-                    managerFeedback?.sortArray(allObj!, index:self.subRound.selectedSegment)
+                let allObj = selectedCandidate?.interviewedByManagers?.allObjects
+
+                let isCandidaterRejected =   managerFeedback?.sortArray(allObj!, index:self.subRound.selectedSegment)
+                if (isCandidaterRejected == false){
+                    typeOfInterview.setSelected(true, forSegment: 1)
+                    subRound.setSelected(true, forSegment: 0)
+                    return
+
                 }
-                else
-                {
-                    managerFeedback?.refreshAllFields()
-                }
-                
-                
-                
-//                
-//                               else
-//                {
-//                    
-//                    for x in (selectedCandidate?.interviewedByTechLeads)!
-//                    {
-//                        let feedBack = x as! TechnicalFeedBack
-//                        
-//                        if feedBack.recommendation == "Rejected"
-//                        {
-//                            techFeedback?.alertPopup("Candidate Rejected", informativeText: "Selected Candidate Rejected in Round One")
-//                            
-//                        }
-//                    }
-//                }
-                
+
+
                 print("Round Two")
                 
             default:
