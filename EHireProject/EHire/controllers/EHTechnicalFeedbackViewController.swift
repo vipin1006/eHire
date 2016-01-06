@@ -207,6 +207,12 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 {
                    toDisplayRatingStar((cell?.starCustomView.subviews)!, sender: tempBtn, feedbackText: cellView.feedback, view: (cell?.starCustomView!)!)
                 }
+                else
+                {
+                    tempBtn.image = NSImage(named: "deselectStar")
+                    cellView.feedback.stringValue = ""
+                    
+                }
             }
         }
         for ratingsView in cellView.starCustomView.subviews
