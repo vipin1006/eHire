@@ -47,6 +47,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         technologyArray = EHTechnologyDataLayer.getSourceListContent() as! [Technology]
         addDate.toolTip = "Add New Date"
         addTechnology.toolTip = "Add New Technology"
+    
         deleteTechnologyDate.toolTip = "Delete Date or Technology"
         addDate.enabled = false
         self.sourceList.reloadData()
@@ -185,7 +186,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
             let x = item as! Technology
             if x.technologyName == ""{
-                parent.textFieldTechnology.editable = true
+               // parent.textFieldTechnology.editable = true
                 parent.textFieldTechnology.backgroundColor = NSColor.whiteColor()
                 
             }else{
@@ -310,12 +311,25 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             let parentTechnology = sourceList.parentForItem(selectedInterviewDate)
             parentTechnology!.interviewDates?!.removeObject(selectedInterviewDate!)
             EHTechnologyDataLayer.deleteInterviewDateFromCoreData(selectedInterviewDate!)
+            if isCandidatesViewLoaded
+            {
+                
+                candidateController?.view.removeFromSuperview()
+                isCandidatesViewLoaded = false
+            }
         }
         self.sourceList.reloadData()
     }
     
     @IBAction func addDateAction(button: NSButton)
     {
+      //  if technologyArray.count == 0
+       // {
+        //   alertPopup("Can not add a Date", informativeText: "Please add a Technology before adding a Date", inTag: 0)
+            
+           // addTechnology.enabled = true
+       // }
+       // else{
         datePopOver = NSPopover()
         //Make the calendar popover go away when clicked elsewhere
         datePopOver.behavior = NSPopoverBehavior.Transient
@@ -323,6 +337,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         datePopOver.contentViewController = datePopOverController
         datePopOverController!.delegate = self
         datePopOver.showRelativeToRect(button.bounds, ofView:button, preferredEdge:NSRectEdge.MaxY)
+       // }
     }
     
     func showFeedbackViewController(selectedCandidate:Candidate){
@@ -356,10 +371,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         let textFieldObject = obj.object as! NSTextField
         
-        if (textFieldObject.stringValue == ""){
-            textFieldObject.removeFromSuperview()
-        }
-        else{
+        if (!(textFieldObject.stringValue == ""))
+       
+        {
             if isValidTechnologyName(textFieldObject.stringValue)
             {
                 if isNumberValid(textFieldObject.stringValue) == true
@@ -377,13 +391,17 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 addTechnology.enabled = true
                 EHTechnologyDataLayer.addTechnologyToCoreData(technologyObject)
                 
+                 self.sourceList.reloadData()
+                
             }
             else{
                 Utility.alertPopup("Error", informativeText: "Technology name should be unique",okCompletionHandler: nil)
 
             }
+            
+            
         }
-        self.sourceList.reloadData()
+       
     }
     
     

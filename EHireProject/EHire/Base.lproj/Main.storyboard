@@ -690,17 +690,6 @@
                                     <action selector="addBtnAction:" target="XfG-lQ-9wD" id="7JM-P5-BDs"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XqD-dp-fcu">
-                                <rect key="frame" x="46" y="5" width="47" height="32"/>
-                                <animations/>
-                                <buttonCell key="cell" type="push" title="-" bezelStyle="rounded" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="onC-nq-jGX">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="deleteAction:" target="XfG-lQ-9wD" id="0mJ-vF-4dK"/>
-                                </connections>
-                            </button>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="37" horizontalPageScroll="10" verticalLineScroll="37" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhg-wP-rCj">
                                 <rect key="frame" x="3" y="46" width="200" height="646"/>
                                 <clipView key="contentView" drawsBackground="NO" id="YXc-TJ-COZ">
@@ -816,10 +805,9 @@
                                 <animations/>
                             </customView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Yji-KJ-iak">
-                                <rect key="frame" x="93" y="5" width="47" height="32"/>
+                                <rect key="frame" x="46" y="5" width="47" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="Nng-PT-oZm"/>
-                                    <constraint firstAttribute="width" constant="35" id="k5T-k4-cwR"/>
+                                    <constraint firstAttribute="width" constant="35" id="LfP-mS-huK"/>
                                 </constraints>
                                 <animations/>
                                 <buttonCell key="cell" type="push" title="+" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5q0-bf-uUd">
@@ -830,24 +818,34 @@
                                     <action selector="addDateAction:" target="XfG-lQ-9wD" id="EFy-YO-R0h"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XqD-dp-fcu">
+                                <rect key="frame" x="93" y="5" width="47" height="32"/>
+                                <animations/>
+                                <buttonCell key="cell" type="push" title="-" bezelStyle="rounded" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="onC-nq-jGX">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="deleteAction:" target="XfG-lQ-9wD" id="0mJ-vF-4dK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="XqD-dp-fcu" firstAttribute="baseline" secondItem="eBm-x4-76f" secondAttribute="baseline" id="0Mc-rd-4mI"/>
                             <constraint firstItem="5ml-91-1WV" firstAttribute="leading" secondItem="yhg-wP-rCj" secondAttribute="trailing" constant="8" id="5Tw-ay-xjA"/>
                             <constraint firstItem="5ml-91-1WV" firstAttribute="height" secondItem="Jsz-AD-4om" secondAttribute="height" constant="24" id="7Uu-iv-mgT"/>
+                            <constraint firstItem="Yji-KJ-iak" firstAttribute="baseline" secondItem="XqD-dp-fcu" secondAttribute="baseline" id="8I2-qm-2LB"/>
                             <constraint firstItem="5ml-91-1WV" firstAttribute="baseline" secondItem="Jsz-AD-4om" secondAttribute="baseline" constant="1" id="DFs-zb-sIA"/>
-                            <constraint firstItem="XqD-dp-fcu" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="52" id="PaL-22-C2X"/>
+                            <constraint firstItem="eBm-x4-76f" firstAttribute="leading" secondItem="yhg-wP-rCj" secondAttribute="leading" id="QIK-Tm-ZdZ"/>
                             <constraint firstItem="5ml-91-1WV" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="8" id="Rin-G1-aEB"/>
-                            <constraint firstAttribute="bottom" secondItem="XqD-dp-fcu" secondAttribute="bottom" constant="12" id="UgP-6E-LI4"/>
-                            <constraint firstAttribute="bottom" secondItem="Yji-KJ-iak" secondAttribute="bottom" constant="12" id="WBq-ob-GYU"/>
-                            <constraint firstItem="XqD-dp-fcu" firstAttribute="top" secondItem="yhg-wP-rCj" secondAttribute="bottom" constant="13" id="ZKc-Gj-CPx"/>
-                            <constraint firstItem="Yji-KJ-iak" firstAttribute="leading" secondItem="XqD-dp-fcu" secondAttribute="trailing" constant="12" id="bmK-ZO-0Um"/>
+                            <constraint firstAttribute="bottom" secondItem="eBm-x4-76f" secondAttribute="bottom" constant="12" id="YUS-xm-u0i"/>
                             <constraint firstItem="yhg-wP-rCj" firstAttribute="width" secondItem="m2S-Jp-Qdl" secondAttribute="width" multiplier="1:4" id="cRa-Pd-PpH"/>
                             <constraint firstAttribute="trailing" secondItem="5ml-91-1WV" secondAttribute="trailing" constant="6" id="cqd-sN-nNk"/>
                             <constraint firstItem="yhg-wP-rCj" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="3" id="hnM-pX-HLn"/>
-                            <constraint firstItem="XqD-dp-fcu" firstAttribute="leading" secondItem="eBm-x4-76f" secondAttribute="trailing" constant="12" symbolic="YES" id="j7S-Ob-29L"/>
+                            <constraint firstItem="eBm-x4-76f" firstAttribute="baseline" secondItem="Yji-KJ-iak" secondAttribute="baseline" id="oa9-Ew-JLX"/>
                             <constraint firstItem="yhg-wP-rCj" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="8" id="ojz-EX-Hb0"/>
-                            <constraint firstItem="Yji-KJ-iak" firstAttribute="top" secondItem="yhg-wP-rCj" secondAttribute="bottom" constant="13" id="uWN-Qs-YX5"/>
+                            <constraint firstItem="XqD-dp-fcu" firstAttribute="leading" secondItem="Yji-KJ-iak" secondAttribute="trailing" constant="12" symbolic="YES" id="r3W-Er-LcB"/>
+                            <constraint firstItem="eBm-x4-76f" firstAttribute="top" secondItem="yhg-wP-rCj" secondAttribute="bottom" constant="13" id="wum-qS-qoj"/>
+                            <constraint firstItem="Yji-KJ-iak" firstAttribute="leading" secondItem="eBm-x4-76f" secondAttribute="trailing" constant="12" symbolic="YES" id="xTQ-HM-zhs"/>
                         </constraints>
                         <animations/>
                     </view>
@@ -3801,7 +3799,7 @@ CA
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="BD8-gw-Dwh">
-                                                    <rect key="frame" x="0.0" y="67" width="664" height="5"/>
+                                                    <rect key="frame" x="0.0" y="67" width="664" height="4"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
