@@ -7,6 +7,10 @@
 //
 
 import Cocoa
+protocol FeedbackControllerDelegate
+{
+    func feedbackViewControllerDidFinish(selectedCandidate:Candidate)
+}
 
 class EHFeedbackViewController: NSViewController {
     
@@ -20,7 +24,7 @@ class EHFeedbackViewController: NSViewController {
     @IBOutlet weak var scrollViewHr: NSScrollView!
     
     //MARK: Properties
-    
+     var delegate:FeedbackControllerDelegate?
     var hrView:NSView?
     
     var topObjects:NSArray?
@@ -295,9 +299,13 @@ class EHFeedbackViewController: NSViewController {
     }
     @IBAction func dismissFeedbackView(sender: AnyObject)
     {
-        let mainController = self.storyboard?.instantiateControllerWithIdentifier("mainView") as! EHTechnologyViewController
+//        let mainController = self.storyboard?.instantiateControllerWithIdentifier("mainView") as! EHTechnologyViewController
+//        
+//        mainController.setAllContent()
+        self.view.removeFromSuperview()
         
-        mainController.setAllContent()
+        self.delegate?.feedbackViewControllerDidFinish(selectedCandidate!)
+    
     }
     
     
