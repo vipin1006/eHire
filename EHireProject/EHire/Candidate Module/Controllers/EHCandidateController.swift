@@ -25,12 +25,23 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     var delegate:FeedbackDelegate?
     var technologyName:String?
     var interviewDate:NSDate?
+    var preserveCandidate : Int?
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
        feedbackButton.enabled = false
         removeButton.enabled = false
+    }
+    
+    override func viewWillAppear()
+    {
+        print("Preserve is \(preserveCandidate)")
+        if let tablePreserved = preserveCandidate
+        {
+            tableView.selectRowIndexes(NSIndexSet(index: tablePreserved), byExtendingSelection: false)
+        }
+        
     }
     
     //MARK: This data source method returns tableview rows
@@ -168,9 +179,15 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         
     }
     
-    func refresh() {
+    func refresh()
+    {
         getSourceListContent()
         tableView.reloadData()
+        if let tablePreserved = preserveCandidate
+        {
+            
+            tableView.selectRowIndexes(NSIndexSet(index: tablePreserved), byExtendingSelection: false)
+        }
     }
     
     
@@ -182,8 +199,6 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         
         let predicate = NSPredicate(format:"technologyName = %@ AND interviewDate = %@" , technologyName!,interviewDate!)
        
-        print(technologyName)
-        print(interviewDate)
         let records = EHCoreDataHelper.fetchRecordsWithPredicate(predicate, sortDescriptor: nil, entityName: "Candidate", managedObjectContext: context)
         
         print(records)
@@ -195,6 +210,8 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
                 candidateArray.addObject(cEntity);//
             }
         }
+        
+        
     }
 
     
@@ -229,6 +246,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             let selectedRow:NSInteger = tableView.selectedRow
             let selectedCandidate:Candidate = candidateArray.objectAtIndex(selectedRow) as! Candidate
             delegate.showFeedbackViewController(selectedCandidate)
+            preserveCandidate = tableView.selectedRow
             
         }
         }
