@@ -102,16 +102,21 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
   
     func tableViewSelectionDidChange(notification: NSNotification)
     {
-        let selectedRow:NSInteger = tableView.selectedRow
+        let selectedRow = tableView.selectedRow
+       if selectedRow != -1
+       {
        if let _:Candidate = candidateArray.objectAtIndex(selectedRow) as? Candidate
        {
         feedbackButton.enabled = true
         removeButton.enabled = true
         }
-       else{
+      }
+       else
+       {
         feedbackButton.enabled = false
         removeButton.enabled = false
         }
+
     }
 
     //MARK:Actions
