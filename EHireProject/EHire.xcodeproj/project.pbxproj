@@ -40,6 +40,7 @@
 		2DE189631C33D9A6005F90D0 /* EHireTechnicalFeedBackTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1895B1C33D9A6005F90D0 /* EHireTechnicalFeedBackTest.swift */; };
 		2DE189641C33D9A6005F90D0 /* EHireTechnologyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1895C1C33D9A6005F90D0 /* EHireTechnologyTest.swift */; };
 		2DE189651C33D9A6005F90D0 /* EHireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1895D1C33D9A6005F90D0 /* EHireTests.swift */; };
+		2FB0ABA41C3CD92F0027E34C /* Welcome.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FB0ABA31C3CD92F0027E34C /* Welcome.png */; settings = {ASSET_TAGS = (); }; };
 		41A97FF51C1956B70016CAB4 /* EHInterviewDateCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF41C1956B70016CAB4 /* EHInterviewDateCustomCell.swift */; };
 		41A97FF91C195E500016CAB4 /* EHTechnologyCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF81C195E500016CAB4 /* EHTechnologyCustomCell.swift */; };
 		4F2536EC1C2179EC000E8C95 /* EHPopOverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536E91C2179EC000E8C95 /* EHPopOverController.swift */; };
@@ -149,6 +150,7 @@
 		2DE1895B1C33D9A6005F90D0 /* EHireTechnicalFeedBackTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHireTechnicalFeedBackTest.swift; path = "Test Cases/EHireTechnicalFeedBackTest.swift"; sourceTree = "<group>"; };
 		2DE1895C1C33D9A6005F90D0 /* EHireTechnologyTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHireTechnologyTest.swift; path = "Test Cases/EHireTechnologyTest.swift"; sourceTree = "<group>"; };
 		2DE1895D1C33D9A6005F90D0 /* EHireTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHireTests.swift; path = "Test Cases/EHireTests.swift"; sourceTree = "<group>"; };
+		2FB0ABA31C3CD92F0027E34C /* Welcome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Welcome.png; sourceTree = "<group>"; };
 		4136DE551C21284800BDB8B7 /* EHire-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EHire-Bridging-Header.h"; sourceTree = "<group>"; };
 		41A97FF41C1956B70016CAB4 /* EHInterviewDateCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHInterviewDateCustomCell.swift; sourceTree = "<group>"; };
 		41A97FF81C195E500016CAB4 /* EHTechnologyCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnologyCustomCell.swift; sourceTree = "<group>"; };
@@ -668,6 +670,7 @@
 		804288481C17F139003033B4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2FB0ABA31C3CD92F0027E34C /* Welcome.png */,
 				8070F5981C24194C00FCEA98 /* selectStar.png */,
 				8070F5991C24194C00FCEA98 /* deselectStar.png */,
 				804288101C17EBC0003033B4 /* Info.plist */,
@@ -811,6 +814,7 @@
 			files = (
 				8070F59A1C24194C00FCEA98 /* selectStar.png in Resources */,
 				8070F59B1C24194C00FCEA98 /* deselectStar.png in Resources */,
+				2FB0ABA41C3CD92F0027E34C /* Welcome.png in Resources */,
 				8042880C1C17EBC0003033B4 /* Assets.xcassets in Resources */,
 				8042880F1C17EBC0003033B4 /* Main.storyboard in Resources */,
 			);
