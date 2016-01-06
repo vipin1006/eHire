@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="box content view" minToolsVersion="7.0"/>
+        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -918,14 +919,14 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="qci-v5-CE5">
                                 <rect key="frame" x="0.0" y="0.0" width="635" height="707"/>
                                 <subviews>
-                                    <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="37" horizontalPageScroll="10" verticalLineScroll="37" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSI-mh-5J6">
-                                        <rect key="frame" x="0.0" y="40" width="635" height="667"/>
+                                    <scrollView autohidesScrollers="YES" horizontalLineScroll="37" horizontalPageScroll="10" verticalLineScroll="37" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSI-mh-5J6">
+                                        <rect key="frame" x="0.0" y="37" width="635" height="670"/>
                                         <clipView key="contentView" id="i5P-6U-EFN">
-                                            <rect key="frame" x="1" y="0.0" width="633" height="666"/>
+                                            <rect key="frame" x="1" y="0.0" width="633" height="669"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="35" rowSizeStyle="automatic" headerView="haY-GH-M9R" viewBased="YES" id="BNP-Pz-40V">
-                                                    <rect key="frame" x="0.0" y="0.0" width="633" height="643"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="633" height="646"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <animations/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -1173,8 +1174,8 @@
                                             <animations/>
                                         </tableHeaderView>
                                     </scrollView>
-                                    <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p93-oh-UMg">
-                                        <rect key="frame" x="584" y="4" width="51" height="32"/>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="p93-oh-UMg">
+                                        <rect key="frame" x="584" y="4" width="51" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="39" id="VJH-YJ-DfM"/>
                                         </constraints>
@@ -1187,8 +1188,11 @@
                                             <action selector="removeCandidate:" target="eaX-tr-f6l" id="h3j-gj-gRT"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GoU-0A-unL">
-                                        <rect key="frame" x="533" y="4" width="51" height="32"/>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GoU-0A-unL">
+                                        <rect key="frame" x="533" y="4" width="51" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="39" id="eNg-hP-FZU"/>
+                                        </constraints>
                                         <animations/>
                                         <buttonCell key="cell" type="push" title="+" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="L1i-p4-xUM">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1198,8 +1202,11 @@
                                             <action selector="addCandidate:" target="eaX-tr-f6l" id="zbF-vT-8hh"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s8Z-a5-OR5">
-                                        <rect key="frame" x="-6" y="4" width="121" height="32"/>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s8Z-a5-OR5">
+                                        <rect key="frame" x="-6" y="4" width="121" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="109" id="66q-bi-nDj"/>
+                                        </constraints>
                                         <animations/>
                                         <buttonCell key="cell" type="push" title="Give Feedback" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hhV-9J-mlJ">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1212,10 +1219,18 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="tSI-mh-5J6" firstAttribute="leading" secondItem="qci-v5-CE5" secondAttribute="leading" id="5Zs-Zc-O97"/>
+                                    <constraint firstItem="p93-oh-UMg" firstAttribute="top" secondItem="tSI-mh-5J6" secondAttribute="bottom" constant="8" id="6CV-eM-4FK"/>
                                     <constraint firstAttribute="trailing" secondItem="tSI-mh-5J6" secondAttribute="trailing" id="Jw4-2z-abr"/>
                                     <constraint firstAttribute="trailing" secondItem="p93-oh-UMg" secondAttribute="trailing" constant="6" id="L9Y-qL-eS9"/>
+                                    <constraint firstItem="p93-oh-UMg" firstAttribute="leading" secondItem="GoU-0A-unL" secondAttribute="trailing" constant="12" id="OiP-Ds-PJo"/>
                                     <constraint firstAttribute="bottom" secondItem="tSI-mh-5J6" secondAttribute="bottom" constant="37" id="Oyr-gF-X6X"/>
+                                    <constraint firstAttribute="bottom" secondItem="p93-oh-UMg" secondAttribute="bottom" constant="11" id="QjW-q7-HdU"/>
+                                    <constraint firstItem="s8Z-a5-OR5" firstAttribute="leading" secondItem="qci-v5-CE5" secondAttribute="leading" id="XFD-VI-TfY"/>
                                     <constraint firstItem="tSI-mh-5J6" firstAttribute="top" secondItem="qci-v5-CE5" secondAttribute="top" id="Xtk-fF-xeG"/>
+                                    <constraint firstItem="s8Z-a5-OR5" firstAttribute="top" secondItem="tSI-mh-5J6" secondAttribute="bottom" constant="8" id="ZJ2-iQ-qYS"/>
+                                    <constraint firstAttribute="bottom" secondItem="s8Z-a5-OR5" secondAttribute="bottom" constant="11" id="aMb-Jh-ToF"/>
+                                    <constraint firstAttribute="bottom" secondItem="GoU-0A-unL" secondAttribute="bottom" constant="11" id="ddN-3q-Q6W"/>
+                                    <constraint firstItem="GoU-0A-unL" firstAttribute="top" secondItem="tSI-mh-5J6" secondAttribute="bottom" constant="8" id="jfK-MT-HLa"/>
                                 </constraints>
                                 <animations/>
                             </customView>
@@ -1652,7 +1667,7 @@ CA
                                             </clipView>
                                             <animations/>
                                             <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="8Qf-9y-atl">
-                                                <rect key="frame" x="2" y="10" width="0.0" height="15"/>
+                                                <rect key="frame" x="2" y="9" width="0.0" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <animations/>
                                             </scroller>
@@ -2306,13 +2321,13 @@ CA
                                                 <animations/>
                                             </scroller>
                                         </scrollView>
-                                        <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ag2-4p-klz">
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="ag2-4p-klz">
                                             <rect key="frame" x="0.0" y="43" width="771" height="36"/>
                                             <subviews>
-                                                <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NXl-Es-m3d">
+                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="NXl-Es-m3d">
                                                     <rect key="frame" x="267" y="0.0" width="220" height="36"/>
                                                     <subviews>
-                                                        <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wmb-tB-ceZ">
+                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wmb-tB-ceZ">
                                                             <rect key="frame" x="8" y="8" width="33" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="33" id="dRM-f1-Qjl"/>
@@ -2326,7 +2341,7 @@ CA
                                                                 <action selector="addOverAllAssessmentForCandidate:" target="Xv2-bq-xG1" id="FJz-QA-DFI"/>
                                                             </connections>
                                                         </button>
-                                                        <button verticalHuggingPriority="750" misplaced="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="rhM-TI-b0o">
+                                                        <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="rhM-TI-b0o">
                                                             <rect key="frame" x="49" y="8" width="38" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="38" id="oO7-61-IaA"/>
@@ -2340,7 +2355,7 @@ CA
                                                                 <action selector="addOverAllAssessmentForCandidate:" target="Xv2-bq-xG1" id="eNS-bd-D1d"/>
                                                             </connections>
                                                         </button>
-                                                        <button verticalHuggingPriority="750" misplaced="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="Gqx-xp-wET">
+                                                        <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="Gqx-xp-wET">
                                                             <rect key="frame" x="86" y="6" width="48" height="25"/>
                                                             <animations/>
                                                             <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="deselectStar" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="pHJ-C8-kZC">
@@ -2351,7 +2366,7 @@ CA
                                                                 <action selector="addOverAllAssessmentForCandidate:" target="Xv2-bq-xG1" id="epG-Y6-lQQ"/>
                                                             </connections>
                                                         </button>
-                                                        <button verticalHuggingPriority="750" misplaced="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="fIs-IV-gj8">
+                                                        <button verticalHuggingPriority="750" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="fIs-IV-gj8">
                                                             <rect key="frame" x="126" y="2" width="55" height="32"/>
                                                             <animations/>
                                                             <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="deselectStar" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="T4w-fi-q4s">
@@ -2362,7 +2377,7 @@ CA
                                                                 <action selector="addOverAllAssessmentForCandidate:" target="Xv2-bq-xG1" id="AIU-XE-wBs"/>
                                                             </connections>
                                                         </button>
-                                                        <button verticalHuggingPriority="750" misplaced="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="H1W-yL-8xd">
+                                                        <button verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="H1W-yL-8xd">
                                                             <rect key="frame" x="171" y="2" width="49" height="32"/>
                                                             <animations/>
                                                             <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="deselectStar" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="iCR-0q-Vnx">
@@ -2394,7 +2409,7 @@ CA
                                                     </constraints>
                                                     <animations/>
                                                 </customView>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v02-Ct-8H0">
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="v02-Ct-8H0">
                                                     <rect key="frame" x="534" y="10" width="211" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="207" id="cf7-Ad-NFT"/>
@@ -2406,7 +2421,7 @@ CA
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Yo-Ob-foK">
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Yo-Ob-foK">
                                                     <rect key="frame" x="-2" y="9" width="226" height="21"/>
                                                     <animations/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Overall Assessment Of Candidate " id="bgk-4L-lp3">
@@ -2431,7 +2446,7 @@ CA
                                             </constraints>
                                             <animations/>
                                         </customView>
-                                        <matrix verticalHuggingPriority="750" misplaced="YES" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fO4-Z7-OVK">
+                                        <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fO4-Z7-OVK">
                                             <rect key="frame" x="147" y="7" width="232" height="24"/>
                                             <animations/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -2456,7 +2471,7 @@ CA
                                                 </column>
                                             </cells>
                                         </matrix>
-                                        <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Ce-BT-BU1">
+                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Ce-BT-BU1">
                                             <rect key="frame" x="558" y="4" width="213" height="27"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="213" id="KVB-fx-xUc"/>
@@ -2482,7 +2497,7 @@ CA
                                                 </binding>
                                             </connections>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GrJ-ke-wtk">
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GrJ-ke-wtk">
                                             <rect key="frame" x="405" y="5" width="139" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="vhg-Fx-fuU"/>
@@ -2494,7 +2509,7 @@ CA
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m3E-3r-P9M">
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m3E-3r-P9M">
                                             <rect key="frame" x="-2" y="10" width="143" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="139" id="CwX-dh-iyl"/>
@@ -2548,7 +2563,7 @@ CA
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="i9X-R2-LZT">
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="775" translatesAutoresizingMaskIntoConstraints="NO" id="i9X-R2-LZT">
                                             <rect key="frame" x="10" y="-1" width="779" height="126"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="775" id="0AR-10-yJP"/>
@@ -2581,7 +2596,7 @@ CA
                                     <rect key="frame" x="1" y="1" width="786" height="123"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField verticalHuggingPriority="749" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hov-J2-yYq">
+                                        <textField verticalHuggingPriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="Hov-J2-yYq">
                                             <rect key="frame" x="498" y="20" width="221" height="29"/>
                                             <animations/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="5CI-1q-GG5">
@@ -2594,7 +2609,7 @@ CA
                                                 <binding destination="FMP-R4-GZw" name="value" keyPath="self.grossAnnualSalary" id="wnd-yq-42p"/>
                                             </connections>
                                         </textField>
-                                        <textField hidden="YES" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cKe-yU-lBm">
+                                        <textField hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cKe-yU-lBm">
                                             <rect key="frame" x="498" y="20" width="221" height="29"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="221" id="s8F-Kb-x4G"/>
@@ -2609,7 +2624,7 @@ CA
                                                 </allowedInputSourceLocales>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dDN-kg-YyI">
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dDN-kg-YyI">
                                             <rect key="frame" x="170" y="62" width="27" height="29"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="23" id="9KV-60-vCk"/>
@@ -2621,7 +2636,7 @@ CA
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fu8-og-Oog">
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="225" translatesAutoresizingMaskIntoConstraints="NO" id="fu8-og-Oog">
                                             <rect key="frame" x="-2" y="97" width="229" height="26"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="225" id="0gK-bI-jDp"/>
@@ -2634,7 +2649,7 @@ CA
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xuJ-cv-bSo">
+                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xuJ-cv-bSo">
                                             <rect key="frame" x="228" y="20" width="214" height="29"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="214" id="dgw-7N-6ra"/>
@@ -2649,7 +2664,7 @@ CA
                                                 <binding destination="FMP-R4-GZw" name="value" keyPath="self.designation" id="KUH-4A-62H"/>
                                             </connections>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yXQ-PR-0Ho">
+                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yXQ-PR-0Ho">
                                             <rect key="frame" x="228" y="62" width="214" height="29"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="214" id="CiH-no-g4q"/>
@@ -2664,7 +2679,7 @@ CA
                                                 <binding destination="FMP-R4-GZw" name="value" keyPath="self.recommendedCg" id="HIm-DX-8n8"/>
                                             </connections>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1re-sB-9I6">
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1re-sB-9I6">
                                             <rect key="frame" x="496" y="61" width="129" height="29"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="125" id="elm-lC-00z"/>
@@ -2676,7 +2691,7 @@ CA
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <matrix verticalHuggingPriority="750" misplaced="YES" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWV-vg-Gr9">
+                                        <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWV-vg-Gr9">
                                             <rect key="frame" x="606" y="70" width="110" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="9Nn-1E-bEx"/>
@@ -2707,7 +2722,7 @@ CA
                                                 <action selector="selectCgDeviation:" target="Xv2-bq-xG1" id="jEn-3H-egV"/>
                                             </connections>
                                         </matrix>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0bW-Fh-fhx">
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0bW-Fh-fhx">
                                             <rect key="frame" x="117" y="23" width="89" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="85" id="KES-oO-erQ"/>
@@ -2844,7 +2859,7 @@ CA
                                                 <animations/>
                                             </scroller>
                                         </scrollView>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ayA-gJ-Gyy">
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="193" translatesAutoresizingMaskIntoConstraints="NO" id="ayA-gJ-Gyy">
                                             <rect key="frame" x="-2" y="190" width="197" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="XYE-6i-OGP"/>
@@ -3217,10 +3232,10 @@ CA
                                                                                     <outlet property="delegate" destination="Xv2-bq-xG1" id="lPr-ld-aWI"/>
                                                                                 </connections>
                                                                             </textField>
-                                                                            <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8NH-rH-099">
+                                                                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="8NH-rH-099">
                                                                                 <rect key="frame" x="270" y="3" width="168" height="30"/>
                                                                                 <subviews>
-                                                                                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IzD-pZ-a9x">
+                                                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IzD-pZ-a9x">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="33" height="21"/>
                                                                                         <animations/>
                                                                                         <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="deselectStar" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="HpK-fk-uYa">
@@ -3239,7 +3254,7 @@ CA
                                                                                             <font key="font" metaFont="system"/>
                                                                                         </buttonCell>
                                                                                     </button>
-                                                                                    <button verticalHuggingPriority="750" misplaced="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="Fgm-cv-9nD">
+                                                                                    <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="Fgm-cv-9nD">
                                                                                         <rect key="frame" x="70" y="0.0" width="33" height="21"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="width" constant="33" id="noL-Bp-vRI"/>
@@ -3250,7 +3265,7 @@ CA
                                                                                             <font key="font" metaFont="system"/>
                                                                                         </buttonCell>
                                                                                     </button>
-                                                                                    <button verticalHuggingPriority="750" misplaced="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="4SL-S5-XnP">
+                                                                                    <button verticalHuggingPriority="750" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="4SL-S5-XnP">
                                                                                         <rect key="frame" x="104" y="0.0" width="27" height="21"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="width" constant="27" id="MlU-zD-aDG"/>
@@ -3829,7 +3844,7 @@ CA
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KuZ-tU-jBc">
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="140" translatesAutoresizingMaskIntoConstraints="NO" id="KuZ-tU-jBc">
                                                     <rect key="frame" x="13" y="78" width="144" height="25"/>
                                                     <animations/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="X7o-me-W4M">
@@ -3838,7 +3853,7 @@ CA
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NJv-Al-V5e">
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="146" translatesAutoresizingMaskIntoConstraints="NO" id="NJv-Al-V5e">
                                                     <rect key="frame" x="10" y="77" width="150" height="26"/>
                                                     <animations/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="(if contract specify the Name of the Parent Company)" id="GWE-Ju-IWs">
@@ -3940,14 +3955,14 @@ CA
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="V9M-eh-Zzp">
-                                                    <rect key="frame" x="117" y="0.0" width="4" height="102"/>
+                                                    <rect key="frame" x="117" y="0.0" width="5" height="102"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="zYB-nQ-v2C">
-                                                    <rect key="frame" x="229" y="0.0" width="5" height="103"/>
+                                                    <rect key="frame" x="229" y="0.0" width="4" height="103"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -4239,7 +4254,7 @@ CA
                                                         <action selector="backgroundCheck:" target="2N2-KU-HrI" id="qYZ-yK-zwt"/>
                                                     </connections>
                                                 </button>
-                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="seu-D7-R4f">
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="476" translatesAutoresizingMaskIntoConstraints="NO" id="seu-D7-R4f">
                                                     <rect key="frame" x="6" y="50" width="480" height="25"/>
                                                     <animations/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Specify if candidate has all the documents related to Employment &amp; Education" id="2Yw-4x-75m">
