@@ -132,7 +132,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         cell.titleName.tag = row
         cell.titleName.target = self
         cell.titleName.delegate = self
-        cell.titleName.editable = true
       self.cell = cell
         if !(skillSetObject.skillRating == nil) {
             for starButton in cell.selectStar.subviews{
@@ -159,6 +158,13 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         return cell
     }
     
+    func tableViewSelectionDidChange(notification: NSNotification)
+    {
+        if notification.object!.selectedRow >= 4
+        {
+            cell?.titleName.editable = true
+        }
+    }
     
     //MARK:- Method to select star in tableview
     func selectedStarCount(sender : NSButton)
