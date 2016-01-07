@@ -267,7 +267,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
             // Condition to check dates cannot be added when technology is editing
             if !cellTechnology!.textFieldTechnology.editable{
-                addDateAction(sender as! NSButton)
+                
+                addDateAction(addDate)
             }
         }
             
