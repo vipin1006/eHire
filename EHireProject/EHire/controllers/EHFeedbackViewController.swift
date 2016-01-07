@@ -80,6 +80,7 @@ class EHFeedbackViewController: NSViewController
             if techLeadCount == 0
             {
                 Utility.alertPopup("Alert", informativeText: "Technical round is not yet Completed", okCompletionHandler: nil)
+                subRound.selectedSegment = 0
                 typeOfInterview.setSelected(true, forSegment: 0)
                 return
             }
@@ -117,7 +118,7 @@ class EHFeedbackViewController: NSViewController
         switch self.typeOfInterview.selectedSegment
         {
         //For Technical Feedback Rounds
-        case 0:
+                case 0:
             switch self.subRound.selectedSegment
             {
             case 0:
@@ -136,6 +137,7 @@ class EHFeedbackViewController: NSViewController
                 {
                 case 0:
                        Utility.alertPopup("Alert", informativeText: "Round One not yet Completed", okCompletionHandler: nil)
+                       subRound.selectedSegment = 0
                 case 1:
                       for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
                      {
@@ -164,17 +166,27 @@ class EHFeedbackViewController: NSViewController
                 let techLeadCount = (selectedCandidate?.interviewedByTechLeads)!.count
                 switch techLeadCount
                 {
-                case 1:
-                    Utility.alertPopup("Alert", informativeText: "Round One and Two not yet Completed", okCompletionHandler: nil)
-                case 2:
+                case 0:
                     
+                    Utility.alertPopup("Alert", informativeText: "RoundOne not yet Completed", okCompletionHandler: nil)
+                    subRound.selectedSegment = 0
+                    
+                    
+                case 1:
                     for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
                     {
                         let feedback = feedbackOfTechLead as! TechnicalFeedBack
-                        
-                        if feedback.recommendation == "Rejected"
+                        if subRound.selectedSegment == 1
                         {
-                            Utility.alertPopup("Candidate Rejected", informativeText: "Selected Candidate Rejected in Round Two", okCompletionHandler: nil)
+                            if feedback.recommendation == "Rejected"
+                            {
+                                Utility.alertPopup("Candidate Rejected", informativeText: "Selected Candidate Rejected in Round Two", okCompletionHandler: nil)
+                                subRound.selectedSegment = 0
+                            }
+                        }
+                        else if selectedCandidate?.interviewedByTechLeads!.count == 1
+                        {
+                            Utility.alertPopup("Alert", informativeText: "Round Two not yet Completed", okCompletionHandler: nil)
                             subRound.selectedSegment = 1
                         }
                         else
@@ -182,9 +194,32 @@ class EHFeedbackViewController: NSViewController
                             techFeedback?.refreshAllFields()
                         }
                         break
+                        
                     }
+    
+                case 2:
+                    
+                    for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
+                    {
+                        let feedback = feedbackOfTechLead as! TechnicalFeedBack
+                      
+                    if feedback.recommendation == "Selected"
+                    {
+                        techFeedback?.refreshAllFields()
+                    }
+                    if feedback.recommendation == "Rejected"
+                    {
+                                Utility.alertPopup("Candidate Rejected", informativeText: "Selected Candidate Rejected in Round Two", okCompletionHandler: nil)
+                                subRound.selectedSegment = 1
+                    }
+                        
+                    
+                    
+                    
+                    }
+                    
                 default:
-                    if selectedCandidate?.interviewedByTechLeads?.count > self.subRound.selectedSegment
+                    if selectedCandidate?.interviewedByTechLeads?.count > 2
                     {
                     let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
                     techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
