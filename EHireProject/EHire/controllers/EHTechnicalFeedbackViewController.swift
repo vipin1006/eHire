@@ -99,7 +99,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         tableView.reloadData()
     }
     
-    //MARK: To Sort
+     //MARK: To Sort
     func sortArray (candidateObjects : [AnyObject],index:Int)
     {
         let sortingArray = NSArray(array: candidateObjects)
@@ -210,24 +210,24 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         let cellView : EHRatingsTableCellView = tableView.makeViewWithIdentifier("RatingCell", owner: self) as! EHRatingsTableCellView
         let skill = skillsAndRatingsTitleArray[row]
         cellView.skilsAndRatingsTitlefield.stringValue = skill.skillName!
-        cellView.skilsAndRatingsTitlefield.editable = true
         cellView.skilsAndRatingsTitlefield.delegate = self
         cellView.skilsAndRatingsTitlefield.target = self
         cellView.skilsAndRatingsTitlefield.tag = row
         cell = cellView
-        if !(skill.skillRating == nil) {
-            for starBtn in (cell?.starCustomView.subviews)!{
-                let tempBtn = starBtn as! NSButton
-                if tempBtn.tag+1 == skill.skillRating
+        if !(skill.skillRating == nil)
+        {
+            for stars in (cell?.starCustomView.subviews)!
+            {
+                let starButton = stars as! NSButton
+                if starButton.tag+1 == skill.skillRating
                 {
-                   toDisplayRatingStar((cell?.starCustomView.subviews)!, sender: tempBtn, feedbackText: cellView.feedback, view: (cell?.starCustomView!)!)
+                   toDisplayRatingStar((cell?.starCustomView.subviews)!, sender: starButton, feedbackText: cellView.feedback, view: (cell?.starCustomView!)!)
                     break
                 }
                 else
                 {
-                    tempBtn.image = NSImage(named: "deselectStar")
+                    starButton.image = NSImage(named: "deselectStar")
                     cellView.feedback.stringValue = ""
-                    
                 }
             }
         }
@@ -238,6 +238,14 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             view.action = "starRatingCount:"
         }
         return cellView
+    }
+    
+    func tableViewSelectionDidChange(notification: NSNotification)
+    {
+        if notification.object!.selectedRow >= 4
+        {
+            cell?.skilsAndRatingsTitlefield.editable = true
+        }
     }
     
     // To Display The Stars inside TableView
@@ -492,7 +500,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         if selectedMode != 0
         {
             interviewModeState = "Face To Face"
-        }else
+        }
+        else
         {
             interviewModeState = "Telephonic"
         }
