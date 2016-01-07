@@ -24,6 +24,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     // Add Interview Date
     var datePopOverController : EHPopOverController?
     var datePopOver:NSPopover = NSPopover()
+    var contextSelectedTechnologyIndex:Int = -1
     
     //View for listing the canditates
     @IBOutlet weak var candidateView        : NSView!
@@ -210,38 +211,53 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     {
         let scheduledDate = sendingData as! NSDate
         
-        if let selectedItem = sourceList.itemAtRow(sourceList.selectedRow) as? Technology {
-            
-            if isValidInterviewDate(selectedItem.technologyName!,inputDate: scheduledDate){
-                let aString = sendingData as! NSDate
-                print(aString)
+        func addInterviewDateForTechnology(technology:Technology)
+        {
+            if isValidInterviewDate(technology.technologyName!,inputDate:scheduledDate){
                 
-                let newTechnologyEntityDescription = EHCoreDataHelper.createEntity("Date", managedObjectContext: EHCoreDataStack.sharedInstance.managedObjectContext
+            let newTechnologyEntityDescription = EHCoreDataHelper.createEntity("Date", managedObjectContext: EHCoreDataStack.sharedInstance.managedObjectContext
                 )
                 let newDateManagedObject:Date = Date(entity:newTechnologyEntityDescription!, insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext
                     ) as Date
                 
+              newDateManagedObject.interviewDate = scheduledDate
+            technology.interviewDates?.addObject(newDateManagedObject)
+                EHCoreDataHelper.saveToCoreData(technology)
                 
-                newDateManagedObject.interviewDate = scheduledDate
-                
-                selectedItem.interviewDates?.addObject(newDateManagedObject)
-                EHCoreDataHelper.saveToCoreData(selectedItem)
-                
-                EHTechnologyDataLayer.addInterviewDateToCoreData(selectedItem, dateToAdd: newDateManagedObject)
+                EHTechnologyDataLayer.addInterviewDateToCoreData(technology, dateToAdd: newDateManagedObject)
                 addDate.enabled = false
                 addTechnology.enabled = true
                 
                 self.sourceList.reloadData()
             }
+                
             else
             {
                 Utility.alertPopup("Error", informativeText: "Interview date cannot be same",okCompletionHandler: nil)
-
             }
+            
             datePopOver.close()
         }
+        
+    if contextSelectedTechnologyIndex != -1
+    {
+            if let selectedItem = sourceList.itemAtRow(contextSelectedTechnologyIndex) as? Technology
+            {
+                
+                addInterviewDateForTechnology(selectedItem)
+           }
     }
-    
+        
+    if  sourceList.selectedRow != -1
+    {
+            if let selectedItem = sourceList.itemAtRow(sourceList.selectedRow) as? Technology
+            {
+                
+                addInterviewDateForTechnology(selectedItem)
+            }
+    }
+}
+
     
     //PRAGMAMARK: - Button Actions
     
@@ -537,6 +553,151 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     return false
     }
    
+
+    //Contextual Menu Implementaion for Technology Module:
+    
+    //Contextual menu setup
+    
+    override func rightMouseDown(theEvent: NSEvent) {
+        
+        let check =  CGRectContainsPoint(self.sourceList.frame,theEvent.locationInWindow)
+        if check == true
+        {
+            let mainContextMenu = NSMenu(title: "Main Contextual Menu")
+            
+            mainContextMenu.insertItemWithTitle("Add Technology", action:Selector.init("addBtnAction:"), keyEquivalent: "", atIndex: 0)
+            mainContextMenu.insertItemWithTitle("Delete Technology", action:Selector.init("dummy") , keyEquivalent: "", atIndex: 1)
+            mainContextMenu.insertItemWithTitle("Add Date", action:Selector.init("addDateToTechnologyFromContextMenu:"), keyEquivalent: "", atIndex: 2)
+            mainContextMenu.insertItemWithTitle("Delete Date", action:Selector.init("dummy") , keyEquivalent: "addBtnAction:", atIndex: 3)
+            
+            let technologySubMenuOne = NSMenu(title: "Technology Menu One")
+            
+            let technologySubMenuTwo = NSMenu(title:"Technology Menu Two")
+            
+            let technologySubMenuThree = NSMenu(title:"Technology Menu Three")
+            
+            for var i = 0 ; i < technologyArray.count ; i++
+            {
+                
+                let technology = technologyArray[i] as Technology
+                technologySubMenuOne.insertItemWithTitle(technology.technologyName!, action: Selector.init("deleteTechnologyFromContextMenu:"), keyEquivalent: "", atIndex: i)
+                technologySubMenuTwo.insertItemWithTitle(technology.technologyName!, action: Selector.init("addDateToTechnologyFromContextMenu:"), keyEquivalent: "", atIndex: i)
+                
+                technologySubMenuThree.insertItemWithTitle(technology.technologyName!, action: Selector.init("dummy"), keyEquivalent: "", atIndex: i)
+            }
+            
+            for var i = 0 ; i < technologyArray.count ; i++
+            {
+                
+                let technology = technologyArray[i] as Technology
+                
+                let datesMenu = NSMenu(title:"Dates Menu")
+                
+                
+                
+                let allDates = technology.interviewDates?.allObjects
+                
+                
+                
+                for  (index , value) in (allDates?.enumerate())!
+                {
+                    let selectedDate = value as! Date
+                    
+                    print(String(selectedDate.interviewDate!))
+                    
+                    datesMenu.insertItemWithTitle(getFormattedDate(selectedDate.interviewDate!), action: Selector.init("deleteDateFromTechnologyFromContextMenu:"), keyEquivalent:"", atIndex:index)
+                }
+                
+                technologySubMenuThree.setSubmenu(datesMenu, forItem:technologySubMenuThree.itemAtIndex(i)!)
+                
+            }
+            
+            mainContextMenu.setSubmenu(technologySubMenuOne, forItem:mainContextMenu.itemAtIndex(1)!)
+            
+            mainContextMenu.setSubmenu(technologySubMenuTwo, forItem:mainContextMenu.itemAtIndex(2)!)
+            
+            mainContextMenu.setSubmenu(technologySubMenuThree, forItem:mainContextMenu.itemAtIndex(3)!)
+            
+            
+            
+            NSMenu.popUpContextMenu(mainContextMenu, withEvent: theEvent, forView: self.view)
+            
+        }
+    }
+    
+    //Delete Technology from Menu
+    
+    func deleteTechnologyFromContextMenu(sender:NSMenuItem)
+    {
+        for var i = 0 ; i < technologyArray.count ; i++
+        {
+            let technology = technologyArray[i] as Technology
+            if technology.technologyName == sender.title
+            {
+                technologyArray.removeAtIndex(i)
+                sourceList.reloadData()
+                EHTechnologyDataLayer.deleteTechnologyFromCoreData(technology)
+            }
+        }
+    }
+    
+    //Add date to Technology from menu
+    
+    func addDateToTechnologyFromContextMenu(sender:NSMenuItem)
+    {
+        for var i = 0 ; i < technologyArray.count ; i++
+        {
+            let technology = technologyArray[i] as Technology
+            if technology.technologyName == sender.title
+            {
+                
+                contextSelectedTechnologyIndex = i
+                
+                addDateAction(addDate)
+            }
+        }
+    }
+    
+    //Delete Date from Technology from menu
+    
+    func deleteDateFromTechnologyFromContextMenu(sender:NSMenuItem)
+    {
+        for var i = 0 ; i < technologyArray.count ; i++
+        {
+            let technology = technologyArray[i] as Technology
+            if technology.technologyName == sender.parentItem?.title
+            {
+                
+                let selectedMenuIndex = sender.menu?.indexOfItemWithTitle(sender.title)
+                
+                print(selectedMenuIndex)
+                
+                let allDates = technology.interviewDates?.allObjects
+                
+                let selectedDate = allDates![selectedMenuIndex!] as! Date
+                
+                technology.interviewDates?.removeObject(selectedDate)
+                
+                EHTechnologyDataLayer.deleteInterviewDateFromCoreData(selectedDate)
+                
+                
+                self.sourceList.reloadData()
+            }
+        }
+    }
+    
+    func dummy()
+    {
+        
+        
+    }
+    
+    func getFormattedDate(date:NSDate)->String
+    {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd-MMM-yyyy"
+        return dateFormatter.stringFromDate(date)
+    }
 
     
 }

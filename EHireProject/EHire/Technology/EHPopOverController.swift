@@ -18,6 +18,7 @@ class EHPopOverController: NSViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        self.scheduleDatePicker.sendActionOn(1)
         self.scheduleDatePicker.minDate = NSDate()
         let calendar                    = NSCalendar(identifier: NSCalendarIdentifierGregorian)
         let currentDate                 = NSDate()
