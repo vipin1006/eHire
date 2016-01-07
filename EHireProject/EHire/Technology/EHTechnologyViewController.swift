@@ -298,12 +298,28 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             return
         }
         
-        Utility.alertPopup("Alert", informativeText: "Are you sure you want delete",okCompletionHandler: {() -> Void in
-            
-            print("ok btn")
-            self.deleteItem()
-            
+        let selected = self.sourceList.itemAtRow(self.sourceList.selectedRow)
+        
+        if selected is Technology
+        {
+            Utility.alertPopup("Alert", informativeText: "Are you sure you want to delete the selected Technology",okCompletionHandler: {() -> Void in
+                
+                print("ok btn")
+                self.deleteItem()
+                
             })
+
+        }
+        else
+        {
+            Utility.alertPopup("Alert", informativeText: "Are you sure you want to delete the selected Date",okCompletionHandler: {() -> Void in
+                
+                print("ok btn")
+                self.deleteItem()
+                
+            })
+        }
+        
     }
     
     
@@ -560,6 +576,14 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     //Contextual Menu Implementaion for Technology Module:
     
     //Contextual menu setup
+    
+    
+    override func mouseDown(theEvent: NSEvent)
+    {
+     addTechnology.enabled = true
+     sourceList.deselectRow(self.sourceList.selectedRow)
+    }
+
     
     override func rightMouseDown(theEvent: NSEvent) {
         
