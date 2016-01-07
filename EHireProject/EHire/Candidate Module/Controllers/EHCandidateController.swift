@@ -318,4 +318,6 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         tableView.reloadData()
     }
 
+    
+   
 }
