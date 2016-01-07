@@ -65,7 +65,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     let  managerialRoundFeedback = EHManagerialFeedbackModel()
     var skillsAndRatingsTitleArray = [SkillSet]()
     
-    var designationStringValue = "fff"
+    var designationStringValue = ""
     
     var xTimesTwo:String {
         set {
@@ -206,7 +206,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         let textFieldObject = obj.object as! NSTextField
         if textFieldObject.superview is EHManagerFeedBackCustomTableView{
             
-            let skillSetObject =  managerialRoundFeedback.skillSet[textFieldObject.tag]
+            let skillSetObject =  skillsAndRatingsTitleArray[textFieldObject.tag]
             skillSetObject.skillName = textFieldObject.stringValue
         }
     }
@@ -223,7 +223,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
        let newSkill = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:(selectedCandidate?.managedObjectContext)!)!,insertIntoManagedObjectContext:selectedCandidate?.managedObjectContext)
         newSkill.skillName = "Enter Title"
         newSkill.skillRating = 0
-        managerialRoundFeedback.skillSet.append(newSkill)
+        skillsAndRatingsTitleArray.append(newSkill)
         tableView.reloadData()
         }
     }
@@ -552,11 +552,13 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
 
             managerialRoundFeedback.jestificationForHire = NSAttributedString(string: textViewJustificationForHire.string!)
             
-            let grossSalaryValue = Int(textFieldGrossAnnualSalary.stringValue)
-            managerialRoundFeedback.grossAnnualSalary = NSNumber(integer: grossSalaryValue!)
-            managerialRoundFeedback.managerName = textFieldInterviewedBy.stringValue
+            print(textFieldGrossAnnualSalary.stringValue)
             
-        }
+            
+            let grossSalaryValue = NSString(string: textFieldGrossAnnualSalary.stringValue)
+            managerialRoundFeedback.grossAnnualSalary = NSNumber(integer: grossSalaryValue.integerValue)
+            
+            managerialRoundFeedback.managerName = textFieldInterviewedBy.stringValue
             let selectedColoumn = matrixForRecommendationState.selectedColumn
             if selectedColoumn != 0
             {
@@ -567,11 +569,14 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             }
             
             managerialRoundFeedback.skillSet = skillsAndRatingsTitleArray as [SkillSet]
-
-        let managerFeedbackAccessLayer = EHManagerFeedbackDataAccessLayer(managerFeedbackModel: managerialRoundFeedback)
-        if managerFeedbackAccessLayer.insertManagerFeedback(selectedCandidate!){
-           alertPopup("Success",informativeText:"Feedback for Managerround \((selectedCandidate?.interviewedByManagers?.count)!) has been sucessfully saved")
+            
+            let managerFeedbackAccessLayer = EHManagerFeedbackDataAccessLayer(managerFeedbackModel: managerialRoundFeedback)
+            if managerFeedbackAccessLayer.insertManagerFeedback(selectedCandidate!){
+                alertPopup("Success",informativeText:"Feedback for Managerround \((selectedCandidate?.interviewedByManagers?.count)!) has been sucessfully saved")
+            }
+            
         }
+        
         
         
 //        tableView.reloadData()
