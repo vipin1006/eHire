@@ -127,6 +127,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             {
                 
                 candidateController?.view.removeFromSuperview()
+                 NSApp.windows.first?.title = "Window"
                  isCandidatesViewLoaded = false
             }
             
@@ -138,10 +139,11 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 candidateController = self.storyboard?.instantiateControllerWithIdentifier("EHCandidateController") as? EHCandidateController
                 candidateController?.delegate = self
                 self.candidateView.addSubview((candidateController?.view)!)
+                 NSApp.windows.first?.title = "List of Candidates"
                 //createConstraintsForCandidateController(0.0, trailing: 0.0, top: 0.0, bottom: 0.0)
                 
                 createConstraintsForController(candidateView, subView: (candidateController?.view)!, leading: 0.0, trailing: 0.0, top: 0.0, bottom: 0.0)
-                
+               
                 isCandidatesViewLoaded = true
             }
             //added
@@ -566,10 +568,14 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         {
             let mainContextMenu = NSMenu(title: "Main Contextual Menu")
             
+        
+            
             mainContextMenu.insertItemWithTitle("Add Technology", action:Selector.init("addBtnAction:"), keyEquivalent: "", atIndex: 0)
             mainContextMenu.insertItemWithTitle("Delete Technology", action:Selector.init("dummy") , keyEquivalent: "", atIndex: 1)
             mainContextMenu.insertItemWithTitle("Add Date", action:Selector.init("addDateToTechnologyFromContextMenu:"), keyEquivalent: "", atIndex: 2)
-            mainContextMenu.insertItemWithTitle("Delete Date", action:Selector.init("dummy") , keyEquivalent: "addBtnAction:", atIndex: 3)
+           mainContextMenu.insertItemWithTitle("Delete Date", action:Selector.init("dummy") , keyEquivalent: "addBtnAction:", atIndex: 3)
+            
+      
             
             let technologySubMenuOne = NSMenu(title: "Technology Menu One")
             
@@ -577,28 +583,41 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
             let technologySubMenuThree = NSMenu(title:"Technology Menu Three")
             
-            for var i = 0 ; i < technologyArray.count ; i++
-            {
-                
-                let technology = technologyArray[i] as Technology
-                technologySubMenuOne.insertItemWithTitle(technology.technologyName!, action: Selector.init("deleteTechnologyFromContextMenu:"), keyEquivalent: "", atIndex: i)
-                technologySubMenuTwo.insertItemWithTitle(technology.technologyName!, action: Selector.init("addDateToTechnologyFromContextMenu:"), keyEquivalent: "", atIndex: i)
-                
-                technologySubMenuThree.insertItemWithTitle(technology.technologyName!, action: Selector.init("dummy"), keyEquivalent: "", atIndex: i)
-            }
+        if technologyArray.count > 0
+        {
             
             for var i = 0 ; i < technologyArray.count ; i++
             {
+                
+                
+                 let technology = technologyArray[i] as Technology
+                
+                  technologySubMenuOne.insertItemWithTitle(technology.technologyName!, action: Selector.init("deleteTechnologyFromContextMenu:"), keyEquivalent: "", atIndex: i)
+                    
+                    technologySubMenuTwo.insertItemWithTitle(technology.technologyName!, action: Selector.init("addDateToTechnologyFromContextMenu:"), keyEquivalent: "", atIndex: i)
+                    
+                    technologySubMenuThree.insertItemWithTitle(technology.technologyName!, action: Selector.init("dummy"), keyEquivalent: "", atIndex: i)
+            }
+            
+            mainContextMenu.setSubmenu(technologySubMenuOne, forItem:mainContextMenu.itemAtIndex(1)!)
+            
+            mainContextMenu.setSubmenu(technologySubMenuTwo, forItem:mainContextMenu.itemAtIndex(2)!)
+            
+            mainContextMenu.setSubmenu(technologySubMenuThree, forItem:mainContextMenu.itemAtIndex(3)!)
+                
+        }
+            
+        for var i = 0 ; i < technologyArray.count ; i++
+        {
                 
                 let technology = technologyArray[i] as Technology
                 
                 let datesMenu = NSMenu(title:"Dates Menu")
                 
-                
-                
                 let allDates = technology.interviewDates?.allObjects
                 
-                
+                if allDates?.count > 0
+                {
                 
                 for  (index , value) in (allDates?.enumerate())!
                 {
@@ -613,34 +632,34 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 
             }
             
-            mainContextMenu.setSubmenu(technologySubMenuOne, forItem:mainContextMenu.itemAtIndex(1)!)
-            
-            mainContextMenu.setSubmenu(technologySubMenuTwo, forItem:mainContextMenu.itemAtIndex(2)!)
-            
-            mainContextMenu.setSubmenu(technologySubMenuThree, forItem:mainContextMenu.itemAtIndex(3)!)
-            
-            
+     }
             
             NSMenu.popUpContextMenu(mainContextMenu, withEvent: theEvent, forView: self.view)
             
         }
+        
     }
     
     //Delete Technology from Menu
     
     func deleteTechnologyFromContextMenu(sender:NSMenuItem)
     {
-        for var i = 0 ; i < technologyArray.count ; i++
+       Utility.alertPopup("Are you you want to delete the selected technology?", informativeText: "deleting Technology will delete all of its related data.") { () -> Void in
+        
+        for var i = 0 ; i < self.technologyArray.count ; i++
         {
-            let technology = technologyArray[i] as Technology
+            let technology = self.technologyArray[i] as Technology
             if technology.technologyName == sender.title
             {
-                technologyArray.removeAtIndex(i)
-                sourceList.reloadData()
+                self.technologyArray.removeAtIndex(i)
+                self.sourceList.reloadData()
                 EHTechnologyDataLayer.deleteTechnologyFromCoreData(technology)
             }
         }
+        
     }
+        
+}
     
     //Add date to Technology from menu
     
@@ -663,28 +682,34 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     
     func deleteDateFromTechnologyFromContextMenu(sender:NSMenuItem)
     {
-        for var i = 0 ; i < technologyArray.count ; i++
-        {
-            let technology = technologyArray[i] as Technology
-            if technology.technologyName == sender.parentItem?.title
+        
+        Utility.alertPopup("Are you sure you want to delete the selected date?", informativeText:"deleting a date will delete all of its related data. ") { () -> Void in
+            
+            
+            for var i = 0 ; i < self.technologyArray.count ; i++
             {
-                
-                let selectedMenuIndex = sender.menu?.indexOfItemWithTitle(sender.title)
-                
-                print(selectedMenuIndex)
-                
-                let allDates = technology.interviewDates?.allObjects
-                
-                let selectedDate = allDates![selectedMenuIndex!] as! Date
-                
-                technology.interviewDates?.removeObject(selectedDate)
-                
-                EHTechnologyDataLayer.deleteInterviewDateFromCoreData(selectedDate)
-                
-                
-                self.sourceList.reloadData()
+                let technology = self.technologyArray[i] as Technology
+                if technology.technologyName == sender.parentItem?.title
+                {
+                    
+                    let selectedMenuIndex = sender.menu?.indexOfItemWithTitle(sender.title)
+                    
+                    print(selectedMenuIndex)
+                    
+                    let allDates = technology.interviewDates?.allObjects
+                    
+                    let selectedDate = allDates![selectedMenuIndex!] as! Date
+                    
+                    technology.interviewDates?.removeObject(selectedDate)
+                    
+                    EHTechnologyDataLayer.deleteInterviewDateFromCoreData(selectedDate)
+                    
+                    
+                    self.sourceList.reloadData()
+                }
             }
         }
+        
     }
     
     func dummy()
@@ -700,7 +725,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         return dateFormatter.stringFromDate(date)
     }
 
-    
+   
 }
 
 
