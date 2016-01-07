@@ -21,7 +21,7 @@ class Utility: NSObject {
         let res = alert.runModal()
         if res == NSAlertFirstButtonReturn {
             if let completion = okCompletionHandler{
-                print("hello")
+                
                 completion()
             }
         }
