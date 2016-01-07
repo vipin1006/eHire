@@ -18,6 +18,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var candidateView: NSView!
     
+    @IBOutlet weak var addCandidateButton: NSButton!
     @IBOutlet weak var feedbackButton: NSButton!
     @IBOutlet weak var removeButton: NSButton!
     //MARK: Properties
@@ -30,8 +31,11 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
        feedbackButton.enabled = false
         removeButton.enabled = false
+        removeButton.toolTip = "Remove Candidate"
+        addCandidateButton.toolTip = "Add Candidate"
     }
     
     override func viewWillAppear()
@@ -150,7 +154,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             {
                 let alert:NSAlert = NSAlert()
                 alert.messageText = "Candiadte can not be added"
-                alert.informativeText = "Please fill the existing candidate details before adding a new candidate"
+                alert.informativeText = "Please fill ALL the details of the selected candidate before adding a new candidate"
                 alert.addButtonWithTitle("OK")
                 alert.addButtonWithTitle("Cancel")
                 alert.alertStyle = .WarningAlertStyle
@@ -211,7 +215,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     if removeButton.enabled == true
         
     {
-        showAlert("Are you sure to delete the Candidate?", info:"Deleting a Candidate will delete all of the details")
+        showAlert("Are you sure to delete the Candidate?", info:"Please fill ALL the details of the selected candidate before adding a new candidate")
     }
     else
     {
@@ -238,7 +242,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             let selectedCandidate:Candidate = candidateArray.objectAtIndex(selectedRow) as! Candidate
             delegate.showFeedbackViewController(selectedCandidate)
             preserveCandidate = tableView.selectedRow
-            
+           NSApp.windows.first?.title = "Candidate Feedback"
         }
         }
     }
