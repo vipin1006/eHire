@@ -307,6 +307,8 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             appDelegate.managedObjectContext.deleteObject(editCandidate!)
             EHCoreDataHelper.saveToCoreData(editCandidate!)
             candidateArray.removeObjectAtIndex(tableView.selectedRow)
+            feedbackButton.enabled = false
+            removeButton.enabled = false
         }
         
         tableView.reloadData()
