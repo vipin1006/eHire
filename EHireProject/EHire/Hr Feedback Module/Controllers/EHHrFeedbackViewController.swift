@@ -77,15 +77,7 @@ class EHHrFeedbackViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        
-        let right = isNumberValid("1")
-        
-        print(right)
-        
-        let wrong = isNumberValid("hello")
-        
-        print(wrong)
-        
+      
         
         
         
@@ -116,27 +108,27 @@ class EHHrFeedbackViewController: NSViewController {
         
         if validations() {
             
-            if isNumberValid(self.currentFixedSalary.stringValue) == false
+            if EHOnlyDecimalValueFormatter.isNumberValid(self.currentFixedSalary.stringValue) == false
             {
                showAlert("Invalid data entered", info:"Please enter Fixed Salary in numbers")
                setBoarderColor(self.currentFixedSalary)
                 return
             }
-            if isNumberValid(self.currentSalaryVariable.stringValue) == false
+            if EHOnlyDecimalValueFormatter.isNumberValid(self.currentSalaryVariable.stringValue) == false
             {
                 showAlert("Invalid data entered", info:"Please enter Variable Salary in numbers")
                 setBoarderColor(self.currentSalaryVariable)
                 setClearColor(self.currentFixedSalary)
                 return
             }
-            if isNumberValid(self.expectedSalary.stringValue) == false
+            if EHOnlyDecimalValueFormatter.isNumberValid(self.expectedSalary.stringValue) == false
             {
                 showAlert("Invalid data entered", info:"Please enter Expected Salary in numbers")
                 setBoarderColor(self.expectedSalary)
                 setClearColor(self.currentSalaryVariable)
                 return
             }
-            if isNumberValid(self.highestEducationPercentage.stringValue) == false
+            if EHOnlyDecimalValueFormatter.isNumberValid(self.highestEducationPercentage.stringValue) == false
             {
                 showAlert("Invalid data entered", info:"Please enter percentage in numbers")
                 setBoarderColor(self.highestEducationPercentage)
@@ -702,19 +694,7 @@ class EHHrFeedbackViewController: NSViewController {
         
     }
     
-    func isNumberValid(value:String)->Bool
-    {
-       let number = NSNumberFormatter()
-        
-       let final = number.numberFromString(value)
-        
-        if let _ = final
-        {
-           return true
-        }
-        
-        return false
-    }
+   
   
     
 }
