@@ -148,12 +148,14 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         cell.titleName.target = self
         cell.titleName.delegate = self
       self.cell = cell
-        if !(skillSetObject.skillRating == nil) {
-            for starButton in cell.selectStar.subviews{
+        if !(skillSetObject.skillRating == nil)
+        {
+            for starButton in cell.selectStar.subviews
+            {
                 let tempBtn = starButton as! NSButton
                 if tempBtn.tag+1 == (skillSetObject.skillRating!){
                     displayStar(cell, lbl: cell.feedBackRating, sender: tempBtn )
-                    break
+                                break
                 }
                 else
                 {
@@ -166,6 +168,11 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         for ratingsView in cell.selectStar.subviews
         {
             let view = ratingsView as! NSButton
+            if selectedCandidate?.interviewedByManagers?.count > 0
+            {
+                view.enabled = false
+            }
+            
             view.target = self
             view.action = "selectedStarCount:"
             
@@ -583,7 +590,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     
     //PRAGMAMARK:- Update UI 
-    func updateUIElements(feedback: ManagerFeedBack){
+    func updateUIElements(feedback: ManagerFeedBack)
+    {
         print(feedback.managerName)
         
         
@@ -658,10 +666,33 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                 }
             }
         }
-        tableView.reloadData()
+        //To Disable the Saved data
         saveBtn.enabled = false
+<<<<<<< Updated upstream
         
 
+=======
+        textFieldGrossAnnualSalary.editable = false
+        textFieldDesignation.editable = false
+        textFieldCorporateGrade.editable = false
+        textFieldInterviewedBy.editable = false
+        textFieldPosition.editable = false
+        textViewCommentsForOverAllCandidateAssessment.editable = false
+        textViewCommentsForOverAllTechnologyAssessment.editable = false
+        textViewCommitments.editable = false
+        textViewJustificationForHire.editable = false
+        for starButton in (viewOverAllAssessmentOfCandidateStar.subviews){
+            let tempBtn = starButton as! NSButton
+            tempBtn.enabled = false
+            
+        }
+        for starButton in (viewOverAllAssessmentOfTechnologyStar.subviews){
+            let tempBtn = starButton as! NSButton
+            tempBtn.enabled = false
+            
+        }
+        tableView.reloadData()
+>>>>>>> Stashed changes
     }
     
 
@@ -730,7 +761,36 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         setRecommendationState("Rejected")
         setModeOfInterview("Face To Face")
         setCgDeviation(false)
+        //To Enable the fields
         saveBtn.enabled = true
+        textFieldGrossAnnualSalary.editable = true
+        textFieldDesignation.editable = true
+        textFieldCorporateGrade.editable = true
+        textFieldInterviewedBy.editable = true
+        textFieldPosition.editable = true
+        textViewCommentsForOverAllCandidateAssessment.editable = true
+        textViewCommentsForOverAllTechnologyAssessment.editable = true
+        textViewCommitments.editable = true
+        textViewJustificationForHire.editable = true
+        
+        for starButton in (cell?.selectStar.subviews)!
+        {
+            let tempBtn = starButton as! NSButton
+            tempBtn.enabled = true
+            
+        }
+        cell?.feedBackRating.editable = false
+        for starButton in (viewOverAllAssessmentOfCandidateStar.subviews){
+            let tempBtn = starButton as! NSButton
+            tempBtn.enabled = true
+            
+        }
+        for starButton in (viewOverAllAssessmentOfTechnologyStar.subviews){
+            let tempBtn = starButton as! NSButton
+            tempBtn.enabled = true
+            
+        }
+        tableView.reloadData()
     }
     
 }

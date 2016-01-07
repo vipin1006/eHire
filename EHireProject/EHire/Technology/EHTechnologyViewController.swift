@@ -47,6 +47,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         super.viewDidLoad()
         technologyArray = EHTechnologyDataLayer.getSourceListContent() as! [Technology]
         deleteTechnologyDate.toolTip = "Delete Date or Technology"
+        deleteTechnologyDate.enabled = false
         addDate.enabled = false
         self.sourceList.reloadData()
     }
@@ -96,7 +97,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     //PRAGMAMARK: - outlineview delegate  methods
     //This delegate method sets isCandidatesViewLoaded based on which item (technology/date) is selected.
 
-    
+//    
     func outlineViewSelectionIsChanging(notification: NSNotification)
     {
         if let _ = sourceList.itemAtRow(sourceList.selectedRow) as? Technology
@@ -123,12 +124,15 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
         case  _ as Technology:
             
+            deleteTechnologyDate.enabled = true
+            
             if isCandidatesViewLoaded
             {
                 
                 candidateController?.view.removeFromSuperview()
                  NSApp.windows.first?.title = "Window"
                  isCandidatesViewLoaded = false
+                
             }
             
         case  _ as Date:
@@ -282,7 +286,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 let newTechnologyManagedObject:Technology = Technology(entity:newTechnologyEntityDescription!, insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext) as Technology
                 newTechnologyManagedObject.technologyName = ""
                 technologyArray.append(newTechnologyManagedObject)
-                
+             
+              
                 self.sourceList.reloadData()
                 
             }
@@ -303,9 +308,12 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         if selected is Technology
         {
             Utility.alertPopup("Alert", informativeText: "Are you sure you want to delete the selected Technology",okCompletionHandler: {() -> Void in
-                
-                print("ok btn")
                 self.deleteItem()
+                if self.technologyArray.count == 0
+                {
+                    
+                    self.deleteTechnologyDate.enabled = false
+                }
                 
             })
 
@@ -346,6 +354,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 addTechnology.enabled = true
                 addDate.enabled = false
             }
+            
+            
+            self.sourceList.reloadData()
         }
             else
         {
@@ -359,8 +370,10 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 candidateController?.view.removeFromSuperview()
                 isCandidatesViewLoaded = false
             }
+            
+              self.sourceList.reloadData()
         }
-        self.sourceList.reloadData()
+      
     }
     
     @IBAction func addDateAction(button: NSButton)
@@ -445,13 +458,24 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 addTechnology.enabled = true
                 EHTechnologyDataLayer.addTechnologyToCoreData(technologyObject)
                 
+                deleteTechnologyDate.enabled = false
+                
                  self.sourceList.reloadData()
+                
                 
             }
             else{
+               
                 Utility.alertPopup("Error", informativeText: "Technology name should be unique",okCompletionHandler: nil)
 
             }
+            
+            
+        }
+        
+        else
+        {
+             Utility.alertPopup("Alert", informativeText: "Please add a name for Technology", okCompletionHandler: nil)
             
             
         }
@@ -581,7 +605,10 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     override func mouseDown(theEvent: NSEvent)
     {
      addTechnology.enabled = true
+     addDate.enabled = false
      sourceList.deselectRow(self.sourceList.selectedRow)
+     deleteTechnologyDate.enabled = false
+
     }
 
     
