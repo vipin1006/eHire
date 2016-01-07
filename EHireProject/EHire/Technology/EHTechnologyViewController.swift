@@ -716,6 +716,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     
     func addDateToTechnologyFromContextMenu(sender:NSMenuItem)
     {
+        addDate.enabled = true
+        
         for var i = 0 ; i < technologyArray.count ; i++
         {
             let technology = technologyArray[i] as Technology

@@ -54,14 +54,27 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
     
-    @IBOutlet dynamic var  managerialFeedbackModel: EHManagerialFeedbackModel!
-    var candidateDetails : EHCandidateDetails?
     
+    var candidateDetails : EHCandidateDetails?
     
     var selectedCandidate : Candidate?
    
     var cell : EHManagerFeedBackCustomTableView?
-   
+    
+    
+    let  managerialRoundFeedback = EHManagerialFeedbackModel()
+    var skillsAndRatingsTitleArray = [SkillSet]()
+    
+    var designationStringValue = "fff"
+    
+    var xTimesTwo:String {
+        set {
+            designationStringValue = xTimesTwo
+        }
+        get {
+            return designationStringValue
+        }
+    }
     //MARK:- View Methods
     override func loadView() {
         
@@ -96,7 +109,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         }
         
         
-        print("name = \(managerialFeedbackModel.designation)")
+        print("name = \(managerialRoundFeedback.designation)")
     }
     
     //MARK:- Method for Adding Default Skills
@@ -107,7 +120,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         {
             let skillSetObject = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:(selectedCandidate?.managedObjectContext)!)!,insertIntoManagedObjectContext:selectedCandidate?.managedObjectContext)
             skillSetObject.skillName = skillArray.objectAtIndex(index) as? String
-            managerialFeedbackModel.skillSet.append(skillSetObject)
+            skillsAndRatingsTitleArray.append(skillSetObject)
+
         }
         
     }
@@ -115,7 +129,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     //MARK:-TableView DataSource Methods
     func numberOfRowsInTableView(tableView: NSTableView) -> Int
     {
-        return (managerialFeedbackModel?.skillSet.count)!
+        return skillsAndRatingsTitleArray.count
+
     }
     
     func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat
@@ -127,7 +142,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     {
         let cell = tableView.makeViewWithIdentifier("DataCell", owner: self) as! EHManagerFeedBackCustomTableView
         
-        let skillSetObject = managerialFeedbackModel!.skillSet[row] as SkillSet
+        let skillSetObject = skillsAndRatingsTitleArray[row] as SkillSet
         cell.titleName.stringValue = skillSetObject.skillName!
         cell.titleName.tag = row
         cell.titleName.target = self
@@ -191,15 +206,15 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         let textFieldObject = obj.object as! NSTextField
         if textFieldObject.superview is EHManagerFeedBackCustomTableView{
             
-            let skillSetObject =  managerialFeedbackModel?.skillSet[textFieldObject.tag]
-            skillSetObject?.skillName = textFieldObject.stringValue
+            let skillSetObject =  managerialRoundFeedback.skillSet[textFieldObject.tag]
+            skillSetObject.skillName = textFieldObject.stringValue
         }
     }
     
  //MARK:- Method to add new skills
     @IBAction func addSkillSet(sender: NSButton)
     {
-        if managerialFeedbackModel.skillSet.count > 0 && cell?.titleName.stringValue == "Enter Title"
+        if managerialRoundFeedback.skillSet.count > 0 && cell?.titleName.stringValue == "Enter Title"
         {
             alertPopup("Enter Title", informativeText: "Please enter previous selected title")
         }
@@ -208,7 +223,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
        let newSkill = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:(selectedCandidate?.managedObjectContext)!)!,insertIntoManagedObjectContext:selectedCandidate?.managedObjectContext)
         newSkill.skillName = "Enter Title"
         newSkill.skillRating = 0
-        managerialFeedbackModel?.skillSet.append(newSkill)
+        managerialRoundFeedback.skillSet.append(newSkill)
         tableView.reloadData()
         }
     }
@@ -216,7 +231,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     //MARK:-Method to delete skills
     @IBAction func deleteSkillSet(sender: NSButton)
     {
-        managerialFeedbackModel?.skillSet.removeAtIndex(tableView.selectedRow)
+        managerialRoundFeedback.skillSet.removeAtIndex(tableView.selectedRow)
             tableView.reloadData()
     }
     
@@ -340,15 +355,14 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         if customView is EHManagerFeedBackCustomTableView{
             cell = customView as? EHManagerFeedBackCustomTableView
             let textFieldObject = customView.titleName as NSTextField
-            let skillSetObject = managerialFeedbackModel!.skillSet[textFieldObject.tag] as SkillSet
+            let skillSetObject = skillsAndRatingsTitleArray[textFieldObject.tag] as SkillSet
             skillSetObject.skillRating = NSNumber(short: ratingValue)
-            print("name = \(skillSetObject.skillName)")
         }
         else if customView as! NSView == viewOverAllAssessmentOfTechnologyStar{
-            managerialFeedbackModel!.ratingOnTechnical=ratingValue
+            managerialRoundFeedback.ratingOnTechnical=ratingValue
         }
         else if customView as! NSView == viewOverAllAssessmentOfCandidateStar{
-            managerialFeedbackModel!.ratingOnCandidate=ratingValue
+            managerialRoundFeedback.ratingOnCandidate=ratingValue
         }
     }
    
@@ -357,16 +371,13 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     //MARK:- Method to get interviewmode
     @IBAction func getInterviewMode(sender: AnyObject) {
         
-       
-        
-        
         if (sender.selectedCell() == sender.cells[0])
         {
-            managerialFeedbackModel.modeOfInterview = sender.cells[0].title
+            managerialRoundFeedback.modeOfInterview = sender.cells[0].title
         }
         else
         {
-           managerialFeedbackModel.modeOfInterview = sender.cells[1].title
+           managerialRoundFeedback.modeOfInterview = sender.cells[1].title
         }
         
      
@@ -377,9 +388,9 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         
         let selectedColoumn = sender.selectedColumn
         if selectedColoumn == 0{
-            managerialFeedbackModel.isCgDeviation = true
+            managerialRoundFeedback.isCgDeviation = true
         }else{
-            managerialFeedbackModel.isCgDeviation = false
+            managerialRoundFeedback.isCgDeviation = false
         }
     }
     
@@ -423,9 +434,9 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     //MARK:- Method to set default interviewmode/cgdeviation/recommendationstate
     func setDefaultCgDeviationAndInterviewMode(){
-        managerialFeedbackModel.modeOfInterview = "Face To Face"
-        managerialFeedbackModel.isCgDeviation = false
-        managerialFeedbackModel.recommendation = "Shortlisted"
+        managerialRoundFeedback.modeOfInterview = "Face To Face"
+        managerialRoundFeedback.isCgDeviation = false
+        managerialRoundFeedback.recommendation = "Shortlisted"
     }
     
     
@@ -532,19 +543,36 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         
         if validation(){
             
+              managerialRoundFeedback.commentsOnCandidate = NSAttributedString(string: textViewCommentsForOverAllCandidateAssessment.string!)
+             managerialRoundFeedback.commentsOnTechnology = NSAttributedString(string: textViewCommentsForOverAllTechnologyAssessment.string!)
+            managerialRoundFeedback.commitments = NSAttributedString(string: textViewCommitments.string!)
+            managerialRoundFeedback.designation = textFieldDesignation.stringValue
+            managerialRoundFeedback.recommendedCg = textFieldCorporateGrade.stringValue
+            managerialRoundFeedback.designation = textFieldDesignation.stringValue
+
+            managerialRoundFeedback.jestificationForHire = NSAttributedString(string: textViewJustificationForHire.string!)
+            
+            let grossSalaryValue = Int(textFieldGrossAnnualSalary.stringValue)
+            managerialRoundFeedback.grossAnnualSalary = NSNumber(integer: grossSalaryValue!)
+            managerialRoundFeedback.managerName = textFieldInterviewedBy.stringValue
+            
+        }
             let selectedColoumn = matrixForRecommendationState.selectedColumn
             if selectedColoumn != 0
             {
-                managerialFeedbackModel.recommendation = "Rejected"
+                managerialRoundFeedback.recommendation = "Rejected"
             }else
             {
-                managerialFeedbackModel.recommendation = "Shortlisted"
+                managerialRoundFeedback.recommendation = "Shortlisted"
             }
-        let managerFeedbackAccessLayer = EHManagerFeedbackDataAccessLayer(managerFeedbackModel: managerialFeedbackModel)
+            
+            managerialRoundFeedback.skillSet = skillsAndRatingsTitleArray as [SkillSet]
+
+        let managerFeedbackAccessLayer = EHManagerFeedbackDataAccessLayer(managerFeedbackModel: managerialRoundFeedback)
         if managerFeedbackAccessLayer.insertManagerFeedback(selectedCandidate!){
            alertPopup("Success",informativeText:"Feedback for Managerround \((selectedCandidate?.interviewedByManagers?.count)!) has been sucessfully saved")
         }
-        }
+        
         
 //        tableView.reloadData()
         
@@ -560,65 +588,79 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         
         
         print (feedback.candidate?.name)
+        print (feedback.candidate?.name)
+
         
         
         //managerialFeedbackModel.managerName = feedback.managerName!
-        managerialFeedbackModel.designation = feedback.designation!
+        //textFieldDesignation.stringValue = feedback.designation!
         if feedback.commentsOnCandidate != nil{
-            managerialFeedbackModel.commentsOnCandidate = NSAttributedString(string: feedback.commentsOnCandidate!)
+            textViewCommentsForOverAllCandidateAssessment.string = feedback.commentsOnCandidate!
         }
         
         if feedback.commentsOnTechnology != nil{
-            managerialFeedbackModel.commentsOnTechnology = NSAttributedString(string: feedback.commentsOnTechnology!)
+            textViewCommentsForOverAllTechnologyAssessment.string = feedback.commentsOnTechnology
         }
-        managerialFeedbackModel.commitments = NSAttributedString(string: feedback.commitments!)
-        managerialFeedbackModel.ratingOnTechnical = Int16((feedback.ratingOnTechnical?.integerValue)!)
-        managerialFeedbackModel.ratingOnCandidate = Int16((feedback.ratingOnCandidate?.integerValue)!)
-        managerialFeedbackModel.grossAnnualSalary = feedback.grossAnnualSalary
-        managerialFeedbackModel.recommendedCg = feedback.recommendedCg
-        managerialFeedbackModel.jestificationForHire = NSAttributedString(string: feedback.jestificationForHire!)
-        managerialFeedbackModel.managerName = feedback.managerName
-        managerialFeedbackModel.modeOfInterview = feedback.modeOfInterview
-        managerialFeedbackModel.recommendation = feedback.recommendation
-        managerialFeedbackModel.isCgDeviation = feedback.isCgDeviation
         
-        setModeOfInterview(managerialFeedbackModel.modeOfInterview!)
-        setRecommendationState(managerialFeedbackModel.recommendation!)
-        setCgDeviation(Bool(managerialFeedbackModel.isCgDeviation!.boolValue))
+        textFieldCandidateName.stringValue = (feedback.candidate?.name)!
+        textFieldCorporateGrade.stringValue = feedback.recommendedCg!
+        textViewCommitments.string = feedback.commitments
+        textViewJustificationForHire.string = feedback.jestificationForHire!
+        textFieldPosition.stringValue = feedback.designation!
+        textFieldDesignation.stringValue = feedback.designation!
+        textFieldInterviewedBy.stringValue = feedback.managerName!
+        textFieldGrossAnnualSalary.stringValue = (feedback.grossAnnualSalary?.stringValue)!
         
+        managerialRoundFeedback.ratingOnTechnical = Int16((feedback.ratingOnTechnical?.integerValue)!)
+        managerialRoundFeedback.ratingOnCandidate = Int16((feedback.ratingOnCandidate?.integerValue)!)
+        managerialRoundFeedback.grossAnnualSalary = feedback.grossAnnualSalary
+        managerialRoundFeedback.recommendedCg = feedback.recommendedCg
+        managerialRoundFeedback.jestificationForHire = NSAttributedString(string: "")
+        managerialRoundFeedback.managerName = feedback.managerName
+        managerialRoundFeedback.modeOfInterview = feedback.modeOfInterview
+        managerialRoundFeedback.recommendation = feedback.recommendation
+        managerialRoundFeedback.isCgDeviation = feedback.isCgDeviation
         
-        managerialFeedbackModel!.skillSet.removeAll()
-        for object in feedback.candidateSkills!{
+        setModeOfInterview(managerialRoundFeedback.modeOfInterview!)
+        setRecommendationState(managerialRoundFeedback.recommendation!)
+        setCgDeviation(Bool(managerialRoundFeedback.isCgDeviation!.boolValue))
+        
+        skillsAndRatingsTitleArray.removeAll()
+        for object in feedback.candidateSkills!
+        {
             let skillset = object as! SkillSet
             
-            //                let communicationSkill = EHSkillSet()
-            //                communicationSkill.skillName = skillset.skillName
-            //                communicationSkill.skillRating = Int16((skillset.skillRating?.integerValue)!)
-            managerialFeedbackModel!.skillSet.append(skillset)
+            let newSkill = SkillSet(entity:EHCoreDataHelper.createEntity("SkillSet", managedObjectContext:(selectedCandidate?.managedObjectContext)!)!,insertIntoManagedObjectContext:selectedCandidate?.managedObjectContext)
+            
+            newSkill.skillName   = skillset.skillName
+            newSkill.skillRating = skillset.skillRating
+            skillsAndRatingsTitleArray.append(newSkill)
         }
+
         
-        print(managerialFeedbackModel!.skillSet.count)
+        print(managerialRoundFeedback.skillSet.count)
         
-        if !(managerialFeedbackModel.ratingOnTechnical == nil) {
+        if !(managerialRoundFeedback.ratingOnTechnical == nil) {
             for starButton in viewOverAllAssessmentOfTechnologyStar.subviews{
                 let tempBtn = starButton as! NSButton
-                if tempBtn.tag == (managerialFeedbackModel.ratingOnTechnical!-1){
+                if tempBtn.tag == (managerialRoundFeedback.ratingOnTechnical!-1){
                     displayStar(viewOverAllAssessmentOfTechnologyStar, lbl: labelOverAllAssessmentOfTechnology, sender: tempBtn )
                 }
             }
         }
         
         
-        if !(managerialFeedbackModel.ratingOnCandidate == nil) {
+        if !(managerialRoundFeedback.ratingOnCandidate == nil) {
             for starButton in viewOverAllAssessmentOfCandidateStar.subviews{
                 let tempBtn = starButton as! NSButton
-                if tempBtn.tag == (managerialFeedbackModel.ratingOnCandidate!-1){
+                if tempBtn.tag == (managerialRoundFeedback.ratingOnCandidate!-1){
                     displayStar(viewOverAllAssessmentOfCandidateStar, lbl: labelOverAllAssessmentOfCandidate, sender: tempBtn )
                 }
             }
         }
         tableView.reloadData()
         saveBtn.enabled = false
+        
 
     }
     
@@ -627,16 +669,9 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         let arra = NSArray(array: allObj)
         
         let descriptor: NSSortDescriptor = NSSortDescriptor(key: "id", ascending: true)
-        let sortedResults: NSArray = arra.sortedArrayUsingDescriptors([descriptor])//                let feedback = allObj![0]
+        let sortedResults: NSArray = arra.sortedArrayUsingDescriptors([descriptor])
         
-//        if sortedResults.count != 0{
-//           let managerFeedback =  sortedResults[0] as! ManagerFeedBack
-//            if managerFeedback.recommendation == "Rejected" && index == 1 {
-//                Utility.alertPopup("Alert", informativeText: "Candidate has been rejected", okCompletionHandler: nil)
-//                return false
-//            }
-//        }
-        let managerFeedback =  sortedResults[index] as! ManagerFeedBack
+                let managerFeedback =  sortedResults[index] as! ManagerFeedBack
         updateUIElements(managerFeedback)
         return true
 
@@ -645,24 +680,36 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     func refreshAllFields()
     {
+//        managerialRoundFeedback.commentsOnCandidate = NSAttributedString(string: "")
+//
+//        managerialRoundFeedback.commentsOnTechnology = NSAttributedString(string: "")
+//        managerialRoundFeedback.commitments = NSAttributedString(string: "")
+//        managerialRoundFeedback.grossAnnualSalary = NSNumber(integer: 0)
+//        
+//        managerialRoundFeedback.managerName = ""
+//        //managerialFeedbackModel. isCgDeviation = NSNumber(integer: 0)
+// 
+//        managerialRoundFeedback.jestificationForHire = NSAttributedString(string: "")
+//        managerialRoundFeedback.modeOfInterview = ""
+//        managerialRoundFeedback.ratingOnCandidate = 0
+//        managerialRoundFeedback.ratingOnTechnical = 0
+//        managerialRoundFeedback.recommendation = ""
+//        managerialRoundFeedback.recommendedCg = ""
+//        managerialRoundFeedback.designation = ""
         
-        managerialFeedbackModel.commentsOnCandidate = NSAttributedString(string: "")
+        textFieldCandidateName.stringValue = ""
+        textFieldCorporateGrade.stringValue = ""
+        textViewCommitments.string = ""
+        textViewJustificationForHire.string = ""
+        textFieldPosition.stringValue = ""
+        textFieldDesignation.stringValue = ""
+        textViewCommentsForOverAllCandidateAssessment.string = ""
+        textViewCommentsForOverAllTechnologyAssessment.string = ""
+        textFieldGrossAnnualSalary.stringValue = ""
+        textFieldInterviewedBy.stringValue = ""
 
-        managerialFeedbackModel.commentsOnTechnology = NSAttributedString(string: "")
-        managerialFeedbackModel.commitments = NSAttributedString(string: "")
-        managerialFeedbackModel.grossAnnualSalary = NSNumber(integer: 0)
-        
-        managerialFeedbackModel.managerName = ""
-        //managerialFeedbackModel. isCgDeviation = NSNumber(integer: 0)
- 
-        managerialFeedbackModel.jestificationForHire = NSAttributedString(string: "")
-        managerialFeedbackModel.modeOfInterview = ""
-        managerialFeedbackModel.ratingOnCandidate = 0
-        managerialFeedbackModel.ratingOnTechnical = 0
-        managerialFeedbackModel.recommendation = ""
-        managerialFeedbackModel.recommendedCg = ""
-        managerialFeedbackModel.designation = ""
-        managerialFeedbackModel?.skillSet.removeAll()
+
+        skillsAndRatingsTitleArray.removeAll()
         addDefalutSkillSet()
 
         tableView.reloadData()

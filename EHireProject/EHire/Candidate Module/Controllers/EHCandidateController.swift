@@ -133,11 +133,11 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         let entityDescription = EHCoreDataHelper.createEntity("Candidate", managedObjectContext: appDelegate.managedObjectContext)
         let managedObject:Candidate = Candidate(entity:entityDescription!, insertIntoManagedObjectContext:appDelegate.managedObjectContext) as Candidate
         
-        managedObject.name = "Name"
+        managedObject.name = ""
         managedObject.phoneNumber = ""
         managedObject.experience =  ""
         managedObject.interviewTime = NSDate()
-        managedObject.requisition = "Requisition"
+        managedObject.requisition = ""
         managedObject.technologyName = self.technologyName!
         managedObject.interviewDate = self.interviewDate!
         
@@ -178,6 +178,11 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     {
         getSourceListContent()
         tableView.reloadData()
+        if tableView.selectedRow == -1
+        {
+            feedbackButton.enabled = false
+            removeButton.enabled = false
+        }
         if let tablePreserved = preserveCandidate
         {
             
@@ -202,7 +207,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             for aRec in records!{
                 let cEntity = aRec as! Candidate
                 
-                candidateArray.addObject(cEntity);//
+                candidateArray.addObject(cEntity);
             }
         }
         
@@ -225,8 +230,8 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     
     @IBAction func addInterviewTime(sender: AnyObject)
     {
-        let selectedRow:NSInteger = tableView.selectedRow
-        let selectedCandidate:Candidate = candidateArray.objectAtIndex(selectedRow) as! Candidate
+        //let selectedRow:NSInteger = tableView.selectedRow
+        let selectedCandidate:Candidate = candidateArray.objectAtIndex(tableView.selectedRow) as! Candidate
         selectedCandidate.interviewTime = sender.dateValue
         EHCoreDataHelper.saveToCoreData(selectedCandidate)
         
@@ -268,13 +273,10 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         candidate.requisition = fieldEditor.string
 
         default:
-        print("Hi")
+        print("")
     }
-        do{
-            try candidate.managedObjectContext?.save()
-          }
-        catch{
-            }
+        EHCoreDataHelper.saveToCoreData(candidate)
+
         return true
     }
     

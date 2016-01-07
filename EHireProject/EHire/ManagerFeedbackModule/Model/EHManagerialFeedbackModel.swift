@@ -10,21 +10,21 @@ import Cocoa
 
 class EHManagerialFeedbackModel: NSObject {
     var id : Int16?
-     dynamic var commentsOnCandidate: NSAttributedString?
-      dynamic var commentsOnTechnology: NSAttributedString?
-     dynamic var commitments: NSAttributedString?
-     dynamic var grossAnnualSalary: NSNumber?
-     dynamic var managerName: String?
-     dynamic var isCgDeviation: NSNumber?
-     dynamic var jestificationForHire: NSAttributedString?
-     dynamic var modeOfInterview: String?
+      var commentsOnCandidate: NSAttributedString?
+       var commentsOnTechnology: NSAttributedString?
+      var commitments: NSAttributedString?
+      var grossAnnualSalary: NSNumber?
+      var managerName: String?
+      var isCgDeviation: NSNumber?
+      var jestificationForHire: NSAttributedString?
+      var modeOfInterview: String?
       var ratingOnCandidate: Int16?
       var ratingOnTechnical: Int16?
-     dynamic var recommendation: String?
-     dynamic var recommendedCg: String?
+      var recommendation: String?
+      var recommendedCg: String?
       var candidate: Candidate?
     var skillSet : [SkillSet] = []
-   dynamic var designation: String?
+    var designation: String?
     
 //     init(candidateDetails:EHCandidateDetails) {
 //        self.commentsOnCandidate = ""

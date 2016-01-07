@@ -22,4 +22,18 @@ class EHOnlyDecimalValueFormatter: NSNumberFormatter {
         
         return true
     }
+    
+  class  func isNumberValid(value:String)->Bool
+    {
+        let number = NSNumberFormatter()
+        
+        let final = number.numberFromString(value)
+        
+        if let _ = final
+        {
+            return true
+        }
+        
+        return false
+    }
 }
