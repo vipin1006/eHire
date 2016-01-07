@@ -150,7 +150,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         if candidateArray.count > 0
         {
             let candidateRecord = candidateArray.lastObject as! Candidate
-            if candidateArray.count > 0 && candidateRecord.name! == "name" || candidateRecord.phoneNumber! == "" || candidateRecord.experience! == " " || candidateRecord.requisition! == "Requisition"
+            if candidateArray.count > 0 && candidateRecord.name! == "" || candidateRecord.phoneNumber! == "" || candidateRecord.experience! == " " || candidateRecord.requisition! == ""
             {
                 let alert:NSAlert = NSAlert()
                 alert.messageText = "Candiadte can not be added"
@@ -162,16 +162,13 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             }
             else
             {
-                addCandidate()
+              addCandidate()
             }
         }
         else
         {
-            addCandidate()
+          addCandidate()
         }
-
-
-        
     }
     
     func refresh()
@@ -191,7 +188,8 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     }
     
     
-    func getSourceListContent(){
+    func getSourceListContent()
+    {
         candidateArray.removeAllObjects()
         
         let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
@@ -203,63 +201,58 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         
         print(records)
         
-        if records?.count > 0{
-            for aRec in records!{
-                let cEntity = aRec as! Candidate
-                
-                candidateArray.addObject(cEntity);
-            }
+        if records?.count > 0
+        {
+          for aRec in records!
+          {
+            let cEntity = aRec as! Candidate
+            candidateArray.addObject(cEntity);
+          }
         }
-        
-        
     }
 
     
    @IBAction func removeCandidate(sender: AnyObject)
    {
     if removeButton.enabled == true
-        
     {
-        showAlert("Are you sure to delete the Candidate?", info:"Please fill ALL the details of the selected candidate before adding a new candidate")
+      showAlert("Are you sure you want to delete the Candidate?", info:"")
     }
     else
     {
-        removeButton.enabled = false
+      removeButton.enabled = false
     }
-    }
+  }
     
     @IBAction func addInterviewTime(sender: AnyObject)
     {
-        //let selectedRow:NSInteger = tableView.selectedRow
-        let selectedCandidate:Candidate = candidateArray.objectAtIndex(tableView.selectedRow) as! Candidate
-        selectedCandidate.interviewTime = sender.dateValue
-        EHCoreDataHelper.saveToCoreData(selectedCandidate)
+      let selectedCandidate:Candidate = candidateArray.objectAtIndex(tableView.selectedRow) as! Candidate
+      selectedCandidate.interviewTime = sender.dateValue
+      EHCoreDataHelper.saveToCoreData(selectedCandidate)
         
     }
     
     @IBAction func enterFeedback(sender: AnyObject)
     {
-        if tableView.selectedRow > -1
-        {
+      if tableView.selectedRow > -1
+      {
         if let delegate = self.delegate
         {
-            let selectedRow:NSInteger = tableView.selectedRow
-            let selectedCandidate:Candidate = candidateArray.objectAtIndex(selectedRow) as! Candidate
-            delegate.showFeedbackViewController(selectedCandidate)
-            preserveCandidate = tableView.selectedRow
-           NSApp.windows.first?.title = "Candidate Feedback"
+          let selectedRow:NSInteger = tableView.selectedRow
+          let selectedCandidate:Candidate = candidateArray.objectAtIndex(selectedRow) as! Candidate
+          delegate.showFeedbackViewController(selectedCandidate)
+          preserveCandidate = tableView.selectedRow
+          NSApp.windows.first?.title = "Candidate Feedback"
         }
-        }
+      }
     }
     
-    func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
-        
-        let textField = control as! NSTextField
-        
-        let candidate = self.candidateArray.objectAtIndex(self.tableView.selectedRow) as! Candidate
-        
-       switch textField.tag
-       {
+    func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
+    {
+      let textField = control as! NSTextField
+      let candidate = self.candidateArray.objectAtIndex(self.tableView.selectedRow) as! Candidate
+      switch textField.tag
+      {
         case 1:
         candidate.name = fieldEditor.string
         
@@ -274,19 +267,16 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
 
         default:
         print("")
-    }
+     }
         EHCoreDataHelper.saveToCoreData(candidate)
-
         return true
     }
     
     func showAlert(message:String,info:String)
     {
-        let selectedRow = self.tableView.selectedRow
-        if selectedRow != -1
-        {
+      if self.tableView.selectedRow != -1
+      {
         _ = self.candidateArray.objectAtIndex(self.tableView.selectedRow) as! Candidate
-        
         let alert:NSAlert = NSAlert()
         alert.messageText = message
         alert.informativeText = info
@@ -298,28 +288,18 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         if res == NSAlertFirstButtonReturn
         {
             deleteCandidate()
-            
         }
-        }
+      }
     }
     
     func deleteCandidate()
     {
-      if tableView.selectedRow > -1
+        if tableView.selectedRow > -1
         {
-            let editCandidate = candidateArray.objectAtIndex(tableView.selectedRow) as? Candidate
-            
-            let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
-            appDelegate.managedObjectContext.deleteObject(editCandidate!)
-            EHCoreDataHelper.saveToCoreData(editCandidate!)
-            candidateArray.removeObjectAtIndex(tableView.selectedRow)
-            feedbackButton.enabled = false
-            removeButton.enabled = false
+          let editCandidate = candidateArray.objectAtIndex(tableView.selectedRow) as? Candidate
+          EHCandidateDataAccessLayer.removeCandidate(editCandidate!)
+          candidateArray.removeObjectAtIndex(tableView.selectedRow)
         }
-        
         tableView.reloadData()
     }
-
-    
-   
-}
+    }
