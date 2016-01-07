@@ -612,6 +612,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             }
         }
         tableView.reloadData()
+        saveBtn.enabled = false
 
     }
     
@@ -676,7 +677,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         setRecommendationState("Rejected")
         setModeOfInterview("Face To Face")
         setCgDeviation(false)
-//        saveBtn.enabled = true
+        saveBtn.enabled = true
     }
     
 }
