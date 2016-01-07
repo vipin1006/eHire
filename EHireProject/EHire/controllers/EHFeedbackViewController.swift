@@ -275,6 +275,7 @@ class EHFeedbackViewController: NSViewController
 //        candidateObject?.removeButton!.enabled = false
 
         self.view.removeFromSuperview()
+        NSApp.windows.first?.title = "List of Candidates"
         self.delegate?.feedbackViewControllerDidFinish(selectedCandidate!)
         
     }

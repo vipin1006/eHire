@@ -127,6 +127,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             {
                 
                 candidateController?.view.removeFromSuperview()
+                 NSApp.windows.first?.title = "Window"
                  isCandidatesViewLoaded = false
             }
             
@@ -138,10 +139,11 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 candidateController = self.storyboard?.instantiateControllerWithIdentifier("EHCandidateController") as? EHCandidateController
                 candidateController?.delegate = self
                 self.candidateView.addSubview((candidateController?.view)!)
+                 NSApp.windows.first?.title = "List of Candidates"
                 //createConstraintsForCandidateController(0.0, trailing: 0.0, top: 0.0, bottom: 0.0)
                 
                 createConstraintsForController(candidateView, subView: (candidateController?.view)!, leading: 0.0, trailing: 0.0, top: 0.0, bottom: 0.0)
-                
+               
                 isCandidatesViewLoaded = true
             }
             //added
