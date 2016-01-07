@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
@@ -2021,6 +2021,7 @@ CA
                         <outlet property="ratingOnTechnologyField" destination="WIG-5A-A75" id="uSm-Mv-WHd"/>
                         <outlet property="recommentationField" destination="KEX-d7-PNz" id="tkE-dj-eAN"/>
                         <outlet property="requisitionNameField" destination="N33-f2-XzK" id="fnb-st-sJp"/>
+                        <outlet property="saveButton" destination="MtI-02-dgX" id="rb3-Mb-gPe"/>
                         <outlet property="tableView" destination="2Zk-Rn-2d9" id="aHW-fg-Cic"/>
                         <outlet property="technicalFeedbackMainView" destination="TA5-L1-aWy" id="kGa-31-jDe"/>
                         <outlet property="textViewOfCandidateAssessment" destination="k5G-My-Zu5" id="6Tr-04-ltx"/>
@@ -3525,7 +3526,7 @@ CA
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="zYB-nQ-v2C">
-                                                    <rect key="frame" x="229" y="0.0" width="5" height="103"/>
+                                                    <rect key="frame" x="229" y="0.0" width="4" height="103"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -3894,7 +3895,7 @@ CA
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="eNs-qS-ZTJ">
-                                                    <rect key="frame" x="444" y="0.0" width="4" height="96"/>
+                                                    <rect key="frame" x="444" y="0.0" width="5" height="96"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

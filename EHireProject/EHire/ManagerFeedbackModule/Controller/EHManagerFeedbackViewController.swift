@@ -668,10 +668,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         }
         //To Disable the Saved data
         saveBtn.enabled = false
-<<<<<<< Updated upstream
-        
 
-=======
         textFieldGrossAnnualSalary.editable = false
         textFieldDesignation.editable = false
         textFieldCorporateGrade.editable = false
@@ -692,7 +689,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             
         }
         tableView.reloadData()
->>>>>>> Stashed changes
     }
     
 

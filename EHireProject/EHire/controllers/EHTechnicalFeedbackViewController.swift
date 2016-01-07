@@ -26,6 +26,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     @IBOutlet weak var dateOfInterviewField: NSTextField!
     @IBOutlet weak var modeOfInterview: NSMatrix!
     @IBOutlet weak var recommentationField: NSMatrix!
+    @IBOutlet weak var saveButton: NSButton!
     
     //MARK: Variables
     var cell : EHRatingsTableCellView?
@@ -169,6 +170,27 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 }
             }
         //}
+        
+        //To Disable All fields
+        saveButton.enabled = false
+        designationField.editable = false
+        interviewedByField.editable = false
+        textViewOfCandidateAssessment.editable = false
+        textViewOfTechnologyAssessment.editable = false
+      
+        for starButton in (overallAssessmentOfCandidateStarView.subviews)
+        {
+            let stars = starButton as! NSButton
+            stars.enabled = false
+            
+        }
+        for starButton in (overallAssessmentOnTechnologyStarView.subviews)
+        {
+            let stars = starButton as! NSButton
+            stars.enabled = false
+        }
+        
+        tableView.reloadData()
 
     }
     
@@ -234,6 +256,10 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         for ratingsView in cellView.starCustomView.subviews
         {
             let view = ratingsView as! NSButton
+            if selectedCandidate?.interviewedByTechLeads?.count > 0
+            {
+                view.enabled = false
+            }
             view.target = self
             view.action = "starRatingCount:"
         }
@@ -536,6 +562,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
              Utility.alertPopup("Data not Saved", informativeText: "Some Problem is there while saving", okCompletionHandler: nil)
           }
         }
+      saveButton.enabled = false
     }
     
     //MARK:- Setting Matrix Value
@@ -572,53 +599,53 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         
         if cell?.feedback.stringValue == ""
         {
-            Utility.alertPopup("Select Stars", informativeText: "Please select stars inside tableview to provide your feedback", okCompletionHandler: nil)
+            Utility.alertPopup("Alert", informativeText: "Please provide your feedback", okCompletionHandler: nil)
             return isValid
         }
             
         else if ratingOnTechnologyField.stringValue == ""
         {
-            Utility.alertPopup("Select Stars", informativeText: "Please select stars to provide your feedback inside overall assessment on Technology", okCompletionHandler: nil)
+            Utility.alertPopup("Alert", informativeText: "Please provide your feedback of overall assessment on Technology", okCompletionHandler: nil)
             return isValid
         }
             
         else if ratingOfCandidateField.stringValue == ""
         {
-            Utility.alertPopup("Select Stars", informativeText: "Please select stars to provide your feedback inside overall assessment of Candidate", okCompletionHandler: nil)
+            Utility.alertPopup("Alert", informativeText: "Please provide your feedback of overall assessment of Candidate", okCompletionHandler: nil)
             return isValid
         }
             
         else if textViewOfTechnologyAssessment.string == ""
         {
-             Utility.alertPopup("Overall Feedback On Technology", informativeText: "Please enter your feedback on Technology", okCompletionHandler: nil)
+             Utility.alertPopup("Alert", informativeText: "Please enter your feedback on Technology", okCompletionHandler: nil)
             return isValid
         }
             
         else if textViewOfCandidateAssessment.string == ""
         {
-            Utility.alertPopup("Overall Feedback Of Candidate", informativeText: "Overall assessment of Candidate field shold not be blank", okCompletionHandler: nil)
+            Utility.alertPopup("Alert", informativeText: "Overall assessment of Candidate field shold not be blank", okCompletionHandler: nil)
             return isValid
         }
             
         else if designationField.stringValue == ""
         {
-            Utility.alertPopup("Designation of Candidate", informativeText: "Designation Field should not be blank", okCompletionHandler: nil)
+            Utility.alertPopup("Alert", informativeText: "Designation Field should not be blank", okCompletionHandler: nil)
             return isValid
         }
             
         else if interviewedByField.stringValue.characters.count == 0
         {
-            Utility.alertPopup("Interviewer Name", informativeText: "Please enter the interviewer field should not be blank", okCompletionHandler: nil)
+            Utility.alertPopup("Alert", informativeText: "Please enter the interviewer field should not be blank", okCompletionHandler: nil)
             return isValid
         }
         else if overallCandidateRating == 0
         {
-             Utility.alertPopup("Overall CandidateRating", informativeText: "Please provide your feedback of Candidate should not be blank", okCompletionHandler: nil)
+             Utility.alertPopup("Alert", informativeText: "Please provide your feedback of Candidate should not be blank", okCompletionHandler: nil)
             return isValid
         }
         else if overallTechnicalRating == 0
         {
-            Utility.alertPopup("Overall TechnicalRating", informativeText: "Please provide your feedback on Technology should not be blank", okCompletionHandler: nil)
+            Utility.alertPopup("Alert", informativeText: "Please provide your feedback on Technology should not be blank", okCompletionHandler: nil)
             return isValid
         }
         else
@@ -654,5 +681,28 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             let starButton = stars as! NSButton
             starButton.image = NSImage(named: "deselectStar")
         }
+        
+        //To Enable All fields
+        saveButton.enabled = true
+        designationField.editable = true
+        interviewedByField.editable = true
+        textViewOfCandidateAssessment.editable = true
+        textViewOfTechnologyAssessment.editable = true
+        
+        for starButton in (overallAssessmentOfCandidateStarView.subviews)
+        {
+            let stars = starButton as! NSButton
+            stars.enabled = true
+            
+        }
+        for starButton in (overallAssessmentOnTechnologyStarView.subviews)
+        {
+            let stars = starButton as! NSButton
+            stars.enabled = true
+        }
+        
+        tableView.reloadData()
+
+        
    }
 }

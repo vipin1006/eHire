@@ -53,7 +53,6 @@
 		4F7BCA841C2BED8B00D60546 /* EHManagerFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BCA831C2BED8B00D60546 /* EHManagerFeedbackViewController.swift */; };
 		4F7BCA881C2BEE6700D60546 /* EHManagerialFeedbackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BCA871C2BEE6700D60546 /* EHManagerialFeedbackModel.swift */; };
 		4F7BCA8A1C2BF62000D60546 /* EHSkillSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BCA891C2BF62000D60546 /* EHSkillSet.swift */; };
-		4F7BCAC81C325CBD00D60546 /* EHCandidateBasicInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BCAC61C325CBD00D60546 /* EHCandidateBasicInfo.swift */; };
 		4F7BCAC91C325CBD00D60546 /* EHCandidateDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BCAC71C325CBD00D60546 /* EHCandidateDetails.swift */; };
 		52CB4A581C31379800934A84 /* EHCandidateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CB4A501C31379800934A84 /* EHCandidateController.swift */; };
 		802900001C2A83A10041C74C /* EHHrFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFFA1C2A83A10041C74C /* EHHrFeedbackViewController.swift */; };
@@ -164,7 +163,6 @@
 		4F7BCA831C2BED8B00D60546 /* EHManagerFeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHManagerFeedbackViewController.swift; path = EHire/ManagerFeedbackModule/Controller/EHManagerFeedbackViewController.swift; sourceTree = SOURCE_ROOT; };
 		4F7BCA871C2BEE6700D60546 /* EHManagerialFeedbackModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHManagerialFeedbackModel.swift; path = EHire/ManagerFeedbackModule/Model/EHManagerialFeedbackModel.swift; sourceTree = SOURCE_ROOT; };
 		4F7BCA891C2BF62000D60546 /* EHSkillSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHSkillSet.swift; path = EHire/ManagerFeedbackModule/Model/EHSkillSet.swift; sourceTree = SOURCE_ROOT; };
-		4F7BCAC61C325CBD00D60546 /* EHCandidateBasicInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCandidateBasicInfo.swift; sourceTree = "<group>"; };
 		4F7BCAC71C325CBD00D60546 /* EHCandidateDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCandidateDetails.swift; sourceTree = "<group>"; };
 		52CB4A501C31379800934A84 /* EHCandidateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCandidateController.swift; sourceTree = "<group>"; };
 		802900011C2A83CE0041C74C /* HrFeedbackDataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HrFeedbackDataAccess.swift; sourceTree = "<group>"; };
@@ -347,7 +345,6 @@
 		52CB4A531C31379800934A84 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4F7BCAC61C325CBD00D60546 /* EHCandidateBasicInfo.swift */,
 				4F7BCAC71C325CBD00D60546 /* EHCandidateDetails.swift */,
 			);
 			path = Model;
@@ -873,7 +870,6 @@
 				8029FFF51C2A81970041C74C /* TechnicalFeedBack+CoreDataProperties.swift in Sources */,
 				9C527DF01C3A431B001B62B2 /* EHOnlyDecimalValueFormatter.swift in Sources */,
 				9C4B97FF1C324EE20033412F /* EHCoreDataStack.swift in Sources */,
-				4F7BCAC81C325CBD00D60546 /* EHCandidateBasicInfo.swift in Sources */,
 				8029FFEA1C2A81970041C74C /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift in Sources */,
 				8029FFE11C2A81970041C74C /* CandidateBasicProfessionalInfo.swift in Sources */,
 				8029FFE01C2A81970041C74C /* Candidate+CoreDataProperties.swift in Sources */,
