@@ -777,6 +777,25 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         dateFormatter.dateFormat = "dd-MMM-yyyy"
         return dateFormatter.stringFromDate(date)
     }
+    
+    override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
+        
+        if technologyArray.count == 0
+        {
+            if menuItem.title == "Add Technology"
+            {
+                return true
+            }
+            else{
+                
+                return false
+            }
+            
+        }
+        
+        return true
+        
+    }
 
    
 }
