@@ -2010,8 +2010,10 @@ CA
                         <animations/>
                     </customView>
                     <connections>
+                        <outlet property="addNewSkill" destination="DQN-sh-vbs" id="3oj-Kk-owp"/>
                         <outlet property="candidateNameField" destination="8Ss-O3-aYj" id="Xq3-jX-Rfc"/>
                         <outlet property="dateOfInterviewField" destination="NbJ-n1-PSS" id="kDq-nb-LRa"/>
+                        <outlet property="deleteExistingSkill" destination="rRj-tk-HWk" id="lJM-sY-ryM"/>
                         <outlet property="designationField" destination="IFh-qR-St7" id="Ua3-wb-R1v"/>
                         <outlet property="interviewedByField" destination="q3q-4S-Vsd" id="9hf-Fm-q8b"/>
                         <outlet property="modeOfInterview" destination="qtD-UB-IDk" id="F1v-va-QhD"/>
@@ -3511,7 +3513,7 @@ CA
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="zYB-nQ-v2C">
-                                                    <rect key="frame" x="229" y="0.0" width="4" height="103"/>
+                                                    <rect key="frame" x="229" y="0.0" width="5" height="103"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -3866,21 +3868,21 @@ CA
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="WWv-58-cwe">
-                                                    <rect key="frame" x="0.0" y="51" width="664" height="4"/>
+                                                    <rect key="frame" x="0.0" y="51" width="664" height="5"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ShH-j0-WGI">
-                                                    <rect key="frame" x="205" y="0.0" width="4" height="96"/>
+                                                    <rect key="frame" x="205" y="0.0" width="5" height="96"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <font key="titleFont" metaFont="system"/>
                                                 </box>
                                                 <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="eNs-qS-ZTJ">
-                                                    <rect key="frame" x="444" y="0.0" width="5" height="96"/>
+                                                    <rect key="frame" x="444" y="0.0" width="4" height="96"/>
                                                     <animations/>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

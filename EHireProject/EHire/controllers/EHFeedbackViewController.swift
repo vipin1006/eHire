@@ -46,6 +46,7 @@ class EHFeedbackViewController: NSViewController
         self.subRound.selectedSegment = 0
         self.scrollViewHr.hasVerticalScroller = true
         self.scrollViewHr.hasHorizontalScroller = true
+        techFeedback!.disableSavedSkills(self.subRound.selectedSegment)
     }
     
     @IBAction func roundType(sender: AnyObject)
@@ -125,6 +126,7 @@ class EHFeedbackViewController: NSViewController
                 print("Round One")
                 if selectedCandidate?.interviewedByTechLeads?.count != 0
                 {
+                    techFeedback!.disableSavedSkills(self.subRound.selectedSegment)
                     let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
                     techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
                 }
@@ -132,6 +134,7 @@ class EHFeedbackViewController: NSViewController
             case 1:
                 
                 print("Round Two")
+                
                 let techLeadCount = (selectedCandidate?.interviewedByTechLeads)!.count
                 switch techLeadCount
                 {
@@ -156,6 +159,7 @@ class EHFeedbackViewController: NSViewController
                   default:
                         if selectedCandidate?.interviewedByTechLeads?.count > self.subRound.selectedSegment
                         {
+                            techFeedback!.disableSavedSkills(self.subRound.selectedSegment)
                             let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
                             techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
                         }
@@ -187,7 +191,7 @@ class EHFeedbackViewController: NSViewController
                         else if selectedCandidate?.interviewedByTechLeads!.count == 1
                         {
                             Utility.alertPopup("Alert", informativeText: "Round Two not yet Completed", okCompletionHandler: nil)
-                            subRound.selectedSegment = 1
+                            subRound.selectedSegment = 0
                         }
                         else
                         {
@@ -221,8 +225,9 @@ class EHFeedbackViewController: NSViewController
                 default:
                     if selectedCandidate?.interviewedByTechLeads?.count > 2
                     {
-                    let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
-                    techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
+                       techFeedback!.disableSavedSkills(self.subRound.selectedSegment)
+                       let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
+                       techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
                     }
                 }
             default: print("")

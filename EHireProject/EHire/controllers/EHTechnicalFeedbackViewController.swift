@@ -26,6 +26,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     @IBOutlet weak var dateOfInterviewField: NSTextField!
     @IBOutlet weak var modeOfInterview: NSMatrix!
     @IBOutlet weak var recommentationField: NSMatrix!
+    @IBOutlet weak var addNewSkill: NSButton!
+    @IBOutlet weak var deleteExistingSkill: NSButton!
     @IBOutlet weak var saveButton: NSButton!
     
     //MARK: Variables
@@ -43,6 +45,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     var selectedCandidate : Candidate?
     var feedbackData : [AnyObject]?
     var skillArray = NSMutableArray()
+    var selectedRound : Int?
     
     //MARK: initial setup of views
     func initialSetupOfTableView()
@@ -142,7 +145,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                     skillsAndRatingsTitleArray.append(newSkill)
                 }
                 
-                tableView.reloadData()
+            
                 if !(technicalFeedbackModel.ratingOnTechnical == nil)
                 {
                     for stars in overallAssessmentOnTechnologyStarView.subviews
@@ -172,12 +175,14 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         //}
         
         //To Disable All fields
+        addNewSkill.enabled = false
+        deleteExistingSkill.enabled = false
         saveButton.enabled = false
         designationField.editable = false
         interviewedByField.editable = false
         textViewOfCandidateAssessment.editable = false
         textViewOfTechnologyAssessment.editable = false
-      
+        
         for starButton in (overallAssessmentOfCandidateStarView.subviews)
         {
             let stars = starButton as! NSButton
@@ -189,9 +194,13 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             let stars = starButton as! NSButton
             stars.enabled = false
         }
-        
         tableView.reloadData()
-
+    }
+    
+    func disableSavedSkills(selectedSegment : Int)
+    {
+        print(selectedSegment)
+        selectedRound = selectedSegment
     }
     
     //MARK: To Dispaly the Stars
@@ -255,17 +264,34 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }
         for ratingsView in cellView.starCustomView.subviews
         {
-            let view = ratingsView as! NSButton
-            if selectedCandidate?.interviewedByTechLeads?.count > 0
+            let feedbackview = ratingsView as! NSButton
+            if selectedRound == 0
             {
-                view.enabled = false
+            if selectedCandidate?.interviewedByTechLeads?.count == 1
+            {
+                feedbackview.enabled = false
             }
-            view.target = self
-            view.action = "starRatingCount:"
+            }
+            else if selectedRound == 1
+            {
+                if selectedCandidate?.interviewedByTechLeads?.count ==  2
+                {
+                    feedbackview.enabled = false
+                }
+            }
+            else
+            {
+                if selectedCandidate?.interviewedByTechLeads?.count == 3
+                {
+                    feedbackview.enabled = false
+                }
+            }
+            feedbackview.target = self
+            feedbackview.action = "starRatingCount:"
         }
         return cellView
     }
-    
+
     func tableViewSelectionDidChange(notification: NSNotification)
     {
         if notification.object!.selectedRow >= 4
@@ -668,7 +694,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
       technicalFeedbackModel.ratingOnTechnical = 0
       skillsAndRatingsTitleArray.removeAll()
       initialSetupOfTableView()
-      tableView.reloadData()
       ratingOfCandidateField.stringValue = ""
       ratingOnTechnologyField.stringValue = ""
         for stars in overallAssessmentOfCandidateStarView.subviews
@@ -683,6 +708,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }
         
         //To Enable All fields
+        addNewSkill.enabled = true
+        deleteExistingSkill.enabled = true
         saveButton.enabled = true
         designationField.editable = true
         interviewedByField.editable = true
