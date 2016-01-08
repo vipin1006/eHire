@@ -173,6 +173,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     
     func refresh()
     {
+        
         getSourceListContent()
         tableView.reloadData()
         if tableView.selectedRow == -1
@@ -190,6 +191,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     
     func getSourceListContent()
     {
+        
         candidateArray.removeAllObjects()
         
         let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
@@ -216,6 +218,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
    {
     if removeButton.enabled == true
     {
+        
       showAlert("Are you sure you want to delete the Candidate?", info:"")
     }
     else
@@ -294,23 +297,15 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     
     func deleteCandidate()
     {
-        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
-        let context     = appDelegate.managedObjectContext
         if tableView.selectedRow > -1
         {
-         let editCandidate = candidateArray.objectAtIndex(tableView.selectedRow) as? Candidate
-         context.deleteObject(editCandidate!)
-            do
-            {
-               try context.save()
-            }
-            catch
-            {
-                print(error)
-            }
-         
-         candidateArray.removeObjectAtIndex(tableView.selectedRow)
+            let editCandidate = candidateArray.objectAtIndex(tableView.selectedRow) as? Candidate
+            EHCandidateAccessLayer.removeCandidate(editCandidate!)
+            candidateArray.removeObjectAtIndex(tableView.selectedRow)
+            feedbackButton.enabled = false
+            removeButton.enabled = false
         }
+        
         tableView.reloadData()
     }
     }
