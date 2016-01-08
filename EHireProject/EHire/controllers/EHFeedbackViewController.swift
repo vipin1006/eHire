@@ -53,6 +53,7 @@ class EHFeedbackViewController: NSViewController
     {
         self.subRound.hidden = false
         let mainRound:NSSegmentedControl = sender as! NSSegmentedControl
+        let techLeadCount = (selectedCandidate?.interviewedByTechLeads)!.count
         switch mainRound.selectedSegment
         {
         case 0 :
@@ -77,7 +78,7 @@ class EHFeedbackViewController: NSViewController
             isHrLoaded = false
             
         case 1:
-            let techLeadCount = (selectedCandidate?.interviewedByTechLeads)!.count
+            
             if techLeadCount == 0
             {
                 Utility.alertPopup("Alert", informativeText: "Technical round is not yet Completed", okCompletionHandler: nil)
@@ -102,6 +103,31 @@ class EHFeedbackViewController: NSViewController
             isHrLoaded = false
             
         case 2:
+            
+            if techLeadCount == 0
+            {
+                Utility.alertPopup("Alert", informativeText: "Technical round is not yet Completed", okCompletionHandler: nil)
+                subRound.selectedSegment = 0
+                typeOfInterview.setSelected(true, forSegment: 0)
+                return
+            }
+            else
+            {
+                for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
+                {
+                    let feedback = feedbackOfTechLead as! TechnicalFeedBack
+                    
+                    if feedback.recommendation == "Rejected"
+                    {
+                       Utility.alertPopup("Alert", informativeText: "Candidate is rejected in Technical Round", okCompletionHandler: nil)
+                        
+                        self.typeOfInterview.selectedSegment = 0
+                        
+                        return
+                    }
+                }
+             
+            
             if !isHrLoaded
             {
                self.addHrFeedBackView()
@@ -109,6 +135,7 @@ class EHFeedbackViewController: NSViewController
             self.managerFeedback?.view.removeFromSuperview()
             self.techFeedback?.view.removeFromSuperview()
             self.subRound.hidden = true
+         }
         default:
             print("Other")
         }
