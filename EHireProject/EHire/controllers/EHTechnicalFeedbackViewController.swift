@@ -34,7 +34,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     var cell : EHRatingsTableCellView?
     var feedback = EHFeedbackViewController()
     var technicalFeedbackModel = EHTechnicalFeedbackModel()
-    let dataAccessModel = TechnicalFeedbackDataAccess()
+    let dataAccessModel = EHTechnicalFeedbackDataAccess()
     var name : String?
     var overallTechnicalRating : Int32?
     var overallCandidateRating : Int32?

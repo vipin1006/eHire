@@ -32,7 +32,7 @@ class EHFeedbackViewController: NSViewController
     var technicalFeedbackModel = EHTechnicalFeedbackModel()
     var selectedCandidate:Candidate?
     //var candidateObject:EHCandidateController?
-    let dataAccess = TechnicalFeedbackDataAccess()
+    let dataAccess = EHTechnicalFeedbackDataAccess()
     
     //MARK: View Life Cycle
     override func viewDidLoad()
