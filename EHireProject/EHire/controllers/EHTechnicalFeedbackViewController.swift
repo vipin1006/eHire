@@ -604,18 +604,17 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         technicalFeedbackModel.designation          = designationField.stringValue
         technicalFeedbackModel.techLeadName         = interviewedByField.stringValue
       
-         if dataAccessModel.insertIntoTechnicalFeedback(technicalFeedbackModel, selectedCandidate: selectedCandidate!)
-          {
-            Utility.alertPopup("Data Saved", informativeText: "Saved Successfully", okCompletionHandler:
+        Utility.alertPopup("Alert", informativeText: "Do you want to store the data", okCompletionHandler:
                 {() in
+                      self.dataAccessModel.insertIntoTechnicalFeedback(self.technicalFeedbackModel, selectedCandidate: self.selectedCandidate!)
                        self.disableAllFields()
                 })
-          }
+            }
           else
           {
              Utility.alertPopup("Data not Saved", informativeText: "Some Problem is there while saving", okCompletionHandler: nil)
           }
-        }
+        
       
     }
     

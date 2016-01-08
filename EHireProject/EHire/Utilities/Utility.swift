@@ -8,9 +8,10 @@
 
 import Cocoa
 
-class Utility: NSObject {
-    
-    class func alertPopup(data:String,informativeText:String ,let okCompletionHandler:(() -> Void)?){
+class Utility: NSObject
+{
+    class func alertPopup(data:String,informativeText:String ,let okCompletionHandler:(() -> Void)?)
+    {
         let alert:NSAlert = NSAlert()
         alert.messageText = data
         
