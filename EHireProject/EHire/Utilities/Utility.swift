@@ -19,9 +19,10 @@ class Utility: NSObject {
         alert.addButtonWithTitle("Cancel")
         alert.alertStyle = NSAlertStyle.CriticalAlertStyle
         let res = alert.runModal()
-        if res == NSAlertFirstButtonReturn {
-            if let completion = okCompletionHandler{
-                
+        if res == NSAlertFirstButtonReturn
+        {
+            if let completion = okCompletionHandler
+            {
                 completion()
             }
         }

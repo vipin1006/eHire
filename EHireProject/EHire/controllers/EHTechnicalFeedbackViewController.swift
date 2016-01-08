@@ -606,8 +606,10 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
       
          if dataAccessModel.insertIntoTechnicalFeedback(technicalFeedbackModel, selectedCandidate: selectedCandidate!)
           {
-            Utility.alertPopup("Data Saved", informativeText: "Saved Successfully", okCompletionHandler: nil)
-            disableAllFields()
+            Utility.alertPopup("Data Saved", informativeText: "Saved Successfully", okCompletionHandler:
+                {() in
+                       self.disableAllFields()
+                })
           }
           else
           {
