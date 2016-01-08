@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class TechnicalFeedbackDataAccess: NSObject
+class EHTechnicalFeedbackDataAccess: NSObject
 {
     let coreDataStack = EHCoreDataStack.sharedInstance
     
