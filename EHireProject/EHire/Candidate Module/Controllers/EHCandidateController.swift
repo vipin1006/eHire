@@ -216,15 +216,13 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     
    @IBAction func removeCandidate(sender: AnyObject)
    {
-    if removeButton.enabled == true
-    {
-        
-      showAlert("Are you sure you want to delete the Candidate?", info:"")
-    }
-    else
-    {
-      removeButton.enabled = false
-    }
+   
+    Utility.alertPopup("Are you sure you want to delete the Candidate?", informativeText: "", okCompletionHandler:{() in
+        self.deleteCandidate()
+    })
+    
+      //showAlert("Are you sure you want to delete the Candidate?", info:"")
+    
   }
     
     @IBAction func addInterviewTime(sender: AnyObject)
@@ -275,25 +273,25 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         return true
     }
     
-    func showAlert(message:String,info:String)
-    {
-      if self.tableView.selectedRow != -1
-      {
-        _ = self.candidateArray.objectAtIndex(self.tableView.selectedRow) as! Candidate
-        let alert:NSAlert = NSAlert()
-        alert.messageText = message
-        alert.informativeText = info
-        alert.addButtonWithTitle("OK")
-        alert.addButtonWithTitle("Cancel")
-        alert.alertStyle = .WarningAlertStyle
-        let res = alert.runModal()
-        
-        if res == NSAlertFirstButtonReturn
-        {
-            deleteCandidate()
-        }
-      }
-    }
+//    func showAlert(message:String,info:String)
+//    {
+//      if self.tableView.selectedRow != -1
+//      {
+//       // _ = self.candidateArray.objectAtIndex(self.tableView.selectedRow) as! Candidate
+//        let alert:NSAlert = NSAlert()
+//        alert.messageText = message
+//        alert.informativeText = info
+//        alert.addButtonWithTitle("OK")
+//        alert.addButtonWithTitle("Cancel")
+//        alert.alertStyle = .WarningAlertStyle
+//        let res = alert.runModal()
+//        
+//        if res == NSAlertFirstButtonReturn
+//        {
+//            deleteCandidate()
+//        }
+//      }
+//    }
     
     func deleteCandidate()
     {
