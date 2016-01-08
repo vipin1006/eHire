@@ -606,17 +606,14 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
       
         Utility.alertPopup("Alert", informativeText: "Do you want to store the data", okCompletionHandler:
                 {() in
-                      self.dataAccessModel.insertIntoTechnicalFeedback(self.technicalFeedbackModel, selectedCandidate: self.selectedCandidate!)
+                    if self.validation()
+                    {
+                    self.dataAccessModel.insertIntoTechnicalFeedback(self.technicalFeedbackModel, selectedCandidate: self.selectedCandidate!)
                        self.disableAllFields()
+                    }
                 })
             }
-          else
-          {
-             Utility.alertPopup("Data not Saved", informativeText: "Some Problem is there while saving", okCompletionHandler: nil)
-          }
-        
-      
-    }
+     }
     
     //MARK:- Setting Matrix Value
     func fetchingModeOfInterview(value : String)
