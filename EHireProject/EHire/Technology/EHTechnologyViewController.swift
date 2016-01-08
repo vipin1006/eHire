@@ -12,6 +12,7 @@ import Cocoa
 
 class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutlineViewDataSource,DataCommunicator,FeedbackDelegate,NSTextFieldDelegate,FeedbackControllerDelegate{
     
+    @IBOutlet weak var welcomeImage: NSImageView!
     // Technology View
     @IBOutlet weak var sourceList: NSOutlineView!
     
@@ -79,6 +80,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         }
         return false
     }
+//    func outlineView(outlineView: NSOutlineView, isGroupItem item: AnyObject) -> Bool {
+//        return true
+//    }
     
     // This datasource method returns the count of items (when called for parent/technology)
     // or number of children(dates) when called for interview dates.
@@ -132,6 +136,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 candidateController?.view.removeFromSuperview()
                  NSApp.windows.first?.title = "Window"
                  isCandidatesViewLoaded = false
+                welcomeImage.hidden = false
+                
                 
             }
             
@@ -149,6 +155,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 createConstraintsForController(candidateView, subView: (candidateController?.view)!, leading: 0.0, trailing: 0.0, top: 0.0, bottom: 0.0)
                
                 isCandidatesViewLoaded = true
+                welcomeImage.hidden = true
+
             }
             //added
             if let tempItem = item as? Date {

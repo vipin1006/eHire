@@ -862,6 +862,7 @@
                         <outlet property="candidateView" destination="5ml-91-1WV" id="e1c-FX-bqh"/>
                         <outlet property="deleteTechnologyDate" destination="XqD-dp-fcu" id="GXV-a3-Ig9"/>
                         <outlet property="sourceList" destination="Jsz-AD-4om" id="33r-Ep-ZwL"/>
+                        <outlet property="welcomeImage" destination="YwI-KO-pzs" id="gz8-cN-HPi"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1021,9 +1022,9 @@
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="q1R-OD-uAh">
-                                                                            <rect key="frame" x="-1" y="8" width="98" height="20"/>
+                                                                            <rect key="frame" x="0.0" y="8" width="98" height="20"/>
                                                                             <animations/>
-                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Experience" id="h3V-UG-dYk">
+                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="left" placeholderString="Experience" id="h3V-UG-dYk">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1055,9 +1056,9 @@
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="cNY-8W-jem">
-                                                                            <rect key="frame" x="5" y="5" width="105" height="20"/>
+                                                                            <rect key="frame" x="-1" y="5" width="105" height="20"/>
                                                                             <animations/>
-                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Phone Number" id="i81-zt-nkO">
+                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="left" placeholderString="Phone Number" id="i81-zt-nkO">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1091,7 +1092,7 @@
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="NRW-ff-nYL">
                                                                             <rect key="frame" x="0.0" y="5" width="121" height="20"/>
                                                                             <animations/>
-                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Requisition" id="FR4-Sn-z56">
+                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="left" placeholderString="Requisition" id="FR4-Sn-z56">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1123,7 +1124,7 @@
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <datePicker verticalHuggingPriority="750" fixedFrame="YES" tag="10" translatesAutoresizingMaskIntoConstraints="NO" id="cyK-cc-edZ">
-                                                                            <rect key="frame" x="22" y="4" width="71" height="22"/>
+                                                                            <rect key="frame" x="4" y="4" width="71" height="22"/>
                                                                             <animations/>
                                                                             <datePickerCell key="cell" controlSize="small" alignment="left" drawsBackground="NO" id="30m-Vz-Evx">
                                                                                 <font key="font" metaFont="smallSystem"/>

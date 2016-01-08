@@ -46,7 +46,10 @@ class EHFeedbackViewController: NSViewController
         self.subRound.selectedSegment = 0
         self.scrollViewHr.hasVerticalScroller = true
         self.scrollViewHr.hasHorizontalScroller = true
-        techFeedback!.disableSavedSkills(self.subRound.selectedSegment)
+        if selectedCandidate?.interviewedByTechLeads?.count > 0
+        {
+        techFeedback!.disableAndEnableSavedSkills(self.subRound.selectedSegment)
+        }
     }
     
     @IBAction func roundType(sender: AnyObject)
@@ -153,7 +156,7 @@ class EHFeedbackViewController: NSViewController
                 print("Round One")
                 if selectedCandidate?.interviewedByTechLeads?.count != 0
                 {
-                    techFeedback!.disableSavedSkills(self.subRound.selectedSegment)
+                    techFeedback!.disableAndEnableSavedSkills(self.subRound.selectedSegment)
                     let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
                     techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
                 }
@@ -169,6 +172,7 @@ class EHFeedbackViewController: NSViewController
                        Utility.alertPopup("Alert", informativeText: "Round One not yet Completed", okCompletionHandler: nil)
                        subRound.selectedSegment = 0
                 case 1:
+                    techFeedback!.disableAndEnableSavedSkills(self.subRound.selectedSegment)
                       for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
                      {
                         let feedback = feedbackOfTechLead as! TechnicalFeedBack
@@ -186,7 +190,7 @@ class EHFeedbackViewController: NSViewController
                   default:
                         if selectedCandidate?.interviewedByTechLeads?.count > self.subRound.selectedSegment
                         {
-                            techFeedback!.disableSavedSkills(self.subRound.selectedSegment)
+                            techFeedback!.disableAndEnableSavedSkills(self.subRound.selectedSegment)
                             let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
                             techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
                         }
@@ -194,6 +198,7 @@ class EHFeedbackViewController: NSViewController
             case 2:
                 
                 print("Round Three")
+                
                 let techLeadCount = (selectedCandidate?.interviewedByTechLeads)!.count
                 switch techLeadCount
                 {
@@ -219,13 +224,15 @@ class EHFeedbackViewController: NSViewController
                         {
                             Utility.alertPopup("Alert", informativeText: "Round Two not yet Completed", okCompletionHandler: nil)
                             subRound.selectedSegment = 0
-                            techFeedback!.disableSavedSkills(self.subRound.selectedSegment)
+                            techFeedback!.disableAndEnableSavedSkills(self.subRound.selectedSegment)
                             let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
                             techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
                         }
                         else
                         {
+                            techFeedback!.disableAndEnableSavedSkills(self.subRound.selectedSegment)
                             techFeedback?.refreshAllFields()
+                           
                         }
                         break
                     }
@@ -245,11 +252,16 @@ class EHFeedbackViewController: NSViewController
                         Utility.alertPopup("Candidate Rejected", informativeText: "Selected Candidate Rejected in Round Two", okCompletionHandler: nil)
                         subRound.selectedSegment = 1
                     }
+                    else
+                    {
+                        techFeedback!.disableAndEnableSavedSkills(self.subRound.selectedSegment)
+                        techFeedback?.refreshAllFields()
+                    }
                 }
                 default:
                     if selectedCandidate?.interviewedByTechLeads?.count > 2
                     {
-                       techFeedback!.disableSavedSkills(self.subRound.selectedSegment)
+                       techFeedback!.disableAndEnableSavedSkills(self.subRound.selectedSegment)
                        let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
                        techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
                     }
@@ -329,14 +341,9 @@ class EHFeedbackViewController: NSViewController
     
     @IBAction func dismissFeedbackView(sender: AnyObject)
     {
-//        candidateObject = EHCandidateController()
-//        candidateObject?.feedbackButton!.enabled = false
-//        candidateObject?.removeButton!.enabled = false
-
         self.view.removeFromSuperview()
         NSApp.windows.first?.title = "List of Candidates"
         self.delegate?.feedbackViewControllerDidFinish(selectedCandidate!)
-        
     }
     
     func createConstraintsForManagerFeedbackController(leading:CGFloat,trailing:CGFloat,top:CGFloat,bottom:CGFloat)
