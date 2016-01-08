@@ -294,11 +294,22 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     
     func deleteCandidate()
     {
+        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+        let context     = appDelegate.managedObjectContext
         if tableView.selectedRow > -1
         {
-          let editCandidate = candidateArray.objectAtIndex(tableView.selectedRow) as? Candidate
-          EHCandidateDataAccessLayer.removeCandidate(editCandidate!)
-          candidateArray.removeObjectAtIndex(tableView.selectedRow)
+         let editCandidate = candidateArray.objectAtIndex(tableView.selectedRow) as? Candidate
+         context.deleteObject(editCandidate!)
+            do
+            {
+               try context.save()
+            }
+            catch
+            {
+                print(error)
+            }
+         
+         candidateArray.removeObjectAtIndex(tableView.selectedRow)
         }
         tableView.reloadData()
     }
