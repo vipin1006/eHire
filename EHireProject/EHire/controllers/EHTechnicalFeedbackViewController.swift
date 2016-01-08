@@ -45,7 +45,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     var selectedCandidate : Candidate?
     var feedbackData : [AnyObject]?
     var skillArray = NSMutableArray()
-    var selectedRound : Int?
+    var selectedRound : Int = -1
     
     //MARK: initial setup of views
     func initialSetupOfTableView()
@@ -173,8 +173,13 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 }
             }
         //}
-        
-        //To Disable All fields
+        disableAllFields()
+        tableView.reloadData()
+    }
+    
+    //To Disable All fields
+    func disableAllFields()
+    {
         addNewSkill.enabled = false
         deleteExistingSkill.enabled = false
         saveButton.enabled = false
@@ -182,12 +187,12 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         interviewedByField.editable = false
         textViewOfCandidateAssessment.editable = false
         textViewOfTechnologyAssessment.editable = false
-        
+        modeOfInterview.enabled = false
+        recommentationField.enabled = false
         for starButton in (overallAssessmentOfCandidateStarView.subviews)
         {
             let stars = starButton as! NSButton
             stars.enabled = false
-            
         }
         for starButton in (overallAssessmentOnTechnologyStarView.subviews)
         {
@@ -197,7 +202,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         tableView.reloadData()
     }
     
-    func disableSavedSkills(selectedSegment : Int)
+    func disableAndEnableSavedSkills(selectedSegment : Int)
     {
         print(selectedSegment)
         selectedRound = selectedSegment
@@ -222,7 +227,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     
     //MARK: Delegate And DataSource Methods
     // To return tableview rows
-    
     func numberOfRowsInTableView(tableView: NSTableView) -> Int
     {
         return skillsAndRatingsTitleArray.count
@@ -265,26 +269,47 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         for ratingsView in cellView.starCustomView.subviews
         {
             let feedbackview = ratingsView as! NSButton
-            if selectedRound == 0
+            switch selectedRound
             {
-            if selectedCandidate?.interviewedByTechLeads?.count == 1
-            {
-                feedbackview.enabled = false
-            }
-            }
-            else if selectedRound == 1
-            {
+            case 0:
+                 if selectedCandidate?.interviewedByTechLeads?.count == 1
+                 {
+                   feedbackview.enabled = false
+                 }
+                 else if selectedCandidate?.interviewedByTechLeads?.count == 2
+                 {
+                    feedbackview.enabled = false
+                 }
+                 else if selectedCandidate?.interviewedByTechLeads?.count == 3
+                 {
+                    feedbackview.enabled = false
+                 }
+                 else
+                 {
+                    feedbackview.enabled = true
+                  }
+            case 1:
+             
+                if selectedCandidate?.interviewedByTechLeads?.count ==  1
+                {
+                    feedbackview.enabled = true
+                }
+                else
+                {
+                  feedbackview.enabled = false
+                }
+            case 2:
+                
                 if selectedCandidate?.interviewedByTechLeads?.count ==  2
                 {
-                    feedbackview.enabled = false
+                    feedbackview.enabled = true
                 }
-            }
-            else
-            {
-                if selectedCandidate?.interviewedByTechLeads?.count == 3
+                else
                 {
                     feedbackview.enabled = false
                 }
+
+            default:print("")
             }
             feedbackview.target = self
             feedbackview.action = "starRatingCount:"
@@ -588,7 +613,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
              Utility.alertPopup("Data not Saved", informativeText: "Some Problem is there while saving", okCompletionHandler: nil)
           }
         }
-      saveButton.enabled = false
+      disableAllFields()
     }
     
     //MARK:- Setting Matrix Value
@@ -715,7 +740,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         interviewedByField.editable = true
         textViewOfCandidateAssessment.editable = true
         textViewOfTechnologyAssessment.editable = true
-        
+        modeOfInterview.enabled = true
+        recommentationField.enabled = true
         for starButton in (overallAssessmentOfCandidateStarView.subviews)
         {
             let stars = starButton as! NSButton
@@ -727,9 +753,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             let stars = starButton as! NSButton
             stars.enabled = true
         }
-        
         tableView.reloadData()
-
-        
-   }
+    }
 }
