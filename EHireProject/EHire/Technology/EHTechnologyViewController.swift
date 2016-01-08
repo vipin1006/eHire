@@ -96,15 +96,16 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     
     //PRAGMAMARK: - outlineview delegate  methods
     //This delegate method sets isCandidatesViewLoaded based on which item (technology/date) is selected.
-
-//    
+    
+    //
     func outlineViewSelectionIsChanging(notification: NSNotification)
     {
         if let _ = sourceList.itemAtRow(sourceList.selectedRow) as? Technology
         {
+            
             addDate.enabled = true
             addTechnology.enabled = false
-           
+            
         }
         else
         {
@@ -113,8 +114,20 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         }
     }
     
+    //MARK:- Outline view delegate method
     func outlineViewSelectionDidChange(notification: NSNotification)
     {
+        print(notification.object?.selectedRow)
+        if let selectedItem = sourceList.itemAtRow((notification.object?.selectedRow)!) as? Technology{
+            let notificationObject = notification.object
+            cellTechnology = notificationObject?.viewAtColumn(0, row: (notification.object?.selectedRow)!, makeIfNecessary: false) as? EHTechnologyCustomCell
+            let textFieldObject = (cellTechnology?.textFieldTechnology)! as NSTextField
+            if !textFieldObject.editable{
+                deleteTechnologyDate.enabled = true
+            }else{
+                deleteTechnologyDate.enabled = false
+            }
+        }
         
     }
     
@@ -124,14 +137,13 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
         case  _ as Technology:
             
-            deleteTechnologyDate.enabled = true
             
             if isCandidatesViewLoaded
             {
                 
                 candidateController?.view.removeFromSuperview()
-                 NSApp.windows.first?.title = "Window"
-                 isCandidatesViewLoaded = false
+                NSApp.windows.first?.title = "Window"
+                isCandidatesViewLoaded = false
                 
             }
             
@@ -143,11 +155,11 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 candidateController = self.storyboard?.instantiateControllerWithIdentifier("EHCandidateController") as? EHCandidateController
                 candidateController?.delegate = self
                 self.candidateView.addSubview((candidateController?.view)!)
-                 NSApp.windows.first?.title = "List of Candidates"
+                NSApp.windows.first?.title = "List of Candidates"
                 //createConstraintsForCandidateController(0.0, trailing: 0.0, top: 0.0, bottom: 0.0)
                 
                 createConstraintsForController(candidateView, subView: (candidateController?.view)!, leading: 0.0, trailing: 0.0, top: 0.0, bottom: 0.0)
-               
+                
                 isCandidatesViewLoaded = true
             }
             //added
@@ -190,7 +202,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
             let x = item as! Technology
             if x.technologyName == ""{
-               // parent.textFieldTechnology.editable = true
+                parent.textFieldTechnology.editable = true
                 parent.textFieldTechnology.backgroundColor = NSColor.whiteColor()
                 
             }else{
@@ -211,6 +223,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         return 35
     }
     
+    
+    
+    
     //MARK: - Custom Protocol methods
     //This delegate method passed the data from another view controller to this controller as it confirms to the custom DataCommunicator protocol.
     func sendData<T>(sendingData: T,sender:String)
@@ -221,13 +236,15 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         {
             if isValidInterviewDate(technology.technologyName!,inputDate:scheduledDate){
                 
-            let newTechnologyEntityDescription = EHCoreDataHelper.createEntity("Date", managedObjectContext: EHCoreDataStack.sharedInstance.managedObjectContext
+                
+                
+                let newTechnologyEntityDescription = EHCoreDataHelper.createEntity("Date", managedObjectContext: EHCoreDataStack.sharedInstance.managedObjectContext
                 )
                 let newDateManagedObject:Date = Date(entity:newTechnologyEntityDescription!, insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext
                     ) as Date
                 
-              newDateManagedObject.interviewDate = scheduledDate
-            technology.interviewDates?.addObject(newDateManagedObject)
+                newDateManagedObject.interviewDate = scheduledDate
+                technology.interviewDates?.addObject(newDateManagedObject)
                 EHCoreDataHelper.saveToCoreData(technology)
                 
                 EHTechnologyDataLayer.addInterviewDateToCoreData(technology, dateToAdd: newDateManagedObject)
@@ -235,6 +252,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 addTechnology.enabled = true
                 
                 self.sourceList.reloadData()
+                self.sourceList.expandItem(technology, expandChildren: true)
             }
                 
             else
@@ -245,25 +263,26 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             datePopOver.close()
         }
         
-    if contextSelectedTechnologyIndex != -1
-    {
+        if contextSelectedTechnologyIndex != -1
+        {
             if let selectedItem = sourceList.itemAtRow(contextSelectedTechnologyIndex) as? Technology
             {
                 
                 addInterviewDateForTechnology(selectedItem)
-           }
-    }
+            }
+        }
         
-    if  sourceList.selectedRow != -1
-    {
+        if  sourceList.selectedRow != -1
+        {
             if let selectedItem = sourceList.itemAtRow(sourceList.selectedRow) as? Technology
             {
                 
+                
                 addInterviewDateForTechnology(selectedItem)
             }
+        }
     }
-}
-
+    
     
     //PRAGMAMARK: - Button Actions
     
@@ -286,9 +305,10 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 let newTechnologyManagedObject:Technology = Technology(entity:newTechnologyEntityDescription!, insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext) as Technology
                 newTechnologyManagedObject.technologyName = ""
                 technologyArray.append(newTechnologyManagedObject)
-             
-              
+                
+                
                 self.sourceList.reloadData()
+                deleteTechnologyDate.enabled = false
                 
             }
         }
@@ -316,7 +336,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 }
                 
             })
-
+            
         }
         else
         {
@@ -336,29 +356,31 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         if let selectedItem = sourceList.itemAtRow(sourceList.selectedRow) as? Technology
         {
             
+            
+            
             if cellTechnology?.textFieldTechnology.stringValue == ""
             {
                 technologyArray.removeLast()
                 EHTechnologyDataLayer.deleteTechnologyFromCoreData(selectedItem)
                 
             }
-            
-            // Condition to check new added technology is deletable
-            
-            //if !cellTechnology!.textFieldTechnology.editable
+                
+                // Condition to check new added technology is deletable
+                
+                //if !cellTechnology!.textFieldTechnology.editable
             else
             {
                 technologyArray = []
                 EHTechnologyDataLayer.deleteTechnologyFromCoreData(selectedItem)
                 technologyArray = EHTechnologyDataLayer.getSourceListContent() as! [Technology]
-                addTechnology.enabled = true
-                addDate.enabled = false
+                
             }
-            
+            addTechnology.enabled = true
+            addDate.enabled = false
             
             self.sourceList.reloadData()
         }
-            else
+        else
         {
             let selectedInterviewDate = sourceList.itemAtRow(sourceList.selectedRow) as? Date
             let parentTechnology = sourceList.parentForItem(selectedInterviewDate)
@@ -371,9 +393,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 isCandidatesViewLoaded = false
             }
             
-              self.sourceList.reloadData()
+            self.sourceList.reloadData()
         }
-      
+        
     }
     
     @IBAction func addDateAction(button: NSButton)
@@ -384,15 +406,20 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
             addTechnology.enabled = true
         }
-       else{
-        datePopOver = NSPopover()
-        //Make the calendar popover go away when clicked elsewhere
-        datePopOver.behavior = NSPopoverBehavior.Transient
-        datePopOverController = self.storyboard?.instantiateControllerWithIdentifier("popover") as? EHPopOverController
-        datePopOver.contentViewController = datePopOverController
-        datePopOverController!.delegate = self
-        datePopOver.showRelativeToRect(button.bounds, ofView:button, preferredEdge:NSRectEdge.MaxY)
-       }
+        else{
+            let textFieldObject = (cellTechnology?.textFieldTechnology)! as NSTextField
+            if !textFieldObject.editable{
+                datePopOver = NSPopover()
+                //Make the calendar popover go away when clicked elsewhere
+                datePopOver.behavior = NSPopoverBehavior.Transient
+                datePopOverController = self.storyboard?.instantiateControllerWithIdentifier("popover") as? EHPopOverController
+                datePopOver.contentViewController = datePopOverController
+                datePopOverController!.delegate = self
+                datePopOver.showRelativeToRect(button.bounds, ofView:button, preferredEdge:NSRectEdge.MaxY)
+            }else{
+                Utility.alertPopup("Error", informativeText: "Please enter the newly added technology",okCompletionHandler: nil)
+            }
+        }
     }
     
     func showFeedbackViewController(selectedCandidate:Candidate){
@@ -402,7 +429,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         for views in self.view.subviews
         {
             views.hidden = true
-
+            
             //views.removeFromSuperview()
         }
         feedbackViewController = self.storyboard?.instantiateControllerWithIdentifier("EHFeedbackViewController") as? EHFeedbackViewController
@@ -439,47 +466,57 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         let textFieldObject = obj.object as! NSTextField
         
         if (!(textFieldObject.stringValue == ""))
-       
+            
         {
-            if isValidTechnologyName(textFieldObject.stringValue)
-            {
-                if isNumberValid(textFieldObject.stringValue) == true
+            if textFieldObject.editable{
+                
+                if isValidTechnologyName(textFieldObject.stringValue)
                 {
-                    Utility.alertPopup("Error", informativeText: "Enter an appropriate Technology name",okCompletionHandler: nil)
-                    return
+                    if isNumberValid(textFieldObject.stringValue) == true
+                    {
+                        Utility.alertPopup("Error", informativeText: "Enter an appropriate Technology name",okCompletionHandler: nil)
+                        return
+                    }
+                    
+                    
+                    let technologyObject = technologyArray[technologyArray.count-1]
+                    technologyObject.technologyName = textFieldObject.stringValue
+                    textFieldObject.wantsLayer = true
+                    textFieldObject.backgroundColor = NSColor.clearColor()
+                    addDate.enabled = false
+                    addTechnology.enabled = true
+                    EHTechnologyDataLayer.addTechnologyToCoreData(technologyObject)
+                    
+                    
+                    
+                    deleteTechnologyDate.enabled = false
+                    
+                    self.sourceList.reloadData()
+                    
+                    
                 }
-                
-                let technologyObject = technologyArray[technologyArray.count-1]
-                technologyObject.technologyName = textFieldObject.stringValue
-                textFieldObject.wantsLayer = true
-                
-                textFieldObject.backgroundColor = NSColor.clearColor()
-                addDate.enabled = false
-                addTechnology.enabled = true
-                EHTechnologyDataLayer.addTechnologyToCoreData(technologyObject)
-                
-                deleteTechnologyDate.enabled = false
-                
-                 self.sourceList.reloadData()
-                
-                
+                else{
+                    
+                    Utility.alertPopup("Error", informativeText: "Technology name should be unique",okCompletionHandler: {() -> Void in
+                        
+                        textFieldObject.stringValue = ""
+                        
+                        
+                    })
+                    
+                }
             }
-            else{
-               
-                Utility.alertPopup("Error", informativeText: "Technology name should be unique",okCompletionHandler: nil)
-
-            }
+            
+            
+        }
+            
+        else
+        {
+            Utility.alertPopup("Alert", informativeText: "Please add a name for Technology", okCompletionHandler: nil)
             
             
         }
         
-        else
-        {
-             Utility.alertPopup("Alert", informativeText: "Please add a name for Technology", okCompletionHandler: nil)
-            
-            
-        }
-       
     }
     
     
@@ -583,20 +620,20 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         return isValid
     }
     
-// this method will check for  validation of  technology name
+    // this method will check for  validation of  technology name
     func isNumberValid(value:String)->Bool
-{
+    {
+        
+        let number = NSNumberFormatter()
+        let final = number.numberFromString(value)
+        if let _ = final
+        {
+            return true
+        }
+        return false
+    }
     
-    let number = NSNumberFormatter()
-    let final = number.numberFromString(value)
-    if let _ = final
-   {
-    return true
-    }
-    return false
-    }
-   
-
+    
     //Contextual Menu Implementaion for Technology Module:
     
     //Contextual menu setup
@@ -604,13 +641,13 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     
     override func mouseDown(theEvent: NSEvent)
     {
-     addTechnology.enabled = true
-     addDate.enabled = false
-     sourceList.deselectRow(self.sourceList.selectedRow)
-     deleteTechnologyDate.enabled = false
-
+        addTechnology.enabled = true
+        addDate.enabled = false
+        sourceList.deselectRow(self.sourceList.selectedRow)
+        deleteTechnologyDate.enabled = false
+        
     }
-
+    
     
     override func rightMouseDown(theEvent: NSEvent) {
         
@@ -619,14 +656,14 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         {
             let mainContextMenu = NSMenu(title: "Main Contextual Menu")
             
-        
+            
             
             mainContextMenu.insertItemWithTitle("Add Technology", action:Selector.init("addBtnAction:"), keyEquivalent: "", atIndex: 0)
             mainContextMenu.insertItemWithTitle("Delete Technology", action:Selector.init("dummy") , keyEquivalent: "", atIndex: 1)
             mainContextMenu.insertItemWithTitle("Add Date", action:Selector.init("addDateToTechnologyFromContextMenu:"), keyEquivalent: "", atIndex: 2)
-           mainContextMenu.insertItemWithTitle("Delete Date", action:Selector.init("dummy") , keyEquivalent: "addBtnAction:", atIndex: 3)
+            mainContextMenu.insertItemWithTitle("Delete Date", action:Selector.init("dummy") , keyEquivalent: "addBtnAction:", atIndex: 3)
             
-      
+            
             
             let technologySubMenuOne = NSMenu(title: "Technology Menu One")
             
@@ -634,32 +671,32 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
             let technologySubMenuThree = NSMenu(title:"Technology Menu Three")
             
-        if technologyArray.count > 0
-        {
-            
-            for var i = 0 ; i < technologyArray.count ; i++
+            if technologyArray.count > 0
             {
                 
-                
-                 let technology = technologyArray[i] as Technology
-                
-                  technologySubMenuOne.insertItemWithTitle(technology.technologyName!, action: Selector.init("deleteTechnologyFromContextMenu:"), keyEquivalent: "", atIndex: i)
+                for var i = 0 ; i < technologyArray.count ; i++
+                {
+                    
+                    
+                    let technology = technologyArray[i] as Technology
+                    
+                    technologySubMenuOne.insertItemWithTitle(technology.technologyName!, action: Selector.init("deleteTechnologyFromContextMenu:"), keyEquivalent: "", atIndex: i)
                     
                     technologySubMenuTwo.insertItemWithTitle(technology.technologyName!, action: Selector.init("addDateToTechnologyFromContextMenu:"), keyEquivalent: "", atIndex: i)
                     
                     technologySubMenuThree.insertItemWithTitle(technology.technologyName!, action: Selector.init("dummy"), keyEquivalent: "", atIndex: i)
+                }
+                
+                mainContextMenu.setSubmenu(technologySubMenuOne, forItem:mainContextMenu.itemAtIndex(1)!)
+                
+                mainContextMenu.setSubmenu(technologySubMenuTwo, forItem:mainContextMenu.itemAtIndex(2)!)
+                
+                mainContextMenu.setSubmenu(technologySubMenuThree, forItem:mainContextMenu.itemAtIndex(3)!)
+                
             }
             
-            mainContextMenu.setSubmenu(technologySubMenuOne, forItem:mainContextMenu.itemAtIndex(1)!)
-            
-            mainContextMenu.setSubmenu(technologySubMenuTwo, forItem:mainContextMenu.itemAtIndex(2)!)
-            
-            mainContextMenu.setSubmenu(technologySubMenuThree, forItem:mainContextMenu.itemAtIndex(3)!)
-                
-        }
-            
-        for var i = 0 ; i < technologyArray.count ; i++
-        {
+            for var i = 0 ; i < technologyArray.count ; i++
+            {
                 
                 let technology = technologyArray[i] as Technology
                 
@@ -669,21 +706,21 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 
                 if allDates?.count > 0
                 {
-                
-                for  (index , value) in (allDates?.enumerate())!
-                {
-                    let selectedDate = value as! Date
                     
-                    print(String(selectedDate.interviewDate!))
+                    for  (index , value) in (allDates?.enumerate())!
+                    {
+                        let selectedDate = value as! Date
+                        
+                        print(String(selectedDate.interviewDate!))
+                        
+                        datesMenu.insertItemWithTitle(getFormattedDate(selectedDate.interviewDate!), action: Selector.init("deleteDateFromTechnologyFromContextMenu:"), keyEquivalent:"", atIndex:index)
+                    }
                     
-                    datesMenu.insertItemWithTitle(getFormattedDate(selectedDate.interviewDate!), action: Selector.init("deleteDateFromTechnologyFromContextMenu:"), keyEquivalent:"", atIndex:index)
+                    technologySubMenuThree.setSubmenu(datesMenu, forItem:technologySubMenuThree.itemAtIndex(i)!)
+                    
                 }
                 
-                technologySubMenuThree.setSubmenu(datesMenu, forItem:technologySubMenuThree.itemAtIndex(i)!)
-                
             }
-            
-     }
             
             NSMenu.popUpContextMenu(mainContextMenu, withEvent: theEvent, forView: self.view)
             
@@ -695,22 +732,22 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     
     func deleteTechnologyFromContextMenu(sender:NSMenuItem)
     {
-       Utility.alertPopup("Are you you want to delete the selected technology?", informativeText: "deleting Technology will delete all of its related data.") { () -> Void in
-        
-        for var i = 0 ; i < self.technologyArray.count ; i++
-        {
-            let technology = self.technologyArray[i] as Technology
-            if technology.technologyName == sender.title
+        Utility.alertPopup("Are you you want to delete the selected technology?", informativeText: "deleting Technology will delete all of its related data.") { () -> Void in
+            
+            for var i = 0 ; i < self.technologyArray.count ; i++
             {
-                self.technologyArray.removeAtIndex(i)
-                self.sourceList.reloadData()
-                EHTechnologyDataLayer.deleteTechnologyFromCoreData(technology)
+                let technology = self.technologyArray[i] as Technology
+                if technology.technologyName == sender.title
+                {
+                    self.technologyArray.removeAtIndex(i)
+                    self.sourceList.reloadData()
+                    EHTechnologyDataLayer.deleteTechnologyFromCoreData(technology)
+                }
             }
+            
         }
         
     }
-        
-}
     
     //Add date to Technology from menu
     
@@ -777,8 +814,10 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         dateFormatter.dateFormat = "dd-MMM-yyyy"
         return dateFormatter.stringFromDate(date)
     }
-
-   
+    
+    
+    
+    
 }
 
 
