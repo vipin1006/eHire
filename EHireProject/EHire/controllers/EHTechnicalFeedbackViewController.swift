@@ -46,6 +46,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     var feedbackData : [AnyObject]?
     var skillArray = NSMutableArray()
     var selectedRound : Int = -1
+    var editable : Int = 1
     
     //MARK: initial setup of views
     func initialSetupOfTableView()
@@ -116,11 +117,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     //MARK: Retrieval Of Interview feedback Details
     func retrievalOfInterviewData(feedback : TechnicalFeedBack)
     {
-        if selectedCandidate != nil
-        {
-//            for x in (selectedCandidate?.interviewedByTechLeads)!
-//            {
-                //let feedback1 = x as! TechnicalFeedBack
+          if selectedCandidate != nil
+            {
                 textViewOfCandidateAssessment.string = feedback.commentsOnCandidate
                 technicalFeedbackModel.ratingOnTechnical = Int32((feedback.ratingOnTechnical?.integerValue)!)
                 textViewOfTechnologyAssessment.string = feedback.commentsOnTechnology
@@ -145,7 +143,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                     skillsAndRatingsTitleArray.append(newSkill)
                 }
                 
-            
                 if !(technicalFeedbackModel.ratingOnTechnical == nil)
                 {
                     for stars in overallAssessmentOnTechnologyStarView.subviews
@@ -172,7 +169,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                     }
                 }
             }
-        //}
         disableAllFields()
         tableView.reloadData()
     }
@@ -198,6 +194,10 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         {
             let stars = starButton as! NSButton
             stars.enabled = false
+        }
+        if editable == 1
+        {
+            disableAndEnableSavedSkills(0)
         }
         tableView.reloadData()
     }
@@ -607,13 +607,14 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
          if dataAccessModel.insertIntoTechnicalFeedback(technicalFeedbackModel, selectedCandidate: selectedCandidate!)
           {
             Utility.alertPopup("Data Saved", informativeText: "Saved Successfully", okCompletionHandler: nil)
+            disableAllFields()
           }
           else
           {
              Utility.alertPopup("Data not Saved", informativeText: "Some Problem is there while saving", okCompletionHandler: nil)
           }
         }
-      disableAllFields()
+      
     }
     
     //MARK:- Setting Matrix Value
