@@ -280,7 +280,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
         else{ // adding new technology
             if technologyArray.count > 0 && cellTechnology?.textFieldTechnology.stringValue == ""{
-                Utility.alertPopup("Error", informativeText: "Please enter previous selected technology",okCompletionHandler: nil)
+                Utility.alertPopup("Error", informativeText: "Please provide a name for the new technology before proceeding.",okCompletionHandler: nil)
             }else{
                 let newTechnologyEntityDescription = EHCoreDataHelper.createEntity("Technology", managedObjectContext: EHCoreDataStack.sharedInstance.managedObjectContext)
                 let newTechnologyManagedObject:Technology = Technology(entity:newTechnologyEntityDescription!, insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext) as Technology
