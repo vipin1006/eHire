@@ -169,7 +169,7 @@ class EHFeedbackViewController: NSViewController
                 switch techLeadCount
                 {
                 case 0:
-                       Utility.alertPopup("Alert", informativeText: "Round One not yet Completed", okCompletionHandler: nil)
+                       Utility.alertPopup("Alert", informativeText: "Please complete Round 1 before proceeding to Round 2.", okCompletionHandler: nil)
                        subRound.selectedSegment = 0
                 case 1:
                     techFeedback!.disableAndEnableSavedSkills(self.subRound.selectedSegment)
@@ -222,7 +222,7 @@ class EHFeedbackViewController: NSViewController
                         }
                         else if selectedCandidate?.interviewedByTechLeads!.count == 1
                         {
-                            Utility.alertPopup("Alert", informativeText: "Round Two not yet Completed", okCompletionHandler: nil)
+                            Utility.alertPopup("Alert", informativeText: "Please complete Round 2 before proceeding to Round 3.", okCompletionHandler: nil)
                             subRound.selectedSegment = 0
                             techFeedback!.disableAndEnableSavedSkills(self.subRound.selectedSegment)
                             let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
