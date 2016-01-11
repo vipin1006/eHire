@@ -8,9 +8,10 @@
 
 import Cocoa
 
-class Utility: NSObject {
-    
-    class func alertPopup(data:String,informativeText:String ,let okCompletionHandler:(() -> Void)?){
+class Utility: NSObject
+{
+    class func alertPopup(data:String,informativeText:String ,let okCompletionHandler:(() -> Void)?)
+    {
         let alert:NSAlert = NSAlert()
         alert.messageText = data
         
@@ -19,9 +20,10 @@ class Utility: NSObject {
         alert.addButtonWithTitle("Cancel")
         alert.alertStyle = NSAlertStyle.CriticalAlertStyle
         let res = alert.runModal()
-        if res == NSAlertFirstButtonReturn {
-            if let completion = okCompletionHandler{
-                
+        if res == NSAlertFirstButtonReturn
+        {
+            if let completion = okCompletionHandler
+            {
                 completion()
             }
         }
