@@ -18,11 +18,13 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var candidateView: NSView!
     
+    @IBOutlet weak var candidateSearchField: NSSearchField!
     @IBOutlet weak var addCandidateButton: NSButton!
     @IBOutlet weak var feedbackButton: NSButton!
     @IBOutlet weak var removeButton: NSButton!
     //MARK: Properties
     var candidateArray = NSMutableArray()
+    var filteredArray = NSMutableArray()
     var delegate:FeedbackDelegate?
     var technologyName:String?
     var interviewDate:NSDate?
@@ -53,6 +55,9 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     //MARK: This data source method returns tableview rows
     func numberOfRowsInTableView(tableView: NSTableView) -> Int
     {
+        if candidateSearchField.stringValue.characters.count > 0 {
+            return filteredArray.count
+        }
         return candidateArray.count
     }
     
@@ -60,41 +65,47 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
 
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView?
     {
-        let  candidate  = candidateArray[row] as? Candidate
+        var candidate:Candidate
+        if candidateSearchField.stringValue.characters.count > 0 {
+            candidate = (filteredArray[row] as? Candidate)!
+        }
+        else {
+            candidate = (candidateArray[row] as? Candidate)!
+        }
         let cell = self.tableView.makeViewWithIdentifier((tableColumn?.identifier)!, owner: self) as! NSTableCellView
         
         cell.textField?.delegate = self
         if tableColumn?.identifier == "name"
         {
-            if candidate?.name != nil
+            if candidate.name != nil
             {
-            cell.textField?.stringValue = (candidate?.name)!
+            cell.textField?.stringValue = (candidate.name)!
             }
         }
             
         else if tableColumn?.identifier == "experience"
         {
-            if candidate?.experience != nil
+            if candidate.experience != nil
             {
-              cell.textField?.stringValue = (candidate?.experience)!
+              cell.textField?.stringValue = (candidate.experience)!
             }
         }
             
         else if tableColumn?.identifier == "interviewTime"
         {
             let interviewTimePicker:NSDatePicker = cell.viewWithTag(10) as! NSDatePicker
-            interviewTimePicker.dateValue = (candidate?.interviewTime)!
+            interviewTimePicker.dateValue = (candidate.interviewTime)!
   
         }
             
             else if tableColumn?.identifier == "requisition"
         {
-            cell.textField?.stringValue = (candidate?.requisition)!
+            cell.textField?.stringValue = (candidate.requisition)!
         }
             
         else
         {
-           cell.textField?.stringValue = (candidate?.phoneNumber)!
+           cell.textField?.stringValue = (candidate.phoneNumber)!
         }
         return cell
     }
@@ -213,6 +224,13 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         }
     }
 
+    @IBAction func searchFieldTextDidChange(sender: AnyObject)
+    {
+        filteredArray.removeAllObjects()
+        let predicate = NSPredicate(format:" OR name contains[c] %@ OR experience contains[c] %@ OR phoneNumber contains[c] %@ OR requisition contains[c] %@" , sender.stringValue,sender.stringValue,sender.stringValue,sender.stringValue)
+        filteredArray.addObjectsFromArray(candidateArray.filteredArrayUsingPredicate(predicate))
+        tableView.reloadData()
+    }
     
    @IBAction func removeCandidate(sender: AnyObject)
    {
