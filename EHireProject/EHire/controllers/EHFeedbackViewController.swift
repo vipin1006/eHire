@@ -357,6 +357,26 @@ class EHFeedbackViewController: NSViewController
     
     @IBAction func dismissFeedbackView(sender: AnyObject)
     {
+        Utility.alertPopup("Do you want to save the data?", informativeText:"with out save will erase all the data entered") { () -> Void in
+          
+            switch self.typeOfInterview.selectedSegment
+            {
+                
+            case 0:
+                
+                print("Technical")
+                
+            case 1:
+                
+                print("Manager")
+                
+            default:
+             
+                self.hrFeedBackViewController?.saveCandidate()
+                
+            }
+            
+        }
         self.view.removeFromSuperview()
         NSApp.windows.first?.title = "List of Candidates"
         self.delegate?.feedbackViewControllerDidFinish(selectedCandidate!)

@@ -114,47 +114,7 @@ class EHHrFeedbackViewController: NSViewController {
             
            if numericValidations()
            {
-            candidateInfo["candidateName"] = candidateName.stringValue
-            candidateInfo["candidateBusinessUnit"] = candidateBusinessUnit.stringValue
-            candidateInfo["candidateSkillOrTechnology"] = candidateSkillOrTechnology.stringValue
-            candidateInfo["candidateTotalItExperience"] = candidateTotalItExperience.floatValue
-            candidateInfo["candidateRelevantItExperience"] = candidateRelevantItExperience.floatValue
-            candidateInfo["candidateMobile"] = candidateMobile.stringValue
-            candidateInfo["candidateCurrentLocation"] = candidateCurrentLocation.stringValue
-            candidateInfo["companyName"] = companyName.stringValue
-            candidateInfo["currentDesignation"] = currentDesignation.stringValue
-            candidateInfo["currentJobType"] = currentJobType.stringValue
-            candidateInfo["officialMailid"] = officialMailid.stringValue
-            candidateInfo["visaTypeAndValidity"] = visaTypeAndValidity.stringValue
-            candidateInfo["previousEmployerName"] = previousEmployerName.stringValue
-            candidateInfo["previousEmployerFromDate"] = previousEmployerFromDate.dateValue
-            candidateInfo["previousEmployerToDate"] = previousEmployerToDate.dateValue
-            candidateInfo["highestEducationQualificationTitle"] = highestEducationQualificationTitle.stringValue
-            candidateInfo["highestEducationFromDate"] = highestEducationFromDate.dateValue
-            candidateInfo["highestEducationToDate"] = highestEducationToDate.dateValue
-            candidateInfo["highestEducationBoardOrUniversity"] = highestEducationBoardOrUniversity.stringValue
-            candidateInfo["highestEducationPercentage"] = highestEducationPercentage.floatValue
-            candidateInfo["educationGapDetails"] = educationGapDetails.stringValue
-            candidateInfo["jobChangeReasons"] = jobChangeReasons.stringValue
-            
-            candidateInfo["pastInterviewdDate"] = pastInterviedDate.dateValue
-            
-            
-            candidateInfo["jobChangeReasons"] = jobChangeReasons.stringValue
-            candidateInfo["missingDocuments"] = missingDocuments.stringValue
-            candidateInfo["currentFixedSalary"] = currentFixedSalary.floatValue
-            candidateInfo["currentSalaryVariable"] = currentSalaryVariable.floatValue
-            candidateInfo["expectedSalary"] = expectedSalary.floatValue
-            candidateInfo["LegalObligations"] = legalObligationDetails.stringValue
-            candidateInfo["candidateNoticePeriod"] = candidateNoticePeriod.stringValue
-            candidateInfo["candidateJoinngPeriod"] = candidateJoinngPeriod.stringValue
-            candidateInfo["questionsAskedByCandidate"] = questionsAskedByCandidate.string
-            candidateInfo["inetrviewedBy"] = inetrviewedBy.stringValue
-            candidateInfo["EmploymentGap"] = employmentGap.stringValue
-            candidateInfo["lastDesignation"] = lastDesignation.stringValue
-            candidateInfo["leavePlanReasons"] = leavePlanReasons.stringValue
-            
-            HrFeedbackDataAccess.saveHrFeedbackOfCandidate(candidate!,candidateInfo: candidateInfo)
+              saveCandidate()
             
             if isHrFormEnable
             {
@@ -745,6 +705,50 @@ class EHHrFeedbackViewController: NSViewController {
     }
     
    
-  
+  func saveCandidate()
+  {
+    candidateInfo["candidateName"] = candidateName.stringValue
+    candidateInfo["candidateBusinessUnit"] = candidateBusinessUnit.stringValue
+    candidateInfo["candidateSkillOrTechnology"] = candidateSkillOrTechnology.stringValue
+    candidateInfo["candidateTotalItExperience"] = candidateTotalItExperience.floatValue
+    candidateInfo["candidateRelevantItExperience"] = candidateRelevantItExperience.floatValue
+    candidateInfo["candidateMobile"] = candidateMobile.stringValue
+    candidateInfo["candidateCurrentLocation"] = candidateCurrentLocation.stringValue
+    candidateInfo["companyName"] = companyName.stringValue
+    candidateInfo["currentDesignation"] = currentDesignation.stringValue
+    candidateInfo["currentJobType"] = currentJobType.stringValue
+    candidateInfo["officialMailid"] = officialMailid.stringValue
+    candidateInfo["visaTypeAndValidity"] = visaTypeAndValidity.stringValue
+    candidateInfo["previousEmployerName"] = previousEmployerName.stringValue
+    candidateInfo["previousEmployerFromDate"] = previousEmployerFromDate.dateValue
+    candidateInfo["previousEmployerToDate"] = previousEmployerToDate.dateValue
+    candidateInfo["highestEducationQualificationTitle"] = highestEducationQualificationTitle.stringValue
+    candidateInfo["highestEducationFromDate"] = highestEducationFromDate.dateValue
+    candidateInfo["highestEducationToDate"] = highestEducationToDate.dateValue
+    candidateInfo["highestEducationBoardOrUniversity"] = highestEducationBoardOrUniversity.stringValue
+    candidateInfo["highestEducationPercentage"] = highestEducationPercentage.floatValue
+    candidateInfo["educationGapDetails"] = educationGapDetails.stringValue
+    candidateInfo["jobChangeReasons"] = jobChangeReasons.stringValue
+    
+    candidateInfo["pastInterviewdDate"] = pastInterviedDate.dateValue
+    
+    
+    candidateInfo["jobChangeReasons"] = jobChangeReasons.stringValue
+    candidateInfo["missingDocuments"] = missingDocuments.stringValue
+    candidateInfo["currentFixedSalary"] = currentFixedSalary.floatValue
+    candidateInfo["currentSalaryVariable"] = currentSalaryVariable.floatValue
+    candidateInfo["expectedSalary"] = expectedSalary.floatValue
+    candidateInfo["LegalObligations"] = legalObligationDetails.stringValue
+    candidateInfo["candidateNoticePeriod"] = candidateNoticePeriod.stringValue
+    candidateInfo["candidateJoinngPeriod"] = candidateJoinngPeriod.stringValue
+    candidateInfo["questionsAskedByCandidate"] = questionsAskedByCandidate.string
+    candidateInfo["inetrviewedBy"] = inetrviewedBy.stringValue
+    candidateInfo["EmploymentGap"] = employmentGap.stringValue
+    candidateInfo["lastDesignation"] = lastDesignation.stringValue
+    candidateInfo["leavePlanReasons"] = leavePlanReasons.stringValue
+    
+    HrFeedbackDataAccess.saveHrFeedbackOfCandidate(candidate!,candidateInfo: candidateInfo)
+
+  }
     
 }
