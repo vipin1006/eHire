@@ -48,12 +48,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        
-        technologyArray = EHTechnologyDataLayer.getSourceListContent() as! [Technology]
-        
-        technologyArray = technologyArray.sort({$0.technologyName < $1.technologyName})
-
+     
+    technologyArray = EHTechnologyDataLayer.getSourceListContent() as! [Technology]
+    candidateController = self.storyboard?.instantiateControllerWithIdentifier("EHCandidateController") as? EHCandidateController
         
         sortedSourceListReload()
         deleteTechnologyDate.toolTip = "Delete Date or Technology"
@@ -62,7 +59,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
            //self.sourceList.reloadData()
         
     }
-    
+    //Mark : Technology name sorting method
     func sortedSourceListReload()
     {
         technologyArray = technologyArray.sort({$0.technologyName < $1.technologyName})
@@ -176,9 +173,10 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             if !isCandidatesViewLoaded
             {
                 
-                candidateController = self.storyboard?.instantiateControllerWithIdentifier("EHCandidateController") as? EHCandidateController
+//                candidateController = self.storyboard?.instantiateControllerWithIdentifier("EHCandidateController") as? EHCandidateController
                 candidateController?.delegate = self
                 self.candidateView.addSubview((candidateController?.view)!)
+                
                 NSApp.windows.first?.title = "List of Candidates"
                 //createConstraintsForCandidateController(0.0, trailing: 0.0, top: 0.0, bottom: 0.0)
                 
