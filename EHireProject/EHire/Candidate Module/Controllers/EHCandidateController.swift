@@ -252,7 +252,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
                 {
                    
                     
-                    Utility.alertPopup("Can not give feedback", informativeText:"Enter all the candidate information before providing feedback", okCompletionHandler: { () -> Void in
+                    Utility.alertPopup("Candidate details are not complete. Cannot proceed to provide feedback.", informativeText:"Please enter all the candidate information before proceeding.", okCompletionHandler: { () -> Void in
                         
                     })
                     
