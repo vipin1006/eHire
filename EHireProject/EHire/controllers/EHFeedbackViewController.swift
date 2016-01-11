@@ -89,6 +89,22 @@ class EHFeedbackViewController: NSViewController
                 typeOfInterview.setSelected(true, forSegment: 0)
                 return
             }
+            
+            for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
+            {
+                let feedback = feedbackOfTechLead as! TechnicalFeedBack
+                
+                if feedback.recommendation == "Rejected"
+                {
+                    Utility.alertPopup("Alert", informativeText: "Candidate is rejected in Technical Round", okCompletionHandler: nil)
+                    
+                    self.typeOfInterview.selectedSegment = 0
+                    
+                    return
+                }
+            }
+
+            
 
             if !isManagerLoaded
             {
