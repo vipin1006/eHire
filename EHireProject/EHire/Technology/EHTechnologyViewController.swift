@@ -42,6 +42,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     var feedbackViewController:EHFeedbackViewController?
     
     var cellTechnology:EHTechnologyCustomCell?
+    var lastCellAddedForTechnology:EHTechnologyCustomCell?
     
     override func viewDidLoad()
     {
@@ -220,6 +221,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             parent.textFieldTechnology.stringValue = x.technologyName!
             parent.textFieldTechnology.delegate = self
             cellTechnology = parent
+            lastCellAddedForTechnology = parent
             cell = parent
         }
         return cell
@@ -299,14 +301,14 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         if  ((sourceList.itemAtRow(sourceList.selectedRow) as? Technology) != nil){ // adding new date
             
             // Condition to check dates cannot be added when technology is editing
-            if !cellTechnology!.textFieldTechnology.editable{
+            if !lastCellAddedForTechnology!.textFieldTechnology.editable{
                 
                 addDateAction(addDate)
             }
         }
             
         else{ // adding new technology
-            if technologyArray.count > 0 && cellTechnology?.textFieldTechnology.stringValue == ""{
+            if technologyArray.count > 0 && lastCellAddedForTechnology?.textFieldTechnology.stringValue == ""{
                 Utility.alertPopup("Error", informativeText: "Please provide a name for the new technology before proceeding.",okCompletionHandler: nil)
             }else{
                 let newTechnologyEntityDescription = EHCoreDataHelper.createEntity("Technology", managedObjectContext: EHCoreDataStack.sharedInstance.managedObjectContext)
