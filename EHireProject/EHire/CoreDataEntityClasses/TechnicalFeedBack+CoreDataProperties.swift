@@ -20,6 +20,7 @@ extension TechnicalFeedBack {
     @NSManaged var modeOfInterview: String?
     @NSManaged var ratingOnCandidate: NSNumber?
     @NSManaged var ratingOnTechnical: NSNumber?
+    @NSManaged var isFeedbackSubmitted:NSNumber?
     @NSManaged var recommendation: String?
     @NSManaged var candidate: Candidate?
     @NSManaged var candidateSkills: NSMutableSet?

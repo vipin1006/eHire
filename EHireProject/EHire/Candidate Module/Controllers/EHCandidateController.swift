@@ -26,13 +26,15 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     var delegate:FeedbackDelegate?
     var technologyName:String?
     var interviewDate:NSDate?
+    
     var preserveCandidate : Int?
+    var candidateDetails = Candidate()
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-       feedbackButton.enabled = false
+        feedbackButton.enabled = false
         removeButton.enabled = false
         removeButton.toolTip = "Remove Candidate"
         addCandidateButton.toolTip = "Add Candidate"
@@ -62,7 +64,6 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         let cell = self.tableView.makeViewWithIdentifier((tableColumn?.identifier)!, owner: self) as! NSTableCellView
         
         cell.textField?.delegate = self
-        
         if tableColumn?.identifier == "name"
         {
             if candidate?.name != nil
@@ -126,49 +127,48 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     //MARK:Actions
     @IBAction func addCandidate(sender: AnyObject)
     {
+        
         func addCandidate()
         {
-        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
-        
-        let entityDescription = EHCoreDataHelper.createEntity("Candidate", managedObjectContext: appDelegate.managedObjectContext)
-        let managedObject:Candidate = Candidate(entity:entityDescription!, insertIntoManagedObjectContext:appDelegate.managedObjectContext) as Candidate
-        
-        managedObject.name = ""
-        managedObject.phoneNumber = ""
-        managedObject.experience =  ""
-        managedObject.interviewTime = NSDate()
-        managedObject.requisition = ""
-        managedObject.technologyName = self.technologyName!
-        managedObject.interviewDate = self.interviewDate!
-        
-        
-        candidateArray.addObject(managedObject)
-        EHCoreDataHelper.saveToCoreData(managedObject)
-        tableView.reloadData()
+            let managedObject:Candidate = EHCandidateAccessLayer.addCandidate("", experience: "", phoneNumber: "", requisition: "",interviewTime:self.interviewDate!, technologyName: self.technologyName!, interviewDate: self.interviewDate!)
+            
+            candidateArray.addObject(managedObject)
+            tableView.reloadData()
+            
+            let index : NSInteger = candidateArray.count - 1;
+            tableView.selectRowIndexes(NSIndexSet.init(index: index), byExtendingSelection: true)
+            
+            let rowView:NSTableRowView = tableView.rowViewAtRow(tableView.selectedRow, makeIfNecessary: true)!
+            rowView.viewWithTag(1)?.becomeFirstResponder()
+            
         }
         
         if candidateArray.count > 0
         {
-            let candidateRecord = candidateArray.lastObject as! Candidate
-            if candidateArray.count > 0 && candidateRecord.name! == "" || candidateRecord.phoneNumber! == "" || candidateRecord.experience! == " " || candidateRecord.requisition! == ""
-            {
-                let alert:NSAlert = NSAlert()
-                alert.messageText = "Candiadte can not be added"
-                alert.informativeText = "Please fill ALL the details of the selected candidate before adding a new candidate"
-                alert.addButtonWithTitle("OK")
-                alert.addButtonWithTitle("Cancel")
-                alert.alertStyle = .WarningAlertStyle
-                alert.runModal()
+            var allCandidatesValid:Bool = true
+            for candidateRecord in candidateArray {
+                if candidateRecord.name! == "" || candidateRecord.phoneNumber! == "" || candidateRecord.experience! == " " || candidateRecord.requisition! == ""
+                {
+                    Utility.alertPopup("Candidate can not be added", informativeText: "Please fill all the details of the selected candidate before adding a new candidate", okCompletionHandler: { () -> Void in
+                        
+                    })
+                    allCandidatesValid = false
+                    break
+                }
             }
-            else
+            
+            if allCandidatesValid == true
             {
-              addCandidate()
+                addCandidate()
             }
         }
         else
         {
-          addCandidate()
+            addCandidate()
         }
+
+        
+        
     }
     
     func refresh()
@@ -194,8 +194,8 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         
         candidateArray.removeAllObjects()
         
-        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
-        let context     = appDelegate.managedObjectContext
+       // let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+        let context     = EHCoreDataStack.sharedInstance.managedObjectContext
         
         let predicate = NSPredicate(format:"technologyName = %@ AND interviewDate = %@" , technologyName!,interviewDate!)
        
@@ -241,12 +241,32 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         {
           let selectedRow:NSInteger = tableView.selectedRow
           let selectedCandidate:Candidate = candidateArray.objectAtIndex(selectedRow) as! Candidate
-          delegate.showFeedbackViewController(selectedCandidate)
+         
           preserveCandidate = tableView.selectedRow
           NSApp.windows.first?.title = "Candidate Feedback"
+            
+            if candidateArray.count > 0
+            {
+                let candidateRecord = candidateArray.objectAtIndex(tableView.selectedRow) as! Candidate
+                if  candidateRecord.name! == "" || candidateRecord.phoneNumber! == "" || candidateRecord.experience! == " " || candidateRecord.requisition! == ""
+                {
+                   
+                    
+                    Utility.alertPopup("Candidate details are not complete. Cannot proceed to provide feedback.", informativeText:"Please enter all the candidate information before proceeding.", okCompletionHandler: { () -> Void in
+                        
+                    })
+                    
+                }
+                else
+                {
+                     delegate.showFeedbackViewController(selectedCandidate)
+                }
+            }
+        }
+        
         }
       }
-    }
+        
     
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
     {
@@ -273,25 +293,6 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         return true
     }
     
-//    func showAlert(message:String,info:String)
-//    {
-//      if self.tableView.selectedRow != -1
-//      {
-//       // _ = self.candidateArray.objectAtIndex(self.tableView.selectedRow) as! Candidate
-//        let alert:NSAlert = NSAlert()
-//        alert.messageText = message
-//        alert.informativeText = info
-//        alert.addButtonWithTitle("OK")
-//        alert.addButtonWithTitle("Cancel")
-//        alert.alertStyle = .WarningAlertStyle
-//        let res = alert.runModal()
-//        
-//        if res == NSAlertFirstButtonReturn
-//        {
-//            deleteCandidate()
-//        }
-//      }
-//    }
     
     func deleteCandidate()
     {

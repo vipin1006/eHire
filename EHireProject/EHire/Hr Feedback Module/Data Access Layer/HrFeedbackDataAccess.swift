@@ -9,6 +9,8 @@
 import Cocoa
 
 class HrFeedbackDataAccess: NSObject {
+    
+  
   
      
     class func saveHrFeedbackOfCandidate(candidate:Candidate,candidateInfo:[String:AnyObject])
@@ -51,9 +53,10 @@ class HrFeedbackDataAccess: NSObject {
         professionalInfo.officialNoticePeriod = candidateInfo["candidateNoticePeriod"] as? String
         professionalInfo.totalITExperience =  NSNumber(float: candidateInfo["candidateTotalItExperience"] as! Float)
         professionalInfo.relevantITExperience = NSNumber(float: candidateInfo["candidateRelevantItExperience"] as! Float)
+      
+         professionalInfo.fixedSalary = candidateInfo["currentFixedSalary"] as? Float
         
-        professionalInfo.fixedSalary = NSNumber(int:Int32((candidateInfo["currentFixedSalary"] as? String)!)!)
-        professionalInfo.variableSalary = NSNumber(int:Int32((candidateInfo["currentSalaryVariable"] as? String)!)!)
+        professionalInfo.variableSalary = candidateInfo["currentSalaryVariable"] as? Float
         
         candidate.professionalInfo = professionalInfo
         
@@ -142,8 +145,7 @@ class HrFeedbackDataAccess: NSObject {
         miscellaneousInfo.wasInterviewedBefore = candidateInfo["isInterviewedBefore"] as? NSNumber
         miscellaneousInfo.anyLeavePlanInSixMonths = candidateInfo["isAnyLeavePlans"] as? NSNumber
         miscellaneousInfo.anyLegalObligationWithCurrentEmployer = candidateInfo["anyLegalObligations"] as? NSNumber
-        miscellaneousInfo.expectedSalary = NSNumber(int:Int32((candidateInfo["expectedSalary"] as? String)!)!)
-        
+        miscellaneousInfo.expectedSalary = candidateInfo["expectedSalary"] as? Float
         miscellaneousInfo.questionsByCandidate = candidateInfo["questionsAskedByCandidate"] as? String
        
         miscellaneousInfo.anyPendingBonusFromCurrentEmployer =
@@ -152,14 +154,13 @@ class HrFeedbackDataAccess: NSObject {
         
         miscellaneousInfo.wasInterviewdBeforeOn = candidateInfo["pastInterviewdDate"] as? NSDate
         
+        miscellaneousInfo.isHrFormSubmitted = candidateInfo["isHrFormSubmitted"] as? NSNumber
+        
         candidate.name =  candidateInfo["candidateName"] as? String
         
-        
-        
-        
         candidate.miscellaneousInfo = miscellaneousInfo
-        
-    }
     
+    }
+ 
  
 }

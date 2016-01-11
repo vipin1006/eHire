@@ -20,6 +20,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     //}
     //Set the content of source list in the outlineVew as the technology list/array
     var technologyArray = [Technology]()
+    
     var selectedTechnologyIndex:Int?
     
     // Add Interview Date
@@ -47,11 +48,27 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        
         technologyArray = EHTechnologyDataLayer.getSourceListContent() as! [Technology]
+        
+        technologyArray = technologyArray.sort({$0.technologyName < $1.technologyName})
+
+        
+        sortedSourceListReload()
         deleteTechnologyDate.toolTip = "Delete Date or Technology"
         deleteTechnologyDate.enabled = false
         addDate.enabled = false
+           //self.sourceList.reloadData()
+        
+    }
+    
+    func sortedSourceListReload()
+    {
+        technologyArray = technologyArray.sort({$0.technologyName < $1.technologyName})
+        
         self.sourceList.reloadData()
+
     }
     
     //PRAGMAMARK: - outlineview datasource  methods
@@ -204,6 +221,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             let dateString = dateFormatter.stringFromDate(x.interviewDate!)
             child.lblName.stringValue = dateString
             cell = child
+          
         }
         else
         {
@@ -233,6 +251,10 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         return 35
     }
     
+  
+    
+ 
+    
     
     
     
@@ -261,8 +283,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 addDate.enabled = false
                 addTechnology.enabled = true
                 
-                self.sourceList.reloadData()
-                self.sourceList.expandItem(technology, expandChildren: true)
+              sourceList.reloadData()
+             //sortedSourceListReload()
+              self.sourceList.expandItem(technology, expandChildren: true)
             }
                 
             else
@@ -388,7 +411,10 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             addTechnology.enabled = true
             addDate.enabled = false
             
-            self.sourceList.reloadData()
+           // self.sourceList.reloadData()
+            
+            
+            sortedSourceListReload()
         }
         else
         {
@@ -403,7 +429,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 isCandidatesViewLoaded = false
             }
             
-            self.sourceList.reloadData()
+            //self.sourceList.reloadData()
+            
+            sortedSourceListReload()
         }
         
     }
@@ -434,7 +462,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     
     func showFeedbackViewController(selectedCandidate:Candidate){
         
-        print("The candidate is \(selectedCandidate)")
+        print("The candidate is (selectedCandidate)")
         
         for views in self.view.subviews
         {
@@ -501,7 +529,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                     
                     deleteTechnologyDate.enabled = false
                     
-                    self.sourceList.reloadData()
+                   // self.sourceList.reloadData()
+                    
+                   sortedSourceListReload()
                     
                     
                 }
@@ -750,7 +780,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 if technology.technologyName == sender.title
                 {
                     self.technologyArray.removeAtIndex(i)
-                    self.sourceList.reloadData()
+                    //self.sourceList.reloadData()
+                    
+                    self.sortedSourceListReload()
                     EHTechnologyDataLayer.deleteTechnologyFromCoreData(technology)
                 }
             }
@@ -805,7 +837,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                     EHTechnologyDataLayer.deleteInterviewDateFromCoreData(selectedDate)
                     
                     
-                    self.sourceList.reloadData()
+                //self.sourceList.reloadData()
+                 self.sortedSourceListReload()
                 }
             }
         }

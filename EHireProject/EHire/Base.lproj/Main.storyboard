@@ -3089,6 +3089,9 @@ CA
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="1dm-w6-cXO"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Aus-Wz-8KL">
                                                     <rect key="frame" x="5" y="203" width="37" height="20"/>
@@ -3107,6 +3110,9 @@ CA
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="bqW-HM-aoo"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bLu-Tp-mhW">
                                                     <rect key="frame" x="5" y="163" width="116" height="25"/>
@@ -3125,6 +3131,9 @@ CA
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="0RV-nO-cyJ"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cmc-ps-58F">
                                                     <rect key="frame" x="5" y="136" width="119" height="20"/>
@@ -3143,6 +3152,9 @@ CA
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="VJZ-FO-aNW"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O9Y-ak-abB">
                                                     <rect key="frame" x="5" y="99" width="54" height="20"/>
@@ -3161,6 +3173,9 @@ CA
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="96p-GT-BpS"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZOj-Nw-6lF">
                                                     <rect key="frame" x="5" y="62" width="115" height="20"/>
@@ -3179,6 +3194,9 @@ CA
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="T4t-cC-Np4"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h9i-UW-lyR">
                                                     <rect key="frame" x="5" y="20" width="107" height="20"/>
@@ -3198,6 +3216,7 @@ CA
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="passportAvailability:" target="2N2-KU-HrI" id="Jnu-UX-fow"/>
+                                                        <binding destination="2N2-KU-HrI" name="enabled" keyPath="isHrFormEnable" id="656-KH-bAr"/>
                                                     </connections>
                                                 </button>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ub6-XS-MS9">
@@ -3220,6 +3239,9 @@ CA
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="lf4-ir-ug3"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fBs-6Y-Mim">
                                                     <rect key="frame" x="429" y="203" width="124" height="20"/>
@@ -3238,6 +3260,9 @@ CA
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="joV-px-x9L"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PoT-yD-1PZ">
                                                     <rect key="frame" x="429" y="168" width="107" height="20"/>
@@ -3256,6 +3281,9 @@ CA
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="vts-1Y-gpJ"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wea-vU-DTA">
                                                     <rect key="frame" x="429" y="136" width="143" height="20"/>
@@ -3274,6 +3302,9 @@ CA
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="JK6-ry-YeT"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fMo-XI-Vhp">
                                                     <rect key="frame" x="429" y="99" width="124" height="20"/>
@@ -3292,6 +3323,9 @@ CA
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="swp-Ly-5aV"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kmr-se-oI3">
                                                     <rect key="frame" x="429" y="61" width="143" height="20"/>
@@ -3311,6 +3345,7 @@ CA
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="relocationRequest:" target="2N2-KU-HrI" id="gGT-vw-Tng"/>
+                                                        <binding destination="2N2-KU-HrI" name="enabled" keyPath="isHrFormEnable" id="eGF-by-y8k"/>
                                                     </connections>
                                                 </button>
                                                 <button tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="Bme-ka-X7t">
@@ -3322,6 +3357,7 @@ CA
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="relocationRequest:" target="2N2-KU-HrI" id="9UE-hr-w54"/>
+                                                        <binding destination="2N2-KU-HrI" name="enabled" keyPath="isHrFormEnable" id="NCb-Ju-T7C"/>
                                                     </connections>
                                                 </button>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IZS-ci-ELe">
@@ -3341,6 +3377,9 @@ CA
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="1r9-p8-XIr"/>
+                                                    </connections>
                                                 </textField>
                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="WsU-jZ-7Ed">
                                                     <rect key="frame" x="127" y="18" width="44" height="18"/>
@@ -3351,6 +3390,7 @@ CA
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="passportAvailability:" target="2N2-KU-HrI" id="9d5-BR-DVC"/>
+                                                        <binding destination="2N2-KU-HrI" name="enabled" keyPath="isHrFormEnable" id="nCS-mS-NOv"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -3547,15 +3587,6 @@ CA
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="55H-be-KRU">
-                                                    <rect key="frame" x="12" y="26" width="159" height="22"/>
-                                                    <animations/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" drawsBackground="YES" id="axn-nU-BNe">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
                                                 <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PHd-W4-LnM">
                                                     <rect key="frame" x="204" y="26" width="141" height="27"/>
                                                     <constraints>
@@ -3571,6 +3602,9 @@ CA
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                     </datePickerCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="enabled" keyPath="isHrFormEnable" id="6bK-Gr-ubw"/>
+                                                    </connections>
                                                 </datePicker>
                                                 <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UCG-mH-BjX">
                                                     <rect key="frame" x="393" y="26" width="150" height="27"/>
@@ -3584,6 +3618,9 @@ CA
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                     </datePickerCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="enabled" keyPath="isHrFormEnable" id="nf4-Kz-RYh"/>
+                                                    </connections>
                                                 </datePicker>
                                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BL0-9x-UJr">
                                                     <rect key="frame" x="585" y="29" width="183" height="22"/>
@@ -3593,6 +3630,9 @@ CA
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="ADP-O2-Qxw"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QgK-j5-kWQ">
                                                     <rect key="frame" x="604" y="88" width="144" height="20"/>
@@ -3602,6 +3642,18 @@ CA
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                </textField>
+                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="55H-be-KRU">
+                                                    <rect key="frame" x="12" y="26" width="159" height="22"/>
+                                                    <animations/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" drawsBackground="YES" id="axn-nU-BNe">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="VeU-tU-3Ay"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -3746,6 +3798,9 @@ CA
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="ep7-PC-WXs"/>
+                                                    </connections>
                                                 </textField>
                                                 <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g02-ro-L3U">
                                                     <rect key="frame" x="126" y="20" width="99" height="27"/>
@@ -3759,6 +3814,9 @@ CA
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                     </datePickerCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="enabled" keyPath="isHrFormEnable" id="25g-Jj-5pA"/>
+                                                    </connections>
                                                 </datePicker>
                                                 <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ogP-5D-xox">
                                                     <rect key="frame" x="238" y="20" width="99" height="27"/>
@@ -3772,6 +3830,9 @@ CA
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                     </datePickerCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="enabled" keyPath="isHrFormEnable" id="C2Y-tH-a4v"/>
+                                                    </connections>
                                                 </datePicker>
                                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="snx-pf-uQR">
                                                     <rect key="frame" x="354" y="20" width="244" height="22"/>
@@ -3781,6 +3842,9 @@ CA
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="iMJ-NO-ujh"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ecc-76-JxV">
                                                     <rect key="frame" x="640" y="20" width="105" height="22"/>
@@ -3793,6 +3857,9 @@ CA
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="o9i-Cp-eDy"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bc6-Nv-o4s">
                                                     <rect key="frame" x="417" y="69" width="126" height="20"/>
@@ -3885,6 +3952,9 @@ CA
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="StD-pT-qgo"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MVx-wP-40U">
                                                     <rect key="frame" x="6" y="220" width="176" height="19"/>
@@ -3903,6 +3973,9 @@ CA
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="JEL-ZZ-V8N"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eOX-71-rey">
                                                     <rect key="frame" x="6" y="185" width="303" height="19"/>
@@ -3925,6 +3998,7 @@ CA
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="interviewedBefore:" target="2N2-KU-HrI" id="MnF-UL-eOh"/>
+                                                        <binding destination="2N2-KU-HrI" name="enabled" keyPath="isHrFormEnable" id="B25-mI-Ko2"/>
                                                     </connections>
                                                 </button>
                                                 <button tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="jJJ-sd-TVF">
@@ -3936,6 +4010,7 @@ CA
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="interviewedBefore:" target="2N2-KU-HrI" id="iTp-0r-6uc"/>
+                                                        <binding destination="2N2-KU-HrI" name="enabled" keyPath="isHrFormEnable" id="iBC-sy-ZpU"/>
                                                     </connections>
                                                 </button>
                                                 <datePicker hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4z5-Ff-nIs">
@@ -3953,6 +4028,9 @@ CA
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                     </datePickerCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="enabled" keyPath="isHrFormEnable" id="IJ0-qD-dwt"/>
+                                                    </connections>
                                                 </datePicker>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="n5d-MT-vB3">
                                                     <rect key="frame" x="6" y="149" width="379" height="19"/>
@@ -3972,6 +4050,7 @@ CA
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="leavePlan:" target="2N2-KU-HrI" id="TXg-A9-reU"/>
+                                                        <binding destination="2N2-KU-HrI" name="enabled" keyPath="isHrFormEnable" id="MW5-6u-8n5"/>
                                                     </connections>
                                                 </button>
                                                 <button tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="NZc-UT-iuk">
@@ -3983,6 +4062,7 @@ CA
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="leavePlan:" target="2N2-KU-HrI" id="Uj6-pa-58H"/>
+                                                        <binding destination="2N2-KU-HrI" name="enabled" keyPath="isHrFormEnable" id="1og-I4-rs6"/>
                                                     </connections>
                                                 </button>
                                                 <textField hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5u0-XH-MFN">
@@ -3993,6 +4073,9 @@ CA
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="aDm-Nn-XC3"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vez-3Z-vyu">
                                                     <rect key="frame" x="6" y="116" width="97" height="19"/>
@@ -4024,6 +4107,7 @@ CA
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="backgroundCheck:" target="2N2-KU-HrI" id="aN4-kM-2bZ"/>
+                                                        <binding destination="2N2-KU-HrI" name="enabled" keyPath="isHrFormEnable" id="PS7-i6-xza"/>
                                                     </connections>
                                                 </button>
                                                 <button tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="ukZ-NR-xTP">
@@ -4035,6 +4119,7 @@ CA
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="backgroundCheck:" target="2N2-KU-HrI" id="qYZ-yK-zwt"/>
+                                                        <binding destination="2N2-KU-HrI" name="enabled" keyPath="isHrFormEnable" id="IUc-DM-fgf"/>
                                                     </connections>
                                                 </button>
                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="seu-D7-R4f">
@@ -4055,6 +4140,7 @@ CA
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="allDocumentsExist:" target="2N2-KU-HrI" id="3ZN-J6-Zlo"/>
+                                                        <binding destination="2N2-KU-HrI" name="enabled" keyPath="isHrFormEnable" id="w3E-Z8-9pV"/>
                                                     </connections>
                                                 </button>
                                                 <button tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="TOb-vH-zVO">
@@ -4066,6 +4152,7 @@ CA
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="allDocumentsExist:" target="2N2-KU-HrI" id="W9I-Y4-SAN"/>
+                                                        <binding destination="2N2-KU-HrI" name="enabled" keyPath="isHrFormEnable" id="GIV-0K-lxP"/>
                                                     </connections>
                                                 </button>
                                                 <textField hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G4P-bR-bJi">
@@ -4076,6 +4163,9 @@ CA
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="cU3-Q2-d7f"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hyf-gA-zZX">
                                                     <rect key="frame" x="6" y="20" width="195" height="19"/>
@@ -4219,6 +4309,9 @@ CA
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="RY8-p4-rHo"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="W4W-ht-5Ru">
                                                     <rect key="frame" x="26" y="20" width="160" height="22"/>
@@ -4231,6 +4324,9 @@ CA
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="QOY-8U-BML"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MOQ-Ij-awj">
                                                     <rect key="frame" x="556" y="20" width="160" height="22"/>
@@ -4243,6 +4339,9 @@ CA
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="GFh-Qd-rsL"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -4303,6 +4402,7 @@ CA
                                         </buttonCell>
                                         <connections>
                                             <action selector="entitledBonus:" target="2N2-KU-HrI" id="Jvs-2F-pEg"/>
+                                            <binding destination="2N2-KU-HrI" name="enabled" keyPath="isHrFormEnable" id="Ny0-2V-css"/>
                                         </connections>
                                     </button>
                                     <button tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="iLp-r2-BWg">
@@ -4314,6 +4414,7 @@ CA
                                         </buttonCell>
                                         <connections>
                                             <action selector="entitledBonus:" target="2N2-KU-HrI" id="len-1s-bdl"/>
+                                            <binding destination="2N2-KU-HrI" name="enabled" keyPath="isHrFormEnable" id="qI7-8z-Xei"/>
                                         </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tRQ-DH-98U">
@@ -4348,6 +4449,9 @@ CA
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
+                                        <connections>
+                                            <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="gpg-0h-W3w"/>
+                                        </connections>
                                     </textField>
                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GWX-lG-sUp">
                                         <rect key="frame" x="479" y="270" width="160" height="22"/>
@@ -4360,6 +4464,9 @@ CA
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
+                                        <connections>
+                                            <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="EnW-2k-osF"/>
+                                        </connections>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wn0-WQ-nCF">
                                         <rect key="frame" x="18" y="226" width="362" height="19"/>
@@ -4382,6 +4489,7 @@ CA
                                         </buttonCell>
                                         <connections>
                                             <action selector="legalObligations:" target="2N2-KU-HrI" id="iE9-NN-mE3"/>
+                                            <binding destination="2N2-KU-HrI" name="enabled" keyPath="isHrFormEnable" id="Hr9-PL-dIh"/>
                                         </connections>
                                     </button>
                                     <button tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="6pf-dB-fSZ">
@@ -4396,6 +4504,7 @@ CA
                                         </buttonCell>
                                         <connections>
                                             <action selector="legalObligations:" target="2N2-KU-HrI" id="ayY-PY-6SJ"/>
+                                            <binding destination="2N2-KU-HrI" name="enabled" keyPath="isHrFormEnable" id="6hB-uU-hfQ"/>
                                         </connections>
                                     </button>
                                     <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="B75-vY-nvL">
@@ -4418,6 +4527,9 @@ CA
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
+                                        <connections>
+                                            <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="Iuw-dY-a3x"/>
+                                        </connections>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pBi-hN-zEG">
                                         <rect key="frame" x="18" y="160" width="457" height="19"/>
@@ -4484,6 +4596,9 @@ CA
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
+                                        <connections>
+                                            <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="iBy-UG-BbF"/>
+                                        </connections>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hvr-h1-ahh">
                                         <rect key="frame" x="18" y="895" width="204" height="25"/>
@@ -4510,9 +4625,9 @@ CA
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TUN-wg-53A">
-                                        <rect key="frame" x="358" y="8" width="108" height="32"/>
+                                        <rect key="frame" x="302" y="8" width="108" height="32"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="96" id="S8F-gu-s1M"/>
+                                            <constraint firstAttribute="width" constant="96" id="GeI-zc-kJ3"/>
                                         </constraints>
                                         <animations/>
                                         <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UrC-Wx-2ZU">
@@ -4521,6 +4636,22 @@ CA
                                         </buttonCell>
                                         <connections>
                                             <action selector="saveCandidateDetails:" target="2N2-KU-HrI" id="oMc-nx-cga"/>
+                                            <binding destination="2N2-KU-HrI" name="enabled" keyPath="isHrFormEnable" id="7WA-2f-6rq"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bOv-72-xvC">
+                                        <rect key="frame" x="422" y="8" width="108" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="96" id="wHX-SF-idT"/>
+                                        </constraints>
+                                        <animations/>
+                                        <buttonCell key="cell" type="push" title="Submit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TBZ-qV-CoW">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="subbmitCandidateDetails:" target="2N2-KU-HrI" id="sTF-nH-gpl"/>
+                                            <binding destination="2N2-KU-HrI" name="enabled" keyPath="isHrFormEnable" id="hXR-aC-zW0"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -4528,6 +4659,7 @@ CA
                                     <constraint firstItem="iLp-r2-BWg" firstAttribute="leading" secondItem="EQO-Rp-fbg" secondAttribute="trailing" constant="19" id="0NP-sA-nIP"/>
                                     <constraint firstItem="6pf-dB-fSZ" firstAttribute="leading" secondItem="UoB-bM-Lqs" secondAttribute="trailing" constant="19" id="0jo-1r-sFd"/>
                                     <constraint firstItem="lgK-qI-j6k" firstAttribute="leading" secondItem="pBi-hN-zEG" secondAttribute="leading" id="2ZT-03-4Le"/>
+                                    <constraint firstItem="bOv-72-xvC" firstAttribute="baseline" secondItem="TUN-wg-53A" secondAttribute="baseline" id="4QD-DD-PEH"/>
                                     <constraint firstItem="ybO-Sq-0lH" firstAttribute="top" secondItem="6Hi-LB-Evq" secondAttribute="bottom" constant="21" id="56I-DC-hi3"/>
                                     <constraint firstAttribute="bottom" secondItem="XPJ-s1-Jt6" secondAttribute="bottom" constant="63" id="6He-ia-gEC"/>
                                     <constraint firstItem="lgK-qI-j6k" firstAttribute="top" secondItem="pBi-hN-zEG" secondAttribute="bottom" constant="8" symbolic="YES" id="7vM-EC-9tN"/>
@@ -4544,6 +4676,8 @@ CA
                                     <constraint firstItem="gLd-Aw-RZS" firstAttribute="top" secondItem="UoB-bM-Lqs" secondAttribute="bottom" constant="12" id="KKQ-fP-EKW"/>
                                     <constraint firstItem="tRQ-DH-98U" firstAttribute="baseline" secondItem="mpo-jQ-HF6" secondAttribute="firstBaseline" id="NN4-RR-h7c"/>
                                     <constraint firstItem="EQO-Rp-fbg" firstAttribute="top" secondItem="0Nn-sR-CDF" secondAttribute="bottom" constant="16" id="O05-b2-zXs"/>
+                                    <constraint firstItem="bOv-72-xvC" firstAttribute="leading" secondItem="TUN-wg-53A" secondAttribute="trailing" constant="24" id="PAL-a7-NDF"/>
+                                    <constraint firstItem="TUN-wg-53A" firstAttribute="top" secondItem="m3f-wT-zql" secondAttribute="bottom" constant="22" id="PiV-PI-Cii"/>
                                     <constraint firstItem="tRQ-DH-98U" firstAttribute="trailing" secondItem="B75-vY-nvL" secondAttribute="trailing" id="Q8f-Tq-bql"/>
                                     <constraint firstItem="0bF-JV-WWj" firstAttribute="top" secondItem="Jb4-z3-6zN" secondAttribute="top" constant="20" symbolic="YES" id="RrK-m7-WgD"/>
                                     <constraint firstItem="Upt-eH-Xuy" firstAttribute="leading" secondItem="hvr-h1-ahh" secondAttribute="leading" id="RzM-RS-nE0"/>
@@ -4563,7 +4697,6 @@ CA
                                     <constraint firstItem="pBi-hN-zEG" firstAttribute="leading" secondItem="B75-vY-nvL" secondAttribute="leading" id="cs7-bj-7ty"/>
                                     <constraint firstItem="6Hi-LB-Evq" firstAttribute="leading" secondItem="0Nn-sR-CDF" secondAttribute="leading" id="dcO-aZ-svp"/>
                                     <constraint firstItem="N8P-zM-o1D" firstAttribute="leading" secondItem="Jb4-z3-6zN" secondAttribute="leading" constant="20" symbolic="YES" id="e7l-gG-QW0"/>
-                                    <constraint firstItem="TUN-wg-53A" firstAttribute="centerX" secondItem="0Nn-sR-CDF" secondAttribute="centerX" id="fDG-Z8-1Qp"/>
                                     <constraint firstItem="ROK-5g-veo" firstAttribute="leading" secondItem="0Nn-sR-CDF" secondAttribute="leading" id="fct-ea-vtM"/>
                                     <constraint firstItem="gLd-Aw-RZS" firstAttribute="trailing" secondItem="lgK-qI-j6k" secondAttribute="trailing" id="gyT-2h-SGQ"/>
                                     <constraint firstItem="0Nn-sR-CDF" firstAttribute="top" secondItem="ROK-5g-veo" secondAttribute="bottom" constant="8" symbolic="YES" id="h0w-JJ-6ry"/>
@@ -4573,13 +4706,13 @@ CA
                                     <constraint firstItem="GWX-lG-sUp" firstAttribute="leading" secondItem="mpo-jQ-HF6" secondAttribute="trailing" constant="8" symbolic="YES" id="k0g-AJ-YHw"/>
                                     <constraint firstItem="Wn0-WQ-nCF" firstAttribute="leading" secondItem="B75-vY-nvL" secondAttribute="leading" id="k0t-qT-BZe"/>
                                     <constraint firstItem="tRQ-DH-98U" firstAttribute="leading" secondItem="Wn0-WQ-nCF" secondAttribute="leading" id="knZ-26-37K"/>
+                                    <constraint firstItem="TUN-wg-53A" firstAttribute="leading" secondItem="Jb4-z3-6zN" secondAttribute="leading" constant="308" id="lFI-2U-C3i"/>
                                     <constraint firstItem="6pf-dB-fSZ" firstAttribute="trailing" secondItem="pBi-hN-zEG" secondAttribute="trailing" id="lPY-cv-H6R"/>
                                     <constraint firstAttribute="trailing" secondItem="gLd-Aw-RZS" secondAttribute="trailing" constant="78" id="lov-Cz-huE"/>
                                     <constraint firstAttribute="bottom" secondItem="m3f-wT-zql" secondAttribute="bottom" constant="58" id="lw5-mh-yiV"/>
                                     <constraint firstItem="lgK-qI-j6k" firstAttribute="top" secondItem="Jb4-z3-6zN" secondAttribute="top" constant="1304" id="nXw-aS-WyE"/>
                                     <constraint firstItem="gLd-Aw-RZS" firstAttribute="top" secondItem="Wn0-WQ-nCF" secondAttribute="bottom" constant="10" id="nhR-R8-9ZP"/>
                                     <constraint firstItem="Upt-eH-Xuy" firstAttribute="top" secondItem="BsD-WN-Nes" secondAttribute="bottom" constant="14" id="npU-u1-qln"/>
-                                    <constraint firstItem="TUN-wg-53A" firstAttribute="top" secondItem="lgK-qI-j6k" secondAttribute="bottom" constant="59" id="oOO-4u-Rlv"/>
                                     <constraint firstItem="pBi-hN-zEG" firstAttribute="top" secondItem="gLd-Aw-RZS" secondAttribute="bottom" constant="15" id="ofh-Kw-6lm"/>
                                     <constraint firstItem="iLp-r2-BWg" firstAttribute="baseline" secondItem="EQO-Rp-fbg" secondAttribute="firstBaseline" id="pPn-vQ-TrC"/>
                                     <constraint firstItem="tRQ-DH-98U" firstAttribute="top" secondItem="6Hi-LB-Evq" secondAttribute="bottom" constant="22" id="pi4-Gs-cJJ"/>
@@ -4672,6 +4805,7 @@ CA
                     </connections>
                 </viewController>
                 <customObject id="uND-9e-Lo6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="mV0-39-OpB"/>
             </objects>
             <point key="canvasLocation" x="-280" y="1344"/>
         </scene>
