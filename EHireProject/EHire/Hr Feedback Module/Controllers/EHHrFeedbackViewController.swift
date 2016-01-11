@@ -66,10 +66,9 @@ class EHHrFeedbackViewController: NSViewController {
     @IBOutlet weak var dummySpecifyMissingDocuments: NSTextField!
     @IBOutlet weak var dummyLegalObligations: NSTextField!
     @IBOutlet weak var dummySpecifyLegalObligations: NSTextField!
-    
     @IBOutlet weak var lastDesignation: NSTextField!
     
-    
+    dynamic var isHrFormEnable = true
     
     var candidateInfo:Dictionary<String,AnyObject> = [:]
     var candidate:Candidate?
@@ -86,10 +85,14 @@ class EHHrFeedbackViewController: NSViewController {
     override func viewWillAppear()
     {
         super.viewWillAppear()
+   
         
         print("The Candidate for HR feedback is \(candidate)")
         
-       
+        if candidate?.miscellaneousInfo?.isHrFormSubmitted == 1
+        {
+            isHrFormEnable = false
+        }
         
         candidateInfo["isVisaAvailable"] = NSNumber(int:0)
         candidateInfo["isRelocationRequested"] = NSNumber(int:0)
@@ -99,6 +102,7 @@ class EHHrFeedbackViewController: NSViewController {
         candidateInfo["isAnyDocumentMissing"] = NSNumber(int:0)
         candidateInfo["entitledBonus"] = NSNumber(int:0)
         candidateInfo["anyLegalObligations"] = NSNumber(int:0)
+        candidateInfo["isHrFormSubmitted"]   = NSNumber(int:0)
         
          showDetailsOfCandidate()
     }
@@ -108,35 +112,8 @@ class EHHrFeedbackViewController: NSViewController {
         
         if validations() {
             
-            if EHOnlyDecimalValueFormatter.isNumberValid(self.currentFixedSalary.stringValue) == false
-            {
-               showAlert("Invalid data entered", info:"Please enter Fixed Salary in numbers")
-               setBoarderColor(self.currentFixedSalary)
-                return
-            }
-            if EHOnlyDecimalValueFormatter.isNumberValid(self.currentSalaryVariable.stringValue) == false
-            {
-                showAlert("Invalid data entered", info:"Please enter Variable Salary in numbers")
-                setBoarderColor(self.currentSalaryVariable)
-                setClearColor(self.currentFixedSalary)
-                return
-            }
-            if EHOnlyDecimalValueFormatter.isNumberValid(self.expectedSalary.stringValue) == false
-            {
-                showAlert("Invalid data entered", info:"Please enter Expected Salary in numbers")
-                setBoarderColor(self.expectedSalary)
-                setClearColor(self.currentSalaryVariable)
-                return
-            }
-            if EHOnlyDecimalValueFormatter.isNumberValid(self.highestEducationPercentage.stringValue) == false
-            {
-                showAlert("Invalid data entered", info:"Please enter percentage in numbers")
-                setBoarderColor(self.highestEducationPercentage)
-                setClearColor(self.currentSalaryVariable)
-                return
-            }
-
-            
+           if numericValidations()
+           {
             candidateInfo["candidateName"] = candidateName.stringValue
             candidateInfo["candidateBusinessUnit"] = candidateBusinessUnit.stringValue
             candidateInfo["candidateSkillOrTechnology"] = candidateSkillOrTechnology.stringValue
@@ -161,13 +138,13 @@ class EHHrFeedbackViewController: NSViewController {
             candidateInfo["jobChangeReasons"] = jobChangeReasons.stringValue
             
             candidateInfo["pastInterviewdDate"] = pastInterviedDate.dateValue
-                
+            
             
             candidateInfo["jobChangeReasons"] = jobChangeReasons.stringValue
             candidateInfo["missingDocuments"] = missingDocuments.stringValue
-            candidateInfo["currentFixedSalary"] = currentFixedSalary.stringValue
-            candidateInfo["currentSalaryVariable"] = currentSalaryVariable.stringValue
-            candidateInfo["expectedSalary"] = currentFixedSalary.stringValue
+            candidateInfo["currentFixedSalary"] = currentFixedSalary.floatValue
+            candidateInfo["currentSalaryVariable"] = currentSalaryVariable.floatValue
+            candidateInfo["expectedSalary"] = expectedSalary.floatValue
             candidateInfo["LegalObligations"] = legalObligationDetails.stringValue
             candidateInfo["candidateNoticePeriod"] = candidateNoticePeriod.stringValue
             candidateInfo["candidateJoinngPeriod"] = candidateJoinngPeriod.stringValue
@@ -176,8 +153,20 @@ class EHHrFeedbackViewController: NSViewController {
             candidateInfo["EmploymentGap"] = employmentGap.stringValue
             candidateInfo["lastDesignation"] = lastDesignation.stringValue
             candidateInfo["leavePlanReasons"] = leavePlanReasons.stringValue
-         
+            
             HrFeedbackDataAccess.saveHrFeedbackOfCandidate(candidate!,candidateInfo: candidateInfo)
+            
+            if isHrFormEnable
+            {
+                showAlert("Feedback details saved succesfully", info:"")
+            }
+            else
+            {
+                 showAlert("Feedback details submitted succesfully", info:"")
+            }
+            
+        }
+           
     }
            else
         {
@@ -186,6 +175,35 @@ class EHHrFeedbackViewController: NSViewController {
         }
        
     }
+    
+    
+    @IBAction func subbmitCandidateDetails(sender: AnyObject)
+    
+    {
+        if self.validations()
+        {
+            if numericValidations()
+            {
+                  Utility.alertPopup("Are you sure you want to \("Submit") the details?", informativeText:"") { () -> Void in
+                    
+                    self.candidateInfo["isHrFormSubmitted"] = 1
+                    
+                    self.isHrFormEnable = false
+                    
+                    self.saveCandidateDetails("")
+                    
+                   
+                }
+             }
+            
+        }
+        else
+        {
+            self.showAlert("Some fileds are missing", info:"Please fill up all the required fileds")
+        }
+   }
+    
+    
     
     @IBAction func passportAvailability(sender:NSButton)
         
@@ -475,6 +493,40 @@ class EHHrFeedbackViewController: NSViewController {
         return result
     }
     
+    func numericValidations()->Bool
+    {
+        if EHOnlyDecimalValueFormatter.isNumberValid(self.currentFixedSalary.stringValue) == false
+        {
+            showAlert("Invalid data entered", info:"Please enter Fixed Salary in numbers")
+            setBoarderColor(self.currentFixedSalary)
+            return false
+        }
+        if EHOnlyDecimalValueFormatter.isNumberValid(self.currentSalaryVariable.stringValue) == false
+        {
+            showAlert("Invalid data entered", info:"Please enter Variable Salary in numbers")
+            setBoarderColor(self.currentSalaryVariable)
+            setClearColor(self.currentFixedSalary)
+            return false
+        }
+        if EHOnlyDecimalValueFormatter.isNumberValid(self.expectedSalary.stringValue) == false
+        {
+            showAlert("Invalid data entered", info:"Please enter Expected Salary in numbers")
+            setBoarderColor(self.expectedSalary)
+            setClearColor(self.currentSalaryVariable)
+            return false
+        }
+        if EHOnlyDecimalValueFormatter.isNumberValid(self.highestEducationPercentage.stringValue) == false
+        {
+            showAlert("Invalid data entered", info:"Please enter percentage in numbers")
+            setBoarderColor(self.highestEducationPercentage)
+            setClearColor(self.currentSalaryVariable)
+            return false
+        }
+ 
+        return true
+        
+    }
+    
     func setBoarderColor(hrTextFiled:NSTextField)
     {
         hrTextFiled.wantsLayer = true
@@ -690,8 +742,6 @@ class EHHrFeedbackViewController: NSViewController {
                 
             }
         }
-        
-        
     }
     
    
