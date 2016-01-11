@@ -216,7 +216,7 @@ class EHFeedbackViewController: NSViewController
                         {
                             if feedback.recommendation == "Rejected"
                             {
-                                Utility.alertPopup("Candidate Rejected", informativeText: "Selected Candidate Rejected in Round Two", okCompletionHandler: nil)
+                                Utility.alertPopup("Candidate Rejected", informativeText: "Selected Candidate Rejected has been in Technical Round Two. Hence you cannot proceed to round three.", okCompletionHandler: nil)
                                 subRound.selectedSegment = 0
                             }
                         }
@@ -249,7 +249,7 @@ class EHFeedbackViewController: NSViewController
                     }
                     if feedback.recommendation == "Rejected"
                     {
-                        Utility.alertPopup("Candidate Rejected", informativeText: "Selected Candidate Rejected in Round Two", okCompletionHandler: nil)
+                        Utility.alertPopup("Candidate Rejected", informativeText: "Selected Candidate Rejected has been in Technical Round Two. Hence you cannot proceed to round three.", okCompletionHandler: nil)
                         subRound.selectedSegment = 1
                     }
                     else
