@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -1999,15 +1999,26 @@ CA
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Wn-N3-e7C">
+                                            <rect key="frame" x="367" y="22" width="70" height="32"/>
+                                            <animations/>
+                                            <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Qhd-DQ-0P9">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="saveDetailsAction:" target="tZu-Jo-Cyq" id="nsV-Fb-Qgj"/>
+                                            </connections>
+                                        </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MtI-02-dgX">
-                                            <rect key="frame" x="376" y="22" width="84" height="32"/>
+                                            <rect key="frame" x="456" y="22" width="84" height="32"/>
                                             <animations/>
                                             <buttonCell key="cell" type="push" title="Submit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GT3-uL-b45">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="saveDetailsAction:" target="tZu-Jo-Cyq" id="7dz-aT-ohZ"/>
+                                                <action selector="submitDetails:" target="tZu-Jo-Cyq" id="lyQ-ta-D2a"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -2034,7 +2045,8 @@ CA
                         <outlet property="ratingOnTechnologyField" destination="WIG-5A-A75" id="uSm-Mv-WHd"/>
                         <outlet property="recommentationField" destination="KEX-d7-PNz" id="tkE-dj-eAN"/>
                         <outlet property="requisitionNameField" destination="N33-f2-XzK" id="fnb-st-sJp"/>
-                        <outlet property="saveButton" destination="MtI-02-dgX" id="rb3-Mb-gPe"/>
+                        <outlet property="saveButton" destination="2Wn-N3-e7C" id="45W-HP-MnO"/>
+                        <outlet property="submitButton" destination="MtI-02-dgX" id="3K5-RC-SjF"/>
                         <outlet property="tableView" destination="2Zk-Rn-2d9" id="aHW-fg-Cic"/>
                         <outlet property="technicalFeedbackMainView" destination="TA5-L1-aWy" id="kGa-31-jDe"/>
                         <outlet property="textViewOfCandidateAssessment" destination="k5G-My-Zu5" id="6Tr-04-ltx"/>
