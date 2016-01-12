@@ -615,6 +615,9 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             }
      }
     
+    
+    @IBAction func submitDetails(sender: AnyObject) {
+    }
     //MARK:- Setting Matrix Value
     func fetchingModeOfInterview(value : String)
     {

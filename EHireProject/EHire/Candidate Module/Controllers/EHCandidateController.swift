@@ -14,45 +14,47 @@ protocol FeedbackDelegate
 }
 
 class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewDelegate,NSTextFieldDelegate{
+    
     //MARK: IBOutlets
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var candidateView: NSView!
-    
+    @IBOutlet weak var candidateSearchField: NSSearchField!
     @IBOutlet weak var addCandidateButton: NSButton!
     @IBOutlet weak var feedbackButton: NSButton!
     @IBOutlet weak var removeButton: NSButton!
+    
     //MARK: Properties
     var candidateArray = NSMutableArray()
+    var filteredArray = NSMutableArray()
     var delegate:FeedbackDelegate?
     var technologyName:String?
     var interviewDate:NSDate?
-    
     var preserveCandidate : Int?
     var candidateDetails = Candidate()
     
     override func viewDidLoad()
     {
-        super.viewDidLoad()
-        
-        feedbackButton.enabled = false
-        removeButton.enabled = false
-        removeButton.toolTip = "Remove Candidate"
-        addCandidateButton.toolTip = "Add Candidate"
+      super.viewDidLoad()
+      feedbackButton.enabled = false
+      removeButton.enabled = false
+      removeButton.toolTip = "Remove Candidate"
+      addCandidateButton.toolTip = "Add Candidate"
     }
     
     override func viewWillAppear()
     {
-        print("Preserve is \(preserveCandidate)")
-        if let tablePreserved = preserveCandidate
-        {
-            tableView.selectRowIndexes(NSIndexSet(index: tablePreserved), byExtendingSelection: false)
-        }
-        
+     if let tablePreserved = preserveCandidate
+     {
+       tableView.selectRowIndexes(NSIndexSet(index: tablePreserved), byExtendingSelection: false)
+     }
     }
     
     //MARK: This data source method returns tableview rows
     func numberOfRowsInTableView(tableView: NSTableView) -> Int
     {
+        if candidateSearchField.stringValue.characters.count > 0 {
+            return filteredArray.count
+        }
         return candidateArray.count
     }
     
@@ -60,41 +62,47 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
 
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView?
     {
-        let  candidate  = candidateArray[row] as? Candidate
+        var candidate:Candidate
+        if candidateSearchField.stringValue.characters.count > 0 {
+            candidate = (filteredArray[row] as? Candidate)!
+        }
+        else {
+            candidate = (candidateArray[row] as? Candidate)!
+        }
         let cell = self.tableView.makeViewWithIdentifier((tableColumn?.identifier)!, owner: self) as! NSTableCellView
         
         cell.textField?.delegate = self
         if tableColumn?.identifier == "name"
         {
-            if candidate?.name != nil
+            if candidate.name != nil
             {
-            cell.textField?.stringValue = (candidate?.name)!
+            cell.textField?.stringValue = (candidate.name)!
             }
         }
             
         else if tableColumn?.identifier == "experience"
         {
-            if candidate?.experience != nil
+            if candidate.experience != nil
             {
-              cell.textField?.stringValue = (candidate?.experience)!
+              cell.textField?.stringValue = (candidate.experience)!
             }
         }
             
         else if tableColumn?.identifier == "interviewTime"
         {
             let interviewTimePicker:NSDatePicker = cell.viewWithTag(10) as! NSDatePicker
-            interviewTimePicker.dateValue = (candidate?.interviewTime)!
+            interviewTimePicker.dateValue = (candidate.interviewTime)!
   
         }
             
             else if tableColumn?.identifier == "requisition"
         {
-            cell.textField?.stringValue = (candidate?.requisition)!
+            cell.textField?.stringValue = (candidate.requisition)!
         }
             
         else
         {
-           cell.textField?.stringValue = (candidate?.phoneNumber)!
+           cell.textField?.stringValue = (candidate.phoneNumber)!
         }
         return cell
     }
@@ -127,103 +135,108 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     //MARK:Actions
     @IBAction func addCandidate(sender: AnyObject)
     {
-        
-        func addCandidate()
-        {
-            let managedObject:Candidate = EHCandidateAccessLayer.addCandidate("", experience: "", phoneNumber: "", requisition: "",interviewTime:self.interviewDate!, technologyName: self.technologyName!, interviewDate: self.interviewDate!)
-            
-            candidateArray.addObject(managedObject)
+      func addCandidate()
+      {
+        let managedObject:Candidate = EHCandidateAccessLayer.addCandidate("", experience: "", phoneNumber: "", requisition: "",interviewTime:self.interviewDate!, technologyName: self.technologyName!, interviewDate: self.interviewDate!)
+        candidateArray.addObject(managedObject)
             tableView.reloadData()
-            
-            let index : NSInteger = candidateArray.count - 1;
+        let index : NSInteger = candidateArray.count - 1;
             tableView.selectRowIndexes(NSIndexSet.init(index: index), byExtendingSelection: true)
-            
-            let rowView:NSTableRowView = tableView.rowViewAtRow(tableView.selectedRow, makeIfNecessary: true)!
+        let rowView:NSTableRowView = tableView.rowViewAtRow(tableView.selectedRow, makeIfNecessary: true)!
             rowView.viewWithTag(1)?.becomeFirstResponder()
-            
-        }
-        
-        if candidateArray.count > 0
+      }
+      if candidateArray.count > 0
+      {
+        var allCandidatesValid:Bool = true
+        for candidateRecord in candidateArray
         {
-            var allCandidatesValid:Bool = true
-            for candidateRecord in candidateArray {
-                if candidateRecord.name! == "" || candidateRecord.phoneNumber! == "" || candidateRecord.experience! == " " || candidateRecord.requisition! == ""
-                {
-                    Utility.alertPopup("Candidate can not be added", informativeText: "Please fill all the details of the selected candidate before adding a new candidate", okCompletionHandler: { () -> Void in
+          if candidateRecord.name! == "" || candidateRecord.phoneNumber! == "" || candidateRecord.experience! == " " || candidateRecord.requisition! == ""
+          {
+            Utility.alertPopup("Candidate can not be added", informativeText: "Please fill all the details of the selected candidate before adding a new candidate", okCompletionHandler:
+                { () -> Void in
                         
-                    })
-                    allCandidatesValid = false
-                    break
-                }
-            }
+                })
+            allCandidatesValid = false
+            break
+          }
+        }
+        if allCandidatesValid == true
+        {
+          addCandidate()
+        }
             
-            if allCandidatesValid == true
-            {
-                addCandidate()
-            }
         }
         else
         {
-            addCandidate()
+         addCandidate()
         }
-
-        
-        
-    }
+      }
+    
     
     func refresh()
     {
-        
-        getSourceListContent()
-        tableView.reloadData()
-        if tableView.selectedRow == -1
+      getSourceListContent()
+      tableView.reloadData()
+      if tableView.selectedRow == -1
+      {
+        feedbackButton.enabled = false
+        removeButton.enabled = false
+      }
+      if let tablePreserved = preserveCandidate
+      {
+        tableView.selectRowIndexes(NSIndexSet(index: tablePreserved), byExtendingSelection: false)
+      }
+      if candidateArray.count > 0
+      {
+        let c = candidateArray.lastObject
+        if  c!.name! == "" || c!.phoneNumber! == "" || c!.experience! == " " || c!.requisition! == ""
         {
-            feedbackButton.enabled = false
-            removeButton.enabled = false
+          candidateSearchField.enabled = false
         }
-        if let tablePreserved = preserveCandidate
+        else
         {
-            
-            tableView.selectRowIndexes(NSIndexSet(index: tablePreserved), byExtendingSelection: false)
+          candidateSearchField.enabled = true
         }
+      }
+      else
+      {
+        candidateSearchField.enabled = false
+      }
     }
     
     
     func getSourceListContent()
     {
-        
-        candidateArray.removeAllObjects()
-        
-       // let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
-        let context     = EHCoreDataStack.sharedInstance.managedObjectContext
-        
-        let predicate = NSPredicate(format:"technologyName = %@ AND interviewDate = %@" , technologyName!,interviewDate!)
-       
-        let records = EHCoreDataHelper.fetchRecordsWithPredicate(predicate, sortDescriptor: nil, entityName: "Candidate", managedObjectContext: context)
-        
-        print(records)
-        
-        if records?.count > 0
-        {
-          for aRec in records!
-          {
-            let cEntity = aRec as! Candidate
-            candidateArray.addObject(cEntity);
-          }
-        }
+      candidateArray.removeAllObjects()
+      let context     = EHCoreDataStack.sharedInstance.managedObjectContext
+      let predicate = NSPredicate(format:"technologyName = %@ AND interviewDate = %@" , technologyName!,interviewDate!)
+      let records = EHCoreDataHelper.fetchRecordsWithPredicate(predicate, sortDescriptor: nil, entityName: "Candidate", managedObjectContext: context)
+      if records?.count > 0
+      {
+       for aRec in records!
+       {
+         let cEntity = aRec as! Candidate
+         candidateArray.addObject(cEntity);
+       }
+      }
     }
 
+    @IBAction func searchFieldTextDidChange(sender: AnyObject)
+    {
+      filteredArray.removeAllObjects()
+      let predicate = NSPredicate(format:"name contains[c] %@ OR experience contains[c] %@ OR phoneNumber contains[c] %@ OR requisition contains[c] %@" , sender.stringValue,sender.stringValue,sender.stringValue,sender.stringValue)
+     filteredArray.addObjectsFromArray(candidateArray.filteredArrayUsingPredicate(predicate))
+        tableView.reloadData()
+      
+    }
     
    @IBAction func removeCandidate(sender: AnyObject)
    {
    
     Utility.alertPopup("Are you sure you want to delete the Candidate?", informativeText: "", okCompletionHandler:{() in
         self.deleteCandidate()
-    })
-    
-      //showAlert("Are you sure you want to delete the Candidate?", info:"")
-    
-  }
+      })
+   }
     
     @IBAction func addInterviewTime(sender: AnyObject)
     {
@@ -241,31 +254,25 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         {
           let selectedRow:NSInteger = tableView.selectedRow
           let selectedCandidate:Candidate = candidateArray.objectAtIndex(selectedRow) as! Candidate
-         
           preserveCandidate = tableView.selectedRow
           NSApp.windows.first?.title = "Candidate Feedback"
-            
-            if candidateArray.count > 0
+          if candidateArray.count > 0
             {
-                let candidateRecord = candidateArray.objectAtIndex(tableView.selectedRow) as! Candidate
-                if  candidateRecord.name! == "" || candidateRecord.phoneNumber! == "" || candidateRecord.experience! == " " || candidateRecord.requisition! == ""
-                {
-                   
-                    
-                    Utility.alertPopup("Candidate details are not complete. Cannot proceed to provide feedback.", informativeText:"Please enter all the candidate information before proceeding.", okCompletionHandler: { () -> Void in
-                        
-                    })
-                    
-                }
-                else
-                {
-                     delegate.showFeedbackViewController(selectedCandidate)
-                }
+              let candidateRecord = candidateArray.objectAtIndex(tableView.selectedRow) as! Candidate
+              if  candidateRecord.name! == "" || candidateRecord.phoneNumber! == "" || candidateRecord.experience! == " " || candidateRecord.requisition! == ""
+              {
+                Utility.alertPopup("Candidate details are not complete. Cannot proceed to provide feedback.", informativeText:"Please enter all the candidate information before proceeding.", okCompletionHandler: { () -> Void in
+                        })
+              }
+              else
+              {
+                delegate.showFeedbackViewController(selectedCandidate)
+              }
             }
         }
         
-        }
-      }
+       }
+     }
         
     
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
@@ -290,6 +297,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         print("")
      }
         EHCoreDataHelper.saveToCoreData(candidate)
+        candidateSearchField.enabled = true
         return true
     }
     

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -914,11 +914,8 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="qci-v5-CE5">
                                 <rect key="frame" x="0.0" y="0.0" width="635" height="707"/>
                                 <subviews>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="p93-oh-UMg">
-                                        <rect key="frame" x="584" y="4" width="51" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="39" id="VJH-YJ-DfM"/>
-                                        </constraints>
+                                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p93-oh-UMg">
+                                        <rect key="frame" x="472" y="4" width="51" height="25"/>
                                         <animations/>
                                         <buttonCell key="cell" type="push" title="-" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="D8C-Ul-tmQ">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -928,11 +925,8 @@
                                             <action selector="removeCandidate:" target="eaX-tr-f6l" id="h3j-gj-gRT"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GoU-0A-unL">
-                                        <rect key="frame" x="533" y="4" width="51" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="39" id="eNg-hP-FZU"/>
-                                        </constraints>
+                                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GoU-0A-unL">
+                                        <rect key="frame" x="421" y="4" width="51" height="25"/>
                                         <animations/>
                                         <buttonCell key="cell" type="push" title="+" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="L1i-p4-xUM">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -940,20 +934,6 @@
                                         </buttonCell>
                                         <connections>
                                             <action selector="addCandidate:" target="eaX-tr-f6l" id="zbF-vT-8hh"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s8Z-a5-OR5">
-                                        <rect key="frame" x="-6" y="4" width="121" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="109" id="66q-bi-nDj"/>
-                                        </constraints>
-                                        <animations/>
-                                        <buttonCell key="cell" type="push" title="Enter Feedback" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hhV-9J-mlJ">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="enterFeedback:" target="eaX-tr-f6l" id="fGU-f0-03g"/>
                                         </connections>
                                     </button>
                                     <scrollView autohidesScrollers="YES" horizontalLineScroll="33" horizontalPageScroll="10" verticalLineScroll="33" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSI-mh-5J6">
@@ -1171,21 +1151,48 @@
                                             <animations/>
                                         </tableHeaderView>
                                     </scrollView>
+                                    <searchField wantsLayer="YES" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iAZ-2H-cTi">
+                                        <rect key="frame" x="0.0" y="7" width="188" height="22"/>
+                                        <animations/>
+                                        <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="bC3-bM-gMM">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </searchFieldCell>
+                                        <connections>
+                                            <action selector="searchFieldTextDidChange:" target="eaX-tr-f6l" id="tkC-bK-Vn9"/>
+                                        </connections>
+                                    </searchField>
+                                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s8Z-a5-OR5">
+                                        <rect key="frame" x="520" y="4" width="121" height="25"/>
+                                        <animations/>
+                                        <buttonCell key="cell" type="push" title="Enter Feedback" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hhV-9J-mlJ">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="enterFeedback:" target="eaX-tr-f6l" id="fGU-f0-03g"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="tSI-mh-5J6" firstAttribute="leading" secondItem="qci-v5-CE5" secondAttribute="leading" id="5Zs-Zc-O97"/>
-                                    <constraint firstItem="p93-oh-UMg" firstAttribute="top" secondItem="tSI-mh-5J6" secondAttribute="bottom" constant="8" id="6CV-eM-4FK"/>
+                                    <constraint firstItem="GoU-0A-unL" firstAttribute="top" secondItem="tSI-mh-5J6" secondAttribute="bottom" constant="8" id="AVp-Q2-nIz"/>
                                     <constraint firstAttribute="trailing" secondItem="tSI-mh-5J6" secondAttribute="trailing" id="Jw4-2z-abr"/>
-                                    <constraint firstAttribute="trailing" secondItem="p93-oh-UMg" secondAttribute="trailing" constant="6" id="L9Y-qL-eS9"/>
-                                    <constraint firstItem="p93-oh-UMg" firstAttribute="leading" secondItem="GoU-0A-unL" secondAttribute="trailing" constant="12" id="OiP-Ds-PJo"/>
                                     <constraint firstAttribute="bottom" secondItem="tSI-mh-5J6" secondAttribute="bottom" constant="33" id="Oyr-gF-X6X"/>
-                                    <constraint firstAttribute="bottom" secondItem="p93-oh-UMg" secondAttribute="bottom" constant="11" id="QjW-q7-HdU"/>
-                                    <constraint firstItem="s8Z-a5-OR5" firstAttribute="leading" secondItem="qci-v5-CE5" secondAttribute="leading" id="XFD-VI-TfY"/>
+                                    <constraint firstItem="s8Z-a5-OR5" firstAttribute="top" secondItem="tSI-mh-5J6" secondAttribute="bottom" constant="8" id="Q9E-Z1-aTh"/>
+                                    <constraint firstAttribute="trailing" secondItem="s8Z-a5-OR5" secondAttribute="trailing" id="Svp-2u-LYL"/>
+                                    <constraint firstAttribute="bottom" secondItem="iAZ-2H-cTi" secondAttribute="bottom" constant="7" id="UGC-1a-em4"/>
+                                    <constraint firstItem="p93-oh-UMg" firstAttribute="top" secondItem="tSI-mh-5J6" secondAttribute="bottom" constant="8" id="WNx-Y4-rfO"/>
                                     <constraint firstItem="tSI-mh-5J6" firstAttribute="top" secondItem="qci-v5-CE5" secondAttribute="top" id="Xtk-fF-xeG"/>
-                                    <constraint firstItem="s8Z-a5-OR5" firstAttribute="top" secondItem="tSI-mh-5J6" secondAttribute="bottom" constant="8" id="ZJ2-iQ-qYS"/>
-                                    <constraint firstAttribute="bottom" secondItem="s8Z-a5-OR5" secondAttribute="bottom" constant="11" id="aMb-Jh-ToF"/>
-                                    <constraint firstAttribute="bottom" secondItem="GoU-0A-unL" secondAttribute="bottom" constant="11" id="ddN-3q-Q6W"/>
-                                    <constraint firstItem="GoU-0A-unL" firstAttribute="top" secondItem="tSI-mh-5J6" secondAttribute="bottom" constant="8" id="jfK-MT-HLa"/>
+                                    <constraint firstItem="s8Z-a5-OR5" firstAttribute="leading" secondItem="p93-oh-UMg" secondAttribute="trailing" constant="9" id="aND-eS-RK2"/>
+                                    <constraint firstItem="p93-oh-UMg" firstAttribute="leading" secondItem="GoU-0A-unL" secondAttribute="trailing" constant="12" id="cQZ-cE-6iI"/>
+                                    <constraint firstItem="iAZ-2H-cTi" firstAttribute="top" secondItem="tSI-mh-5J6" secondAttribute="bottom" constant="4" id="czZ-Hu-pcr"/>
+                                    <constraint firstAttribute="bottom" secondItem="GoU-0A-unL" secondAttribute="bottom" constant="11" id="d90-nG-ubh"/>
+                                    <constraint firstAttribute="bottom" secondItem="s8Z-a5-OR5" secondAttribute="bottom" constant="11" id="k0S-t8-YHs"/>
+                                    <constraint firstItem="GoU-0A-unL" firstAttribute="leading" secondItem="iAZ-2H-cTi" secondAttribute="trailing" constant="239" id="nPo-BY-XvK"/>
+                                    <constraint firstAttribute="bottom" secondItem="p93-oh-UMg" secondAttribute="bottom" constant="11" id="vmO-Cb-K9L"/>
+                                    <constraint firstItem="iAZ-2H-cTi" firstAttribute="leading" secondItem="qci-v5-CE5" secondAttribute="leading" id="xLe-kl-yOn"/>
                                 </constraints>
                                 <animations/>
                             </customView>
@@ -1200,6 +1207,7 @@
                     </view>
                     <connections>
                         <outlet property="addCandidateButton" destination="GoU-0A-unL" id="KXf-fQ-Utm"/>
+                        <outlet property="candidateSearchField" destination="iAZ-2H-cTi" id="DyQ-0Q-8ya"/>
                         <outlet property="candidateView" destination="qci-v5-CE5" id="Vu5-CW-hJc"/>
                         <outlet property="feedbackButton" destination="s8Z-a5-OR5" id="UDx-K7-H6u"/>
                         <outlet property="removeButton" destination="p93-oh-UMg" id="nVI-1A-Orz"/>
@@ -1991,15 +1999,26 @@ CA
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Wn-N3-e7C">
+                                            <rect key="frame" x="367" y="22" width="70" height="32"/>
+                                            <animations/>
+                                            <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Qhd-DQ-0P9">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="saveDetailsAction:" target="tZu-Jo-Cyq" id="nsV-Fb-Qgj"/>
+                                            </connections>
+                                        </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MtI-02-dgX">
-                                            <rect key="frame" x="376" y="22" width="84" height="32"/>
+                                            <rect key="frame" x="456" y="22" width="84" height="32"/>
                                             <animations/>
                                             <buttonCell key="cell" type="push" title="Submit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GT3-uL-b45">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="saveDetailsAction:" target="tZu-Jo-Cyq" id="7dz-aT-ohZ"/>
+                                                <action selector="submitDetails:" target="tZu-Jo-Cyq" id="lyQ-ta-D2a"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -2026,7 +2045,8 @@ CA
                         <outlet property="ratingOnTechnologyField" destination="WIG-5A-A75" id="uSm-Mv-WHd"/>
                         <outlet property="recommentationField" destination="KEX-d7-PNz" id="tkE-dj-eAN"/>
                         <outlet property="requisitionNameField" destination="N33-f2-XzK" id="fnb-st-sJp"/>
-                        <outlet property="saveButton" destination="MtI-02-dgX" id="rb3-Mb-gPe"/>
+                        <outlet property="saveButton" destination="2Wn-N3-e7C" id="45W-HP-MnO"/>
+                        <outlet property="submitButton" destination="MtI-02-dgX" id="3K5-RC-SjF"/>
                         <outlet property="tableView" destination="2Zk-Rn-2d9" id="aHW-fg-Cic"/>
                         <outlet property="technicalFeedbackMainView" destination="TA5-L1-aWy" id="kGa-31-jDe"/>
                         <outlet property="textViewOfCandidateAssessment" destination="k5G-My-Zu5" id="6Tr-04-ltx"/>

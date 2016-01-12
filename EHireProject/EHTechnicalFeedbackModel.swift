@@ -19,5 +19,6 @@ class EHTechnicalFeedbackModel: NSObject
     var recommendation: String?
     var candidate: Candidate?
     var skills : [SkillSet]?
+    var isFeedbackSubmitted:NSNumber = 0
     var designation: String?
 }

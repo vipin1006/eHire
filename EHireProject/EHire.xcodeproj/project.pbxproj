@@ -440,7 +440,6 @@
 		8001C3F81C23E96E00D62243 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9491D7CF1C32D22C0088D61A /* EHTechnicalFeedbackModel.swift */,
 			);
 			name = Model;
 			path = "../../../../../Documents/EHire-Git/EHireProject/EHire";
@@ -481,6 +480,7 @@
 			children = (
 				8001C3F71C23E96E00D62243 /* Controllers */,
 				8001C3F91C23E96E00D62243 /* Data Access Layer */,
+				945D4D321C43D40C0012FDB7 /* Model */,
 				8001C3FA1C23E96E00D62243 /* CustomViewCells */,
 				8001C3FB1C23E96E00D62243 /* Nibs */,
 				8001C3FC1C23E96E00D62243 /* Support Files */,
@@ -698,6 +698,14 @@
 			);
 			name = CustomViewCells;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		945D4D321C43D40C0012FDB7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9491D7CF1C32D22C0088D61A /* EHTechnicalFeedbackModel.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		9C527DEE1C3A42E0001B62B2 /* Utilities */ = {
