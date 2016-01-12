@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class EHHrFeedbackViewController: NSViewController {
+class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate {
 
     //MARK: IBOutlets
     
@@ -110,11 +110,9 @@ class EHHrFeedbackViewController: NSViewController {
     //MARK: IBActions.
     @IBAction func saveCandidateDetails(sender: AnyObject) {
         
-        if validations() {
-            
-           if numericValidations()
-           {
-              saveCandidate()
+        if saveValidations()
+        {
+            saveCandidate()
             
             if isHrFormEnable
             {
@@ -124,23 +122,15 @@ class EHHrFeedbackViewController: NSViewController {
             {
                  showAlert("Feedback details submitted succesfully", info:"")
             }
-            
         }
-           
-    }
-           else
-        {
-            showAlert("Some fileds are missing", info:"Please fill up all the required fileds")
-         
-        }
-       
+        
     }
     
     
     @IBAction func subbmitCandidateDetails(sender: AnyObject)
     
     {
-        if self.validations()
+        if self.submitValidations()
         {
             if numericValidations()
             {
@@ -298,7 +288,7 @@ class EHHrFeedbackViewController: NSViewController {
     
   //MARK: HR Form Validations
     
-    func validations()->Bool
+    func submitValidations()->Bool
     {
         var result:Bool = true
         if candidateName.stringValue == ""
@@ -399,6 +389,12 @@ class EHHrFeedbackViewController: NSViewController {
             result = false
         }
         if candidateJoinngPeriod.stringValue == ""
+        {
+            setBoarderColor(candidateJoinngPeriod)
+            
+            result = false
+        }
+        if expectedSalary.stringValue == ""
         {
             setBoarderColor(candidateJoinngPeriod)
             
@@ -704,6 +700,42 @@ class EHHrFeedbackViewController: NSViewController {
         }
     }
     
+    func saveValidations()->Bool
+    {
+        if self.currentFixedSalary.stringValue != ""
+        {
+            if !EHOnlyDecimalValueFormatter.isNumberValid(self.currentFixedSalary.stringValue){
+                showAlert("Invalid data entered", info:"Please enter Fixed Salary in numbers")
+                setBoarderColor(self.currentFixedSalary)
+                return false
+            }
+        }
+        if self.currentSalaryVariable.stringValue != ""
+        {
+            if !EHOnlyDecimalValueFormatter.isNumberValid(self.currentSalaryVariable.stringValue){
+                showAlert("Invalid data entered", info:"Please enter Fixed Salary in numbers")
+                setBoarderColor(self.currentSalaryVariable)
+                return false
+            }
+        }
+        
+        if self.expectedSalary.stringValue != ""
+        {
+            if !EHOnlyDecimalValueFormatter.isNumberValid(self.expectedSalary.stringValue){
+                showAlert("Invalid data entered", info:"Please enter Fixed Salary in numbers")
+                setBoarderColor(self.expectedSalary)
+                return false
+            }
+        }
+        
+        
+      return true
+        
+        
+    }
+    
+ 
+    
    
   func saveCandidate()
   {
@@ -750,5 +782,17 @@ class EHHrFeedbackViewController: NSViewController {
     HrFeedbackDataAccess.saveHrFeedbackOfCandidate(candidate!,candidateInfo: candidateInfo)
 
   }
+    
+    func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
+        
+        if control is NSTextField
+        {
+           let textField = control as! NSTextField
+           setClearColor(textField)
+        }
+        
+       return true
+        
+    }
     
 }
