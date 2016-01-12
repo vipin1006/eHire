@@ -368,7 +368,7 @@ class EHFeedbackViewController: NSViewController
                 print("Technical")
                 
             case 1:
-                
+                self.managerFeedback?.saveData(nil)
                 print("Manager")
                 
             default:

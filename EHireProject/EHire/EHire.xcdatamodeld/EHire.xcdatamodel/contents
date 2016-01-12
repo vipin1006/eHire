@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15C50" minimumToolsVersion="Automatic">
     <entity name="Candidate" representedClassName=".Candidate" syncable="YES">
         <attribute name="experience" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="interviewDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -93,6 +93,7 @@
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="isCgDeviation" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isFeedbackSubmitted" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isSubmitted" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="jestificationForHire" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="managerName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="modeOfInterview" optional="YES" attributeType="String" syncable="YES"/>
@@ -137,7 +138,7 @@
         <element name="CandidatePreviousEmploymentInfo" positionX="-801" positionY="584" width="128" height="118"/>
         <element name="CandidateQualification" positionX="-191" positionY="458" width="128" height="150"/>
         <element name="Date" positionX="-531" positionY="-36" width="128" height="73"/>
-        <element name="ManagerFeedBack" positionX="-0" positionY="-109" width="128" height="300"/>
+        <element name="ManagerFeedBack" positionX="-0" positionY="-109" width="128" height="313"/>
         <element name="SkillSet" positionX="241" positionY="153" width="128" height="103"/>
         <element name="TechnicalFeedBack" positionX="232" positionY="416" width="128" height="225"/>
         <element name="Technology" positionX="-513" positionY="-207" width="117" height="88"/>

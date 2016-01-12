@@ -2,7 +2,7 @@
 //  ManagerFeedBack+CoreDataProperties.swift
 //  EHire
 //
-//  Created by Pavithra G. Jayanna on 05/01/16.
+//  Created by Vipin Nambiar on 12/01/16.
 //  Copyright © 2016 Exilant Technologies. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -19,7 +19,9 @@ extension ManagerFeedBack {
     @NSManaged var commitments: String?
     @NSManaged var designation: String?
     @NSManaged var grossAnnualSalary: NSNumber?
+    @NSManaged var id: NSNumber?
     @NSManaged var isCgDeviation: NSNumber?
+    @NSManaged var isFeedbackSubmitted: NSNumber?
     @NSManaged var jestificationForHire: String?
     @NSManaged var managerName: String?
     @NSManaged var modeOfInterview: String?
@@ -27,9 +29,8 @@ extension ManagerFeedBack {
     @NSManaged var ratingOnTechnical: NSNumber?
     @NSManaged var recommendation: String?
     @NSManaged var recommendedCg: String?
-    @NSManaged var id: NSNumber?
-    @NSManaged var isFeedbackSubmitted:NSNumber?
+    @NSManaged var isSubmitted: NSNumber?
     @NSManaged var candidate: Candidate?
-    @NSManaged var candidateSkills: NSMutableSet?
+    @NSManaged var candidateSkills: NSSet?
 
 }

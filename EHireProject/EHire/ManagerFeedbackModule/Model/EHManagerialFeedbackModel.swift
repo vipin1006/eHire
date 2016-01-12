@@ -25,6 +25,7 @@ class EHManagerialFeedbackModel: NSObject {
       var candidate: Candidate?
     var skillSet : [SkillSet] = []
     var designation: String?
+    var isSubmitted: NSNumber?
     
 //     init(candidateDetails:EHCandidateDetails) {
 //        self.commentsOnCandidate = ""

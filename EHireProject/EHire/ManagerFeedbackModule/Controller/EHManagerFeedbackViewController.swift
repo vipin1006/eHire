@@ -11,6 +11,8 @@ import Cocoa
 class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource,NSTextFieldDelegate {
 
     @IBOutlet weak var saveBtn: NSButton!
+    
+    @IBOutlet weak var submitBtn: NSButton!
     @IBOutlet var managerFeedbackMainView: NSView!
    
     @IBOutlet weak var textFieldCandidateName: NSTextField!
@@ -60,10 +62,12 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     var selectedCandidate : Candidate?
    
     var cell : EHManagerFeedBackCustomTableView?
+    var isFeedBackSaved : Bool?
     
     
     let  managerialRoundFeedback = EHManagerialFeedbackModel()
     var skillsAndRatingsTitleArray = [SkillSet]()
+    var selectedSegment:Int?
     
     var designationStringValue = ""
     
@@ -95,15 +99,18 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
 
         managerFeedbackMainView.wantsLayer = true
         managerFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
-        tableView.reloadData()
+       // tableView.reloadData()
         setDefaultCgDeviationAndInterviewMode()
         
         
         
         if selectedCandidate != nil
         { if selectedCandidate?.interviewedByManagers?.count != 0{
+            selectedSegment = 0
             sortArray((selectedCandidate?.interviewedByManagers?.allObjects)!,index: 0)
 
+        }else{
+            isFeedBackSaved = false
             }
             tableView.reloadData()
         }
@@ -168,10 +175,19 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         for ratingsView in cell.selectStar.subviews
         {
             let view = ratingsView as! NSButton
-            if selectedCandidate?.interviewedByManagers?.count > 0
-            {
+            if managerialRoundFeedback.isSubmitted == true{
                 view.enabled = false
+                cell.titleName.enabled = false
+                cell.feedBackRating.enabled = false
+            }else{
+                view.enabled = true
+                cell.titleName.enabled = true
+                cell.feedBackRating.enabled = true
             }
+//            if selectedCandidate?.interviewedByManagers?.count > 0
+//            {
+//                view.enabled = false
+//            }
             
             view.target = self
             view.action = "selectedStarCount:"
@@ -444,6 +460,20 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         managerialRoundFeedback.modeOfInterview = "Face To Face"
         managerialRoundFeedback.isCgDeviation = false
         managerialRoundFeedback.recommendation = "Shortlisted"
+        managerialRoundFeedback.commentsOnCandidate = NSAttributedString(string: "")
+        managerialRoundFeedback.commentsOnTechnology = NSAttributedString(string: "")
+        managerialRoundFeedback.commitments = NSAttributedString(string: "")
+        managerialRoundFeedback.designation = ""
+        managerialRoundFeedback.recommendedCg = ""
+        managerialRoundFeedback.designation = ""
+        
+        managerialRoundFeedback.jestificationForHire = NSAttributedString(string: "")
+        managerialRoundFeedback.grossAnnualSalary = NSNumber(integer: 0)
+        
+        managerialRoundFeedback.managerName = ""
+        managerialRoundFeedback.ratingOnTechnical=0
+        managerialRoundFeedback.ratingOnCandidate=0
+        
     }
     
     
@@ -544,12 +574,12 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     //MARK:- Core Data Saving Methods
     
-    @IBAction func saveData(sender: AnyObject)
+    @IBAction func saveData(sender: AnyObject?)
     {
         
         
-        if validation(){
-            
+        
+        
               managerialRoundFeedback.commentsOnCandidate = NSAttributedString(string: textViewCommentsForOverAllCandidateAssessment.string!)
              managerialRoundFeedback.commentsOnTechnology = NSAttributedString(string: textViewCommentsForOverAllTechnologyAssessment.string!)
             managerialRoundFeedback.commitments = NSAttributedString(string: textViewCommitments.string!)
@@ -559,6 +589,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
 
             managerialRoundFeedback.jestificationForHire = NSAttributedString(string: textViewJustificationForHire.string!)
             
+            managerialRoundFeedback.isSubmitted = false
             print(textFieldGrossAnnualSalary.stringValue)
             
             
@@ -576,13 +607,23 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             }
             
             managerialRoundFeedback.skillSet = skillsAndRatingsTitleArray as [SkillSet]
+            managerialRoundFeedback.isSubmitted = false
             
             let managerFeedbackAccessLayer = EHManagerFeedbackDataAccessLayer(managerFeedbackModel: managerialRoundFeedback)
+        if isFeedBackSaved==false{
             if managerFeedbackAccessLayer.insertManagerFeedback(selectedCandidate!){
                 alertPopup("Success",informativeText:"Feedback for Managerround \((selectedCandidate?.interviewedByManagers?.count)!) has been sucessfully saved")
             }
-            
+        }else{
+            let sortedResults = toSortArray((selectedCandidate?.interviewedByManagers?.allObjects)!)
+            let managerFeedback =  sortedResults[selectedSegment!] as! ManagerFeedBack
+
+            if managerFeedbackAccessLayer.updateManagerFeedback(selectedCandidate!, managerFeedback:managerFeedback){
+                alertPopup("Success",informativeText:"Feedback for Managerround has been updated Successfully")
+            }
         }
+       
+        
         
         
         
@@ -603,7 +644,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         print (feedback.candidate?.name)
         print (feedback.candidate?.name)
 
-        
+       
+
         
         //managerialFeedbackModel.managerName = feedback.managerName!
         //textFieldDesignation.stringValue = feedback.designation!
@@ -633,11 +675,13 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         managerialRoundFeedback.modeOfInterview = feedback.modeOfInterview
         managerialRoundFeedback.recommendation = feedback.recommendation
         managerialRoundFeedback.isCgDeviation = feedback.isCgDeviation
+        managerialRoundFeedback.isSubmitted = feedback.isSubmitted
         
         setModeOfInterview(managerialRoundFeedback.modeOfInterview!)
         setRecommendationState(managerialRoundFeedback.recommendation!)
         setCgDeviation(Bool(managerialRoundFeedback.isCgDeviation!.boolValue))
         
+         disableAndEnableFields((managerialRoundFeedback.isSubmitted?.boolValue)!)
         skillsAndRatingsTitleArray.removeAll()
         for object in feedback.candidateSkills!
         {
@@ -672,32 +716,70 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             }
         }
         //To Disable the Saved data
-        saveBtn.enabled = false
-
-        textFieldGrossAnnualSalary.editable = false
-        textFieldDesignation.editable = false
-        textFieldCorporateGrade.editable = false
-        textFieldInterviewedBy.editable = false
-        textFieldPosition.editable = false
-        textViewCommentsForOverAllCandidateAssessment.editable = false
-        textViewCommentsForOverAllTechnologyAssessment.editable = false
-        textViewCommitments.editable = false
-        textViewJustificationForHire.editable = false
-        for starButton in (viewOverAllAssessmentOfCandidateStar.subviews){
-            let tempBtn = starButton as! NSButton
-            tempBtn.enabled = false
+        
+                tableView.reloadData()
+    }
+    
+    
+    func disableAndEnableFields(isDataSubmitted:Bool){
+        
+        if isDataSubmitted==true{
+            saveBtn.enabled = false
+            submitBtn.enabled = false
             
-        }
-        for starButton in (viewOverAllAssessmentOfTechnologyStar.subviews){
-            let tempBtn = starButton as! NSButton
-            tempBtn.enabled = false
+            textFieldGrossAnnualSalary.editable = false
+            textFieldDesignation.editable = false
+            textFieldCorporateGrade.editable = false
+            textFieldInterviewedBy.editable = false
+            textFieldPosition.editable = false
+            textViewCommentsForOverAllCandidateAssessment.editable = false
+            textViewCommentsForOverAllTechnologyAssessment.editable = false
+            textViewCommitments.editable = false
+            textViewJustificationForHire.editable = false
+            for starButton in (viewOverAllAssessmentOfCandidateStar.subviews){
+                let tempBtn = starButton as! NSButton
+                tempBtn.enabled = false
+                
+            }
+            for starButton in (viewOverAllAssessmentOfTechnologyStar.subviews){
+                let tempBtn = starButton as! NSButton
+                tempBtn.enabled = false
+                
+            }
+        }else{
+            saveBtn.enabled = true
+            submitBtn.enabled = true
+            textFieldGrossAnnualSalary.editable = true
+            textFieldDesignation.editable = true
+            textFieldCorporateGrade.editable = true
+            textFieldInterviewedBy.editable = true
+            textFieldPosition.editable = true
+            textViewCommentsForOverAllCandidateAssessment.editable = true
+            textViewCommentsForOverAllTechnologyAssessment.editable = true
+            textViewCommitments.editable = true
+            textViewJustificationForHire.editable = true
             
+           
+            cell?.feedBackRating.editable = false
+            for starButton in (viewOverAllAssessmentOfCandidateStar.subviews){
+                let tempBtn = starButton as! NSButton
+                
+                tempBtn.enabled = true
+                tempBtn.image = NSImage(named: "deselectStar")
+                
+            }
+            for starButton in (viewOverAllAssessmentOfTechnologyStar.subviews){
+                let tempBtn = starButton as! NSButton
+                tempBtn.enabled = true
+               tempBtn.image = NSImage(named: "deselectStar")
+            }
         }
-        tableView.reloadData()
     }
     
 
     func sortArray (allObj : [AnyObject],index:Int) ->Bool{
+        isFeedBackSaved = true
+        selectedSegment = index
         let arra = NSArray(array: allObj)
         
         let descriptor: NSSortDescriptor = NSSortDescriptor(key: "id", ascending: true)
@@ -709,7 +791,65 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
 
     }
     
+    func toSortArray(allObj : [AnyObject])->NSArray{
+        let arra = NSArray(array: allObj)
+        
+        let descriptor: NSSortDescriptor = NSSortDescriptor(key: "id", ascending: true)
+        let sortedResults: NSArray = arra.sortedArrayUsingDescriptors([descriptor])
+        return sortedResults
+    }
     
+    //MARK:- Submit Feedback
+    @IBAction func submitFeedback(sender: AnyObject?) {
+        
+        if validation(){
+            managerialRoundFeedback.commentsOnCandidate = NSAttributedString(string: textViewCommentsForOverAllCandidateAssessment.string!)
+            managerialRoundFeedback.commentsOnTechnology = NSAttributedString(string: textViewCommentsForOverAllTechnologyAssessment.string!)
+            managerialRoundFeedback.commitments = NSAttributedString(string: textViewCommitments.string!)
+            managerialRoundFeedback.designation = textFieldDesignation.stringValue
+            managerialRoundFeedback.recommendedCg = textFieldCorporateGrade.stringValue
+            managerialRoundFeedback.designation = textFieldDesignation.stringValue
+            
+            managerialRoundFeedback.jestificationForHire = NSAttributedString(string: textViewJustificationForHire.string!)
+            
+            print(textFieldGrossAnnualSalary.stringValue)
+            
+            
+            let grossSalaryValue = NSString(string: textFieldGrossAnnualSalary.stringValue)
+            managerialRoundFeedback.grossAnnualSalary = NSNumber(integer: grossSalaryValue.integerValue)
+            
+            managerialRoundFeedback.managerName = textFieldInterviewedBy.stringValue
+            let selectedColoumn = matrixForRecommendationState.selectedColumn
+            if selectedColoumn != 0
+            {
+                managerialRoundFeedback.recommendation = "Rejected"
+            }else
+            {
+                managerialRoundFeedback.recommendation = "Shortlisted"
+            }
+            managerialRoundFeedback.isSubmitted = true
+            
+            managerialRoundFeedback.skillSet = skillsAndRatingsTitleArray as [SkillSet]
+            
+            let managerFeedbackAccessLayer = EHManagerFeedbackDataAccessLayer(managerFeedbackModel: managerialRoundFeedback)
+            if isFeedBackSaved==false{
+                if managerFeedbackAccessLayer.insertManagerFeedback(selectedCandidate!){
+                    alertPopup("Success",informativeText:"Feedback for Managerround \((selectedCandidate?.interviewedByManagers?.count)!) has been sucessfully saved")
+                }
+            }else{
+                let sortedResults = toSortArray((selectedCandidate?.interviewedByManagers?.allObjects)!)
+                let managerFeedback =  sortedResults[selectedSegment!] as! ManagerFeedBack
+                
+                if managerFeedbackAccessLayer.updateManagerFeedback(selectedCandidate!, managerFeedback:managerFeedback){
+                    alertPopup("Success",informativeText:"Feedback for Managerround has been updated Successfully")
+                }
+            }
+        
+         disableAndEnableFields(true)
+        }
+    }
+    
+    //MARK:- Refresh All Fields
     func refreshAllFields()
     {
 //        managerialRoundFeedback.commentsOnCandidate = NSAttributedString(string: "")
@@ -740,11 +880,14 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         textFieldGrossAnnualSalary.stringValue = ""
         textFieldInterviewedBy.stringValue = ""
 
+        managerialRoundFeedback.isSubmitted = false
+         managerialRoundFeedback.ratingOnCandidate = 0
+         managerialRoundFeedback.ratingOnTechnical = 0
 
         skillsAndRatingsTitleArray.removeAll()
         addDefalutSkillSet()
 
-        tableView.reloadData()
+       // tableView.reloadData()
         
         for starButton in viewOverAllAssessmentOfTechnologyStar.subviews{
             let tempBtn = starButton as! NSButton
@@ -759,38 +902,12 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         labelOverAllAssessmentOfCandidate.stringValue = ""
         labelOverAllAssessmentOfTechnology.stringValue = ""
         
-        setRecommendationState("Rejected")
+        setRecommendationState("Shortlisted")
         setModeOfInterview("Face To Face")
         setCgDeviation(false)
-        //To Enable the fields
-        saveBtn.enabled = true
-        textFieldGrossAnnualSalary.editable = true
-        textFieldDesignation.editable = true
-        textFieldCorporateGrade.editable = true
-        textFieldInterviewedBy.editable = true
-        textFieldPosition.editable = true
-        textViewCommentsForOverAllCandidateAssessment.editable = true
-        textViewCommentsForOverAllTechnologyAssessment.editable = true
-        textViewCommitments.editable = true
-        textViewJustificationForHire.editable = true
-        
-        for starButton in (cell?.selectStar.subviews)!
-        {
-            let tempBtn = starButton as! NSButton
-            tempBtn.enabled = true
-            
-        }
-        cell?.feedBackRating.editable = false
-        for starButton in (viewOverAllAssessmentOfCandidateStar.subviews){
-            let tempBtn = starButton as! NSButton
-            tempBtn.enabled = true
-            
-        }
-        for starButton in (viewOverAllAssessmentOfTechnologyStar.subviews){
-            let tempBtn = starButton as! NSButton
-            tempBtn.enabled = true
-            
-        }
+        setDefaultCgDeviationAndInterviewMode()
+        disableAndEnableFields(false)
+        isFeedBackSaved = false
         tableView.reloadData()
     }
     

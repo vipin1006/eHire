@@ -60,6 +60,7 @@ class EHManagerFeedbackDataAccessLayer: NSObject {
         
         
         managerFeedback.setValue(candidate as Candidate, forKey: "candidate")
+         managerFeedback.setValue(self.managerFeedbackmodel?.isSubmitted, forKey: "isSubmitted")
         candidate.interviewedByManagers?.setByAddingObject(managerFeedback)
 //        candidate.interviewedByManagers?.addObject(managerFeedback)
 
@@ -68,6 +69,51 @@ class EHManagerFeedbackDataAccessLayer: NSObject {
         
         
         
+    }
+    
+    func updateManagerFeedback(candidate:Candidate,managerFeedback:ManagerFeedBack)->Bool{
+        
+        
+        managerFeedback.setValue(self.managerFeedbackmodel?.commentsOnCandidate?.string, forKey: "commentsOnCandidate")
+        
+        managerFeedback.setValue(self.managerFeedbackmodel?.commentsOnTechnology?.string, forKey: "commentsOnTechnology")
+        
+        
+        managerFeedback.setValue(self.managerFeedbackmodel?.commitments?.string, forKey: "commitments")
+        
+        print(self.managerFeedbackmodel?.grossAnnualSalary)
+        managerFeedback.setValue(self.managerFeedbackmodel?.grossAnnualSalary, forKey: "grossAnnualSalary")
+        
+        //        managerFeedback.setValue(NSNumber(double: Double((self.managerFeedbackmodel?.grossAnnualSalary)!)!), forKey: "grossAnnualSalary")
+        
+        print(self.managerFeedbackmodel?.skillSet)
+        
+        
+        
+        managerFeedback.setValue(NSMutableSet(array: (self.managerFeedbackmodel?.skillSet)!), forKey: "candidateSkills")
+        
+        managerFeedback.setValue(self.managerFeedbackmodel?.isCgDeviation, forKey: "isCgDeviation")
+        
+        managerFeedback.setValue(self.managerFeedbackmodel?.jestificationForHire?.string, forKey: "jestificationForHire")
+        
+        managerFeedback.setValue(self.managerFeedbackmodel?.modeOfInterview, forKey: "modeOfInterview")
+        
+        managerFeedback.setValue(NSNumber(short: (self.managerFeedbackmodel?.ratingOnCandidate)!), forKey: "ratingOnCandidate")
+        
+        managerFeedback.setValue(NSNumber(short: (self.managerFeedbackmodel?.ratingOnTechnical)!), forKey: "ratingOnTechnical")
+        
+        managerFeedback.setValue(self.managerFeedbackmodel?.recommendation, forKey: "recommendation")
+        
+        managerFeedback.setValue(self.managerFeedbackmodel?.recommendedCg, forKey: "recommendedCg")
+        
+        managerFeedback.setValue(self.managerFeedbackmodel?.designation, forKey: "designation")
+        managerFeedback.setValue(self.managerFeedbackmodel?.managerName, forKey: "managerName")
+        
+        
+        managerFeedback.setValue(candidate as Candidate, forKey: "candidate")
+        managerFeedback.setValue(self.managerFeedbackmodel?.isSubmitted, forKey: "isSubmitted")
+        candidate.interviewedByManagers?.setByAddingObject(managerFeedback)
+        return EHCoreDataHelper.saveToCoreData(candidate)
     }
     
         

@@ -2,7 +2,7 @@
 //  ManagerFeedBack.swift
 //  EHire
 //
-//  Created by Pavithra G. Jayanna on 05/01/16.
+//  Created by Vipin Nambiar on 12/01/16.
 //  Copyright © 2016 Exilant Technologies. All rights reserved.
 //
 
