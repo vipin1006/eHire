@@ -228,14 +228,15 @@ class EHFeedbackViewController: NSViewController
                     for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
                     {
                         let feedback = feedbackOfTechLead as! TechnicalFeedBack
-                        if subRound.selectedSegment == 1
+                        if subRound.selectedSegment == 2
                         {
                             if feedback.recommendation == "Rejected"
                             {
-                                Utility.alertPopup("Candidate Rejected", informativeText: "Selected Candidate Rejected has been in Technical Round Two. Hence you cannot proceed to round three.", okCompletionHandler: nil)
+                                Utility.alertPopup("Candidate Rejected", informativeText: "Selected Candidate Rejected has been in Technical Round One. Hence you cannot proceed to round three.", okCompletionHandler: nil)
                                 subRound.selectedSegment = 0
                             }
                         }
+                        
                         else if selectedCandidate?.interviewedByTechLeads!.count == 1
                         {
                             Utility.alertPopup("Alert", informativeText: "Please complete Round 2 before proceeding to Round 3.", okCompletionHandler: nil)
@@ -244,6 +245,7 @@ class EHFeedbackViewController: NSViewController
                             let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
                             techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
                         }
+                            
                         else
                         {
                             techFeedback!.disableAndEnableSavedSkills(self.subRound.selectedSegment)
@@ -257,22 +259,21 @@ class EHFeedbackViewController: NSViewController
                     
                     for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
                     {
-                        let feedback = feedbackOfTechLead as! TechnicalFeedBack
-                      
-                    if feedback.recommendation == "Selected"
-                    {
-                        techFeedback?.refreshAllFields()
-                    }
+                    let feedback = feedbackOfTechLead as! TechnicalFeedBack
                     if feedback.recommendation == "Rejected"
                     {
-                        Utility.alertPopup("Candidate Rejected", informativeText: "Selected Candidate Rejected has been in Technical Round Two. Hence you cannot proceed to round three.", okCompletionHandler: nil)
+                        Utility.alertPopup("Alert", informativeText: "Selected Candidate Rejected has been in Technical Round Two. Hence you cannot proceed to round three.", okCompletionHandler: nil)
                         subRound.selectedSegment = 1
+                        let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
+                        techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
+                         break
                     }
                     else
                     {
                         techFeedback!.disableAndEnableSavedSkills(self.subRound.selectedSegment)
                         techFeedback?.refreshAllFields()
                     }
+                       
                 }
                 default:
                     if selectedCandidate?.interviewedByTechLeads?.count > 2
