@@ -37,8 +37,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     var technicalFeedbackModel = EHTechnicalFeedbackModel()
     let dataAccessModel = EHTechnicalFeedbackDataAccess()
     var name : String?
-    var overallTechnicalRating : Int16?
-    var overallCandidateRating : Int16?
+   // var overallTechnicalRating : Int16?
+   // var overallCandidateRating : Int16?
     var overallCandidateRatingOnSkills : Int?
     var interviewModeState : String?
     var recommentationState : String?
@@ -139,9 +139,9 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
           if selectedCandidate != nil
             {
                 textViewOfCandidateAssessment.string = feedback.commentsOnCandidate
-                technicalFeedbackModel.ratingOnTechnical = Int16((feedback.ratingOnTechnical?.integerValue)!)
+               // technicalFeedbackModel.ratingOnTechnical = Int16((feedback.ratingOnTechnical?.integerValue)!)
                 textViewOfTechnologyAssessment.string = feedback.commentsOnTechnology
-                technicalFeedbackModel.ratingOnCandidate = Int16((feedback.ratingOnCandidate?.integerValue)!)
+               // technicalFeedbackModel.ratingOnCandidate = Int16((feedback.ratingOnCandidate?.integerValue)!)
                 designationField.stringValue = feedback.designation!
                 interviewedByField.stringValue = feedback.techLeadName!
                 technicalFeedbackModel.modeOfInterview = feedback.modeOfInterview!
@@ -408,12 +408,12 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             feedbackText.stringValue = "Not Satisfactory"
             if view as! NSView == overallAssessmentOnTechnologyStarView
             {
-              overallTechnicalRating = 1
+              technicalFeedbackModel.ratingOnTechnical = 1
             }
             
             else if view as! NSView == overallAssessmentOfCandidateStarView
             {
-                overallCandidateRating = 1
+                technicalFeedbackModel.ratingOnCandidate = 1
             }
             
             else if view.superview is EHRatingsTableCellView
@@ -429,12 +429,12 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             countingOfRatingStar(0, deselectStar: 2,3,4)
             if view as! NSView == overallAssessmentOnTechnologyStarView
             {
-                overallTechnicalRating = 2
+                technicalFeedbackModel.ratingOnTechnical = 2
             }
             
             if view as! NSView == overallAssessmentOfCandidateStarView
             {
-                overallCandidateRating = 2
+                technicalFeedbackModel.ratingOnCandidate = 2
             }
              else if view.superview is EHRatingsTableCellView
             {
@@ -451,12 +451,12 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             countingOfRatingStar(0, deselectStar: 3,4)
             if view as! NSView == overallAssessmentOnTechnologyStarView
             {
-                overallTechnicalRating = 3
+                technicalFeedbackModel.ratingOnTechnical = 3
             }
             
             else if view as! NSView == overallAssessmentOfCandidateStarView
             {
-                overallCandidateRating = 3
+                technicalFeedbackModel.ratingOnCandidate = 3
             }
              else if view.superview is EHRatingsTableCellView
             {
@@ -472,12 +472,12 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             countingOfRatingStar(0, deselectStar: 4)
             if view as! NSView == overallAssessmentOnTechnologyStarView
             {
-                overallTechnicalRating = 4
+                technicalFeedbackModel.ratingOnTechnical = 4
             }
             
             else if view as! NSView == overallAssessmentOfCandidateStarView
             {
-                overallCandidateRating = 4
+                technicalFeedbackModel.ratingOnCandidate = 4
             }
             else if view.superview is EHRatingsTableCellView
             {
@@ -494,12 +494,12 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             feedbackText.stringValue = "Excellent"
             if view as! NSView == overallAssessmentOnTechnologyStarView
             {
-                overallTechnicalRating = 5
+                technicalFeedbackModel.ratingOnTechnical = 5
             }
             
             else if view as! NSView == overallAssessmentOfCandidateStarView
             {
-                overallCandidateRating = 5
+                technicalFeedbackModel.ratingOnCandidate = 5
             }
             else if view.superview is EHRatingsTableCellView
             {
@@ -602,9 +602,9 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         technicalFeedbackModel.modeOfInterview      = interviewModeState
         technicalFeedbackModel.skills = skillsAndRatingsTitleArray as [SkillSet]
         technicalFeedbackModel.commentsOnTechnology = textViewOfTechnologyAssessment.string
-        technicalFeedbackModel.ratingOnTechnical    = overallTechnicalRating
+     //   technicalFeedbackModel.ratingOnTechnical    = overallTechnicalRating
         technicalFeedbackModel.commentsOnCandidate  = textViewOfCandidateAssessment.string
-        technicalFeedbackModel.ratingOnCandidate    = overallCandidateRating
+       // technicalFeedbackModel.ratingOnCandidate    = overallCandidateRating
         technicalFeedbackModel.recommendation       = recommentationState
         technicalFeedbackModel.designation          = designationField.stringValue
         technicalFeedbackModel.techLeadName         = interviewedByField.stringValue
@@ -637,9 +637,9 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         technicalFeedbackModel.modeOfInterview      = interviewModeState
         technicalFeedbackModel.skills = skillsAndRatingsTitleArray as [SkillSet]
         technicalFeedbackModel.commentsOnTechnology = textViewOfTechnologyAssessment.string
-        technicalFeedbackModel.ratingOnTechnical    = overallTechnicalRating
-        technicalFeedbackModel.commentsOnCandidate  = textViewOfCandidateAssessment.string
-        technicalFeedbackModel.ratingOnCandidate    = overallCandidateRating
+        //technicalFeedbackModel.ratingOnTechnical    = overallTechnicalRating
+       technicalFeedbackModel.commentsOnCandidate  = textViewOfCandidateAssessment.string
+        //technicalFeedbackModel.ratingOnCandidate    = overallCandidateRating
         technicalFeedbackModel.recommendation       = recommentationState
         technicalFeedbackModel.designation          = designationField.stringValue
         technicalFeedbackModel.techLeadName         = interviewedByField.stringValue
@@ -768,12 +768,12 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             Utility.alertPopup("Alert", informativeText: "Please enter the interviewer field should not be blank", okCompletionHandler: nil)
             return isValid
         }
-        else if overallCandidateRating == 0
+        else if technicalFeedbackModel.ratingOnCandidate == 0
         {
              Utility.alertPopup("Alert", informativeText: "Please provide your feedback of Candidate should not be blank", okCompletionHandler: nil)
             return isValid
         }
-        else if overallTechnicalRating == 0
+        else if technicalFeedbackModel.ratingOnTechnical == 0
         {
             Utility.alertPopup("Alert", informativeText: "Please provide your feedback on Technology should not be blank", okCompletionHandler: nil)
             return isValid
