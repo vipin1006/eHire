@@ -355,7 +355,7 @@ class EHFeedbackViewController: NSViewController
     
     @IBAction func dismissFeedbackView(sender: AnyObject)
     {
-        Utility.alertPopup("Do you want to save the data?", informativeText:"with out save will erase all the data entered") { () -> Void in
+        Utility.alertPopup("Do you want to save the data?", informativeText:"Pressing OK will keep entered data") { () -> Void in
           
             switch self.typeOfInterview.selectedSegment
             {
