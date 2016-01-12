@@ -613,6 +613,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         if isFeedBackSaved==false{
             if managerFeedbackAccessLayer.insertManagerFeedback(selectedCandidate!){
                 alertPopup("Success",informativeText:"Feedback for Managerround \((selectedCandidate?.interviewedByManagers?.count)!) has been sucessfully saved")
+                isFeedBackSaved = true
             }
         }else{
             let sortedResults = toSortArray((selectedCandidate?.interviewedByManagers?.allObjects)!)
