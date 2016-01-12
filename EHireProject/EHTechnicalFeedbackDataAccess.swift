@@ -48,7 +48,7 @@ class EHTechnicalFeedbackDataAccess: NSObject
         technicalFeedback.setValue(NSNumber(short: (technicalFeedbackmodel.ratingOnTechnical)!), forKey: "ratingOnTechnical")
         technicalFeedback.setValue(technicalFeedbackmodel.recommendation, forKey: "recommendation")
         technicalFeedback.setValue(technicalFeedbackmodel.designation, forKey: "designation")
-        technicalFeedback.setValue(technicalFeedbackmodel.techLeadName, forKey: "managerName")
+        technicalFeedback.setValue(technicalFeedbackmodel.techLeadName, forKey: "techLeadName")
         technicalFeedback.setValue(candidate as Candidate, forKey: "candidate")
         technicalFeedback.setValue(technicalFeedbackmodel.isFeedbackSubmitted, forKey: "isFeedbackSubmitted")
         candidate.interviewedByTechLeads?.setByAddingObject(technicalFeedback)
