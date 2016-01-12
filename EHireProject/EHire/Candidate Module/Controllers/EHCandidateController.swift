@@ -23,6 +23,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     @IBOutlet weak var feedbackButton: NSButton!
     @IBOutlet weak var removeButton: NSButton!
     
+   // @IBOutlet weak var phoneNumberTextField: NSTextField!
     //MARK: Properties
     var candidateArray = NSMutableArray()
     var filteredArray = NSMutableArray()
@@ -129,7 +130,6 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         feedbackButton.enabled = false
         removeButton.enabled = false
         }
-
     }
 
     //MARK:Actions
@@ -164,14 +164,12 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         {
           addCandidate()
         }
-            
-        }
-        else
-        {
-         addCandidate()
-        }
-      }
-    
+     }
+     else
+     {
+       addCandidate()
+     }
+  }
     
     func refresh()
     {
@@ -188,8 +186,8 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
       }
       if candidateArray.count > 0
       {
-        let c = candidateArray.lastObject
-        if  c!.name! == "" || c!.phoneNumber! == "" || c!.experience! == " " || c!.requisition! == ""
+        let candidate = candidateArray.lastObject
+        if  candidate!.name! == "" && candidate!.phoneNumber! == "" && candidate!.experience! == "" && candidate!.requisition! == ""
         {
           candidateSearchField.enabled = false
         }
@@ -203,7 +201,6 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         candidateSearchField.enabled = false
       }
     }
-    
     
     func getSourceListContent()
     {
@@ -282,8 +279,25 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
       switch textField.tag
       {
         case 1:
-        candidate.name = fieldEditor.string
-        
+        if (!(textField.stringValue == ""))
+        {
+         if EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
+         {
+          Utility.alertPopup("Error", informativeText: "Enter an appropriate candidate name",okCompletionHandler: nil)
+            textField.stringValue = ""
+          candidate.name = textField.stringValue
+         }
+         else
+         {
+          candidate.name = fieldEditor.string
+          candidateSearchField.enabled = true
+         }
+        }
+        else
+        {
+         candidateSearchField.enabled = false
+        }
+       
         case 2:
         candidate.experience = fieldEditor.string
 
@@ -291,28 +305,43 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         candidate.phoneNumber = fieldEditor.string
 
         case 4:
-        candidate.requisition = fieldEditor.string
-
+            if (!(textField.stringValue == ""))
+            {
+                if EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
+                {
+                    Utility.alertPopup("Error", informativeText: "Enter an appropriate candidate requisition",okCompletionHandler: nil)
+                    textField.stringValue = ""
+                    candidate.requisition = textField.stringValue
+                }
+                else
+                {
+                    candidate.requisition = fieldEditor.string
+                    candidateSearchField.enabled = true
+                }
+            }
+            else
+            {
+              candidateSearchField.enabled = false
+            }
+            
         default:
         print("")
      }
         EHCoreDataHelper.saveToCoreData(candidate)
-        candidateSearchField.enabled = true
         return true
     }
     
     
     func deleteCandidate()
     {
-        if tableView.selectedRow > -1
-        {
-            let editCandidate = candidateArray.objectAtIndex(tableView.selectedRow) as? Candidate
-            EHCandidateAccessLayer.removeCandidate(editCandidate!)
-            candidateArray.removeObjectAtIndex(tableView.selectedRow)
-            feedbackButton.enabled = false
-            removeButton.enabled = false
-        }
-        
-        tableView.reloadData()
+     if tableView.selectedRow > -1
+     {
+      let editCandidate = candidateArray.objectAtIndex(tableView.selectedRow) as? Candidate
+      EHCandidateAccessLayer.removeCandidate(editCandidate!)
+      candidateArray.removeObjectAtIndex(tableView.selectedRow)
+      feedbackButton.enabled = false
+      removeButton.enabled = false
+     }
+      tableView.reloadData()
     }
-    }
+}
