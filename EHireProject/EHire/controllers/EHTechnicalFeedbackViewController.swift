@@ -95,6 +95,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             view.target = self
             view.action = "assessmentOfCandidate:"
         }
+        setDefaultValues()
         if selectedCandidate != nil
         {
             if selectedCandidate?.interviewedByTechLeads?.count != 0
@@ -109,7 +110,19 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }
     }
     
-     //MARK: To Sort
+    func setDefaultValues()
+    {
+    technicalFeedbackModel.modeOfInterview = "Face To Face"
+    technicalFeedbackModel.recommendation = "Shortlisted"
+    technicalFeedbackModel.commentsOnCandidate = ""
+    technicalFeedbackModel.commentsOnTechnology = ""
+    technicalFeedbackModel.designation = ""
+    technicalFeedbackModel.techLeadName = ""
+    technicalFeedbackModel.ratingOnTechnical = 0
+    technicalFeedbackModel.ratingOnCandidate = 0
+    }
+    
+    //MARK: To Sort
     func sortArray (candidateObjects : [AnyObject],index:Int)
     {
         isFeedBackSaved = true
