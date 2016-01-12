@@ -31,7 +31,6 @@ class EHFeedbackViewController: NSViewController
     var techFeedback : EHTechnicalFeedbackViewController?
     var technicalFeedbackModel = EHTechnicalFeedbackModel()
     var selectedCandidate:Candidate?
-    //var candidateObject:EHCandidateController?
     let dataAccess = EHTechnicalFeedbackDataAccess()
     
     //MARK: View Life Cycle
@@ -46,10 +45,6 @@ class EHFeedbackViewController: NSViewController
         self.subRound.selectedSegment = 0
         self.scrollViewHr.hasVerticalScroller = true
         self.scrollViewHr.hasHorizontalScroller = true
-        if selectedCandidate?.interviewedByTechLeads?.count > 0
-        {
-        techFeedback!.disableAndEnableSavedSkills(self.subRound.selectedSegment)
-        }
     }
     
     @IBAction func roundType(sender: AnyObject)
@@ -172,7 +167,6 @@ class EHFeedbackViewController: NSViewController
                 print("Round One")
                 if selectedCandidate?.interviewedByTechLeads?.count != 0
                 {
-                    techFeedback!.disableAndEnableSavedSkills(self.subRound.selectedSegment)
                     let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
                     techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
                 }
@@ -188,8 +182,7 @@ class EHFeedbackViewController: NSViewController
                        Utility.alertPopup("Alert", informativeText: "Please complete Round 1 before proceeding to Round 2.", okCompletionHandler: nil)
                        subRound.selectedSegment = 0
                 case 1:
-                    techFeedback!.disableAndEnableSavedSkills(self.subRound.selectedSegment)
-                      for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
+                    for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
                      {
                         let feedback = feedbackOfTechLead as! TechnicalFeedBack
                         if feedback.recommendation == "Rejected"
@@ -206,7 +199,6 @@ class EHFeedbackViewController: NSViewController
                   default:
                         if selectedCandidate?.interviewedByTechLeads?.count > self.subRound.selectedSegment
                         {
-                            techFeedback!.disableAndEnableSavedSkills(self.subRound.selectedSegment)
                             let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
                             techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
                         }
@@ -241,22 +233,17 @@ class EHFeedbackViewController: NSViewController
                         {
                             Utility.alertPopup("Alert", informativeText: "Please complete Round 2 before proceeding to Round 3.", okCompletionHandler: nil)
                             subRound.selectedSegment = 0
-                            techFeedback!.disableAndEnableSavedSkills(self.subRound.selectedSegment)
                             let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
                             techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
                         }
                             
                         else
                         {
-                            techFeedback!.disableAndEnableSavedSkills(self.subRound.selectedSegment)
                             techFeedback?.refreshAllFields()
-                           
                         }
-                        break
+                    break
                     }
-    
                 case 2:
-                    
                     for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
                     {
                     let feedback = feedbackOfTechLead as! TechnicalFeedBack
@@ -270,15 +257,12 @@ class EHFeedbackViewController: NSViewController
                     }
                     else
                     {
-                        techFeedback!.disableAndEnableSavedSkills(self.subRound.selectedSegment)
                         techFeedback?.refreshAllFields()
                     }
-                       
                 }
                 default:
                     if selectedCandidate?.interviewedByTechLeads?.count > 2
                     {
-                       techFeedback!.disableAndEnableSavedSkills(self.subRound.selectedSegment)
                        let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
                        techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
                     }
@@ -358,7 +342,7 @@ class EHFeedbackViewController: NSViewController
     
     @IBAction func dismissFeedbackView(sender: AnyObject)
     {
-        Utility.alertPopup("Do you want to save the data?", informativeText:"Pressing OK will keep entered data") { () -> Void in
+        Utility.alertPopup("Do you want to save the data?", informativeText:"Press OK will keep entered data") { () -> Void in
           
             switch self.typeOfInterview.selectedSegment
             {
@@ -366,7 +350,7 @@ class EHFeedbackViewController: NSViewController
             case 0:
                 
                 print("Technical")
-                
+                self.techFeedback?.saveDetailsAction("")
             case 1:
                 self.managerFeedback?.saveData(nil)
                 print("Manager")
