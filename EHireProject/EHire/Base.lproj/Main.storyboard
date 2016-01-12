@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -701,18 +701,18 @@
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="37" horizontalPageScroll="10" verticalLineScroll="37" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhg-wP-rCj">
                                 <rect key="frame" x="3" y="46" width="233" height="646"/>
                                 <clipView key="contentView" drawsBackground="NO" id="YXc-TJ-COZ">
-                                    <rect key="frame" x="1" y="0.0" width="231" height="630"/>
+                                    <rect key="frame" x="1" y="0.0" width="231" height="645"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="35" rowSizeStyle="automatic" headerView="sq1-Ea-64Y" viewBased="YES" indentationPerLevel="16" outlineTableColumn="Sgx-Fk-dFC" id="Jsz-AD-4om">
-                                            <rect key="frame" x="0.0" y="0.0" width="233" height="607"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="231" height="622"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="230.22599399621157" minWidth="16" maxWidth="1000" id="Sgx-Fk-dFC">
+                                                <tableColumn width="228.22599399621157" minWidth="16" maxWidth="1000" id="Sgx-Fk-dFC">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Technology">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -787,12 +787,12 @@
                                     <constraint firstAttribute="width" constant="233" id="tjx-rj-DVf"/>
                                 </constraints>
                                 <animations/>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="ago-M5-Nue">
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="ago-M5-Nue">
                                     <rect key="frame" x="1" y="630" width="231" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1.186875877608586e-11" horizontal="NO" id="gl2-3W-b8a">
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="gl2-3W-b8a">
                                     <rect key="frame" x="184" y="23" width="15" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
@@ -1140,7 +1140,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
                                         </scroller>
-                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="spn-5H-vzN">
+                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="spn-5H-vzN">
                                             <rect key="frame" x="224" y="17" width="15" height="102"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
@@ -1526,7 +1526,7 @@ CA
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn width="760.73498158743541" minWidth="40" maxWidth="1000" id="MQL-6c-81w">
+                                                            <tableColumn width="761" minWidth="40" maxWidth="1000" id="MQL-6c-81w">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <string key="title">Title Field                                                                             SelectStar                                                                             Ratings</string>
@@ -1633,13 +1633,12 @@ CA
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
                                             <animations/>
-
                                             <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="8Qf-9y-atl">
                                                 <rect key="frame" x="2" y="10" width="0.0" height="15"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <animations/>
                                             </scroller>
-                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="0.02894832823694268" horizontal="NO" id="AUw-eR-fZj">
+                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="AUw-eR-fZj">
                                                 <rect key="frame" x="224" y="17" width="15" height="102"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <animations/>
@@ -2771,7 +2770,7 @@ CA
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn width="756" minWidth="40" maxWidth="1000" id="6Nj-iM-Y5D">
+                                                            <tableColumn width="40" minWidth="40" maxWidth="1000" id="6Nj-iM-Y5D">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <string key="title">Title                                                                                           SelectStar                                                         Ratings               </string>
@@ -2786,7 +2785,7 @@ CA
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <prototypeCellViews>
                                                                     <tableCellView identifier="DataCell" id="SKk-sF-Yi0" customClass="EHManagerFeedBackCustomTableView" customModule="EHire" customModuleProvider="target">
-                                                                        <rect key="frame" x="1" y="1" width="755.93286680720769" height="43"/>
+                                                                        <rect key="frame" x="1" y="1" width="40" height="43"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
                                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J06-rJ-EFt">
@@ -2868,7 +2867,7 @@ CA
                                                                         </connections>
                                                                     </tableCellView>
                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="4hh-zA-sGR">
-                                                                        <rect key="frame" x="1" y="46" width="755.93286680720769" height="36"/>
+                                                                        <rect key="frame" x="1" y="46" width="40" height="36"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <animations/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="    " id="aCo-e5-Ag0">
@@ -2891,7 +2890,6 @@ CA
                                             </clipView>
                                             <animations/>
                                             <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="GEk-zd-Ygz">
-
                                                 <rect key="frame" x="1" y="8" width="0.0" height="15"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <animations/>
