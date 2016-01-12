@@ -257,22 +257,20 @@ class EHFeedbackViewController: NSViewController
                     
                     for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
                     {
-                        let feedback = feedbackOfTechLead as! TechnicalFeedBack
-                      
-                    if feedback.recommendation == "Selected"
-                    {
-                        techFeedback?.refreshAllFields()
-                    }
+                    let feedback = feedbackOfTechLead as! TechnicalFeedBack
                     if feedback.recommendation == "Rejected"
                     {
-                        Utility.alertPopup("Candidate Rejected", informativeText: "Selected Candidate Rejected has been in Technical Round Two. Hence you cannot proceed to round three.", okCompletionHandler: nil)
                         subRound.selectedSegment = 1
+                        let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
+                        techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
+                        
                     }
                     else
                     {
                         techFeedback!.disableAndEnableSavedSkills(self.subRound.selectedSegment)
                         techFeedback?.refreshAllFields()
                     }
+                        break
                 }
                 default:
                     if selectedCandidate?.interviewedByTechLeads?.count > 2
