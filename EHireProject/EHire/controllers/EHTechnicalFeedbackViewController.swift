@@ -133,6 +133,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 interviewedByField.stringValue = feedback.techLeadName!
                 technicalFeedbackModel.modeOfInterview = feedback.modeOfInterview!
                 technicalFeedbackModel.recommendation = feedback.recommendation!
+                technicalFeedbackModel.isFeedbackSubmitted = feedback.isFeedbackSubmitted
                 
                 fetchingModeOfInterview(technicalFeedbackModel.modeOfInterview!)
                 fetchingRecommendation(technicalFeedbackModel.recommendation!)
