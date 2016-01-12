@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -1633,8 +1633,9 @@ CA
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
                                             <animations/>
-                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="0.9999999999956104" horizontal="YES" id="8Qf-9y-atl">
-                                                <rect key="frame" x="2" y="244" width="764" height="15"/>
+
+                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="8Qf-9y-atl">
+                                                <rect key="frame" x="2" y="10" width="0.0" height="15"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <animations/>
                                             </scroller>
@@ -2890,7 +2891,8 @@ CA
                                             </clipView>
                                             <animations/>
                                             <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="GEk-zd-Ygz">
-                                                <rect key="frame" x="1" y="229" width="760" height="15"/>
+
+                                                <rect key="frame" x="1" y="8" width="0.0" height="15"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <animations/>
                                             </scroller>
@@ -3123,6 +3125,7 @@ CA
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="1dm-w6-cXO"/>
+                                                        <outlet property="delegate" destination="2N2-KU-HrI" id="YK3-kF-p7F"/>
                                                     </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Aus-Wz-8KL">
@@ -3144,6 +3147,7 @@ CA
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="bqW-HM-aoo"/>
+                                                        <outlet property="delegate" destination="2N2-KU-HrI" id="w7I-2J-Ob3"/>
                                                     </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bLu-Tp-mhW">
@@ -3165,6 +3169,7 @@ CA
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="0RV-nO-cyJ"/>
+                                                        <outlet property="delegate" destination="2N2-KU-HrI" id="4qF-Y2-oTY"/>
                                                     </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cmc-ps-58F">
@@ -3186,6 +3191,7 @@ CA
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="VJZ-FO-aNW"/>
+                                                        <outlet property="delegate" destination="2N2-KU-HrI" id="GIv-s4-U9q"/>
                                                     </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O9Y-ak-abB">
@@ -3207,6 +3213,7 @@ CA
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="96p-GT-BpS"/>
+                                                        <outlet property="delegate" destination="2N2-KU-HrI" id="RZA-ng-hEw"/>
                                                     </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZOj-Nw-6lF">
@@ -3228,6 +3235,7 @@ CA
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="T4t-cC-Np4"/>
+                                                        <outlet property="delegate" destination="2N2-KU-HrI" id="ZUa-iU-xwi"/>
                                                     </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h9i-UW-lyR">
@@ -3273,6 +3281,7 @@ CA
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="lf4-ir-ug3"/>
+                                                        <outlet property="delegate" destination="2N2-KU-HrI" id="e5W-MT-pmh"/>
                                                     </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fBs-6Y-Mim">
@@ -3294,6 +3303,7 @@ CA
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="joV-px-x9L"/>
+                                                        <outlet property="delegate" destination="2N2-KU-HrI" id="zNU-Ge-blT"/>
                                                     </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PoT-yD-1PZ">
@@ -3315,6 +3325,7 @@ CA
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="vts-1Y-gpJ"/>
+                                                        <outlet property="delegate" destination="2N2-KU-HrI" id="qGx-8W-36f"/>
                                                     </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wea-vU-DTA">
@@ -3336,6 +3347,7 @@ CA
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="JK6-ry-YeT"/>
+                                                        <outlet property="delegate" destination="2N2-KU-HrI" id="2F6-9E-3t7"/>
                                                     </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fMo-XI-Vhp">
@@ -3357,6 +3369,7 @@ CA
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="swp-Ly-5aV"/>
+                                                        <outlet property="delegate" destination="2N2-KU-HrI" id="s1c-Xw-hje"/>
                                                     </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kmr-se-oI3">
@@ -3411,6 +3424,7 @@ CA
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="1r9-p8-XIr"/>
+                                                        <outlet property="delegate" destination="2N2-KU-HrI" id="tUF-ta-oXC"/>
                                                     </connections>
                                                 </textField>
                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="WsU-jZ-7Ed">
@@ -3664,6 +3678,7 @@ CA
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="ADP-O2-Qxw"/>
+                                                        <outlet property="delegate" destination="2N2-KU-HrI" id="bWx-Sj-6gf"/>
                                                     </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QgK-j5-kWQ">
@@ -3685,6 +3700,7 @@ CA
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="VeU-tU-3Ay"/>
+                                                        <outlet property="delegate" destination="2N2-KU-HrI" id="clA-ZX-VWp"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -3832,6 +3848,7 @@ CA
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="ep7-PC-WXs"/>
+                                                        <outlet property="delegate" destination="2N2-KU-HrI" id="8nU-OC-Qaq"/>
                                                     </connections>
                                                 </textField>
                                                 <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g02-ro-L3U">
@@ -3876,6 +3893,7 @@ CA
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="iMJ-NO-ujh"/>
+                                                        <outlet property="delegate" destination="2N2-KU-HrI" id="Azh-2y-vuz"/>
                                                     </connections>
                                                 </textField>
                                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ecc-76-JxV">
@@ -3891,6 +3909,7 @@ CA
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="o9i-Cp-eDy"/>
+                                                        <outlet property="delegate" destination="2N2-KU-HrI" id="vfW-A6-WXb"/>
                                                     </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bc6-Nv-o4s">
@@ -3986,6 +4005,7 @@ CA
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="StD-pT-qgo"/>
+                                                        <outlet property="delegate" destination="2N2-KU-HrI" id="Rec-lc-oKk"/>
                                                     </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MVx-wP-40U">
@@ -4007,6 +4027,7 @@ CA
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="JEL-ZZ-V8N"/>
+                                                        <outlet property="delegate" destination="2N2-KU-HrI" id="LtW-Lb-rjx"/>
                                                     </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eOX-71-rey">
@@ -4107,6 +4128,7 @@ CA
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="aDm-Nn-XC3"/>
+                                                        <outlet property="delegate" destination="2N2-KU-HrI" id="2OX-dl-tGK"/>
                                                     </connections>
                                                 </textField>
                                                 <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vez-3Z-vyu">
@@ -4197,6 +4219,7 @@ CA
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="cU3-Q2-d7f"/>
+                                                        <outlet property="delegate" destination="2N2-KU-HrI" id="tDZ-Xl-Y0i"/>
                                                     </connections>
                                                 </textField>
                                                 <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hyf-gA-zZX">
@@ -4336,13 +4359,14 @@ CA
                                                         <constraint firstAttribute="width" constant="160" id="j5k-9X-XDM"/>
                                                     </constraints>
                                                     <animations/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" drawsBackground="YES" id="wRd-HY-o62">
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" alignment="center" placeholderString="Per Annum" drawsBackground="YES" id="wRd-HY-o62">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="RY8-p4-rHo"/>
+                                                        <outlet property="delegate" destination="2N2-KU-HrI" id="UO4-uo-hRj"/>
                                                     </connections>
                                                 </textField>
                                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="W4W-ht-5Ru">
@@ -4351,13 +4375,14 @@ CA
                                                         <constraint firstAttribute="width" constant="160" id="d0C-Y5-0lU"/>
                                                     </constraints>
                                                     <animations/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" drawsBackground="YES" id="z4g-f1-gfF">
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" alignment="center" placeholderString="Per Annum" drawsBackground="YES" id="z4g-f1-gfF">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="QOY-8U-BML"/>
+                                                        <outlet property="delegate" destination="2N2-KU-HrI" id="AFu-md-rIG"/>
                                                     </connections>
                                                 </textField>
                                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MOQ-Ij-awj">
@@ -4366,13 +4391,14 @@ CA
                                                         <constraint firstAttribute="width" constant="160" id="RHg-8Y-ucp"/>
                                                     </constraints>
                                                     <animations/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" drawsBackground="YES" id="fjT-Nd-hhp">
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" alignment="center" placeholderString="Per Annum" drawsBackground="YES" id="fjT-Nd-hhp">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="GFh-Qd-rsL"/>
+                                                        <outlet property="delegate" destination="2N2-KU-HrI" id="w0V-4Z-qEH"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -4483,6 +4509,7 @@ CA
                                         </textFieldCell>
                                         <connections>
                                             <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="gpg-0h-W3w"/>
+                                            <outlet property="delegate" destination="2N2-KU-HrI" id="2K7-33-v5N"/>
                                         </connections>
                                     </textField>
                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GWX-lG-sUp">
@@ -4498,6 +4525,7 @@ CA
                                         </textFieldCell>
                                         <connections>
                                             <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="EnW-2k-osF"/>
+                                            <outlet property="delegate" destination="2N2-KU-HrI" id="cGZ-hp-v4j"/>
                                         </connections>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wn0-WQ-nCF">
@@ -4561,6 +4589,7 @@ CA
                                         </textFieldCell>
                                         <connections>
                                             <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="Iuw-dY-a3x"/>
+                                            <outlet property="delegate" destination="2N2-KU-HrI" id="ICn-5B-wNF"/>
                                         </connections>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pBi-hN-zEG">
@@ -4630,6 +4659,7 @@ CA
                                         </textFieldCell>
                                         <connections>
                                             <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="iBy-UG-BbF"/>
+                                            <outlet property="delegate" destination="2N2-KU-HrI" id="24x-aR-vMm"/>
                                         </connections>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hvr-h1-ahh">
@@ -4657,6 +4687,7 @@ CA
                                         </textFieldCell>
                                         <connections>
                                             <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="ZPQ-az-aKC"/>
+                                            <outlet property="delegate" destination="2N2-KU-HrI" id="mTl-9B-dW1"/>
                                         </connections>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TUN-wg-53A">
