@@ -103,10 +103,10 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         setDefaultCgDeviationAndInterviewMode()
         
         
-        
+         selectedSegment = 0
         if selectedCandidate != nil
         { if selectedCandidate?.interviewedByManagers?.count != 0{
-            selectedSegment = 0
+           
             sortArray((selectedCandidate?.interviewedByManagers?.allObjects)!,index: 0)
 
         }else{
@@ -578,7 +578,9 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     {
         
         
-        
+        if managerialRoundFeedback.isSubmitted == true{
+            return
+        }
         
               managerialRoundFeedback.commentsOnCandidate = NSAttributedString(string: textViewCommentsForOverAllCandidateAssessment.string!)
              managerialRoundFeedback.commentsOnTechnology = NSAttributedString(string: textViewCommentsForOverAllTechnologyAssessment.string!)
