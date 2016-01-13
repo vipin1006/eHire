@@ -100,7 +100,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
            
             sortArray((selectedCandidate?.interviewedByTechLeads?.allObjects)!,index: 0)
             }
-            else{
+            else
+            {
                 isFeedBackSaved = false
             }
             tableView.reloadData()
@@ -661,6 +662,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             }
         }
             disableAndEnableFields(true)
+            tableView.reloadData()
+
         }
     }
 
