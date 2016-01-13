@@ -342,6 +342,7 @@ class EHFeedbackViewController: NSViewController
                         else
                         {
                             managerFeedback?.refreshAllFields()
+                            managerFeedback?.selectedSegment = self.subRound.selectedSegment
                         }
                      }
                 case 2:
