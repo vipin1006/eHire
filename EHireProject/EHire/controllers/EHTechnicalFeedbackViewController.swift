@@ -606,6 +606,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         {
             if dataAccessModel.insertIntoTechnicalFeedback(technicalFeedbackModel, selectedCandidate: selectedCandidate!)
             {
+                Utility.alertPopup("Success", informativeText: "Feedback for Technical Round has been saved Successfully", isCancelBtnNeeded:false,okCompletionHandler: nil)
                 isFeedBackSaved = true
             }
         }
