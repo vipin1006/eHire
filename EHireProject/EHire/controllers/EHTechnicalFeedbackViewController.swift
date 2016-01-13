@@ -605,7 +605,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         {
             if dataAccessModel.insertIntoTechnicalFeedback(technicalFeedbackModel, selectedCandidate: selectedCandidate!)
             {
-                Utility.alertPopup("Success", informativeText: "Feedback for Technical Round \((selectedCandidate?.interviewedByTechLeads?.count)!) has been successfully saved", okCompletionHandler: nil)
                 isFeedBackSaved = true
             }
         }
@@ -772,7 +771,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
       designationField.stringValue = ""
       interviewedByField.stringValue = ""
       fetchingModeOfInterview("Face To Face")
-      fetchingRecommendation("Rejected")
+      fetchingRecommendation("Shortlisted")
       technicalFeedbackModel.ratingOnCandidate = 0
       technicalFeedbackModel.ratingOnTechnical = 0
       skillsAndRatingsTitleArray.removeAll()
