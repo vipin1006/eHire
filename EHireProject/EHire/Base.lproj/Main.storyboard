@@ -1487,17 +1487,6 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DQN-sh-vbs">
-                                            <rect key="frame" x="22" y="13" width="80" height="32"/>
-                                            <animations/>
-                                            <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7UC-1g-5I0">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="addSkills:" target="tZu-Jo-Cyq" id="Db3-Zz-C7f"/>
-                                            </connections>
-                                        </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rRj-tk-HWk">
                                             <rect key="frame" x="103" y="13" width="80" height="32"/>
                                             <animations/>
@@ -1649,6 +1638,17 @@ CA
                                                 <animations/>
                                             </tableHeaderView>
                                         </scrollView>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DQN-sh-vbs">
+                                            <rect key="frame" x="23" y="13" width="80" height="32"/>
+                                            <animations/>
+                                            <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7UC-1g-5I0">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="addSkills:" target="tZu-Jo-Cyq" id="Db3-Zz-C7f"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <animations/>
                                 </view>
@@ -3043,7 +3043,9 @@ CA
                         <animations/>
                     </view>
                     <connections>
+                        <outlet property="addNewSkillBtn" destination="7Qg-nx-PJQ" id="KYM-xW-34L"/>
                         <outlet property="dateOfInterviewField" destination="LhW-yj-R09" id="7JC-AC-QiO"/>
+                        <outlet property="deleteExistingBtn" destination="wWe-Cz-mq4" id="6xH-ye-iyc"/>
                         <outlet property="labelOverAllAssessmentOfCandidate" destination="v02-Ct-8H0" id="Pwb-oU-Ay1"/>
                         <outlet property="labelOverAllAssessmentOfTechnology" destination="jf7-9R-CFr" id="Qor-YI-XSj"/>
                         <outlet property="managerFeedbackMainView" destination="CXt-am-yMK" id="LKD-y1-NKx"/>
