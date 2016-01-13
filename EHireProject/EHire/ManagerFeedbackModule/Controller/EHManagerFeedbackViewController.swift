@@ -849,28 +849,14 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             }
         
          disableAndEnableFields(true)
+            tableView.reloadData()
         }
     }
     
     //MARK:- Refresh All Fields
     func refreshAllFields()
     {
-//        managerialRoundFeedback.commentsOnCandidate = NSAttributedString(string: "")
-//
-//        managerialRoundFeedback.commentsOnTechnology = NSAttributedString(string: "")
-//        managerialRoundFeedback.commitments = NSAttributedString(string: "")
-//        managerialRoundFeedback.grossAnnualSalary = NSNumber(integer: 0)
-//        
-//        managerialRoundFeedback.managerName = ""
-//        //managerialFeedbackModel. isCgDeviation = NSNumber(integer: 0)
-// 
-//        managerialRoundFeedback.jestificationForHire = NSAttributedString(string: "")
-//        managerialRoundFeedback.modeOfInterview = ""
-//        managerialRoundFeedback.ratingOnCandidate = 0
-//        managerialRoundFeedback.ratingOnTechnical = 0
-//        managerialRoundFeedback.recommendation = ""
-//        managerialRoundFeedback.recommendedCg = ""
-//        managerialRoundFeedback.designation = ""
+
         
         textFieldCandidateName.stringValue = ""
         textFieldCorporateGrade.stringValue = ""
