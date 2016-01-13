@@ -340,7 +340,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         let ratingCell = sender.superview?.superview as! EHRatingsTableCellView
         if ratingCell.skilsAndRatingsTitlefield.stringValue == "Enter Title"
         {
-            Utility.alertPopup("Enter the Title", informativeText: "Please select and click on Enter Title field to give title name", okCompletionHandler: nil)
+            Utility.alertPopup("Enter the Title", informativeText: "Please select and click on Enter Title field to give title name",isCancelBtnNeeded:false, okCompletionHandler: nil)
             return
         }
         let totalView = ratingCell.starCustomView.subviews
@@ -530,7 +530,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     {
         if skillsAndRatingsTitleArray.count > 0 && cell?.skilsAndRatingsTitlefield.stringValue == "Enter Title"
         {
-           Utility.alertPopup("Enter Title", informativeText: "Please enter previous selected title", okCompletionHandler: nil)
+           Utility.alertPopup("Enter Title", informativeText: "Please enter previous selected title",isCancelBtnNeeded:false, okCompletionHandler: nil)
         }
         else
         {
@@ -617,7 +617,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         if dataAccessModel.updateManagerFeedback(selectedCandidate!, technicalFeedback: technicalFeedback, technicalFeedbackmodel: technicalFeedbackModel)
         {
             
-             Utility.alertPopup("Success", informativeText: "Feedback for Technical Round has been updated Successfully", okCompletionHandler: nil)
+             Utility.alertPopup("Success", informativeText: "Feedback for Technical Round has been updated Successfully", isCancelBtnNeeded:false,okCompletionHandler: nil)
         }
      }
    }
@@ -647,7 +647,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         {
             if dataAccessModel.insertIntoTechnicalFeedback(technicalFeedbackModel, selectedCandidate: selectedCandidate!)
             {
-                Utility.alertPopup("Success", informativeText: "Feedback for Technical Round \((selectedCandidate?.interviewedByTechLeads?.count)!) has been successfully saved", okCompletionHandler: nil)
+                Utility.alertPopup("Success", informativeText: "Feedback for Technical Round \((selectedCandidate?.interviewedByTechLeads?.count)!) has been successfully saved", isCancelBtnNeeded:false,okCompletionHandler: nil)
             }
         }
         else
@@ -658,7 +658,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             if dataAccessModel.updateManagerFeedback(selectedCandidate!, technicalFeedback: technicalFeedback, technicalFeedbackmodel: technicalFeedbackModel)
             {
                 
-                Utility.alertPopup("Success", informativeText: "Feedback for Technical Round has been updated Successfully", okCompletionHandler: nil)
+                Utility.alertPopup("Success", informativeText: "Feedback for Technical Round has been updated Successfully", isCancelBtnNeeded:false,okCompletionHandler: nil)
             }
         }
             disableAndEnableFields(true)
@@ -710,53 +710,53 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         
         if cell?.feedback.stringValue == ""
         {
-            Utility.alertPopup("Alert", informativeText: "Please provide your feedback", okCompletionHandler: nil)
+            Utility.alertPopup("Alert", informativeText: "Please provide your feedback",isCancelBtnNeeded:false, okCompletionHandler: nil)
             return isValid
         }
             
         else if ratingOnTechnologyField.stringValue == ""
         {
-            Utility.alertPopup("Alert", informativeText: "Please provide your feedback of overall assessment on Technology", okCompletionHandler: nil)
+            Utility.alertPopup("Alert", informativeText: "Please provide your feedback of overall assessment on Technology", isCancelBtnNeeded:false,okCompletionHandler: nil)
             return isValid
         }
             
         else if ratingOfCandidateField.stringValue == ""
         {
-            Utility.alertPopup("Alert", informativeText: "Please provide your feedback of overall assessment of Candidate", okCompletionHandler: nil)
+            Utility.alertPopup("Alert", informativeText: "Please provide your feedback of overall assessment of Candidate",isCancelBtnNeeded:false, okCompletionHandler: nil)
             return isValid
         }
             
         else if textViewOfTechnologyAssessment.string == ""
         {
-             Utility.alertPopup("Alert", informativeText: "Please enter your feedback on Technology", okCompletionHandler: nil)
+             Utility.alertPopup("Alert", informativeText: "Please enter your feedback on Technology", isCancelBtnNeeded:false,okCompletionHandler: nil)
             return isValid
         }
             
         else if textViewOfCandidateAssessment.string == ""
         {
-            Utility.alertPopup("Alert", informativeText: "Overall assessment of Candidate field shold not be blank", okCompletionHandler: nil)
+            Utility.alertPopup("Alert", informativeText: "Overall assessment of Candidate field shold not be blank", isCancelBtnNeeded:false,okCompletionHandler: nil)
             return isValid
         }
             
         else if designationField.stringValue == ""
         {
-            Utility.alertPopup("Alert", informativeText: "Designation Field should not be blank", okCompletionHandler: nil)
+            Utility.alertPopup("Alert", informativeText: "Designation Field should not be blank",isCancelBtnNeeded:false, okCompletionHandler: nil)
             return isValid
         }
             
         else if interviewedByField.stringValue.characters.count == 0
         {
-            Utility.alertPopup("Alert", informativeText: "Please enter the interviewer field should not be blank", okCompletionHandler: nil)
+            Utility.alertPopup("Alert", informativeText: "Please enter the interviewer field should not be blank", isCancelBtnNeeded:false,okCompletionHandler: nil)
             return isValid
         }
         else if technicalFeedbackModel.ratingOnCandidate == 0
         {
-             Utility.alertPopup("Alert", informativeText: "Please provide your feedback of Candidate should not be blank", okCompletionHandler: nil)
+             Utility.alertPopup("Alert", informativeText: "Please provide your feedback of Candidate should not be blank", isCancelBtnNeeded:false,okCompletionHandler: nil)
             return isValid
         }
         else if technicalFeedbackModel.ratingOnTechnical == 0
         {
-            Utility.alertPopup("Alert", informativeText: "Please provide your feedback on Technology should not be blank", okCompletionHandler: nil)
+            Utility.alertPopup("Alert", informativeText: "Please provide your feedback on Technology should not be blank", isCancelBtnNeeded:false,okCompletionHandler: nil)
             return isValid
         }
         else

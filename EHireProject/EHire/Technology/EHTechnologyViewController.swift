@@ -288,7 +288,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 
             else
             {
-                Utility.alertPopup("Error", informativeText: "Interview date cannot be same",okCompletionHandler: nil)
+                Utility.alertPopup("Error", informativeText: "Interview date cannot be same",isCancelBtnNeeded:false,okCompletionHandler: nil)
             }
             
             datePopOver.close()
@@ -330,7 +330,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
         else{ // adding new technology
             if technologyArray.count > 0 && lastCellAddedForTechnology?.textFieldTechnology.stringValue == ""{
-                Utility.alertPopup("Error", informativeText: "Please provide a name for the new technology before proceeding.",okCompletionHandler: nil)
+                Utility.alertPopup("Error", informativeText: "Please provide a name for the new technology before proceeding.",isCancelBtnNeeded:false,okCompletionHandler: nil)
             }else{
                 let newTechnologyEntityDescription = EHCoreDataHelper.createEntity("Technology", managedObjectContext: EHCoreDataStack.sharedInstance.managedObjectContext)
                 let newTechnologyManagedObject:Technology = Technology(entity:newTechnologyEntityDescription!, insertIntoManagedObjectContext:EHCoreDataStack.sharedInstance.managedObjectContext) as Technology
@@ -350,7 +350,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         //this if statement is added to avoid crash. To be removed once - is disabled when no technology is selected
         if self.sourceList.selectedRow == -1
         {
-            Utility.alertPopup("Error", informativeText: "Please select any Item to delete",okCompletionHandler: nil)
+            Utility.alertPopup("Error", informativeText: "Please select any Item to delete",isCancelBtnNeeded:false,okCompletionHandler: nil)
             return
         }
         
@@ -358,7 +358,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         if selected is Technology
         {
-            Utility.alertPopup("Alert", informativeText: "Are you sure you want to delete the selected Technology",okCompletionHandler: {() -> Void in
+            Utility.alertPopup("Alert", informativeText: "Are you sure you want to delete the selected Technology",isCancelBtnNeeded:true,okCompletionHandler: {() -> Void in
                 self.deleteItem()
                 if self.technologyArray.count == 0
                 {
@@ -371,7 +371,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         }
         else
         {
-            Utility.alertPopup("Alert", informativeText: "Are you sure you want to delete the selected Date",okCompletionHandler: {() -> Void in
+            Utility.alertPopup("Alert", informativeText: "Are you sure you want to delete the selected Date",isCancelBtnNeeded:true ,okCompletionHandler: {() -> Void in
                 
                 print("ok btn")
                 self.deleteItem()
@@ -438,7 +438,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     {
         if cellTechnology?.textFieldTechnology.stringValue == ""
         {
-            Utility.alertPopup("Alert", informativeText: "Please add a Technology before adding a Date", okCompletionHandler: nil)
+            Utility.alertPopup("Alert", informativeText: "Please add a Technology before adding a Date", isCancelBtnNeeded:false,okCompletionHandler: nil)
             
             addTechnology.enabled = true
         }
@@ -453,7 +453,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 datePopOverController!.delegate = self
                 datePopOver.showRelativeToRect(button.bounds, ofView:button, preferredEdge:NSRectEdge.MaxY)
             }else{
-                Utility.alertPopup("Error", informativeText: "Please enter the newly added technology",okCompletionHandler: nil)
+                Utility.alertPopup("Error", informativeText: "Please enter the newly added technology",isCancelBtnNeeded:false,okCompletionHandler: nil)
             }
         }
     }
@@ -510,7 +510,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 {
                     if isNumberValid(textFieldObject.stringValue) == true
                     {
-                        Utility.alertPopup("Error", informativeText: "Enter an appropriate Technology name",okCompletionHandler: nil)
+                        Utility.alertPopup("Error", informativeText: "Enter an appropriate Technology name",isCancelBtnNeeded:false,okCompletionHandler: nil)
                         return
                     }
                     
@@ -535,7 +535,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 }
                 else{
                     
-                    Utility.alertPopup("Error", informativeText: "Technology name should be unique",okCompletionHandler: {() -> Void in
+                    Utility.alertPopup("Error", informativeText: "Technology name should be unique",isCancelBtnNeeded:true,okCompletionHandler: {() -> Void in
                         
                         textFieldObject.stringValue = ""
                         
@@ -550,7 +550,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
         else
         {
-            Utility.alertPopup("Alert", informativeText: "Please add a name for Technology", okCompletionHandler: nil)
+            Utility.alertPopup("Alert", informativeText: "Please add a name for Technology",isCancelBtnNeeded:false, okCompletionHandler: nil)
             
             
         }
@@ -770,7 +770,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     
     func deleteTechnologyFromContextMenu(sender:NSMenuItem)
     {
-        Utility.alertPopup("Are you you want to delete the selected technology?", informativeText: "deleting Technology will delete all of its related data.") { () -> Void in
+        Utility.alertPopup("Are you you want to delete the selected technology?", informativeText: "deleting Technology will delete all of its related data.",isCancelBtnNeeded:true) { () -> Void in
             
             for var i = 0 ; i < self.technologyArray.count ; i++
             {
@@ -813,7 +813,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     func deleteDateFromTechnologyFromContextMenu(sender:NSMenuItem)
     {
         
-        Utility.alertPopup("Are you sure you want to delete the selected date?", informativeText:"deleting a date will delete all of its related data. ") { () -> Void in
+        Utility.alertPopup("Are you sure you want to delete the selected date?", informativeText:"deleting a date will delete all of its related data. ", isCancelBtnNeeded:true) { () -> Void in
             
             
             for var i = 0 ; i < self.technologyArray.count ; i++

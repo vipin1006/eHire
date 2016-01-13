@@ -80,7 +80,7 @@ class EHFeedbackViewController: NSViewController
             
             if techLeadCount == 0
             {
-                Utility.alertPopup("Alert", informativeText: "Please complete the Technical Round(s) before proceeding to the Managerial Round", okCompletionHandler: nil)
+                Utility.alertPopup("Alert", informativeText: "Please complete the Technical Round(s) before proceeding to the Managerial Round",isCancelBtnNeeded:false, okCompletionHandler: nil)
                 subRound.selectedSegment = 0
                 typeOfInterview.setSelected(true, forSegment: 0)
                 return
@@ -93,7 +93,7 @@ class EHFeedbackViewController: NSViewController
                 
                 if feedback.recommendation == "Rejected"
                 {
-                    Utility.alertPopup("Alert", informativeText: "This candidate has been 'Rejected' in the Technical Round. Hence you cannot proceed to this round.", okCompletionHandler: nil)
+                    Utility.alertPopup("Alert", informativeText: "This candidate has been 'Rejected' in the Technical Round. Hence you cannot proceed to this round.",isCancelBtnNeeded:false, okCompletionHandler: nil)
                     
                     self.typeOfInterview.selectedSegment = 0
                     
@@ -122,7 +122,7 @@ class EHFeedbackViewController: NSViewController
             
             if techLeadCount == 0
             {
-                Utility.alertPopup("Alert", informativeText: "Please complete Technical Round(s) before proceeding to the HR Round", okCompletionHandler: nil)
+                Utility.alertPopup("Alert", informativeText: "Please complete Technical Round(s) before proceeding to the HR Round", isCancelBtnNeeded:false,okCompletionHandler: nil)
                 subRound.selectedSegment = 0
                 typeOfInterview.setSelected(true, forSegment: 0)
                 return
@@ -135,7 +135,7 @@ class EHFeedbackViewController: NSViewController
                     
                     if feedback.recommendation == "Rejected"
                     {
-                       Utility.alertPopup("Alert", informativeText: "This candidate has been 'Rejected' in the Technical Round. Hence you cannot proceed to this round.", okCompletionHandler: nil)
+                       Utility.alertPopup("Alert", informativeText: "This candidate has been 'Rejected' in the Technical Round. Hence you cannot proceed to this round.",isCancelBtnNeeded:false, okCompletionHandler: nil)
                         
                            self.typeOfInterview.selectedSegment = 0
                         
@@ -145,7 +145,7 @@ class EHFeedbackViewController: NSViewController
                 
                 if managerCount == 0
                 {
-                    Utility.alertPopup("Alert", informativeText: "Please complete Manager Round(s) before proceeding to the HR Round", okCompletionHandler: nil)
+                    Utility.alertPopup("Alert", informativeText: "Please complete Manager Round(s) before proceeding to the HR Round", isCancelBtnNeeded:false,okCompletionHandler: nil)
                     
                     self.typeOfInterview.selectedSegment = 0
 
@@ -158,7 +158,7 @@ class EHFeedbackViewController: NSViewController
                     
                     if feedback.recommendation == "Rejected"
                     {
-                        Utility.alertPopup("Alert", informativeText: "This candidate has been 'Rejected' in the Manager Round. Hence you cannot proceed to this round.", okCompletionHandler: nil)
+                        Utility.alertPopup("Alert", informativeText: "This candidate has been 'Rejected' in the Manager Round. Hence you cannot proceed to this round.",isCancelBtnNeeded:false, okCompletionHandler: nil)
                         
                           if self.subRound.segmentCount == 3
                           {
@@ -208,7 +208,7 @@ class EHFeedbackViewController: NSViewController
                 switch techLeadCount
                 {
                 case 0:
-                       Utility.alertPopup("Alert", informativeText: "Please complete Round 1 before proceeding to Round 2.", okCompletionHandler: nil)
+                       Utility.alertPopup("Alert", informativeText: "Please complete Round 1 before proceeding to Round 2.", isCancelBtnNeeded:false,okCompletionHandler: nil)
                        subRound.selectedSegment = 0
                 case 1:
                     for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
@@ -216,7 +216,7 @@ class EHFeedbackViewController: NSViewController
                         let feedback = feedbackOfTechLead as! TechnicalFeedBack
                         if feedback.recommendation == "Rejected"
                         {
-                            Utility.alertPopup("Candidate Rejected", informativeText: "This candidate has been 'Rejected' in Round One. Hence you cannot proceed to this round.",okCompletionHandler: nil)
+                            Utility.alertPopup("Candidate Rejected", informativeText: "This candidate has been 'Rejected' in Round One. Hence you cannot proceed to this round.",isCancelBtnNeeded:false,okCompletionHandler: nil)
                             subRound.selectedSegment = 0
                         }
                         else
@@ -241,7 +241,7 @@ class EHFeedbackViewController: NSViewController
                 {
                 case 0:
                     
-                    Utility.alertPopup("Alert", informativeText: "RoundOne not yet Completed", okCompletionHandler: nil)
+                    Utility.alertPopup("Alert", informativeText: "RoundOne not yet Completed", isCancelBtnNeeded:false,okCompletionHandler: nil)
                     subRound.selectedSegment = 0
                     
                     
@@ -253,14 +253,14 @@ class EHFeedbackViewController: NSViewController
                         {
                             if feedback.recommendation == "Rejected"
                             {
-                                Utility.alertPopup("Candidate Rejected", informativeText: "Selected Candidate Rejected has been in Technical Round One. Hence you cannot proceed to round three.", okCompletionHandler: nil)
+                                Utility.alertPopup("Candidate Rejected", informativeText: "Selected Candidate Rejected has been in Technical Round One. Hence you cannot proceed to round three.", isCancelBtnNeeded:false,okCompletionHandler: nil)
                                 subRound.selectedSegment = 0
                             }
                         }
                         
                         else if selectedCandidate?.interviewedByTechLeads!.count == 1
                         {
-                            Utility.alertPopup("Alert", informativeText: "Please complete Round 2 before proceeding to Round 3.", okCompletionHandler: nil)
+                            Utility.alertPopup("Alert", informativeText: "Please complete Round 2 before proceeding to Round 3.",isCancelBtnNeeded:false, okCompletionHandler: nil)
                             subRound.selectedSegment = 0
                             let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
                             techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
@@ -278,7 +278,7 @@ class EHFeedbackViewController: NSViewController
                     let feedback = feedbackOfTechLead as! TechnicalFeedBack
                     if feedback.recommendation == "Rejected"
                     {
-                        Utility.alertPopup("Alert", informativeText: "Selected Candidate Rejected has been in Technical Round Two. Hence you cannot proceed to round three.", okCompletionHandler: nil)
+                        Utility.alertPopup("Alert", informativeText: "Selected Candidate Rejected has been in Technical Round Two. Hence you cannot proceed to round three.", isCancelBtnNeeded:false,okCompletionHandler: nil)
                         subRound.selectedSegment = 1
                         let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
                         techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
@@ -318,7 +318,9 @@ class EHFeedbackViewController: NSViewController
                 switch managerFeedbackCount
                 {
                 case 0:
-                    managerFeedback?.alertPopup("Alert", informativeText: "Please complete Round 1 & 2 before proceeding to Round 3.")
+                    Utility.alertPopup("Alert", informativeText: "Please complete Round 1 & 2 before proceeding to Round 3.",isCancelBtnNeeded:false, okCompletionHandler: nil)
+
+                    
                 case 1:
                     for feedbackOfManager in (selectedCandidate?.interviewedByManagers)!
                     {
@@ -326,7 +328,9 @@ class EHFeedbackViewController: NSViewController
                         
                         if feedback.recommendation == "Rejected"
                         {
-                            managerFeedback?.alertPopup("Candidate Rejected", informativeText: "This candidate has been 'Rejected' in Round One. Hence you cannot proceed to this round.")
+                            
+                            Utility.alertPopup("Candidate Rejected", informativeText: "This candidate has been 'Rejected' in Round One. Hence you cannot proceed to this round.",isCancelBtnNeeded:false, okCompletionHandler: nil)
+
                           
                         }
                         else if managerFeedback?.selectedCandidate?.interviewedByManagers?.count > self.subRound.selectedSegment{
@@ -372,7 +376,7 @@ class EHFeedbackViewController: NSViewController
     
     @IBAction func dismissFeedbackView(sender: AnyObject)
     {
-        Utility.alertPopup("Do you want to save the data?", informativeText:"Press OK will keep entered data") { () -> Void in
+        Utility.alertPopup("Do you want to save the data?", informativeText:"Press OK will keep entered data",isCancelBtnNeeded:true) { () -> Void in
           
             switch self.typeOfInterview.selectedSegment
             {

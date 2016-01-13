@@ -10,14 +10,20 @@ import Cocoa
 
 class Utility: NSObject
 {
-    class func alertPopup(data:String,informativeText:String ,let okCompletionHandler:(() -> Void)?)
+    class func alertPopup(data:String,informativeText:String ,isCancelBtnNeeded:Bool , let okCompletionHandler:(() -> Void)?)
     {
         let alert:NSAlert = NSAlert()
         alert.messageText = data
         
         alert.informativeText = informativeText
-        alert.addButtonWithTitle("OK")
-        alert.addButtonWithTitle("Cancel")
+        if isCancelBtnNeeded{
+            alert.addButtonWithTitle("YES")
+            alert.addButtonWithTitle("NO")
+
+        }
+        else{
+            alert.addButtonWithTitle("OK")
+        }
         alert.alertStyle = NSAlertStyle.CriticalAlertStyle
         let res = alert.runModal()
         if res == NSAlertFirstButtonReturn

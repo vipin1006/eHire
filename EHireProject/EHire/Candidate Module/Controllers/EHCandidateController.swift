@@ -152,7 +152,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         {
           if candidateRecord.name! == "" || candidateRecord.phoneNumber! == "" || candidateRecord.experience! == " " || candidateRecord.requisition! == ""
           {
-            Utility.alertPopup("Candidate can not be added", informativeText: "Please fill all the details of the selected candidate before adding a new candidate", okCompletionHandler:
+            Utility.alertPopup("Candidate can not be added", informativeText: "Please fill all the details of the selected candidate before adding a new candidate", isCancelBtnNeeded:true,okCompletionHandler:
                 { () -> Void in
                         
                 })
@@ -230,7 +230,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
    @IBAction func removeCandidate(sender: AnyObject)
    {
    
-    Utility.alertPopup("Are you sure you want to delete the Candidate?", informativeText: "", okCompletionHandler:{() in
+    Utility.alertPopup("Are you sure you want to delete the Candidate?", informativeText: "", isCancelBtnNeeded:true,okCompletionHandler:{() in
         self.deleteCandidate()
       })
    }
@@ -258,7 +258,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
               let candidateRecord = candidateArray.objectAtIndex(tableView.selectedRow) as! Candidate
               if  candidateRecord.name! == "" || candidateRecord.phoneNumber! == "" || candidateRecord.experience! == " " || candidateRecord.requisition! == ""
               {
-                Utility.alertPopup("Candidate details are not complete. Cannot proceed to provide feedback.", informativeText:"Please enter all the candidate information before proceeding.", okCompletionHandler: { () -> Void in
+                Utility.alertPopup("Candidate details are not complete. Cannot proceed to provide feedback.", informativeText:"Please enter all the candidate information before proceeding.",isCancelBtnNeeded:false, okCompletionHandler: { () -> Void in
                         })
               }
               else
@@ -283,7 +283,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         {
          if EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
          {
-          Utility.alertPopup("Error", informativeText: "Enter an appropriate candidate name",okCompletionHandler: nil)
+          Utility.alertPopup("Error", informativeText: "Enter an appropriate candidate name",isCancelBtnNeeded:false,okCompletionHandler: nil)
             textField.stringValue = ""
           candidate.name = textField.stringValue
          }
@@ -309,7 +309,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             {
                 if EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
                 {
-                    Utility.alertPopup("Error", informativeText: "Enter an appropriate candidate requisition",okCompletionHandler: nil)
+                    Utility.alertPopup("Error", informativeText: "Enter an appropriate candidate requisition",isCancelBtnNeeded:false,okCompletionHandler: nil)
                     textField.stringValue = ""
                     candidate.requisition = textField.stringValue
                 }

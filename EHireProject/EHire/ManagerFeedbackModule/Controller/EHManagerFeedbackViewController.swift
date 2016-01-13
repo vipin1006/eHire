@@ -210,7 +210,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         let ratingCell = sender.superview?.superview as! EHManagerFeedBackCustomTableView
         if ratingCell.titleName.stringValue == "Enter Title"
         {
-            alertPopup("Enter the Title", informativeText: "Please select and click on Enter Title field to give title name")
+            Utility.alertPopup("Enter the Title", informativeText: "Please select and click on Enter Title field to give title name",isCancelBtnNeeded:false,okCompletionHandler: nil)
+
             return
         }
         displayStar(ratingCell, lbl: ratingCell.feedBackRating, sender: sender )
@@ -239,7 +240,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     {
         if managerialRoundFeedback.skillSet.count > 0 && cell?.titleName.stringValue == "Enter Title"
         {
-            alertPopup("Enter Title", informativeText: "Please enter previous selected title")
+            Utility.alertPopup("Enter Title", informativeText: "Please enter previous selected title",isCancelBtnNeeded:false,okCompletionHandler: nil)
         }
         else
         {
@@ -483,7 +484,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     {
         var isValid : Bool = false
         if cell?.feedBackRating.stringValue==""{
-            alertPopup("Select Stars", informativeText: "Please provide rating for technical skills")
+            Utility.alertPopup("Select Stars", informativeText: "Please provide rating for technical skills",isCancelBtnNeeded:false,okCompletionHandler: nil)
             return isValid
         }else if !validationForTextView(textViewCommentsForOverAllTechnologyAssessment,title: "Overall Feedback On Technology",informativeText: "Overall assessment of Technology field shold not be blank"){
             
@@ -534,7 +535,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     {
         if subView.string == ""
         {
-            alertPopup(title,informativeText:informativeText)
+            Utility.alertPopup(title, informativeText: informativeText,isCancelBtnNeeded:false,okCompletionHandler: nil)
+
             return false
         }
         
@@ -550,7 +552,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     {
         if subView.stringValue == ""
         {
-            alertPopup(title,informativeText:informativeText)
+            Utility.alertPopup(title, informativeText: informativeText,isCancelBtnNeeded:false,okCompletionHandler: nil)
+
             return false
         }
         
@@ -561,16 +564,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         }
     }
    
-    //MARK:- Method to shoe alert
-    func alertPopup(data:String, informativeText:String){
-        
-        let alert:NSAlert = NSAlert()
-        alert.messageText = data
-        alert.informativeText = informativeText
-        alert.addButtonWithTitle("OK")
-        alert.addButtonWithTitle("Cancel")
-        alert.runModal()
-    }
     
     //MARK:- Core Data Saving Methods
     
@@ -614,15 +607,19 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             let managerFeedbackAccessLayer = EHManagerFeedbackDataAccessLayer(managerFeedbackModel: managerialRoundFeedback)
         if isFeedBackSaved==false{
             if managerFeedbackAccessLayer.insertManagerFeedback(selectedCandidate!){
-                alertPopup("Success",informativeText:"Feedback for Managerround \((selectedCandidate?.interviewedByManagers?.count)!) has been sucessfully saved")
                 isFeedBackSaved = true
+                
+                Utility.alertPopup("Success", informativeText: "Feedback for Managerround \((selectedCandidate?.interviewedByManagers?.count)!) has been sucessfully saved",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                
+                
             }
         }else{
             let sortedResults = toSortArray((selectedCandidate?.interviewedByManagers?.allObjects)!)
             let managerFeedback =  sortedResults[selectedSegment!] as! ManagerFeedBack
 
             if managerFeedbackAccessLayer.updateManagerFeedback(selectedCandidate!, managerFeedback:managerFeedback){
-                alertPopup("Success",informativeText:"Feedback for Managerround has been updated Successfully")
+                Utility.alertPopup("Success", informativeText: "Feedback for Managerround has been updated Successfully",isCancelBtnNeeded:false,okCompletionHandler: nil)
+
             }
         }
        
@@ -837,14 +834,17 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             let managerFeedbackAccessLayer = EHManagerFeedbackDataAccessLayer(managerFeedbackModel: managerialRoundFeedback)
             if isFeedBackSaved==false{
                 if managerFeedbackAccessLayer.insertManagerFeedback(selectedCandidate!){
-                    alertPopup("Success",informativeText:"Feedback for Managerround \((selectedCandidate?.interviewedByManagers?.count)!) has been sucessfully saved")
+                    
+                    Utility.alertPopup("Success", informativeText: "Feedback for Managerround \((selectedCandidate?.interviewedByManagers?.count)!) has been sucessfully saved",isCancelBtnNeeded:false,okCompletionHandler: nil)
+
                 }
             }else{
                 let sortedResults = toSortArray((selectedCandidate?.interviewedByManagers?.allObjects)!)
                 let managerFeedback =  sortedResults[selectedSegment!] as! ManagerFeedBack
-                
+                print(selectedSegment)
                 if managerFeedbackAccessLayer.updateManagerFeedback(selectedCandidate!, managerFeedback:managerFeedback){
-                    alertPopup("Success",informativeText:"Feedback for Managerround has been updated Successfully")
+                    Utility.alertPopup("Success", informativeText: "Feedback for Managerround has been updated Successfully",isCancelBtnNeeded:false,okCompletionHandler: nil)
+
                 }
             }
         
@@ -856,8 +856,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     //MARK:- Refresh All Fields
     func refreshAllFields()
     {
-
-        
         textFieldCandidateName.stringValue = ""
         textFieldCorporateGrade.stringValue = ""
         textViewCommitments.string = ""

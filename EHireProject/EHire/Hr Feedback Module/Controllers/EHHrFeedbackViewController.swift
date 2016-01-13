@@ -123,7 +123,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate {
         {
             if numericValidations()
             {
-                  Utility.alertPopup("Are you sure you want to \'Submit\' the details?", informativeText:"") { () -> Void in
+                  Utility.alertPopup("Are you sure you want to \'Submit\' the details?", informativeText:"",isCancelBtnNeeded:true) { () -> Void in
                     
                     self.candidateInfo["isHrFormSubmitted"] = 1
                     
