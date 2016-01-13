@@ -13,7 +13,7 @@ class HrFeedbackDataAccess: NSObject {
   
   
      
-    class func saveHrFeedbackOfCandidate(candidate:Candidate,candidateInfo:[String:AnyObject])
+    class func saveHrFeedbackOfCandidate(candidate:Candidate,candidateInfo:[String:AnyObject])->Bool
     {
         
     HrFeedbackDataAccess.candidateProfessionalInfo(candidate, candidateInfo: candidateInfo)
@@ -32,13 +32,14 @@ class HrFeedbackDataAccess: NSObject {
         {
             try candidate.managedObjectContext?.save()
             
-            print("Candidate Complete Details are \(candidate)")
+            return true
         }
         catch let error as NSError
         {
             print(error.localizedDescription)
         }
         
+        return false
     }
     
   class  func candidateProfessionalInfo(candidate:Candidate,candidateInfo:[String:AnyObject])

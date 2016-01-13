@@ -73,27 +73,19 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate {
     var candidateInfo:Dictionary<String,AnyObject> = [:]
     var candidate:Candidate?
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         // Do view setup here.
-      
-        
-        
-        
     }
     
     override func viewWillAppear()
     {
         super.viewWillAppear()
-   
-        
-        print("The Candidate for HR feedback is \(candidate)")
-        
         if candidate?.miscellaneousInfo?.isHrFormSubmitted == 1
         {
             isHrFormEnable = false
         }
-        
         candidateInfo["isVisaAvailable"] = NSNumber(int:0)
         candidateInfo["isRelocationRequested"] = NSNumber(int:0)
         candidateInfo["isInterviewedBefore"] = NSNumber(int:0)
@@ -103,29 +95,26 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate {
         candidateInfo["entitledBonus"] = NSNumber(int:0)
         candidateInfo["anyLegalObligations"] = NSNumber(int:0)
         candidateInfo["isHrFormSubmitted"]   = NSNumber(int:0)
-        
-         showDetailsOfCandidate()
+        showDetailsOfCandidate()
     }
 
     //MARK: IBActions.
     @IBAction func saveCandidateDetails(sender: AnyObject) {
-        
         if saveValidations()
         {
             saveCandidate()
             
-            if isHrFormEnable
+           /* if isHrFormEnable
             {
                 showAlert("Feedback details saved succesfully", info:"")
             }
             else
             {
-                 showAlert("Feedback details submitted succesfully", info:"")
-            }
+                showAlert("Feedback details submitted succesfully", info:"")
+            }*/
+
         }
-        
     }
-    
     
     @IBAction func subbmitCandidateDetails(sender: AnyObject)
     
@@ -141,10 +130,8 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate {
                     self.isHrFormEnable = false
                     
                     self.saveCandidateDetails("")
-                    
-                   
-                }
-             }
+            }
+            }
             
         }
         else
@@ -152,8 +139,6 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate {
             self.showAlert("Some fileds are missing", info:"Please fill up all the required fileds")
         }
    }
-    
-    
     
     @IBAction func passportAvailability(sender:NSButton)
         
@@ -438,9 +423,6 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate {
                 result = false
             }
         }
-        
-       
-        
         if result{
             
             return true
@@ -539,9 +521,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate {
             self.candidateTotalItExperience.stringValue = String(info.totalITExperience!)
             self.currentFixedSalary.stringValue = String(info.fixedSalary!)
             self.currentSalaryVariable.stringValue = String(info.variableSalary!)
-          
-            
-        }
+          }
         
         if let personalInfo = candidate?.personalInfo
         {
@@ -558,7 +538,6 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate {
             {
                 self.passportNo.integerValue = 1
                 self.passportYes.integerValue = 0
-
             }
         }
         
@@ -583,8 +562,6 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate {
             self.educationGapDetails.stringValue = info.educationGap!
             self.highestEducationPercentage.stringValue = String(info.percentage!)
             self.highestEducationBoardOrUniversity.stringValue = info.university!
-        
-            
         }
         if let documentInfo = candidate?.documentDetails
         {
@@ -727,17 +704,11 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate {
                 return false
             }
         }
-        
-        
-      return true
-        
-        
+    
+        return true
     }
     
- 
-    
-   
-  func saveCandidate()
+    func saveCandidate()
   {
     candidateInfo["candidateName"] = candidateName.stringValue
     candidateInfo["candidateBusinessUnit"] = candidateBusinessUnit.stringValue
@@ -761,10 +732,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate {
     candidateInfo["highestEducationPercentage"] = highestEducationPercentage.floatValue
     candidateInfo["educationGapDetails"] = educationGapDetails.stringValue
     candidateInfo["jobChangeReasons"] = jobChangeReasons.stringValue
-    
     candidateInfo["pastInterviewdDate"] = pastInterviedDate.dateValue
-    
-    
     candidateInfo["jobChangeReasons"] = jobChangeReasons.stringValue
     candidateInfo["missingDocuments"] = missingDocuments.stringValue
     candidateInfo["currentFixedSalary"] = currentFixedSalary.floatValue
@@ -778,10 +746,18 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate {
     candidateInfo["EmploymentGap"] = employmentGap.stringValue
     candidateInfo["lastDesignation"] = lastDesignation.stringValue
     candidateInfo["leavePlanReasons"] = leavePlanReasons.stringValue
-    
-    HrFeedbackDataAccess.saveHrFeedbackOfCandidate(candidate!,candidateInfo: candidateInfo)
-
-  }
+   if HrFeedbackDataAccess.saveHrFeedbackOfCandidate(candidate!,candidateInfo: candidateInfo)
+   {
+      if isHrFormEnable
+     {
+        showAlert("Feedback details saved succesfully", info:"")
+     }
+     else
+     {
+        showAlert("Feedback details submitted succesfully", info:"")
+     }
+   }
+}
     
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
         
