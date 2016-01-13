@@ -52,6 +52,7 @@ class EHFeedbackViewController: NSViewController
         self.subRound.hidden = false
         let mainRound:NSSegmentedControl = sender as! NSSegmentedControl
         let techLeadCount = (selectedCandidate?.interviewedByTechLeads)!.count
+        let managerCount =  (selectedCandidate?.interviewedByManagers)!.count
         switch mainRound.selectedSegment
         {
         case 0 :
@@ -84,6 +85,7 @@ class EHFeedbackViewController: NSViewController
                 typeOfInterview.setSelected(true, forSegment: 0)
                 return
             }
+           
             
             for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
             {
@@ -120,7 +122,7 @@ class EHFeedbackViewController: NSViewController
             
             if techLeadCount == 0
             {
-                Utility.alertPopup("Alert", informativeText: "Please complete Technical Round(s) before proceeding to the Managerial Round", okCompletionHandler: nil)
+                Utility.alertPopup("Alert", informativeText: "Please complete Technical Round(s) before proceeding to the HR Round", okCompletionHandler: nil)
                 subRound.selectedSegment = 0
                 typeOfInterview.setSelected(true, forSegment: 0)
                 return
@@ -135,13 +137,40 @@ class EHFeedbackViewController: NSViewController
                     {
                        Utility.alertPopup("Alert", informativeText: "This candidate has been 'Rejected' in the Technical Round. Hence you cannot proceed to this round.", okCompletionHandler: nil)
                         
-                        self.typeOfInterview.selectedSegment = 0
+                           self.typeOfInterview.selectedSegment = 0
                         
                         return
                     }
                 }
-             
-            
+                
+                if managerCount == 0
+                {
+                    Utility.alertPopup("Alert", informativeText: "Please complete Manager Round(s) before proceeding to the HR Round", okCompletionHandler: nil)
+                    
+                    self.typeOfInterview.selectedSegment = 0
+
+                    return
+                }
+                
+                for feedbackOfManager in (selectedCandidate?.interviewedByManagers)!
+                {
+                    let feedback = feedbackOfManager as! ManagerFeedBack
+                    
+                    if feedback.recommendation == "Rejected"
+                    {
+                        Utility.alertPopup("Alert", informativeText: "This candidate has been 'Rejected' in the Manager Round. Hence you cannot proceed to this round.", okCompletionHandler: nil)
+                        
+                          if self.subRound.segmentCount == 3
+                          {
+                            self.typeOfInterview.selectedSegment = 0
+                          }
+                          else if self.subRound.segmentCount == 2
+                          {
+                            self.typeOfInterview.selectedSegment = 1
+                          }
+                        return
+                    }
+                }
             if !isHrLoaded
             {
                self.addHrFeedBackView()
@@ -298,12 +327,13 @@ class EHFeedbackViewController: NSViewController
                         if feedback.recommendation == "Rejected"
                         {
                             managerFeedback?.alertPopup("Candidate Rejected", informativeText: "This candidate has been 'Rejected' in Round One. Hence you cannot proceed to this round.")
-                            subRound.selectedSegment = 0
+                          
                         }
                         else if managerFeedback?.selectedCandidate?.interviewedByManagers?.count > self.subRound.selectedSegment{
                             
                             let candidateObjects = selectedCandidate?.interviewedByManagers?.allObjects
                             managerFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
+                           
                         }
                         else
                         {
