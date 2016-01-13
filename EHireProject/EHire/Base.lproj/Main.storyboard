@@ -2046,7 +2046,7 @@ CA
                         <outlet property="recommentationField" destination="KEX-d7-PNz" id="tkE-dj-eAN"/>
                         <outlet property="requisitionNameField" destination="N33-f2-XzK" id="fnb-st-sJp"/>
                         <outlet property="saveButton" destination="2Wn-N3-e7C" id="45W-HP-MnO"/>
-                        <outlet property="submitButton" destination="MtI-02-dgX" id="3K5-RC-SjF"/>
+                        <outlet property="submitButton" destination="MtI-02-dgX" id="C9t-KB-zbL"/>
                         <outlet property="tableView" destination="2Zk-Rn-2d9" id="aHW-fg-Cic"/>
                         <outlet property="technicalFeedbackMainView" destination="TA5-L1-aWy" id="kGa-31-jDe"/>
                         <outlet property="textViewOfCandidateAssessment" destination="k5G-My-Zu5" id="6Tr-04-ltx"/>

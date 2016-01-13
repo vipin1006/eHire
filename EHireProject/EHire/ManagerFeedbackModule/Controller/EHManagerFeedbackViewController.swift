@@ -103,10 +103,10 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         setDefaultCgDeviationAndInterviewMode()
         
         
-        
+         selectedSegment = 0
         if selectedCandidate != nil
         { if selectedCandidate?.interviewedByManagers?.count != 0{
-            selectedSegment = 0
+           
             sortArray((selectedCandidate?.interviewedByManagers?.allObjects)!,index: 0)
 
         }else{
@@ -578,7 +578,9 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     {
         
         
-        
+        if managerialRoundFeedback.isSubmitted == true{
+            return
+        }
         
               managerialRoundFeedback.commentsOnCandidate = NSAttributedString(string: textViewCommentsForOverAllCandidateAssessment.string!)
              managerialRoundFeedback.commentsOnTechnology = NSAttributedString(string: textViewCommentsForOverAllTechnologyAssessment.string!)
@@ -613,6 +615,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         if isFeedBackSaved==false{
             if managerFeedbackAccessLayer.insertManagerFeedback(selectedCandidate!){
                 alertPopup("Success",informativeText:"Feedback for Managerround \((selectedCandidate?.interviewedByManagers?.count)!) has been sucessfully saved")
+                isFeedBackSaved = true
             }
         }else{
             let sortedResults = toSortArray((selectedCandidate?.interviewedByManagers?.allObjects)!)

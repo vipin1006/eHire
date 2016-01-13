@@ -14,11 +14,11 @@ class EHTechnicalFeedbackModel: NSObject
     var commentsOnTechnology: String?
     var techLeadName: String?
     var modeOfInterview: String?
-    var ratingOnCandidate: Int32?
-    var ratingOnTechnical: Int32?
+    var ratingOnCandidate: Int16?
+    var ratingOnTechnical: Int16?
     var recommendation: String?
     var candidate: Candidate?
-    var skills : [SkillSet]?
-    var isFeedbackSubmitted:NSNumber = 0
+    var skills : [SkillSet]? = []
     var designation: String?
+    var isFeedbackSubmitted : NSNumber?
 }
