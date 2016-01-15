@@ -291,7 +291,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         {
          if EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
          {
-          Utility.alertPopup("Error", informativeText: "Enter an appropriate candidate name",isCancelBtnNeeded:false,okCompletionHandler: nil)
+          Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters for candidate name.",isCancelBtnNeeded:false,okCompletionHandler: nil)
             textField.stringValue = ""
           candidate.name = textField.stringValue
          }
@@ -311,7 +311,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             {
                 if !EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
                 {
-                    Utility.alertPopup("Error", informativeText: "Enter an appropriate candidate experience",isCancelBtnNeeded:false,okCompletionHandler:nil)
+                    Utility.alertPopup("Error", informativeText: "Please enter a numerical value for experience.",isCancelBtnNeeded:false,okCompletionHandler:nil)
                     textField.stringValue = ""
                 }
                 else
@@ -330,7 +330,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             {
                 if !EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
                 {
-                    Utility.alertPopup("Error", informativeText: "Enter an appropriate candidate phone number",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                    Utility.alertPopup("Error", informativeText: "Please enter a 10 digit mobile phone number. ",isCancelBtnNeeded:false,okCompletionHandler: nil)
                     textField.stringValue = ""
                 }
                 else if ((fieldEditor.string?.characters.count >= 10) && (fieldEditor.string?.characters.count <= 12))
@@ -340,7 +340,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
                 }
                 else
                 {
-                    Utility.alertPopup("Error", informativeText: "Enter an appropriate candidate phone number",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                    Utility.alertPopup("Error", informativeText: "Please enter a 10 digit mobile phone number.",isCancelBtnNeeded:false,okCompletionHandler: nil)
                     textField.stringValue = ""
                 }
             }
@@ -355,7 +355,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             {
                 if EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
                 {
-                    Utility.alertPopup("Error", informativeText: "Enter an appropriate candidate requisition",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                    Utility.alertPopup("Error", informativeText: "Please ennter an alpha-numeric value for Requisition.",isCancelBtnNeeded:false,okCompletionHandler: nil)
                     textField.stringValue = ""
                     candidate.requisition = textField.stringValue
                 }
