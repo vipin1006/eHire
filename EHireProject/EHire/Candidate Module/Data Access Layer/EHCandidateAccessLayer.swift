@@ -10,7 +10,7 @@ import Cocoa
 
 class EHCandidateAccessLayer: NSObject
 {
-    class func addCandidate(name:String,experience:String,phoneNumber:String,requisition:String,interviewTime:NSDate, technologyName:String, interviewDate:NSDate) -> Candidate
+    class func addCandidate(name:String,experience:NSNumber,phoneNumber:String,requisition:String,interviewTime:NSDate, technologyName:String, interviewDate:NSDate) -> Candidate
     {
         
         let entityDescription = EHCoreDataHelper.createEntity("Candidate", managedObjectContext: EHCoreDataStack.sharedInstance.managedObjectContext)
