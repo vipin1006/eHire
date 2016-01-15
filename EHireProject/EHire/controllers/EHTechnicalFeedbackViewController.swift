@@ -303,7 +303,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             }
         }
         
-        
         for ratingsView in cellView.starCustomView.subviews
         {
             let feedbackview = ratingsView as! NSButton
@@ -797,4 +796,9 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         isFeedBackSaved = false
         tableView.reloadData()
      }
+    
+    @IBAction func clearAllFields(sender: AnyObject)
+    {
+        refreshAllFields()
+    }
 }

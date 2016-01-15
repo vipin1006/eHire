@@ -902,5 +902,9 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         tableView.reloadData()
     }
     
+    @IBAction func clearAllFields(sender: AnyObject)
+    {
+        refreshAllFields()
+    }
 }
 
