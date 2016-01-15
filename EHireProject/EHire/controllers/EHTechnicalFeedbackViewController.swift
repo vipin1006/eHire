@@ -517,9 +517,17 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     //MARK: TextField Delegate method
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
     {
-        let skill = skillsAndRatingsTitleArray[self.tableView.selectedRow]
-        skill.skillName = fieldEditor.string
         return true
+    }
+    
+    override func controlTextDidEndEditing(obj: NSNotification)
+    {
+        let textFieldObject = obj.object as! NSTextField
+        if textFieldObject.superview is EHRatingsTableCellView
+        {
+            let skillSetObject =  skillsAndRatingsTitleArray[textFieldObject.tag]
+            skillSetObject.skillName = textFieldObject.stringValue
+        }
     }
     
     //MARK: Button Actions
