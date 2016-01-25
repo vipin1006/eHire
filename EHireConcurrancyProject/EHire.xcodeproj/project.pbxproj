@@ -1,0 +1,1202 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2D3A3D7D1C3A389C00AA56E1 /* EHTechnologyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3A3D7C1C3A389C00AA56E1 /* EHTechnologyViewController.swift */; };
+		2D4D22071C3BB0EC00DA4C5E /* Candidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D21EF1C3BB0EC00DA4C5E /* Candidate.swift */; };
+		2D4D22081C3BB0EC00DA4C5E /* Candidate+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D21F01C3BB0EC00DA4C5E /* Candidate+CoreDataProperties.swift */; };
+		2D4D22091C3BB0EC00DA4C5E /* CandidateBasicProfessionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D21F11C3BB0EC00DA4C5E /* CandidateBasicProfessionalInfo.swift */; };
+		2D4D220A1C3BB0EC00DA4C5E /* CandidateBasicProfessionalInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D21F21C3BB0EC00DA4C5E /* CandidateBasicProfessionalInfo+CoreDataProperties.swift */; };
+		2D4D220B1C3BB0EC00DA4C5E /* CandidateDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D21F31C3BB0EC00DA4C5E /* CandidateDocuments.swift */; };
+		2D4D220C1C3BB0EC00DA4C5E /* CandidateDocuments+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D21F41C3BB0EC00DA4C5E /* CandidateDocuments+CoreDataProperties.swift */; };
+		2D4D220D1C3BB0EC00DA4C5E /* CandidateMiscellaneous.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D21F51C3BB0EC00DA4C5E /* CandidateMiscellaneous.swift */; };
+		2D4D220E1C3BB0EC00DA4C5E /* CandidateMiscellaneous+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D21F61C3BB0EC00DA4C5E /* CandidateMiscellaneous+CoreDataProperties.swift */; };
+		2D4D220F1C3BB0EC00DA4C5E /* CandidatePersonalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D21F71C3BB0EC00DA4C5E /* CandidatePersonalInfo.swift */; };
+		2D4D22101C3BB0EC00DA4C5E /* CandidatePersonalInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D21F81C3BB0EC00DA4C5E /* CandidatePersonalInfo+CoreDataProperties.swift */; };
+		2D4D22111C3BB0EC00DA4C5E /* CandidatePreviousEmploymentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D21F91C3BB0EC00DA4C5E /* CandidatePreviousEmploymentInfo.swift */; };
+		2D4D22121C3BB0EC00DA4C5E /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D21FA1C3BB0EC00DA4C5E /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift */; };
+		2D4D22131C3BB0EC00DA4C5E /* CandidateQualification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D21FB1C3BB0EC00DA4C5E /* CandidateQualification.swift */; };
+		2D4D22141C3BB0EC00DA4C5E /* CandidateQualification+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D21FC1C3BB0EC00DA4C5E /* CandidateQualification+CoreDataProperties.swift */; };
+		2D4D22151C3BB0EC00DA4C5E /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D21FD1C3BB0EC00DA4C5E /* Date.swift */; };
+		2D4D22161C3BB0EC00DA4C5E /* Date+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D21FE1C3BB0EC00DA4C5E /* Date+CoreDataProperties.swift */; };
+		2D4D22171C3BB0EC00DA4C5E /* ManagerFeedBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D21FF1C3BB0EC00DA4C5E /* ManagerFeedBack.swift */; };
+		2D4D22181C3BB0EC00DA4C5E /* ManagerFeedBack+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D22001C3BB0EC00DA4C5E /* ManagerFeedBack+CoreDataProperties.swift */; };
+		2D4D22191C3BB0EC00DA4C5E /* SkillSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D22011C3BB0EC00DA4C5E /* SkillSet.swift */; };
+		2D4D221A1C3BB0EC00DA4C5E /* SkillSet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D22021C3BB0EC00DA4C5E /* SkillSet+CoreDataProperties.swift */; };
+		2D4D221B1C3BB0EC00DA4C5E /* TechnicalFeedBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D22031C3BB0EC00DA4C5E /* TechnicalFeedBack.swift */; };
+		2D4D221C1C3BB0EC00DA4C5E /* TechnicalFeedBack+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D22041C3BB0EC00DA4C5E /* TechnicalFeedBack+CoreDataProperties.swift */; };
+		2D4D221D1C3BB0EC00DA4C5E /* Technology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D22051C3BB0EC00DA4C5E /* Technology.swift */; };
+		2D4D221E1C3BB0EC00DA4C5E /* Technology+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D22061C3BB0EC00DA4C5E /* Technology+CoreDataProperties.swift */; };
+		2DE1895E1C33D9A6005F90D0 /* EHCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE189561C33D9A6005F90D0 /* EHCoreData.swift */; };
+		2DE1895F1C33D9A6005F90D0 /* EHireBasicsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE189571C33D9A6005F90D0 /* EHireBasicsTest.swift */; };
+		2DE189601C33D9A6005F90D0 /* EHireCandiateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE189581C33D9A6005F90D0 /* EHireCandiateTest.swift */; };
+		2DE189611C33D9A6005F90D0 /* EHireDateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE189591C33D9A6005F90D0 /* EHireDateTest.swift */; };
+		2DE189621C33D9A6005F90D0 /* EHireManagerFeedBackTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1895A1C33D9A6005F90D0 /* EHireManagerFeedBackTest.swift */; };
+		2DE189631C33D9A6005F90D0 /* EHireTechnicalFeedBackTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1895B1C33D9A6005F90D0 /* EHireTechnicalFeedBackTest.swift */; };
+		2DE189641C33D9A6005F90D0 /* EHireTechnologyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1895C1C33D9A6005F90D0 /* EHireTechnologyTest.swift */; };
+		2DE189651C33D9A6005F90D0 /* EHireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1895D1C33D9A6005F90D0 /* EHireTests.swift */; };
+		2FB0ABA41C3CD92F0027E34C /* Welcome.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FB0ABA31C3CD92F0027E34C /* Welcome.png */; };
+		41A97FF51C1956B70016CAB4 /* EHInterviewDateCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF41C1956B70016CAB4 /* EHInterviewDateCustomCell.swift */; };
+		41A97FF91C195E500016CAB4 /* EHTechnologyCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A97FF81C195E500016CAB4 /* EHTechnologyCustomCell.swift */; };
+		4F2536EC1C2179EC000E8C95 /* EHPopOverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536E91C2179EC000E8C95 /* EHPopOverController.swift */; };
+		4F2536ED1C2179EC000E8C95 /* EHTechnologyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536EA1C2179EC000E8C95 /* EHTechnologyViewController.swift */; };
+		4F2536FB1C218172000E8C95 /* DataCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2536FA1C218172000E8C95 /* DataCommunicator.swift */; };
+		4F69D1291C3299880003389E /* EhTechnologyDataLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F69D1281C3299880003389E /* EhTechnologyDataLayer.swift */; };
+		4F767C7D1C3BE48700514A89 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F767C7C1C3BE48700514A89 /* Utility.swift */; };
+		4F7BCA841C2BED8B00D60546 /* EHManagerFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BCA831C2BED8B00D60546 /* EHManagerFeedbackViewController.swift */; };
+		4F7BCA881C2BEE6700D60546 /* EHManagerialFeedbackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BCA871C2BEE6700D60546 /* EHManagerialFeedbackModel.swift */; };
+		4F7BCA8A1C2BF62000D60546 /* EHSkillSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BCA891C2BF62000D60546 /* EHSkillSet.swift */; };
+		4F7BCAC91C325CBD00D60546 /* EHCandidateDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BCAC71C325CBD00D60546 /* EHCandidateDetails.swift */; };
+		52B599311C3F8BBB003FE140 /* EHCandidateAccessLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B599301C3F8BBB003FE140 /* EHCandidateAccessLayer.swift */; };
+		52CB4A581C31379800934A84 /* EHCandidateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CB4A501C31379800934A84 /* EHCandidateController.swift */; };
+		802900001C2A83A10041C74C /* EHHrFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFFA1C2A83A10041C74C /* EHHrFeedbackViewController.swift */; };
+		802900021C2A83CE0041C74C /* HrFeedbackDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802900011C2A83CE0041C74C /* HrFeedbackDataAccess.swift */; };
+		8029FFC51C2A80E90041C74C /* EHCoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFC41C2A80E90041C74C /* EHCoreDataHelper.swift */; };
+		8029FFDF1C2A81970041C74C /* Candidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFC61C2A81970041C74C /* Candidate.swift */; };
+		8029FFE01C2A81970041C74C /* Candidate+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFC71C2A81970041C74C /* Candidate+CoreDataProperties.swift */; };
+		8029FFE11C2A81970041C74C /* CandidateBasicProfessionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFC81C2A81970041C74C /* CandidateBasicProfessionalInfo.swift */; };
+		8029FFE21C2A81970041C74C /* CandidateBasicProfessionalInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFC91C2A81970041C74C /* CandidateBasicProfessionalInfo+CoreDataProperties.swift */; };
+		8029FFE31C2A81970041C74C /* CandidateDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFCA1C2A81970041C74C /* CandidateDocuments.swift */; };
+		8029FFE41C2A81970041C74C /* CandidateDocuments+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFCB1C2A81970041C74C /* CandidateDocuments+CoreDataProperties.swift */; };
+		8029FFE51C2A81970041C74C /* CandidateMiscellaneous.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFCC1C2A81970041C74C /* CandidateMiscellaneous.swift */; };
+		8029FFE61C2A81970041C74C /* CandidateMiscellaneous+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFCD1C2A81970041C74C /* CandidateMiscellaneous+CoreDataProperties.swift */; };
+		8029FFE71C2A81970041C74C /* CandidatePersonalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFCE1C2A81970041C74C /* CandidatePersonalInfo.swift */; };
+		8029FFE81C2A81970041C74C /* CandidatePersonalInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFCF1C2A81970041C74C /* CandidatePersonalInfo+CoreDataProperties.swift */; };
+		8029FFE91C2A81970041C74C /* CandidatePreviousEmploymentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFD01C2A81970041C74C /* CandidatePreviousEmploymentInfo.swift */; };
+		8029FFEA1C2A81970041C74C /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFD11C2A81970041C74C /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift */; };
+		8029FFEB1C2A81970041C74C /* CandidateQualification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFD21C2A81970041C74C /* CandidateQualification.swift */; };
+		8029FFEC1C2A81970041C74C /* CandidateQualification+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFD31C2A81970041C74C /* CandidateQualification+CoreDataProperties.swift */; };
+		8029FFED1C2A81970041C74C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFD41C2A81970041C74C /* Date.swift */; };
+		8029FFEE1C2A81970041C74C /* Date+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFD51C2A81970041C74C /* Date+CoreDataProperties.swift */; };
+		8029FFF21C2A81970041C74C /* SkillSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFD91C2A81970041C74C /* SkillSet.swift */; };
+		8029FFF31C2A81970041C74C /* SkillSet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFDA1C2A81970041C74C /* SkillSet+CoreDataProperties.swift */; };
+		8029FFF41C2A81970041C74C /* TechnicalFeedBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFDB1C2A81970041C74C /* TechnicalFeedBack.swift */; };
+		8029FFF51C2A81970041C74C /* TechnicalFeedBack+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFDC1C2A81970041C74C /* TechnicalFeedBack+CoreDataProperties.swift */; };
+		8029FFF61C2A81970041C74C /* Technology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFDD1C2A81970041C74C /* Technology.swift */; };
+		8029FFF71C2A81970041C74C /* Technology+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFDE1C2A81970041C74C /* Technology+CoreDataProperties.swift */; };
+		804288051C17EBC0003033B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804288041C17EBC0003033B4 /* AppDelegate.swift */; };
+		8042880A1C17EBC0003033B4 /* EHire.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 804288081C17EBC0003033B4 /* EHire.xcdatamodeld */; };
+		8042880C1C17EBC0003033B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8042880B1C17EBC0003033B4 /* Assets.xcassets */; };
+		8042880F1C17EBC0003033B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8042880D1C17EBC0003033B4 /* Main.storyboard */; };
+		804288251C17EBC0003033B4 /* EHireUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804288241C17EBC0003033B4 /* EHireUITests.swift */; };
+		806C9C9A1C2433690039FCF2 /* EHFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806C9C991C2433690039FCF2 /* EHFeedbackViewController.swift */; };
+		806C9CA31C2433D80039FCF2 /* EHManagerFeedBackCustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806C9CA11C2433D80039FCF2 /* EHManagerFeedBackCustomTableView.swift */; };
+		806C9CA41C2433D80039FCF2 /* EHRatingsTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806C9CA21C2433D80039FCF2 /* EHRatingsTableCellView.swift */; };
+		806C9CA61C2433FF0039FCF2 /* EHTechnicalFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806C9CA51C2433FF0039FCF2 /* EHTechnicalFeedbackViewController.swift */; };
+		8070F59A1C24194C00FCEA98 /* selectStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8070F5981C24194C00FCEA98 /* selectStar.png */; };
+		8070F59B1C24194C00FCEA98 /* deselectStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8070F5991C24194C00FCEA98 /* deselectStar.png */; };
+		944783131C2A9A1C00AE33FA /* EHTechnicalFeedbackDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944783121C2A9A1C00AE33FA /* EHTechnicalFeedbackDataAccess.swift */; };
+		9491D7D01C32D22C0088D61A /* EHTechnicalFeedbackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9491D7CF1C32D22C0088D61A /* EHTechnicalFeedbackModel.swift */; };
+		9C4B97FF1C324EE20033412F /* EHCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B97FE1C324EE20033412F /* EHCoreDataStack.swift */; };
+		9C527DF01C3A431B001B62B2 /* EHOnlyDecimalValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C527DEF1C3A431B001B62B2 /* EHOnlyDecimalValueFormatter.swift */; };
+		9CB11FC51C328C1100939D42 /* EHManagerFeedbackDataAccessLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB11FC41C328C1100939D42 /* EHManagerFeedbackDataAccessLayer.swift */; };
+		9CFE9EA21C44D519008C6C15 /* ManagerFeedBack+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFE9EA01C44D519008C6C15 /* ManagerFeedBack+CoreDataProperties.swift */; };
+		9CFE9EA31C44D519008C6C15 /* ManagerFeedBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFE9EA11C44D519008C6C15 /* ManagerFeedBack.swift */; };
+		9CFE9EA51C465EFE008C6C15 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFE9EA41C465EFE008C6C15 /* CoreDataStack.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		804288161C17EBC0003033B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 804287F91C17EBC0003033B4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 804288001C17EBC0003033B4;
+			remoteInfo = EHire;
+		};
+		804288211C17EBC0003033B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 804287F91C17EBC0003033B4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 804288001C17EBC0003033B4;
+			remoteInfo = EHire;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2D3A3D7C1C3A389C00AA56E1 /* EHTechnologyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHTechnologyViewController.swift; path = "View Controllers Test Cases/EHTechnologyViewController.swift"; sourceTree = "<group>"; };
+		2D4D21EF1C3BB0EC00DA4C5E /* Candidate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Candidate.swift; path = "Crud Test For Entity/Candidate.swift"; sourceTree = "<group>"; };
+		2D4D21F01C3BB0EC00DA4C5E /* Candidate+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Candidate+CoreDataProperties.swift"; path = "Crud Test For Entity/Candidate+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D4D21F11C3BB0EC00DA4C5E /* CandidateBasicProfessionalInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CandidateBasicProfessionalInfo.swift; path = "Crud Test For Entity/CandidateBasicProfessionalInfo.swift"; sourceTree = "<group>"; };
+		2D4D21F21C3BB0EC00DA4C5E /* CandidateBasicProfessionalInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CandidateBasicProfessionalInfo+CoreDataProperties.swift"; path = "Crud Test For Entity/CandidateBasicProfessionalInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D4D21F31C3BB0EC00DA4C5E /* CandidateDocuments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CandidateDocuments.swift; path = "Crud Test For Entity/CandidateDocuments.swift"; sourceTree = "<group>"; };
+		2D4D21F41C3BB0EC00DA4C5E /* CandidateDocuments+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CandidateDocuments+CoreDataProperties.swift"; path = "Crud Test For Entity/CandidateDocuments+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D4D21F51C3BB0EC00DA4C5E /* CandidateMiscellaneous.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CandidateMiscellaneous.swift; path = "Crud Test For Entity/CandidateMiscellaneous.swift"; sourceTree = "<group>"; };
+		2D4D21F61C3BB0EC00DA4C5E /* CandidateMiscellaneous+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CandidateMiscellaneous+CoreDataProperties.swift"; path = "Crud Test For Entity/CandidateMiscellaneous+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D4D21F71C3BB0EC00DA4C5E /* CandidatePersonalInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CandidatePersonalInfo.swift; path = "Crud Test For Entity/CandidatePersonalInfo.swift"; sourceTree = "<group>"; };
+		2D4D21F81C3BB0EC00DA4C5E /* CandidatePersonalInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CandidatePersonalInfo+CoreDataProperties.swift"; path = "Crud Test For Entity/CandidatePersonalInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D4D21F91C3BB0EC00DA4C5E /* CandidatePreviousEmploymentInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CandidatePreviousEmploymentInfo.swift; path = "Crud Test For Entity/CandidatePreviousEmploymentInfo.swift"; sourceTree = "<group>"; };
+		2D4D21FA1C3BB0EC00DA4C5E /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CandidatePreviousEmploymentInfo+CoreDataProperties.swift"; path = "Crud Test For Entity/CandidatePreviousEmploymentInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D4D21FB1C3BB0EC00DA4C5E /* CandidateQualification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CandidateQualification.swift; path = "Crud Test For Entity/CandidateQualification.swift"; sourceTree = "<group>"; };
+		2D4D21FC1C3BB0EC00DA4C5E /* CandidateQualification+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CandidateQualification+CoreDataProperties.swift"; path = "Crud Test For Entity/CandidateQualification+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D4D21FD1C3BB0EC00DA4C5E /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Date.swift; path = "Crud Test For Entity/Date.swift"; sourceTree = "<group>"; };
+		2D4D21FE1C3BB0EC00DA4C5E /* Date+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Date+CoreDataProperties.swift"; path = "Crud Test For Entity/Date+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D4D21FF1C3BB0EC00DA4C5E /* ManagerFeedBack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManagerFeedBack.swift; path = "Crud Test For Entity/ManagerFeedBack.swift"; sourceTree = "<group>"; };
+		2D4D22001C3BB0EC00DA4C5E /* ManagerFeedBack+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ManagerFeedBack+CoreDataProperties.swift"; path = "Crud Test For Entity/ManagerFeedBack+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D4D22011C3BB0EC00DA4C5E /* SkillSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SkillSet.swift; path = "Crud Test For Entity/SkillSet.swift"; sourceTree = "<group>"; };
+		2D4D22021C3BB0EC00DA4C5E /* SkillSet+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SkillSet+CoreDataProperties.swift"; path = "Crud Test For Entity/SkillSet+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D4D22031C3BB0EC00DA4C5E /* TechnicalFeedBack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TechnicalFeedBack.swift; path = "Crud Test For Entity/TechnicalFeedBack.swift"; sourceTree = "<group>"; };
+		2D4D22041C3BB0EC00DA4C5E /* TechnicalFeedBack+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TechnicalFeedBack+CoreDataProperties.swift"; path = "Crud Test For Entity/TechnicalFeedBack+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D4D22051C3BB0EC00DA4C5E /* Technology.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Technology.swift; path = "Crud Test For Entity/Technology.swift"; sourceTree = "<group>"; };
+		2D4D22061C3BB0EC00DA4C5E /* Technology+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Technology+CoreDataProperties.swift"; path = "Crud Test For Entity/Technology+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2DE189561C33D9A6005F90D0 /* EHCoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHCoreData.swift; path = "Test Cases/EHCoreData.swift"; sourceTree = "<group>"; };
+		2DE189571C33D9A6005F90D0 /* EHireBasicsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHireBasicsTest.swift; path = "Test Cases/EHireBasicsTest.swift"; sourceTree = "<group>"; };
+		2DE189581C33D9A6005F90D0 /* EHireCandiateTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHireCandiateTest.swift; path = "Test Cases/EHireCandiateTest.swift"; sourceTree = "<group>"; };
+		2DE189591C33D9A6005F90D0 /* EHireDateTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHireDateTest.swift; path = "Test Cases/EHireDateTest.swift"; sourceTree = "<group>"; };
+		2DE1895A1C33D9A6005F90D0 /* EHireManagerFeedBackTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHireManagerFeedBackTest.swift; path = "Test Cases/EHireManagerFeedBackTest.swift"; sourceTree = "<group>"; };
+		2DE1895B1C33D9A6005F90D0 /* EHireTechnicalFeedBackTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHireTechnicalFeedBackTest.swift; path = "Test Cases/EHireTechnicalFeedBackTest.swift"; sourceTree = "<group>"; };
+		2DE1895C1C33D9A6005F90D0 /* EHireTechnologyTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHireTechnologyTest.swift; path = "Test Cases/EHireTechnologyTest.swift"; sourceTree = "<group>"; };
+		2DE1895D1C33D9A6005F90D0 /* EHireTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHireTests.swift; path = "Test Cases/EHireTests.swift"; sourceTree = "<group>"; };
+		2FB0ABA31C3CD92F0027E34C /* Welcome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Welcome.png; sourceTree = "<group>"; };
+		4136DE551C21284800BDB8B7 /* EHire-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EHire-Bridging-Header.h"; sourceTree = "<group>"; };
+		41A97FF41C1956B70016CAB4 /* EHInterviewDateCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHInterviewDateCustomCell.swift; sourceTree = "<group>"; };
+		41A97FF81C195E500016CAB4 /* EHTechnologyCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnologyCustomCell.swift; sourceTree = "<group>"; };
+		4F2536E91C2179EC000E8C95 /* EHPopOverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHPopOverController.swift; sourceTree = "<group>"; };
+		4F2536EA1C2179EC000E8C95 /* EHTechnologyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnologyViewController.swift; sourceTree = "<group>"; };
+		4F2536FA1C218172000E8C95 /* DataCommunicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataCommunicator.swift; sourceTree = "<group>"; };
+		4F69D1281C3299880003389E /* EhTechnologyDataLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EhTechnologyDataLayer.swift; path = DataAcessLayer/EhTechnologyDataLayer.swift; sourceTree = "<group>"; };
+		4F767C7C1C3BE48700514A89 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		4F7BCA831C2BED8B00D60546 /* EHManagerFeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHManagerFeedbackViewController.swift; path = EHire/ManagerFeedbackModule/Controller/EHManagerFeedbackViewController.swift; sourceTree = SOURCE_ROOT; };
+		4F7BCA871C2BEE6700D60546 /* EHManagerialFeedbackModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHManagerialFeedbackModel.swift; path = EHire/ManagerFeedbackModule/Model/EHManagerialFeedbackModel.swift; sourceTree = SOURCE_ROOT; };
+		4F7BCA891C2BF62000D60546 /* EHSkillSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHSkillSet.swift; path = EHire/ManagerFeedbackModule/Model/EHSkillSet.swift; sourceTree = SOURCE_ROOT; };
+		4F7BCAC71C325CBD00D60546 /* EHCandidateDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCandidateDetails.swift; sourceTree = "<group>"; };
+		52B599301C3F8BBB003FE140 /* EHCandidateAccessLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCandidateAccessLayer.swift; sourceTree = "<group>"; };
+		52CB4A501C31379800934A84 /* EHCandidateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCandidateController.swift; sourceTree = "<group>"; };
+		802900011C2A83CE0041C74C /* HrFeedbackDataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HrFeedbackDataAccess.swift; sourceTree = "<group>"; };
+		8029FFC41C2A80E90041C74C /* EHCoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCoreDataHelper.swift; sourceTree = "<group>"; };
+		8029FFC61C2A81970041C74C /* Candidate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Candidate.swift; sourceTree = "<group>"; };
+		8029FFC71C2A81970041C74C /* Candidate+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Candidate+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8029FFC81C2A81970041C74C /* CandidateBasicProfessionalInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidateBasicProfessionalInfo.swift; sourceTree = "<group>"; };
+		8029FFC91C2A81970041C74C /* CandidateBasicProfessionalInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CandidateBasicProfessionalInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8029FFCA1C2A81970041C74C /* CandidateDocuments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidateDocuments.swift; sourceTree = "<group>"; };
+		8029FFCB1C2A81970041C74C /* CandidateDocuments+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CandidateDocuments+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8029FFCC1C2A81970041C74C /* CandidateMiscellaneous.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidateMiscellaneous.swift; sourceTree = "<group>"; };
+		8029FFCD1C2A81970041C74C /* CandidateMiscellaneous+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CandidateMiscellaneous+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8029FFCE1C2A81970041C74C /* CandidatePersonalInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidatePersonalInfo.swift; sourceTree = "<group>"; };
+		8029FFCF1C2A81970041C74C /* CandidatePersonalInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CandidatePersonalInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8029FFD01C2A81970041C74C /* CandidatePreviousEmploymentInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidatePreviousEmploymentInfo.swift; sourceTree = "<group>"; };
+		8029FFD11C2A81970041C74C /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CandidatePreviousEmploymentInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8029FFD21C2A81970041C74C /* CandidateQualification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidateQualification.swift; sourceTree = "<group>"; };
+		8029FFD31C2A81970041C74C /* CandidateQualification+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CandidateQualification+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8029FFD41C2A81970041C74C /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		8029FFD51C2A81970041C74C /* Date+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8029FFD91C2A81970041C74C /* SkillSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillSet.swift; sourceTree = "<group>"; };
+		8029FFDA1C2A81970041C74C /* SkillSet+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SkillSet+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8029FFDB1C2A81970041C74C /* TechnicalFeedBack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TechnicalFeedBack.swift; sourceTree = "<group>"; };
+		8029FFDC1C2A81970041C74C /* TechnicalFeedBack+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TechnicalFeedBack+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8029FFDD1C2A81970041C74C /* Technology.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Technology.swift; sourceTree = "<group>"; };
+		8029FFDE1C2A81970041C74C /* Technology+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Technology+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8029FFFA1C2A83A10041C74C /* EHHrFeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHHrFeedbackViewController.swift; sourceTree = "<group>"; };
+		804288011C17EBC0003033B4 /* EHire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EHire.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		804288041C17EBC0003033B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		804288091C17EBC0003033B4 /* EHire.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EHire.xcdatamodel; sourceTree = "<group>"; };
+		8042880B1C17EBC0003033B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8042880E1C17EBC0003033B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		804288101C17EBC0003033B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		804288151C17EBC0003033B4 /* EHireTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EHireTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8042881B1C17EBC0003033B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		804288201C17EBC0003033B4 /* EHireUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EHireUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		804288241C17EBC0003033B4 /* EHireUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EHireUITests.swift; sourceTree = "<group>"; };
+		804288261C17EBC0003033B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		806C9C991C2433690039FCF2 /* EHFeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHFeedbackViewController.swift; path = EHire/controllers/EHFeedbackViewController.swift; sourceTree = SOURCE_ROOT; };
+		806C9CA11C2433D80039FCF2 /* EHManagerFeedBackCustomTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHManagerFeedBackCustomTableView.swift; path = EHire/controllers/EHManagerFeedBackCustomTableView.swift; sourceTree = SOURCE_ROOT; };
+		806C9CA21C2433D80039FCF2 /* EHRatingsTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHRatingsTableCellView.swift; path = EHire/controllers/EHRatingsTableCellView.swift; sourceTree = SOURCE_ROOT; };
+		806C9CA51C2433FF0039FCF2 /* EHTechnicalFeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHTechnicalFeedbackViewController.swift; path = EHire/controllers/EHTechnicalFeedbackViewController.swift; sourceTree = SOURCE_ROOT; };
+		8070F5981C24194C00FCEA98 /* selectStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selectStar.png; sourceTree = "<group>"; };
+		8070F5991C24194C00FCEA98 /* deselectStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deselectStar.png; sourceTree = "<group>"; };
+		944783121C2A9A1C00AE33FA /* EHTechnicalFeedbackDataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnicalFeedbackDataAccess.swift; sourceTree = SOURCE_ROOT; };
+		9491D7CF1C32D22C0088D61A /* EHTechnicalFeedbackModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnicalFeedbackModel.swift; sourceTree = SOURCE_ROOT; };
+		9C4B97FE1C324EE20033412F /* EHCoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCoreDataStack.swift; sourceTree = "<group>"; };
+		9C527DEF1C3A431B001B62B2 /* EHOnlyDecimalValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHOnlyDecimalValueFormatter.swift; sourceTree = "<group>"; };
+		9CB11FC41C328C1100939D42 /* EHManagerFeedbackDataAccessLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHManagerFeedbackDataAccessLayer.swift; sourceTree = SOURCE_ROOT; };
+		9CFE9EA01C44D519008C6C15 /* ManagerFeedBack+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagerFeedBack+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9CFE9EA11C44D519008C6C15 /* ManagerFeedBack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerFeedBack.swift; sourceTree = "<group>"; };
+		9CFE9EA41C465EFE008C6C15 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		804287FE1C17EBC0003033B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		804288121C17EBC0003033B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8042881D1C17EBC0003033B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2D32201C1C2BC61000679432 /* Crud Test For Entity */ = {
+			isa = PBXGroup;
+			children = (
+				2D4D21EF1C3BB0EC00DA4C5E /* Candidate.swift */,
+				2D4D21F01C3BB0EC00DA4C5E /* Candidate+CoreDataProperties.swift */,
+				2D4D21F11C3BB0EC00DA4C5E /* CandidateBasicProfessionalInfo.swift */,
+				2D4D21F21C3BB0EC00DA4C5E /* CandidateBasicProfessionalInfo+CoreDataProperties.swift */,
+				2D4D21F31C3BB0EC00DA4C5E /* CandidateDocuments.swift */,
+				2D4D21F41C3BB0EC00DA4C5E /* CandidateDocuments+CoreDataProperties.swift */,
+				2D4D21F51C3BB0EC00DA4C5E /* CandidateMiscellaneous.swift */,
+				2D4D21F61C3BB0EC00DA4C5E /* CandidateMiscellaneous+CoreDataProperties.swift */,
+				2D4D21F71C3BB0EC00DA4C5E /* CandidatePersonalInfo.swift */,
+				2D4D21F81C3BB0EC00DA4C5E /* CandidatePersonalInfo+CoreDataProperties.swift */,
+				2D4D21F91C3BB0EC00DA4C5E /* CandidatePreviousEmploymentInfo.swift */,
+				2D4D21FA1C3BB0EC00DA4C5E /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift */,
+				2D4D21FB1C3BB0EC00DA4C5E /* CandidateQualification.swift */,
+				2D4D21FC1C3BB0EC00DA4C5E /* CandidateQualification+CoreDataProperties.swift */,
+				2D4D21FD1C3BB0EC00DA4C5E /* Date.swift */,
+				2D4D21FE1C3BB0EC00DA4C5E /* Date+CoreDataProperties.swift */,
+				2D4D21FF1C3BB0EC00DA4C5E /* ManagerFeedBack.swift */,
+				2D4D22001C3BB0EC00DA4C5E /* ManagerFeedBack+CoreDataProperties.swift */,
+				2D4D22011C3BB0EC00DA4C5E /* SkillSet.swift */,
+				2D4D22021C3BB0EC00DA4C5E /* SkillSet+CoreDataProperties.swift */,
+				2D4D22031C3BB0EC00DA4C5E /* TechnicalFeedBack.swift */,
+				2D4D22041C3BB0EC00DA4C5E /* TechnicalFeedBack+CoreDataProperties.swift */,
+				2D4D22051C3BB0EC00DA4C5E /* Technology.swift */,
+				2D4D22061C3BB0EC00DA4C5E /* Technology+CoreDataProperties.swift */,
+			);
+			name = "Crud Test For Entity";
+			sourceTree = "<group>";
+		};
+		2D3A3D7B1C3A380000AA56E1 /* View Controllers Test Cases */ = {
+			isa = PBXGroup;
+			children = (
+				2D3A3D7C1C3A389C00AA56E1 /* EHTechnologyViewController.swift */,
+			);
+			name = "View Controllers Test Cases";
+			sourceTree = "<group>";
+		};
+		2DE189551C33D98B005F90D0 /* Test Cases */ = {
+			isa = PBXGroup;
+			children = (
+				2DE189561C33D9A6005F90D0 /* EHCoreData.swift */,
+				2DE189571C33D9A6005F90D0 /* EHireBasicsTest.swift */,
+				2DE189581C33D9A6005F90D0 /* EHireCandiateTest.swift */,
+				2DE189591C33D9A6005F90D0 /* EHireDateTest.swift */,
+				2DE1895A1C33D9A6005F90D0 /* EHireManagerFeedBackTest.swift */,
+				2DE1895B1C33D9A6005F90D0 /* EHireTechnicalFeedBackTest.swift */,
+				2DE1895C1C33D9A6005F90D0 /* EHireTechnologyTest.swift */,
+				2DE1895D1C33D9A6005F90D0 /* EHireTests.swift */,
+			);
+			name = "Test Cases";
+			sourceTree = "<group>";
+		};
+		4F2536E71C2179EC000E8C95 /* Technology */ = {
+			isa = PBXGroup;
+			children = (
+				8001C3F81C23E96E00D62243 /* Model */,
+				8001C41C1C23EB0900D62243 /* Controllers */,
+				8001C41B1C23EABB00D62243 /* DataAccessLayer */,
+				8042884B1C17F17A003033B4 /* CustomViewCells */,
+				8042884A1C17F150003033B4 /* Nibs */,
+				8001C41A1C23EAAF00D62243 /* Support Files */,
+				4F2536FA1C218172000E8C95 /* DataCommunicator.swift */,
+			);
+			path = Technology;
+			sourceTree = "<group>";
+		};
+		52CB4A4D1C31379800934A84 /* Candidate Module */ = {
+			isa = PBXGroup;
+			children = (
+				52CB4A4E1C31379800934A84 /* Controllers */,
+				52CB4A511C31379800934A84 /* CustomViewCells */,
+				52CB4A521C31379800934A84 /* Data Access Layer */,
+				52CB4A531C31379800934A84 /* Model */,
+				52CB4A551C31379800934A84 /* Nibs */,
+				52CB4A561C31379800934A84 /* Support Files */,
+			);
+			path = "Candidate Module";
+			sourceTree = "<group>";
+		};
+		52CB4A4E1C31379800934A84 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				52CB4A501C31379800934A84 /* EHCandidateController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		52CB4A511C31379800934A84 /* CustomViewCells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomViewCells;
+			sourceTree = "<group>";
+		};
+		52CB4A521C31379800934A84 /* Data Access Layer */ = {
+			isa = PBXGroup;
+			children = (
+				52B599301C3F8BBB003FE140 /* EHCandidateAccessLayer.swift */,
+			);
+			path = "Data Access Layer";
+			sourceTree = "<group>";
+		};
+		52CB4A531C31379800934A84 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4F7BCAC71C325CBD00D60546 /* EHCandidateDetails.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		52CB4A551C31379800934A84 /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Nibs;
+			sourceTree = "<group>";
+		};
+		52CB4A561C31379800934A84 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		8001C3F01C23E96E00D62243 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4F7BCA831C2BED8B00D60546 /* EHManagerFeedbackViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		8001C3F11C23E96E00D62243 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4F7BCA871C2BEE6700D60546 /* EHManagerialFeedbackModel.swift */,
+				4F7BCA891C2BF62000D60546 /* EHSkillSet.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		8001C3F21C23E96E00D62243 /* Data Access Layer */ = {
+			isa = PBXGroup;
+			children = (
+				8001C3F11C23E96E00D62243 /* Model */,
+				9CB11FC41C328C1100939D42 /* EHManagerFeedbackDataAccessLayer.swift */,
+			);
+			name = "Data Access Layer";
+			sourceTree = "<group>";
+		};
+		8001C3F31C23E96E00D62243 /* CustomViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				806C9CA11C2433D80039FCF2 /* EHManagerFeedBackCustomTableView.swift */,
+			);
+			name = CustomViewCells;
+			sourceTree = "<group>";
+		};
+		8001C3F41C23E96E00D62243 /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Nibs;
+			sourceTree = "<group>";
+		};
+		8001C3F51C23E96E00D62243 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Support Files";
+			sourceTree = "<group>";
+		};
+		8001C3F61C23E96E00D62243 /* ManagerFeedbackModule */ = {
+			isa = PBXGroup;
+			children = (
+				8001C3F01C23E96E00D62243 /* Controller */,
+				8001C3F21C23E96E00D62243 /* Data Access Layer */,
+				8001C3F31C23E96E00D62243 /* CustomViewCells */,
+				8001C3F41C23E96E00D62243 /* Nibs */,
+				8001C3F51C23E96E00D62243 /* Support Files */,
+			);
+			name = ManagerFeedbackModule;
+			path = "../../../../Documents/EHire-Git/EHireProject/EHire";
+			sourceTree = "<group>";
+		};
+		8001C3F71C23E96E00D62243 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				806C9CA51C2433FF0039FCF2 /* EHTechnicalFeedbackViewController.swift */,
+				806C9C991C2433690039FCF2 /* EHFeedbackViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		8001C3F81C23E96E00D62243 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			path = "../../../../../Documents/EHire-Git/EHireProject/EHire";
+			sourceTree = "<group>";
+		};
+		8001C3F91C23E96E00D62243 /* Data Access Layer */ = {
+			isa = PBXGroup;
+			children = (
+				944783121C2A9A1C00AE33FA /* EHTechnicalFeedbackDataAccess.swift */,
+			);
+			name = "Data Access Layer";
+			sourceTree = "<group>";
+		};
+		8001C3FA1C23E96E00D62243 /* CustomViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				806C9CA21C2433D80039FCF2 /* EHRatingsTableCellView.swift */,
+			);
+			name = CustomViewCells;
+			sourceTree = "<group>";
+		};
+		8001C3FB1C23E96E00D62243 /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Nibs;
+			sourceTree = "<group>";
+		};
+		8001C3FC1C23E96E00D62243 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Support Files";
+			sourceTree = "<group>";
+		};
+		8001C3FD1C23E96E00D62243 /* Technical Feedback Module */ = {
+			isa = PBXGroup;
+			children = (
+				8001C3F71C23E96E00D62243 /* Controllers */,
+				8001C3F91C23E96E00D62243 /* Data Access Layer */,
+				945D4D321C43D40C0012FDB7 /* Model */,
+				8001C3FA1C23E96E00D62243 /* CustomViewCells */,
+				8001C3FB1C23E96E00D62243 /* Nibs */,
+				8001C3FC1C23E96E00D62243 /* Support Files */,
+			);
+			name = "Technical Feedback Module";
+			path = "../../../../Documents/EHire-Git/EHireProject/EHire";
+			sourceTree = "<group>";
+		};
+		8001C41A1C23EAAF00D62243 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Support Files";
+			sourceTree = "<group>";
+		};
+		8001C41B1C23EABB00D62243 /* DataAccessLayer */ = {
+			isa = PBXGroup;
+			children = (
+				4F69D1281C3299880003389E /* EhTechnologyDataLayer.swift */,
+			);
+			name = DataAccessLayer;
+			sourceTree = "<group>";
+		};
+		8001C41C1C23EB0900D62243 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4F2536EA1C2179EC000E8C95 /* EHTechnologyViewController.swift */,
+				4F2536E91C2179EC000E8C95 /* EHPopOverController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		8029FFC21C2A80E90041C74C /* CoreDataEntityClasses */ = {
+			isa = PBXGroup;
+			children = (
+				8029FFC61C2A81970041C74C /* Candidate.swift */,
+				8029FFC71C2A81970041C74C /* Candidate+CoreDataProperties.swift */,
+				8029FFC81C2A81970041C74C /* CandidateBasicProfessionalInfo.swift */,
+				9CFE9EA01C44D519008C6C15 /* ManagerFeedBack+CoreDataProperties.swift */,
+				9CFE9EA11C44D519008C6C15 /* ManagerFeedBack.swift */,
+				8029FFC91C2A81970041C74C /* CandidateBasicProfessionalInfo+CoreDataProperties.swift */,
+				8029FFCA1C2A81970041C74C /* CandidateDocuments.swift */,
+				8029FFCB1C2A81970041C74C /* CandidateDocuments+CoreDataProperties.swift */,
+				8029FFCC1C2A81970041C74C /* CandidateMiscellaneous.swift */,
+				8029FFCD1C2A81970041C74C /* CandidateMiscellaneous+CoreDataProperties.swift */,
+				8029FFCE1C2A81970041C74C /* CandidatePersonalInfo.swift */,
+				8029FFCF1C2A81970041C74C /* CandidatePersonalInfo+CoreDataProperties.swift */,
+				8029FFD01C2A81970041C74C /* CandidatePreviousEmploymentInfo.swift */,
+				8029FFD11C2A81970041C74C /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift */,
+				8029FFD21C2A81970041C74C /* CandidateQualification.swift */,
+				8029FFD31C2A81970041C74C /* CandidateQualification+CoreDataProperties.swift */,
+				8029FFD41C2A81970041C74C /* Date.swift */,
+				8029FFD51C2A81970041C74C /* Date+CoreDataProperties.swift */,
+				8029FFD91C2A81970041C74C /* SkillSet.swift */,
+				8029FFDA1C2A81970041C74C /* SkillSet+CoreDataProperties.swift */,
+				8029FFDB1C2A81970041C74C /* TechnicalFeedBack.swift */,
+				8029FFDC1C2A81970041C74C /* TechnicalFeedBack+CoreDataProperties.swift */,
+				8029FFDD1C2A81970041C74C /* Technology.swift */,
+				8029FFDE1C2A81970041C74C /* Technology+CoreDataProperties.swift */,
+				8029FFC31C2A80E90041C74C /* CoreDataHelperClass */,
+			);
+			path = CoreDataEntityClasses;
+			sourceTree = "<group>";
+		};
+		8029FFC31C2A80E90041C74C /* CoreDataHelperClass */ = {
+			isa = PBXGroup;
+			children = (
+				8029FFC41C2A80E90041C74C /* EHCoreDataHelper.swift */,
+				9C4B97FE1C324EE20033412F /* EHCoreDataStack.swift */,
+				9CFE9EA41C465EFE008C6C15 /* CoreDataStack.swift */,
+			);
+			path = CoreDataHelperClass;
+			sourceTree = "<group>";
+		};
+		8029FFF81C2A83A10041C74C /* Hr Feedback Module */ = {
+			isa = PBXGroup;
+			children = (
+				8029FFF91C2A83A10041C74C /* Controllers */,
+				8029FFFB1C2A83A10041C74C /* CustomViewCells */,
+				8029FFFC1C2A83A10041C74C /* Data Access Layer */,
+				8029FFFD1C2A83A10041C74C /* Model */,
+				8029FFFE1C2A83A10041C74C /* Nibs */,
+				8029FFFF1C2A83A10041C74C /* Support Files */,
+			);
+			path = "Hr Feedback Module";
+			sourceTree = "<group>";
+		};
+		8029FFF91C2A83A10041C74C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8029FFFA1C2A83A10041C74C /* EHHrFeedbackViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8029FFFB1C2A83A10041C74C /* CustomViewCells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomViewCells;
+			sourceTree = "<group>";
+		};
+		8029FFFC1C2A83A10041C74C /* Data Access Layer */ = {
+			isa = PBXGroup;
+			children = (
+				802900011C2A83CE0041C74C /* HrFeedbackDataAccess.swift */,
+			);
+			path = "Data Access Layer";
+			sourceTree = "<group>";
+		};
+		8029FFFD1C2A83A10041C74C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8029FFFE1C2A83A10041C74C /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Nibs;
+			sourceTree = "<group>";
+		};
+		8029FFFF1C2A83A10041C74C /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		804287F81C17EBC0003033B4 = {
+			isa = PBXGroup;
+			children = (
+				804288031C17EBC0003033B4 /* EHire */,
+				804288181C17EBC0003033B4 /* EHireTests */,
+				804288231C17EBC0003033B4 /* EHireUITests */,
+				804288021C17EBC0003033B4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		804288021C17EBC0003033B4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				804288011C17EBC0003033B4 /* EHire.app */,
+				804288151C17EBC0003033B4 /* EHireTests.xctest */,
+				804288201C17EBC0003033B4 /* EHireUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		804288031C17EBC0003033B4 /* EHire */ = {
+			isa = PBXGroup;
+			children = (
+				9C527DEE1C3A42E0001B62B2 /* Utilities */,
+				8042880D1C17EBC0003033B4 /* Main.storyboard */,
+				804288041C17EBC0003033B4 /* AppDelegate.swift */,
+				8029FFC21C2A80E90041C74C /* CoreDataEntityClasses */,
+				8029FFF81C2A83A10041C74C /* Hr Feedback Module */,
+				8001C3F61C23E96E00D62243 /* ManagerFeedbackModule */,
+				8001C3FD1C23E96E00D62243 /* Technical Feedback Module */,
+				52CB4A4D1C31379800934A84 /* Candidate Module */,
+				4F2536E71C2179EC000E8C95 /* Technology */,
+				804288481C17F139003033B4 /* Supporting Files */,
+			);
+			path = EHire;
+			sourceTree = "<group>";
+		};
+		804288181C17EBC0003033B4 /* EHireTests */ = {
+			isa = PBXGroup;
+			children = (
+				2D3A3D7B1C3A380000AA56E1 /* View Controllers Test Cases */,
+				2DE189551C33D98B005F90D0 /* Test Cases */,
+				2D32201C1C2BC61000679432 /* Crud Test For Entity */,
+				8042881B1C17EBC0003033B4 /* Info.plist */,
+			);
+			path = EHireTests;
+			sourceTree = "<group>";
+		};
+		804288231C17EBC0003033B4 /* EHireUITests */ = {
+			isa = PBXGroup;
+			children = (
+				804288241C17EBC0003033B4 /* EHireUITests.swift */,
+				804288261C17EBC0003033B4 /* Info.plist */,
+			);
+			path = EHireUITests;
+			sourceTree = "<group>";
+		};
+		804288481C17F139003033B4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2FB0ABA31C3CD92F0027E34C /* Welcome.png */,
+				8070F5981C24194C00FCEA98 /* selectStar.png */,
+				8070F5991C24194C00FCEA98 /* deselectStar.png */,
+				804288101C17EBC0003033B4 /* Info.plist */,
+				804288081C17EBC0003033B4 /* EHire.xcdatamodeld */,
+				8042880B1C17EBC0003033B4 /* Assets.xcassets */,
+				4136DE551C21284800BDB8B7 /* EHire-Bridging-Header.h */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8042884A1C17F150003033B4 /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Nibs;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		8042884B1C17F17A003033B4 /* CustomViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				41A97FF41C1956B70016CAB4 /* EHInterviewDateCustomCell.swift */,
+				41A97FF81C195E500016CAB4 /* EHTechnologyCustomCell.swift */,
+			);
+			name = CustomViewCells;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		945D4D321C43D40C0012FDB7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9491D7CF1C32D22C0088D61A /* EHTechnicalFeedbackModel.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		9C527DEE1C3A42E0001B62B2 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				9C527DEF1C3A431B001B62B2 /* EHOnlyDecimalValueFormatter.swift */,
+				4F767C7C1C3BE48700514A89 /* Utility.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		804288001C17EBC0003033B4 /* EHire */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 804288291C17EBC0003033B4 /* Build configuration list for PBXNativeTarget "EHire" */;
+			buildPhases = (
+				804287FD1C17EBC0003033B4 /* Sources */,
+				804287FE1C17EBC0003033B4 /* Frameworks */,
+				804287FF1C17EBC0003033B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EHire;
+			productName = EHire;
+			productReference = 804288011C17EBC0003033B4 /* EHire.app */;
+			productType = "com.apple.product-type.application";
+		};
+		804288141C17EBC0003033B4 /* EHireTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8042882C1C17EBC0003033B4 /* Build configuration list for PBXNativeTarget "EHireTests" */;
+			buildPhases = (
+				804288111C17EBC0003033B4 /* Sources */,
+				804288121C17EBC0003033B4 /* Frameworks */,
+				804288131C17EBC0003033B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				804288171C17EBC0003033B4 /* PBXTargetDependency */,
+			);
+			name = EHireTests;
+			productName = EHireTests;
+			productReference = 804288151C17EBC0003033B4 /* EHireTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8042881F1C17EBC0003033B4 /* EHireUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8042882F1C17EBC0003033B4 /* Build configuration list for PBXNativeTarget "EHireUITests" */;
+			buildPhases = (
+				8042881C1C17EBC0003033B4 /* Sources */,
+				8042881D1C17EBC0003033B4 /* Frameworks */,
+				8042881E1C17EBC0003033B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				804288221C17EBC0003033B4 /* PBXTargetDependency */,
+			);
+			name = EHireUITests;
+			productName = EHireUITests;
+			productReference = 804288201C17EBC0003033B4 /* EHireUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		804287F91C17EBC0003033B4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = "Exilant Technologies";
+				TargetAttributes = {
+					804288001C17EBC0003033B4 = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					804288141C17EBC0003033B4 = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = 804288001C17EBC0003033B4;
+					};
+					8042881F1C17EBC0003033B4 = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = 804288001C17EBC0003033B4;
+					};
+				};
+			};
+			buildConfigurationList = 804287FC1C17EBC0003033B4 /* Build configuration list for PBXProject "EHire" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 804287F81C17EBC0003033B4;
+			productRefGroup = 804288021C17EBC0003033B4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				804288001C17EBC0003033B4 /* EHire */,
+				804288141C17EBC0003033B4 /* EHireTests */,
+				8042881F1C17EBC0003033B4 /* EHireUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		804287FF1C17EBC0003033B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8070F59A1C24194C00FCEA98 /* selectStar.png in Resources */,
+				8070F59B1C24194C00FCEA98 /* deselectStar.png in Resources */,
+				2FB0ABA41C3CD92F0027E34C /* Welcome.png in Resources */,
+				8042880C1C17EBC0003033B4 /* Assets.xcassets in Resources */,
+				8042880F1C17EBC0003033B4 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		804288131C17EBC0003033B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8042881E1C17EBC0003033B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		804287FD1C17EBC0003033B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8029FFE21C2A81970041C74C /* CandidateBasicProfessionalInfo+CoreDataProperties.swift in Sources */,
+				4F7BCAC91C325CBD00D60546 /* EHCandidateDetails.swift in Sources */,
+				41A97FF91C195E500016CAB4 /* EHTechnologyCustomCell.swift in Sources */,
+				9CB11FC51C328C1100939D42 /* EHManagerFeedbackDataAccessLayer.swift in Sources */,
+				4F2536ED1C2179EC000E8C95 /* EHTechnologyViewController.swift in Sources */,
+				8029FFED1C2A81970041C74C /* Date.swift in Sources */,
+				802900001C2A83A10041C74C /* EHHrFeedbackViewController.swift in Sources */,
+				8029FFE61C2A81970041C74C /* CandidateMiscellaneous+CoreDataProperties.swift in Sources */,
+				8029FFE51C2A81970041C74C /* CandidateMiscellaneous.swift in Sources */,
+				8029FFF41C2A81970041C74C /* TechnicalFeedBack.swift in Sources */,
+				8029FFE31C2A81970041C74C /* CandidateDocuments.swift in Sources */,
+				52B599311C3F8BBB003FE140 /* EHCandidateAccessLayer.swift in Sources */,
+				4F7BCA881C2BEE6700D60546 /* EHManagerialFeedbackModel.swift in Sources */,
+				4F2536FB1C218172000E8C95 /* DataCommunicator.swift in Sources */,
+				8029FFF71C2A81970041C74C /* Technology+CoreDataProperties.swift in Sources */,
+				8029FFC51C2A80E90041C74C /* EHCoreDataHelper.swift in Sources */,
+				944783131C2A9A1C00AE33FA /* EHTechnicalFeedbackDataAccess.swift in Sources */,
+				8029FFDF1C2A81970041C74C /* Candidate.swift in Sources */,
+				4F7BCA8A1C2BF62000D60546 /* EHSkillSet.swift in Sources */,
+				9CFE9EA51C465EFE008C6C15 /* CoreDataStack.swift in Sources */,
+				806C9CA31C2433D80039FCF2 /* EHManagerFeedBackCustomTableView.swift in Sources */,
+				8029FFE91C2A81970041C74C /* CandidatePreviousEmploymentInfo.swift in Sources */,
+				9CFE9EA31C44D519008C6C15 /* ManagerFeedBack.swift in Sources */,
+				8029FFEB1C2A81970041C74C /* CandidateQualification.swift in Sources */,
+				8029FFF21C2A81970041C74C /* SkillSet.swift in Sources */,
+				806C9C9A1C2433690039FCF2 /* EHFeedbackViewController.swift in Sources */,
+				804288051C17EBC0003033B4 /* AppDelegate.swift in Sources */,
+				9491D7D01C32D22C0088D61A /* EHTechnicalFeedbackModel.swift in Sources */,
+				8029FFEC1C2A81970041C74C /* CandidateQualification+CoreDataProperties.swift in Sources */,
+				8029FFF51C2A81970041C74C /* TechnicalFeedBack+CoreDataProperties.swift in Sources */,
+				9C527DF01C3A431B001B62B2 /* EHOnlyDecimalValueFormatter.swift in Sources */,
+				9C4B97FF1C324EE20033412F /* EHCoreDataStack.swift in Sources */,
+				8029FFEA1C2A81970041C74C /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift in Sources */,
+				8029FFE11C2A81970041C74C /* CandidateBasicProfessionalInfo.swift in Sources */,
+				8029FFE01C2A81970041C74C /* Candidate+CoreDataProperties.swift in Sources */,
+				4F7BCA841C2BED8B00D60546 /* EHManagerFeedbackViewController.swift in Sources */,
+				8029FFE71C2A81970041C74C /* CandidatePersonalInfo.swift in Sources */,
+				802900021C2A83CE0041C74C /* HrFeedbackDataAccess.swift in Sources */,
+				8029FFF61C2A81970041C74C /* Technology.swift in Sources */,
+				52CB4A581C31379800934A84 /* EHCandidateController.swift in Sources */,
+				8029FFEE1C2A81970041C74C /* Date+CoreDataProperties.swift in Sources */,
+				806C9CA41C2433D80039FCF2 /* EHRatingsTableCellView.swift in Sources */,
+				8042880A1C17EBC0003033B4 /* EHire.xcdatamodeld in Sources */,
+				8029FFE81C2A81970041C74C /* CandidatePersonalInfo+CoreDataProperties.swift in Sources */,
+				9CFE9EA21C44D519008C6C15 /* ManagerFeedBack+CoreDataProperties.swift in Sources */,
+				41A97FF51C1956B70016CAB4 /* EHInterviewDateCustomCell.swift in Sources */,
+				4F69D1291C3299880003389E /* EhTechnologyDataLayer.swift in Sources */,
+				4F2536EC1C2179EC000E8C95 /* EHPopOverController.swift in Sources */,
+				806C9CA61C2433FF0039FCF2 /* EHTechnicalFeedbackViewController.swift in Sources */,
+				8029FFF31C2A81970041C74C /* SkillSet+CoreDataProperties.swift in Sources */,
+				8029FFE41C2A81970041C74C /* CandidateDocuments+CoreDataProperties.swift in Sources */,
+				4F767C7D1C3BE48700514A89 /* Utility.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		804288111C17EBC0003033B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D4D22191C3BB0EC00DA4C5E /* SkillSet.swift in Sources */,
+				2D4D22171C3BB0EC00DA4C5E /* ManagerFeedBack.swift in Sources */,
+				2DE189631C33D9A6005F90D0 /* EHireTechnicalFeedBackTest.swift in Sources */,
+				2D4D220A1C3BB0EC00DA4C5E /* CandidateBasicProfessionalInfo+CoreDataProperties.swift in Sources */,
+				2D4D221E1C3BB0EC00DA4C5E /* Technology+CoreDataProperties.swift in Sources */,
+				2D4D221B1C3BB0EC00DA4C5E /* TechnicalFeedBack.swift in Sources */,
+				2D4D22181C3BB0EC00DA4C5E /* ManagerFeedBack+CoreDataProperties.swift in Sources */,
+				2DE189641C33D9A6005F90D0 /* EHireTechnologyTest.swift in Sources */,
+				2D4D221D1C3BB0EC00DA4C5E /* Technology.swift in Sources */,
+				2D4D22141C3BB0EC00DA4C5E /* CandidateQualification+CoreDataProperties.swift in Sources */,
+				2DE189651C33D9A6005F90D0 /* EHireTests.swift in Sources */,
+				2D4D22161C3BB0EC00DA4C5E /* Date+CoreDataProperties.swift in Sources */,
+				2D4D22091C3BB0EC00DA4C5E /* CandidateBasicProfessionalInfo.swift in Sources */,
+				2D4D221A1C3BB0EC00DA4C5E /* SkillSet+CoreDataProperties.swift in Sources */,
+				2D4D22131C3BB0EC00DA4C5E /* CandidateQualification.swift in Sources */,
+				2D4D22071C3BB0EC00DA4C5E /* Candidate.swift in Sources */,
+				2DE189611C33D9A6005F90D0 /* EHireDateTest.swift in Sources */,
+				2D4D22101C3BB0EC00DA4C5E /* CandidatePersonalInfo+CoreDataProperties.swift in Sources */,
+				2D4D22081C3BB0EC00DA4C5E /* Candidate+CoreDataProperties.swift in Sources */,
+				2D4D220D1C3BB0EC00DA4C5E /* CandidateMiscellaneous.swift in Sources */,
+				2D4D220F1C3BB0EC00DA4C5E /* CandidatePersonalInfo.swift in Sources */,
+				2D4D220B1C3BB0EC00DA4C5E /* CandidateDocuments.swift in Sources */,
+				2D4D22111C3BB0EC00DA4C5E /* CandidatePreviousEmploymentInfo.swift in Sources */,
+				2DE189621C33D9A6005F90D0 /* EHireManagerFeedBackTest.swift in Sources */,
+				2D4D22121C3BB0EC00DA4C5E /* CandidatePreviousEmploymentInfo+CoreDataProperties.swift in Sources */,
+				2DE1895F1C33D9A6005F90D0 /* EHireBasicsTest.swift in Sources */,
+				2D4D221C1C3BB0EC00DA4C5E /* TechnicalFeedBack+CoreDataProperties.swift in Sources */,
+				2D4D220C1C3BB0EC00DA4C5E /* CandidateDocuments+CoreDataProperties.swift in Sources */,
+				2D4D22151C3BB0EC00DA4C5E /* Date.swift in Sources */,
+				2DE189601C33D9A6005F90D0 /* EHireCandiateTest.swift in Sources */,
+				2DE1895E1C33D9A6005F90D0 /* EHCoreData.swift in Sources */,
+				2D4D220E1C3BB0EC00DA4C5E /* CandidateMiscellaneous+CoreDataProperties.swift in Sources */,
+				2D3A3D7D1C3A389C00AA56E1 /* EHTechnologyViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8042881C1C17EBC0003033B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				804288251C17EBC0003033B4 /* EHireUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		804288171C17EBC0003033B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 804288001C17EBC0003033B4 /* EHire */;
+			targetProxy = 804288161C17EBC0003033B4 /* PBXContainerItemProxy */;
+		};
+		804288221C17EBC0003033B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 804288001C17EBC0003033B4 /* EHire */;
+			targetProxy = 804288211C17EBC0003033B4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8042880D1C17EBC0003033B4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8042880E1C17EBC0003033B4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		804288271C17EBC0003033B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		804288281C17EBC0003033B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		8042882A1C17EBC0003033B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = EHire/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ExilantTechnologies.EHire;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "EHire/EHire-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8042882B1C17EBC0003033B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = EHire/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ExilantTechnologies.EHire;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "EHire/EHire-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		8042882D1C17EBC0003033B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = EHireTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ExilantTechnologies.EHireTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EHire.app/Contents/MacOS/EHire";
+			};
+			name = Debug;
+		};
+		8042882E1C17EBC0003033B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = EHireTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ExilantTechnologies.EHireTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EHire.app/Contents/MacOS/EHire";
+			};
+			name = Release;
+		};
+		804288301C17EBC0003033B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = EHireUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ExilantTechnologies.EHireUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = EHire;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		804288311C17EBC0003033B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = EHireUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ExilantTechnologies.EHireUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = EHire;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		804287FC1C17EBC0003033B4 /* Build configuration list for PBXProject "EHire" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				804288271C17EBC0003033B4 /* Debug */,
+				804288281C17EBC0003033B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		804288291C17EBC0003033B4 /* Build configuration list for PBXNativeTarget "EHire" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8042882A1C17EBC0003033B4 /* Debug */,
+				8042882B1C17EBC0003033B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8042882C1C17EBC0003033B4 /* Build configuration list for PBXNativeTarget "EHireTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8042882D1C17EBC0003033B4 /* Debug */,
+				8042882E1C17EBC0003033B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8042882F1C17EBC0003033B4 /* Build configuration list for PBXNativeTarget "EHireUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				804288301C17EBC0003033B4 /* Debug */,
+				804288311C17EBC0003033B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		804288081C17EBC0003033B4 /* EHire.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				804288091C17EBC0003033B4 /* EHire.xcdatamodel */,
+			);
+			currentVersion = 804288091C17EBC0003033B4 /* EHire.xcdatamodel */;
+			path = EHire.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 804287F91C17EBC0003033B4 /* Project object */;
+}
