@@ -230,9 +230,11 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     override func controlTextDidEndEditing(obj: NSNotification){
         let textFieldObject = obj.object as! NSTextField
         if textFieldObject.superview is EHManagerFeedBackCustomTableView{
-            
+            if tableView.selectedRow >= 4
+            {
             let skillSetObject =  skillsAndRatingsTitleArray[textFieldObject.tag]
             skillSetObject.skillName = textFieldObject.stringValue
+            }
         }
     }
     
@@ -242,6 +244,10 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         if managerialRoundFeedback.skillSet.count > 0 && cell?.titleName.stringValue == "Enter Title"
         {
             Utility.alertPopup("Enter Title", informativeText: "Please enter previous selected title",isCancelBtnNeeded:false,okCompletionHandler: nil)
+        }
+        else if  cell?.titleName.stringValue == ""
+        {
+            Utility.alertPopup("Enter Title", informativeText: "Skill title should not be blank",isCancelBtnNeeded:false, okCompletionHandler: nil)
         }
         else
         {
@@ -256,8 +262,11 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     //MARK:-Method to delete skills
     @IBAction func deleteSkillSet(sender: NSButton)
     {
-        managerialRoundFeedback.skillSet.removeAtIndex(tableView.selectedRow)
+        if tableView.selectedRow >= 4
+        {
+            skillsAndRatingsTitleArray.removeAtIndex(tableView.selectedRow)
             tableView.reloadData()
+        }
     }
     
     //MARK:-Method to add star in overall technology assessment
