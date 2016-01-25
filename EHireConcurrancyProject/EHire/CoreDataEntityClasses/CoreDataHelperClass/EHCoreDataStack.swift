@@ -72,10 +72,12 @@ class EHCoreDataStack: NSObject {
         
         // Create the coordinator and store
         var coordinator: NSPersistentStoreCoordinator? = nil
-        if failError == nil {
+        if failError == nil
+        {
             coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-            let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("CocoaAppCD.storedata")
-            do {
+            let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("Concurrency.storedata")
+            do
+            {
                 try coordinator!.addPersistentStoreWithType(NSXMLStoreType, configuration: nil, URL: url, options: nil)
             } catch {
                 failError = error as NSError
