@@ -222,6 +222,7 @@ class EHFeedbackViewController: NSViewController
                         else
                         {
                             techFeedback?.refreshAllFields()
+                            techFeedback?.selectedRound = self.subRound.selectedSegment
                         }
                       break
                      }
@@ -269,6 +270,7 @@ class EHFeedbackViewController: NSViewController
                         else
                         {
                             techFeedback?.refreshAllFields()
+                            techFeedback?.selectedRound = self.subRound.selectedSegment
                         }
                     break
                     }
@@ -287,6 +289,8 @@ class EHFeedbackViewController: NSViewController
                     else
                     {
                         techFeedback?.refreshAllFields()
+                        techFeedback?.selectedRound = self.subRound.selectedSegment
+
                     }
                 }
                 default:

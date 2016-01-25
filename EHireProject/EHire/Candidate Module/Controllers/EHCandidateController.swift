@@ -85,7 +85,15 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         {
             if candidate.experience != nil
             {
-              cell.textField?.stringValue = (candidate.experience)!
+                if candidate.experience!.doubleValue == 0
+                {
+                    cell.textField?.stringValue = ""
+                }
+                else
+                {
+                    let str = String(format: "%.1f years", arguments: [(candidate.experience!.doubleValue)])
+                    cell.textField?.stringValue = str
+                }
             }
         }
             
@@ -137,7 +145,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     {
       func addCandidate()
       {
-        let managedObject:Candidate = EHCandidateAccessLayer.addCandidate("", experience: "", phoneNumber: "", requisition: "",interviewTime:self.interviewDate!, technologyName: self.technologyName!, interviewDate: self.interviewDate!)
+        let managedObject:Candidate = EHCandidateAccessLayer.addCandidate("", experience:NSNumber(double:0.0), phoneNumber: "", requisition: "",interviewTime:self.interviewDate!, technologyName: self.technologyName!, interviewDate: self.interviewDate!)
         candidateArray.addObject(managedObject)
             tableView.reloadData()
         let index : NSInteger = candidateArray.count - 1;
@@ -283,7 +291,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         {
          if EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
          {
-          Utility.alertPopup("Error", informativeText: "Enter an appropriate candidate name",isCancelBtnNeeded:false,okCompletionHandler: nil)
+          Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters for candidate name.",isCancelBtnNeeded:false,okCompletionHandler: nil)
             textField.stringValue = ""
           candidate.name = textField.stringValue
          }
@@ -299,17 +307,55 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         }
        
         case 2:
-        candidate.experience = fieldEditor.string
+            if (!(textField.stringValue == ""))
+            {
+                if !EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
+                {
+                    Utility.alertPopup("Error", informativeText: "Please enter a numerical value for experience.",isCancelBtnNeeded:false,okCompletionHandler:nil)
+                    textField.stringValue = ""
+                }
+                else
+                {
+                    candidate.experience = NSNumber(float:Float(textField.stringValue)!)
+                    candidateSearchField.enabled = true
+                }
+            }
+            else
+            {
+                candidateSearchField.enabled = false
+        }
 
         case 3:
-        candidate.phoneNumber = fieldEditor.string
+            if (!(textField.stringValue == ""))
+            {
+                if !EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
+                {
+                    Utility.alertPopup("Error", informativeText: "Please enter a 10 digit mobile phone number. ",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                    textField.stringValue = ""
+                }
+                else if ((fieldEditor.string?.characters.count >= 10) && (fieldEditor.string?.characters.count <= 12))
+                {
+                    candidate.phoneNumber = fieldEditor.string
+                    self.candidateSearchField.enabled = true
+                }
+                else
+                {
+                    Utility.alertPopup("Error", informativeText: "Please enter a 10 digit mobile phone number.",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                    textField.stringValue = ""
+                }
+            }
+            else
+            {
+                candidateSearchField.enabled = false
+        }
+
 
         case 4:
             if (!(textField.stringValue == ""))
             {
                 if EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
                 {
-                    Utility.alertPopup("Error", informativeText: "Enter an appropriate candidate requisition",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                    Utility.alertPopup("Error", informativeText: "Please ennter an alpha-numeric value for Requisition.",isCancelBtnNeeded:false,okCompletionHandler: nil)
                     textField.stringValue = ""
                     candidate.requisition = textField.stringValue
                 }

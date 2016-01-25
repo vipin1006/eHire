@@ -1487,17 +1487,6 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DQN-sh-vbs">
-                                            <rect key="frame" x="22" y="13" width="80" height="32"/>
-                                            <animations/>
-                                            <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7UC-1g-5I0">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="addSkills:" target="tZu-Jo-Cyq" id="Db3-Zz-C7f"/>
-                                            </connections>
-                                        </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rRj-tk-HWk">
                                             <rect key="frame" x="103" y="13" width="80" height="32"/>
                                             <animations/>
@@ -1649,6 +1638,17 @@ CA
                                                 <animations/>
                                             </tableHeaderView>
                                         </scrollView>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DQN-sh-vbs">
+                                            <rect key="frame" x="23" y="13" width="80" height="32"/>
+                                            <animations/>
+                                            <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7UC-1g-5I0">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="addSkills:" target="tZu-Jo-Cyq" id="Db3-Zz-C7f"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <animations/>
                                 </view>
@@ -1937,10 +1937,10 @@ CA
                                             </textFieldCell>
                                         </textField>
                                         <matrix verticalHuggingPriority="750" fixedFrame="YES" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KEX-d7-PNz">
-                                            <rect key="frame" x="339" y="140" width="226" height="18"/>
+                                            <rect key="frame" x="339" y="140" width="234" height="18"/>
                                             <animations/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="cellSize" width="113" height="18"/>
+                                            <size key="cellSize" width="117" height="18"/>
                                             <buttonCell key="prototype" type="radio" title="Rejected" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="TsC-TI-Mvk">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -1964,7 +1964,7 @@ CA
                                             </connections>
                                         </matrix>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IFh-qR-St7">
-                                            <rect key="frame" x="336" y="101" width="229" height="22"/>
+                                            <rect key="frame" x="336" y="101" width="240" height="22"/>
                                             <animations/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Ouo-kr-IbR">
                                                 <font key="font" metaFont="system"/>
@@ -1982,7 +1982,7 @@ CA
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q3q-4S-Vsd">
-                                            <rect key="frame" x="336" y="69" width="229" height="22"/>
+                                            <rect key="frame" x="336" y="69" width="240" height="22"/>
                                             <animations/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="L3s-N7-ceM">
                                                 <font key="font" metaFont="system"/>
@@ -2000,7 +2000,7 @@ CA
                                             </textFieldCell>
                                         </textField>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Wn-N3-e7C">
-                                            <rect key="frame" x="367" y="22" width="70" height="32"/>
+                                            <rect key="frame" x="415" y="22" width="70" height="32"/>
                                             <animations/>
                                             <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Qhd-DQ-0P9">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2010,8 +2010,19 @@ CA
                                                 <action selector="saveDetailsAction:" target="tZu-Jo-Cyq" id="nsV-Fb-Qgj"/>
                                             </connections>
                                         </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Idk-ch-0IT">
+                                            <rect key="frame" x="330" y="22" width="72" height="32"/>
+                                            <animations/>
+                                            <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4M3-r6-hLw">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="clearAllFields:" target="tZu-Jo-Cyq" id="KXK-lx-Zv1"/>
+                                            </connections>
+                                        </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MtI-02-dgX">
-                                            <rect key="frame" x="456" y="22" width="84" height="32"/>
+                                            <rect key="frame" x="498" y="22" width="84" height="32"/>
                                             <animations/>
                                             <buttonCell key="cell" type="push" title="Submit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GT3-uL-b45">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2561,19 +2572,8 @@ CA
                                                 <outlet property="delegate" destination="Xv2-bq-xG1" id="Au7-Mj-dPh"/>
                                             </connections>
                                         </textField>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PpM-MF-Fnn">
-                                            <rect key="frame" x="366" y="7" width="70" height="32"/>
-                                            <animations/>
-                                            <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="left" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TdD-WM-cTE">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="saveData:" target="Xv2-bq-xG1" id="rlo-Sx-xrp"/>
-                                            </connections>
-                                        </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ntF-li-NsU">
-                                            <rect key="frame" x="467" y="7" width="73" height="32"/>
+                                            <rect key="frame" x="467" y="7" width="83" height="32"/>
                                             <animations/>
                                             <buttonCell key="cell" type="push" title="Submit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XY3-cq-yd8">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2581,6 +2581,28 @@ CA
                                             </buttonCell>
                                             <connections>
                                                 <action selector="submitFeedback:" target="Xv2-bq-xG1" id="8sP-uI-U1W"/>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7cg-Gm-wJl">
+                                            <rect key="frame" x="274" y="7" width="72" height="32"/>
+                                            <animations/>
+                                            <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xaM-04-gCn">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="clearAllFields:" target="Xv2-bq-xG1" id="0Nq-OL-DIR"/>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PpM-MF-Fnn">
+                                            <rect key="frame" x="377" y="7" width="70" height="32"/>
+                                            <animations/>
+                                            <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TdD-WM-cTE">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="saveData:" target="Xv2-bq-xG1" id="rlo-Sx-xrp"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -3043,7 +3065,9 @@ CA
                         <animations/>
                     </view>
                     <connections>
+                        <outlet property="addNewSkillBtn" destination="7Qg-nx-PJQ" id="KYM-xW-34L"/>
                         <outlet property="dateOfInterviewField" destination="LhW-yj-R09" id="7JC-AC-QiO"/>
+                        <outlet property="deleteExistingBtn" destination="wWe-Cz-mq4" id="6xH-ye-iyc"/>
                         <outlet property="labelOverAllAssessmentOfCandidate" destination="v02-Ct-8H0" id="Pwb-oU-Ay1"/>
                         <outlet property="labelOverAllAssessmentOfTechnology" destination="jf7-9R-CFr" id="Qor-YI-XSj"/>
                         <outlet property="managerFeedbackMainView" destination="CXt-am-yMK" id="LKD-y1-NKx"/>
