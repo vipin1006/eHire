@@ -10,6 +10,8 @@ import Cocoa
 
 class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource,NSTextFieldDelegate {
 
+    @IBOutlet weak var deleteExistingBtn: NSButton!
+    @IBOutlet weak var addNewSkillBtn: NSButton!
     @IBOutlet weak var saveBtn: NSButton!
     
     @IBOutlet weak var submitBtn: NSButton!
@@ -202,13 +204,12 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                 let tempBtn = starButton as! NSButton
                 if tempBtn.tag+1 == (skillSetObject.skillRating!){
                     displayStar(cell, lbl: cell.feedBackRating, sender: tempBtn )
-                                break
+                    break
                 }
                 else
                 {
                     tempBtn.image = NSImage(named: "deselectStar")
                     cell.feedBackRating.stringValue = ""
-
                 }
             }
         }
@@ -802,6 +803,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             textViewCommentsForOverAllTechnologyAssessment.editable = false
             textViewCommitments.editable = false
             textViewJustificationForHire.editable = false
+            addNewSkillBtn.enabled = false
+            deleteExistingBtn.enabled = false
             for starButton in (viewOverAllAssessmentOfCandidateStar.subviews){
                 let tempBtn = starButton as! NSButton
                 tempBtn.enabled = false
@@ -824,7 +827,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             textViewCommentsForOverAllTechnologyAssessment.editable = true
             textViewCommitments.editable = true
             textViewJustificationForHire.editable = true
-            
+            addNewSkillBtn.enabled = true
+            deleteExistingBtn.enabled = true
            
             cell?.feedBackRating.editable = false
             for starButton in (viewOverAllAssessmentOfCandidateStar.subviews){
@@ -972,5 +976,9 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         tableView.reloadData()
     }
     
+    @IBAction func clearAllFields(sender: AnyObject)
+    {
+        refreshAllFields()
+    }
 }
 

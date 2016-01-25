@@ -368,7 +368,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             }
         }
         
-        
         for ratingsView in cellView.starCustomView.subviews
         {
             let feedbackview = ratingsView as! NSButton
@@ -583,9 +582,17 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     //MARK: TextField Delegate method
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
     {
-        let skill = skillsAndRatingsTitleArray[self.tableView.selectedRow]
-        skill.skillName = fieldEditor.string
         return true
+    }
+    
+    override func controlTextDidEndEditing(obj: NSNotification)
+    {
+        let textFieldObject = obj.object as! NSTextField
+        if textFieldObject.superview is EHRatingsTableCellView
+        {
+            let skillSetObject =  skillsAndRatingsTitleArray[textFieldObject.tag]
+            skillSetObject.skillName = textFieldObject.stringValue
+        }
     }
     
     //MARK: Button Actions
@@ -680,6 +687,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         
         if isFeedBackSaved == false
         {
+
             dataAccessModel.insertIntoTechnicalFeedback(self,technicalFeedbackmodel: technicalFeedbackModel, selectedCandidate: selectedCandidate!,andCallBack: {(isSucess)->Void in
                 if isSucess{
                 self.isFeedBackSaved = true
@@ -688,6 +696,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
 
                 })
             
+
         }
         else
         {
@@ -891,4 +900,9 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         
         tableView.reloadData()
      }
+    
+    @IBAction func clearAllFields(sender: AnyObject)
+    {
+        refreshAllFields()
+    }
 }

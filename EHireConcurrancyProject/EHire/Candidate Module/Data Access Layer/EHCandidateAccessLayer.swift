@@ -40,7 +40,8 @@ class EHCandidateAccessLayer: NSObject
        
     }
     
-    func addCandidate(name:String,experience:String,phoneNumber:String,requisition:String,interviewTime:NSDate, technologyName:String, interviewDate:NSDate,andCallBack:CandidateReturn)
+    func addCandidate(name:String,experience:NSNumber,phoneNumber:String,requisition:String,interviewTime:NSDate, technologyName:String, interviewDate:NSDate,andCallBack:CandidateReturn)
+
     {
         if tempContext.parentContext == self.managedObjectContext{
             
