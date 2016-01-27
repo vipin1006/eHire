@@ -1157,7 +1157,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </searchFieldCell>
                                         <connections>
-                                            <action selector="searchFieldTextDidChange:" target="eaX-tr-f6l" id="tkC-bK-Vn9"/>
+                                            <action selector="searchFieldTextDidChange:" target="eaX-tr-f6l" id="DNx-aO-FHB"/>
                                         </connections>
                                     </searchField>
                                     <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s8Z-a5-OR5">
@@ -1204,7 +1204,7 @@
                     </view>
                     <connections>
                         <outlet property="addCandidateButton" destination="GoU-0A-unL" id="KXf-fQ-Utm"/>
-                        <outlet property="candidateSearchField" destination="iAZ-2H-cTi" id="DyQ-0Q-8ya"/>
+                        <outlet property="candidateSearchField" destination="iAZ-2H-cTi" id="6wi-x1-xKu"/>
                         <outlet property="candidateView" destination="qci-v5-CE5" id="Vu5-CW-hJc"/>
                         <outlet property="feedbackButton" destination="s8Z-a5-OR5" id="UDx-K7-H6u"/>
                         <outlet property="removeButton" destination="p93-oh-UMg" id="nVI-1A-Orz"/>
