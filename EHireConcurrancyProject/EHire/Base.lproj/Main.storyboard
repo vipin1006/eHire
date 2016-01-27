@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -1157,7 +1157,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </searchFieldCell>
                                         <connections>
-                                            <action selector="searchFieldTextDidChange:" target="eaX-tr-f6l" id="tkC-bK-Vn9"/>
+                                            <action selector="searchFieldTextDidChange:" target="eaX-tr-f6l" id="DNx-aO-FHB"/>
                                         </connections>
                                     </searchField>
                                     <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s8Z-a5-OR5">
@@ -1204,7 +1204,7 @@
                     </view>
                     <connections>
                         <outlet property="addCandidateButton" destination="GoU-0A-unL" id="KXf-fQ-Utm"/>
-                        <outlet property="candidateSearchField" destination="iAZ-2H-cTi" id="DyQ-0Q-8ya"/>
+                        <outlet property="candidateSearchField" destination="iAZ-2H-cTi" id="6wi-x1-xKu"/>
                         <outlet property="candidateView" destination="qci-v5-CE5" id="Vu5-CW-hJc"/>
                         <outlet property="feedbackButton" destination="s8Z-a5-OR5" id="UDx-K7-H6u"/>
                         <outlet property="removeButton" destination="p93-oh-UMg" id="nVI-1A-Orz"/>
@@ -4630,6 +4630,9 @@
                                                     <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                     <size key="minSize" width="709" height="55"/>
                                                     <size key="maxSize" width="767" height="10000000"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="2N2-KU-HrI" id="gNf-av-hyG"/>
+                                                    </connections>
                                                 </textView>
                                             </subviews>
                                             <animations/>
@@ -4706,13 +4709,12 @@
                                             <constraint firstAttribute="width" constant="96" id="GeI-zc-kJ3"/>
                                         </constraints>
                                         <animations/>
-                                        <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UrC-Wx-2ZU">
+                                        <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UrC-Wx-2ZU">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="saveCandidateDetails:" target="2N2-KU-HrI" id="oMc-nx-cga"/>
-                                            <binding destination="2N2-KU-HrI" name="enabled" keyPath="isHrFormEnable" id="7WA-2f-6rq"/>
+                                            <action selector="clearAllFields:" target="2N2-KU-HrI" id="QbU-aK-ovw"/>
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bOv-72-xvC">
@@ -4838,6 +4840,7 @@
                         <outlet property="candidateRelevantItExperience" destination="31e-41-0e7" id="G3p-0S-qWI"/>
                         <outlet property="candidateSkillOrTechnology" destination="i76-Lh-Zbc" id="F5i-kM-bTR"/>
                         <outlet property="candidateTotalItExperience" destination="APf-qh-sP2" id="Lub-gP-Xgw"/>
+                        <outlet property="clearButton" destination="TUN-wg-53A" id="IS9-Iu-H3V"/>
                         <outlet property="companyName" destination="48i-Ye-tP3" id="tHC-1W-YPF"/>
                         <outlet property="currentDesignation" destination="aUp-m8-Tmc" id="VbI-I1-mLx"/>
                         <outlet property="currentFixedSalary" destination="W4W-ht-5Ru" id="QSX-sF-MOM"/>

@@ -600,7 +600,76 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             return true
         }
     }
-   
+    @IBAction func saveData(sender: AnyObject?)
+    {
+        
+        if managerialRoundFeedback.isSubmitted == true{
+            return
+        }
+        
+        managerialRoundFeedback.commentsOnCandidate = NSAttributedString(string: textViewCommentsForOverAllCandidateAssessment.string!)
+        managerialRoundFeedback.commentsOnTechnology = NSAttributedString(string: textViewCommentsForOverAllTechnologyAssessment.string!)
+        managerialRoundFeedback.commitments = NSAttributedString(string: textViewCommitments.string!)
+        managerialRoundFeedback.designation = textFieldDesignation.stringValue
+        managerialRoundFeedback.recommendedCg = textFieldCorporateGrade.stringValue
+        managerialRoundFeedback.designation = textFieldDesignation.stringValue
+        
+        managerialRoundFeedback.jestificationForHire = NSAttributedString(string: textViewJustificationForHire.string!)
+        
+        managerialRoundFeedback.isSubmitted = false
+        print(textFieldGrossAnnualSalary.stringValue)
+        
+        
+        let grossSalaryValue = NSString(string: textFieldGrossAnnualSalary.stringValue)
+        managerialRoundFeedback.grossAnnualSalary = NSNumber(integer: grossSalaryValue.integerValue)
+        
+        managerialRoundFeedback.managerName = textFieldInterviewedBy.stringValue
+        let selectedColoumn = matrixForRecommendationState.selectedColumn
+        if selectedColoumn != 0
+        {
+            managerialRoundFeedback.recommendation = "Rejected"
+        }else
+        {
+            managerialRoundFeedback.recommendation = "Shortlisted"
+        }
+        
+        managerialRoundFeedback.skillSet = skillsAndRatingsTitleArray as [SkillSet]
+        managerialRoundFeedback.isSubmitted = false
+        
+        
+        if isFeedBackSaved==false{
+            dataAccessModel.insertManagerFeedback(self,candidate: selectedCandidate!, managerFeedbackModel: managerialRoundFeedback, andCallBack: { (isSucess) -> Void in
+                if isSucess{
+                    self.isFeedBackSaved = true
+                    self.sortArray((self.selectedCandidate?.interviewedByManagers?.allObjects)!,index:self.selectedSegment!
+                    )
+                }
+            })
+            
+            
+        }else{
+            let sortedResults = toSortArray((selectedCandidate?.interviewedByManagers?.allObjects)!)
+            let managerFeedback =  sortedResults[selectedSegment!] as! ManagerFeedBack
+            dataAccessModel.updateManagerFeedback(selectedCandidate!, managerFeedback: managerFeedback, managerFeedbackModel: managerialRoundFeedback, andCallBack: { (isSucess) -> Void in
+                if isSucess{
+                    Utility.alertPopup("Success", informativeText: "Feedback for Managerround has been updated Successfully",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                }
+            })
+            
+            
+        }
+        
+        
+        
+        
+        
+        //        tableView.reloadData()
+        
+        
+        
+        
+    }
+ 
     
   
     
@@ -822,18 +891,23 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             
             managerialRoundFeedback.skillSet = skillsAndRatingsTitleArray as [SkillSet]
             
-            if isFeedBackSaved==false{
-                dataAccessModel.insertManagerFeedback(self,candidate: selectedCandidate!, managerFeedbackModel: managerialRoundFeedback, andCallBack: { (isSucess) -> Void in
-                    if isSucess{
-                        Utility.alertPopup("Success", informativeText: "Feedback for Manager Round \((self.selectedCandidate?.interviewedByManagers?.count)!) has been sucessfully saved",isCancelBtnNeeded:false,okCompletionHandler: nil)
-                        
-                    }
-                    self.disableAndEnableFields(true)
-                    self.tableView.reloadData()
+            if isFeedBackSaved==false
+            {
+                Utility.alertPopup("Alert", informativeText: "Are you sure you want to ‘Submit’ the data ?", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
+                    self.dataAccessModel.insertManagerFeedback(self,candidate: self.selectedCandidate!, managerFeedbackModel: self.managerialRoundFeedback, andCallBack: { (isSucess) -> Void in
+                        if isSucess{
+                            Utility.alertPopup("Success", informativeText: "Feedback for Manager Round \((self.selectedCandidate?.interviewedByManagers?.count)!) has been sucessfully saved",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                            
+                        }
+                        self.disableAndEnableFields(true)
+                        self.tableView.reloadData()
+                    })
+
                 })
                 
                 
-            }else{
+            }
+            else{
                 let sortedResults = toSortArray((selectedCandidate?.interviewedByManagers?.allObjects)!)
                 let managerFeedback =  sortedResults[selectedSegment!] as! ManagerFeedBack
                 print(selectedSegment)

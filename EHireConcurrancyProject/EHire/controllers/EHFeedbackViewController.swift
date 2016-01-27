@@ -80,7 +80,7 @@ class EHFeedbackViewController: NSViewController
             
         case 1:
             
-            if techLeadCount == 0
+            if techLeadCount < 3
             {
                 Utility.alertPopup("Alert", informativeText: "Please complete the Technical Round(s) before proceeding to the Managerial Round",isCancelBtnNeeded:false, okCompletionHandler: nil)
                 subRound.selectedSegment = 0
@@ -123,7 +123,7 @@ class EHFeedbackViewController: NSViewController
             
         case 2:
             
-            if techLeadCount == 0
+            if techLeadCount < 3
             {
                 Utility.alertPopup("Alert", informativeText: "Please complete Technical Round(s) before proceeding to the HR Round", isCancelBtnNeeded:false,okCompletionHandler: nil)
                 subRound.selectedSegment = 0
@@ -146,7 +146,7 @@ class EHFeedbackViewController: NSViewController
                     }
                 }
                 
-                if managerCount == 0
+                if managerCount < 2
                 {
                     Utility.alertPopup("Alert", informativeText: "Please complete Manager Round(s) before proceeding to the HR Round", isCancelBtnNeeded:false,okCompletionHandler: nil)
                     
@@ -391,7 +391,7 @@ class EHFeedbackViewController: NSViewController
     
     @IBAction func dismissFeedbackView(sender: AnyObject)
     {
-        Utility.alertPopup("Do you want to save the data?", informativeText:"Press Yes will keep entered data",isCancelBtnNeeded:true) { () -> Void in
+        Utility.alertPopup("Do you want to ‘Save’ the data entered before going to the previous screen ?", informativeText:"Press Yes will keep entered data",isCancelBtnNeeded:true) { () -> Void in
           
             switch self.typeOfInterview.selectedSegment
             {
@@ -401,7 +401,7 @@ class EHFeedbackViewController: NSViewController
                 print("Technical")
                 self.techFeedback?.saveDetailsAction("")
             case 1:
-               // self.managerFeedback?.saveData(nil)
+                self.managerFeedback?.saveData(nil)
                 print("Manager")
                 
             default:

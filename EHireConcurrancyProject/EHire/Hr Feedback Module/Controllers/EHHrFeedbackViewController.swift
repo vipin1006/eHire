@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate {
+class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextViewDelegate {
 
     //MARK: IBOutlets
     
@@ -67,6 +67,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate {
     @IBOutlet weak var dummyLegalObligations: NSTextField!
     @IBOutlet weak var dummySpecifyLegalObligations: NSTextField!
     @IBOutlet weak var lastDesignation: NSTextField!
+    @IBOutlet weak var clearButton: NSButton!
     
     dynamic var isHrFormEnable = true
     
@@ -129,7 +130,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate {
                     self.candidateInfo["isHrFormSubmitted"] = 1
                     
                     self.isHrFormEnable = false
-                    
+                    self.clearButton.enabled = false
                     self.saveCandidateDetails("")
             }
             }
@@ -764,11 +765,16 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate {
     }
     
 }
+    func textDidChange(notification: NSNotification)
+    {
+        clearButton.enabled = true
+    }
     
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
         
         if control is NSTextField
         {
+           clearButton.enabled = true
            let textField = control as! NSTextField
            setClearColor(textField)
         }
@@ -777,4 +783,41 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate {
         
     }
     
+    @IBAction func clearAllFields(sender: AnyObject)
+    {
+        candidateName.stringValue = ""
+        candidateBusinessUnit.stringValue = ""
+        candidateSkillOrTechnology.stringValue = ""
+        candidateTotalItExperience.stringValue = ""
+        candidateMobile.stringValue = ""
+        candidateCurrentLocation.stringValue = ""
+        companyName.stringValue = ""
+        employmentGap.stringValue = ""
+        currentDesignation.stringValue = ""
+        currentJobType.stringValue = ""
+        candidateRelevantItExperience.stringValue = ""
+        officialMailid.stringValue = ""
+        visaTypeAndValidity.stringValue = ""
+        previousEmployerName.stringValue = ""
+        highestEducationQualificationTitle.stringValue = ""
+        highestEducationBoardOrUniversity.stringValue = ""
+        highestEducationPercentage.stringValue = ""
+        educationGapDetails.stringValue = ""
+        jobChangeReasons.stringValue = ""
+        leavePlanReasons.stringValue = ""
+        missingDocuments.stringValue = ""
+        currentFixedSalary.stringValue = ""
+        currentSalaryVariable.stringValue = ""
+        expectedSalary.stringValue = ""
+        candidateNoticePeriod.stringValue = ""
+        candidateJoinngPeriod.stringValue = ""
+        legalObligationDetails.stringValue = ""
+        questionsAskedByCandidate.string = ""
+        inetrviewedBy.stringValue = ""
+        dummyPleaseSpecify.stringValue = ""
+        dummySpecifyMissingDocuments.stringValue = ""
+        dummyLegalObligations.stringValue = ""
+        dummySpecifyLegalObligations.stringValue = ""
+        lastDesignation.stringValue = ""
+    }
 }
