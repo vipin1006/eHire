@@ -143,6 +143,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         {
             addDate.enabled = false
             addTechnology.enabled = true
+             deleteTechnologyDate.enabled = true
         }
     }
     
