@@ -366,7 +366,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         for ratingsView in cellView.starCustomView.subviews
         {
             let feedbackview = ratingsView as! NSButton
-            print(technicalFeedbackModel.isFeedbackSubmitted)
+            
             if technicalFeedbackModel.isFeedbackSubmitted == true
             {
                 feedbackview.enabled = false
@@ -743,13 +743,17 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             
         if isFeedBackSaved == false
         {
-            dataAccessModel.insertIntoTechnicalFeedback(self,technicalFeedbackModel: technicalFeedbackModel, selectedCandidate: selectedCandidate!,andCallBack: {(isSucess)->Void in
-                if isSucess{
-                    Utility.alertPopup("Success", informativeText: "Feedback for Technical Round \((self.selectedCandidate?.interviewedByTechLeads?.count)!) has been successfully saved", isCancelBtnNeeded:false,okCompletionHandler: nil)
-                }
-                self.disableAndEnableFields(true)
-                self.tableView.reloadData()
+            Utility.alertPopup("Alert", informativeText: "Are you sure you want to ‘Submit’ the data ?", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
                 
+                self.dataAccessModel.insertIntoTechnicalFeedback(self,technicalFeedbackModel: self.technicalFeedbackModel, selectedCandidate: self.selectedCandidate!,andCallBack: {(isSucess)->Void in
+                    if isSucess{
+                        Utility.alertPopup("Success", informativeText: "Feedback for Technical Round \((self.selectedCandidate?.interviewedByTechLeads?.count)!) has been successfully saved", isCancelBtnNeeded:false,okCompletionHandler: nil)
+                    }
+                    self.disableAndEnableFields(true)
+                    self.tableView.reloadData()
+                    
+                })
+
             })
             
         }

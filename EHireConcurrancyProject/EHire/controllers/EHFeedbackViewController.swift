@@ -391,7 +391,7 @@ class EHFeedbackViewController: NSViewController
     
     @IBAction func dismissFeedbackView(sender: AnyObject)
     {
-        Utility.alertPopup("Do you want to save the data?", informativeText:"Press Yes will keep entered data",isCancelBtnNeeded:true) { () -> Void in
+        Utility.alertPopup("Do you want to ‘Save’ the data entered before going to the previous screen ?", informativeText:"Press Yes will keep entered data",isCancelBtnNeeded:true) { () -> Void in
           
             switch self.typeOfInterview.selectedSegment
             {

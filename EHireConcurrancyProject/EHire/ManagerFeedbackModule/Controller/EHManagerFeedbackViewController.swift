@@ -822,18 +822,23 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             
             managerialRoundFeedback.skillSet = skillsAndRatingsTitleArray as [SkillSet]
             
-            if isFeedBackSaved==false{
-                dataAccessModel.insertManagerFeedback(self,candidate: selectedCandidate!, managerFeedbackModel: managerialRoundFeedback, andCallBack: { (isSucess) -> Void in
-                    if isSucess{
-                        Utility.alertPopup("Success", informativeText: "Feedback for Manager Round \((self.selectedCandidate?.interviewedByManagers?.count)!) has been sucessfully saved",isCancelBtnNeeded:false,okCompletionHandler: nil)
-                        
-                    }
-                    self.disableAndEnableFields(true)
-                    self.tableView.reloadData()
+            if isFeedBackSaved==false
+            {
+                Utility.alertPopup("Alert", informativeText: "Are you sure you want to ‘Submit’ the data ?", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
+                    self.dataAccessModel.insertManagerFeedback(self,candidate: self.selectedCandidate!, managerFeedbackModel: self.managerialRoundFeedback, andCallBack: { (isSucess) -> Void in
+                        if isSucess{
+                            Utility.alertPopup("Success", informativeText: "Feedback for Manager Round \((self.selectedCandidate?.interviewedByManagers?.count)!) has been sucessfully saved",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                            
+                        }
+                        self.disableAndEnableFields(true)
+                        self.tableView.reloadData()
+                    })
+
                 })
                 
                 
-            }else{
+            }
+            else{
                 let sortedResults = toSortArray((selectedCandidate?.interviewedByManagers?.allObjects)!)
                 let managerFeedback =  sortedResults[selectedSegment!] as! ManagerFeedBack
                 print(selectedSegment)
