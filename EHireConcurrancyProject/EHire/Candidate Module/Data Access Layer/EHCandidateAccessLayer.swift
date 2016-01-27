@@ -54,7 +54,7 @@ class EHCandidateAccessLayer: NSObject
                 
                 
                
-                let managedObject:Candidate = (NSEntityDescription.insertNewObjectForEntityForName(String(Candidate), inManagedObjectContext: self.tempContext) as? Candidate)!
+                let managedObject:Candidate = (NSEntityDescription.insertNewObjectForEntityForName(String(Candidate), inManagedObjectContext: self.managedObjectContext!) as? Candidate)!
                 managedObject.name = name
                 managedObject.phoneNumber = phoneNumber
                 managedObject.experience =  experience
@@ -65,7 +65,7 @@ class EHCandidateAccessLayer: NSObject
                 do
                 {
 
-                try self.tempContext.save()
+                try self.managedObjectContext!.save()
                 dispatch_sync(dispatch_get_main_queue()
                     ,{ () -> Void in
                         
