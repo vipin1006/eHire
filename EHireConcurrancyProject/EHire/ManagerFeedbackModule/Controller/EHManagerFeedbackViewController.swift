@@ -110,22 +110,11 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
 
         managerFeedbackMainView.wantsLayer = true
         managerFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
-       // tableView.reloadData()
         setDefaultCgDeviationAndInterviewMode()
         
         
          selectedSegment = 0
-//        if selectedCandidate != nil
-//        { if selectedCandidate?.interviewedByManagers?.count != 0{
-//           
-//            sortArray((selectedCandidate?.interviewedByManagers?.allObjects)!,index: 0)
-//
-//        }else{
-//            isFeedBackSaved = false
-//            }
-//            tableView.reloadData()
-//        }
-        
+
         
         print("name = \(managerialRoundFeedback.designation)")
     }
@@ -167,7 +156,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                     self.isFeedBackSaved = false
                     self.tableView.reloadData()
                 }
-                //                        tableView.reloadData()
+               
             }
         }
         else{
@@ -226,10 +215,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                 cell.titleName.enabled = true
                 cell.feedBackRating.enabled = true
             }
-//            if selectedCandidate?.interviewedByManagers?.count > 0
-//            {
-//                view.enabled = false
-//            }
             
             view.target = self
             view.action = "selectedStarCount:"
@@ -624,7 +609,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     
     
-    //PRAGMAMARK:- Update UI 
+    //PRAGMAMARK:- Update UI
     func updateUIElements(feedback: ManagerFeedBack)
     {
         print(feedback.managerName)
@@ -840,7 +825,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             if isFeedBackSaved==false{
                 dataAccessModel.insertManagerFeedback(self,candidate: selectedCandidate!, managerFeedbackModel: managerialRoundFeedback, andCallBack: { (isSucess) -> Void in
                     if isSucess{
-                        Utility.alertPopup("Success", informativeText: "Feedback for Managerround \((self.selectedCandidate?.interviewedByManagers?.count)!) has been sucessfully saved",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                        Utility.alertPopup("Success", informativeText: "Feedback for Manager Round \((self.selectedCandidate?.interviewedByManagers?.count)!) has been sucessfully saved",isCancelBtnNeeded:false,okCompletionHandler: nil)
                         
                     }
                     self.disableAndEnableFields(true)
@@ -888,8 +873,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         skillsAndRatingsTitleArray.removeAll()
         addDefalutSkillSet()
 
-       // tableView.reloadData()
-        
+              
         for starButton in viewOverAllAssessmentOfTechnologyStar.subviews{
             let tempBtn = starButton as! NSButton
             tempBtn.image = NSImage(named: "deselectStar")

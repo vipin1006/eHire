@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,NSTableViewDelegate,NSTextFieldDelegate
+class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,NSTableViewDelegate,NSTextFieldDelegate,NSTextViewDelegate
 {
     //MARK: IBOutlets
     @IBOutlet weak var tableView: NSTableView!
@@ -28,7 +28,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     @IBOutlet weak var recommentationField: NSMatrix!
     @IBOutlet weak var addNewSkill: NSButton!
     @IBOutlet weak var deleteExistingSkill: NSButton!
-    @IBOutlet weak var saveButton: NSButton!
     @IBOutlet weak var submitButton: NSButton!
     @IBOutlet weak var clearButton: NSButton!
     
@@ -45,14 +44,14 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     var skillArray = NSMutableArray()
     var selectedRound : Int?
     var isFeedBackSaved : Bool?
-     var managedObjectContext : NSManagedObjectContext?
+    var managedObjectContext : NSManagedObjectContext?
     var technicalFeedbackObject:TechnicalFeedBack?
     var arrTemp = ["a","b","c","d"]
+    
     //MARK: initial setup of views
     func initialSetupOfTableView()
     {
-       
-         skillArray = [ "Communication","Organisation Stability","Leadership(if applicable)","Growth Potential"]
+        skillArray = [ "Communication","Organisation Stability","Leadership(if applicable)","Growth Potential"]
         
 //        for index in 0...3
 //        {
@@ -68,8 +67,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 self.tableView.reloadData()
             
                 })
-           
-           
+      
            
 //        }
     }
@@ -93,7 +91,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                     self.isFeedBackSaved = false
                     self.tableView.reloadData()
                 }
-                //                        tableView.reloadData()
+            
             }
         }
         else{
@@ -111,7 +109,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
         self.performSelector(Selector("test"), withObject: nil, afterDelay: 0.01)
         candidateNameField.stringValue = (selectedCandidate?.name)!
         requisitionNameField.stringValue = (selectedCandidate?.requisition)!
@@ -137,7 +134,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             view.action = "assessmentOfCandidate:"
         }
         setDefaultValues()
-         selectedRound = 0
+        selectedRound = 0
     }
     
     func setDefaultValues()
@@ -168,6 +165,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     {
           if selectedCandidate != nil
             {
+                clearButton.enabled = false
                 technicalFeedbackObject = feedback
                 textViewOfCandidateAssessment.string = feedback.commentsOnCandidate
                 technicalFeedbackModel.ratingOnTechnical = Int16((feedback.ratingOnTechnical?.integerValue)!)
@@ -182,7 +180,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 fetchingModeOfInterview(technicalFeedbackModel.modeOfInterview!)
                 fetchingRecommendation(technicalFeedbackModel.recommendation!)
                 disableAndEnableFields((technicalFeedbackModel.isFeedbackSubmitted?.boolValue)!)
-               self.skillsAndRatingsTitleArray.removeAll()
+                self.skillsAndRatingsTitleArray.removeAll()
                 
                 if isFeedBackSaved == true{
 //                for object in feedback.candidateSkills!
@@ -252,17 +250,14 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                     }
                 }
             }
-        
-       
-    }
-    
+        tableView.reloadData()
+     }
     
     func disableAndEnableFields(isDataSubmitted : Bool)
     {
         if isDataSubmitted == true
         {
         //To Disable All fields
-        saveButton.enabled = false
         clearButton.enabled = false
         submitButton.enabled = false
         addNewSkill.enabled = false
@@ -288,10 +283,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         {
         //To Enable All fields
         addNewSkill.enabled = true
-        clearButton.enabled = true
         deleteExistingSkill.enabled = true
         submitButton.enabled = true
-        saveButton.enabled = true
         designationField.editable = true
         interviewedByField.editable = true
         textViewOfCandidateAssessment.editable = true
@@ -360,7 +353,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 let starButton = stars as! NSButton
                 if starButton.tag+1 == skill.skillRating
                 {
-                   toDisplayRatingStar((cell?.starCustomView.subviews)!, sender: starButton, feedbackText: cellView.feedback, view: (cell?.starCustomView!)!)
+                    toDisplayRatingStar((cell?.starCustomView.subviews)!, sender: starButton, feedbackText: cellView.feedback, view: (cell?.starCustomView!)!)
                     break
                 }
                 else
@@ -389,18 +382,23 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             }
             feedbackview.target = self
             feedbackview.action = "starRatingCount:"
-        }
+        }   
         return cellView
     }
-
+    
     func tableViewSelectionDidChange(notification: NSNotification)
     {
+        clearButton.enabled = true
         if notification.object!.selectedRow >= 4
         {
             cell?.skilsAndRatingsTitlefield.editable = true
         }
     }
     
+    func textDidChange(notification: NSNotification)
+    {
+        clearButton.enabled = true
+    }
     // To Display The Stars inside TableView
     func starRatingCount(sender : NSButton)
     {
@@ -515,7 +513,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         case 2:
             countingOfRatingStar(2)
             feedbackText.stringValue = "Good"
-            
             countingOfRatingStar(0, deselectStar: 3,4)
             if view as! NSView == overallAssessmentOnTechnologyStarView
             {
@@ -572,7 +569,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             else if view.superview is EHRatingsTableCellView
             {
                 cell = view.superview as? EHRatingsTableCellView
-                
                 overallCandidateRatingOnSkills = 5
                 let skill = skillsAndRatingsTitleArray[(cell?.skilsAndRatingsTitlefield.tag)!]
                 skill.skillRating = overallCandidateRatingOnSkills
@@ -582,12 +578,15 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }
     }
     
-    //MARK: TextField Delegate method
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
     {
         return true
     }
-    
+    override func controlTextDidBeginEditing(obj: NSNotification)
+    {
+        obj.object as! NSTextField
+        clearButton.enabled = true
+    }
     override func controlTextDidEndEditing(obj: NSNotification)
     {
         let textFieldObject = obj.object as! NSTextField
@@ -697,17 +696,16 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         
         if isFeedBackSaved == false
         {
-
-            dataAccessModel.insertIntoTechnicalFeedback(self,technicalFeedbackmodel: technicalFeedbackModel, selectedCandidate: selectedCandidate!,andCallBack: {(isSucess)->Void in
-                if isSucess{
-                self.isFeedBackSaved = true
-                    
-                }
-
-                })
             
-
-        }
+            dataAccessModel.insertIntoTechnicalFeedback(self,technicalFeedbackModel: technicalFeedbackModel, selectedCandidate: selectedCandidate!,andCallBack: {(isSucess)->Void in
+                if isSucess
+                {
+                self.isFeedBackSaved = true
+                self.sortArray((self.selectedCandidate?.interviewedByTechLeads?.allObjects)!,index:self.selectedRound!
+                    )
+                }
+            })
+            }
         else
         {
         let sortedResults = sortingAnArray((selectedCandidate?.interviewedByTechLeads?.allObjects)!)
@@ -719,24 +717,20 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                     Utility.alertPopup("Success", informativeText: "Feedback for Technical Round has been updated Successfully", isCancelBtnNeeded:false,okCompletionHandler: nil)
                 }
             })
-            
+        }
         
-            
-            
-        
-     }
    }
     
     @IBAction func submitDetails(sender: AnyObject)
     {
         if validation()
         {
-            technicalFeedbackModel.skills = skillsAndRatingsTitleArray as [SkillSet]
+        technicalFeedbackModel.skills = skillsAndRatingsTitleArray as [SkillSet]
         technicalFeedbackModel.commentsOnTechnology = textViewOfTechnologyAssessment.string
         technicalFeedbackModel.commentsOnCandidate  = textViewOfCandidateAssessment.string
         technicalFeedbackModel.designation          = designationField.stringValue
         technicalFeedbackModel.techLeadName         = interviewedByField.stringValue
-        technicalFeedbackModel.isFeedbackSubmitted = true
+        technicalFeedbackModel.isFeedbackSubmitted  = true
             
         let selectedColoumn = recommentationField.selectedColumn
         if selectedColoumn != 0
@@ -748,9 +742,9 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             technicalFeedbackModel.recommendation = "Shortlisted"
         }
             
-        if isFeedBackSaved==false
+        if isFeedBackSaved == false
         {
-            dataAccessModel.insertIntoTechnicalFeedback(self,technicalFeedbackmodel: technicalFeedbackModel, selectedCandidate: selectedCandidate!,andCallBack: {(isSucess)->Void in
+            dataAccessModel.insertIntoTechnicalFeedback(self,technicalFeedbackModel: technicalFeedbackModel, selectedCandidate: selectedCandidate!,andCallBack: {(isSucess)->Void in
                 if isSucess{
                     Utility.alertPopup("Success", informativeText: "Feedback for Technical Round \((self.selectedCandidate?.interviewedByTechLeads?.count)!) has been successfully saved", isCancelBtnNeeded:false,okCompletionHandler: nil)
                 }
@@ -767,17 +761,15 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             
             dataAccessModel.updateManagerFeedback(selectedCandidate!, technicalFeedback: technicalFeedback, technicalFeedbackmodel: technicalFeedbackModel,andCallBack: {(isSucess)->Void in
                 
-                if isSucess{
+                if isSucess
+                {
                     Utility.alertPopup("Success", informativeText: "Feedback for Technical Round has been updated Successfully", isCancelBtnNeeded:false,okCompletionHandler: nil)
                 }
                 self.disableAndEnableFields(true)
                 self.tableView.reloadData()
             })
-            
         }
-           
-
-        }
+      }
     }
 
     
@@ -833,7 +825,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }
         else if cell?.feedback.stringValue == ""
         {
-            Utility.alertPopup("Alert", informativeText: "Please provide your feedback ob skills",isCancelBtnNeeded:false, okCompletionHandler: nil)
+            Utility.alertPopup("Alert", informativeText: "Please provide your feedback of skills",isCancelBtnNeeded:false, okCompletionHandler: nil)
             return isValid
         }
             

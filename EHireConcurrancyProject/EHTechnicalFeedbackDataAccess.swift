@@ -95,8 +95,10 @@ class EHTechnicalFeedbackDataAccess: NSObject
     }
     
     
-    func insertIntoTechnicalFeedback(feedBackControllerObj:EHTechnicalFeedbackViewController,technicalFeedbackmodel : EHTechnicalFeedbackModel, selectedCandidate : Candidate,andCallBack:InsertTechnicalFeedbackReturn)
+    func insertIntoTechnicalFeedback(feedBackControllerObj:EHTechnicalFeedbackViewController,technicalFeedbackModel : EHTechnicalFeedbackModel, selectedCandidate : Candidate,andCallBack:InsertTechnicalFeedbackReturn)
     {
+        
+        
         if tempContext.parentContext == self.managedObjectContext{
             
         }else{
@@ -104,32 +106,40 @@ class EHTechnicalFeedbackDataAccess: NSObject
         }
         tempContext.performBlock(
             { () -> Void in
+                
                 let technicalFeedback = NSEntityDescription.insertNewObjectForEntityForName(String(TechnicalFeedBack), inManagedObjectContext: self.tempContext) as? TechnicalFeedBack
-                technicalFeedback!.setValue(technicalFeedbackmodel.commentsOnCandidate,  forKey: "commentsOnCandidate")
-                technicalFeedback!.setValue(technicalFeedbackmodel.commentsOnTechnology,  forKey: "commentsOnTechnology")
-                technicalFeedback!.setValue(technicalFeedbackmodel.techLeadName,          forKey: "techLeadName")
-                technicalFeedback!.setValue(technicalFeedbackmodel.modeOfInterview,       forKey: "modeOfInterview")
-                technicalFeedback!.setValue(technicalFeedbackmodel.recommendation,        forKey: "recommendation")
-                technicalFeedback!.setValue(NSNumber(short: (technicalFeedbackmodel.ratingOnCandidate)!), forKey: "ratingOnCandidate")
-                technicalFeedback!.setValue(NSNumber(short: (technicalFeedbackmodel.ratingOnTechnical)!), forKey: "ratingOnTechnical")
+                technicalFeedback!.setValue((selectedCandidate.interviewedByTechLeads?.count)!+1, forKey: "id")
+                technicalFeedback!.setValue(technicalFeedbackModel.commentsOnCandidate, forKey: "commentsOnCandidate")
+                
+                technicalFeedback!.setValue(technicalFeedbackModel.commentsOnTechnology, forKey: "commentsOnTechnology")
+                
+                technicalFeedback!.setValue(NSMutableSet(array: (technicalFeedbackModel.skills!)), forKey: "candidateSkills")
+                
+                technicalFeedback!.setValue(technicalFeedbackModel.modeOfInterview, forKey: "modeOfInterview")
+                
+                technicalFeedback!.setValue(NSNumber(short: (technicalFeedbackModel.ratingOnCandidate)!), forKey: "ratingOnCandidate")
+                
+                technicalFeedback!.setValue(NSNumber(short: (technicalFeedbackModel.ratingOnTechnical)!), forKey: "ratingOnTechnical")
+                
+                technicalFeedback!.setValue(technicalFeedbackModel.recommendation, forKey: "recommendation")
+            
+                technicalFeedback!.setValue(technicalFeedbackModel.designation, forKey: "designation")
+                technicalFeedback!.setValue(technicalFeedbackModel.techLeadName, forKey: "techLeadName")
+                
                 let candidateObjectId = selectedCandidate.objectID
                 technicalFeedback?.setValue(self.tempContext.objectWithID(candidateObjectId), forKey: "candidate")
-//                technicalFeedback!.setValue(selectedCandidate, forKey: "candidate")
                 
-                technicalFeedback!.setValue((selectedCandidate.interviewedByTechLeads?.count)!, forKey: "id")
-                technicalFeedback!.candidateSkills = NSMutableSet(array: technicalFeedbackmodel.skills!)
-                technicalFeedback!.setValue(technicalFeedbackmodel.designation, forKey: "designation")
-                technicalFeedback!.setValue(technicalFeedbackmodel.isFeedbackSubmitted, forKey: "isFeedbackSubmitted")
-                selectedCandidate.interviewedByTechLeads?.setByAddingObject(technicalFeedback!)
+                technicalFeedback!.setValue(technicalFeedbackModel.isFeedbackSubmitted, forKey: "isFeedbackSubmitted")
+                
                 do
                 {
                     try self.tempContext.save()
                     dispatch_sync(dispatch_get_main_queue()
                         ,{ () -> Void in
                             feedBackControllerObj.technicalFeedbackObject = technicalFeedback
-                             andCallBack(isSucess: true)
+                            andCallBack(isSucess: true)
                     })
-                   
+                    
                 }
                 catch let error as NSError
                 {
@@ -137,6 +147,51 @@ class EHTechnicalFeedbackDataAccess: NSObject
                 }
         })
         
+        
+
+        
+        
+        
+//        if tempContext.parentContext == self.managedObjectContext{
+//            
+//        }else{
+//            tempContext.parentContext = self.managedObjectContext
+//        }
+//        tempContext.performBlock(
+//            { () -> Void in
+//                let technicalFeedback = NSEntityDescription.insertNewObjectForEntityForName(String(TechnicalFeedBack), inManagedObjectContext: self.tempContext) as? TechnicalFeedBack
+//                technicalFeedback!.setValue(technicalFeedbackmodel.commentsOnCandidate,  forKey: "commentsOnCandidate")
+//                technicalFeedback!.setValue(technicalFeedbackmodel.commentsOnTechnology,  forKey: "commentsOnTechnology")
+//                technicalFeedback!.setValue(technicalFeedbackmodel.techLeadName,          forKey: "techLeadName")
+//                technicalFeedback!.setValue(technicalFeedbackmodel.modeOfInterview,       forKey: "modeOfInterview")
+//                technicalFeedback!.setValue(technicalFeedbackmodel.recommendation,        forKey: "recommendation")
+//                technicalFeedback!.setValue(NSNumber(short: (technicalFeedbackmodel.ratingOnCandidate)!), forKey: "ratingOnCandidate")
+//                technicalFeedback!.setValue(NSNumber(short: (technicalFeedbackmodel.ratingOnTechnical)!), forKey: "ratingOnTechnical")
+//                let candidateObjectId = selectedCandidate.objectID
+//                technicalFeedback?.setValue(self.tempContext.objectWithID(candidateObjectId), forKey: "candidate")
+////                technicalFeedback!.setValue(selectedCandidate, forKey: "candidate")
+//                
+//                technicalFeedback!.setValue(((selectedCandidate.interviewedByTechLeads?.count)! + 1) , forKey: "id")
+//                technicalFeedback!.candidateSkills = NSMutableSet(array: technicalFeedbackmodel.skills!)
+//                technicalFeedback!.setValue(technicalFeedbackmodel.designation, forKey: "designation")
+//                technicalFeedback!.setValue(technicalFeedbackmodel.isFeedbackSubmitted, forKey: "isFeedbackSubmitted")
+//            //    selectedCandidate.interviewedByTechLeads?.setByAddingObject(technicalFeedback!)
+//                do
+//                {
+//                    try self.tempContext.save()
+//                    dispatch_sync(dispatch_get_main_queue()
+//                        ,{ () -> Void in
+//                            feedBackControllerObj.technicalFeedbackObject = technicalFeedback
+//                             andCallBack(isSucess: true)
+//                    })
+//                   
+//                }
+//                catch let error as NSError
+//                {
+//                    print(error.localizedDescription)
+//                }
+//        })
+//        
         
         
     

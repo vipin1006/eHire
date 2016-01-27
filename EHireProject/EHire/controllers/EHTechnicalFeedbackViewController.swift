@@ -737,7 +737,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }
         else if cell?.feedback.stringValue == ""
         {
-            Utility.alertPopup("Alert", informativeText: "Please provide your feedback ob skills",isCancelBtnNeeded:false, okCompletionHandler: nil)
+            Utility.alertPopup("Alert", informativeText: "Please provide your feedback of skills",isCancelBtnNeeded:false, okCompletionHandler: nil)
             return isValid
         }
   
