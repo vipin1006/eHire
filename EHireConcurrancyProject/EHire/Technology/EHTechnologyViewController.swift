@@ -561,13 +561,13 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                     }
                     
                     
-                    let technologyObject = technologyArray[technologyArray.count-1]
-                    technologyObject.technologyName = textFieldObject.stringValue
+                    let technologyObject = sourceList.itemAtRow(sourceList.selectedRow) as? Technology
+                    technologyObject!.technologyName = textFieldObject.stringValue
                     textFieldObject.wantsLayer = true
                     textFieldObject.backgroundColor = NSColor.clearColor()
                     addDate.enabled = false
                     addTechnology.enabled = true
-                    technologyDataLayer!.addTechnologyToCoreData(technologyObject,andCallBack:{()-> Void in
+                    technologyDataLayer!.addTechnologyToCoreData(technologyObject!,andCallBack:{()-> Void in
                         
                         self.deleteTechnologyDate.enabled = false
                         self.technologyDataLayer?.getSourceListContent(
