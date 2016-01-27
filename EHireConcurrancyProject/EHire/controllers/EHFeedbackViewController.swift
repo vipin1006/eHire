@@ -80,7 +80,7 @@ class EHFeedbackViewController: NSViewController
             
         case 1:
             
-            if techLeadCount == 0
+            if techLeadCount < 3
             {
                 Utility.alertPopup("Alert", informativeText: "Please complete the Technical Round(s) before proceeding to the Managerial Round",isCancelBtnNeeded:false, okCompletionHandler: nil)
                 subRound.selectedSegment = 0
@@ -123,7 +123,7 @@ class EHFeedbackViewController: NSViewController
             
         case 2:
             
-            if techLeadCount == 0
+            if techLeadCount < 3
             {
                 Utility.alertPopup("Alert", informativeText: "Please complete Technical Round(s) before proceeding to the HR Round", isCancelBtnNeeded:false,okCompletionHandler: nil)
                 subRound.selectedSegment = 0
@@ -146,7 +146,7 @@ class EHFeedbackViewController: NSViewController
                     }
                 }
                 
-                if managerCount == 0
+                if managerCount < 2
                 {
                     Utility.alertPopup("Alert", informativeText: "Please complete Manager Round(s) before proceeding to the HR Round", isCancelBtnNeeded:false,okCompletionHandler: nil)
                     

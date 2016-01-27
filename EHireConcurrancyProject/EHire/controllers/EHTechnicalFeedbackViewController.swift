@@ -250,7 +250,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                     }
                 }
             }
-        tableView.reloadData()
      }
     
     func disableAndEnableFields(isDataSubmitted : Bool)
