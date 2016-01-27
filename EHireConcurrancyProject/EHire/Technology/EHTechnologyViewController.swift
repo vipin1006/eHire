@@ -101,7 +101,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     // This datasource method returns true if the item(technology) has any children(date)
     func outlineView(outlineView: NSOutlineView, isItemExpandable item: AnyObject) -> Bool
     {
-        if item is Technology{
+        if item is Technology
+        {
             let technology = item as! Technology
             return (technology.interviewDates!.count) > 0 ? true : false
         }
@@ -344,31 +345,26 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             if technologyArray.count > 0 && lastCellAddedForTechnology?.textFieldTechnology.stringValue == ""{
                 Utility.alertPopup("Error", informativeText: "Please provide a name for the new technology before proceeding.",isCancelBtnNeeded:false,okCompletionHandler: nil)
             }else{
-                    technologyDataLayer?.createNewtech("", andCallBack:{(newTechnology) -> Void in
-                        print(newTechnology.technologyName)
+                    technologyDataLayer?.createNewtech("", andCallBack:
+                    {(newTechnology) -> Void in
+                        self.technologyDataLayer?.getSourceListContent(
+                        { (newArray) -> Void in
+                           self.technologyArray = []
+                           self.technologyArray = newArray as! [Technology]
+                          self.reloadTableView()
+                        })
                        
-                      
-                                
-                                self.technologyArray.append(newTechnology)
-                                self.reloadTableView()
-                        
-                        
-                        
-                        print("name = \(self.technologyArray[0].technologyName)")
-//                    self.technologyArray.append(newTechnology)
                     self.deleteTechnologyDate.enabled = false
                 })
             }
         }
     }
     
-    func reloadTableView(){
-        
-        print(technologyArray[0].technologyName)
-
-        self.sourceList.reloadData()
-
+    func reloadTableView()
+    {
+       self.sourceList.reloadData()
     }
+    
     @IBAction func deleteAction(sender: AnyObject) {
         
         //this if statement is added to avoid crash. To be removed once - is disabled when no technology is selected
@@ -410,9 +406,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     {
         if let selectedItem = sourceList.itemAtRow(sourceList.selectedRow) as? Technology
         {
-            
-            
-            
             if cellTechnology?.textFieldTechnology.stringValue == ""
             {
                 technologyArray.removeLast()
@@ -466,11 +459,16 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             self.technologyDataLayer!.deleteInterviewDateFromCoreData(parentTechnology,inInterviewdate: selectedInterviewDate!,andCallBack:{()->Void in
                 if self.isCandidatesViewLoaded
                 {
-                    
                     self.candidateController?.view.removeFromSuperview()
                     self.isCandidatesViewLoaded = false
+                    self.technologyDataLayer?.getSourceListContent(
+                    { (newArray) -> Void in
+                            self.technologyArray = []
+                            self.technologyArray = newArray as! [Technology]
+                            self.sortedSourceListReload()
+                    })
+                    
                 }
-                self.sortedSourceListReload()
             })
            
             
@@ -570,8 +568,15 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                     addDate.enabled = false
                     addTechnology.enabled = true
                     technologyDataLayer!.addTechnologyToCoreData(technologyObject,andCallBack:{()-> Void in
+                        
                         self.deleteTechnologyDate.enabled = false
-                        self.sortedSourceListReload()
+                        self.technologyDataLayer?.getSourceListContent(
+                            { (newArray) -> Void in
+                                self.technologyArray = []
+                                self.technologyArray = newArray as! [Technology]
+                                self.sortedSourceListReload()
+                        })
+                       
                     })
                     
                     

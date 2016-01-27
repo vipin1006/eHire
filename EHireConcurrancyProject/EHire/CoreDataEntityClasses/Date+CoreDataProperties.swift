@@ -15,6 +15,6 @@ import CoreData
 extension Date {
 
     @NSManaged var interviewDate: NSDate?
-    @NSManaged var technologies: NSSet?
+    @NSManaged var technologies: NSMutableSet?
 
 }

@@ -30,6 +30,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     @IBOutlet weak var deleteExistingSkill: NSButton!
     @IBOutlet weak var saveButton: NSButton!
     @IBOutlet weak var submitButton: NSButton!
+    @IBOutlet weak var clearButton: NSButton!
     
     //MARK: Variables
     var cell : EHRatingsTableCellView?
@@ -262,6 +263,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         {
         //To Disable All fields
         saveButton.enabled = false
+        clearButton.enabled = false
         submitButton.enabled = false
         addNewSkill.enabled = false
         deleteExistingSkill.enabled = false
@@ -286,6 +288,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         {
         //To Enable All fields
         addNewSkill.enabled = true
+        clearButton.enabled = true
         deleteExistingSkill.enabled = true
         submitButton.enabled = true
         saveButton.enabled = true
@@ -590,8 +593,11 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         let textFieldObject = obj.object as! NSTextField
         if textFieldObject.superview is EHRatingsTableCellView
         {
+            if tableView.selectedRow >= 4
+            {
             let skillSetObject =  skillsAndRatingsTitleArray[textFieldObject.tag]
             skillSetObject.skillName = textFieldObject.stringValue
+            }
         }
     }
     
@@ -603,6 +609,10 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         if skillsAndRatingsTitleArray.count > 0 && cell?.skilsAndRatingsTitlefield.stringValue == "Enter Title"
         {
            Utility.alertPopup("Enter Title", informativeText: "Please enter previous selected title",isCancelBtnNeeded:false, okCompletionHandler: nil)
+        }
+        else if  cell?.skilsAndRatingsTitlefield.stringValue == ""
+        {
+            Utility.alertPopup("Enter Title", informativeText: "Skill name should not be blank",isCancelBtnNeeded:false, okCompletionHandler: nil)
         }
         else
         {
@@ -811,9 +821,19 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     {
       let isValid = false
         
-        if cell?.feedback.stringValue == ""
+        if cell?.skilsAndRatingsTitlefield.stringValue == ""
         {
-            Utility.alertPopup("Alert", informativeText: "Please provide your feedback",isCancelBtnNeeded:false, okCompletionHandler: nil)
+            Utility.alertPopup("Alert", informativeText: "Skill Name should not be blank",isCancelBtnNeeded:false, okCompletionHandler: nil)
+            return isValid
+        }
+        else if cell?.skilsAndRatingsTitlefield.stringValue == "Enter Title"
+        {
+            Utility.alertPopup("Alert", informativeText: "Enter Valid Skill Name",isCancelBtnNeeded:false, okCompletionHandler: nil)
+            return isValid
+        }
+        else if cell?.feedback.stringValue == ""
+        {
+            Utility.alertPopup("Alert", informativeText: "Please provide your feedback ob skills",isCancelBtnNeeded:false, okCompletionHandler: nil)
             return isValid
         }
             
