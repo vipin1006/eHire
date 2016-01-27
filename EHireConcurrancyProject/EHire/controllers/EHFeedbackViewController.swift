@@ -401,7 +401,7 @@ class EHFeedbackViewController: NSViewController
                 print("Technical")
                 self.techFeedback?.saveDetailsAction("")
             case 1:
-               // self.managerFeedback?.saveData(nil)
+                self.managerFeedback?.saveData(nil)
                 print("Manager")
                 
             default:
