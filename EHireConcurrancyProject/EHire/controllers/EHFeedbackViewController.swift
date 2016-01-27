@@ -391,7 +391,7 @@ class EHFeedbackViewController: NSViewController
     
     @IBAction func dismissFeedbackView(sender: AnyObject)
     {
-        Utility.alertPopup("Do you want to save the data?", informativeText:"Press OK will keep entered data",isCancelBtnNeeded:true) { () -> Void in
+        Utility.alertPopup("Do you want to save the data?", informativeText:"Press Yes will keep entered data",isCancelBtnNeeded:true) { () -> Void in
           
             switch self.typeOfInterview.selectedSegment
             {
@@ -401,7 +401,7 @@ class EHFeedbackViewController: NSViewController
                 print("Technical")
                 self.techFeedback?.saveDetailsAction("")
             case 1:
-                self.managerFeedback?.saveData(nil)
+               // self.managerFeedback?.saveData(nil)
                 print("Manager")
                 
             default:
