@@ -91,7 +91,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         {
             if candidate.experience != nil
             {
-                if candidate.experience!.doubleValue < 0
+                if candidate.experience!.doubleValue < -1
                 {
                     cell.textField?.stringValue = ""
                 }
@@ -152,7 +152,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
       func addCandidate()
       {
 
-         candidateAccessLayer!.addCandidate("", experience: NSNumber(double: 0), phoneNumber: "", requisition: "",interviewTime:self.interviewDate!, technologyName: self.technologyName!, interviewDate: self.interviewDate!,andCallBack: {(newCandidate) -> Void in
+         candidateAccessLayer!.addCandidate("", experience: nil, phoneNumber: "", requisition: "",interviewTime:self.interviewDate!, technologyName: self.technologyName!, interviewDate: self.interviewDate!,andCallBack: {(newCandidate) -> Void in
             self.candidateArray.addObject(newCandidate)
             self.tableView.reloadData()
             let index : NSInteger = self.candidateArray.count - 1;
@@ -169,7 +169,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         var allCandidatesValid:Bool = true
         for candidateRecord in candidateArray
         {
-          if candidateRecord.name! == "" || candidateRecord.phoneNumber! == "" || candidateRecord.experience! == -1 || candidateRecord.requisition! == ""
+          if candidateRecord.name! == "" || candidateRecord.phoneNumber! == "" || candidateRecord.experience! == -1 || candidateRecord.experience! == nil || candidateRecord.requisition! == ""
           {
             Utility.alertPopup("Candidate can not be added", informativeText: "Please fill all the details of the selected candidate before adding a new candidate", isCancelBtnNeeded:true,okCompletionHandler:
                 { () -> Void in
@@ -224,7 +224,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             if self.candidateArray.count > 0
             {
                 let candidate = self.candidateArray.lastObject
-                if  candidate!.name! == "" && candidate!.phoneNumber! == "" && candidate!.experience! == "" && candidate!.requisition! == ""
+                if  candidate!.name! == "" && candidate!.phoneNumber! == "" && candidate!.experience! == -1 && candidate!.requisition! == ""
                 {
                     self.candidateSearchField.enabled = false
                 }
@@ -244,7 +244,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     @IBAction func searchFieldTextDidChange(sender: NSSearchField)
     {
       filteredArray.removeAllObjects()
-      let predicate = NSPredicate(format:"name contains[c] %@ OR experience == %d OR phoneNumber contains[c] %@ OR requisition contains[c] %@" , sender.stringValue,sender.integerValue, sender.stringValue,sender.stringValue)
+      let predicate = NSPredicate(format:"name contains[c] %@ || experience == %@ || phoneNumber contains[c] %@ || requisition contains[c] %@" , sender.stringValue,NSNumber(float:sender.floatValue), sender.stringValue,sender.stringValue)
       filteredArray.addObjectsFromArray(candidateArray.filteredArrayUsingPredicate(predicate))
         tableView.reloadData()
       
@@ -279,7 +279,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
           if candidateArray.count > 0
             {
               let candidateRecord = candidateArray.objectAtIndex(tableView.selectedRow) as! Candidate
-              if  candidateRecord.name! == "" || candidateRecord.phoneNumber! == "" || candidateRecord.experience! == -1 || candidateRecord.requisition! == ""
+              if  candidateRecord.name! == "" || candidateRecord.phoneNumber! == "" || candidateRecord.experience == -1 || candidateRecord.experience == nil || candidateRecord.requisition! == ""
               {
                 Utility.alertPopup("Candidate details are not complete. Cannot proceed to provide feedback.", informativeText:"Please enter all the candidate information before proceeding.",isCancelBtnNeeded:false, okCompletionHandler: { () -> Void in
                         })
@@ -331,7 +331,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             Utility.alertPopup("Error", informativeText: "Please enter a numerical value for experience.",isCancelBtnNeeded:false,okCompletionHandler:nil)
             textField.stringValue = ""
           }
-          else if (fieldEditor.string?.characters.count <= 2)
+          else if (fieldEditor.string?.characters.count <= 4)
           {
             let numberFormatter = NSNumberFormatter()
             let number:NSNumber? = numberFormatter.numberFromString(fieldEditor.string!)
@@ -350,7 +350,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         }
         else
         {
-           candidate.experience! = NSNumber(double: 0)
+           candidate.experience = nil
            self.candidateSearchField.enabled = false
         }
        
