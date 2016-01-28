@@ -346,13 +346,13 @@ class EHFeedbackViewController: NSViewController
             case 1:
 
                 print (self.subRound.selectedSegment)
-
-                 let managerFeedbackCount = (selectedCandidate?.interviewedByManagers)!.count
+                
+                let managerFeedbackCount = (selectedCandidate?.interviewedByManagers)!.count
                 switch managerFeedbackCount
                 {
                 case 0:
-                    Utility.alertPopup("Alert", informativeText: "Please complete Round 1 & 2 before proceeding to Round 3.",isCancelBtnNeeded:false, okCompletionHandler: nil)
-
+                    Utility.alertPopup("Alert", informativeText: "Please complete Round 1 & 2  before proceeding to Round 3.",isCancelBtnNeeded:false, okCompletionHandler: nil)
+                        
                     
                 case 1:
                     for feedbackOfManager in (selectedCandidate?.interviewedByManagers)!
@@ -364,10 +364,16 @@ class EHFeedbackViewController: NSViewController
                             
                             Utility.alertPopup("Candidate Rejected", informativeText: "This candidate has been 'Rejected' in Round One. Hence you cannot proceed to this round.",isCancelBtnNeeded:false, okCompletionHandler: nil)
                             
-                            //Mark:Disabling proceeding to next round
+                            //Disabling proceeding to next round
                             subRound.selectedSegment = 0
 
-                          
+                         
+                         }
+                        //Disabling proceeding to next round before submitting previous round.
+                        else if feedback.isSubmitted == false
+                        {
+                            Utility.alertPopup("Round One not submitted", informativeText: "Please submit round 1 to proceed to round 2", isCancelBtnNeeded: false, okCompletionHandler: nil)
+                            subRound.selectedSegment = 0
                         }
                         else if managerFeedback?.selectedCandidate?.interviewedByManagers?.count > self.subRound.selectedSegment{
                             
@@ -375,6 +381,8 @@ class EHFeedbackViewController: NSViewController
                             managerFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
                            
                         }
+                    
+                       
                         else
                         {
                             managerFeedback?.refreshAllFields()
