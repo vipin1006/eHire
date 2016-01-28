@@ -407,6 +407,11 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             Utility.alertPopup("Enter the Title", informativeText: "Please select and click on Enter Title field to give title name",isCancelBtnNeeded:false, okCompletionHandler: nil)
             return
         }
+        else if ratingCell.skilsAndRatingsTitlefield.stringValue == ""
+        {
+            Utility.alertPopup("Enter the Title", informativeText: "Please select and click on Enter Title field to give title name",isCancelBtnNeeded:false, okCompletionHandler: nil)
+            return
+        }
         let totalView = ratingCell.starCustomView.subviews
         toDisplayRatingStar(totalView, sender: sender,feedbackText: ratingCell.feedback,view: ratingCell.starCustomView)
     }

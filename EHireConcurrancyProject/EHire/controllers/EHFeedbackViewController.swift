@@ -266,14 +266,20 @@ class EHFeedbackViewController: NSViewController
                             {
                                 Utility.alertPopup("Candidate Rejected", informativeText: "Selected Candidate Rejected has been in Technical Round One. Hence you cannot proceed to round three.", isCancelBtnNeeded:false,okCompletionHandler: nil)
                                 subRound.selectedSegment = 0
-                            }else if feedback.isFeedbackSubmitted == false{
-                                Utility.alertPopup("Candidate Rejected", informativeText: "Please complete Round 2 before proceeding to Round 3.", isCancelBtnNeeded:false,okCompletionHandler: nil)
-                                subRound.selectedSegment = 0
-                            }else{
-                                subRound.selectedSegment = 0
+                            }
+                            else
+                            {
+                                Utility.alertPopup("Alert", informativeText: "Please complete Round 2 before proceeding to Round 3.", isCancelBtnNeeded:false,okCompletionHandler: nil)
+                                subRound.selectedSegment = 1
                                 let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
                                 techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
                             }
+                             if feedback.isFeedbackSubmitted == false
+                            {
+                                Utility.alertPopup("Alert", informativeText: "Round Two not yet Completed.", isCancelBtnNeeded:false,okCompletionHandler: nil)
+                                subRound.selectedSegment = 1
+                            }
+                        
                        
                        
 //                        else if selectedCandidate?.interviewedByTechLeads!.count == 1
