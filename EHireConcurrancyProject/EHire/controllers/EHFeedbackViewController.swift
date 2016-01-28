@@ -214,12 +214,18 @@ class EHFeedbackViewController: NSViewController
                        Utility.alertPopup("Alert", informativeText: "Please complete Round 1 before proceeding to Round 2.", isCancelBtnNeeded:false,okCompletionHandler: nil)
                        subRound.selectedSegment = 0
                 case 1:
+                    
                     for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
                      {
                         let feedback = feedbackOfTechLead as! TechnicalFeedBack
                         if feedback.recommendation == "Rejected"
                         {
                             Utility.alertPopup("Candidate Rejected", informativeText: "This candidate has been 'Rejected' in Round One. Hence you cannot proceed to this round.",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                            subRound.selectedSegment = 0
+                        }
+                        else if techFeedback?.isFeedBackSaved == true
+                        {
+                             Utility.alertPopup("Candidate Rejected", informativeText: "Please complete Round 1 before proceeding to Round 2.",isCancelBtnNeeded:false,okCompletionHandler: nil)
                             subRound.selectedSegment = 0
                         }
                         else
@@ -230,6 +236,7 @@ class EHFeedbackViewController: NSViewController
                       break
                      }
                   default:
+                    
                         if selectedCandidate?.interviewedByTechLeads?.count > self.subRound.selectedSegment
                         {
                             let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
@@ -253,6 +260,11 @@ class EHFeedbackViewController: NSViewController
                     for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
                     {
                         let feedback = feedbackOfTechLead as! TechnicalFeedBack
+                        if techFeedback?.isFeedBackSaved == true
+                        {
+                            Utility.alertPopup("Candidate Rejected", informativeText: "Please complete Round 1 before proceeding to Round 3.",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                            subRound.selectedSegment = 0
+                        }
                         if subRound.selectedSegment == 2
                         {
                             if feedback.recommendation == "Rejected"
@@ -261,15 +273,19 @@ class EHFeedbackViewController: NSViewController
                                 subRound.selectedSegment = 0
                             }
                         }
-                        
+                       
                         else if selectedCandidate?.interviewedByTechLeads!.count == 1
                         {
+                            if techFeedback?.isFeedBackSaved == false
+                            {
                             Utility.alertPopup("Alert", informativeText: "Please complete Round 2 before proceeding to Round 3.",isCancelBtnNeeded:false, okCompletionHandler: nil)
                             subRound.selectedSegment = 0
                             let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
                             techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
+                            }
                         }
-                            
+                        
+
                         else
                         {
                             techFeedback?.refreshAllFields()
@@ -291,9 +307,16 @@ class EHFeedbackViewController: NSViewController
                         techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
                          break
                     }
+                    else if techFeedback?.isFeedBackSaved == true
+                    {
+                        Utility.alertPopup("Candidate Rejected", informativeText: "This candidate has been 'Rejected' in Round One. Hence you cannot proceed to this round.",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                        subRound.selectedSegment = 0
+                    }
+
                     else
                     {
-                        if count == 2{
+                        if count == 2
+                        {
                         techFeedback?.refreshAllFields()
 
                         techFeedback?.selectedRound = self.subRound.selectedSegment
@@ -306,8 +329,11 @@ class EHFeedbackViewController: NSViewController
                 default:
                     if selectedCandidate?.interviewedByTechLeads?.count > 2
                     {
+                        if techFeedback?.isFeedBackSaved == false
+                        {
                        let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
                        techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
+                        }
                     }
                 }
             default: print("")
