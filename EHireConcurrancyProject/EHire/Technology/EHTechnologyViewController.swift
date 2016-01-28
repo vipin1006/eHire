@@ -56,10 +56,12 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
      
         technologyDataLayer = EHTechnologyDataLayer()
         technologyDataLayer!.managedObjectContext = self.managedObjectContext!
-        technologyDataLayer?.getSourceListContent({(newArray)->Void in
+        technologyDataLayer?.getSourceListContent(
+        {(newArray)->Void in
             self.technologyArray = newArray as! [Technology]
             self.sortedSourceListReload()
-            })
+            
+        })
         candidateController = self.storyboard?.instantiateControllerWithIdentifier("EHCandidateController") as? EHCandidateController
         deleteTechnologyDate.toolTip = "Delete Date or Technology"
         deleteTechnologyDate.enabled = false
@@ -67,6 +69,18 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     
         
            //self.sourceList.reloadData()
+    }
+    
+    override func viewDidAppear()
+    {
+        for (index,technology) in self.technologyArray.enumerate()
+        {
+            if technology.technologyName == ""
+            {
+                self.sourceList.selectRowIndexes(NSIndexSet(index: index), byExtendingSelection: true)
+                Utility.alertPopup("Error", informativeText: "Please enter Technology Name in First index",isCancelBtnNeeded:false,okCompletionHandler: nil)
+            }
+        }
     }
     
     //Mark : Technology name sorting method
@@ -142,7 +156,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         {
             addDate.enabled = false
             addTechnology.enabled = true
-             deleteTechnologyDate.enabled = true
+            deleteTechnologyDate.enabled = true
         }
     }
     
@@ -150,11 +164,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     func outlineViewSelectionDidChange(notification: NSNotification)
     {
         print(notification.object?.selectedRow)
-        if let selectedItem = sourceList.itemAtRow((notification.object?.selectedRow)!) as? Technology{
-            let notificationObject = notification.object
-            cellTechnology = notificationObject?.viewAtColumn(0, row: (notification.object?.selectedRow)!, makeIfNecessary: false) as? EHTechnologyCustomCell
-            let textFieldObject = (cellTechnology?.textFieldTechnology)! as NSTextField
-            if !textFieldObject.editable
+        if let selectedItem = sourceList.itemAtRow((notification.object?.selectedRow)!) as? Technology
+        {
+            if !(selectedItem.technologyName == "")
             {
                 deleteTechnologyDate.enabled = true
             }
@@ -163,11 +175,13 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 if selectedItem.technologyName == ""
                 {
                     deleteTechnologyDate.enabled = true
+                    addTechnology.enabled = false
                     addDate.enabled = false
                 }
                 else
                 {
-                     deleteTechnologyDate.enabled = false
+                    deleteTechnologyDate.enabled = false
+                    addDate.enabled = true
                 }
                
             }
@@ -281,12 +295,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         return 35
     }
     
-  
-    
- 
-    
-    
-    
     
     //MARK: - Custom Protocol methods
     //This delegate method passed the data from another view controller to this controller as it confirms to the custom DataCommunicator protocol.
@@ -364,6 +372,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                            self.technologyArray = []
                            self.technologyArray = newArray as! [Technology]
                           self.reloadTableView()
+                        print(self.sourceList.numberOfRows)
+                        self.sourceList.selectRowIndexes(NSIndexSet(index:self.sourceList.numberOfRows-1), byExtendingSelection: true)
                         })
                        
                     self.deleteTechnologyDate.enabled = false
@@ -422,13 +432,13 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             {
                 technologyArray.removeLast()
                 technologyDataLayer!.deleteTechnologyFromCoreData(selectedItem,andCallBack:{()->Void in
+                    self.technologyDataLayer?.getSourceListContent({(newArray)->Void in
+                    self.technologyArray = []
+                    self.technologyArray = newArray as! [Technology]
                     self.addTechnology.enabled = true
                     self.addDate.enabled = false
-                    
-                    // self.sourceList.reloadData()
-                    
-                    
                     self.sortedSourceListReload()
+                    })
                 })
                 
             }
@@ -445,6 +455,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                     
                     self.technologyDataLayer?.getSourceListContent({(newArray)->Void in
                         self.technologyArray = newArray as! [Technology]
+                        
                         self.addTechnology.enabled = true
                         self.addDate.enabled = false
                          self.sortedSourceListReload()
