@@ -372,7 +372,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                            self.technologyArray = []
                            self.technologyArray = newArray as! [Technology]
                           self.reloadTableView()
-                        self.sourceList.selectRowIndexes(NSIndexSet(index:self.technologyArray.count-1), byExtendingSelection: true)
+                        print(self.sourceList.numberOfRows)
+                        self.sourceList.selectRowIndexes(NSIndexSet(index:self.sourceList.numberOfRows-1), byExtendingSelection: true)
                         })
                        
                     self.deleteTechnologyDate.enabled = false
