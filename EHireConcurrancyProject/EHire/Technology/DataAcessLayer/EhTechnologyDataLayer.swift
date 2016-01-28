@@ -18,7 +18,7 @@ class EHTechnologyDataLayer: NSObject
     var managedObjectContext : NSManagedObjectContext?
    
     //PRAGMAMARK:- Coredata
-    func getSourceListContent(andCallBack:SourlistContentReturn)
+    func getSourceListContent(callBack:SourlistContentReturn)
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
         { () -> Void in
@@ -34,12 +34,12 @@ class EHTechnologyDataLayer: NSObject
             }
             dispatch_sync(dispatch_get_main_queue()
                ,{ () -> Void in
-                      andCallBack(newArray: self.technologyArray as [Technology])
+                      callBack(newArray: self.technologyArray as [Technology])
                 })
         }
         
     }
-   
+    
     func createNewtech(name:String, andCallBack:TechnologyReturn)
     {
       let tempContextOne = NSManagedObjectContext(concurrencyType:.PrivateQueueConcurrencyType)

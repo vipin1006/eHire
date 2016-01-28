@@ -18,6 +18,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     // Technology View
     @IBOutlet weak var sourceList: NSOutlineView!
     
+
+    
     //@IBAction func addDateAction(sender: AnyObject) {
     //}
     //Set the content of source list in the outlineVew as the technology list/array
@@ -54,22 +56,19 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
      
         technologyDataLayer = EHTechnologyDataLayer()
         technologyDataLayer!.managedObjectContext = self.managedObjectContext!
-//    technologyArray = technologyDataLayer!.getSourceListContent() as! [Technology]
         technologyDataLayer?.getSourceListContent({(newArray)->Void in
             self.technologyArray = newArray as! [Technology]
             self.sortedSourceListReload()
             })
-    candidateController = self.storyboard?.instantiateControllerWithIdentifier("EHCandidateController") as? EHCandidateController
-        
-        
+        candidateController = self.storyboard?.instantiateControllerWithIdentifier("EHCandidateController") as? EHCandidateController
         deleteTechnologyDate.toolTip = "Delete Date or Technology"
         deleteTechnologyDate.enabled = false
         addDate.enabled = false
     
         
            //self.sourceList.reloadData()
-        
     }
+    
     //Mark : Technology name sorting method
     func sortedSourceListReload()
     {
@@ -155,10 +154,22 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             let notificationObject = notification.object
             cellTechnology = notificationObject?.viewAtColumn(0, row: (notification.object?.selectedRow)!, makeIfNecessary: false) as? EHTechnologyCustomCell
             let textFieldObject = (cellTechnology?.textFieldTechnology)! as NSTextField
-            if !textFieldObject.editable{
+            if !textFieldObject.editable
+            {
                 deleteTechnologyDate.enabled = true
-            }else{
-                deleteTechnologyDate.enabled = false
+            }
+            else
+            {
+                if selectedItem.technologyName == ""
+                {
+                    deleteTechnologyDate.enabled = true
+                    addDate.enabled = false
+                }
+                else
+                {
+                     deleteTechnologyDate.enabled = false
+                }
+               
             }
         }
         
@@ -189,7 +200,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 
 //                candidateController = self.storyboard?.instantiateControllerWithIdentifier("EHCandidateController") as? EHCandidateController
                 candidateController?.delegate = self
-                 candidateController?.managedObjectContext = self.managedObjectContext
+                candidateController?.managedObjectContext = self.managedObjectContext
                 self.candidateView.addSubview((candidateController?.view)!)
                
                 NSApp.windows.first?.title = "List of Candidates"
