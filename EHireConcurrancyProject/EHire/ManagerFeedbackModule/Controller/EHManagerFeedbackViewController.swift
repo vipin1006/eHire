@@ -661,7 +661,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             let managerFeedback =  sortedResults[selectedSegment!] as! ManagerFeedBack
             dataAccessModel.updateManagerFeedback(selectedCandidate!, managerFeedback: managerFeedback, managerFeedbackModel: managerialRoundFeedback, andCallBack: { (isSucess) -> Void in
                 if isSucess{
-                    Utility.alertPopup("Success", informativeText: "Feedback for Managerround has been updated Successfully",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                    Utility.alertPopup("Success", informativeText: "Feedback for Manager round has been updated Successfully",isCancelBtnNeeded:false,okCompletionHandler: nil)
                 }
             })
             
