@@ -79,6 +79,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             {
                 self.sourceList.selectRowIndexes(NSIndexSet(index: index), byExtendingSelection: true)
                 Utility.alertPopup("Error", informativeText: "Please enter Technology Name in First index",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                let rowView:NSTableRowView = self.sourceList.rowViewAtRow(self.sourceList.selectedRow, makeIfNecessary:true)!
+                rowView.viewWithTag(1)?.becomeFirstResponder()
             }
         }
     }
@@ -87,7 +89,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     func sortedSourceListReload()
     {
         technologyArray = technologyArray.sort({$0.technologyName < $1.technologyName})
-        print(technologyArray)
         self.sourceList.reloadData()
 
     }
@@ -106,7 +107,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 return allObjectsAraay![index]
             }
         }
-         print(self.technologyArray[0].technologyName)
         return self.technologyArray[index]
     }
     
@@ -163,7 +163,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     //MARK:- Outline view delegate method
     func outlineViewSelectionDidChange(notification: NSNotification)
     {
-        print(notification.object?.selectedRow)
         if let selectedItem = sourceList.itemAtRow((notification.object?.selectedRow)!) as? Technology
         {
             if !(selectedItem.technologyName == "")
@@ -267,7 +266,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             let parent = sourceList.makeViewWithIdentifier("Parent", owner: nil) as! EHTechnologyCustomCell
             
             let x = item as! Technology
-            print(x.technologyName)
             
             if x.technologyName == ""{
                 parent.textFieldTechnology.editable = true
@@ -372,8 +370,10 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                            self.technologyArray = []
                            self.technologyArray = newArray as! [Technology]
                           self.reloadTableView()
-                        print(self.sourceList.numberOfRows)
                         self.sourceList.selectRowIndexes(NSIndexSet(index:self.sourceList.numberOfRows-1), byExtendingSelection: true)
+                            let rowView:NSTableRowView = self.sourceList.rowViewAtRow(self.sourceList.selectedRow, makeIfNecessary:true)!
+                            
+                            rowView.viewWithTag(1)?.becomeFirstResponder()
                         })
                        
                     self.deleteTechnologyDate.enabled = false
@@ -415,7 +415,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         {
             Utility.alertPopup("Alert", informativeText: "Are you sure you want to delete the selected Date",isCancelBtnNeeded:true ,okCompletionHandler: {() -> Void in
                 
-                print("ok btn")
                 self.deleteItem()
                 
             })
@@ -528,8 +527,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     
     func showFeedbackViewController(selectedCandidate:Candidate){
         
-        print("The candidate is (selectedCandidate)")
-        
+   
         for views in self.view.subviews
         {
             views.hidden = true
@@ -565,8 +563,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     // this method will add new technology name to the technlogy list
     override func controlTextDidEndEditing(obj: NSNotification)
     {
-        print(obj.userInfo)
-        print(obj.object)
         
         let textFieldObject = obj.object as! NSTextField
         
@@ -851,9 +847,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                     {
                         let selectedDate = value as! Date
                         
-                        print(String(selectedDate.interviewDate!))
-                        
-                        datesMenu.insertItemWithTitle(getFormattedDate(selectedDate.interviewDate!), action: Selector.init("deleteDateFromTechnologyFromContextMenu:"), keyEquivalent:"", atIndex:index)
+                    datesMenu.insertItemWithTitle(getFormattedDate(selectedDate.interviewDate!), action: Selector.init("deleteDateFromTechnologyFromContextMenu:"), keyEquivalent:"", atIndex:index)
                     }
                     
                     technologySubMenuThree.setSubmenu(datesMenu, forItem:technologySubMenuThree.itemAtIndex(i)!)
@@ -926,9 +920,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 {
                     
                     let selectedMenuIndex = sender.menu?.indexOfItemWithTitle(sender.title)
-                    
-                    print(selectedMenuIndex)
-                    
+                   
                     let allDates = technology.interviewDates?.allObjects
                     
                     let selectedDate = allDates![selectedMenuIndex!] as! Date
