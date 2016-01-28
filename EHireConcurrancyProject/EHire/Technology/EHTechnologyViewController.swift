@@ -49,6 +49,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     var cellTechnology:EHTechnologyCustomCell?
     var lastCellAddedForTechnology:EHTechnologyCustomCell?
     var technologyDataLayer : EHTechnologyDataLayer?
+    var rowView:NSTableRowView?
     
     override func viewDidLoad()
     {
@@ -79,9 +80,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             {
                 self.sourceList.selectRowIndexes(NSIndexSet(index: index), byExtendingSelection: true)
                 Utility.alertPopup("Error", informativeText: "Please enter Technology Name in First index",isCancelBtnNeeded:false,okCompletionHandler: nil)
-                let rowView:NSTableRowView = self.sourceList.rowViewAtRow(self.sourceList.selectedRow, makeIfNecessary:true)!
-                rowView.viewWithTag(1)?.becomeFirstResponder()
-                deleteTechnologyDate.enabled = false
+                rowView = self.sourceList.rowViewAtRow(self.sourceList.selectedRow, makeIfNecessary:true)!
+                rowView!.viewWithTag(1)?.becomeFirstResponder()
+                //deleteTechnologyDate.enabled = false
             }
         }
     }
@@ -372,9 +373,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                            self.technologyArray = newArray as! [Technology]
                           self.reloadTableView()
                         self.sourceList.selectRowIndexes(NSIndexSet(index:self.sourceList.numberOfRows-1), byExtendingSelection: true)
-                            let rowView:NSTableRowView = self.sourceList.rowViewAtRow(self.sourceList.selectedRow, makeIfNecessary:true)!
-                            rowView.viewWithTag(1)?.becomeFirstResponder()
-                            self.deleteTechnologyDate.enabled = false
+                            self.rowView = self.sourceList.rowViewAtRow(self.sourceList.selectedRow, makeIfNecessary:true)!
+                            self.rowView!.viewWithTag(1)?.becomeFirstResponder()
+                           // self.deleteTechnologyDate.enabled = false
                         })
                        
                     self.deleteTechnologyDate.enabled = false
@@ -431,6 +432,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             if cellTechnology?.textFieldTechnology.stringValue == ""
             {
                 technologyArray.removeLast()
+
                 technologyDataLayer!.deleteTechnologyFromCoreData(selectedItem,andCallBack:{()->Void in
                     self.technologyDataLayer?.getSourceListContent({(newArray)->Void in
                     self.technologyArray = []
@@ -611,12 +613,14 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 }
                 else{
                     
+                   
                     Utility.alertPopup("Error", informativeText: "Technology name should be unique",isCancelBtnNeeded:true,okCompletionHandler: {() -> Void in
                         
                         textFieldObject.stringValue = ""
                         
                         
                     })
+                   
                     
                 }
             }
@@ -626,9 +630,12 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
         else
         {
+            
+            if textFieldObject.stringValue != ""
+            {
             Utility.alertPopup("Alert", informativeText: "Please add a name for Technology",isCancelBtnNeeded:false, okCompletionHandler: nil)
             
-            
+            }
         }
         
     }

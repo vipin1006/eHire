@@ -379,6 +379,9 @@ class EHFeedbackViewController: NSViewController
                         {
                             
                             Utility.alertPopup("Candidate Rejected", informativeText: "This candidate has been 'Rejected' in Round One. Hence you cannot proceed to this round.",isCancelBtnNeeded:false, okCompletionHandler: nil)
+                            
+                            //Mark:Disabling proceeding to next round
+                            subRound.selectedSegment = 0
 
                           
                         }
