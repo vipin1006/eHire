@@ -225,10 +225,19 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     func tableViewSelectionDidChange(notification: NSNotification)
     {
-        if notification.object!.selectedRow >= 4
-        {
-            cell?.titleName.editable = true
+        let cellSelected : EHManagerFeedBackCustomTableView = notification.object?.viewAtColumn(0, row:notification.object!.selectedRow , makeIfNecessary: false) as! EHManagerFeedBackCustomTableView
+        
+        if cellSelected.titleName.stringValue == "Communication" || cellSelected.titleName.stringValue == "Organisation Stability" || cellSelected.titleName.stringValue == "Leadership(if applicable)" || cellSelected.titleName.stringValue == "Growth Potential"{
+            
+            cellSelected.titleName.editable = false
+            
+        }else{
+             cellSelected.titleName.editable = true
         }
+//        if notification.object!.selectedRow >= 4
+//        {
+//            cell?.titleName.editable = true
+//        }
     }
     
     //MARK:- Method to select star in tableview
