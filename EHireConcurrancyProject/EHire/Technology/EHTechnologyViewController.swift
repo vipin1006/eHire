@@ -81,6 +81,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 Utility.alertPopup("Error", informativeText: "Please enter Technology Name in First index",isCancelBtnNeeded:false,okCompletionHandler: nil)
                 let rowView:NSTableRowView = self.sourceList.rowViewAtRow(self.sourceList.selectedRow, makeIfNecessary:true)!
                 rowView.viewWithTag(1)?.becomeFirstResponder()
+                deleteTechnologyDate.enabled = false
             }
         }
     }
@@ -372,8 +373,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                           self.reloadTableView()
                         self.sourceList.selectRowIndexes(NSIndexSet(index:self.sourceList.numberOfRows-1), byExtendingSelection: true)
                             let rowView:NSTableRowView = self.sourceList.rowViewAtRow(self.sourceList.selectedRow, makeIfNecessary:true)!
-                            
                             rowView.viewWithTag(1)?.becomeFirstResponder()
+                            self.deleteTechnologyDate.enabled = false
                         })
                        
                     self.deleteTechnologyDate.enabled = false
