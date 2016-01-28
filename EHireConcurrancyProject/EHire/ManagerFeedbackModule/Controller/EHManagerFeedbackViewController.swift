@@ -779,7 +779,9 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     func disableAndEnableFields(isDataSubmitted:Bool){
         
         if isDataSubmitted==true{
-            
+            matrixForInterviewMode.enabled = false
+            matrixForCgDeviation.enabled = false
+            matrixForRecommendationState.enabled = false
             submitBtn.enabled = false
             clearBtn.enabled = false
             textFieldGrossAnnualSalary.editable = false
@@ -804,7 +806,9 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                 
             }
         }else{
-            
+            matrixForInterviewMode.enabled = true
+            matrixForCgDeviation.enabled = true
+            matrixForRecommendationState.enabled = true
             submitBtn.enabled = true
             clearBtn.enabled = true
             textFieldGrossAnnualSalary.editable = true
