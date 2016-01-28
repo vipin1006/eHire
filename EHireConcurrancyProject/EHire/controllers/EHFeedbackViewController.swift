@@ -271,15 +271,19 @@ class EHFeedbackViewController: NSViewController
                             {
                                 Utility.alertPopup("Alert", informativeText: "Please complete Round 2 before proceeding to Round 3.", isCancelBtnNeeded:false,okCompletionHandler: nil)
                                 subRound.selectedSegment = 1
-                                let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
-                                techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
+            
                             }
                              if feedback.isFeedbackSubmitted == false
                             {
                                 Utility.alertPopup("Alert", informativeText: "Round Two not yet Completed.", isCancelBtnNeeded:false,okCompletionHandler: nil)
                                 subRound.selectedSegment = 1
                             }
-                        
+//                          else
+//                             {
+//                                let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
+//                                                        techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
+//
+//                        }
                        
                        
 //                        else if selectedCandidate?.interviewedByTechLeads!.count == 1
