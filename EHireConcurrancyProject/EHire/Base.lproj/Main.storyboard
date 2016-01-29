@@ -911,8 +911,12 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="qci-v5-CE5">
                                 <rect key="frame" x="0.0" y="0.0" width="635" height="707"/>
                                 <subviews>
-                                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p93-oh-UMg">
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="p93-oh-UMg">
                                         <rect key="frame" x="472" y="4" width="51" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="39" id="dmb-zm-Gmj"/>
+                                            <constraint firstAttribute="height" constant="14" id="f6t-Kf-o3u"/>
+                                        </constraints>
                                         <animations/>
                                         <buttonCell key="cell" type="push" title="-" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="D8C-Ul-tmQ">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -922,8 +926,12 @@
                                             <action selector="removeCandidate:" target="eaX-tr-f6l" id="h3j-gj-gRT"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GoU-0A-unL">
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GoU-0A-unL">
                                         <rect key="frame" x="421" y="4" width="51" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="14" id="BzC-eZ-1N5"/>
+                                            <constraint firstAttribute="width" constant="39" id="dPp-2G-RPl"/>
+                                        </constraints>
                                         <animations/>
                                         <buttonCell key="cell" type="push" title="+" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="L1i-p4-xUM">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1148,8 +1156,12 @@
                                             <animations/>
                                         </tableHeaderView>
                                     </scrollView>
-                                    <searchField wantsLayer="YES" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iAZ-2H-cTi">
-                                        <rect key="frame" x="0.0" y="7" width="188" height="22"/>
+                                    <searchField wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iAZ-2H-cTi">
+                                        <rect key="frame" x="0.0" y="7" width="289" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="289" id="iuU-rm-HRB"/>
+                                            <constraint firstAttribute="height" constant="22" id="tQQ-8F-RMG"/>
+                                        </constraints>
                                         <animations/>
                                         <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="bC3-bM-gMM">
                                             <font key="font" metaFont="system"/>
@@ -1160,8 +1172,12 @@
                                             <action selector="searchFieldTextDidChange:" target="eaX-tr-f6l" id="DNx-aO-FHB"/>
                                         </connections>
                                     </searchField>
-                                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s8Z-a5-OR5">
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s8Z-a5-OR5">
                                         <rect key="frame" x="520" y="4" width="121" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="14" id="YOD-h3-3dR"/>
+                                            <constraint firstAttribute="width" constant="109" id="mok-CA-WBE"/>
+                                        </constraints>
                                         <animations/>
                                         <buttonCell key="cell" type="push" title="Enter Feedback" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hhV-9J-mlJ">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1174,22 +1190,21 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="tSI-mh-5J6" firstAttribute="leading" secondItem="qci-v5-CE5" secondAttribute="leading" id="5Zs-Zc-O97"/>
-                                    <constraint firstItem="GoU-0A-unL" firstAttribute="top" secondItem="tSI-mh-5J6" secondAttribute="bottom" constant="8" id="AVp-Q2-nIz"/>
+                                    <constraint firstItem="s8Z-a5-OR5" firstAttribute="top" secondItem="tSI-mh-5J6" secondAttribute="bottom" constant="8" id="GeT-Aa-aNr"/>
+                                    <constraint firstItem="p93-oh-UMg" firstAttribute="leading" secondItem="GoU-0A-unL" secondAttribute="trailing" constant="12" id="GyG-Jh-W0R"/>
+                                    <constraint firstAttribute="bottom" secondItem="p93-oh-UMg" secondAttribute="bottom" constant="11" id="JYp-vn-sze"/>
                                     <constraint firstAttribute="trailing" secondItem="tSI-mh-5J6" secondAttribute="trailing" id="Jw4-2z-abr"/>
+                                    <constraint firstItem="iAZ-2H-cTi" firstAttribute="top" secondItem="tSI-mh-5J6" secondAttribute="bottom" constant="4" id="KsU-co-5bA"/>
+                                    <constraint firstItem="iAZ-2H-cTi" firstAttribute="leading" secondItem="qci-v5-CE5" secondAttribute="leading" id="MTC-1F-9LF"/>
                                     <constraint firstAttribute="bottom" secondItem="tSI-mh-5J6" secondAttribute="bottom" constant="33" id="Oyr-gF-X6X"/>
-                                    <constraint firstItem="s8Z-a5-OR5" firstAttribute="top" secondItem="tSI-mh-5J6" secondAttribute="bottom" constant="8" id="Q9E-Z1-aTh"/>
-                                    <constraint firstAttribute="trailing" secondItem="s8Z-a5-OR5" secondAttribute="trailing" id="Svp-2u-LYL"/>
-                                    <constraint firstAttribute="bottom" secondItem="iAZ-2H-cTi" secondAttribute="bottom" constant="7" id="UGC-1a-em4"/>
-                                    <constraint firstItem="p93-oh-UMg" firstAttribute="top" secondItem="tSI-mh-5J6" secondAttribute="bottom" constant="8" id="WNx-Y4-rfO"/>
+                                    <constraint firstItem="GoU-0A-unL" firstAttribute="top" secondItem="tSI-mh-5J6" secondAttribute="bottom" constant="8" id="ScD-47-8Pd"/>
+                                    <constraint firstAttribute="bottom" secondItem="GoU-0A-unL" secondAttribute="bottom" constant="11" id="TrZ-ms-0IZ"/>
                                     <constraint firstItem="tSI-mh-5J6" firstAttribute="top" secondItem="qci-v5-CE5" secondAttribute="top" id="Xtk-fF-xeG"/>
-                                    <constraint firstItem="s8Z-a5-OR5" firstAttribute="leading" secondItem="p93-oh-UMg" secondAttribute="trailing" constant="9" id="aND-eS-RK2"/>
-                                    <constraint firstItem="p93-oh-UMg" firstAttribute="leading" secondItem="GoU-0A-unL" secondAttribute="trailing" constant="12" id="cQZ-cE-6iI"/>
-                                    <constraint firstItem="iAZ-2H-cTi" firstAttribute="top" secondItem="tSI-mh-5J6" secondAttribute="bottom" constant="4" id="czZ-Hu-pcr"/>
-                                    <constraint firstAttribute="bottom" secondItem="GoU-0A-unL" secondAttribute="bottom" constant="11" id="d90-nG-ubh"/>
-                                    <constraint firstAttribute="bottom" secondItem="s8Z-a5-OR5" secondAttribute="bottom" constant="11" id="k0S-t8-YHs"/>
-                                    <constraint firstItem="GoU-0A-unL" firstAttribute="leading" secondItem="iAZ-2H-cTi" secondAttribute="trailing" constant="239" id="nPo-BY-XvK"/>
-                                    <constraint firstAttribute="bottom" secondItem="p93-oh-UMg" secondAttribute="bottom" constant="11" id="vmO-Cb-K9L"/>
-                                    <constraint firstItem="iAZ-2H-cTi" firstAttribute="leading" secondItem="qci-v5-CE5" secondAttribute="leading" id="xLe-kl-yOn"/>
+                                    <constraint firstAttribute="bottom" secondItem="iAZ-2H-cTi" secondAttribute="bottom" constant="7" id="fnm-3i-Jj0"/>
+                                    <constraint firstItem="s8Z-a5-OR5" firstAttribute="leading" secondItem="p93-oh-UMg" secondAttribute="trailing" constant="9" id="rxU-Cn-iTz"/>
+                                    <constraint firstAttribute="trailing" secondItem="s8Z-a5-OR5" secondAttribute="trailing" id="s55-B6-WSm"/>
+                                    <constraint firstItem="p93-oh-UMg" firstAttribute="top" secondItem="tSI-mh-5J6" secondAttribute="bottom" constant="8" id="uUZ-fm-Yst"/>
+                                    <constraint firstAttribute="bottom" secondItem="s8Z-a5-OR5" secondAttribute="bottom" constant="11" id="zpA-p5-8bw"/>
                                 </constraints>
                                 <animations/>
                             </customView>

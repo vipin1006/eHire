@@ -245,12 +245,14 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     {
       filteredArray.removeAllObjects()
       let predicate = NSPredicate(format:" requisition CONTAINS[cd] %@" ,sender.stringValue)
-        let predicate1 = NSPredicate(format:" experience == %f" ,sender.floatValue)
-        let predicate2 = NSPredicate(format:" name CONTAINS[cd] %@" ,sender.stringValue)
+      let predicate1 = NSPredicate(format:" experience == %f" ,sender.floatValue)
+      let predicate2 = NSPredicate(format:" name CONTAINS[cd] %@" ,sender.stringValue)
+      let predicate3 = NSPredicate(format:" phoneNumber CONTAINS[cd] %@" ,sender.stringValue)
       filteredArray.addObjectsFromArray(candidateArray.filteredArrayUsingPredicate(predicate1))
       filteredArray.addObjectsFromArray(candidateArray.filteredArrayUsingPredicate(predicate))
-        filteredArray.addObjectsFromArray(candidateArray.filteredArrayUsingPredicate(predicate2))
-        tableView.reloadData()
+      filteredArray.addObjectsFromArray(candidateArray.filteredArrayUsingPredicate(predicate2))
+      filteredArray.addObjectsFromArray(candidateArray.filteredArrayUsingPredicate(predicate3))
+      tableView.reloadData()
       
     }
     
