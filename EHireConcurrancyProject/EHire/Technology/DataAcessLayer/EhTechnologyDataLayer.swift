@@ -42,31 +42,16 @@ class EHTechnologyDataLayer: NSObject
     
     func createNewtech(name:String, andCallBack:TechnologyReturn)
     {
-      let tempContextOne = NSManagedObjectContext(concurrencyType:.PrivateQueueConcurrencyType)
-        tempContextOne.parentContext = self.managedObjectContext
-        tempContextOne.performBlock(
-            { () -> Void in
-                
-               let entityTechnology         = NSEntityDescription.entityForName("Technology",
-                    inManagedObjectContext: tempContextOne)
-                let technology = Technology(entity: entityTechnology!,
-                    insertIntoManagedObjectContext: tempContextOne)
-                technology.technologyName = ""
-                do
-                {
-                    try tempContextOne.save()
-                    dispatch_sync(dispatch_get_main_queue()
-                    ,{ () -> Void in
-                            andCallBack(newTechnology: technology)
-                    })
-                }
-                catch let error as NSError
-                {
-                    print(error.localizedDescription)
-                }
-                
-                print("Testing")
-            })
+        self.managedObjectContext!.performBlock(
+        { () -> Void in
+            let entityTechnology         = NSEntityDescription.entityForName("Technology",
+                inManagedObjectContext: self.managedObjectContext!)
+            let technology = Technology(entity: entityTechnology!,
+                insertIntoManagedObjectContext: self.managedObjectContext!)
+            technology.technologyName = ""
+            andCallBack(newTechnology: technology)
+        })
+
     }
     
     func addTechnologyToCoreData(techObjectToAdd:Technology,andCallBack:InsertReturn)
