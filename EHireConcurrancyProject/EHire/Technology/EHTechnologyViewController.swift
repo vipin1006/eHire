@@ -568,75 +568,184 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     {
         
         let textFieldObject = obj.object as! NSTextField
+        print(textFieldObject)
         
-        if (!(textFieldObject.stringValue == ""))
-            
+        let technologyObject  = sourceList.itemAtRow(sourceList.selectedRow) as? Technology
+        if textFieldObject.stringValue != ""
         {
-            if textFieldObject.editable{
-                
-                if isValidTechnologyName(textFieldObject.stringValue)
+            
+            if isValidTechnologyName(textFieldObject.stringValue)
+            {
+                if isNumberValid(textFieldObject.stringValue) == true
                 {
-                    if isNumberValid(textFieldObject.stringValue) == true
-                    {
-                        Utility.alertPopup("Error", informativeText: "Enter an appropriate Technology name",isCancelBtnNeeded:false,okCompletionHandler: nil)
-                        return
-                    }
-                    
-                    
-                    let technologyObject = sourceList.itemAtRow(sourceList.selectedRow) as? Technology
-                    technologyObject!.technologyName = textFieldObject.stringValue
-                    textFieldObject.wantsLayer = true
-                    textFieldObject.backgroundColor = NSColor.clearColor()
-                    addDate.enabled = false
-                    addTechnology.enabled = true
-                    technologyDataLayer!.addTechnologyToCoreData(technologyObject!,andCallBack:{()-> Void in
-                        
-                        self.deleteTechnologyDate.enabled = false
-                        self.technologyDataLayer?.getSourceListContent(
-                            { (newArray) -> Void in
-                                self.technologyArray = []
-                                self.technologyArray = newArray as! [Technology]
-                                self.sortedSourceListReload()
-                        })
-                       
-                    })
-                    
-                    
-                    
-                    
-                    
-                   // self.sourceList.reloadData()
-                    
-                   
-                    
-                    
-                }
-                else{
-                    
-                   
-                    Utility.alertPopup("Error", informativeText: "Technology name should be unique",isCancelBtnNeeded:true,okCompletionHandler: {() -> Void in
+                    Utility.alertPopup("Error", informativeText: "Enter an appropriate Technology name",isCancelBtnNeeded:false,okCompletionHandler: {() -> Void in
                         
                         textFieldObject.stringValue = ""
                         
                         
                     })
-                   
-                    
+                    return
                 }
+                
+                
             }
-            
-            
-        }
-            
-        else
-        {
-            
-            if textFieldObject.stringValue != ""
+            else
             {
-            Utility.alertPopup("Alert", informativeText: "Please add a name for Technology",isCancelBtnNeeded:false, okCompletionHandler: nil)
-            
+                Utility.alertPopup("Error", informativeText: "Technology name should be unique",isCancelBtnNeeded:true,okCompletionHandler: {() -> Void in
+                    
+                    textFieldObject.stringValue = ""
+                    
+                    
+                })
             }
+            
+            
+            
+            if let _ = technologyObject
+            {
+                technologyObject!.technologyName = textFieldObject.stringValue
+                
+                technologyDataLayer!.addTechnologyToCoreData(technologyObject!,andCallBack:{()-> Void in
+                    
+                    self.deleteTechnologyDate.enabled = false
+                    self.technologyDataLayer?.getSourceListContent(
+                        { (newArray) -> Void in
+                            self.technologyArray = []
+                            self.technologyArray = newArray as! [Technology]
+                            self.sortedSourceListReload()
+                    })
+                    
+                })
+                
+            }
+            
+            
         }
+        
+ 
+        
+        
+        
+        
+//        let textFieldObject = obj.object as! NSTextField
+//        print(textFieldObject)
+//        
+//        if (!(textFieldObject.stringValue == ""))
+//            
+//        {
+//            if textFieldObject.editable{
+//                
+//                if isValidTechnologyName(textFieldObject.stringValue)
+//                {
+//                    if isNumberValid(textFieldObject.stringValue) == true
+//                    {
+//                        Utility.alertPopup("Error", informativeText: "Enter an appropriate Technology name",isCancelBtnNeeded:false,okCompletionHandler: nil)
+//                        return
+//                    }
+//                    
+//                    
+//                    let technologyObject = sourceList.itemAtRow(sourceList.selectedRow) as? Technology
+//                    technologyObject!.technologyName = textFieldObject.stringValue
+//
+//                    
+//                    
+//                    print(technologyObject )
+//                
+//                    if (technologyObject == " ")
+//                    {
+//                        print ("Empty")
+//                        
+//                  technologyObject!.technologyName = textFieldObject.stringValue
+//                    
+//                       
+//                        
+//                    }
+//                    else
+//                    {
+//                        print ("not empty")
+//                     print( textFieldObject.stringValue)
+//                        
+//                          technologyObject!.technologyName = textFieldObject.stringValue
+//                    
+//                        technologyDataLayer!.addTechnologyToCoreData(technologyObject!,andCallBack:{()-> Void in
+//                          
+//                            self.deleteTechnologyDate.enabled = false
+//                            self.technologyDataLayer?.getSourceListContent(
+//                                { (newArray) -> Void in
+//                                    self.technologyArray = []
+//                                    self.technologyArray = newArray as! [Technology]
+//                                    self.sortedSourceListReload()
+//                            })
+//                            
+//                        })
+//                        
+//                    }
+//               
+//               
+//                    
+//                    
+//                    
+//                    
+//                    //technologyObject!.technologyName = textFieldObject.stringValue
+//                 
+//                    
+//                    
+//                    
+//                    
+//      //...................
+//                    
+////                    textFieldObject.wantsLayer = true
+////                    textFieldObject.backgroundColor = NSColor.clearColor()
+////                    addDate.enabled = false
+////                    addTechnology.enabled = true
+////                    technologyDataLayer!.addTechnologyToCoreData(technologyObject!,andCallBack:{()-> Void in
+////                        
+////                        self.deleteTechnologyDate.enabled = false
+////                        self.technologyDataLayer?.getSourceListContent(
+////                            { (newArray) -> Void in
+////                                self.technologyArray = []
+////                                self.technologyArray = newArray as! [Technology]
+////                                self.sortedSourceListReload()
+////                        })
+////                       
+////                    })
+//                    
+//   //....................
+//                    
+//                    
+//                    
+//                   // self.sourceList.reloadData()
+//                    
+//                   
+//                    
+//                    
+//                }
+//                else{
+//                    
+//                   
+//                    Utility.alertPopup("Error", informativeText: "Technology name should be unique",isCancelBtnNeeded:true,okCompletionHandler: {() -> Void in
+//                        
+//                        textFieldObject.stringValue = ""
+//                        
+//                        
+//                    })
+//                   
+//                    
+//                }
+//            }
+//            
+//            
+//        }
+//            
+//        else
+//        {
+//            
+//            if textFieldObject.stringValue != ""
+//            {
+//            Utility.alertPopup("Alert", informativeText: "Please add a name for Technology",isCancelBtnNeeded:false, okCompletionHandler: nil)
+//            
+//            }
+//        }
         
     }
     func addTechnologyToCoreData(techObjectToAdd:Technology,andCallBack:InsertReturn){
