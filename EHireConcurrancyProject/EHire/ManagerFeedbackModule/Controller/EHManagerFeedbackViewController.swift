@@ -72,6 +72,10 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     var skillsAndRatingsTitleArray = [SkillSet]()
     var selectedSegment:Int?
     
+    //vineet
+  
+    
+    
     var designationStringValue = ""
     var managedObjectContext : NSManagedObjectContext?
     let dataAccessModel = EHManagerFeedbackDataAccessLayer()
@@ -176,7 +180,18 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     {
         return 25
     }
-    
+    //Mark:To Disable highlighting of Default Skill.
+    func tableViewSelectionIsChanging(notification: NSNotification)
+    {
+        if tableView.selectedRow < 4
+        {
+            tableView.selectionHighlightStyle = .None
+        }else
+        {
+            tableView.selectionHighlightStyle = .Regular
+        }
+        
+    }
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView?
     {
         let cell = tableView.makeViewWithIdentifier("DataCell", owner: self) as! EHManagerFeedBackCustomTableView
@@ -225,6 +240,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     func tableViewSelectionDidChange(notification: NSNotification)
     {
+        
         let cellSelected : EHManagerFeedBackCustomTableView = notification.object?.viewAtColumn(0, row:notification.object!.selectedRow , makeIfNecessary: false) as! EHManagerFeedBackCustomTableView
         
         if cellSelected.titleName.stringValue == "Communication" || cellSelected.titleName.stringValue == "Organisation Stability" || cellSelected.titleName.stringValue == "Leadership(if applicable)" || cellSelected.titleName.stringValue == "Growth Potential"{
@@ -1081,5 +1097,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         
         refreshAllFields()
     }
+ 
 }
 
