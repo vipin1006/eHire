@@ -30,6 +30,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     @IBOutlet weak var deleteExistingSkill: NSButton!
     @IBOutlet weak var submitButton: NSButton!
     @IBOutlet weak var clearButton: NSButton!
+    @IBOutlet weak var positionField: NSTextField!
     
     //MARK: Variables
     var cell : EHRatingsTableCellView?
@@ -71,7 +72,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
            
 //        }
     }
-    
+
     func test(){
     
         NSObject.cancelPreviousPerformRequestsWithTarget(self, selector: Selector("test"), object: nil)
@@ -109,6 +110,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        clearButton.enabled = false
         self.performSelector(Selector("test"), withObject: nil, afterDelay: 0.01)
         candidateNameField.stringValue = (selectedCandidate?.name)!
         requisitionNameField.stringValue = (selectedCandidate?.requisition)!
@@ -171,7 +173,15 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 technicalFeedbackModel.ratingOnTechnical = Int16((feedback.ratingOnTechnical?.integerValue)!)
                 textViewOfTechnologyAssessment.string = feedback.commentsOnTechnology
                 technicalFeedbackModel.ratingOnCandidate = Int16((feedback.ratingOnCandidate?.integerValue)!)
+                if feedback.recommendation == "Shortlisted"
+                {
                 designationField.stringValue = feedback.designation!
+                }
+                else
+                {
+                    designationField.hidden = true
+                    positionField.hidden = true
+                }
                 interviewedByField.stringValue = feedback.techLeadName!
                 technicalFeedbackModel.modeOfInterview = feedback.modeOfInterview!
                 technicalFeedbackModel.recommendation = feedback.recommendation!
@@ -294,7 +304,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         {
             let stars = starButton as! NSButton
             stars.enabled = true
-            
         }
         for starButton in (overallAssessmentOnTechnologyStarView.subviews)
         {
@@ -312,6 +321,10 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     {
         let totalView = overallAssessmentOnTechnologyStarView.subviews
         toDisplayRatingStar(totalView, sender: sender, feedbackText: ratingOnTechnologyField, view: overallAssessmentOnTechnologyStarView)
+         if isFeedBackSaved == false
+         {
+         clearButton.enabled = true
+         }
     }
     // To Dispaly the Star Rating insided the TextView Of Overall Assessment Of Candidate
     
@@ -319,6 +332,10 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     {
         let totalView = overallAssessmentOfCandidateStarView.subviews
         toDisplayRatingStar(totalView, sender: sender, feedbackText: ratingOfCandidateField,view: overallAssessmentOfCandidateStarView)
+        if isFeedBackSaved == false
+        {
+         clearButton.enabled = true
+        }
     }
     
     //MARK: Delegate And DataSource Methods
@@ -384,10 +401,13 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }   
         return cellView
     }
-    
+
     func tableViewSelectionDidChange(notification: NSNotification)
     {
+        if isFeedBackSaved == false
+        {
         clearButton.enabled = true
+        }
         if notification.object!.selectedRow >= 4
         {
             cell?.skilsAndRatingsTitlefield.editable = true
@@ -396,11 +416,18 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     
     func textDidChange(notification: NSNotification)
     {
+        if isFeedBackSaved == false
+        {
         clearButton.enabled = true
+        }
     }
     // To Display The Stars inside TableView
     func starRatingCount(sender : NSButton)
     {
+        if isFeedBackSaved == false
+        {
+         clearButton.enabled = true
+        }
         let ratingCell = sender.superview?.superview as! EHRatingsTableCellView
         if ratingCell.skilsAndRatingsTitlefield.stringValue == "Enter Title"
         {
@@ -589,7 +616,10 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     override func controlTextDidBeginEditing(obj: NSNotification)
     {
         obj.object as! NSTextField
+        if isFeedBackSaved == false
+        {
         clearButton.enabled = true
+        }
     }
     override func controlTextDidEndEditing(obj: NSNotification)
     {
@@ -656,10 +686,14 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         if (sender.selectedCell() == sender.cells[0])
         {
             technicalFeedbackModel.recommendation = sender.cells[0].title
+            designationField.hidden = false
+            positionField.hidden = false
         }
         else
         {
            technicalFeedbackModel.recommendation = sender.cells[1].title
+            designationField.hidden = true
+            positionField.hidden = true
         }
     }
     
@@ -694,7 +728,10 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         technicalFeedbackModel.skills = skillsAndRatingsTitleArray as [SkillSet]
         technicalFeedbackModel.commentsOnTechnology = textViewOfTechnologyAssessment.string
         technicalFeedbackModel.commentsOnCandidate  = textViewOfCandidateAssessment.string
+        if recommentationField.stringValue == "Shortlisted"
+        {
         technicalFeedbackModel.designation          = designationField.stringValue
+        }
         technicalFeedbackModel.techLeadName         = interviewedByField.stringValue
         technicalFeedbackModel.isFeedbackSubmitted = false
         
@@ -810,7 +847,9 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             recommentationField.setState(NSOnState, atRow: 0, column: 0)
             recommentationField.setState(NSOffState, atRow: 0, column: 1)
             
-        }else{
+        }
+        else
+        {
             recommentationField.setState(NSOnState, atRow: 0, column: 1)
             recommentationField.setState(NSOffState, atRow: 0, column: 0)
         }
@@ -863,8 +902,16 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             
         else if designationField.stringValue == ""
         {
+            if recommentationField.stringValue == "Shortlisted"
+            {
             Utility.alertPopup("Alert", informativeText: "Designation Field should not be blank",isCancelBtnNeeded:false, okCompletionHandler: nil)
-            return isValid
+                return isValid
+            }
+            else
+            {
+                return true
+            }
+            
         }
             
         else if interviewedByField.stringValue.characters.count == 0

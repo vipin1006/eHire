@@ -32,7 +32,7 @@ class EHFeedbackViewController: NSViewController
     var technicalFeedbackModel = EHTechnicalFeedbackModel()
     var selectedCandidate:Candidate?
     let dataAccess = EHTechnicalFeedbackDataAccess()
-     var managedObjectContext : NSManagedObjectContext?
+    var managedObjectContext : NSManagedObjectContext?
     
     //MARK: View Life Cycle
     override func viewDidLoad()
@@ -421,7 +421,7 @@ class EHFeedbackViewController: NSViewController
     
     @IBAction func dismissFeedbackView(sender: AnyObject)
     {
-        Utility.alertPopup("Do you want to ‘Save’ the data entered before going to the previous screen ?", informativeText:"Press Yes will keep entered data",isCancelBtnNeeded:true) { () -> Void in
+        Utility.alertPopup("Do you want to save the changes?", informativeText:"Press Yes will keep entered data",isCancelBtnNeeded:true) { () -> Void in
           
             switch self.typeOfInterview.selectedSegment
             {
@@ -432,6 +432,7 @@ class EHFeedbackViewController: NSViewController
                 self.techFeedback?.saveDetailsAction("")
             case 1:
                 self.managerFeedback?.saveData(nil)
+                self.techFeedback?.clearButton.enabled = false
                 print("Manager")
                 
             default:
