@@ -2374,12 +2374,18 @@
                                                     <buttonCell type="radio" title="ShortListed" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="u1q-tq-Zz2">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" size="14" name="HelveticaNeue"/>
+                                                        <connections>
+                                                            <action selector="shortListedBtn:" target="Xv2-bq-xG1" id="hbs-0m-IJn"/>
+                                                        </connections>
                                                     </buttonCell>
                                                 </column>
                                                 <column>
                                                     <buttonCell type="radio" title="Rejected" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="zUs-71-uKo">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" size="14" name="HelveticaNeue"/>
+                                                        <connections>
+                                                            <action selector="rejectedBtn:" target="Xv2-bq-xG1" id="Ccn-py-lzt"/>
+                                                        </connections>
                                                     </buttonCell>
                                                 </column>
                                             </cells>
@@ -2999,10 +3005,7 @@
                                             <rect key="frame" x="228" y="62" width="214" height="29"/>
                                             <animations/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" placeholderString="Enter CG" drawsBackground="YES" id="iuG-O0-YGn">
-                                                <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="gy9-Sg-mDs" customClass="EHOnlyDecimalValueFormatter" customModule="EHire" customModuleProvider="target">
-                                                    <real key="minimum" value="5"/>
-                                                    <real key="maximum" value="100"/>
-                                                </numberFormatter>
+                                                <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="gy9-Sg-mDs" customClass="EHOnlyDecimalValueFormatter" customModule="EHire" customModuleProvider="target"/>
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
