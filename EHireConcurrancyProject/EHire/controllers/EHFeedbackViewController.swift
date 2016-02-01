@@ -419,22 +419,22 @@ class EHFeedbackViewController: NSViewController
     
     @IBAction func dismissFeedbackView(sender: AnyObject)
     {
-       // Utility.alertPopup("Do you want to save the changes?", informativeText:"Press Yes will keep entered data",isCancelBtnNeeded:true) { () -> Void in
-          
+        
             switch self.typeOfInterview.selectedSegment
             {
                 
             case 0:
-                if techFeedback?.isFeedBackSaved == false
+                
+                if techFeedback?.submitButton.enabled == true
                 {
                    Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
                     print("Technical")
                     self.techFeedback?.saveDetailsAction("")
                    })
                 }
-               
+                
             case 1:
-                if managerFeedback?.isFeedBackSaved == false
+                if managerFeedback?.submitBtn.enabled == false
                 {
                     Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
                         self.managerFeedback?.saveData("")
@@ -445,17 +445,19 @@ class EHFeedbackViewController: NSViewController
                 }
             default:
              
-                if candidate.isHrFormSubmitted == false
+                if hrFeedBackViewController!.submitButton.enabled == false
                 {
+                    Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
                 self.hrFeedBackViewController?.saveCandidate()
+                         })
                 }
                 
             }
             
-      //  }
         self.view.removeFromSuperview()
         NSApp.windows.first?.title = "List of Candidates"
         self.delegate?.feedbackViewControllerDidFinish(selectedCandidate!)
+        
     }
     
     func createConstraintsForManagerFeedbackController(leading:CGFloat,trailing:CGFloat,top:CGFloat,bottom:CGFloat)

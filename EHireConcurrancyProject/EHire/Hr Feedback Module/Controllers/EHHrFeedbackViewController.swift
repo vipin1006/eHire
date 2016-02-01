@@ -68,6 +68,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
     @IBOutlet weak var dummySpecifyLegalObligations: NSTextField!
     @IBOutlet weak var lastDesignation: NSTextField!
     @IBOutlet weak var clearButton: NSButton!
+    @IBOutlet weak var submitButton: NSButton!
     
     dynamic var isHrFormEnable = true
     
