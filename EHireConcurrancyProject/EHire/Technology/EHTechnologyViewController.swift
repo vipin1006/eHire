@@ -61,36 +61,18 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         {(newArray)->Void in
             self.technologyArray = newArray as! [Technology]
             self.sortedSourceListReload()
-            
         })
         candidateController = self.storyboard?.instantiateControllerWithIdentifier("EHCandidateController") as? EHCandidateController
         deleteTechnologyDate.toolTip = "Delete Date or Technology"
         deleteTechnologyDate.enabled = false
         addDate.enabled = false
-    
-        
-           //self.sourceList.reloadData()
-    }
-    
-    override func viewDidAppear()
-    {
-        for (index,technology) in self.technologyArray.enumerate()
-        {
-            if technology.technologyName == ""
-            {
-                self.sourceList.selectRowIndexes(NSIndexSet(index: index), byExtendingSelection: true)
-                Utility.alertPopup("Error", informativeText: "Please enter Technology Name in First index",isCancelBtnNeeded:false,okCompletionHandler: nil)
-                rowView = self.sourceList.rowViewAtRow(self.sourceList.selectedRow, makeIfNecessary:true)!
-                rowView!.viewWithTag(1)?.becomeFirstResponder()
-                //deleteTechnologyDate.enabled = false
-            }
-        }
     }
     
     //Mark : Technology name sorting method
     func sortedSourceListReload()
     {
         technologyArray = technologyArray.sort({$0.technologyName < $1.technologyName})
+
         self.sourceList.reloadData()
 
     }
@@ -195,25 +177,17 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         switch item{
             
         case  _ as Technology:
-            
-            
             if isCandidatesViewLoaded
             {
-                
                 candidateController?.view.removeFromSuperview()
                 NSApp.windows.first?.title = "Window"
                  isCandidatesViewLoaded = false
                 welcomeImage.hidden = false
-                
-                
             }
-            
         case  _ as Date:
             
             if !isCandidatesViewLoaded
             {
-                
-//                candidateController = self.storyboard?.instantiateControllerWithIdentifier("EHCandidateController") as? EHCandidateController
                 candidateController?.delegate = self
                 candidateController?.managedObjectContext = self.managedObjectContext
                 self.candidateView.addSubview((candidateController?.view)!)
@@ -340,9 +314,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         {
             if let selectedItem = sourceList.itemAtRow(sourceList.selectedRow) as? Technology
             {
-                
-                
-                addInterviewDateForTechnology(selectedItem)
+               addInterviewDateForTechnology(selectedItem)
             }
         }
     }
@@ -364,22 +336,17 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         else{ // adding new technology
             if technologyArray.count > 0 && lastCellAddedForTechnology?.textFieldTechnology.stringValue == ""{
                 Utility.alertPopup("Error", informativeText: "Please provide a name for the new technology before proceeding.",isCancelBtnNeeded:false,okCompletionHandler: nil)
-            }else{
+            }else
+            {
                     technologyDataLayer?.createNewtech("", andCallBack:
                     {(newTechnology) -> Void in
-                        self.technologyDataLayer?.getSourceListContent(
-                        { (newArray) -> Void in
-                           self.technologyArray = []
-                           self.technologyArray = newArray as! [Technology]
-                          self.reloadTableView()
-                        self.sourceList.selectRowIndexes(NSIndexSet(index:self.sourceList.numberOfRows-1), byExtendingSelection: true)
-                            self.rowView = self.sourceList.rowViewAtRow(self.sourceList.selectedRow, makeIfNecessary:true)!
-                            self.rowView!.viewWithTag(1)?.becomeFirstResponder()
-                           // self.deleteTechnologyDate.enabled = false
-                        })
-                       
-                    self.deleteTechnologyDate.enabled = false
-                })
+                    self.technologyArray.append(newTechnology)
+                    self.reloadTableView()
+                    self.sourceList.selectRowIndexes(NSIndexSet(index:self.sourceList.numberOfRows-1), byExtendingSelection: true)
+                    self.rowView = self.sourceList.rowViewAtRow(self.sourceList.selectedRow, makeIfNecessary:true)!
+                    self.rowView!.viewWithTag(1)?.becomeFirstResponder()
+                    self.deleteTechnologyDate.enabled = true
+            })
             }
         }
     }
@@ -432,46 +399,26 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             if cellTechnology?.textFieldTechnology.stringValue == ""
             {
                 technologyArray.removeLast()
-
-                technologyDataLayer!.deleteTechnologyFromCoreData(selectedItem,andCallBack:{()->Void in
-                    self.technologyDataLayer?.getSourceListContent({(newArray)->Void in
-                    self.technologyArray = []
-                    self.technologyArray = newArray as! [Technology]
+                technologyDataLayer!.deleteTechnologyFromCoreData(selectedItem,andCallBack:
+                {()->Void in
                     self.addTechnology.enabled = true
                     self.addDate.enabled = false
                     self.sortedSourceListReload()
-                    })
                 })
                 
             }
                 
-                // Condition to check new added technology is deletable
-                
-                //if !cellTechnology!.textFieldTechnology.editable
             else
             {
-                technologyArray = []
-                technologyDataLayer!.deleteTechnologyFromCoreData(selectedItem,andCallBack:{()->Void in
-                    
-//                  self.technologyArray = self.technologyDataLayer!.getSourceListContent() as! [Technology]
-                    
-                    self.technologyDataLayer?.getSourceListContent({(newArray)->Void in
-                        self.technologyArray = newArray as! [Technology]
-                        
+               // technologyArray = []
+                technologyDataLayer!.deleteTechnologyFromCoreData(selectedItem,andCallBack:
+                    {()->Void in
+                        self.technologyArray.removeAtIndex(self.technologyArray.indexOf(selectedItem)!)
                         self.addTechnology.enabled = true
                         self.addDate.enabled = false
-                         self.sortedSourceListReload()
-
-                        })
-                    
-                    // self.sourceList.reloadData()
-                    
-                    
-                   
-                    
+                        self.sortedSourceListReload()
                 })
-                
-                
+
             }
             
         }
@@ -486,20 +433,10 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 {
                     self.candidateController?.view.removeFromSuperview()
                     self.isCandidatesViewLoaded = false
-                    self.technologyDataLayer?.getSourceListContent(
-                    { (newArray) -> Void in
-                            self.technologyArray = []
-                            self.technologyArray = newArray as! [Technology]
-                            self.sortedSourceListReload()
-                    })
-                    
+                    self.sortedSourceListReload()
                 }
             })
-           
-            
-            //self.sourceList.reloadData()
-            
-//            sortedSourceListReload()
+
         }
         
     }
@@ -568,77 +505,50 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     {
         
         let textFieldObject = obj.object as! NSTextField
+        print(textFieldObject)
         
-        if (!(textFieldObject.stringValue == ""))
-            
+        let technologyObject  = sourceList.itemAtRow(sourceList.selectedRow) as? Technology
+        if textFieldObject.stringValue != ""
         {
-            if textFieldObject.editable{
-                
-                if isValidTechnologyName(textFieldObject.stringValue)
+            
+            if isValidTechnologyName(textFieldObject.stringValue)
+            {
+                if isNumberValid(textFieldObject.stringValue) == true
                 {
-                    if isNumberValid(textFieldObject.stringValue) == true
-                    {
-                        Utility.alertPopup("Error", informativeText: "Enter an appropriate Technology name",isCancelBtnNeeded:false,okCompletionHandler: nil)
-                        return
-                    }
-                    
-                    
-                    let technologyObject = sourceList.itemAtRow(sourceList.selectedRow) as? Technology
-                    technologyObject!.technologyName = textFieldObject.stringValue
-                    textFieldObject.wantsLayer = true
-                    textFieldObject.backgroundColor = NSColor.clearColor()
-                    addDate.enabled = false
-                    addTechnology.enabled = true
-                    technologyDataLayer!.addTechnologyToCoreData(technologyObject!,andCallBack:{()-> Void in
-                        
-                        self.deleteTechnologyDate.enabled = false
-                        self.technologyDataLayer?.getSourceListContent(
-                            { (newArray) -> Void in
-                                self.technologyArray = []
-                                self.technologyArray = newArray as! [Technology]
-                                self.sortedSourceListReload()
-                        })
-                       
-                    })
-                    
-                    
-                    
-                    
-                    
-                   // self.sourceList.reloadData()
-                    
-                   
-                    
-                    
-                }
-                else{
-                    
-                   
-                    Utility.alertPopup("Error", informativeText: "Technology name should be unique",isCancelBtnNeeded:true,okCompletionHandler: {() -> Void in
+                    Utility.alertPopup("Error", informativeText: "Enter an appropriate Technology name",isCancelBtnNeeded:false,okCompletionHandler: {() -> Void in
                         
                         textFieldObject.stringValue = ""
                         
                         
                     })
-                   
-                    
+                    return
                 }
+                
+                
             }
-            
-            
-        }
-            
-        else
-        {
-            
-            if textFieldObject.stringValue != ""
+            else
             {
-            Utility.alertPopup("Alert", informativeText: "Please add a name for Technology",isCancelBtnNeeded:false, okCompletionHandler: nil)
-            
+                Utility.alertPopup("Error", informativeText: "Technology name should be unique",isCancelBtnNeeded:true,okCompletionHandler: {() -> Void in
+                    
+                    textFieldObject.stringValue = ""
+                    
+                    
+                })
+            }
+            if let _ = technologyObject
+            {
+                technologyObject!.technologyName = textFieldObject.stringValue
+                technologyDataLayer!.addTechnologyToCoreData(technologyObject!,andCallBack:
+                {()-> Void in
+                self.deleteTechnologyDate.enabled = false
+                self.addTechnology.enabled = true
+                self.sortedSourceListReload()
+                })
             }
         }
         
     }
+    
     func addTechnologyToCoreData(techObjectToAdd:Technology,andCallBack:InsertReturn){
         
         let tempContext = NSManagedObjectContext(concurrencyType:.PrivateQueueConcurrencyType)

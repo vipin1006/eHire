@@ -346,13 +346,13 @@ class EHFeedbackViewController: NSViewController
             case 1:
 
                 print (self.subRound.selectedSegment)
-                
                 let managerFeedbackCount = (selectedCandidate?.interviewedByManagers)!.count
                 switch managerFeedbackCount
                 {
                 case 0:
-                    Utility.alertPopup("Alert", informativeText: "Please complete Round 1 & 2  before proceeding to Round 3.",isCancelBtnNeeded:false, okCompletionHandler: nil)
-                        
+                    Utility.alertPopup("Alert", informativeText: "Please complete Round 1   before proceeding to Round 2.",isCancelBtnNeeded:false, okCompletionHandler: nil)
+                    //Disabling proceeding to next round
+                    subRound.selectedSegment = 0
                     
                 case 1:
                     for feedbackOfManager in (selectedCandidate?.interviewedByManagers)!

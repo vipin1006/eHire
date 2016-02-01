@@ -244,9 +244,15 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     @IBAction func searchFieldTextDidChange(sender: NSSearchField)
     {
       filteredArray.removeAllObjects()
-      let predicate = NSPredicate(format:"name contains[c] %@ || experience == %@ || phoneNumber contains[c] %@ || requisition contains[c] %@" , sender.stringValue,NSNumber(float:sender.floatValue), sender.stringValue,sender.stringValue)
+      let predicate = NSPredicate(format:" requisition CONTAINS[cd] %@" ,sender.stringValue)
+      let predicate1 = NSPredicate(format:" experience == %f" ,sender.floatValue)
+      let predicate2 = NSPredicate(format:" name CONTAINS[cd] %@" ,sender.stringValue)
+      let predicate3 = NSPredicate(format:" phoneNumber CONTAINS[cd] %@" ,sender.stringValue)
+      filteredArray.addObjectsFromArray(candidateArray.filteredArrayUsingPredicate(predicate1))
       filteredArray.addObjectsFromArray(candidateArray.filteredArrayUsingPredicate(predicate))
-        tableView.reloadData()
+      filteredArray.addObjectsFromArray(candidateArray.filteredArrayUsingPredicate(predicate2))
+      filteredArray.addObjectsFromArray(candidateArray.filteredArrayUsingPredicate(predicate3))
+      tableView.reloadData()
       
     }
     
