@@ -31,6 +31,7 @@ class EHFeedbackViewController: NSViewController
     var techFeedback : EHTechnicalFeedbackViewController?
     var technicalFeedbackModel = EHTechnicalFeedbackModel()
     var selectedCandidate:Candidate?
+    var candidate = CandidateMiscellaneous()
     let dataAccess = EHTechnicalFeedbackDataAccess()
     var managedObjectContext : NSManagedObjectContext?
     
@@ -418,27 +419,40 @@ class EHFeedbackViewController: NSViewController
     
     @IBAction func dismissFeedbackView(sender: AnyObject)
     {
-        Utility.alertPopup("Do you want to save the changes?", informativeText:"Press Yes will keep entered data",isCancelBtnNeeded:true) { () -> Void in
+       // Utility.alertPopup("Do you want to save the changes?", informativeText:"Press Yes will keep entered data",isCancelBtnNeeded:true) { () -> Void in
           
             switch self.typeOfInterview.selectedSegment
             {
                 
             case 0:
-                
-                print("Technical")
-                self.techFeedback?.saveDetailsAction("")
+                if techFeedback?.isFeedBackSaved == false
+                {
+                   Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
+                    print("Technical")
+                    self.techFeedback?.saveDetailsAction("")
+                   })
+                }
+               
             case 1:
-                self.managerFeedback?.saveData(nil)
-                self.techFeedback?.clearButton.enabled = false
-                print("Manager")
-                
+                if managerFeedback?.isFeedBackSaved == false
+                {
+                    Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
+                        self.managerFeedback?.saveData("")
+                        self.techFeedback?.clearButton.enabled = false
+                        print("Manager")
+
+                    })
+                }
             default:
              
+                if candidate.isHrFormSubmitted == false
+                {
                 self.hrFeedBackViewController?.saveCandidate()
+                }
                 
             }
             
-        }
+      //  }
         self.view.removeFromSuperview()
         NSApp.windows.first?.title = "List of Candidates"
         self.delegate?.feedbackViewControllerDidFinish(selectedCandidate!)
