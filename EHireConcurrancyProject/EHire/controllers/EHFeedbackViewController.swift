@@ -150,7 +150,7 @@ class EHFeedbackViewController: NSViewController
                 {
                     Utility.alertPopup("Alert", informativeText: "Please complete Manager Round(s) before proceeding to the HR Round", isCancelBtnNeeded:false,okCompletionHandler: nil)
                     
-                    self.typeOfInterview.selectedSegment = 0
+                    self.typeOfInterview.selectedSegment = 1
 
                     return
                 }

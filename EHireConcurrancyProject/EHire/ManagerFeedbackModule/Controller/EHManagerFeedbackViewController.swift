@@ -104,7 +104,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         textFieldCandidateName.stringValue = (selectedCandidate?.name)!
         textFieldCandidateRequisition.stringValue = (selectedCandidate?.requisition)!
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "DD MMM YYYY"
+        dateFormatter.dateFormat = "dd MMM yyyy hh:mm aaa"
         let dateInStringFormat = dateFormatter.stringFromDate((selectedCandidate?.interviewDate)!)
         dateOfInterviewField.stringValue = dateInStringFormat
         
