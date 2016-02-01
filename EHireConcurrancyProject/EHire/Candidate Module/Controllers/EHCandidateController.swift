@@ -69,12 +69,16 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
 
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView?
     {
+        
+        
         var candidate:Candidate
         if candidateSearchField.stringValue.characters.count > 0 {
             candidate = (filteredArray[row] as? Candidate)!
+            addCandidateButton.enabled = false
         }
         else {
             candidate = (candidateArray[row] as? Candidate)!
+             addCandidateButton.enabled = true
         }
         let cell = self.tableView.makeViewWithIdentifier((tableColumn?.identifier)!, owner: self) as! NSTableCellView
         
@@ -173,7 +177,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         var allCandidatesValid:Bool = true
         for candidateRecord in candidateArray
         {
-          if candidateRecord.name! == "" || candidateRecord.phoneNumber! == "" || candidateRecord.experience! == -1 || candidateRecord.experience! == nil || candidateRecord.requisition! == ""
+          if candidateRecord.name! == "" || candidateRecord.phoneNumber! == "" || candidateRecord.experience! == nil || candidateRecord.experience! == nil || candidateRecord.requisition! == ""
           {
             Utility.alertPopup("Candidate can not be added", informativeText: "Please fill all the details of the selected candidate before adding a new candidate", isCancelBtnNeeded:true,okCompletionHandler:
                 { () -> Void in
@@ -309,6 +313,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     {
       let textField = control as! NSTextField
       let candidate = self.candidateArray.objectAtIndex(self.tableView.selectedRow) as! Candidate
+         preserveCandidate = tableView.selectedRow
         var textShouldEndEditing = true
       switch textField.tag
       {
@@ -318,9 +323,8 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
          if EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
          {
           Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters for candidate name.",isCancelBtnNeeded:false,okCompletionHandler: nil)
-            textField.stringValue = ""
-            textShouldEndEditing = false
-          //candidate.name = textField.stringValue
+          textShouldEndEditing = false
+          
          }
          else
          {
@@ -330,9 +334,8 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         }
         else
         {
-            candidate.name = fieldEditor.string
- 
-         candidateSearchField.enabled = false
+          candidate.name = fieldEditor.string
+          candidateSearchField.enabled = false
         }
        
         case 2:
@@ -341,7 +344,6 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
           if !EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
           {
             Utility.alertPopup("Error", informativeText: "Please enter a numerical value for experience.",isCancelBtnNeeded:false,okCompletionHandler:nil)
-            textField.stringValue = ""
             textShouldEndEditing = false
 
           }
@@ -359,7 +361,6 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
           else
           {
             Utility.alertPopup("Error", informativeText: "Please enter a appropriate  experience.",isCancelBtnNeeded:false,okCompletionHandler: nil)
-            textField.stringValue = ""
             textShouldEndEditing = false
 
           }
@@ -377,7 +378,6 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
                 if !EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
                 {
                     Utility.alertPopup("Error", informativeText: "Please enter a 10 digit mobile phone number. ",isCancelBtnNeeded:false,okCompletionHandler: nil)
-                    textField.stringValue = ""
                     textShouldEndEditing = false
 
                 }
@@ -389,7 +389,6 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
                 else
                 {
                     Utility.alertPopup("Error", informativeText: "Please enter a 10 digit mobile phone number.",isCancelBtnNeeded:false,okCompletionHandler: nil)
-                    textField.stringValue = ""
                     textShouldEndEditing = false
                     
                 }
@@ -407,7 +406,6 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
                 if EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
                 {
                     Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters for requisition.",isCancelBtnNeeded:false,okCompletionHandler: nil)
-                    textField.stringValue = ""
                     textShouldEndEditing = false
                     
                 }
@@ -419,7 +417,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             }
             else
             {
-                 candidate.requisition = fieldEditor.string
+              candidate.requisition = fieldEditor.string
               candidateSearchField.enabled = false
             }
             
