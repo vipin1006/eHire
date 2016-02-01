@@ -31,7 +31,7 @@ class EHFeedbackViewController: NSViewController
     var techFeedback : EHTechnicalFeedbackViewController?
     var technicalFeedbackModel = EHTechnicalFeedbackModel()
     var selectedCandidate:Candidate?
-    var candidate = CandidateMiscellaneous()
+//    var candidate = CandidateMiscellaneous()
     let dataAccess = EHTechnicalFeedbackDataAccess()
     var managedObjectContext : NSManagedObjectContext?
     
