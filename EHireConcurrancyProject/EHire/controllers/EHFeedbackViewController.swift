@@ -80,15 +80,6 @@ class EHFeedbackViewController: NSViewController
             
         case 1:
             
-            if techLeadCount < 3
-            {
-                Utility.alertPopup("Alert", informativeText: "Please complete the Technical Round(s) before proceeding to the Managerial Round",isCancelBtnNeeded:false, okCompletionHandler: nil)
-                subRound.selectedSegment = 0
-                typeOfInterview.setSelected(true, forSegment: 0)
-                return
-            }
-           
-            
             for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
             {
                 let feedback = feedbackOfTechLead as! TechnicalFeedBack
@@ -103,8 +94,14 @@ class EHFeedbackViewController: NSViewController
                 }
             }
 
-            
-
+            if techLeadCount < 3
+            {
+                Utility.alertPopup("Alert", informativeText: "Please complete the Technical Round(s) before proceeding to the Managerial Round",isCancelBtnNeeded:false, okCompletionHandler: nil)
+                subRound.selectedSegment = 0
+                typeOfInterview.setSelected(true, forSegment: 0)
+                return
+            }
+           
             if !isManagerLoaded
             {
                 managerFeedback = storyboard?.instantiateControllerWithIdentifier("EHManagerFeedbackViewController") as? EHManagerFeedbackViewController
