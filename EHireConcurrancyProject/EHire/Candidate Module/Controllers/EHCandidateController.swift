@@ -101,6 +101,10 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
                     cell.textField?.stringValue = str
                 }
             }
+            else
+            {
+                cell.textField?.stringValue = ""
+            }
         }
             
         else if tableColumn?.identifier == "interviewTime"
@@ -305,6 +309,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     {
       let textField = control as! NSTextField
       let candidate = self.candidateArray.objectAtIndex(self.tableView.selectedRow) as! Candidate
+        var textShouldEndEditing = true
       switch textField.tag
       {
         case 1:
@@ -314,6 +319,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
          {
           Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters for candidate name.",isCancelBtnNeeded:false,okCompletionHandler: nil)
             textField.stringValue = ""
+            textShouldEndEditing = false
           //candidate.name = textField.stringValue
          }
          else
@@ -336,6 +342,8 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
           {
             Utility.alertPopup("Error", informativeText: "Please enter a numerical value for experience.",isCancelBtnNeeded:false,okCompletionHandler:nil)
             textField.stringValue = ""
+            textShouldEndEditing = false
+
           }
           else if (fieldEditor.string?.characters.count <= 4)
           {
@@ -352,6 +360,8 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
           {
             Utility.alertPopup("Error", informativeText: "Please enter a appropriate  experience.",isCancelBtnNeeded:false,okCompletionHandler: nil)
             textField.stringValue = ""
+            textShouldEndEditing = false
+
           }
         }
         else
@@ -368,6 +378,8 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
                 {
                     Utility.alertPopup("Error", informativeText: "Please enter a 10 digit mobile phone number. ",isCancelBtnNeeded:false,okCompletionHandler: nil)
                     textField.stringValue = ""
+                    textShouldEndEditing = false
+
                 }
                 else if ((fieldEditor.string?.characters.count >= 10) && (fieldEditor.string?.characters.count <= 12))
                 {
@@ -378,6 +390,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
                 {
                     Utility.alertPopup("Error", informativeText: "Please enter a 10 digit mobile phone number.",isCancelBtnNeeded:false,okCompletionHandler: nil)
                     textField.stringValue = ""
+                    textShouldEndEditing = false
                     
                 }
             }
@@ -395,6 +408,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
                 {
                     Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters for requisition.",isCancelBtnNeeded:false,okCompletionHandler: nil)
                     textField.stringValue = ""
+                    textShouldEndEditing = false
                     
                 }
                 else
@@ -413,7 +427,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
        
      }
         EHCoreDataHelper.saveToCoreData(candidate)
-        return true
+        return textShouldEndEditing
     }
     
     

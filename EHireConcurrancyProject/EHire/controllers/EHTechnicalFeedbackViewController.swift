@@ -30,7 +30,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     @IBOutlet weak var deleteExistingSkill: NSButton!
     @IBOutlet weak var submitButton: NSButton!
     @IBOutlet weak var clearButton: NSButton!
-    @IBOutlet weak var positionField: NSTextField!
+   
     
     //MARK: Variables
     var cell : EHRatingsTableCellView?
@@ -116,7 +116,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         requisitionNameField.stringValue = (selectedCandidate?.requisition)!
         
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "DD MMM YYYY"
+        dateFormatter.dateFormat = "dd MMM yyyy hh:mm aaa"
         let dateInStringFormat = dateFormatter.stringFromDate((selectedCandidate?.interviewDate)!)
         dateOfInterviewField.stringValue = dateInStringFormat
         cell?.skilsAndRatingsTitlefield.delegate = self
@@ -173,18 +173,18 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 technicalFeedbackModel.ratingOnTechnical = Int16((feedback.ratingOnTechnical?.integerValue)!)
                 textViewOfTechnologyAssessment.string = feedback.commentsOnTechnology
                 technicalFeedbackModel.ratingOnCandidate = Int16((feedback.ratingOnCandidate?.integerValue)!)
-                if feedback.recommendation == "Shortlisted"
+                                interviewedByField.stringValue = feedback.techLeadName!
+                technicalFeedbackModel.modeOfInterview = feedback.modeOfInterview!
+                technicalFeedbackModel.recommendation = feedback.recommendation!
+                if technicalFeedbackModel.recommendation == "Shortlisted"
                 {
-                designationField.stringValue = feedback.designation!
+                    designationField.stringValue = feedback.designation!
                 }
                 else
                 {
-                    designationField.hidden = true
-                    positionField.hidden = true
+                    designationField.enabled = false
                 }
-                interviewedByField.stringValue = feedback.techLeadName!
-                technicalFeedbackModel.modeOfInterview = feedback.modeOfInterview!
-                technicalFeedbackModel.recommendation = feedback.recommendation!
+
                 technicalFeedbackModel.isFeedbackSubmitted = feedback.isFeedbackSubmitted
                 
                 fetchingModeOfInterview(technicalFeedbackModel.modeOfInterview!)
@@ -686,14 +686,12 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         if (sender.selectedCell() == sender.cells[0])
         {
             technicalFeedbackModel.recommendation = sender.cells[0].title
-            designationField.hidden = false
-            positionField.hidden = false
+            designationField.enabled = true
         }
         else
         {
            technicalFeedbackModel.recommendation = sender.cells[1].title
-            designationField.hidden = true
-            positionField.hidden = true
+           designationField.enabled = false
         }
     }
     
@@ -724,14 +722,11 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }else
         {
             technicalFeedbackModel.recommendation = "Shortlisted"
+            technicalFeedbackModel.designation    = designationField.stringValue
         }
         technicalFeedbackModel.skills = skillsAndRatingsTitleArray as [SkillSet]
         technicalFeedbackModel.commentsOnTechnology = textViewOfTechnologyAssessment.string
         technicalFeedbackModel.commentsOnCandidate  = textViewOfCandidateAssessment.string
-        if recommentationField.stringValue == "Shortlisted"
-        {
-        technicalFeedbackModel.designation          = designationField.stringValue
-        }
         technicalFeedbackModel.techLeadName         = interviewedByField.stringValue
         technicalFeedbackModel.isFeedbackSubmitted = false
         

@@ -2063,7 +2063,6 @@
                         <outlet property="modeOfInterview" destination="qtD-UB-IDk" id="F1v-va-QhD"/>
                         <outlet property="overallAssessmentOfCandidateStarView" destination="tLO-hP-qXF" id="QIF-xV-kdS"/>
                         <outlet property="overallAssessmentOnTechnologyStarView" destination="9TP-I2-mVw" id="fbP-xy-X8l"/>
-                        <outlet property="positionField" destination="fQg-qo-hf9" id="MIZ-Hl-Eya"/>
                         <outlet property="ratingOfCandidateField" destination="NCg-No-Mu4" id="XFQ-bY-acl"/>
                         <outlet property="ratingOnTechnologyField" destination="WIG-5A-A75" id="uSm-Mv-WHd"/>
                         <outlet property="recommentationField" destination="KEX-d7-PNz" id="tkE-dj-eAN"/>
