@@ -704,10 +704,16 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     
     
     override func rightMouseDown(theEvent: NSEvent) {
+  
+        print(self.sourceList.frame)
         
-        let check =  CGRectContainsPoint(self.sourceList.frame,theEvent.locationInWindow)
-        if check == true
+        print(theEvent.locationInWindow)
+        
+        let isOutlineView = self.view.hitTest(theEvent.locationInWindow)
+        
+        if isOutlineView is NSOutlineView
         {
+          
             let mainContextMenu = NSMenu(title: "Main Contextual Menu")
             
             
@@ -765,7 +771,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                     {
                         let selectedDate = value as! Date
                         
-                    datesMenu.insertItemWithTitle(getFormattedDate(selectedDate.interviewDate!), action: Selector.init("deleteDateFromTechnologyFromContextMenu:"), keyEquivalent:"", atIndex:index)
+                        datesMenu.insertItemWithTitle(getFormattedDate(selectedDate.interviewDate!), action: Selector.init("deleteDateFromTechnologyFromContextMenu:"), keyEquivalent:"", atIndex:index)
                     }
                     
                     technologySubMenuThree.setSubmenu(datesMenu, forItem:technologySubMenuThree.itemAtIndex(i)!)
@@ -777,7 +783,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             NSMenu.popUpContextMenu(mainContextMenu, withEvent: theEvent, forView: self.view)
             
         }
-        
+       
     }
     
     //Delete Technology from Menu
