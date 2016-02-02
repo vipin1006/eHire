@@ -232,14 +232,15 @@ class EHFeedbackViewController: NSViewController
                         }
                       break
                      }
-                  default:
+                case 2:
                     
-                        if selectedCandidate?.interviewedByTechLeads?.count > self.subRound.selectedSegment
-                        {
-                            let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
-                            techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
-                        }
-                     }
+                    let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
+                                                techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
+                    
+
+                default: print("")
+                    
+                }
             case 2:
                 
                 print("Round Three")
@@ -426,11 +427,25 @@ class EHFeedbackViewController: NSViewController
                 
                 if techFeedback?.submitButton.enabled == true
                 {
+                    if techFeedback?.isFeedBackSaved == false
+                    {
+                        if techFeedback?.clearButton.enabled == true
+                        {
                    Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
                     print("Technical")
                     self.techFeedback?.saveDetailsAction("")
                    })
-                }
+                        }
+                     }
+                    else
+                    {
+                        Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
+                            print("Technical")
+                            self.techFeedback?.saveDetailsAction("")
+                             })
+                    }
+                
+                 }
                 
             case 1:
                 if managerFeedback?.submitBtn.enabled == true

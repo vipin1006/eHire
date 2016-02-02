@@ -48,6 +48,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     var managedObjectContext : NSManagedObjectContext?
     var technicalFeedbackObject:TechnicalFeedBack?
     var arrTemp = ["a","b","c","d"]
+    var rowView : NSTableRowView?
+    var defaultSkills : String? = ""
     
     //MARK: initial setup of views
     func initialSetupOfTableView()
@@ -405,14 +407,51 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
 
     func tableViewSelectionDidChange(notification: NSNotification)
     {
+        if tableView.selectedRow != -1
+        {
+                    }
+
+    }
+    
+    func tableViewSelectionIsChanging(notification: NSNotification)
+    {
+        
+    
         if isFeedBackSaved == false
         {
-        clearButton.enabled = true
+            clearButton.enabled = true
         }
-        if notification.object!.selectedRow >= 4
+
+        if tableView.selectedRow != -1
         {
-            cell?.skilsAndRatingsTitlefield.editable = true
+            if cell!.skilsAndRatingsTitlefield.stringValue == "Communication" || cell!.skilsAndRatingsTitlefield.stringValue == "Organisation Stability" || cell!.skilsAndRatingsTitlefield.stringValue == "Leadership(if applicable)" || cell!.skilsAndRatingsTitlefield.stringValue == "Growth Potential"
+            {
+                defaultSkills = cell?.skilsAndRatingsTitlefield.stringValue
+                cell!.skilsAndRatingsTitlefield.editable = false
+                tableView.selectionHighlightStyle = .None
+                
+            }
+            else
+            {
+                defaultSkills = cell?.skilsAndRatingsTitlefield.stringValue
+                cell!.skilsAndRatingsTitlefield.editable = true
+                 tableView.selectionHighlightStyle = .Regular
+            }
+
         }
+
+        
+//        if selectedRow != -1
+//        {
+//         if selectedRow < 4
+//         {
+//            tableView.selectionHighlightStyle = NSTableViewSelectionHighlightStyle.None
+//         }
+//         else
+//         {
+//           tableView.selectionHighlightStyle = NSTableViewSelectionHighlightStyle.Regular
+//         }
+//        }
     }
     
     func textDidChange(notification: NSNotification)
@@ -627,7 +666,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         let textFieldObject = obj.object as! NSTextField
         if textFieldObject.superview is EHRatingsTableCellView
         {
-            if tableView.selectedRow >= 4
+            if tableView.selectedRow != -1
             {
             let skillSetObject =  skillsAndRatingsTitleArray[textFieldObject.tag]
             skillSetObject.skillName = textFieldObject.stringValue
@@ -650,23 +689,29 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }
         else
         {
-            if isFeedBackSaved == true{
+            if isFeedBackSaved == true
+            {
                 dataAccessModel.createSkillSetWithTechnicalManagerObject(technicalFeedbackObject!, andCallBack: { (newSkill) -> Void in
                     
                     newSkill.skillName = "Enter Title"
                     self.skillsAndRatingsTitleArray.append(newSkill)
                     self.tableView.reloadData()
                 })
-            }else{
+            }
+            else
+            {
             dataAccessModel.createSkillSetObject({(newSkill)->Void in
                
                 newSkill.skillName = "Enter Title"
                 self.skillsAndRatingsTitleArray.append(newSkill)
                 self.tableView.reloadData()
+                self.tableView.selectRowIndexes(NSIndexSet(index:self.tableView.numberOfRows-1), byExtendingSelection: true)
+                self.rowView = self.tableView.rowViewAtRow(self.tableView.selectedRow, makeIfNecessary:true)!
+                self.rowView!.viewWithTag(1)?.becomeFirstResponder()
+                
             })
             }
-            
-        }
+         }
     }
     //ModeOfInterview Action
     @IBAction func modeOfInterviewAction(sender: NSMatrix)
@@ -700,10 +745,17 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
 
     @IBAction func removeSkills(sender: NSButton)
     {
-        if tableView.selectedRow >= 4
+        if tableView.selectedRow != -1
         {
-            skillsAndRatingsTitleArray.removeAtIndex(tableView.selectedRow)
-            tableView.reloadData()
+            if defaultSkills == "Communication" || defaultSkills == "Organisation Stability" || defaultSkills == "Leadership(if applicable)" || defaultSkills == "Growth Potential"
+            {
+                print("Skillllls")
+            }
+            else
+            {
+                skillsAndRatingsTitleArray.removeAtIndex(tableView.selectedRow)
+                tableView.reloadData()
+            }
         }
     }
     
@@ -733,13 +785,13 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         
         if isFeedBackSaved == false
         {
-            
-            dataAccessModel.insertIntoTechnicalFeedback(self,technicalFeedbackModel: technicalFeedbackModel, selectedCandidate: selectedCandidate!,andCallBack: {(isSucess)->Void in
+              dataAccessModel.insertIntoTechnicalFeedback(self,technicalFeedbackModel: technicalFeedbackModel, selectedCandidate: selectedCandidate!,andCallBack: {(isSucess)->Void in
                 if isSucess
                 {
                 self.isFeedBackSaved = true
                 self.sortArray((self.selectedCandidate?.interviewedByTechLeads?.allObjects)!,index:self.selectedRound!
                     )
+                Utility.alertPopup("Success", informativeText: "Feedback for Technical Round has been Saved Successfully", isCancelBtnNeeded:false,okCompletionHandler: nil)
                 }
             })
             }
@@ -856,7 +908,23 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     {
       let isValid = false
         
-        if cell?.skilsAndRatingsTitlefield.stringValue == ""
+        if defaultSkills == "Communication"
+        {
+            if cell?.feedback.stringValue == ""
+            {
+            Utility.alertPopup("Alert", informativeText: "Skill Name should not be blank",isCancelBtnNeeded:false, okCompletionHandler: nil)
+            return isValid
+            }
+            return true
+        }
+            
+//            || defaultSkills == "Organisation Stability" || defaultSkills == "Leadership(if applicable)" || defaultSkills == "Growth Potential"
+//            {
+//                
+//            }
+        
+        
+        else if cell?.skilsAndRatingsTitlefield.stringValue == ""
         {
             Utility.alertPopup("Alert", informativeText: "Skill Name should not be blank",isCancelBtnNeeded:false, okCompletionHandler: nil)
             return isValid
@@ -866,11 +934,11 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             Utility.alertPopup("Alert", informativeText: "Enter Valid Skill Name",isCancelBtnNeeded:false, okCompletionHandler: nil)
             return isValid
         }
-        else if cell?.feedback.stringValue == ""
-        {
-            Utility.alertPopup("Alert", informativeText: "Please provide your feedback of skills",isCancelBtnNeeded:false, okCompletionHandler: nil)
-            return isValid
-        }
+//        else if cell?.feedback.stringValue == ""
+//        {
+//            Utility.alertPopup("Alert", informativeText: "Please provide your feedback of skills",isCancelBtnNeeded:false, okCompletionHandler: nil)
+//            return isValid
+//        }
             
         else if ratingOnTechnologyField.stringValue == ""
         {
@@ -935,7 +1003,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     
     func refreshAllFields()
     {
-        isFeedBackSaved = false
+      isFeedBackSaved = false
       textViewOfCandidateAssessment.string = ""
       textViewOfTechnologyAssessment.string = ""
       designationField.stringValue = ""
