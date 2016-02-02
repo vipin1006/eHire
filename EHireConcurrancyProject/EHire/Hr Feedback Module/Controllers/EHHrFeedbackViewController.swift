@@ -84,9 +84,15 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
     override func viewWillAppear()
     {
         super.viewWillAppear()
+        
+        print("Value is \( candidate?.miscellaneousInfo?.isHrFormSubmitted)")
+        
         if candidate?.miscellaneousInfo?.isHrFormSubmitted == 1
         {
             isHrFormEnable = false
+        }else
+        {
+           clearButton.enabled = false
         }
         candidateInfo["isVisaAvailable"] = NSNumber(int:0)
         candidateInfo["isRelocationRequested"] = NSNumber(int:0)
@@ -97,6 +103,10 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         candidateInfo["entitledBonus"] = NSNumber(int:0)
         candidateInfo["anyLegalObligations"] = NSNumber(int:0)
         candidateInfo["isHrFormSubmitted"]   = NSNumber(int:0)
+        if candidate?.miscellaneousInfo?.isHrFormSaved == 1
+        {
+            clearButton.enabled = false
+        }
         showDetailsOfCandidate()
     }
 
@@ -106,15 +116,6 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         {
             saveCandidate()
             
-           /* if isHrFormEnable
-            {
-                showAlert("Feedback details saved succesfully", info:"")
-            }
-            else
-            {
-                showAlert("Feedback details submitted succesfully", info:"")
-            }*/
-
         }
     }
     
@@ -462,6 +463,32 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
             setClearColor(self.currentSalaryVariable)
             return false
         }
+        if EHOnlyDecimalValueFormatter.isNumberValid(self.candidateMobile.stringValue) == false
+        {
+            
+            
+            
+                showAlert("Invalid Mobile Number", info: "Please enter a proper mobile number")
+                
+             self.candidateMobile.becomeFirstResponder()
+            
+            return false
+        }else
+        {
+            if self.candidateMobile.stringValue.characters.count < 10
+            {
+                
+                showAlert("Invalid Mobile Number", info:"Your mobile number must be atleast 10 digits long")
+                
+                self.candidateMobile.becomeFirstResponder()
+                
+                return false
+
+            }
+            
+                        
+        }
+        
  
         return true
         
@@ -767,14 +794,28 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
 }
     func textDidChange(notification: NSNotification)
     {
-        clearButton.enabled = true
+        if candidate?.miscellaneousInfo?.isHrFormSaved == 1
+        {
+            clearButton.enabled = false
+        }else
+        {
+            clearButton.enabled = true
+        }
+        
     }
     
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
         
         if control is NSTextField
         {
-           clearButton.enabled = true
+            if candidate?.miscellaneousInfo?.isHrFormSaved == 1
+            {
+                clearButton.enabled = false
+            }else
+            {
+                clearButton.enabled = true
+            }
+          
            let textField = control as! NSTextField
            setClearColor(textField)
         }

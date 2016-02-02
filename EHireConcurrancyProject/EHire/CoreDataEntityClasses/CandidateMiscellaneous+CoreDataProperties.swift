@@ -30,6 +30,7 @@ extension CandidateMiscellaneous {
     @NSManaged var legalObligationWithCurrentEmployer: String?
     @NSManaged var questionsByCandidate:String?
     @NSManaged var isHrFormSubmitted:NSNumber?
+    @NSManaged var isHrFormSaved:NSNumber?
     @NSManaged var candidate: Candidate?
 
 }

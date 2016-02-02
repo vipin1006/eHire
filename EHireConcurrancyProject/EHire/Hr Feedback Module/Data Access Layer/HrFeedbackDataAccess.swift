@@ -162,6 +162,8 @@ class HrFeedbackDataAccess: NSObject {
         
         miscellaneousInfo.isHrFormSubmitted = candidateInfo["isHrFormSubmitted"] as? NSNumber
         
+        miscellaneousInfo.isHrFormSaved = NSNumber(int:1)
+        
         candidate.name =  candidateInfo["candidateName"] as? String
         
         candidate.miscellaneousInfo = miscellaneousInfo
