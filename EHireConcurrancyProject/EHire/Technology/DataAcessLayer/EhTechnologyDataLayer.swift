@@ -8,15 +8,15 @@
 
 import Cocoa
 
-enum PersistentError : ErrorType
+enum CoreDataError : ErrorType
 {
     case ReadError,FetchError,RemoveError,EditError,Success
 }
 
-typealias InsertReturn     = (error:PersistentError)->Void
-typealias DeleteReturn     = (error:PersistentError)->Void
-typealias TechnologyReturn = (newTechnology : Technology,error:PersistentError) -> Void
-typealias SourlistContentReturn = (newArray:NSArray,error:PersistentError)-> Void
+typealias InsertHandler     = (error:CoreDataError)->Void
+typealias DeleteHandler     = (error:CoreDataError)->Void
+typealias TechnologyHandler = (newTechnology : Technology,error:CoreDataError) -> Void
+typealias SourlistHandler = (newArray:NSArray,error:CoreDataError)-> Void
 
 class EHTechnologyDataLayer: NSObject
 {
@@ -26,14 +26,14 @@ class EHTechnologyDataLayer: NSObject
     //PRAGMAMARK:- Coredata
     
     /// This method is useful for reading a Technology
-    /// List from persistent and put in the technologyArray.
+    /// List from persistent storage and put in the technologyArray.
     ///
     ///
     /// - Parameter completion: The call back will happen
     ///   once global queue complete the fetching and return back to main thread
     ///
     /// - Note: This will execute only viewDidLoad of EHTechnologyViewController
-    func getTechnologyListWith(completion:SourlistContentReturn)
+    func getTechnologyListWith(completion:SourlistHandler)
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
         { () -> Void in
@@ -49,7 +49,7 @@ class EHTechnologyDataLayer: NSObject
             }
             dispatch_sync(dispatch_get_main_queue()
                ,{ () -> Void in
-                completion(newArray: self.technologyArray as [Technology],error:PersistentError.Success)
+                completion(newArray: self.technologyArray as [Technology],error:CoreDataError.Success)
                 })
         }
         
@@ -63,7 +63,7 @@ class EHTechnologyDataLayer: NSObject
     ///
     /// - Parameter completion: The call back will happen
     ///   once global queue complete the creation and return back to main thread
-    func createEntityWith(name:String, completion:TechnologyReturn)
+    func createEntityWith(name:String, completion:TechnologyHandler)
     {
         self.managedObjectContext!.performBlock(
         { () -> Void in
@@ -72,7 +72,7 @@ class EHTechnologyDataLayer: NSObject
             let technology = Technology(entity: entityTechnology!,
                 insertIntoManagedObjectContext: self.managedObjectContext!)
             technology.technologyName = ""
-            completion(newTechnology: technology,error:PersistentError.Success)
+            completion(newTechnology: technology,error:CoreDataError.Success)
         })
 
     }
@@ -86,18 +86,18 @@ class EHTechnologyDataLayer: NSObject
     ///
     /// - Parameter completion: The call back will happen
     ///   once global queue complete the insertion and return back to main thread
-    func addTechnologyTo(technologyEntity:Technology,completion:InsertReturn)
+    func addTechnologyTo(technologyEntity:Technology,completion:InsertHandler)
     {
         technologyEntity.managedObjectContext?.performBlock(
             { () -> Void in
                 do
                 {
                     try technologyEntity.managedObjectContext!.save()
-                    completion(error: PersistentError.Success)
+                    completion(error: CoreDataError.Success)
                 }
                 catch _ as NSError
                 {
-                    completion(error: PersistentError.EditError)
+                    completion(error: CoreDataError.EditError)
                 }
             })
     }
@@ -111,7 +111,7 @@ class EHTechnologyDataLayer: NSObject
     /// - Parameter andCompletion: The call back will happen
     ///   once global queue complete the insertion and return back to main thread
     /// - Note tempContext is mainly used for concurrency
-    func addInterviewDateFor(technologyEntity:Technology, withDate: NSDate,andCompletion:InsertReturn)
+    func addInterviewDateFor(technologyEntity:Technology, withDate: NSDate,andCompletion:InsertHandler)
     {
         let tempContext = NSManagedObjectContext(concurrencyType:.PrivateQueueConcurrencyType)
         tempContext.parentContext = self.managedObjectContext
@@ -126,13 +126,13 @@ class EHTechnologyDataLayer: NSObject
                     try tempContext.save()
                     dispatch_sync(dispatch_get_main_queue()
                     ,{ () -> Void in
-                             andCompletion(error: PersistentError.Success)
+                             andCompletion(error: CoreDataError.Success)
                     })
                     
                 }
                 catch _ as NSError
                 {
-                    andCompletion(error: PersistentError.EditError)
+                    andCompletion(error: CoreDataError.EditError)
                 }
         })
     }
@@ -143,7 +143,7 @@ class EHTechnologyDataLayer: NSObject
     /// - Parameter Completion: The call back will happen after deletion
     ///   once the global queue complete the deletion and return back to main thread
     /// - Note dispatch is mainly used for concurrency
-    func removeTechnolgy(technologyEntity:Technology,completion:DeleteReturn)
+    func removeTechnolgy(technologyEntity:Technology,completion:DeleteHandler)
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
         { () -> Void in
@@ -153,12 +153,12 @@ class EHTechnologyDataLayer: NSObject
                 try technologyEntity.managedObjectContext!.save()
                 dispatch_sync(dispatch_get_main_queue()
                 ,{ () -> Void in
-                           completion(error: PersistentError.Success)
+                           completion(error: CoreDataError.Success)
                 })
             }
             catch _ as NSError
             {
-                completion(error: PersistentError.RemoveError)
+                completion(error: CoreDataError.RemoveError)
             }
         }
         
@@ -171,7 +171,7 @@ class EHTechnologyDataLayer: NSObject
     /// - Parameter andCompletion: The call back will happen
     ///   once the global queue complete the deletion and return back to main thread
     /// - Note dispatch is mainly used for concurrency
-    func removeInterviewDateFrom(technologyObject:Technology,forInterview:Date,andCompletion:DeleteReturn)
+    func removeInterviewDateFrom(technologyObject:Technology,forInterview:Date,andCompletion:DeleteHandler)
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
             { () -> Void in
@@ -182,12 +182,12 @@ class EHTechnologyDataLayer: NSObject
                             dispatch_sync(dispatch_get_main_queue()
                             ,{ () -> Void in
                         
-                            andCompletion(error: PersistentError.Success)
+                            andCompletion(error: CoreDataError.Success)
                             })
                     }
                     catch _ as NSError
                     {
-                        andCompletion(error: PersistentError.RemoveError)
+                        andCompletion(error: CoreDataError.RemoveError)
                     }
             }
         }
