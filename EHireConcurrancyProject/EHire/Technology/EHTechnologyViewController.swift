@@ -58,7 +58,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         technologyDataLayer!.managedObjectContext = self.managedObjectContext!
         technologyDataLayer?.getTechnologyListWith(
         { (technologyList,error) -> Void in
-            if PersistentError.Success == error
+            if CoreDataError.Success == error
             {
             self.technologyArray = technologyList as! [Technology]
             self.sortedSourceListReload()
@@ -291,7 +291,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             {
                 technologyDataLayer!.addInterviewDateFor(technology, withDate: scheduledDate, andCompletion:
                 { (error) -> Void in
-                   if PersistentError.Success == error
+                   if CoreDataError.Success == error
                    {
                     self.addDate.enabled = false
                     self.addTechnology.enabled = true
@@ -415,13 +415,20 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         {
             if cellTechnology?.textFieldTechnology.stringValue == "" || cellTechnology?.textFieldTechnology.editable == true
             {
-                
-                technologyArray.removeLast()
-                self.addTechnology.enabled = true
-                self.addDate.enabled = false
-                self.sortedSourceListReload()
-               
-                
+                technologyDataLayer!.removeTechnolgy(technologyEntity, completion:
+                { (error) -> Void in
+                    if CoreDataError.Success == error
+                    {
+                    self.addTechnology.enabled = true
+                    self.addDate.enabled = false
+                    self.sortedSourceListReload()
+                    }
+                    else
+                    {
+                        print("Error in deletion")
+                    }
+                   
+                })
 
                 
             }
@@ -430,7 +437,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             {
                 technologyDataLayer!.removeTechnolgy(technologyEntity, completion:
                 { (error) -> Void in
-                    if PersistentError.Success == error
+                    if CoreDataError.Success == error
                     {
                     self.technologyArray.removeAtIndex(self.technologyArray.indexOf(technologyEntity)!)
                     self.addTechnology.enabled = true
@@ -451,7 +458,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             let technologyObject = sourceList.parentForItem(selectedInterviewDate) as! Technology
             technologyObject.interviewDates?.removeObject(selectedInterviewDate!)
             self.technologyDataLayer!.removeInterviewDateFrom(technologyObject, forInterview: selectedInterviewDate!, andCompletion: { (error) -> Void in
-                if PersistentError.Success == error
+                if CoreDataError.Success == error
                 {
                 if self.isCandidatesViewLoaded
                     {
@@ -569,7 +576,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 technologyObject!.technologyName = textFieldObject.stringValue
                 technologyDataLayer!.addTechnologyTo(technologyObject!, completion:
                 { (error) -> Void in
-                        if PersistentError.Success == error
+                        if CoreDataError.Success == error
                         {
                         self.deleteTechnologyDate.enabled = false
                         self.addTechnology.enabled = true
