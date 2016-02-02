@@ -528,7 +528,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             }
             else
             {
-                Utility.alertPopup("Error", informativeText: "Technology name should be unique",isCancelBtnNeeded:true,okCompletionHandler: {() -> Void in
+                Utility.alertPopup("Error", informativeText: "Technology name should be unique",isCancelBtnNeeded:false,okCompletionHandler: {() -> Void in
                     
                     textFieldObject.stringValue = ""
                     
