@@ -34,4 +34,11 @@ class Utility: NSObject
             }
         }
     }
+    
+    class func isAlphabetsOnly(string:String) -> Bool {
+        let alphaCharSet = NSCharacterSet.letterCharacterSet()
+        let newString = string.stringByTrimmingCharactersInSet(alphaCharSet.invertedSet)
+        return (newString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == string.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+    }
+
 }
