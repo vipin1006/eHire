@@ -70,21 +70,24 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
     @IBOutlet weak var clearButton: NSButton!
     @IBOutlet weak var submitButton: NSButton!
     
+    @IBOutlet weak var hrFeedbackView: NSView!
     dynamic var isHrFormEnable = true
     
     var candidateInfo:Dictionary<String,AnyObject> = [:]
     var candidate:Candidate?
     var managedObjectContext : NSManagedObjectContext?
-    
+ 
     override func viewDidLoad()
     {
         super.viewDidLoad()
+
         // Do view setup here.
     }
     
     override func viewWillAppear()
     {
         super.viewWillAppear()
+        
         
         print("Value is \( candidate?.miscellaneousInfo?.isHrFormSubmitted)")
         
@@ -437,6 +440,18 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
     
     func numericValidations()->Bool
     {
+        
+        if !EHHrFeedbackViewController.isValidEmail(self.officialMailid.stringValue)
+        {
+            
+            showAlert("Invalid email address ", info:"Please enter a proper email")
+            
+            self.officialMailid.becomeFirstResponder()
+            
+          
+            
+            return false
+        }
         if EHOnlyDecimalValueFormatter.isNumberValid(self.currentFixedSalary.stringValue) == false
         {
             showAlert("Invalid data entered", info:"Please enter Fixed Salary in numbers")
@@ -734,6 +749,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
                 return false
             }
         }
+       
     
         return true
     }
@@ -825,6 +841,20 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         
     }
     
+    class func isValidEmail(testStr:String) -> Bool {
+       
+        let emailRegEx = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        
+        if emailTest.evaluateWithObject(testStr)
+        {
+            return true
+        }
+   
+        return false
+    }
+    
     @IBAction func clearAllFields(sender: AnyObject)
     {
         candidateName.stringValue = ""
@@ -862,4 +892,6 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         dummySpecifyLegalObligations.stringValue = ""
         lastDesignation.stringValue = ""
     }
+    
+   
 }
