@@ -155,6 +155,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     {
         if let selectedItem = sourceList.itemAtRow((notification.object?.selectedRow)!) as? Technology
         {
+            let notificationObject = notification.object
+            cellTechnology = notificationObject?.viewAtColumn(0, row: (notification.object?.selectedRow)!, makeIfNecessary: false) as? EHTechnologyCustomCell
+            
             if !(selectedItem.technologyName == "")
             {
                 deleteTechnologyDate.enabled = true
