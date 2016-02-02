@@ -343,7 +343,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
          if !Utility.isAlphabetsOnly(textField.stringValue)
          {
           Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters for candidate name.",isCancelBtnNeeded:false,okCompletionHandler: nil)
-          fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+          fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.characters.count)
           textShouldEndEditing = false
             
          }
