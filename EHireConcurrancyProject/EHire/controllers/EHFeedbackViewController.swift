@@ -31,6 +31,7 @@ class EHFeedbackViewController: NSViewController
     var techFeedback : EHTechnicalFeedbackViewController?
     var technicalFeedbackModel = EHTechnicalFeedbackModel()
     var selectedCandidate:Candidate?
+//    var candidate = CandidateMiscellaneous()
     let dataAccess = EHTechnicalFeedbackDataAccess()
     var managedObjectContext : NSManagedObjectContext?
     
@@ -80,15 +81,6 @@ class EHFeedbackViewController: NSViewController
             
         case 1:
             
-            if techLeadCount < 3
-            {
-                Utility.alertPopup("Alert", informativeText: "Please complete the Technical Round(s) before proceeding to the Managerial Round",isCancelBtnNeeded:false, okCompletionHandler: nil)
-                subRound.selectedSegment = 0
-                typeOfInterview.setSelected(true, forSegment: 0)
-                return
-            }
-           
-            
             for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
             {
                 let feedback = feedbackOfTechLead as! TechnicalFeedBack
@@ -103,8 +95,14 @@ class EHFeedbackViewController: NSViewController
                 }
             }
 
-            
-
+            if techLeadCount < 3
+            {
+                Utility.alertPopup("Alert", informativeText: "Please complete the Technical Round(s) before proceeding to the Managerial Round",isCancelBtnNeeded:false, okCompletionHandler: nil)
+                subRound.selectedSegment = 0
+                typeOfInterview.setSelected(true, forSegment: 0)
+                return
+            }
+           
             if !isManagerLoaded
             {
                 managerFeedback = storyboard?.instantiateControllerWithIdentifier("EHManagerFeedbackViewController") as? EHManagerFeedbackViewController
@@ -421,30 +419,45 @@ class EHFeedbackViewController: NSViewController
     
     @IBAction func dismissFeedbackView(sender: AnyObject)
     {
-        Utility.alertPopup("Do you want to save the changes?", informativeText:"Press Yes will keep entered data",isCancelBtnNeeded:true) { () -> Void in
-          
+        
             switch self.typeOfInterview.selectedSegment
             {
                 
             case 0:
                 
-                print("Technical")
-                self.techFeedback?.saveDetailsAction("")
-            case 1:
-                self.managerFeedback?.saveData(nil)
-                self.techFeedback?.clearButton.enabled = false
-                print("Manager")
+                if techFeedback?.submitButton.enabled == true
+                {
+                   Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
+                    print("Technical")
+                    self.techFeedback?.saveDetailsAction("")
+                   })
+                }
                 
+            case 1:
+                if managerFeedback?.submitBtn.enabled == false
+                {
+                    Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
+                        self.managerFeedback?.saveData("")
+                        self.techFeedback?.clearButton.enabled = false
+                        print("Manager")
+
+                    })
+                }
             default:
              
+                if hrFeedBackViewController!.submitButton.enabled == false
+                {
+                    Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
                 self.hrFeedBackViewController?.saveCandidate()
+                         })
+                }
                 
             }
             
-        }
         self.view.removeFromSuperview()
         NSApp.windows.first?.title = "List of Candidates"
         self.delegate?.feedbackViewControllerDidFinish(selectedCandidate!)
+        
     }
     
     func createConstraintsForManagerFeedbackController(leading:CGFloat,trailing:CGFloat,top:CGFloat,bottom:CGFloat)

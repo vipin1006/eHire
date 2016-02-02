@@ -69,12 +69,16 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
 
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView?
     {
+        
+        
         var candidate:Candidate
         if candidateSearchField.stringValue.characters.count > 0 {
             candidate = (filteredArray[row] as? Candidate)!
+            addCandidateButton.enabled = false
         }
         else {
             candidate = (candidateArray[row] as? Candidate)!
+             addCandidateButton.enabled = true
         }
         let cell = self.tableView.makeViewWithIdentifier((tableColumn?.identifier)!, owner: self) as! NSTableCellView
         
@@ -173,7 +177,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         var allCandidatesValid:Bool = true
         for candidateRecord in candidateArray
         {
-          if candidateRecord.name! == "" || candidateRecord.phoneNumber! == "" || candidateRecord.experience! == -1 || candidateRecord.experience! == nil || candidateRecord.requisition! == ""
+          if candidateRecord.name! == "" || candidateRecord.phoneNumber! == "" || candidateRecord.experience! == nil || candidateRecord.experience! == nil || candidateRecord.requisition! == ""
           {
             Utility.alertPopup("Candidate can not be added", informativeText: "Please fill all the details of the selected candidate before adding a new candidate", isCancelBtnNeeded:true,okCompletionHandler:
                 { () -> Void in
@@ -248,17 +252,37 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     @IBAction func searchFieldTextDidChange(sender: NSSearchField)
     {
       filteredArray.removeAllObjects()
-      let predicate = NSPredicate(format:" requisition CONTAINS[cd] %@" ,sender.stringValue)
-      let predicate1 = NSPredicate(format:" experience == %f" ,sender.floatValue)
-      let predicate2 = NSPredicate(format:" name CONTAINS[cd] %@" ,sender.stringValue)
-      let predicate3 = NSPredicate(format:" phoneNumber CONTAINS[cd] %@" ,sender.stringValue)
-      filteredArray.addObjectsFromArray(candidateArray.filteredArrayUsingPredicate(predicate1))
+      
+      let predicate = self.experiencePredicateWithValue(sender.stringValue)
+      
       filteredArray.addObjectsFromArray(candidateArray.filteredArrayUsingPredicate(predicate))
-      filteredArray.addObjectsFromArray(candidateArray.filteredArrayUsingPredicate(predicate2))
-      filteredArray.addObjectsFromArray(candidateArray.filteredArrayUsingPredicate(predicate3))
-      tableView.reloadData()
+            tableView.reloadData()
       
     }
+    
+    
+    func experiencePredicateWithValue(value: String) -> NSPredicate {
+        let floatValue = (value as NSString).floatValue
+        
+        let lhs:NSExpression = NSExpression.init(forKeyPath: "experience")
+        
+        let greaterThanRhs:NSExpression = NSExpression.init(forConstantValue:NSNumber.init(float: floor(floatValue)))
+        let option:NSComparisonPredicateOptions = NSComparisonPredicateOptions.init(rawValue: 0)
+        
+        let greaterThanPredicate:NSComparisonPredicate = NSComparisonPredicate.init(leftExpression:lhs , rightExpression:greaterThanRhs , modifier: NSComparisonPredicateModifier.DirectPredicateModifier, type: NSPredicateOperatorType.GreaterThanOrEqualToPredicateOperatorType, options: option)
+        
+        
+        let lessThanRhs:NSExpression = NSExpression.init(forConstantValue:NSNumber.init(float: floor(floatValue+1)))
+        
+        let lessThanPredicate:NSComparisonPredicate = NSComparisonPredicate.init(leftExpression:lhs , rightExpression:lessThanRhs , modifier: NSComparisonPredicateModifier.DirectPredicateModifier, type: NSPredicateOperatorType.LessThanPredicateOperatorType, options: option)
+        
+        let predicate:NSPredicate = NSCompoundPredicate.init(andPredicateWithSubpredicates:[greaterThanPredicate, lessThanPredicate])
+        
+        let otherPredicate = NSPredicate(format:" requisition CONTAINS[cd] %@ OR name CONTAINS[cd] %@ OR phoneNumber CONTAINS[cd] %@", value, value, value)
+        let compoundPredicate:NSCompoundPredicate =  NSCompoundPredicate.init(orPredicateWithSubpredicates: [otherPredicate, predicate])
+        return compoundPredicate
+    }
+
     
    @IBAction func removeCandidate(sender: AnyObject)
    {
@@ -284,7 +308,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         {
           let selectedRow:NSInteger = tableView.selectedRow
           let selectedCandidate:Candidate = candidateArray.objectAtIndex(selectedRow) as! Candidate
-          preserveCandidate = tableView.selectedRow
+
           NSApp.windows.first?.title = "Candidate Feedback"
           if candidateArray.count > 0
             {
@@ -309,18 +333,19 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     {
       let textField = control as! NSTextField
       let candidate = self.candidateArray.objectAtIndex(self.tableView.selectedRow) as! Candidate
+
         var textShouldEndEditing = true
       switch textField.tag
       {
         case 1:
         if (!(textField.stringValue == ""))
         {
-         if EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
+         if !Utility.isAlphabetsOnly(textField.stringValue)
          {
           Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters for candidate name.",isCancelBtnNeeded:false,okCompletionHandler: nil)
-            textField.stringValue = ""
-            textShouldEndEditing = false
-          //candidate.name = textField.stringValue
+          fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+          textShouldEndEditing = false
+            
          }
          else
          {
@@ -330,9 +355,8 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         }
         else
         {
-            candidate.name = fieldEditor.string
- 
-         candidateSearchField.enabled = false
+          candidate.name = fieldEditor.string
+          candidateSearchField.enabled = false
         }
        
         case 2:
@@ -341,7 +365,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
           if !EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
           {
             Utility.alertPopup("Error", informativeText: "Please enter a numerical value for experience.",isCancelBtnNeeded:false,okCompletionHandler:nil)
-            textField.stringValue = ""
+            fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
             textShouldEndEditing = false
 
           }
@@ -359,7 +383,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
           else
           {
             Utility.alertPopup("Error", informativeText: "Please enter a appropriate  experience.",isCancelBtnNeeded:false,okCompletionHandler: nil)
-            textField.stringValue = ""
+            fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
             textShouldEndEditing = false
 
           }
@@ -377,7 +401,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
                 if !EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
                 {
                     Utility.alertPopup("Error", informativeText: "Please enter a 10 digit mobile phone number. ",isCancelBtnNeeded:false,okCompletionHandler: nil)
-                    textField.stringValue = ""
+                    fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
                     textShouldEndEditing = false
 
                 }
@@ -389,7 +413,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
                 else
                 {
                     Utility.alertPopup("Error", informativeText: "Please enter a 10 digit mobile phone number.",isCancelBtnNeeded:false,okCompletionHandler: nil)
-                    textField.stringValue = ""
+                    fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
                     textShouldEndEditing = false
                     
                 }
@@ -404,10 +428,10 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         case 4:
             if (!(textField.stringValue == ""))
             {
-                if EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
+                 if !Utility.isAlphabetsOnly(textField.stringValue) 
                 {
                     Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters for requisition.",isCancelBtnNeeded:false,okCompletionHandler: nil)
-                    textField.stringValue = ""
+                    fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
                     textShouldEndEditing = false
                     
                 }
@@ -419,7 +443,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             }
             else
             {
-                 candidate.requisition = fieldEditor.string
+              candidate.requisition = fieldEditor.string
               candidateSearchField.enabled = false
             }
             

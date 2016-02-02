@@ -183,6 +183,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 else
                 {
                     designationField.enabled = false
+                    designationField.stringValue = ""
                 }
 
                 technicalFeedbackModel.isFeedbackSubmitted = feedback.isFeedbackSubmitted
