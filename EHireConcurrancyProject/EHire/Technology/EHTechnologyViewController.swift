@@ -379,15 +379,19 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         if selected is Technology
         {
-            Utility.alertPopup("Alert", informativeText: "Are you sure you want to delete the selected Technology",isCancelBtnNeeded:true,okCompletionHandler: {() -> Void in
-                self.deleteItem()
-                if self.technologyArray.count == 0
-                {
+            guard cellTechnology?.textFieldTechnology.stringValue != "" && cellTechnology?.textFieldTechnology.editable == true else{
+                Utility.alertPopup("Alert", informativeText: "Are you sure you want to delete the selected Technology",isCancelBtnNeeded:true,okCompletionHandler: {() -> Void in
+                    self.deleteItem()
+                    if self.technologyArray.count == 0
+                    {
+                        
+                        self.deleteTechnologyDate.enabled = false
+                    }
                     
-                    self.deleteTechnologyDate.enabled = false
-                }
-                
-            })
+                })
+                return
+            }
+            
             
         }
         else
@@ -406,23 +410,16 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     {
         if let technologyEntity = sourceList.itemAtRow(sourceList.selectedRow) as? Technology
         {
-            if cellTechnology?.textFieldTechnology.stringValue == ""
+            if cellTechnology?.textFieldTechnology.stringValue == "" || cellTechnology?.textFieldTechnology.editable == true
             {
+                
                 technologyArray.removeLast()
-                technologyDataLayer!.removeTechnolgy(technologyEntity, completion:
-                { (error) -> Void in
-                    if PersistentError.Success == error
-                    {
-                    self.addTechnology.enabled = true
-                    self.addDate.enabled = false
-                    self.sortedSourceListReload()
-                    }
-                    else
-                    {
-                        print("Error in deletion")
-                    }
-                   
-                })
+                self.addTechnology.enabled = true
+                self.addDate.enabled = false
+                self.sortedSourceListReload()
+               
+                
+
                 
             }
                 
@@ -560,7 +557,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 Utility.alertPopup("Error", informativeText: "Technology name should be unique",isCancelBtnNeeded:false,okCompletionHandler: {() -> Void in
                     
                     textFieldObject.stringValue = ""
-                    
+                    return
                     
                 })
             }
