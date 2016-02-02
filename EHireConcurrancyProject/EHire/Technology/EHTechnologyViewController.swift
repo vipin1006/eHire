@@ -415,20 +415,25 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         {
             if cellTechnology?.textFieldTechnology.stringValue == "" || cellTechnology?.textFieldTechnology.editable == true
             {
-                technologyDataLayer!.removeTechnolgy(technologyEntity, completion:
-                { (error) -> Void in
-                    if CoreDataError.Success == error
-                    {
-                    self.addTechnology.enabled = true
-                    self.addDate.enabled = false
-                    self.sortedSourceListReload()
-                    }
-                    else
-                    {
-                        print("Error in deletion")
-                    }
-                   
-                })
+                technologyArray.removeLast()
+                self.addTechnology.enabled = true
+                self.addDate.enabled = false
+                self.sortedSourceListReload()
+
+//                technologyDataLayer!.removeTechnolgy(technologyEntity, completion:
+//                { (error) -> Void in
+//                    if CoreDataError.Success == error
+//                    {
+//                    self.addTechnology.enabled = true
+//                    self.addDate.enabled = false
+//                    self.sortedSourceListReload()
+//                    }
+//                    else
+//                    {
+//                        print("Error in deletion")
+//                    }
+//                   
+//                })
 
                 
             }
@@ -567,9 +572,10 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 Utility.alertPopup("Error", informativeText: "Technology name should be unique",isCancelBtnNeeded:false,okCompletionHandler: {() -> Void in
                     
                     textFieldObject.stringValue = ""
-                    return
+                    
                     
                 })
+                return
             }
             if let _ = technologyObject
             {
