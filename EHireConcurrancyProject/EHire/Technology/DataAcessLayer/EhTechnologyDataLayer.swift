@@ -8,9 +8,15 @@
 
 import Cocoa
 
-typealias InsertReturn = ()->Void
-typealias TechnologyReturn = (newTechnology : Technology) -> Void
-typealias SourlistContentReturn = (newArray:NSArray)-> Void
+enum PersistentError : ErrorType
+{
+    case ReadError,FetchError,RemoveError,EditError,Success
+}
+
+typealias InsertReturn     = (error:PersistentError)->Void
+typealias DeleteReturn     = (error:PersistentError)->Void
+typealias TechnologyReturn = (newTechnology : Technology,error:PersistentError) -> Void
+typealias SourlistContentReturn = (newArray:NSArray,error:PersistentError)-> Void
 
 class EHTechnologyDataLayer: NSObject
 {
@@ -18,7 +24,16 @@ class EHTechnologyDataLayer: NSObject
     var managedObjectContext : NSManagedObjectContext?
    
     //PRAGMAMARK:- Coredata
-    func getSourceListContent(callBack:SourlistContentReturn)
+    
+    /// This method is useful for reading a Technology
+    /// List from persistent and put in the technologyArray.
+    ///
+    ///
+    /// - Parameter completion: The call back will happen
+    ///   once global queue complete the fetching and return back to main thread
+    ///
+    /// - Note: This will execute only viewDidLoad of EHTechnologyViewController
+    func getTechnologyListWith(completion:SourlistContentReturn)
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
         { () -> Void in
@@ -34,13 +49,21 @@ class EHTechnologyDataLayer: NSObject
             }
             dispatch_sync(dispatch_get_main_queue()
                ,{ () -> Void in
-                      callBack(newArray: self.technologyArray as [Technology])
+                completion(newArray: self.technologyArray as [Technology],error:PersistentError.Success)
                 })
         }
         
     }
     
-    func createNewtech(name:String, andCallBack:TechnologyReturn)
+    /// This method is useful for create a empty Technology Entity
+    /// and put in the technologyArray
+    ///
+    ///
+    /// - Parameter name: Use to have technologyName from ViewController
+    ///
+    /// - Parameter completion: The call back will happen
+    ///   once global queue complete the creation and return back to main thread
+    func createEntityWith(name:String, completion:TechnologyReturn)
     {
         self.managedObjectContext!.performBlock(
         { () -> Void in
@@ -49,94 +72,122 @@ class EHTechnologyDataLayer: NSObject
             let technology = Technology(entity: entityTechnology!,
                 insertIntoManagedObjectContext: self.managedObjectContext!)
             technology.technologyName = ""
-            andCallBack(newTechnology: technology)
+            completion(newTechnology: technology,error:PersistentError.Success)
         })
 
     }
     
-    func addTechnologyToCoreData(techObjectToAdd:Technology,andCallBack:InsertReturn)
+    
+    /// This function is used to persist the empty technology which is
+    /// selected from ViewController
+    ///
+    ///
+    /// - Parameter technologyEntity: Contains the selected entity
+    ///
+    /// - Parameter completion: The call back will happen
+    ///   once global queue complete the insertion and return back to main thread
+    func addTechnologyTo(technologyEntity:Technology,completion:InsertReturn)
     {
-        techObjectToAdd.managedObjectContext?.performBlock(
+        technologyEntity.managedObjectContext?.performBlock(
             { () -> Void in
                 do
                 {
-                    try techObjectToAdd.managedObjectContext!.save()
-                    andCallBack()
+                    try technologyEntity.managedObjectContext!.save()
+                    completion(error: PersistentError.Success)
                 }
-                catch let error as NSError
+                catch _ as NSError
                 {
-                    print(error.localizedDescription)
+                    completion(error: PersistentError.EditError)
                 }
             })
     }
     
-    
-    func addInterviewDateToCoreData( parenttechnology:Technology, dateToAdd: NSDate,andCallBack:InsertReturn)
+    ///  This function is used to persist the new date entity for the
+    ///  selected technology
+    ///
+    ///
+    /// - Parameter technologyEntity: Contains the selected entity
+    /// - Parameter withDate: Contains the date which used wish add
+    /// - Parameter andCompletion: The call back will happen
+    ///   once global queue complete the insertion and return back to main thread
+    /// - Note tempContext is mainly used for concurrency
+    func addInterviewDateFor(technologyEntity:Technology, withDate: NSDate,andCompletion:InsertReturn)
     {
         let tempContext = NSManagedObjectContext(concurrencyType:.PrivateQueueConcurrencyType)
         tempContext.parentContext = self.managedObjectContext
         tempContext.performBlock(
             { () -> Void in
                 let dateEntity = NSEntityDescription.insertNewObjectForEntityForName(String(Date), inManagedObjectContext: tempContext) as? Date
-                dateEntity?.interviewDate = dateToAdd
-                let emplyeeObjectId = parenttechnology.objectID
+                dateEntity?.interviewDate = withDate
+                let emplyeeObjectId = technologyEntity.objectID
                 dateEntity?.technologies?.addObject(tempContext.objectWithID(emplyeeObjectId))
                 do
                 {
                     try tempContext.save()
                     dispatch_sync(dispatch_get_main_queue()
-                        ,{ () -> Void in
-                            andCallBack()
+                    ,{ () -> Void in
+                             andCompletion(error: PersistentError.Success)
                     })
                     
                 }
-                catch
+                catch _ as NSError
                 {
-                    print("Error in insertion")
+                    andCompletion(error: PersistentError.EditError)
                 }
         })
     }
     
-    
-    func deleteTechnologyFromCoreData(technologyToDelete : Technology,andCallBack:InsertReturn)
+    ///  This function is used to remove the technology entity
+    ///
+    /// - Parameter technologyEntity: Contains the selected entity
+    /// - Parameter Completion: The call back will happen after deletion
+    ///   once the global queue complete the deletion and return back to main thread
+    /// - Note dispatch is mainly used for concurrency
+    func removeTechnolgy(technologyEntity:Technology,completion:DeleteReturn)
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
         { () -> Void in
-            technologyToDelete.managedObjectContext!.deleteObject(technologyToDelete)
+            technologyEntity.managedObjectContext!.deleteObject(technologyEntity)
             do
             {
-                try technologyToDelete.managedObjectContext!.save()
+                try technologyEntity.managedObjectContext!.save()
                 dispatch_sync(dispatch_get_main_queue()
                 ,{ () -> Void in
-                           andCallBack()
+                           completion(error: PersistentError.Success)
                 })
             }
-            catch let error as NSError
+            catch _ as NSError
             {
-                print(error.localizedDescription)
+                completion(error: PersistentError.RemoveError)
             }
         }
         
     }
     
-    func deleteInterviewDateFromCoreData(technologyObject:Technology,inInterviewdate:Date,andCallBack:InsertReturn)
+    ///  This function is used to remove the selected date entity from the
+    ///   technology entity
+    /// - Parameter technologyEntity: Contains the selected entity
+    /// - Parameter forInterview: Contains the date which used wish remove
+    /// - Parameter andCompletion: The call back will happen
+    ///   once the global queue complete the deletion and return back to main thread
+    /// - Note dispatch is mainly used for concurrency
+    func removeInterviewDateFrom(technologyObject:Technology,forInterview:Date,andCompletion:DeleteReturn)
     {
-        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
             { () -> Void in
-                inInterviewdate.managedObjectContext?.deleteObject(inInterviewdate)
+                forInterview.managedObjectContext?.deleteObject(forInterview)
                     do
                     {
                        try technologyObject.managedObjectContext?.save()
                             dispatch_sync(dispatch_get_main_queue()
                             ,{ () -> Void in
                         
-                            andCallBack()
+                            andCompletion(error: PersistentError.Success)
                             })
                     }
-                    catch let error as NSError
+                    catch _ as NSError
                     {
-                    print(error.localizedDescription)
+                        andCompletion(error: PersistentError.RemoveError)
                     }
             }
         }

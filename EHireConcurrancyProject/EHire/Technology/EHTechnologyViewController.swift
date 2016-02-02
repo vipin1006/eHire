@@ -54,13 +54,19 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     override func viewDidLoad()
     {
         super.viewDidLoad()
-     
         technologyDataLayer = EHTechnologyDataLayer()
         technologyDataLayer!.managedObjectContext = self.managedObjectContext!
-        technologyDataLayer?.getSourceListContent(
-        {(newArray)->Void in
-            self.technologyArray = newArray as! [Technology]
+        technologyDataLayer?.getTechnologyListWith(
+        { (technologyList,error) -> Void in
+            if PersistentError.Success == error
+            {
+            self.technologyArray = technologyList as! [Technology]
             self.sortedSourceListReload()
+            }
+            else
+            {
+                print("Error")
+            }
         })
         candidateController = self.storyboard?.instantiateControllerWithIdentifier("EHCandidateController") as? EHCandidateController
         deleteTechnologyDate.toolTip = "Delete Date or Technology"
@@ -278,26 +284,28 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         func addInterviewDateForTechnology(technology:Technology)
         {
-            if isValidInterviewDate(technology.technologyName!,inputDate:scheduledDate){
-                
-                
-                technologyDataLayer!.addInterviewDateToCoreData(technology, dateToAdd: scheduledDate,andCallBack:{()->Void in
-                    
+            if isValidInterviewDate(technology.technologyName!,inputDate:scheduledDate)
+            {
+                technologyDataLayer!.addInterviewDateFor(technology, withDate: scheduledDate, andCompletion:
+                { (error) -> Void in
+                   if PersistentError.Success == error
+                   {
                     self.addDate.enabled = false
                     self.addTechnology.enabled = true
-                    
                     self.sourceList.reloadData()
-                    //sortedSourceListReload()
                     self.sourceList.expandItem(technology, expandChildren: true)
-                    })
-                
+                    }
+                    else
+                   {
+                    print("Error in insertion of date")
+                    }
+                   
+                })
             }
-                
             else
             {
                 Utility.alertPopup("Error", informativeText: "Interview date cannot be same",isCancelBtnNeeded:false,okCompletionHandler: nil)
             }
-            
             datePopOver.close()
         }
         
@@ -338,15 +346,17 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 Utility.alertPopup("Error", informativeText: "Please provide a name for the new technology before proceeding.",isCancelBtnNeeded:false,okCompletionHandler: nil)
             }else
             {
-                    technologyDataLayer?.createNewtech("", andCallBack:
-                    {(newTechnology) -> Void in
-                    self.technologyArray.append(newTechnology)
-                    self.reloadTableView()
-                    self.sourceList.selectRowIndexes(NSIndexSet(index:self.sourceList.numberOfRows-1), byExtendingSelection: true)
-                    self.rowView = self.sourceList.rowViewAtRow(self.sourceList.selectedRow, makeIfNecessary:true)!
-                    self.rowView!.viewWithTag(1)?.becomeFirstResponder()
-                    self.deleteTechnologyDate.enabled = true
-            })
+                technologyDataLayer?.createEntityWith("", completion:
+                { (newTechnology,error) -> Void in
+                   
+                        self.technologyArray.append(newTechnology)
+                        self.reloadTableView()
+                        self.sourceList.selectRowIndexes(NSIndexSet(index:self.sourceList.numberOfRows-1), byExtendingSelection: true)
+                        self.rowView = self.sourceList.rowViewAtRow(self.sourceList.selectedRow, makeIfNecessary:true)!
+                        self.rowView!.viewWithTag(1)?.becomeFirstResponder()
+                        self.deleteTechnologyDate.enabled = true
+                    
+                })
             }
         }
     }
@@ -394,46 +404,65 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     
     func deleteItem()
     {
-        if let selectedItem = sourceList.itemAtRow(sourceList.selectedRow) as? Technology
+        if let technologyEntity = sourceList.itemAtRow(sourceList.selectedRow) as? Technology
         {
             if cellTechnology?.textFieldTechnology.stringValue == ""
             {
                 technologyArray.removeLast()
-                technologyDataLayer!.deleteTechnologyFromCoreData(selectedItem,andCallBack:
-                {()->Void in
+                technologyDataLayer!.removeTechnolgy(technologyEntity, completion:
+                { (error) -> Void in
+                    if PersistentError.Success == error
+                    {
                     self.addTechnology.enabled = true
                     self.addDate.enabled = false
                     self.sortedSourceListReload()
+                    }
+                    else
+                    {
+                        print("Error in deletion")
+                    }
+                   
                 })
                 
             }
                 
             else
             {
-               // technologyArray = []
-                technologyDataLayer!.deleteTechnologyFromCoreData(selectedItem,andCallBack:
-                    {()->Void in
-                        self.technologyArray.removeAtIndex(self.technologyArray.indexOf(selectedItem)!)
-                        self.addTechnology.enabled = true
-                        self.addDate.enabled = false
-                        self.sortedSourceListReload()
+                technologyDataLayer!.removeTechnolgy(technologyEntity, completion:
+                { (error) -> Void in
+                    if PersistentError.Success == error
+                    {
+                    self.technologyArray.removeAtIndex(self.technologyArray.indexOf(technologyEntity)!)
+                    self.addTechnology.enabled = true
+                    self.addDate.enabled = false
+                    self.sortedSourceListReload()
+                    }
+                    else
+                    {
+                        print("Error in deletion")
+                    }
                 })
-
             }
             
         }
         else
         {
             let selectedInterviewDate = sourceList.itemAtRow(sourceList.selectedRow) as? Date
-            let parentTechnology = sourceList.parentForItem(selectedInterviewDate) as! Technology
-            parentTechnology.interviewDates?.removeObject(selectedInterviewDate!)
-//            technologyDataLayer!.deleteInterviewDateFromCoreData(selectedInterviewDate!)
-            self.technologyDataLayer!.deleteInterviewDateFromCoreData(parentTechnology,inInterviewdate: selectedInterviewDate!,andCallBack:{()->Void in
-                if self.isCandidatesViewLoaded
+            let technologyObject = sourceList.parentForItem(selectedInterviewDate) as! Technology
+            technologyObject.interviewDates?.removeObject(selectedInterviewDate!)
+            self.technologyDataLayer!.removeInterviewDateFrom(technologyObject, forInterview: selectedInterviewDate!, andCompletion: { (error) -> Void in
+                if PersistentError.Success == error
                 {
-                    self.candidateController?.view.removeFromSuperview()
-                    self.isCandidatesViewLoaded = false
-                    self.sortedSourceListReload()
+                if self.isCandidatesViewLoaded
+                    {
+                        self.candidateController?.view.removeFromSuperview()
+                        self.isCandidatesViewLoaded = false
+                        self.sortedSourceListReload()
+                    }
+                }
+                else
+                {
+                    print("Error")
                 }
             })
 
@@ -538,41 +567,23 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             if let _ = technologyObject
             {
                 technologyObject!.technologyName = textFieldObject.stringValue
-                technologyDataLayer!.addTechnologyToCoreData(technologyObject!,andCallBack:
-                {()-> Void in
-                self.deleteTechnologyDate.enabled = false
-                self.addTechnology.enabled = true
-                self.sortedSourceListReload()
+                technologyDataLayer!.addTechnologyTo(technologyObject!, completion:
+                { (error) -> Void in
+                        if PersistentError.Success == error
+                        {
+                        self.deleteTechnologyDate.enabled = false
+                        self.addTechnology.enabled = true
+                        self.sortedSourceListReload()
+                        }
+                    else
+                        {
+                            print("Error in insertion of technology")
+                    }
                 })
             }
         }
         
     }
-    
-    func addTechnologyToCoreData(techObjectToAdd:Technology,andCallBack:InsertReturn){
-        
-        let tempContext = NSManagedObjectContext(concurrencyType:.PrivateQueueConcurrencyType)
-        tempContext.parentContext = self.managedObjectContext
-        tempContext.performBlock(
-            { () -> Void in
-                
-                let technology = NSEntityDescription.insertNewObjectForEntityForName(String(Technology), inManagedObjectContext: tempContext) as? Technology
-                technology?.technologyName = techObjectToAdd.technologyName
-//                tempContext.insertObject(technology!)
-                do
-                {
-                    try tempContext.save()
-                    andCallBack()
-                }
-                catch let error as NSError
-                {
-                    print(error.localizedDescription)
-                }
-        })
-        //        managedObjectContext.insertObject(techObjectToAdd)
-        //        EHCoreDataHelper.saveToCoreData(techObjectToAdd)
-    }
-    
     
     
     func createConstraintsForFeedbackController(leading:CGFloat,trailing:CGFloat,top:CGFloat,bottom:CGFloat){
@@ -794,15 +805,16 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
             for var i = 0 ; i < self.technologyArray.count ; i++
             {
-                let technology = self.technologyArray[i] as Technology
-                if technology.technologyName == sender.title
+                let technologyEntity = self.technologyArray[i] as Technology
+                if technologyEntity.technologyName == sender.title
                 {
                     self.technologyArray.removeAtIndex(i)
-                    //self.sourceList.reloadData()
-                    
                     self.sortedSourceListReload()
-                    self.technologyDataLayer!.deleteTechnologyFromCoreData(technology,andCallBack:{ ()->Void in
+                    self.technologyDataLayer!.removeTechnolgy(technologyEntity, completion:
+                    { (error) -> Void in
+                        
                     })
+ 
                 }
             }
             
@@ -839,25 +851,21 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
             for var i = 0 ; i < self.technologyArray.count ; i++
             {
-                let technology = self.technologyArray[i] as Technology
-                if technology.technologyName == sender.parentItem?.title
+                let technologyObject = self.technologyArray[i] as Technology
+                if technologyObject.technologyName == sender.parentItem?.title
                 {
-                    
                     let selectedMenuIndex = sender.menu?.indexOfItemWithTitle(sender.title)
                    
-                    let allDates = technology.interviewDates?.allObjects
+                    let allDates = technologyObject.interviewDates?.allObjects
                     
                     let selectedDate = allDates![selectedMenuIndex!] as! Date
                     
-                    technology.interviewDates?.removeObject(selectedDate)
+                    technologyObject.interviewDates?.removeObject(selectedDate)
                     
-                    self.technologyDataLayer!.deleteInterviewDateFromCoreData(technology,inInterviewdate: selectedDate,andCallBack:{()->Void in
-                        
+                    self.technologyDataLayer!.removeInterviewDateFrom(technologyObject, forInterview: selectedDate, andCompletion:
+                    { (error) -> Void in
                         self.sortedSourceListReload()
                     })
-                    
-                    
-                //self.sourceList.reloadData()
                  
                 }
             }
