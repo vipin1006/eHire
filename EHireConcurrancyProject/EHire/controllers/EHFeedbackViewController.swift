@@ -496,12 +496,10 @@ class EHFeedbackViewController: NSViewController
                             Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
                                 self.hrFeedBackViewController?.saveCandidate()
                             })
-                            
-                        }
+                            }
                     }
-
-                    }
-            }
+                }
+        }
             
         self.view.removeFromSuperview()
         NSApp.windows.first?.title = "List of Candidates"
