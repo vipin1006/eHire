@@ -445,14 +445,61 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
     func numericValidations()->Bool
     {
         
+        if EHOnlyDecimalValueFormatter.isNumberValid(self.candidateName.stringValue)
+        {
+            showAlert("Invalid candidate name", info:"candidate name must not be a number")
+            self.candidateName.becomeFirstResponder()
+            return false
+        }
+        if EHOnlyDecimalValueFormatter.isNumberValid(self.companyName.stringValue)
+        {
+            showAlert("Invalid company name", info:"company name must not be a number")
+            self.companyName.becomeFirstResponder()
+            return false
+        }
+        if EHOnlyDecimalValueFormatter.isNumberValid(self.candidateBusinessUnit.stringValue)
+        {
+            showAlert("Invalid business unit", info:"business unit must not be a number")
+            self.candidateBusinessUnit.becomeFirstResponder()
+            return false
+        }
+        if EHOnlyDecimalValueFormatter.isNumberValid(self.currentDesignation.stringValue)
+        {
+            showAlert("Invalid current designation", info:"designation must not be a number")
+            self.currentDesignation.becomeFirstResponder()
+            return false
+        }
+        if EHOnlyDecimalValueFormatter.isNumberValid(self.candidateSkillOrTechnology.stringValue)
+        {
+            showAlert("Invalid skill/technology", info:"skill/technology must not be a number")
+            self.candidateSkillOrTechnology.becomeFirstResponder()
+            return false
+        }
+        if EHOnlyDecimalValueFormatter.isNumberValid(self.currentJobType.stringValue)
+        {
+            showAlert("Invalid job type", info:"job type must not be a number")
+            self.currentJobType.becomeFirstResponder()
+            return false
+        }
+        if !EHOnlyDecimalValueFormatter.isNumberValid(self.candidateTotalItExperience.stringValue)
+        {
+            showAlert("Invalid total IT experience", info:"total IT experience must be a number")
+            self.candidateTotalItExperience.becomeFirstResponder()
+            return false
+        }
+        if !EHOnlyDecimalValueFormatter.isNumberValid(self.candidateRelevantItExperience.stringValue)
+        {
+            showAlert("Invalid relevant IT experience", info:"relevant IT experience must be a number")
+            self.candidateRelevantItExperience.becomeFirstResponder()
+            return false
+        }
+        
         if !EHHrFeedbackViewController.isValidEmail(self.officialMailid.stringValue)
         {
             
             showAlert("Invalid email address ", info:"Please enter a proper email")
             
             self.officialMailid.becomeFirstResponder()
-            
-            
             
             return false
         }
@@ -508,8 +555,14 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
             
             
         }
+       if !EHOnlyDecimalValueFormatter.isNumberValid(candidateNoticePeriod.stringValue)
+       {
+           showAlert("Invalid official notice period", info:"official notice period must ba a number")
         
+            candidateNoticePeriod.becomeFirstResponder()
         
+        return false
+        }
         return true
         
     }

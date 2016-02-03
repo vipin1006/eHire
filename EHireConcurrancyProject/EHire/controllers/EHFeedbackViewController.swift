@@ -120,6 +120,41 @@ class EHFeedbackViewController: NSViewController
             
         case 2:
             
+            for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
+            {
+                let feedback = feedbackOfTechLead as! TechnicalFeedBack
+                
+                if feedback.recommendation == "Rejected"
+                {
+                    Utility.alertPopup("Alert", informativeText: "This candidate has been 'Rejected' in the Technical Round. Hence you cannot proceed to this round.",isCancelBtnNeeded:false, okCompletionHandler: nil)
+                    
+                    self.typeOfInterview.selectedSegment = 0
+                    
+                    return
+                }
+            }
+            
+            for feedbackOfManager in (selectedCandidate?.interviewedByManagers)!
+            {
+                let feedback = feedbackOfManager as! ManagerFeedBack
+                
+                if feedback.recommendation == "Rejected"
+                {
+                    Utility.alertPopup("Alert", informativeText: "This candidate has been 'Rejected' in the Manager Round. Hence you cannot proceed to this round.",isCancelBtnNeeded:false, okCompletionHandler: nil)
+                    
+                    if self.subRound.segmentCount == 3
+                    {
+                        self.typeOfInterview.selectedSegment = 0
+                    }
+                    else if self.subRound.segmentCount == 2
+                    {
+                        self.typeOfInterview.selectedSegment = 1
+                    }
+                    return
+                }
+            }
+
+            
             if techLeadCount < 3
             {
                 Utility.alertPopup("Alert", informativeText: "Please complete Technical Round(s) before proceeding to the HR Round", isCancelBtnNeeded:false,okCompletionHandler: nil)
@@ -129,19 +164,7 @@ class EHFeedbackViewController: NSViewController
             }
             else
             {
-                for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
-                {
-                    let feedback = feedbackOfTechLead as! TechnicalFeedBack
-                    
-                    if feedback.recommendation == "Rejected"
-                    {
-                       Utility.alertPopup("Alert", informativeText: "This candidate has been 'Rejected' in the Technical Round. Hence you cannot proceed to this round.",isCancelBtnNeeded:false, okCompletionHandler: nil)
-                        
-                           self.typeOfInterview.selectedSegment = 0
-                        
-                        return
-                    }
-                }
+               
                 
                 if managerCount < 2
                 {
@@ -152,25 +175,6 @@ class EHFeedbackViewController: NSViewController
                     return
                 }
                 
-                for feedbackOfManager in (selectedCandidate?.interviewedByManagers)!
-                {
-                    let feedback = feedbackOfManager as! ManagerFeedBack
-                    
-                    if feedback.recommendation == "Rejected"
-                    {
-                        Utility.alertPopup("Alert", informativeText: "This candidate has been 'Rejected' in the Manager Round. Hence you cannot proceed to this round.",isCancelBtnNeeded:false, okCompletionHandler: nil)
-                        
-                          if self.subRound.segmentCount == 3
-                          {
-                            self.typeOfInterview.selectedSegment = 0
-                          }
-                          else if self.subRound.segmentCount == 2
-                          {
-                            self.typeOfInterview.selectedSegment = 1
-                          }
-                        return
-                    }
-                }
             if !isHrLoaded
             {
                self.addHrFeedBackView()
