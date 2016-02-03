@@ -563,6 +563,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                         
                     })
                     return
+                    
                 }
                 
                 
@@ -585,15 +586,45 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                         if CoreDataError.Success == error
                         {
                         self.deleteTechnologyDate.enabled = false
-                        self.addTechnology.enabled = true
+                            self.addTechnology.enabled = true     //true
                         self.sortedSourceListReload()
                         }
                     else
                         {
                             print("Error in insertion of technology")
+                   
                     }
                 })
             }
+        }
+        else
+        {
+           let alert = NSAlert()
+            alert.messageText = "Technology name not present"
+            alert.informativeText = "Please enter a name to Technology"
+            alert.addButtonWithTitle("OK")
+            alert.addButtonWithTitle("Delete")
+            let response = alert.runModal()
+            if response == 1000
+            {
+                
+            
+                
+                print(cellTechnology)
+            }
+            
+            
+            
+            
+            else
+            {
+                technologyArray.removeLast()
+                self.sourceList.reloadData()
+ 
+            }
+            
+           
+            
         }
         
     }
