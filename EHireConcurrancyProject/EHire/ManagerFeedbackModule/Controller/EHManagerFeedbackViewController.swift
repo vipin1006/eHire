@@ -254,7 +254,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             clearBtn.enabled = true
         }else
         {
-            clearBtn.enabled = true
+            clearBtn.enabled = false
         }
         let ratingCell = sender.superview?.superview as! EHManagerFeedBackCustomTableView
         if ratingCell.titleName.stringValue == "Enter Title"
@@ -943,7 +943,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             matrixForCgDeviation.enabled = true
             matrixForRecommendationState.enabled = true
             submitBtn.enabled = true
-            clearBtn.enabled = true
             textFieldGrossAnnualSalary.editable = true
             textFieldDesignation.editable = true
             textFieldCorporateGrade.editable = true
