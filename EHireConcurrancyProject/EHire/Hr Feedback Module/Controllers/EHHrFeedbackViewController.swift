@@ -80,7 +80,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
+        
         // Do view setup here.
     }
     
@@ -96,7 +96,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
             isHrFormEnable = false
         }else
         {
-           clearButton.enabled = false
+            clearButton.enabled = false
         }
         candidateInfo["isVisaAvailable"] = NSNumber(int:0)
         candidateInfo["isRelocationRequested"] = NSNumber(int:0)
@@ -113,8 +113,12 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         }
         showDetailsOfCandidate()
     }
-
+    
     //MARK: IBActions.
+    
+    
+    
+    
     @IBAction func saveCandidateDetails(sender: AnyObject) {
         if saveValidations()
         {
@@ -124,20 +128,20 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
     }
     
     @IBAction func subbmitCandidateDetails(sender: AnyObject)
-    
+        
     {
         if self.submitValidations()
         {
             if numericValidations()
             {
-                  Utility.alertPopup("Are you sure you want to \'Submit\' the details?", informativeText:"",isCancelBtnNeeded:true) { () -> Void in
+                Utility.alertPopup("Are you sure you want to \'Submit\' the details?", informativeText:"",isCancelBtnNeeded:true) { () -> Void in
                     
                     self.candidateInfo["isHrFormSubmitted"] = 1
                     
                     self.isHrFormEnable = false
                     self.clearButton.enabled = false
                     self.saveCandidateDetails("")
-            }
+                }
             }
             
         }
@@ -145,7 +149,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         {
             self.showAlert("Some fileds are missing", info:"Please fill up all the required fileds")
         }
-   }
+    }
     
     @IBAction func passportAvailability(sender:NSButton)
         
@@ -278,7 +282,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         }
     }
     
-  //MARK: HR Form Validations
+    //MARK: HR Form Validations
     
     func submitValidations()->Bool
     {
@@ -305,8 +309,8 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         }
         if candidateSkillOrTechnology.stringValue == ""
         {
-           setBoarderColor(candidateSkillOrTechnology)
-           result = false
+            setBoarderColor(candidateSkillOrTechnology)
+            result = false
         }
         if currentJobType.stringValue == ""
         {
@@ -315,8 +319,8 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         }
         if candidateTotalItExperience.stringValue == ""
         {
-           setBoarderColor(candidateTotalItExperience)
-           result = false
+            setBoarderColor(candidateTotalItExperience)
+            result = false
         }
         if candidateRelevantItExperience.stringValue == ""
         {
@@ -448,7 +452,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
             
             self.officialMailid.becomeFirstResponder()
             
-          
+            
             
             return false
         }
@@ -484,9 +488,9 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
             
             
             
-                showAlert("Invalid Mobile Number", info: "Please enter a proper mobile number")
-                
-             self.candidateMobile.becomeFirstResponder()
+            showAlert("Invalid Mobile Number", info: "Please enter a proper mobile number")
+            
+            self.candidateMobile.becomeFirstResponder()
             
             return false
         }else
@@ -499,13 +503,13 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
                 self.candidateMobile.becomeFirstResponder()
                 
                 return false
-
+                
             }
             
-                        
+            
         }
         
- 
+        
         return true
         
     }
@@ -536,20 +540,22 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
     {
         switch check.tag
         {
-            case 0 :
+        case 0 :
             unCheck.integerValue = 0
             check.integerValue = 1
-            case 1 :
+        case 1 :
             check.integerValue = 1
             unCheck.integerValue = 0
-            default:
+        default:
             print("Never")
         }
     }
     
+    
+    
     func showDetailsOfCandidate()
     {
-       
+        
         self.candidateName.stringValue = (candidate?.name)!
         self.candidateMobile.stringValue = (candidate?.phoneNumber)!
         self.candidateSkillOrTechnology.stringValue = (candidate?.technologyName)!
@@ -566,11 +572,11 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
             self.candidateTotalItExperience.stringValue = String(info.totalITExperience!)
             self.currentFixedSalary.stringValue = String(info.fixedSalary!)
             self.currentSalaryVariable.stringValue = String(info.variableSalary!)
-          }
+        }
         
         if let personalInfo = candidate?.personalInfo
         {
-           let info = personalInfo as! CandidatePersonalInfo
+            let info = personalInfo as! CandidatePersonalInfo
             
             self.candidateCurrentLocation.stringValue = info.currentLocation!
             self.visaTypeAndValidity.stringValue = info.visaTypeAndValidity!
@@ -610,7 +616,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         }
         if let documentInfo = candidate?.documentDetails
         {
-            let info = documentInfo 
+            let info = documentInfo
             
             self.missingDocuments.stringValue = info.missingDocumentsOfEmploymentAndEducation!
             
@@ -621,9 +627,9 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
                 self.allDocumentsNo.integerValue = 0
                 dummySpecifyMissingDocuments.hidden = false
                 missingDocuments.hidden = false
-               
+                
                 self.missingDocuments.stringValue = info.missingDocumentsOfEmploymentAndEducation!
-              }
+            }
             else
             {
                 self.allDocumentsYes.integerValue = 0
@@ -633,7 +639,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         
         if let otherInfo = candidate?.miscellaneousInfo
         {
-            let info = otherInfo 
+            let info = otherInfo
             self.candidateBusinessUnit.stringValue = info.businessUnit!
             self.leavePlanReasons.stringValue = info.leavePlanInSixMonths!
             self.jobChangeReasons.stringValue = info.reasonForJobChange!
@@ -691,7 +697,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
             {
                 self.leavePlanYes.integerValue = 0
                 self.leavePlanNo.integerValue = 1
-            
+                
             }
             
             if info.anyLegalObligationWithCurrentEmployer == 1
@@ -749,66 +755,66 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
                 return false
             }
         }
-       
-    
+        
+        
         return true
     }
     
     func saveCandidate()
-  {
-    candidateInfo["candidateName"] = candidateName.stringValue
-    candidateInfo["candidateBusinessUnit"] = candidateBusinessUnit.stringValue
-    candidateInfo["candidateSkillOrTechnology"] = candidateSkillOrTechnology.stringValue
-    candidateInfo["candidateTotalItExperience"] = candidateTotalItExperience.floatValue
-    candidateInfo["candidateRelevantItExperience"] = candidateRelevantItExperience.floatValue
-    candidateInfo["candidateMobile"] = candidateMobile.stringValue
-    candidateInfo["candidateCurrentLocation"] = candidateCurrentLocation.stringValue
-    candidateInfo["companyName"] = companyName.stringValue
-    candidateInfo["currentDesignation"] = currentDesignation.stringValue
-    candidateInfo["currentJobType"] = currentJobType.stringValue
-    candidateInfo["officialMailid"] = officialMailid.stringValue
-    candidateInfo["visaTypeAndValidity"] = visaTypeAndValidity.stringValue
-    candidateInfo["previousEmployerName"] = previousEmployerName.stringValue
-    candidateInfo["previousEmployerFromDate"] = previousEmployerFromDate.dateValue
-    candidateInfo["previousEmployerToDate"] = previousEmployerToDate.dateValue
-    candidateInfo["highestEducationQualificationTitle"] = highestEducationQualificationTitle.stringValue
-    candidateInfo["highestEducationFromDate"] = highestEducationFromDate.dateValue
-    candidateInfo["highestEducationToDate"] = highestEducationToDate.dateValue
-    candidateInfo["highestEducationBoardOrUniversity"] = highestEducationBoardOrUniversity.stringValue
-    candidateInfo["highestEducationPercentage"] = highestEducationPercentage.floatValue
-    candidateInfo["educationGapDetails"] = educationGapDetails.stringValue
-    candidateInfo["jobChangeReasons"] = jobChangeReasons.stringValue
-    candidateInfo["pastInterviewdDate"] = pastInterviedDate.dateValue
-    candidateInfo["jobChangeReasons"] = jobChangeReasons.stringValue
-    candidateInfo["missingDocuments"] = missingDocuments.stringValue
-    candidateInfo["currentFixedSalary"] = currentFixedSalary.floatValue
-    candidateInfo["currentSalaryVariable"] = currentSalaryVariable.floatValue
-    candidateInfo["expectedSalary"] = expectedSalary.floatValue
-    candidateInfo["LegalObligations"] = legalObligationDetails.stringValue
-    candidateInfo["candidateNoticePeriod"] = candidateNoticePeriod.stringValue
-    candidateInfo["candidateJoinngPeriod"] = candidateJoinngPeriod.stringValue
-    candidateInfo["questionsAskedByCandidate"] = questionsAskedByCandidate.string
-    candidateInfo["inetrviewedBy"] = inetrviewedBy.stringValue
-    candidateInfo["EmploymentGap"] = employmentGap.stringValue
-    candidateInfo["lastDesignation"] = lastDesignation.stringValue
-    candidateInfo["leavePlanReasons"] = leavePlanReasons.stringValue
-//    HrFeedbackDataAccess.saveHrFeedbackOfCandidate(candidate!,candidateInfo: candidateInfo,andCallBack: )
-    
-   HrFeedbackDataAccess.saveHrFeedbackOfCandidate(candidate!, candidateInfo: candidateInfo) { (isSucess) -> Void in
-    if isSucess{
-        if self.isHrFormEnable
-        {
-            self.showAlert("Feedback details saved succesfully", info:"")
+    {
+        candidateInfo["candidateName"] = candidateName.stringValue
+        candidateInfo["candidateBusinessUnit"] = candidateBusinessUnit.stringValue
+        candidateInfo["candidateSkillOrTechnology"] = candidateSkillOrTechnology.stringValue
+        candidateInfo["candidateTotalItExperience"] = candidateTotalItExperience.floatValue
+        candidateInfo["candidateRelevantItExperience"] = candidateRelevantItExperience.floatValue
+        candidateInfo["candidateMobile"] = candidateMobile.stringValue
+        candidateInfo["candidateCurrentLocation"] = candidateCurrentLocation.stringValue
+        candidateInfo["companyName"] = companyName.stringValue
+        candidateInfo["currentDesignation"] = currentDesignation.stringValue
+        candidateInfo["currentJobType"] = currentJobType.stringValue
+        candidateInfo["officialMailid"] = officialMailid.stringValue
+        candidateInfo["visaTypeAndValidity"] = visaTypeAndValidity.stringValue
+        candidateInfo["previousEmployerName"] = previousEmployerName.stringValue
+        candidateInfo["previousEmployerFromDate"] = previousEmployerFromDate.dateValue
+        candidateInfo["previousEmployerToDate"] = previousEmployerToDate.dateValue
+        candidateInfo["highestEducationQualificationTitle"] = highestEducationQualificationTitle.stringValue
+        candidateInfo["highestEducationFromDate"] = highestEducationFromDate.dateValue
+        candidateInfo["highestEducationToDate"] = highestEducationToDate.dateValue
+        candidateInfo["highestEducationBoardOrUniversity"] = highestEducationBoardOrUniversity.stringValue
+        candidateInfo["highestEducationPercentage"] = highestEducationPercentage.floatValue
+        candidateInfo["educationGapDetails"] = educationGapDetails.stringValue
+        candidateInfo["jobChangeReasons"] = jobChangeReasons.stringValue
+        candidateInfo["pastInterviewdDate"] = pastInterviedDate.dateValue
+        candidateInfo["jobChangeReasons"] = jobChangeReasons.stringValue
+        candidateInfo["missingDocuments"] = missingDocuments.stringValue
+        candidateInfo["currentFixedSalary"] = currentFixedSalary.floatValue
+        candidateInfo["currentSalaryVariable"] = currentSalaryVariable.floatValue
+        candidateInfo["expectedSalary"] = expectedSalary.floatValue
+        candidateInfo["LegalObligations"] = legalObligationDetails.stringValue
+        candidateInfo["candidateNoticePeriod"] = candidateNoticePeriod.stringValue
+        candidateInfo["candidateJoinngPeriod"] = candidateJoinngPeriod.stringValue
+        candidateInfo["questionsAskedByCandidate"] = questionsAskedByCandidate.string
+        candidateInfo["inetrviewedBy"] = inetrviewedBy.stringValue
+        candidateInfo["EmploymentGap"] = employmentGap.stringValue
+        candidateInfo["lastDesignation"] = lastDesignation.stringValue
+        candidateInfo["leavePlanReasons"] = leavePlanReasons.stringValue
+        //    HrFeedbackDataAccess.saveHrFeedbackOfCandidate(candidate!,candidateInfo: candidateInfo,andCallBack: )
+        
+        HrFeedbackDataAccess.saveHrFeedbackOfCandidate(candidate!, candidateInfo: candidateInfo) { (isSucess) -> Void in
+            if isSucess{
+                if self.isHrFormEnable
+                {
+                    self.showAlert("Feedback details saved succesfully", info:"")
+                }
+                else
+                {
+                    self.showAlert("Feedback details submitted succesfully", info:"")
+                }
+                
+            }
         }
-        else
-        {
-            self.showAlert("Feedback details submitted succesfully", info:"")
-        }
-
+        
     }
-    }
-    
-}
     func textDidChange(notification: NSNotification)
     {
         if candidate?.miscellaneousInfo?.isHrFormSaved == 1
@@ -832,17 +838,19 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
             {
                 clearButton.enabled = true
             }
-          
-           let textField = control as! NSTextField
-           setClearColor(textField)
+            
+            let textField = control as! NSTextField
+            setClearColor(textField)
         }
         
-       return true
+        
+        
+        return true
         
     }
     
     class func isValidEmail(testStr:String) -> Bool {
-       
+        
         let emailRegEx = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
         
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
@@ -851,12 +859,14 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         {
             return true
         }
-   
+        
         return false
     }
     
     @IBAction func clearAllFields(sender: AnyObject)
     {
+        
+        
         candidateName.stringValue = ""
         candidateBusinessUnit.stringValue = ""
         candidateSkillOrTechnology.stringValue = ""
@@ -893,5 +903,4 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         lastDesignation.stringValue = ""
     }
     
-   
 }
