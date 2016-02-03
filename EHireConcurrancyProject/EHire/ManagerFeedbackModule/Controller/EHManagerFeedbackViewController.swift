@@ -12,76 +12,44 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     @IBOutlet weak var deleteExistingBtn: NSButton!
     @IBOutlet weak var addNewSkillBtn: NSButton!
-    
     @IBOutlet weak var clearBtn: NSButton!
-    
     @IBOutlet weak var submitBtn: NSButton!
     @IBOutlet var managerFeedbackMainView: NSView!
-    
     @IBOutlet weak var textFieldCandidateName: NSTextField!
-    
     @IBOutlet weak var dateOfInterviewField: NSTextField!
     @IBOutlet weak var textFieldCandidateRequisition: NSTextField!
     @IBOutlet weak var textFieldCorporateGrade: NSTextField!
     @IBOutlet weak var textFieldDesignation: NSTextField!
-    
     @IBOutlet weak var textFieldGrossAnnualSalary: NSTextField!
-    
     @IBOutlet weak var textFieldInterviewedBy: NSTextField!
-    
     @IBOutlet weak var textFieldPosition: NSTextField!
-    
     @IBOutlet var textViewCommitments: NSTextView!
-    
-    
     @IBOutlet var textViewJustificationForHire: NSTextView!
-    
     @IBOutlet weak var viewOverAllAssessmentOfCandidateStar: NSView!
-    
     @IBOutlet weak var labelOverAllAssessmentOfCandidate: NSTextField!
-    
     @IBOutlet weak var viewOverAllAssessmentOfTechnologyStar: NSView!
-    
     @IBOutlet weak var labelOverAllAssessmentOfTechnology: NSTextField!
-    
     @IBOutlet weak var matrixForInterviewMode: NSMatrix!
-    
     @IBOutlet var textViewCommentsForOverAllCandidateAssessment: NSTextView!
-    
     @IBOutlet var textViewCommentsForOverAllTechnologyAssessment: NSTextView!
-    
     @IBOutlet weak var matrixForRecommendationState: NSMatrix!
-    
     @IBOutlet weak var matrixForCgDeviation: NSMatrix!
-    var ratingTitle = NSMutableArray()
-    
     @IBOutlet weak var tableView: NSTableView!
     
     //Mark:To Keep track of selected Row Title
     var selectedRowTitle:String = ""
     var rowView:NSTableRowView?
-    
-    let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
-    
-    
+    var ratingTitle = NSMutableArray()
     var candidateDetails : EHCandidateDetails?
-    
     var selectedCandidate : Candidate?
-    
     var cell : EHManagerFeedBackCustomTableView?
     var isFeedBackSaved : Bool?
-    
-    
-    let  managerialRoundFeedback = EHManagerialFeedbackModel()
     var skillsAndRatingsTitleArray = [SkillSet]()
     var selectedSegment:Int?
     var designationStringValue = ""
     var managedObjectContext : NSManagedObjectContext?
-    let dataAccessModel = EHManagerFeedbackDataAccessLayer()
     var managerFeedbackObject:ManagerFeedBack?
-    
     var arrTemp = ["a","b","c","d"]
-    
     var xTimesTwo:String {
         set {
             designationStringValue = xTimesTwo
@@ -90,9 +58,12 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             return designationStringValue
         }
     }
+    let dataAccessModel = EHManagerFeedbackDataAccessLayer()
+    let  managerialRoundFeedback = EHManagerialFeedbackModel()
+
     //MARK:- View Methods
-    override func loadView() {
-        
+    override func loadView()
+    {
         dataAccessModel.managedObjectContext = self.managedObjectContext
         addDefalutSkillSet()
         super.loadView()
@@ -109,7 +80,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         dateFormatter.dateFormat = "dd MMM yyyy hh:mm aaa"
         let dateInStringFormat = dateFormatter.stringFromDate((selectedCandidate?.interviewDate)!)
         dateOfInterviewField.stringValue = dateInStringFormat
-        
         managerFeedbackMainView.wantsLayer = true
         managerFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
         setDefaultCgDeviationAndInterviewMode()
@@ -118,35 +88,27 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     }
     
     //MARK:- Method for Adding Default Skills
-    func addDefalutSkillSet(){
+    func addDefalutSkillSet()
+    {
         let skillArray = [ "Communication","Organisation Stability","Leadership(if applicable)","Growth Potential"] as NSMutableArray
         
-        dataAccessModel.createdefaultSkillSetObject(skillArray,feedBackControllerObj: self,andCallBack:{(communication)->Void in
-            
-            //                if self.arrTemp.count>0{
-            //
-            //                    self.arrTemp.removeLast()
-            //                }
-            
+        dataAccessModel.createdefaultSkillSetObject(skillArray,feedBackControllerObj: self,andCallBack:
+            {(
+            communication)->Void in
             self.skillsAndRatingsTitleArray = communication as [SkillSet]
             self.tableView.reloadData()
-            
-        })
-        
+            })
     }
     
-    func test(){
-        
+    func test()
+    {
         NSObject.cancelPreviousPerformRequestsWithTarget(self, selector: Selector("test"), object: nil)
         if arrTemp.count==0 {
-            
-            //implement your code
             
             if self.selectedCandidate != nil
             {
                 if self.selectedCandidate?.interviewedByManagers?.count != 0
                 {
-                    
                     self.sortArray((self.selectedCandidate?.interviewedByManagers?.allObjects)!,index: 0)
                 }
                 else
@@ -154,11 +116,10 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                     self.isFeedBackSaved = false
                     self.tableView.reloadData()
                 }
-                
             }
         }
-        else{
-            
+        else
+        {
             self.performSelector(Selector("test"), withObject: nil, afterDelay: 0.10)
         }
     }
@@ -167,13 +128,13 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     func numberOfRowsInTableView(tableView: NSTableView) -> Int
     {
         return skillsAndRatingsTitleArray.count
-        
     }
     
     func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat
     {
         return 25
     }
+    
     //Mark:To Disable highlighting of Default Skill.
     func tableViewSelectionIsChanging(notification: NSNotification)
     {
