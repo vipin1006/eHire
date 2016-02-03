@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -2258,6 +2258,9 @@
                                                         <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <size key="minSize" width="754" height="119"/>
                                                         <size key="maxSize" width="771" height="10000000"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="Xv2-bq-xG1" id="QZj-Kt-jtN"/>
+                                                        </connections>
                                                     </textView>
                                                 </subviews>
                                                 <animations/>
@@ -2487,6 +2490,9 @@
                                                         <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <size key="minSize" width="751" height="71"/>
                                                         <size key="maxSize" width="793" height="10000000"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="Xv2-bq-xG1" id="SvH-3L-fKj"/>
+                                                        </connections>
                                                     </textView>
                                                 </subviews>
                                                 <animations/>
@@ -2529,6 +2535,9 @@
                                                         <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <size key="minSize" width="751" height="71"/>
                                                         <size key="maxSize" width="793" height="10000000"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="Xv2-bq-xG1" id="qie-23-zYh"/>
+                                                        </connections>
                                                     </textView>
                                                 </subviews>
                                                 <animations/>
@@ -2649,6 +2658,9 @@
                                                         <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <size key="minSize" width="752" height="115"/>
                                                         <size key="maxSize" width="772" height="10000000"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="Xv2-bq-xG1" id="MmZ-wY-GNR"/>
+                                                        </connections>
                                                     </textView>
                                                 </subviews>
                                                 <animations/>
@@ -2966,6 +2978,9 @@
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <outlet property="delegate" destination="Xv2-bq-xG1" id="Zbg-1Q-NU7"/>
+                                            </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dDN-kg-YyI">
                                             <rect key="frame" x="170" y="62" width="27" height="29"/>
