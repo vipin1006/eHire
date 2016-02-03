@@ -599,6 +599,17 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     }
     
     
+    //MARK:- Delegate method to disable/enable deleteTechnologyDate Button
+    override func controlTextDidChange(obj: NSNotification) {
+         let textFieldObject = obj.object as! NSTextField
+        if textFieldObject.stringValue == ""{
+            self.deleteTechnologyDate.enabled = true
+        }else{
+            self.deleteTechnologyDate.enabled = false
+        }
+    }
+    
+    //MARK:- Method to create dynamic constraints for feedback controller
     func createConstraintsForFeedbackController(leading:CGFloat,trailing:CGFloat,top:CGFloat,bottom:CGFloat){
         feedbackViewController!.view.translatesAutoresizingMaskIntoConstraints = false
         
