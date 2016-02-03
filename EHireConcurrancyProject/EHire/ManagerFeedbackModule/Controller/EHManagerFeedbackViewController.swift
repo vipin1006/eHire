@@ -57,6 +57,10 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     @IBOutlet weak var tableView: NSTableView!
     
+    //Mark:To Keep track of selected Row Title
+    var selectedRowTitle:String = ""
+    var rowView:NSTableRowView?
+    
     let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
     
     
@@ -71,11 +75,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     let  managerialRoundFeedback = EHManagerialFeedbackModel()
     var skillsAndRatingsTitleArray = [SkillSet]()
     var selectedSegment:Int?
-    
-    //vineet
-  
-    
-    
     var designationStringValue = ""
     var managedObjectContext : NSManagedObjectContext?
     let dataAccessModel = EHManagerFeedbackDataAccessLayer()
@@ -102,8 +101,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        
+        clearBtn.enabled = false
         self.performSelector(Selector("test"), withObject: nil, afterDelay: 0.10)
         textFieldCandidateName.stringValue = (selectedCandidate?.name)!
         textFieldCandidateRequisition.stringValue = (selectedCandidate?.requisition)!
@@ -115,11 +113,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         managerFeedbackMainView.wantsLayer = true
         managerFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
         setDefaultCgDeviationAndInterviewMode()
-        
-        
         selectedSegment = 0
-        
-        
         print("name = \(managerialRoundFeedback.designation)")
     }
     
@@ -183,13 +177,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     //Mark:To Disable highlighting of Default Skill.
     func tableViewSelectionIsChanging(notification: NSNotification)
     {
-        if tableView.selectedRow < 4
-        {
-            tableView.selectionHighlightStyle = .None
-        }else
-        {
-            tableView.selectionHighlightStyle = .Regular
-        }
         
     }
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView?
@@ -240,25 +227,35 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     func tableViewSelectionDidChange(notification: NSNotification)
     {
-        
-        let cellSelected : EHManagerFeedBackCustomTableView = notification.object?.viewAtColumn(0, row:notification.object!.selectedRow , makeIfNecessary: false) as! EHManagerFeedBackCustomTableView
-        
-        if cellSelected.titleName.stringValue == "Communication" || cellSelected.titleName.stringValue == "Organisation Stability" || cellSelected.titleName.stringValue == "Leadership(if applicable)" || cellSelected.titleName.stringValue == "Growth Potential"{
-            
-            cellSelected.titleName.editable = false
-            
-        }else{
-            cellSelected.titleName.editable = true
+        if tableView.selectedRow != -1
+        {
+            let cellSelected : EHManagerFeedBackCustomTableView = notification.object?.viewAtColumn(0, row:notification.object!.selectedRow , makeIfNecessary: false) as! EHManagerFeedBackCustomTableView
+            selectedRowTitle = cellSelected.titleName.stringValue
+            if cellSelected.titleName.stringValue == "Communication" || cellSelected.titleName.stringValue == "Organisation Stability" || cellSelected.titleName.stringValue == "Leadership(if applicable)" || cellSelected.titleName.stringValue == "Growth Potential"{
+                cellSelected.titleName.editable = false
+                deleteExistingBtn.enabled = false
+            }else{
+                deleteExistingBtn.enabled = true
+                cellSelected.titleName.editable = true
+                
+            }
+            //        if notification.object!.selectedRow >= 4
+            //        {
+            //            cell?.titleName.editable = true
+            //        }
         }
-        //        if notification.object!.selectedRow >= 4
-        //        {
-        //            cell?.titleName.editable = true
-        //        }
     }
     
     //MARK:- Method to select star in tableview
     func selectedStarCount(sender : NSButton)
     {
+        if isFeedBackSaved == false
+        {
+            clearBtn.enabled = true
+        }else
+        {
+            clearBtn.enabled = false
+        }
         let ratingCell = sender.superview?.superview as! EHManagerFeedBackCustomTableView
         if ratingCell.titleName.stringValue == "Enter Title"
         {
@@ -273,10 +270,30 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     //MARK:- Textfield delegate Method
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
     {
-        
-        
         return true
     }
+    func textDidChange(notification: NSNotification)
+    {
+        if isFeedBackSaved == false
+        {
+            clearBtn.enabled = true
+        }else
+        {
+            clearBtn.enabled = false
+        }
+    }
+    override func controlTextDidBeginEditing(obj: NSNotification)
+    {
+        if isFeedBackSaved == false
+        {
+            obj.object as! NSTextField
+            clearBtn.enabled = true
+        }else
+        {
+            clearBtn.enabled = false
+        }
+    }
+
     
     override func controlTextDidEndEditing(obj: NSNotification){
         let textFieldObject = obj.object as! NSTextField
@@ -290,9 +307,12 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     //MARK:- Method to add new skills
     @IBAction func addSkillSet(sender: NSButton)
     {
-        if managerialRoundFeedback.skillSet.count > 0 && cell?.titleName.stringValue == "Enter Title"
+        if skillsAndRatingsTitleArray.count > 0 && cell?.titleName.stringValue == "Enter Title"
         {
             Utility.alertPopup("Enter Title", informativeText: "Please enter previous selected title",isCancelBtnNeeded:false,okCompletionHandler: nil)
+        }else if  cell?.titleName.stringValue == ""
+        {
+            Utility.alertPopup("Enter Title", informativeText: "Skill name should not be blank",isCancelBtnNeeded:false, okCompletionHandler: nil)
         }
         else
         {
@@ -317,19 +337,42 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     //MARK:-Method to delete skills
     @IBAction func deleteSkillSet(sender: NSButton)
     {
-        self.skillsAndRatingsTitleArray.removeAtIndex(tableView.selectedRow)
-        tableView.reloadData()
+        if tableView.selectedRow != -1
+        {
+            if selectedRowTitle == "Communication" || selectedRowTitle == "Organisation Stability" || selectedRowTitle == "Leadership(if applicable)" || selectedRowTitle == "Growth Potential"
+            {
+                print("Default Skill")
+            }else
+            {
+                self.skillsAndRatingsTitleArray.removeAtIndex(tableView.selectedRow)
+                tableView.reloadData()
+            }
+        }
     }
     
     //MARK:-Method to add star in overall technology assessment
     @IBAction func addOverAllAssessmentForTechnology(sender: AnyObject)
     {
+        if isFeedBackSaved == true
+        {
+            clearBtn.enabled = false
+        }else
+        {
+            clearBtn.enabled = true
+        }
         displayStar(viewOverAllAssessmentOfTechnologyStar, lbl:labelOverAllAssessmentOfTechnology, sender: sender as! NSButton)
     }
     
     //:- Method to add star in overall candidate assessment
     @IBAction func addOverAllAssessmentForCandidate(sender: AnyObject)
     {
+        if isFeedBackSaved == true
+        {
+            clearBtn.enabled = false
+        }else
+        {
+            clearBtn.enabled = true
+        }
         displayStar(viewOverAllAssessmentOfCandidateStar, lbl:labelOverAllAssessmentOfCandidate, sender: sender as! NSButton)
     }
     
@@ -900,7 +943,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             matrixForCgDeviation.enabled = true
             matrixForRecommendationState.enabled = true
             submitBtn.enabled = true
-            clearBtn.enabled = true
             textFieldGrossAnnualSalary.editable = true
             textFieldDesignation.editable = true
             textFieldCorporateGrade.editable = true

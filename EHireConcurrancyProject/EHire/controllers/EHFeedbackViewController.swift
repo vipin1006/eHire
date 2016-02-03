@@ -450,13 +450,35 @@ class EHFeedbackViewController: NSViewController
             case 1:
                 if managerFeedback?.submitBtn.enabled == true
                 {
-                    Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
-                        self.managerFeedback?.saveData("")
-                        self.techFeedback?.clearButton.enabled = false
-                        print("Manager")
-
-                    })
+                    if managerFeedback?.isFeedBackSaved == false
+                    {
+                        if managerFeedback?.clearBtn.enabled == true
+                        {
+                            Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
+                                print("Manager")
+                                self.managerFeedback?.saveData("")
+                            })
+                        }
+                    }
+                    else
+                    {
+                        Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
+                            print("Manager")
+                            self.self.managerFeedback?.saveData("")
+                        })
+                    }
+                    
                 }
+
+//                if managerFeedback?.submitBtn.enabled == true
+//                {
+//                    Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
+//                        self.managerFeedback?.saveData("")
+//                        self.techFeedback?.clearButton.enabled = false
+//                        print("Manager")
+//
+//                    })
+//                }
             default:
              
                 if hrFeedBackViewController!.submitButton.enabled == true
