@@ -732,6 +732,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                     self.isFeedBackSaved = true
                     self.sortArray((self.selectedCandidate?.interviewedByManagers?.allObjects)!,index:self.selectedSegment!
                     )
+                    Utility.alertPopup("Success", informativeText: "Feedback for Manager Round has been Saved Successfully", isCancelBtnNeeded:false,okCompletionHandler: nil)
                 }
             })
             
