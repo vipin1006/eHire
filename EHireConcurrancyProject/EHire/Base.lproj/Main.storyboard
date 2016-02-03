@@ -2057,6 +2057,7 @@
                         <outlet property="candidateNameField" destination="8Ss-O3-aYj" id="Xq3-jX-Rfc"/>
                         <outlet property="clearButton" destination="Idk-ch-0IT" id="nLh-7V-I9o"/>
                         <outlet property="dateOfInterviewField" destination="NbJ-n1-PSS" id="kDq-nb-LRa"/>
+                        <outlet property="deleteButton" destination="rRj-tk-HWk" id="XZD-Zk-VNw"/>
                         <outlet property="deleteExistingSkill" destination="rRj-tk-HWk" id="lJM-sY-ryM"/>
                         <outlet property="designationField" destination="IFh-qR-St7" id="Ua3-wb-R1v"/>
                         <outlet property="interviewedByField" destination="q3q-4S-Vsd" id="9hf-Fm-q8b"/>

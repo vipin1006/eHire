@@ -31,6 +31,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     @IBOutlet weak var submitButton: NSButton!
     @IBOutlet weak var clearButton: NSButton!
    
+    @IBOutlet weak var deleteButton: NSButton!
     
     //MARK: Variables
     var cell : EHRatingsTableCellView?
@@ -55,53 +56,39 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     func initialSetupOfTableView()
     {
         skillArray = [ "Communication","Organisation Stability","Leadership(if applicable)","Growth Potential"]
-        
-//        for index in 0...3
-//        {
-        
-        dataAccessModel.createdefaultSkillSetObject(skillArray,feedBackControllerObj: self,andCallBack:{(communication)->Void in
-                
-//                if self.arrTemp.count>0{
-//                
-//                    self.arrTemp.removeLast()
-//                }
-            
-                 self.skillsAndRatingsTitleArray = communication as [SkillSet]
+
+        dataAccessModel.createdefaultSkillSetObject(skillArray,feedBackControllerObj: self,andCallBack:
+            {(communication)->Void in
+                              self.skillsAndRatingsTitleArray = communication as [SkillSet]
                 self.tableView.reloadData()
             
-                })
-      
-           
-//        }
+            })
     }
 
-    func test(){
-    
+    func test()
+    {
         NSObject.cancelPreviousPerformRequestsWithTarget(self, selector: Selector("test"), object: nil)
-        if arrTemp.count==0 {
-        
-            //implement your code
-            
+        if arrTemp.count==0
+        {
             if self.selectedCandidate != nil
             {
                 if self.selectedCandidate?.interviewedByTechLeads?.count != 0
                 {
-                    
-                    self.sortArray((self.selectedCandidate?.interviewedByTechLeads?.allObjects)!,index: 0)
+                   self.sortArray((self.selectedCandidate?.interviewedByTechLeads?.allObjects)!,index: 0)
                 }
                 else
                 {
                     self.isFeedBackSaved = false
                     self.tableView.reloadData()
                 }
-            
-            }
+             }
         }
-        else{
-        
+        else
+        {
             self.performSelector(Selector("test"), withObject: nil, afterDelay: 0.10)
         }
     }
+    
     override func loadView()
     {
         dataAccessModel.managedObjectContext = self.managedObjectContext
@@ -116,7 +103,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         self.performSelector(Selector("test"), withObject: nil, afterDelay: 0.01)
         candidateNameField.stringValue = (selectedCandidate?.name)!
         requisitionNameField.stringValue = (selectedCandidate?.requisition)!
-        
+        print(selectedCandidate?.interviewDate)
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd MMM yyyy hh:mm aaa"
         let dateInStringFormat = dateFormatter.stringFromDate((selectedCandidate?.interviewDate)!)
@@ -404,63 +391,40 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }   
         return cellView
     }
-
-    func tableViewSelectionDidChange(notification: NSNotification)
-    {
-        if tableView.selectedRow != -1
-        {
-                    }
-
-    }
     
     func tableViewSelectionIsChanging(notification: NSNotification)
     {
-        
-    
         if isFeedBackSaved == false
         {
             clearButton.enabled = true
         }
-
         if tableView.selectedRow != -1
         {
-            if cell!.skilsAndRatingsTitlefield.stringValue == "Communication" || cell!.skilsAndRatingsTitlefield.stringValue == "Organisation Stability" || cell!.skilsAndRatingsTitlefield.stringValue == "Leadership(if applicable)" || cell!.skilsAndRatingsTitlefield.stringValue == "Growth Potential"
+            let cellSelected = notification.object?.viewAtColumn(0, row: tableView.selectedRow, makeIfNecessary: true) as! EHRatingsTableCellView
+            defaultSkills = cellSelected.skilsAndRatingsTitlefield.stringValue
+            if cellSelected.skilsAndRatingsTitlefield.stringValue == "Communication" || cellSelected.skilsAndRatingsTitlefield.stringValue == "Organisation Stability" || cellSelected.skilsAndRatingsTitlefield.stringValue == "Leadership(if applicable)" || cellSelected.skilsAndRatingsTitlefield.stringValue == "Growth Potential"
             {
-                defaultSkills = cell?.skilsAndRatingsTitlefield.stringValue
-                cell!.skilsAndRatingsTitlefield.editable = false
-                tableView.selectionHighlightStyle = .None
-                
+               // tableView.selectionHighlightStyle = .None
+                cellSelected.skilsAndRatingsTitlefield.editable = false
+                deleteButton.enabled = false
             }
             else
             {
-                defaultSkills = cell?.skilsAndRatingsTitlefield.stringValue
-                cell!.skilsAndRatingsTitlefield.editable = true
-                 tableView.selectionHighlightStyle = .Regular
+               // tableView.selectionHighlightStyle = .Regular
+                deleteButton.enabled = true
+                cellSelected.skilsAndRatingsTitlefield.editable = true
             }
-
         }
-
-        
-//        if selectedRow != -1
-//        {
-//         if selectedRow < 4
-//         {
-//            tableView.selectionHighlightStyle = NSTableViewSelectionHighlightStyle.None
-//         }
-//         else
-//         {
-//           tableView.selectionHighlightStyle = NSTableViewSelectionHighlightStyle.Regular
-//         }
-//        }
     }
     
     func textDidChange(notification: NSNotification)
     {
         if isFeedBackSaved == false
         {
-        clearButton.enabled = true
+          clearButton.enabled = true
         }
     }
+    
     // To Display The Stars inside TableView
     func starRatingCount(sender : NSButton)
     {
@@ -689,30 +653,30 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }
         else
         {
-            if isFeedBackSaved == true
-            {
-                dataAccessModel.createSkillSetWithTechnicalManagerObject(technicalFeedbackObject!, andCallBack: { (newSkill) -> Void in
-                    
+           if isFeedBackSaved == true
+           {
+            dataAccessModel.createSkillSetWithTechnicalManagerObject(technicalFeedbackObject!, andCallBack:
+                { (newSkill) -> Void in
                     newSkill.skillName = "Enter Title"
                     self.skillsAndRatingsTitleArray.append(newSkill)
                     self.tableView.reloadData()
                 })
-            }
+           }
             else
             {
             dataAccessModel.createSkillSetObject({(newSkill)->Void in
-               
-                newSkill.skillName = "Enter Title"
-                self.skillsAndRatingsTitleArray.append(newSkill)
-                self.tableView.reloadData()
-                self.tableView.selectRowIndexes(NSIndexSet(index:self.tableView.numberOfRows-1), byExtendingSelection: true)
-                self.rowView = self.tableView.rowViewAtRow(self.tableView.selectedRow, makeIfNecessary:true)!
-                self.rowView!.viewWithTag(1)?.becomeFirstResponder()
+            newSkill.skillName = "Enter Title"
+            self.skillsAndRatingsTitleArray.append(newSkill)
+            self.tableView.reloadData()
+//                self.tableView.selectRowIndexes(NSIndexSet(index:self.tableView.numberOfRows-1), byExtendingSelection: true)
+//                self.rowView = self.tableView.rowViewAtRow(self.tableView.selectedRow, makeIfNecessary:true)!
+//                self.rowView!.viewWithTag(1)?.becomeFirstResponder()
                 
             })
             }
          }
     }
+    
     //ModeOfInterview Action
     @IBAction func modeOfInterviewAction(sender: NSMatrix)
     {
@@ -747,11 +711,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     {
         if tableView.selectedRow != -1
         {
-            if defaultSkills == "Communication" || defaultSkills == "Organisation Stability" || defaultSkills == "Leadership(if applicable)" || defaultSkills == "Growth Potential"
-            {
-                print("Skillllls")
-            }
-            else
+            if !(defaultSkills == "Communication" || defaultSkills == "Organisation Stability" || defaultSkills == "Leadership(if applicable)" || defaultSkills == "Growth Potential")
             {
                 skillsAndRatingsTitleArray.removeAtIndex(tableView.selectedRow)
                 tableView.reloadData()
