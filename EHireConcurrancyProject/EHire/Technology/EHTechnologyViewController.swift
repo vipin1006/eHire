@@ -17,6 +17,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     @IBOutlet weak var welcomeImage: NSImageView!
     // Technology View
     @IBOutlet weak var sourceList: NSOutlineView!
+    var canChangeSelection :Bool = false
+    
     
 
     
@@ -151,8 +153,18 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     }
     
     //MARK:- Outline view delegate method
+     func selectionShouldChangeInOutlineView(outlineView: NSOutlineView) -> Bool
+    {
+        if cellTechnology?.textFieldTechnology.editable == true{
+            cellTechnology?.textFieldTechnology.becomeFirstResponder()
+            return false
+        }
+        return true
+    }
+    
     func outlineViewSelectionDidChange(notification: NSNotification)
     {
+        
         if let selectedItem = sourceList.itemAtRow((notification.object?.selectedRow)!) as? Technology
         {
             let notificationObject = notification.object
@@ -178,6 +190,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                
             }
         }
+        
+        
         
     }
     
@@ -559,6 +573,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                         self.deleteTechnologyDate.enabled = false
                             self.addTechnology.enabled = true     //true
                         self.sortedSourceListReload()
+                            self.canChangeSelection = true
+
                         }
                     else
                         {
