@@ -47,7 +47,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     var managedObjectContext : NSManagedObjectContext?
     var technicalFeedbackObject:TechnicalFeedBack?
     var arrTemp = ["a","b","c","d"]
-    var rowView : NSTableRowView?
     var defaultSkills : String? = ""
     
     //MARK: initial setup of views
@@ -174,37 +173,21 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 }
 
                 technicalFeedbackModel.isFeedbackSubmitted = feedback.isFeedbackSubmitted
-                
                 fetchingModeOfInterview(technicalFeedbackModel.modeOfInterview!)
                 fetchingRecommendation(technicalFeedbackModel.recommendation!)
                 disableAndEnableFields((technicalFeedbackModel.isFeedbackSubmitted?.boolValue)!)
                 self.skillsAndRatingsTitleArray.removeAll()
                 
-                if isFeedBackSaved == true{
-//                for object in feedback.candidateSkills!
-//                {
-//                    let skillset = object as! SkillSet
-                    
-//                    dataAccessModel.createSkillSetWithTechnicalManagerObject(feedback, andCallBack: { (newSkill) -> Void in
-//                        newSkill.skillName   = skillset.skillName
-//                        newSkill.skillRating = skillset.skillRating
-//                        self.skillsAndRatingsTitleArray.append(newSkill)
-//                        if feedback.candidateSkills?.count == self.skillsAndRatingsTitleArray.count{
-//                            
-//                        }
-//                    })
-                    
+                if isFeedBackSaved == true
+                {
                     dataAccessModel.createSavedSkillSetObject(feedback,skillSetArray: (feedback.candidateSkills?.allObjects)!, andCallBack: { (newSkill) -> Void in
                          self.skillsAndRatingsTitleArray = newSkill as [SkillSet]
                         self.tableView.reloadData()
                     })
-                    
-                    
-                   
-                    
-                    
-//                }
-                }else{
+   
+                }
+                else
+                {
                     for object in feedback.candidateSkills!
                     {
                         let skillset = object as! SkillSet

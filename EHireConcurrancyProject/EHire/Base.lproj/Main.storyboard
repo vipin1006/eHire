@@ -1557,7 +1557,7 @@
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
                                                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" tag="-1" translatesAutoresizingMaskIntoConstraints="NO" id="I09-Oe-NcD" userLabel="Field">
-                                                                                <rect key="frame" x="1" y="3" width="227" height="31"/>
+                                                                                <rect key="frame" x="1" y="11" width="227" height="23"/>
                                                                                 <animations/>
                                                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" placeholderString="Enter Title" id="4fW-pA-Ywk">
                                                                                     <font key="font" size="13" name=".HelveticaNeueDeskInterface-Regular"/>
@@ -2828,8 +2828,8 @@
                                                                         <rect key="frame" x="1" y="1" width="757" height="43"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
-                                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J06-rJ-EFt">
-                                                                                <rect key="frame" x="7" y="13" width="234" height="27"/>
+                                                                            <textField autoresizesSubviews="NO" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" tag="-1" translatesAutoresizingMaskIntoConstraints="NO" id="J06-rJ-EFt">
+                                                                                <rect key="frame" x="7" y="18" width="234" height="22"/>
                                                                                 <animations/>
                                                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Enter Title" id="Gqr-I5-GLu">
                                                                                     <font key="font" metaFont="system"/>

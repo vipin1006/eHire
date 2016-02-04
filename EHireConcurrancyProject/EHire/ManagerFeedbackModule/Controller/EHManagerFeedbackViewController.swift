@@ -38,7 +38,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     //Mark:To Keep track of selected Row Title
     var selectedRowTitle:String = ""
-    var rowView:NSTableRowView?
     var ratingTitle = NSMutableArray()
     var candidateDetails : EHCandidateDetails?
     var selectedCandidate : Candidate?
@@ -190,7 +189,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     {
         if tableView.selectedRow != -1
         {
-            let cellSelected : EHManagerFeedBackCustomTableView = notification.object?.viewAtColumn(0, row:notification.object!.selectedRow , makeIfNecessary: false) as! EHManagerFeedBackCustomTableView
+            let cellSelected = notification.object?.viewAtColumn(0, row: tableView.selectedRow, makeIfNecessary: true) as! EHManagerFeedBackCustomTableView
             selectedRowTitle = cellSelected.titleName.stringValue
             if cellSelected.titleName.stringValue == "Communication" || cellSelected.titleName.stringValue == "Organisation Stability" || cellSelected.titleName.stringValue == "Leadership(if applicable)" || cellSelected.titleName.stringValue == "Growth Potential"{
                 cellSelected.titleName.editable = false
@@ -200,10 +199,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                 cellSelected.titleName.editable = true
                 
             }
-            //        if notification.object!.selectedRow >= 4
-            //        {
-            //            cell?.titleName.editable = true
-            //        }
         }
     }
     
@@ -290,6 +285,11 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                     newSkill.skillName = "Enter Title"
                     self.skillsAndRatingsTitleArray.append(newSkill)
                     self.tableView.reloadData()
+                    self.tableView.selectRowIndexes(NSIndexSet(index:self.tableView.numberOfRows-1), byExtendingSelection: true)
+                    let rowView = self.tableView.rowViewAtRow(self.tableView.selectedRow, makeIfNecessary:true)!
+                    self.cell!.titleName.editable = true
+                    rowView.viewWithTag(-1)
+                    rowView.subviews[1].subviews[0].becomeFirstResponder()
                 })
             }
         }
