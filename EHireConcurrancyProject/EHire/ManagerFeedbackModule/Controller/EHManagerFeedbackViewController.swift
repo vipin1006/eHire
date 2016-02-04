@@ -548,8 +548,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     func validation() -> Bool
     {
-       var isValid : Bool = false
-       let selectedColoumn = matrixForRecommendationState.selectedColumn
+        var isValid : Bool = false
+        let selectedColoumn = matrixForRecommendationState.selectedColumn
         if selectedColoumn != 0
         {
             managerialRoundFeedback.recommendation = "Rejected"
@@ -557,15 +557,18 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             {
                 Utility.alertPopup("Alert", informativeText: "Please enter all details", isCancelBtnNeeded: false, okCompletionHandler: nil)
                 return isValid
+            }else if !validationForDefaultSkills(){
+                Utility.alertPopup("Alert", informativeText: "Please provide rating for default skills", isCancelBtnNeeded: false, okCompletionHandler: nil)
+                return isValid
+            }else{
+                isValid = true
+                return isValid
             }
-            isValid = true
-            return isValid
-            
         }else
         {
-           managerialRoundFeedback.recommendation = "Shortlisted"
-            if cell?.feedBackRating.stringValue==""{
-                Utility.alertPopup("Select Stars", informativeText: "Please provide rating for technical skills",isCancelBtnNeeded:false,okCompletionHandler: nil)
+            managerialRoundFeedback.recommendation = "Shortlisted"
+            if !validationForDefaultSkills(){
+                Utility.alertPopup("Select Stars", informativeText: "Please provide rating for default skills",isCancelBtnNeeded:false,okCompletionHandler: nil)
                 return isValid
             }else if !validationForTextView(textViewCommentsForOverAllTechnologyAssessment,title: "Overall Feedback On Technology",informativeText: "Overall assessment of Technology field shold not be blank"){
                 
@@ -655,6 +658,25 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
 //        
        
 }
+    
+    //MARK:- Validation Method for checking all defaults skills are selected
+    
+    func validationForDefaultSkills()->Bool{
+        var counter = 0
+        for object in self.skillsAndRatingsTitleArray{
+            
+            counter++
+            let skillset = object
+            
+            if skillset.skillName == "Communication" || skillset.skillName == "Organisation Stability" || skillset.skillName == "Leadership(if applicable)" || skillset.skillName == "Growth Potential"{
+                if (skillset.skillRating == 0){
+                    return false
+                    
+                }
+            }
+        }
+        return true
+    }
     
     //MARK:- TextView validation method
     func validationForTextView(subView : NSTextView,title : String,informativeText:String) -> Bool
