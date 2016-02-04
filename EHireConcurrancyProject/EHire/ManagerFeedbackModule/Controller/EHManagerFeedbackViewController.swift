@@ -280,6 +280,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                     newSkill.skillName = "Enter Title"
                     self.skillsAndRatingsTitleArray.append(newSkill)
                     self.tableView.reloadData()
+                    self.setSkillNameTextfieldAsFirstReponder()
                 })
             }else{
                 dataAccessModel.createSkillSetObject({(newSkill)->Void in
@@ -287,14 +288,18 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                     newSkill.skillName = "Enter Title"
                     self.skillsAndRatingsTitleArray.append(newSkill)
                     self.tableView.reloadData()
-                    self.tableView.selectRowIndexes(NSIndexSet(index:self.tableView.numberOfRows-1), byExtendingSelection: true)
-                    let rowView = self.tableView.rowViewAtRow(self.tableView.selectedRow, makeIfNecessary:true)!
-                    self.cell!.titleName.editable = true
-                    rowView.viewWithTag(-1)
-                    rowView.subviews[1].subviews[0].becomeFirstResponder()
+                    self.setSkillNameTextfieldAsFirstReponder()
                 })
             }
         }
+    }
+    
+    //MARK:-Method to make skillnName textfield as first responder
+    func setSkillNameTextfieldAsFirstReponder(){
+        self.tableView.selectRowIndexes(NSIndexSet(index:self.tableView.numberOfRows-1), byExtendingSelection: true)
+        let rowView = self.tableView.rowViewAtRow(self.tableView.selectedRow, makeIfNecessary:true)!
+        self.cell!.titleName.editable = true
+        rowView.subviews[1].subviews[0].becomeFirstResponder()
     }
     
     //MARK:-Method to delete skills
