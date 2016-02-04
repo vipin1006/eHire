@@ -491,13 +491,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     
     func showFeedbackViewController(selectedCandidate:Candidate){
         
-   
-        for views in self.view.subviews
-        {
-            views.hidden = true
-            
-            //views.removeFromSuperview()
-        }
         feedbackViewController = self.storyboard?.instantiateControllerWithIdentifier("EHFeedbackViewController") as? EHFeedbackViewController
         
         feedbackViewController!.selectedCandidate = selectedCandidate
@@ -506,20 +499,15 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         feedbackViewController?.delegate = self
         
-        
-        self.view.addSubview((feedbackViewController?.view)!)
-        
-        //        createConstraintsForFeedbackController(0, trailing:0.0, top: 0.0, bottom: 0)
-        createConstraintsForController(self.view, subView: (feedbackViewController?.view)!, leading: 0.0, trailing: 0.0, top: 0.0, bottom: 0.0)
-        //
-        
+        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.mainWindowController?.contentViewController = feedbackViewController
     }
     
     func feedbackViewControllerDidFinish(selectedCandidate:Candidate)
     {
-        for views in self.view.subviews {
-            views.hidden = false
-        }
+
+        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.mainWindowController?.contentViewController = self
         candidateController?.refresh()
     }
     
