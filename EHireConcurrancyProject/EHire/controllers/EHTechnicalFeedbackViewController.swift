@@ -666,10 +666,12 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             newSkill.skillName = "Enter Title"
             self.skillsAndRatingsTitleArray.append(newSkill)
             self.tableView.reloadData()
-                self.tableView.selectRowIndexes(NSIndexSet(index:self.tableView.numberOfRows-1), byExtendingSelection: true)
-                self.rowView = self.tableView.rowViewAtRow(self.tableView.selectedRow, makeIfNecessary:true)!
-                self.rowView!.viewWithTag(100)?.becomeFirstResponder()
-            })
+            self.tableView.selectRowIndexes(NSIndexSet(index:self.tableView.numberOfRows-1), byExtendingSelection: true)
+            let rowView = self.tableView.rowViewAtRow(self.tableView.selectedRow, makeIfNecessary:true)!
+            self.cell!.skilsAndRatingsTitlefield.editable = true
+            rowView.viewWithTag(-1)
+            rowView.subviews[1].subviews[0].becomeFirstResponder()
+             })
             }
          }
     }

@@ -1078,7 +1078,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     //To refresh fields
     @IBAction func clearAllFields(sender: AnyObject)
     {
-        refeshAllFields()
+        refreshAllFields()
     }
  
 }
