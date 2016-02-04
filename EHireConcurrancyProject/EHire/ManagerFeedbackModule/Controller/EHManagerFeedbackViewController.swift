@@ -254,9 +254,11 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     override func controlTextDidEndEditing(obj: NSNotification){
         let textFieldObject = obj.object as! NSTextField
         if textFieldObject.superview is EHManagerFeedBackCustomTableView{
-            
+            if self.tableView.selectedRow != -1
+            {
             let skillSetObject =  skillsAndRatingsTitleArray[textFieldObject.tag]
             skillSetObject.skillName = textFieldObject.stringValue
+            }
         }
     }
     
