@@ -419,23 +419,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 self.addTechnology.enabled = true
                 self.addDate.enabled = false
                 self.sortedSourceListReload()
-
-//                technologyDataLayer!.removeTechnolgy(technologyEntity, completion:
-//                { (error) -> Void in
-//                    if CoreDataError.Success == error
-//                    {
-//                    self.addTechnology.enabled = true
-//                    self.addDate.enabled = false
-//                    self.sortedSourceListReload()
-//                    }
-//                    else
-//                    {
-//                        print("Error in deletion")
-//                    }
-//                   
-//                })
-
-                
             }
                 
             else
