@@ -385,13 +385,13 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             defaultSkills = cellSelected.skilsAndRatingsTitlefield.stringValue
             if cellSelected.skilsAndRatingsTitlefield.stringValue == "Communication" || cellSelected.skilsAndRatingsTitlefield.stringValue == "Organisation Stability" || cellSelected.skilsAndRatingsTitlefield.stringValue == "Leadership(if applicable)" || cellSelected.skilsAndRatingsTitlefield.stringValue == "Growth Potential"
             {
-               // tableView.selectionHighlightStyle = .None
+                tableView.selectionHighlightStyle = .None
                 cellSelected.skilsAndRatingsTitlefield.editable = false
                 deleteExistingSkill.enabled = false
             }
             else
             {
-               // tableView.selectionHighlightStyle = .Regular
+                tableView.selectionHighlightStyle = .Regular
                 deleteExistingSkill.enabled = true
                 cellSelected.skilsAndRatingsTitlefield.editable = true
             }
@@ -596,7 +596,18 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
     {
+        if (!(cell?.skilsAndRatingsTitlefield.stringValue == ""))
+        {
+            if !Utility.isAlphabetsOnly(cell!.skilsAndRatingsTitlefield.stringValue)
+            {
+                Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters for Skill Title.",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.characters.count)
+                return false
+                
+            }
+        }
         return true
+
     }
     override func controlTextDidBeginEditing(obj: NSNotification)
     {
@@ -641,6 +652,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                     newSkill.skillName = "Enter Title"
                     self.skillsAndRatingsTitleArray.append(newSkill)
                     self.tableView.reloadData()
+                    self.setSkillNameTextfieldAsFirstReponder()
                 })
            }
             else
@@ -650,13 +662,17 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             self.skillsAndRatingsTitleArray.append(newSkill)
             self.tableView.reloadData()
             self.tableView.selectRowIndexes(NSIndexSet(index:self.tableView.numberOfRows-1), byExtendingSelection: true)
-            let rowView = self.tableView.rowViewAtRow(self.tableView.selectedRow, makeIfNecessary:true)!
-            self.cell!.skilsAndRatingsTitlefield.editable = true
-            rowView.viewWithTag(-1)
-            rowView.subviews[1].subviews[0].becomeFirstResponder()
+            self.setSkillNameTextfieldAsFirstReponder()
              })
             }
          }
+    }
+    func setSkillNameTextfieldAsFirstReponder()
+    {
+    let rowView = self.tableView.rowViewAtRow(self.tableView.selectedRow, makeIfNecessary:true)!
+    self.cell!.skilsAndRatingsTitlefield.editable = true
+    rowView.viewWithTag(-1)
+    rowView.subviews[1].subviews[0].becomeFirstResponder()
     }
     
     //ModeOfInterview Action
@@ -846,12 +862,9 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     
     func validationForDefaultSkills()->Bool
     {
-        var counter = 0
         for object in self.skillsAndRatingsTitleArray
         {
-            counter++
             let skillset = object
-            
             if skillset.skillName == "Communication" || skillset.skillName == "Organisation Stability" || skillset.skillName == "Growth Potential"
             {
                 if (skillset.skillRating == 0)
