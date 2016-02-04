@@ -236,13 +236,13 @@ class EHFeedbackViewController: NSViewController
                         }
                       break
                      }
-                case 2:
-                    
-                    let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
-                                                techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
-                    
 
-                default: print("")
+                default:
+                    if techLeadCount > 1
+                    {
+                        let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
+                        techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
+                    }
                     
                 }
             case 2:
@@ -324,11 +324,8 @@ class EHFeedbackViewController: NSViewController
                 default:
                     if selectedCandidate?.interviewedByTechLeads?.count > 2
                     {
-                        if techFeedback?.isFeedBackSaved == false
-                        {
                        let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
                        techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
-                        }
                     }
                 }
             default: print("")

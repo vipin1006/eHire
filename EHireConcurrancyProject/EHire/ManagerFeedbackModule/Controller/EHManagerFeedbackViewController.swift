@@ -77,7 +77,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         textFieldCandidateName.stringValue = (selectedCandidate?.name)!
         textFieldCandidateRequisition.stringValue = (selectedCandidate?.requisition)!
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy hh:mm aaa"
+        dateFormatter.dateFormat = "dd MMM yyyy"
         let dateInStringFormat = dateFormatter.stringFromDate((selectedCandidate?.interviewDate)!)
         dateOfInterviewField.stringValue = dateInStringFormat
         managerFeedbackMainView.wantsLayer = true
@@ -661,17 +661,18 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     //MARK:- Validation Method for checking all defaults skills are selected
     
-    func validationForDefaultSkills()->Bool{
+    func validationForDefaultSkills()->Bool
+    {
         var counter = 0
-        for object in self.skillsAndRatingsTitleArray{
-            
+        for object in self.skillsAndRatingsTitleArray
+        {
             counter++
             let skillset = object
-            
-            if skillset.skillName == "Communication" || skillset.skillName == "Organisation Stability" || skillset.skillName == "Leadership(if applicable)" || skillset.skillName == "Growth Potential"{
-                if (skillset.skillRating == 0){
+            if skillset.skillName == "Communication" || skillset.skillName == "Organisation Stability" || skillset.skillName == "Growth Potential"
+            {
+                if (skillset.skillRating == 0)
+                {
                     return false
-                    
                 }
             }
         }
@@ -690,34 +691,29 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             
         else
         {
-            
-            return true
+          return true
         }
     }
     
     //MARK:- Textfield validation method
     func validationForTextfield(subView : NSTextField,title : String,informativeText:String) -> Bool
     {
-        
         if subView.stringValue == ""
         {
-           
-            
-            Utility.alertPopup(title, informativeText: informativeText,isCancelBtnNeeded:false,okCompletionHandler: nil)
-            
+           Utility.alertPopup(title, informativeText: informativeText,isCancelBtnNeeded:false,okCompletionHandler: nil)
             return false
         }
             
         else
         {
-            
             return true
         }
     }
     @IBAction func saveData(sender: AnyObject?)
     {
         
-        if managerialRoundFeedback.isSubmitted == true{
+        if managerialRoundFeedback.isSubmitted == true
+        {
             return
         }
         
@@ -731,9 +727,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         managerialRoundFeedback.jestificationForHire = NSAttributedString(string: textViewJustificationForHire.string!)
         
         managerialRoundFeedback.isSubmitted = false
-        print(textFieldGrossAnnualSalary.stringValue)
-        
-        
         let grossSalaryValue = NSString(string: textFieldGrossAnnualSalary.stringValue)
         managerialRoundFeedback.grossAnnualSalary = NSNumber(integer: grossSalaryValue.integerValue)
         
@@ -763,7 +756,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             })
             
             
-        }else{
+        }else
+        {
             let sortedResults = toSortArray((selectedCandidate?.interviewedByManagers?.allObjects)!)
             let managerFeedback =  sortedResults[selectedSegment!] as! ManagerFeedBack
             dataAccessModel.updateManagerFeedback(selectedCandidate!, managerFeedback: managerFeedback, managerFeedbackModel: managerialRoundFeedback, andCallBack: { (isSucess) -> Void in
@@ -771,43 +765,15 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                     Utility.alertPopup("Success", informativeText: "Feedback for Manager round has been updated Successfully",isCancelBtnNeeded:false,okCompletionHandler: nil)
                 }
             })
-            
-            
         }
-        
-        
-        
-        
-        
-        //        tableView.reloadData()
-        
-        
-        
-        
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
+      }
+ 
     //PRAGMAMARK:- Update UI
     func updateUIElements(feedback: ManagerFeedBack)
     {
-        print(feedback.managerName)
-        
-        
-        print (feedback.candidate?.name)
-        print (feedback.candidate?.name)
-        
         
         managerFeedbackObject = feedback
-        
-        //managerialFeedbackModel.managerName = feedback.managerName!
-        //textFieldDesignation.stringValue = feedback.designation!
+
         if feedback.commentsOnCandidate != nil{
             textViewCommentsForOverAllCandidateAssessment.string = feedback.commentsOnCandidate!
         }
@@ -886,13 +852,11 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                 }
             }
         }
-        //To Disable the Saved data
-        
         tableView.reloadData()
     }
     
-    
-    func disableAndEnableFields(isDataSubmitted:Bool){
+    func disableAndEnableFields(isDataSubmitted:Bool)
+    {
         
         if isDataSubmitted==true{
             matrixForInterviewMode.enabled = false
@@ -921,7 +885,9 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                 tempBtn.enabled = false
                 
             }
-        }else{
+        }
+        else
+        {
             matrixForInterviewMode.enabled = true
             matrixForCgDeviation.enabled = true
             matrixForRecommendationState.enabled = true
@@ -969,30 +935,26 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         
     }
     
-    func toSortArray(allObj : [AnyObject])->NSArray{
+    func toSortArray(allObj : [AnyObject])->NSArray
+    {
         let arra = NSArray(array: allObj)
-        
         let descriptor: NSSortDescriptor = NSSortDescriptor(key: "id", ascending: true)
         let sortedResults: NSArray = arra.sortedArrayUsingDescriptors([descriptor])
         return sortedResults
     }
     
     //MARK:- Submit Feedback
-    @IBAction func submitFeedback(sender: AnyObject?) {
-    
-           if validation(){
+    @IBAction func submitFeedback(sender: AnyObject?)
+    {
+            if validation()
+           {
             managerialRoundFeedback.commentsOnCandidate = NSAttributedString(string: textViewCommentsForOverAllCandidateAssessment.string!)
             managerialRoundFeedback.commentsOnTechnology = NSAttributedString(string: textViewCommentsForOverAllTechnologyAssessment.string!)
             managerialRoundFeedback.commitments = NSAttributedString(string: textViewCommitments.string!)
             managerialRoundFeedback.designation = textFieldDesignation.stringValue
             managerialRoundFeedback.recommendedCg = textFieldCorporateGrade.stringValue
             managerialRoundFeedback.designation = textFieldDesignation.stringValue
-            
             managerialRoundFeedback.jestificationForHire = NSAttributedString(string: textViewJustificationForHire.string!)
-            
-            print(textFieldGrossAnnualSalary.stringValue)
-            
-            
             let grossSalaryValue = NSString(string: textFieldGrossAnnualSalary.stringValue)
             
             managerialRoundFeedback.grossAnnualSalary = NSNumber(integer: grossSalaryValue.integerValue)
@@ -1006,9 +968,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             }else
             {
                 managerialRoundFeedback.recommendation = "Shortlisted"
-                
-                
-                
             }
             managerialRoundFeedback.isSubmitted = true
             
@@ -1027,10 +986,9 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                     })
                     
                 })
-                
-                
-            }
-            else{
+              }
+            else
+            {
                 let sortedResults = toSortArray((selectedCandidate?.interviewedByManagers?.allObjects)!)
                 let managerFeedback =  sortedResults[selectedSegment!] as! ManagerFeedBack
                 print(selectedSegment)
@@ -1043,17 +1001,13 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                     self.tableView.reloadData()
                 })
             }
-            
-            
-     }
-        
+        }
     }
 
     //MARK:- Refresh All Fields
     func refreshAllFields()
     {
         isFeedBackSaved = false
-       // textFieldCandidateName.stringValue = ""
         textFieldCorporateGrade.stringValue = ""
         textViewCommitments.string = ""
         textViewJustificationForHire.string = ""
@@ -1093,6 +1047,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         
         tableView.reloadData()
     }
+    
     //Mark:Enabling Position/Designation Field when candidate is shortlisted
     @IBAction func shortListedBtn(sender: AnyObject)
     {
@@ -1103,6 +1058,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         matrixForCgDeviation.enabled = true
         
     }
+    
     //Mark:Disabling Position/Designation Field when candidate is rejected
     @IBAction func rejectedBtn(sender: AnyObject)
     {
@@ -1118,10 +1074,11 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         textFieldGrossAnnualSalary.stringValue = ""
         matrixForCgDeviation.stringValue = ""
     }
+    
+    //To refresh fields
     @IBAction func clearAllFields(sender: AnyObject)
     {
-        
-        refreshAllFields()
+        refeshAllFields()
     }
  
 }
