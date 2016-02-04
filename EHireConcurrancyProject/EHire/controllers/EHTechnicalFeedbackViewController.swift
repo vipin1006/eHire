@@ -30,8 +30,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     @IBOutlet weak var deleteExistingSkill: NSButton!
     @IBOutlet weak var submitButton: NSButton!
     @IBOutlet weak var clearButton: NSButton!
-   
-    @IBOutlet weak var deleteButton: NSButton!
     
     //MARK: Variables
     var cell : EHRatingsTableCellView?
@@ -49,7 +47,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     var managedObjectContext : NSManagedObjectContext?
     var technicalFeedbackObject:TechnicalFeedBack?
     var arrTemp = ["a","b","c","d"]
-    var rowView : NSTableRowView?
     var defaultSkills : String? = ""
     
     //MARK: initial setup of views
@@ -64,7 +61,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             
             })
     }
-
+    
     func test()
     {
         NSObject.cancelPreviousPerformRequestsWithTarget(self, selector: Selector("test"), object: nil)
@@ -105,7 +102,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         requisitionNameField.stringValue = (selectedCandidate?.requisition)!
         print(selectedCandidate?.interviewDate)
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy hh:mm aaa"
+        dateFormatter.dateFormat = "dd MMM yyyy"
         let dateInStringFormat = dateFormatter.stringFromDate((selectedCandidate?.interviewDate)!)
         dateOfInterviewField.stringValue = dateInStringFormat
         cell?.skilsAndRatingsTitlefield.delegate = self
@@ -176,37 +173,21 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 }
 
                 technicalFeedbackModel.isFeedbackSubmitted = feedback.isFeedbackSubmitted
-                
                 fetchingModeOfInterview(technicalFeedbackModel.modeOfInterview!)
                 fetchingRecommendation(technicalFeedbackModel.recommendation!)
                 disableAndEnableFields((technicalFeedbackModel.isFeedbackSubmitted?.boolValue)!)
                 self.skillsAndRatingsTitleArray.removeAll()
                 
-                if isFeedBackSaved == true{
-//                for object in feedback.candidateSkills!
-//                {
-//                    let skillset = object as! SkillSet
-                    
-//                    dataAccessModel.createSkillSetWithTechnicalManagerObject(feedback, andCallBack: { (newSkill) -> Void in
-//                        newSkill.skillName   = skillset.skillName
-//                        newSkill.skillRating = skillset.skillRating
-//                        self.skillsAndRatingsTitleArray.append(newSkill)
-//                        if feedback.candidateSkills?.count == self.skillsAndRatingsTitleArray.count{
-//                            
-//                        }
-//                    })
-                    
+                if isFeedBackSaved == true
+                {
                     dataAccessModel.createSavedSkillSetObject(feedback,skillSetArray: (feedback.candidateSkills?.allObjects)!, andCallBack: { (newSkill) -> Void in
                          self.skillsAndRatingsTitleArray = newSkill as [SkillSet]
                         self.tableView.reloadData()
                     })
-                    
-                    
-                   
-                    
-                    
-//                }
-                }else{
+   
+                }
+                else
+                {
                     for object in feedback.candidateSkills!
                     {
                         let skillset = object as! SkillSet
@@ -406,12 +387,12 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             {
                // tableView.selectionHighlightStyle = .None
                 cellSelected.skilsAndRatingsTitlefield.editable = false
-                deleteButton.enabled = false
+                deleteExistingSkill.enabled = false
             }
             else
             {
                // tableView.selectionHighlightStyle = .Regular
-                deleteButton.enabled = true
+                deleteExistingSkill.enabled = true
                 cellSelected.skilsAndRatingsTitlefield.editable = true
             }
         }
@@ -668,11 +649,12 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             newSkill.skillName = "Enter Title"
             self.skillsAndRatingsTitleArray.append(newSkill)
             self.tableView.reloadData()
-//                self.tableView.selectRowIndexes(NSIndexSet(index:self.tableView.numberOfRows-1), byExtendingSelection: true)
-//                self.rowView = self.tableView.rowViewAtRow(self.tableView.selectedRow, makeIfNecessary:true)!
-//                self.rowView!.viewWithTag(1)?.becomeFirstResponder()
-                
-            })
+            self.tableView.selectRowIndexes(NSIndexSet(index:self.tableView.numberOfRows-1), byExtendingSelection: true)
+            let rowView = self.tableView.rowViewAtRow(self.tableView.selectedRow, makeIfNecessary:true)!
+            self.cell!.skilsAndRatingsTitlefield.editable = true
+            rowView.viewWithTag(-1)
+            rowView.subviews[1].subviews[0].becomeFirstResponder()
+             })
             }
          }
     }
@@ -770,6 +752,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         
    }
     
+    //To Submit Feedback Data
     @IBAction func submitDetails(sender: AnyObject)
     {
         if validation()
@@ -801,11 +784,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                     }
                     self.disableAndEnableFields(true)
                     self.tableView.reloadData()
-                    
                 })
-
             })
-            
         }
         else
         {
@@ -821,11 +801,10 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 self.disableAndEnableFields(true)
                 self.tableView.reloadData()
             })
-        }
+         }
       }
     }
 
-    
     func sortingAnArray(allObjects : [AnyObject]) -> NSArray
     {
         let sortingArray = NSArray(array: allObjects)
@@ -841,8 +820,9 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         {
             modeOfInterview.setState(NSOnState, atRow: 0, column: 0)
             modeOfInterview.setState(NSOffState, atRow: 0, column: 1)
-            
-        }else{
+        }
+        else
+        {
             modeOfInterview.setState(NSOnState, atRow: 0, column: 1)
             modeOfInterview.setState(NSOffState, atRow: 0, column: 0)
         }
@@ -854,7 +834,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         {
             recommentationField.setState(NSOnState, atRow: 0, column: 0)
             recommentationField.setState(NSOffState, atRow: 0, column: 1)
-            
         }
         else
         {
@@ -863,104 +842,119 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }
     }
     
-    //MARK: Validation
-    func validation() -> Bool
+    //MARK:- Validation Method for checking all defaults skills are selected
+    
+    func validationForDefaultSkills()->Bool
     {
-      let isValid = false
-        
-        if defaultSkills == "Communication"
+        var counter = 0
+        for object in self.skillsAndRatingsTitleArray
         {
-            if cell?.feedback.stringValue == ""
+            counter++
+            let skillset = object
+            
+            if skillset.skillName == "Communication" || skillset.skillName == "Organisation Stability" || skillset.skillName == "Growth Potential"
             {
-            Utility.alertPopup("Alert", informativeText: "Skill Name should not be blank",isCancelBtnNeeded:false, okCompletionHandler: nil)
-            return isValid
+                if (skillset.skillRating == 0)
+                {
+                    return false
+                }
             }
-            return true
+        }
+        return true
+    }
+    
+    //MARK:- TextView validation method
+    func validationForTextView(subView : NSTextView,title : String,informativeText:String) -> Bool
+    {
+        if subView.string == ""
+        {
+            Utility.alertPopup(title, informativeText: informativeText,isCancelBtnNeeded:false,okCompletionHandler: nil)
+            
+            return false
         }
             
-//            || defaultSkills == "Organisation Stability" || defaultSkills == "Leadership(if applicable)" || defaultSkills == "Growth Potential"
-//            {
-//                
-//            }
-        
-        
-        else if cell?.skilsAndRatingsTitlefield.stringValue == ""
-        {
-            Utility.alertPopup("Alert", informativeText: "Skill Name should not be blank",isCancelBtnNeeded:false, okCompletionHandler: nil)
-            return isValid
-        }
-        else if cell?.skilsAndRatingsTitlefield.stringValue == "Enter Title"
-        {
-            Utility.alertPopup("Alert", informativeText: "Enter Valid Skill Name",isCancelBtnNeeded:false, okCompletionHandler: nil)
-            return isValid
-        }
-//        else if cell?.feedback.stringValue == ""
-//        {
-//            Utility.alertPopup("Alert", informativeText: "Please provide your feedback of skills",isCancelBtnNeeded:false, okCompletionHandler: nil)
-//            return isValid
-//        }
-            
-        else if ratingOnTechnologyField.stringValue == ""
-        {
-            Utility.alertPopup("Alert", informativeText: "Please provide your feedback of overall assessment on Technology", isCancelBtnNeeded:false,okCompletionHandler: nil)
-            return isValid
-        }
-            
-        else if ratingOfCandidateField.stringValue == ""
-        {
-            Utility.alertPopup("Alert", informativeText: "Please provide your feedback of overall assessment of Candidate",isCancelBtnNeeded:false, okCompletionHandler: nil)
-            return isValid
-        }
-            
-        else if textViewOfTechnologyAssessment.string == ""
-        {
-             Utility.alertPopup("Alert", informativeText: "Please enter your feedback on Technology", isCancelBtnNeeded:false,okCompletionHandler: nil)
-            return isValid
-        }
-            
-        else if textViewOfCandidateAssessment.string == ""
-        {
-            Utility.alertPopup("Alert", informativeText: "Overall assessment of Candidate field shold not be blank", isCancelBtnNeeded:false,okCompletionHandler: nil)
-            return isValid
-        }
-            
-        else if designationField.stringValue == ""
-        {
-            if recommentationField.stringValue == "Shortlisted"
-            {
-            Utility.alertPopup("Alert", informativeText: "Designation Field should not be blank",isCancelBtnNeeded:false, okCompletionHandler: nil)
-                return isValid
-            }
-            else
-            {
-                return true
-            }
-            
-        }
-            
-        else if interviewedByField.stringValue.characters.count == 0
-        {
-            Utility.alertPopup("Alert", informativeText: "Please enter the interviewer field should not be blank", isCancelBtnNeeded:false,okCompletionHandler: nil)
-            return isValid
-        }
-        else if technicalFeedbackModel.ratingOnCandidate == 0
-        {
-             Utility.alertPopup("Alert", informativeText: "Please provide your feedback of Candidate should not be blank", isCancelBtnNeeded:false,okCompletionHandler: nil)
-            return isValid
-        }
-        else if technicalFeedbackModel.ratingOnTechnical == 0
-        {
-            Utility.alertPopup("Alert", informativeText: "Please provide your feedback on Technology should not be blank", isCancelBtnNeeded:false,okCompletionHandler: nil)
-            return isValid
-        }
         else
         {
             return true
         }
     }
     
-    //MARK: Refresh
+    //MARK:- Textfield validation method
+    func validationForTextfield(subView : NSTextField,title : String,informativeText:String) -> Bool
+    {
+        if subView.stringValue == ""
+        {
+            Utility.alertPopup(title, informativeText: informativeText,isCancelBtnNeeded:false,okCompletionHandler: nil)
+             return false
+        }
+        else
+        {
+          return true
+        }
+    }
+
+    //MARK: Validation
+    func validation() -> Bool
+    {
+        var isValid : Bool = false
+        let selectedColoumn = recommentationField.selectedColumn
+        if selectedColoumn != 0
+        {
+            technicalFeedbackModel.recommendation = "Rejected"
+            if (cell?.feedback.stringValue == "" || textViewOfCandidateAssessment.string == "" || textViewOfTechnologyAssessment.string == "" || interviewedByField.stringValue == "" || ratingOfCandidateField.stringValue == "" || ratingOnTechnologyField.stringValue == "")
+            {
+                Utility.alertPopup("Alert", informativeText: "Please enter all details", isCancelBtnNeeded: false, okCompletionHandler: nil)
+                return isValid
+            }else if !validationForDefaultSkills()
+            {
+                Utility.alertPopup("Alert", informativeText: "Please provide rating for default skills", isCancelBtnNeeded: false, okCompletionHandler: nil)
+                return isValid
+            }else
+            {
+                isValid = true
+                return isValid
+            }
+        }
+        else
+        {
+            technicalFeedbackModel.recommendation = "Shortlisted"
+            if !validationForDefaultSkills(){
+                Utility.alertPopup("Select Stars", informativeText: "Please provide rating for default skills",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                return isValid
+            }
+            else if !validationForTextView(textViewOfTechnologyAssessment,title: "Overall Feedback On Technology",informativeText: "Overall assessment of Technology field shold not be blank")
+            {
+                return isValid
+            }
+            else if !validationForTextfield(ratingOnTechnologyField,title: "Select Stars",informativeText: "Please  provide ratings for overall assessment on Technology"){
+                
+                return isValid
+            }
+            else if !validationForTextView(textViewOfCandidateAssessment,title: "Overall Feedback Of Candidate",informativeText: "Overall assessment of Candidate field shold not be blank")
+            {
+               return isValid
+            }
+            else if !validationForTextfield(ratingOfCandidateField,title: "Select Stars",informativeText: "Please  provide ratings for overall assessment of Candidate")
+            {
+                return isValid
+            }
+            else if !validationForTextfield(designationField,title: "Designation",informativeText: "Designation field should not be blank")
+            {
+                return isValid
+            }
+            else if !validationForTextfield(interviewedByField,title: "Interviewed By",informativeText: "Interviewed by field should not be empty")
+            {
+                return isValid
+            }
+            else
+            {
+               isValid = true
+            }
+            return isValid
+        }
+    }
     
+    //MARK: Refresh
     func refreshAllFields()
     {
       isFeedBackSaved = false
@@ -976,24 +970,23 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
       initialSetupOfTableView()
       ratingOfCandidateField.stringValue = ""
       ratingOnTechnologyField.stringValue = ""
-     technicalFeedbackModel.isFeedbackSubmitted = false
-        for stars in overallAssessmentOfCandidateStarView.subviews
-        {
-            let starButton = stars as! NSButton
-            starButton.image = NSImage(named: "deselectStar")
-        }
-        for stars in overallAssessmentOnTechnologyStarView.subviews
-        {
-            let starButton = stars as! NSButton
-            starButton.image = NSImage(named: "deselectStar")
-        }
-        disableAndEnableFields(false)
-        
-        tableView.reloadData()
-     }
+      technicalFeedbackModel.isFeedbackSubmitted = false
+      for stars in overallAssessmentOfCandidateStarView.subviews
+      {
+        let starButton = stars as! NSButton
+        starButton.image = NSImage(named: "deselectStar")
+      }
+      for stars in overallAssessmentOnTechnologyStarView.subviews
+      {
+         let starButton = stars as! NSButton
+         starButton.image = NSImage(named: "deselectStar")
+      }
+      disableAndEnableFields(false)
+      tableView.reloadData()
+    }
     
     @IBAction func clearAllFields(sender: AnyObject)
     {
-        refreshAllFields()
+       refreshAllFields()
     }
 }
