@@ -488,48 +488,56 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         if EHOnlyDecimalValueFormatter.isNumberValid(self.candidateName.stringValue)
         {
             showAlert("Invalid candidate name", info:"candidate name must not be a number")
+            scrollToTextField(NSPoint(x:0, y:1081))
             self.candidateName.becomeFirstResponder()
             return false
         }
         if EHOnlyDecimalValueFormatter.isNumberValid(self.companyName.stringValue)
         {
             showAlert("Invalid company name", info:"company name must not be a number")
+            scrollToTextField(NSPoint(x:0, y:1081))
             self.companyName.becomeFirstResponder()
             return false
         }
         if EHOnlyDecimalValueFormatter.isNumberValid(self.candidateBusinessUnit.stringValue)
         {
             showAlert("Invalid business unit", info:"business unit must not be a number")
+            scrollToTextField(NSPoint(x:0, y:1081))
             self.candidateBusinessUnit.becomeFirstResponder()
             return false
         }
         if EHOnlyDecimalValueFormatter.isNumberValid(self.currentDesignation.stringValue)
         {
             showAlert("Invalid current designation", info:"designation must not be a number")
+            scrollToTextField(NSPoint(x:0, y:1081))
             self.currentDesignation.becomeFirstResponder()
             return false
         }
         if EHOnlyDecimalValueFormatter.isNumberValid(self.candidateSkillOrTechnology.stringValue)
         {
             showAlert("Invalid skill/technology", info:"skill/technology must not be a number")
+            scrollToTextField(NSPoint(x:0, y:1081))
             self.candidateSkillOrTechnology.becomeFirstResponder()
             return false
         }
         if EHOnlyDecimalValueFormatter.isNumberValid(self.currentJobType.stringValue)
         {
             showAlert("Invalid job type", info:"job type must not be a number")
+            scrollToTextField(NSPoint(x:0, y:1081))
             self.currentJobType.becomeFirstResponder()
             return false
         }
         if !EHOnlyDecimalValueFormatter.isNumberValid(self.candidateTotalItExperience.stringValue)
         {
             showAlert("Invalid total IT experience", info:"total IT experience must be a number")
+            scrollToTextField(NSPoint(x:0, y:1081))
             self.candidateTotalItExperience.becomeFirstResponder()
             return false
         }
         if !EHOnlyDecimalValueFormatter.isNumberValid(self.candidateRelevantItExperience.stringValue)
         {
             showAlert("Invalid relevant IT experience", info:"relevant IT experience must be a number")
+            scrollToTextField(NSPoint(x:0, y:1081))
             self.candidateRelevantItExperience.becomeFirstResponder()
             return false
         }
@@ -538,14 +546,14 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         {
             
             showAlert("Invalid email address ", info:"Please enter a proper email")
-            
+            scrollToTextField(NSPoint(x:0, y:1081))
             self.officialMailid.becomeFirstResponder()
-            
             return false
         }
         if EHOnlyDecimalValueFormatter.isNumberValid(self.currentFixedSalary.stringValue) == false
         {
             showAlert("Invalid data entered", info:"Please enter Fixed Salary in numbers")
+            scrollToTextField(NSPoint(x:0, y:300))
             setBoarderColor(self.currentFixedSalary)
             return false
         }
@@ -553,6 +561,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         {
             showAlert("Invalid data entered", info:"Please enter Variable Salary in numbers")
             setBoarderColor(self.currentSalaryVariable)
+            scrollToTextField(NSPoint(x:0, y:300))
             setClearColor(self.currentFixedSalary)
             return false
         }
@@ -560,6 +569,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         {
             showAlert("Invalid data entered", info:"Please enter Expected Salary in numbers")
             setBoarderColor(self.expectedSalary)
+            scrollToTextField(NSPoint(x:0, y:300))
             setClearColor(self.currentSalaryVariable)
             return false
         }
@@ -567,16 +577,14 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         {
             showAlert("Invalid data entered", info:"Please enter percentage in numbers")
             setBoarderColor(self.highestEducationPercentage)
+            scrollToTextField(NSPoint(x:0, y:750))
             setClearColor(self.currentSalaryVariable)
             return false
         }
         if EHOnlyDecimalValueFormatter.isNumberValid(self.candidateMobile.stringValue) == false
         {
-            
-            
-            
             showAlert("Invalid Mobile Number", info: "Please enter a proper mobile number")
-            
+            scrollToTextField(NSPoint(x:0, y:1081))
             self.candidateMobile.becomeFirstResponder()
             
             return false
@@ -586,9 +594,8 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
             {
                 
                 showAlert("Invalid Mobile Number", info:"Your mobile number must be atleast 10 digits long")
-                
+                scrollToTextField(NSPoint(x:0, y:1081))
                 self.candidateMobile.becomeFirstResponder()
-                
                 return false
                 
             }
@@ -598,8 +605,8 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
        if !EHOnlyDecimalValueFormatter.isNumberValid(candidateNoticePeriod.stringValue)
        {
            showAlert("Invalid official notice period", info:"official notice period must ba a number")
-        
-            candidateNoticePeriod.becomeFirstResponder()
+           scrollToTextField(NSPoint(x:0, y:200))
+           candidateNoticePeriod.becomeFirstResponder()
         
         return false
         }
