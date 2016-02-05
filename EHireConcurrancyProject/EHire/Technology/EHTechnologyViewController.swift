@@ -559,6 +559,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 Utility.alertPopup("Error", informativeText: "Technology name should be unique",isCancelBtnNeeded:false,okCompletionHandler: {() -> Void in
                     
                     textFieldObject.stringValue = ""
+                    self.deleteTechnologyDate.enabled = true
                 })
                 return
             }
