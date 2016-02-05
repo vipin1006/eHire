@@ -12,7 +12,7 @@ protocol FeedbackControllerDelegate
     func feedbackViewControllerDidFinish(selectedCandidate:Candidate)
 }
 
-class EHFeedbackViewController: NSViewController
+class EHFeedbackViewController: NSViewController,HRFormScroller
 {
     //MARK: IBOutlets
     @IBOutlet weak var typeOfInterview: NSSegmentedControl!
@@ -178,6 +178,7 @@ class EHFeedbackViewController: NSViewController
             if !isHrLoaded
             {
                self.addHrFeedBackView()
+                
             }
             self.managerFeedback?.view.removeFromSuperview()
             self.techFeedback?.view.removeFromSuperview()
@@ -408,6 +409,9 @@ class EHFeedbackViewController: NSViewController
         hrFeedBackViewController = self.storyboard?.instantiateControllerWithIdentifier("EHHrFeedbackViewController") as? EHHrFeedbackViewController
         
         hrFeedBackViewController?.candidate = selectedCandidate
+        
+        hrFeedBackViewController?.delegate = self
+        
         if let hrViewController = hrFeedBackViewController
         {
             hrView = hrViewController.view
@@ -517,4 +521,14 @@ class EHFeedbackViewController: NSViewController
         let yBottomSpace = NSLayoutConstraint(item: (managerFeedback?.view)!, attribute: .Bottom, relatedBy: .Equal, toItem: self.scrollViewHr, attribute: .Bottom, multiplier: 1, constant: bottom)
         self.view .addConstraints([xLeadingSpace,xTrailingSpace,yTopSpace,yBottomSpace])
     }
+    
+    
+  func scrollHrFormToPoint(point:NSPoint)
+  {
+    print("PRAISE THE LORD")
+    
+    self.scrollViewHr.documentView?.scrollPoint(point)
+    
+  }
+    
 }

@@ -8,6 +8,11 @@
 
 import Cocoa
 
+protocol HRFormScroller
+{
+    func scrollHrFormToPoint(point:NSPoint)
+}
+
 class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextViewDelegate {
 
     //MARK: IBOutlets
@@ -76,6 +81,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
     var candidateInfo:Dictionary<String,AnyObject> = [:]
     var candidate:Candidate?
     var managedObjectContext : NSManagedObjectContext?
+    var delegate:HRFormScroller?
  
     override func viewDidLoad()
     {
@@ -115,6 +121,8 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         self.candidateJoinngPeriod.dateValue = NSDate()
         
         self.candidateJoinngPeriod.minDate = NSDate()
+        
+        self.visaTypeAndValidity.enabled = false
         
         showDetailsOfCandidate()
     }
@@ -163,11 +171,13 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         {
             performCheckAndUncheck(passportYes, unCheck:passportNo)
             candidateInfo["isVisaAvailable"] = 1
+            self.visaTypeAndValidity.enabled = true
         }
         else
         {
             performCheckAndUncheck(passportNo, unCheck:passportYes)
             candidateInfo["isVisaAvailable"] = 0
+            self.visaTypeAndValidity.enabled = false
         }
     }
     
@@ -295,56 +305,67 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         if candidateName.stringValue == ""
         {
             setBoarderColor(candidateName)
+            scrollToTextField(NSPoint(x:0, y:1081))
             result = false
         }
         if companyName.stringValue == ""
         {
             setBoarderColor(companyName)
+            scrollToTextField(NSPoint(x:0, y:1081))
             result = false
         }
         if candidateBusinessUnit.stringValue == ""
         {
             setBoarderColor(candidateBusinessUnit)
+            scrollToTextField(NSPoint(x:0, y:1081))
             result = false
         }
         if currentDesignation.stringValue == ""
         {
             setBoarderColor(currentDesignation)
+            scrollToTextField(NSPoint(x:0, y:1081))
             result = false
         }
         if candidateSkillOrTechnology.stringValue == ""
         {
             setBoarderColor(candidateSkillOrTechnology)
+            scrollToTextField(NSPoint(x:0, y:1081))
             result = false
         }
         if currentJobType.stringValue == ""
         {
             setBoarderColor(currentJobType)
+            scrollToTextField(NSPoint(x:0, y:1081))
             result = false
         }
         if candidateTotalItExperience.stringValue == ""
         {
             setBoarderColor(candidateTotalItExperience)
+            scrollToTextField(NSPoint(x:0, y:1081))
             result = false
         }
         if candidateRelevantItExperience.stringValue == ""
         {
             setBoarderColor(candidateRelevantItExperience)
+            scrollToTextField(NSPoint(x:0, y:1081))
             result = false
         }
         if candidateMobile.stringValue == ""
         {
             setBoarderColor(candidateMobile)
+            scrollToTextField(NSPoint(x:0, y:1081))
             result = false
         }
         if officialMailid.stringValue == ""
         {
             setBoarderColor(officialMailid)
+            scrollToTextField(NSPoint(x:0, y:1081))
             result = false
         }
         if candidateCurrentLocation.stringValue == ""
         {
             setBoarderColor(candidateCurrentLocation)
+            scrollToTextField(NSPoint(x:0, y:1081))
             result = false
         }
         if passportYes.intValue == 1
@@ -352,84 +373,106 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
             if visaTypeAndValidity.stringValue == ""
             {
                 setBoarderColor(visaTypeAndValidity)
+                scrollToTextField(NSPoint(x:0, y:1081))
                 result = false
             }
         }
         if previousEmployerName.stringValue == ""
         {
             setBoarderColor(previousEmployerName)
+            scrollToTextField(NSPoint(x:0, y:1081))
             result = false
         }
         if highestEducationQualificationTitle.stringValue == ""
         {
             setBoarderColor(highestEducationQualificationTitle)
+            scrollToTextField(NSPoint(x:0, y:750))
             result = false
         }
         if highestEducationBoardOrUniversity.stringValue == ""
         {
             setBoarderColor(highestEducationBoardOrUniversity)
+            scrollToTextField(NSPoint(x:0, y:750))
+
             
             result = false
         }
         if highestEducationPercentage.stringValue == ""
         {
             setBoarderColor(highestEducationPercentage)
-            
+            scrollToTextField(NSPoint(x:0, y:750))
             result = false
         }
         if jobChangeReasons.stringValue == ""
         {
             setBoarderColor(jobChangeReasons)
+            scrollToTextField(NSPoint(x:0, y:550))
             
             result = false
         }
-        if candidateNoticePeriod.stringValue == ""
-        {
-            setBoarderColor(candidateNoticePeriod)
-            
-            result = false
-        }
-             if expectedSalary.stringValue == ""
-        {
-              result = false
-        }
-        if inetrviewedBy.stringValue == ""
-        {
-            
-            setBoarderColor(inetrviewedBy)
-            
-            result = false
-        }
-        if allDocumentsYes.intValue == 1 {
-            
-            if missingDocuments.stringValue == ""
-            {
-                setBoarderColor(missingDocuments)
-                
-                result = false
-            }
-        }
-        
         if leavePlanYes.intValue == 1{
             
             if leavePlanReasons.stringValue == ""
             {
                 
                 setBoarderColor(leavePlanReasons)
+                scrollToTextField(NSPoint(x:0, y:350))
                 
                 result = false
             }
         }
+
         
+        if allDocumentsYes.intValue == 1 {
+            
+            if missingDocuments.stringValue == ""
+            {
+                setBoarderColor(missingDocuments)
+                scrollToTextField(NSPoint(x:0, y:350))
+                
+                result = false
+            }
+        }
+        if currentFixedSalary.stringValue == ""
+        {
+            setBoarderColor(currentFixedSalary)
+            scrollToTextField(NSPoint(x:0, y:300))
+            result = false
+        }
+        
+        if expectedSalary.stringValue == ""
+        {
+            setBoarderColor(expectedSalary)
+            scrollToTextField(NSPoint(x:0, y:300))
+            result = false
+        
+        }
         if anyLegalObligationsYes.intValue == 1{
             
             if  legalObligationDetails.stringValue == ""
             {
                 
                 setBoarderColor(legalObligationDetails)
+                scrollToTextField(NSPoint(x:0, y:200))
                 
                 result = false
             }
+        }
+        if candidateNoticePeriod.stringValue == ""
+        {
+            setBoarderColor(candidateNoticePeriod)
+             scrollToTextField(NSPoint(x:0, y:200))
+            
+            result = false
+        }
+       
+        if inetrviewedBy.stringValue == ""
+        {
+            
+            setBoarderColor(inetrviewedBy)
+            scrollToTextField(NSPoint(x:0, y:0))
+            
+            result = false
         }
         if result{
             
@@ -951,6 +994,14 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         dummyLegalObligations.stringValue = ""
         dummySpecifyLegalObligations.stringValue = ""
         lastDesignation.stringValue = ""
+    }
+    
+    func scrollToTextField(point:NSPoint)
+    {
+        if let delegate = delegate
+        {
+            delegate.scrollHrFormToPoint(point)
+        }
     }
     
 }
