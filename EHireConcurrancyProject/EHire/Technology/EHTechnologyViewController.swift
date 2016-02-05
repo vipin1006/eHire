@@ -157,6 +157,12 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     {
         if cellTechnology?.textFieldTechnology.editable == true{
             cellTechnology?.textFieldTechnology.becomeFirstResponder()
+            Utility.alertPopup("Error", informativeText: "Enter an appropriate Technology name",isCancelBtnNeeded:false,okCompletionHandler: {() -> Void in
+                
+               
+                
+                
+            })
             return false
         }
         return true
@@ -544,22 +550,15 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                     Utility.alertPopup("Error", informativeText: "Enter an appropriate Technology name",isCancelBtnNeeded:false,okCompletionHandler: {() -> Void in
                         
                         textFieldObject.stringValue = ""
-                        
-                        
                     })
                     return
-                    
                 }
-                
-                
             }
             else
             {
                 Utility.alertPopup("Error", informativeText: "Technology name should be unique",isCancelBtnNeeded:false,okCompletionHandler: {() -> Void in
                     
                     textFieldObject.stringValue = ""
-                    
-                    
                 })
                 return
             }
@@ -584,36 +583,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 })
             }
         }
-        else
-        {
-           let alert = NSAlert()
-            alert.messageText = "Technology name not present"
-            alert.informativeText = "Please enter a name to Technology"
-            alert.addButtonWithTitle("OK")
-            alert.addButtonWithTitle("Delete")
-            let response = alert.runModal()
-            if response == 1000
-            {
-                
-            
-                
-                print(cellTechnology)
-            }
-            
-            
-            
-            
-            else
-            {
-                technologyArray.removeLast()
-                self.sourceList.reloadData()
- 
-            }
-            
-           
-            
-        }
-        
     }
     
     
@@ -748,10 +717,13 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     
     override func mouseDown(theEvent: NSEvent)
     {
+       guard cellTechnology?.textFieldTechnology.editable == true else{
         addTechnology.enabled = true
         addDate.enabled = false
         sourceList.deselectRow(self.sourceList.selectedRow)
         deleteTechnologyDate.enabled = false
+        return
+        }
         
     }
     
