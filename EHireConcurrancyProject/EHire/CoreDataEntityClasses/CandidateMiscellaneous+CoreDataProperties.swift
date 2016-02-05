@@ -20,7 +20,7 @@ extension CandidateMiscellaneous {
     @NSManaged var reasonForJobChange: String?
     @NSManaged var backgroundVerification: NSNumber?
     @NSManaged var expectedSalary: NSNumber?
-    @NSManaged var joiningPeriod: String?
+    @NSManaged var joiningPeriod: NSDate?
     @NSManaged var interviewedBy: String?
     @NSManaged var wasInterviewedBefore: NSNumber?
     @NSManaged var wasInterviewdBeforeOn: NSDate?

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
@@ -4556,22 +4556,6 @@
                                             <outlet property="delegate" destination="2N2-KU-HrI" id="2K7-33-v5N"/>
                                         </connections>
                                     </textField>
-                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GWX-lG-sUp">
-                                        <rect key="frame" x="479" y="270" width="160" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="160" id="uM9-z7-mid"/>
-                                        </constraints>
-                                        <animations/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" drawsBackground="YES" id="3V1-HG-kzV">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                        <connections>
-                                            <binding destination="2N2-KU-HrI" name="editable" keyPath="isHrFormEnable" id="EnW-2k-osF"/>
-                                            <outlet property="delegate" destination="2N2-KU-HrI" id="cGZ-hp-v4j"/>
-                                        </connections>
-                                    </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wn0-WQ-nCF">
                                         <rect key="frame" x="18" y="226" width="362" height="19"/>
                                         <animations/>
@@ -4766,9 +4750,23 @@
                                             <binding destination="2N2-KU-HrI" name="enabled" keyPath="isHrFormEnable" id="hXR-aC-zW0"/>
                                         </connections>
                                     </button>
+                                    <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3T0-Pz-72U">
+                                        <rect key="frame" x="479" y="270" width="119" height="27"/>
+                                        <animations/>
+                                        <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="CoX-3a-E4i">
+                                            <font key="font" metaFont="system"/>
+                                            <calendarDate key="date" timeIntervalSinceReferenceDate="-595929600" calendarFormat="%Y-%m-%d %H:%M:%S %z">
+                                                <!--1982-02-12 08:00:00 -0800-->
+                                                <timeZone key="timeZone" name="US/Pacific"/>
+                                            </calendarDate>
+                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        </datePickerCell>
+                                    </datePicker>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="iLp-r2-BWg" firstAttribute="leading" secondItem="EQO-Rp-fbg" secondAttribute="trailing" constant="19" id="0NP-sA-nIP"/>
+                                    <constraint firstItem="3T0-Pz-72U" firstAttribute="bottom" secondItem="ybO-Sq-0lH" secondAttribute="bottom" id="0gm-rw-Taa"/>
                                     <constraint firstItem="6pf-dB-fSZ" firstAttribute="leading" secondItem="UoB-bM-Lqs" secondAttribute="trailing" constant="19" id="0jo-1r-sFd"/>
                                     <constraint firstItem="lgK-qI-j6k" firstAttribute="leading" secondItem="pBi-hN-zEG" secondAttribute="leading" id="2ZT-03-4Le"/>
                                     <constraint firstItem="bOv-72-xvC" firstAttribute="baseline" secondItem="TUN-wg-53A" secondAttribute="baseline" id="4QD-DD-PEH"/>
@@ -4778,12 +4776,12 @@
                                     <constraint firstItem="N8P-zM-o1D" firstAttribute="leading" secondItem="IEZ-gg-CvU" secondAttribute="leading" id="876-PB-3jg"/>
                                     <constraint firstItem="ybO-Sq-0lH" firstAttribute="trailing" secondItem="m3f-wT-zql" secondAttribute="trailing" id="9qb-o0-Tbp"/>
                                     <constraint firstItem="IEZ-gg-CvU" firstAttribute="leading" secondItem="hvr-h1-ahh" secondAttribute="leading" id="E0E-qn-EVm"/>
+                                    <constraint firstItem="3T0-Pz-72U" firstAttribute="leading" secondItem="mpo-jQ-HF6" secondAttribute="trailing" constant="8" symbolic="YES" id="Edf-Ra-0t3"/>
                                     <constraint firstItem="ybO-Sq-0lH" firstAttribute="leading" secondItem="tRQ-DH-98U" secondAttribute="trailing" constant="14" id="Elk-We-1T0"/>
                                     <constraint firstItem="6pf-dB-fSZ" firstAttribute="baseline" secondItem="UoB-bM-Lqs" secondAttribute="firstBaseline" id="GYC-c5-rN1"/>
                                     <constraint firstItem="EQO-Rp-fbg" firstAttribute="leading" secondItem="6Hi-LB-Evq" secondAttribute="trailing" constant="8" symbolic="YES" id="GnP-Ud-AD3"/>
                                     <constraint firstItem="m3f-wT-zql" firstAttribute="leading" secondItem="XPJ-s1-Jt6" secondAttribute="trailing" constant="8" symbolic="YES" id="HQH-Cs-oVU"/>
                                     <constraint firstItem="ybO-Sq-0lH" firstAttribute="leading" secondItem="gLd-Aw-RZS" secondAttribute="leading" id="Hw4-qJ-V5J"/>
-                                    <constraint firstItem="GWX-lG-sUp" firstAttribute="baseline" secondItem="ybO-Sq-0lH" secondAttribute="baseline" id="HyG-Lz-49d"/>
                                     <constraint firstItem="tRQ-DH-98U" firstAttribute="leading" secondItem="6Hi-LB-Evq" secondAttribute="leading" id="JRL-jZ-Rxd"/>
                                     <constraint firstItem="gLd-Aw-RZS" firstAttribute="top" secondItem="UoB-bM-Lqs" secondAttribute="bottom" constant="12" id="KKQ-fP-EKW"/>
                                     <constraint firstItem="tRQ-DH-98U" firstAttribute="baseline" secondItem="mpo-jQ-HF6" secondAttribute="firstBaseline" id="NN4-RR-h7c"/>
@@ -4793,7 +4791,6 @@
                                     <constraint firstItem="tRQ-DH-98U" firstAttribute="trailing" secondItem="B75-vY-nvL" secondAttribute="trailing" id="Q8f-Tq-bql"/>
                                     <constraint firstItem="0bF-JV-WWj" firstAttribute="top" secondItem="Jb4-z3-6zN" secondAttribute="top" constant="20" symbolic="YES" id="RrK-m7-WgD"/>
                                     <constraint firstItem="Upt-eH-Xuy" firstAttribute="leading" secondItem="hvr-h1-ahh" secondAttribute="leading" id="RzM-RS-nE0"/>
-                                    <constraint firstItem="GWX-lG-sUp" firstAttribute="firstBaseline" secondItem="ybO-Sq-0lH" secondAttribute="firstBaseline" id="TPf-bM-Idd"/>
                                     <constraint firstItem="IEZ-gg-CvU" firstAttribute="trailing" secondItem="N8P-zM-o1D" secondAttribute="trailing" id="TTW-NS-zZh"/>
                                     <constraint firstItem="N8P-zM-o1D" firstAttribute="top" secondItem="0bF-JV-WWj" secondAttribute="bottom" constant="8" symbolic="YES" id="TaP-rd-Mqm"/>
                                     <constraint firstItem="ROK-5g-veo" firstAttribute="trailing" secondItem="Upt-eH-Xuy" secondAttribute="trailing" id="VN8-Pq-IoI"/>
@@ -4809,13 +4806,15 @@
                                     <constraint firstItem="pBi-hN-zEG" firstAttribute="leading" secondItem="B75-vY-nvL" secondAttribute="leading" id="cs7-bj-7ty"/>
                                     <constraint firstItem="6Hi-LB-Evq" firstAttribute="leading" secondItem="0Nn-sR-CDF" secondAttribute="leading" id="dcO-aZ-svp"/>
                                     <constraint firstItem="N8P-zM-o1D" firstAttribute="leading" secondItem="Jb4-z3-6zN" secondAttribute="leading" constant="20" symbolic="YES" id="e7l-gG-QW0"/>
+                                    <constraint firstItem="3T0-Pz-72U" firstAttribute="centerY" secondItem="mpo-jQ-HF6" secondAttribute="centerY" id="fRv-9H-Gi7"/>
                                     <constraint firstItem="ROK-5g-veo" firstAttribute="leading" secondItem="0Nn-sR-CDF" secondAttribute="leading" id="fct-ea-vtM"/>
                                     <constraint firstItem="gLd-Aw-RZS" firstAttribute="trailing" secondItem="lgK-qI-j6k" secondAttribute="trailing" id="gyT-2h-SGQ"/>
                                     <constraint firstItem="0Nn-sR-CDF" firstAttribute="top" secondItem="ROK-5g-veo" secondAttribute="bottom" constant="8" symbolic="YES" id="h0w-JJ-6ry"/>
+                                    <constraint firstItem="3T0-Pz-72U" firstAttribute="trailing" secondItem="iLp-r2-BWg" secondAttribute="trailing" id="iEi-PI-tvS"/>
                                     <constraint firstItem="ROK-5g-veo" firstAttribute="top" secondItem="Upt-eH-Xuy" secondAttribute="bottom" constant="8" symbolic="YES" id="iXx-Uu-YqJ"/>
                                     <constraint firstItem="UoB-bM-Lqs" firstAttribute="leading" secondItem="Wn0-WQ-nCF" secondAttribute="trailing" id="iYT-Jp-5gT"/>
+                                    <constraint firstItem="3T0-Pz-72U" firstAttribute="centerY" secondItem="ybO-Sq-0lH" secondAttribute="centerY" id="jAt-GG-sa2"/>
                                     <constraint firstItem="6Hi-LB-Evq" firstAttribute="top" secondItem="0Nn-sR-CDF" secondAttribute="bottom" constant="14" id="jCA-9R-pRv"/>
-                                    <constraint firstItem="GWX-lG-sUp" firstAttribute="leading" secondItem="mpo-jQ-HF6" secondAttribute="trailing" constant="8" symbolic="YES" id="k0g-AJ-YHw"/>
                                     <constraint firstItem="Wn0-WQ-nCF" firstAttribute="leading" secondItem="B75-vY-nvL" secondAttribute="leading" id="k0t-qT-BZe"/>
                                     <constraint firstItem="tRQ-DH-98U" firstAttribute="leading" secondItem="Wn0-WQ-nCF" secondAttribute="leading" id="knZ-26-37K"/>
                                     <constraint firstItem="TUN-wg-53A" firstAttribute="leading" secondItem="Jb4-z3-6zN" secondAttribute="leading" constant="308" id="lFI-2U-C3i"/>
@@ -4830,7 +4829,6 @@
                                     <constraint firstItem="tRQ-DH-98U" firstAttribute="top" secondItem="6Hi-LB-Evq" secondAttribute="bottom" constant="22" id="pi4-Gs-cJJ"/>
                                     <constraint firstItem="ROK-5g-veo" firstAttribute="trailing" secondItem="0Nn-sR-CDF" secondAttribute="trailing" id="q5M-ar-pV0"/>
                                     <constraint firstItem="IEZ-gg-CvU" firstAttribute="trailing" secondItem="Upt-eH-Xuy" secondAttribute="trailing" id="q8L-zT-Fi5"/>
-                                    <constraint firstItem="mpo-jQ-HF6" firstAttribute="centerY" secondItem="GWX-lG-sUp" secondAttribute="centerY" id="qQh-ze-HJ5"/>
                                     <constraint firstItem="mpo-jQ-HF6" firstAttribute="leading" secondItem="ybO-Sq-0lH" secondAttribute="trailing" constant="52" id="rgK-L5-cfO"/>
                                     <constraint firstItem="XPJ-s1-Jt6" firstAttribute="baseline" secondItem="m3f-wT-zql" secondAttribute="firstBaseline" id="rkP-m0-7IM"/>
                                     <constraint firstItem="UoB-bM-Lqs" firstAttribute="baseline" secondItem="6pf-dB-fSZ" secondAttribute="baseline" id="rrP-4H-deY"/>
@@ -4867,7 +4865,7 @@
                         <outlet property="backgroundCheckYes" destination="OLm-LL-2E9" id="c3X-od-xIb"/>
                         <outlet property="candidateBusinessUnit" destination="S6j-Rr-A0K" id="jQt-ZA-tmc"/>
                         <outlet property="candidateCurrentLocation" destination="0Tm-CG-9A3" id="Nkc-4D-dmc"/>
-                        <outlet property="candidateJoinngPeriod" destination="GWX-lG-sUp" id="UQP-LD-cbm"/>
+                        <outlet property="candidateJoinngPeriod" destination="3T0-Pz-72U" id="yxS-Vs-AhM"/>
                         <outlet property="candidateMobile" destination="lwV-7a-rat" id="r1O-ll-1nt"/>
                         <outlet property="candidateName" destination="EKW-DY-lp2" id="yPw-Rc-7ET"/>
                         <outlet property="candidateNoticePeriod" destination="ybO-Sq-0lH" id="1iF-kk-nWd"/>

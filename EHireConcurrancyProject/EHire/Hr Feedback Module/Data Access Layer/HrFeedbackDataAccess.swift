@@ -143,7 +143,7 @@ class HrFeedbackDataAccess: NSObject {
         miscellaneousInfo.businessUnit = candidateInfo["candidateBusinessUnit"] as? String
         miscellaneousInfo.leavePlanInSixMonths = candidateInfo["leavePlanReasons"] as? String
         miscellaneousInfo.reasonForJobChange = candidateInfo["jobChangeReasons"] as? String
-        miscellaneousInfo.joiningPeriod = candidateInfo["candidateJoinngPeriod"] as? String
+        miscellaneousInfo.joiningPeriod = candidateInfo["candidateJoinngPeriod"] as? NSDate
         miscellaneousInfo.interviewedBy = candidateInfo["inetrviewedBy"] as? String
         miscellaneousInfo.legalObligationWithCurrentEmployer = candidateInfo["LegalObligations"] as? String
         miscellaneousInfo.candidateRequestForRelocation = candidateInfo["isRelocationRequested"] as? NSNumber

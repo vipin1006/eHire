@@ -56,7 +56,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
     @IBOutlet weak var entitledBonusYes: NSButton!
     @IBOutlet weak var entitledBonusNo: NSButton!
     @IBOutlet weak var candidateNoticePeriod: NSTextField!
-    @IBOutlet weak var candidateJoinngPeriod: NSTextField!
+    @IBOutlet weak var candidateJoinngPeriod: NSDatePicker!
     @IBOutlet weak var anyLegalObligationsYes: NSButton!
     @IBOutlet weak var anyLegalObligationsNo: NSButton!
     @IBOutlet weak var legalObligationDetails: NSTextField!
@@ -111,6 +111,11 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         {
             clearButton.enabled = false
         }
+        
+        self.candidateJoinngPeriod.dateValue = NSDate()
+        
+        self.candidateJoinngPeriod.minDate = NSDate()
+        
         showDetailsOfCandidate()
     }
     
@@ -384,17 +389,9 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
             
             result = false
         }
-        if candidateJoinngPeriod.stringValue == ""
+             if expectedSalary.stringValue == ""
         {
-            setBoarderColor(candidateJoinngPeriod)
-            
-            result = false
-        }
-        if expectedSalary.stringValue == ""
-        {
-            setBoarderColor(candidateJoinngPeriod)
-            
-            result = false
+              result = false
         }
         if inetrviewedBy.stringValue == ""
         {
@@ -696,7 +693,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
             self.candidateBusinessUnit.stringValue = info.businessUnit!
             self.leavePlanReasons.stringValue = info.leavePlanInSixMonths!
             self.jobChangeReasons.stringValue = info.reasonForJobChange!
-            self.candidateJoinngPeriod.stringValue = info.joiningPeriod!
+            self.candidateJoinngPeriod.dateValue = info.joiningPeriod!
             self.inetrviewedBy.stringValue = info.interviewedBy!
             self.expectedSalary.stringValue = String(info.expectedSalary!)
             self.questionsAskedByCandidate.string = info.questionsByCandidate!
@@ -845,7 +842,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         candidateInfo["expectedSalary"] = expectedSalary.floatValue
         candidateInfo["LegalObligations"] = legalObligationDetails.stringValue
         candidateInfo["candidateNoticePeriod"] = candidateNoticePeriod.stringValue
-        candidateInfo["candidateJoinngPeriod"] = candidateJoinngPeriod.stringValue
+        candidateInfo["candidateJoinngPeriod"] = candidateJoinngPeriod.dateValue
         candidateInfo["questionsAskedByCandidate"] = questionsAskedByCandidate.string
         candidateInfo["inetrviewedBy"] = inetrviewedBy.stringValue
         candidateInfo["EmploymentGap"] = employmentGap.stringValue

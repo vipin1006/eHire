@@ -48,7 +48,7 @@
         <attribute name="interviewedBy" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isHrFormSaved" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isHrFormSubmitted" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="joiningPeriod" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="joiningPeriod" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="leavePlanInSixMonths" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="legalObligationWithCurrentEmployer" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="questionsByCandidate" optional="YES" attributeType="String" syncable="YES"/>
