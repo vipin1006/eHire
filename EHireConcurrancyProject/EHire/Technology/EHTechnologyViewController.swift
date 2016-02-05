@@ -275,14 +275,18 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             if x.technologyName == ""{
                 parent.textFieldTechnology.editable = true
                 parent.textFieldTechnology.backgroundColor = NSColor.whiteColor()
+                parent.textFieldTechnology.delegate = self
+
                 
             }else{
                 parent.textFieldTechnology.editable = false
                 parent.textFieldTechnology.backgroundColor = NSColor.clearColor()
+                parent.textFieldTechnology.delegate = nil
+
             }
+            
             if let name = x.technologyName{
                 parent.textFieldTechnology.stringValue = name
-                parent.textFieldTechnology.delegate = self
             }
 
             cellTechnology = parent
@@ -553,6 +557,30 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                     })
                     return
                 }
+                if let _ = technologyObject
+                {
+                    technologyObject!.technologyName = textFieldObject.stringValue
+                    self.cellTechnology?.textFieldTechnology.editable = false
+
+                    technologyDataLayer!.addTechnologyTo(technologyObject!, completion:
+                        { (error) -> Void in
+                            if CoreDataError.Success == error
+                            {
+                                self.deleteTechnologyDate.enabled = false
+                                self.addTechnology.enabled = true
+                                self.sortedSourceListReload()
+                                self.canChangeSelection = true
+                                
+                            }
+                            else
+                            {
+                                print("Error in insertion of technology")
+                                
+                            }
+                    })
+                }
+                
+                
             }
             else
             {
@@ -563,27 +591,20 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 })
                 return
             }
-            if let _ = technologyObject
-            {
-                technologyObject!.technologyName = textFieldObject.stringValue
-                technologyDataLayer!.addTechnologyTo(technologyObject!, completion:
-                { (error) -> Void in
-                        if CoreDataError.Success == error
-                        {
-                        self.deleteTechnologyDate.enabled = false
-                            self.addTechnology.enabled = true     //true
-                        self.sortedSourceListReload()
-                            self.canChangeSelection = true
-
-                        }
-                    else
-                        {
-                            print("Error in insertion of technology")
-                   
-                    }
-                })
-            }
+            
         }
+        
+//        else
+//        {
+//            Utility.alertPopup("Error", informativeText: "aaaaaaa",isCancelBtnNeeded:false,okCompletionHandler: {() -> Void in
+//                
+//                textFieldObject.stringValue = ""
+//                self.deleteTechnologyDate.enabled = true
+//            })
+//            return
+//            
+//            
+//        }
     }
     
     
