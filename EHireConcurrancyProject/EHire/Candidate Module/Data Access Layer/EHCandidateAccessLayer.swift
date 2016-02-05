@@ -65,7 +65,7 @@ class EHCandidateAccessLayer: NSObject
                 do
                 {
 
-                try self.managedObjectContext!.save()
+                //try self.managedObjectContext!.save()
                 dispatch_sync(dispatch_get_main_queue()
                     ,{ () -> Void in
                         
@@ -73,10 +73,10 @@ class EHCandidateAccessLayer: NSObject
                 })
             }
             
-        catch let error as NSError
-        {
-            print(error.localizedDescription)
-        }
+//        catch let error as NSError
+//        {
+//            print(error.localizedDescription)
+//        }
         
                 
                 

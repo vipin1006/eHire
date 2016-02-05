@@ -450,7 +450,14 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         default: break
        
      }
-        EHCoreDataHelper.saveToCoreData(candidate)
+        
+        if candidate.name != "" && candidate.phoneNumber != ""  && candidate.experience != nil && candidate.requisition != ""   {
+            EHCoreDataHelper.saveToCoreData(candidate)
+
+        }
+        else {
+            print("Cannot save , fields are empty")
+        }
         return textShouldEndEditing
     }
     
