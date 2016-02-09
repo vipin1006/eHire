@@ -525,8 +525,6 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
     
   func scrollHrFormToPoint(point:NSPoint)
   {
-    print("PRAISE THE LORD")
-    
     self.scrollViewHr.documentView?.scrollPoint(point)
     
   }
