@@ -336,7 +336,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         var textShouldEndEditing = true
       switch textField.tag
       {
-        case 1:
+        case 1,4:
         if (!(textField.stringValue == ""))
         {
          if !Utility.isAlphabetsOnly(textField.stringValue)
@@ -348,8 +348,14 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
          }
          else
          {
-          candidate.name = fieldEditor.string
-          candidateSearchField.enabled = true
+            if textField.tag == 1 {
+            candidate.name = fieldEditor.string
+
+            }
+            else{
+                candidate.requisition = fieldEditor.string
+            }
+            candidateSearchField.enabled = true
          }
         }
         else
@@ -424,28 +430,28 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         }
 
 
-        case 4:
-            if (!(textField.stringValue == ""))
-            {
-                 if !Utility.isAlphabetsOnly(textField.stringValue) 
-                {
-                    Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters for requisition.",isCancelBtnNeeded:false,okCompletionHandler: nil)
-                    fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
-                    textShouldEndEditing = false
-                    
-                }
-                else
-                {
-                    candidate.requisition = fieldEditor.string
-                    candidateSearchField.enabled = true
-                }
-            }
-            else
-            {
-              candidate.requisition = fieldEditor.string
-              candidateSearchField.enabled = false
-            }
-            
+//        case 4:
+//            if (!(textField.stringValue == ""))
+//            {
+//                 if !Utility.isAlphabetsOnly(textField.stringValue) 
+//                {
+//                    Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters for requisition.",isCancelBtnNeeded:false,okCompletionHandler: nil)
+//                    fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+//                    textShouldEndEditing = false
+//                    
+//                }
+//                else
+//                {
+//                    candidate.requisition = fieldEditor.string
+//                    candidateSearchField.enabled = true
+//                }
+//            }
+//            else
+//            {
+//              candidate.requisition = fieldEditor.string
+//              candidateSearchField.enabled = false
+//            }
+        
         default: break
        
      }
