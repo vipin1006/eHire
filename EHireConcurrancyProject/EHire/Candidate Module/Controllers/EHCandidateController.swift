@@ -168,6 +168,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             let rowView:NSTableRowView = self.tableView.rowViewAtRow(self.tableView.selectedRow, makeIfNecessary: true)!
 
             rowView.viewWithTag(1)?.becomeFirstResponder()
+            self.removeButton.enabled = false
             
             })
         
@@ -206,10 +207,8 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     
     func getSourceListContent()
     {
-        
-        
       candidateArray.removeAllObjects()
-        candidateAccessLayer?.getCandiadteList(technologyName!, interviewDate: interviewDate!, andCallBack: { (recordsArray) -> Void in
+      candidateAccessLayer?.getCandiadteList(technologyName!, interviewDate:interviewDate!, andCallBack: { (recordsArray) -> Void in
             if recordsArray.count > 0
             {
                 for aRec in recordsArray
@@ -464,10 +463,11 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     
     func deleteCandidate()
     {
+        
      if tableView.selectedRow > -1
      {
-      let editCandidate = candidateArray.objectAtIndex(tableView.selectedRow) as? Candidate
-      candidateAccessLayer!.removeCandidate(editCandidate!)
+      let editCandidate = candidateArray.objectAtIndex(tableView.selectedRow) as! Candidate
+      candidateAccessLayer!.removeCandidate(editCandidate)
       candidateArray.removeObjectAtIndex(tableView.selectedRow)
       feedbackButton.enabled = false
       removeButton.enabled = false
