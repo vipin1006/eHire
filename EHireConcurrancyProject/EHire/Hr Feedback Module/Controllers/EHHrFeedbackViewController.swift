@@ -8,14 +8,14 @@
 
 import Cocoa
 
-protocol HRFormScroller
+protocol HRFormScroller:class
 {
     func scrollHrFormToPoint(point:NSPoint)
 }
 
 class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextViewDelegate {
 
-    //MARK: IBOutlets
+    //MARK: HR Feedback Form IBOutlets
     
     @IBOutlet weak var candidateName: NSTextField!
     @IBOutlet weak var candidateBusinessUnit: NSTextField!
@@ -74,14 +74,14 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
     @IBOutlet weak var lastDesignation: NSTextField!
     @IBOutlet weak var clearButton: NSButton!
     @IBOutlet weak var submitButton: NSButton!
-    
     @IBOutlet weak var hrFeedbackView: NSView!
-    dynamic var isHrFormEnable = true
     
+    dynamic var isHrFormEnable = true
     var candidateInfo:Dictionary<String,AnyObject> = [:]
     var candidate:Candidate?
     var managedObjectContext : NSManagedObjectContext?
-    var delegate:HRFormScroller?
+    weak var delegate:HRFormScroller?
+ 
  
     override func viewDidLoad()
     {
@@ -127,10 +127,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         showDetailsOfCandidate()
     }
     
-    //MARK: IBActions.
-    
-    
-    
+    //MARK: HR Feedback Form IBActions.
     
     @IBAction func saveCandidateDetails(sender: AnyObject) {
         if saveValidations()
@@ -258,6 +255,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
             performCheckAndUncheck(leavePlanNo, unCheck:leavePlanYes)
             leavePlanReasons.hidden = true
             dummyPleaseSpecify.hidden = true
+            leavePlanReasons.stringValue = ""
             candidateInfo["isAnyLeavePlans"] = 0
         }
     }
@@ -274,6 +272,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         {
             performCheckAndUncheck(allDocumentsNo, unCheck:allDocumentsYes)
             dummySpecifyMissingDocuments.hidden = true
+            missingDocuments.stringValue = ""
             missingDocuments.hidden = true
             candidateInfo["isAnyDocumentMissing"] = 0
         }
@@ -291,13 +290,14 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         {
             performCheckAndUncheck(anyLegalObligationsNo, unCheck:anyLegalObligationsYes)
             legalObligationDetails.hidden = true
+            legalObligationDetails.stringValue = ""
             dummyLegalObligations.hidden = true
             dummySpecifyLegalObligations.hidden = true
             candidateInfo["anyLegalObligations"] = 0
         }
     }
     
-    //MARK: HR Form Validations
+    //MARK: HR Feedback Form Validations
     
     func submitValidations()->Bool
     {
@@ -428,7 +428,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
             if missingDocuments.stringValue == ""
             {
                 setBoarderColor(missingDocuments)
-                scrollToTextField(NSPoint(x:0, y:350))
+                scrollToTextField(NSPoint(x:0, y:0))
                 
                 result = false
             }
@@ -436,14 +436,14 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         if currentFixedSalary.stringValue == ""
         {
             setBoarderColor(currentFixedSalary)
-            scrollToTextField(NSPoint(x:0, y:300))
+            scrollToTextField(NSPoint(x:0, y:0))
             result = false
         }
         
         if expectedSalary.stringValue == ""
         {
             setBoarderColor(expectedSalary)
-            scrollToTextField(NSPoint(x:0, y:300))
+            scrollToTextField(NSPoint(x:0, y:0))
             result = false
         
         }
@@ -453,7 +453,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
             {
                 
                 setBoarderColor(legalObligationDetails)
-                scrollToTextField(NSPoint(x:0, y:200))
+                scrollToTextField(NSPoint(x:0, y:0))
                 
                 result = false
             }
@@ -461,7 +461,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         if candidateNoticePeriod.stringValue == ""
         {
             setBoarderColor(candidateNoticePeriod)
-             scrollToTextField(NSPoint(x:0, y:200))
+             scrollToTextField(NSPoint(x:0, y:0))
             
             result = false
         }
@@ -617,7 +617,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
     func setBoarderColor(hrTextFiled:NSTextField)
     {
         hrTextFiled.wantsLayer = true
-        hrTextFiled.layer?.borderColor = NSColor.orangeColor().CGColor
+        hrTextFiled.layer?.borderColor =  NSColor(calibratedRed:110.0/250.0, green:157.0/250.0, blue:215.0/250.0, alpha:1.0).CGColor//105,200,250//NSColor.orangeColor().CGColor
         hrTextFiled.layer?.borderWidth = 2.0
     }
     
@@ -650,8 +650,6 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
             print("Never")
         }
     }
-    
-    
     
     func showDetailsOfCandidate()
     {
@@ -860,6 +858,8 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         return true
     }
     
+    //MARK: Saving Candidate details
+    
     func saveCandidate()
     {
         candidateInfo["candidateName"] = candidateName.stringValue
@@ -898,8 +898,6 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         candidateInfo["EmploymentGap"] = employmentGap.stringValue
         candidateInfo["lastDesignation"] = lastDesignation.stringValue
         candidateInfo["leavePlanReasons"] = leavePlanReasons.stringValue
-        //    HrFeedbackDataAccess.saveHrFeedbackOfCandidate(candidate!,candidateInfo: candidateInfo,andCallBack: )
-        
         HrFeedbackDataAccess.saveHrFeedbackOfCandidate(candidate!, candidateInfo: candidateInfo) { (isSucess) -> Void in
             if isSucess{
                 if self.isHrFormEnable
@@ -942,16 +940,12 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
             let textField = control as! NSTextField
             setClearColor(textField)
         }
-        
-        
-        
         return true
-        
     }
     
     class func isValidEmail(testStr:String) -> Bool {
         
-        let emailRegEx = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
         
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         
@@ -965,8 +959,6 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
     
     @IBAction func clearAllFields(sender: AnyObject)
     {
-        
-        
         candidateName.stringValue = ""
         candidateBusinessUnit.stringValue = ""
         candidateSkillOrTechnology.stringValue = ""
