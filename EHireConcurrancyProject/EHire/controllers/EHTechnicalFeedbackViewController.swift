@@ -333,6 +333,15 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         cellView.skilsAndRatingsTitlefield.target = self
         cellView.skilsAndRatingsTitlefield.tag = row
         cell = cellView
+        if cell!.skilsAndRatingsTitlefield.stringValue == "Communication" || cell!.skilsAndRatingsTitlefield.stringValue == "Organisation Stability" || cell!.skilsAndRatingsTitlefield.stringValue == "Leadership(if applicable)" || cell!.skilsAndRatingsTitlefield.stringValue == "Growth Potential"
+        {
+            cell!.skilsAndRatingsTitlefield.editable = false
+        }
+        else
+        {
+         cell!.skilsAndRatingsTitlefield.editable = true
+        }
+        
         if !(skill.skillRating == nil)
         {
             for stars in (cell?.starCustomView.subviews)!
@@ -603,7 +612,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters for Skill Title.",isCancelBtnNeeded:false,okCompletionHandler: nil)
                 fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.characters.count)
                 return false
-                
             }
         }
         return true
@@ -616,16 +624,18 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         {
         clearButton.enabled = true
         }
+        deleteExistingSkill.enabled = false
     }
     override func controlTextDidEndEditing(obj: NSNotification)
     {
+        deleteExistingSkill.enabled = false
         let textFieldObject = obj.object as! NSTextField
         if textFieldObject.superview is EHRatingsTableCellView
         {
-            if tableView.selectedRow != -1
+           if skillsAndRatingsTitleArray.count >= 4
             {
-            let skillSetObject =  skillsAndRatingsTitleArray[textFieldObject.tag]
-            skillSetObject.skillName = textFieldObject.stringValue
+               let skillSetObject =  skillsAndRatingsTitleArray[textFieldObject.tag]
+               skillSetObject.skillName = textFieldObject.stringValue
             }
         }
     }
@@ -635,7 +645,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     
     @IBAction func addSkills(sender: NSButton)
     {
-        if skillsAndRatingsTitleArray.count > 0 && cell?.skilsAndRatingsTitlefield.stringValue == "Enter Title"
+        deleteExistingSkill.enabled = false
+        if cell?.skilsAndRatingsTitlefield.stringValue == "Enter Title"
         {
            Utility.alertPopup("Enter Title", informativeText: "Please enter previous selected title",isCancelBtnNeeded:false, okCompletionHandler: nil)
         }
@@ -661,7 +672,6 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             newSkill.skillName = "Enter Title"
             self.skillsAndRatingsTitleArray.append(newSkill)
             self.tableView.reloadData()
-            self.tableView.selectRowIndexes(NSIndexSet(index:self.tableView.numberOfRows-1), byExtendingSelection: true)
             self.setSkillNameTextfieldAsFirstReponder()
              })
             }
@@ -669,6 +679,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     }
     func setSkillNameTextfieldAsFirstReponder()
     {
+    self.tableView.selectRowIndexes(NSIndexSet(index:self.tableView.numberOfRows-1), byExtendingSelection: true)
     let rowView = self.tableView.rowViewAtRow(self.tableView.selectedRow, makeIfNecessary:true)!
     self.cell!.skilsAndRatingsTitlefield.editable = true
     rowView.viewWithTag(-1)
