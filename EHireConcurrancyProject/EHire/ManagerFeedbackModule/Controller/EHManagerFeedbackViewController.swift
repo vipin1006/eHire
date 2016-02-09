@@ -144,6 +144,14 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         cell.titleName.target = self
         cell.titleName.delegate = self
         self.cell = cell
+        if cell.titleName.stringValue == "Communication" || cell.titleName.stringValue == "Organisation Stability" || cell.titleName.stringValue == "Leadership(if applicable)" || cell.titleName.stringValue == "Growth Potential"
+        {
+            cell.titleName.editable = false
+        }
+        else
+        {
+            cell.titleName.editable = true
+        }
         if !(skillSetObject.skillRating == nil)
         {
             for starButton in cell.selectStar.subviews
@@ -178,20 +186,23 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         return cell
     }
 
-    func tableViewSelectionIsChanging(notification: NSNotification) {
-    
+    func tableViewSelectionIsChanging(notification: NSNotification)
+    {
         if tableView.selectedRow != -1
         {
             let cellSelected = notification.object?.viewAtColumn(0, row: tableView.selectedRow, makeIfNecessary: true) as! EHManagerFeedBackCustomTableView
             selectedRowTitle = cellSelected.titleName.stringValue
-            if cellSelected.titleName.stringValue == "Communication" || cellSelected.titleName.stringValue == "Organisation Stability" || cellSelected.titleName.stringValue == "Leadership(if applicable)" || cellSelected.titleName.stringValue == "Growth Potential"{
+            if cellSelected.titleName.stringValue == "Communication" || cellSelected.titleName.stringValue == "Organisation Stability" || cellSelected.titleName.stringValue == "Leadership(if applicable)" || cellSelected.titleName.stringValue == "Growth Potential"
+            {
                 tableView.selectionHighlightStyle = .None
                 cellSelected.titleName.editable = false
                 deleteExistingBtn.enabled = false
-            }else{
-                 tableView.selectionHighlightStyle = .Regular
-                deleteExistingBtn.enabled = true
-                cellSelected.titleName.editable = true
+            }
+            else
+            {
+               tableView.selectionHighlightStyle = .Regular
+               deleteExistingBtn.enabled = true
+               cellSelected.titleName.editable = true
                 
             }
         }
@@ -253,14 +264,16 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         {
             clearBtn.enabled = false
         }
+        deleteExistingBtn.enabled = false
     }
     
     override func controlTextDidEndEditing(obj: NSNotification)
     {
+        deleteExistingBtn.enabled = false
         let textFieldObject = obj.object as! NSTextField
         if textFieldObject.superview is EHManagerFeedBackCustomTableView
         {
-            if self.tableView.selectedRow != -1
+            if skillsAndRatingsTitleArray.count >= 4
             {
             let skillSetObject =  skillsAndRatingsTitleArray[textFieldObject.tag]
             skillSetObject.skillName = textFieldObject.stringValue
