@@ -265,15 +265,15 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         
         let lhs:NSExpression = NSExpression.init(forKeyPath: "experience")
         
-        let greaterThanRhs:NSExpression = NSExpression.init(forConstantValue:NSNumber.init(float: floor(floatValue)))
+        let lowerLimit:NSExpression = NSExpression.init(forConstantValue:NSNumber.init(float: floor(floatValue)))
         let option:NSComparisonPredicateOptions = NSComparisonPredicateOptions.init(rawValue: 0)
         
-        let greaterThanPredicate:NSComparisonPredicate = NSComparisonPredicate.init(leftExpression:lhs , rightExpression:greaterThanRhs , modifier: NSComparisonPredicateModifier.DirectPredicateModifier, type: NSPredicateOperatorType.GreaterThanOrEqualToPredicateOperatorType, options: option)
+        let greaterThanPredicate:NSComparisonPredicate = NSComparisonPredicate.init(leftExpression:lhs , rightExpression:lowerLimit , modifier: NSComparisonPredicateModifier.DirectPredicateModifier, type: NSPredicateOperatorType.GreaterThanOrEqualToPredicateOperatorType, options: option)
         
         
-        let lessThanRhs:NSExpression = NSExpression.init(forConstantValue:NSNumber.init(float: floor(floatValue+1)))
+        let upperLimit:NSExpression = NSExpression.init(forConstantValue:NSNumber.init(float: floor(floatValue+1)))
         
-        let lessThanPredicate:NSComparisonPredicate = NSComparisonPredicate.init(leftExpression:lhs , rightExpression:lessThanRhs , modifier: NSComparisonPredicateModifier.DirectPredicateModifier, type: NSPredicateOperatorType.LessThanPredicateOperatorType, options: option)
+        let lessThanPredicate:NSComparisonPredicate = NSComparisonPredicate.init(leftExpression:lhs , rightExpression:upperLimit , modifier: NSComparisonPredicateModifier.DirectPredicateModifier, type: NSPredicateOperatorType.LessThanPredicateOperatorType, options: option)
         
         let predicate:NSPredicate = NSCompoundPredicate.init(andPredicateWithSubpredicates:[greaterThanPredicate, lessThanPredicate])
         
@@ -435,30 +435,6 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
                 candidate.phoneNumber = fieldEditor.string
                 candidateSearchField.enabled = false
         }
-
-
-//        case 4:
-//            if (!(textField.stringValue == ""))
-//            {
-//                 if !Utility.isAlphabetsOnly(textField.stringValue) 
-//                {
-//                    Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters for requisition.",isCancelBtnNeeded:false,okCompletionHandler: nil)
-//                    fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
-//                    textShouldEndEditing = false
-//                    
-//                }
-//                else
-//                {
-//                    candidate.requisition = fieldEditor.string
-//                    candidateSearchField.enabled = true
-//                }
-//            }
-//            else
-//            {
-//              candidate.requisition = fieldEditor.string
-//              candidateSearchField.enabled = false
-//            }
-        
         default: break
        
      }
@@ -486,5 +462,12 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
       removeButton.enabled = false
      }
       tableView.reloadData()
+    }
+    
+    override func controlTextDidBeginEditing(obj: NSNotification) {
+       
+        removeButton.enabled = false
+        feedbackButton.enabled = false
+       
     }
 }
