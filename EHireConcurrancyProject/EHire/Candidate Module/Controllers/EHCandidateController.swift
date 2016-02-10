@@ -360,7 +360,14 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         }
         else
         {
-          candidate.name = fieldEditor.string
+         if textField.tag == 1
+            {
+              candidate.name = fieldEditor.string
+            }
+            else
+             {
+              candidate.requisition = fieldEditor.string
+             }
           candidateSearchField.enabled = false
         }
        
