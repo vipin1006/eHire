@@ -273,7 +273,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         let textFieldObject = obj.object as! NSTextField
         if textFieldObject.superview is EHManagerFeedBackCustomTableView
         {
-            if skillsAndRatingsTitleArray.count >= 4
+            if skillsAndRatingsTitleArray.count > 4
             {
             let skillSetObject =  skillsAndRatingsTitleArray[textFieldObject.tag]
             skillSetObject.skillName = textFieldObject.stringValue

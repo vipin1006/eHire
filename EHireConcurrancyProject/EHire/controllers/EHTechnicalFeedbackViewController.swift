@@ -632,14 +632,14 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         let textFieldObject = obj.object as! NSTextField
         if textFieldObject.superview is EHRatingsTableCellView
         {
-           if skillsAndRatingsTitleArray.count >= 4
+           if skillsAndRatingsTitleArray.count > 4
             {
                let skillSetObject =  skillsAndRatingsTitleArray[textFieldObject.tag]
                skillSetObject.skillName = textFieldObject.stringValue
             }
         }
     }
-    
+   
     //MARK: Button Actions
     //To add new skills inside TableView
     
@@ -714,8 +714,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }
     }
     
-    //To remove the existing skills inside TableView
-
+    //To remove the existing skills inside TableViewasds
     @IBAction func removeSkills(sender: NSButton)
     {
         if tableView.selectedRow != -1
