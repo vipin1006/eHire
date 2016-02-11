@@ -341,7 +341,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         {
          if !Utility.isAlphabetsOnly(textField.stringValue)
          {
-          Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters for candidate name.",isCancelBtnNeeded:false,okCompletionHandler: nil)
+          Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters for candidate.",isCancelBtnNeeded:false,okCompletionHandler: nil)
           fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.characters.count)
           textShouldEndEditing = false
             
@@ -374,6 +374,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         case 2:
         if (!(textField.stringValue == ""))
         {
+        let experience = textField.doubleValue
           if !EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
           {
             Utility.alertPopup("Error", informativeText: "Please enter a numerical value for experience.",isCancelBtnNeeded:false,okCompletionHandler:nil)
@@ -381,7 +382,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             textShouldEndEditing = false
 
           }
-          else if (fieldEditor.string?.characters.count <= 4)
+          else if experience <= 50
           {
             let numberFormatter = NSNumberFormatter()
             let number:NSNumber? = numberFormatter.numberFromString(fieldEditor.string!)
@@ -392,6 +393,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             }
               candidateSearchField.enabled = false
           }
+            
           else
           {
             Utility.alertPopup("Error", informativeText: "Please enter a appropriate  experience.",isCancelBtnNeeded:false,okCompletionHandler: nil)
@@ -408,33 +410,31 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
        
 
        case 3:
-            if (!(textField.stringValue == ""))
-            {
-                if !EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
-                {
-                    Utility.alertPopup("Error", informativeText: "Please enter a 10 digit mobile phone number. ",isCancelBtnNeeded:false,okCompletionHandler: nil)
-                    fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
-                    textShouldEndEditing = false
-
-                }
-                else if ((fieldEditor.string?.characters.count >= 10) && (fieldEditor.string?.characters.count <= 12))
-                {
-                    candidate.phoneNumber = fieldEditor.string
-                    self.candidateSearchField.enabled = true
-                }
-                else
-                {
-                    Utility.alertPopup("Error", informativeText: "Please enter a 10 digit mobile phone number.",isCancelBtnNeeded:false,okCompletionHandler: nil)
-                    fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
-                    textShouldEndEditing = false
-                    
-                }
-            }
-            else
-            {
-                candidate.phoneNumber = fieldEditor.string
-                candidateSearchField.enabled = false
+       if (!(textField.stringValue == ""))
+       {
+        if !EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
+        {
+          Utility.alertPopup("Error", informativeText: "Please enter a appropriate mobile number. ",isCancelBtnNeeded:false,okCompletionHandler: nil)
+          fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+          textShouldEndEditing = false
         }
+        else if ((fieldEditor.string?.characters.count >= 10) && (fieldEditor.string?.characters.count <= 12))
+        {
+          candidate.phoneNumber = fieldEditor.string
+          self.candidateSearchField.enabled = true
+        }
+        else
+        {
+          Utility.alertPopup("Error", informativeText: "Please enter a 11 digit mobile phone number.",isCancelBtnNeeded:false,okCompletionHandler: nil)
+          fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+          textShouldEndEditing = false
+        }
+       }
+       else
+       {
+         candidate.phoneNumber = fieldEditor.string
+         candidateSearchField.enabled = false
+       }
         default: break
        
      }
@@ -467,7 +467,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     override func controlTextDidBeginEditing(obj: NSNotification) {
        
         removeButton.enabled = false
-        feedbackButton.enabled = false
+        //feedbackButton.enabled = false
        
     }
 }
