@@ -76,10 +76,10 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         
         self.view.wantsLayer = true
         
-        self.view.layer?.backgroundColor = NSColor(calibratedRed:202/255.0, green:210/255.0, blue:222/255.0, alpha: 1.0).CGColor
-
-      
-    clearBtn.enabled = false
+       // self.view.layer?.backgroundColor = NSColor(calibratedRed:202/255.0, green:210/255.0, blue:222/255.0, alpha: 1.0).CGColor
+        self.view.layer?.backgroundColor = NSColor(red: 222, green: 222, blue: 222, alpha: 0.5).CGColor
+        
+        clearBtn.enabled = false
         self.performSelector(Selector("test"), withObject: nil, afterDelay: 0.10)
         textFieldCandidateName.stringValue = (selectedCandidate?.name)!
         textFieldCandidateRequisition.stringValue = (selectedCandidate?.requisition)!
@@ -189,6 +189,10 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             view.target = self
             view.action = "selectedStarCount:"
             }
+        if tableView.numberOfRows > 7
+        {
+            tableView.scrollToEndOfDocument("")
+        }
         return cell
     }
 
@@ -236,15 +240,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     //MARK:- Delegate Method
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
     {
-        if (!(cell?.titleName.stringValue == ""))
-        {
-            if !Utility.isAlphabetsOnly(cell!.titleName.stringValue)
-            {
-                Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters for Skill Title.",isCancelBtnNeeded:false,okCompletionHandler: nil)
-                fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.characters.count)
-                return false
-            }
-        }
          return true
     }
     

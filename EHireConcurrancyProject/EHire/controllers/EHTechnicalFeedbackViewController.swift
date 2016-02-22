@@ -96,11 +96,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-      
-        
-        
         clearButton.enabled = false
+        
         self.performSelector(Selector("test"), withObject: nil, afterDelay: 0.01)
         candidateNameField.stringValue = (selectedCandidate?.name)!
         requisitionNameField.stringValue = (selectedCandidate?.requisition)!
@@ -109,12 +106,11 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         dateFormatter.dateFormat = "dd MMM yyyy"
         let dateInStringFormat = dateFormatter.stringFromDate((selectedCandidate?.interviewDate)!)
         dateOfInterviewField.stringValue = dateInStringFormat
-        cell?.skilsAndRatingsTitlefield.delegate = self
-        technicalFeedbackMainView.wantsLayer = true
-        //technicalFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
         
-        technicalFeedbackMainView.layer?.backgroundColor = NSColor(calibratedRed:202/255.0, green:210/255.0, blue:222/255.0, alpha: 1.0).CGColor
-
+        cell?.skilsAndRatingsTitlefield.delegate = self
+        
+        technicalFeedbackMainView.wantsLayer = true
+        technicalFeedbackMainView.layer?.backgroundColor = NSColor(red: 222, green: 222, blue: 222, alpha: 0.5).CGColor
         
         for rating in overallAssessmentOnTechnologyStarView.subviews
         {
@@ -366,6 +362,10 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                     cellView.feedback.stringValue = ""
                 }
             }
+            if tableView.numberOfRows > 7
+            {
+                tableView.scrollToEndOfDocument("")
+            }
         }
         
         for ratingsView in cellView.starCustomView.subviews
@@ -613,18 +613,9 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
     {
-        if (!(cell?.skilsAndRatingsTitlefield.stringValue == ""))
-        {
-            if !Utility.isAlphabetsOnly(cell!.skilsAndRatingsTitlefield.stringValue)
-            {
-                Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters for Skill Title.",isCancelBtnNeeded:false,okCompletionHandler: nil)
-                fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.characters.count)
-                return false
-            }
-        }
         return true
-
     }
+    
     override func controlTextDidBeginEditing(obj: NSNotification)
     {
         obj.object as! NSTextField
