@@ -58,6 +58,13 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         super.viewDidLoad()
         technologyDataLayer = EHTechnologyDataLayer()
         technologyDataLayer!.managedObjectContext = self.managedObjectContext!
+        self.sourceList.wantsLayer = true
+        
+        self.sourceList.layer?.backgroundColor = NSColor.clearColor().CGColor
+        self.view.wantsLayer = true
+        
+        self.view.layer?.backgroundColor = NSColor(calibratedRed:247/255.0, green: 246/255.0, blue: 247/255.0, alpha: 1.0).CGColor
+        
         technologyDataLayer?.getTechnologyListWith(
         { (technologyList,error) -> Void in
             if CoreDataError.Success == error
@@ -155,6 +162,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     //MARK:- Outline view delegate method
      func selectionShouldChangeInOutlineView(outlineView: NSOutlineView) -> Bool
     {
+        
+     
+        
         if cellTechnology?.textFieldTechnology.editable == true{
             cellTechnology?.textFieldTechnology.becomeFirstResponder()
             Utility.alertPopup("Error", informativeText: "Enter an appropriate Technology name",isCancelBtnNeeded:false,okCompletionHandler: {() -> Void in
@@ -167,6 +177,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         }
         return true
     }
+    
+    
+
     
     func outlineViewSelectionDidChange(notification: NSNotification)
     {
@@ -206,12 +219,14 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         switch item{
             
         case  _ as Technology:
+            
+            
             if isCandidatesViewLoaded
             {
                 candidateController?.view.removeFromSuperview()
-                NSApp.windows.first?.title = "Window"
+                NSApp.windows.first?.title = "eHire"
                  isCandidatesViewLoaded = false
-                welcomeImage.hidden = false
+               //welcomeImage.hidden = false
             }
         case  _ as Date:
             
@@ -227,7 +242,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 createConstraintsForController(candidateView, subView: (candidateController?.view)!, leading: 0.0, trailing: 0.0, top: 0.0, bottom: 0.0)
                 
                 isCandidatesViewLoaded = true
-                welcomeImage.hidden = true
+               // welcomeImage.hidden = true
 
             }
             //added
@@ -301,6 +316,8 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     {
         return 35
     }
+    
+    
     
     
     //MARK: - Custom Protocol methods

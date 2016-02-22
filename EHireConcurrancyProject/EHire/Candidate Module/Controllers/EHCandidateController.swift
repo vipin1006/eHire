@@ -133,7 +133,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     //MARK: This method returns the height of the tableview row
     func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat
     {
-        return 35
+        return 22
     }
   
     func tableViewSelectionDidChange(notification: NSNotification)

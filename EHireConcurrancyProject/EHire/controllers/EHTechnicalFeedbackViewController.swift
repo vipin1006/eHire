@@ -96,6 +96,10 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+      
+        
+        
         clearButton.enabled = false
         self.performSelector(Selector("test"), withObject: nil, afterDelay: 0.01)
         candidateNameField.stringValue = (selectedCandidate?.name)!
@@ -107,7 +111,11 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         dateOfInterviewField.stringValue = dateInStringFormat
         cell?.skilsAndRatingsTitlefield.delegate = self
         technicalFeedbackMainView.wantsLayer = true
-        technicalFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
+        //technicalFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
+        
+        technicalFeedbackMainView.layer?.backgroundColor = NSColor(calibratedRed:202/255.0, green:210/255.0, blue:222/255.0, alpha: 1.0).CGColor
+
+        
         for rating in overallAssessmentOnTechnologyStarView.subviews
         {
             let view = rating as! NSButton

@@ -73,7 +73,13 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        clearBtn.enabled = false
+        
+        self.view.wantsLayer = true
+        
+        self.view.layer?.backgroundColor = NSColor(calibratedRed:202/255.0, green:210/255.0, blue:222/255.0, alpha: 1.0).CGColor
+
+      
+    clearBtn.enabled = false
         self.performSelector(Selector("test"), withObject: nil, afterDelay: 0.10)
         textFieldCandidateName.stringValue = (selectedCandidate?.name)!
         textFieldCandidateRequisition.stringValue = (selectedCandidate?.requisition)!
@@ -82,7 +88,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         let dateInStringFormat = dateFormatter.stringFromDate((selectedCandidate?.interviewDate)!)
         dateOfInterviewField.stringValue = dateInStringFormat
         managerFeedbackMainView.wantsLayer = true
-        managerFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
+//        managerFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
         setDefaultCgDeviationAndInterviewMode()
         selectedSegment = 0
         print("name = \(managerialRoundFeedback.designation)")
