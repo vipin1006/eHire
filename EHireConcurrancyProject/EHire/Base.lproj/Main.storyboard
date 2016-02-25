@@ -708,13 +708,26 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="5ml-91-1WV">
                                 <rect key="frame" x="244" y="0.0" width="646" height="835"/>
                             </customView>
-                            <scrollView autohidesScrollers="YES" horizontalLineScroll="37" horizontalPageScroll="10" verticalLineScroll="37" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhg-wP-rCj">
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Yji-KJ-iak">
+                                <rect key="frame" x="113" y="22" width="80" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="OGJ-W5-yQH"/>
+                                </constraints>
+                                <buttonCell key="cell" type="smallSquare" title="Add Date" bezelStyle="smallSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5q0-bf-uUd">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="addDateAction:" target="XfG-lQ-9wD" id="EFy-YO-R0h"/>
+                                </connections>
+                            </button>
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="30" horizontalPageScroll="10" verticalLineScroll="30" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhg-wP-rCj">
                                 <rect key="frame" x="3" y="60" width="233" height="775"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="YXc-TJ-COZ">
                                     <rect key="frame" x="1" y="0.0" width="231" height="774"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="35" rowSizeStyle="automatic" headerView="sq1-Ea-64Y" viewBased="YES" indentationPerLevel="16" outlineTableColumn="Sgx-Fk-dFC" id="Jsz-AD-4om">
+                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="28" rowSizeStyle="automatic" headerView="sq1-Ea-64Y" viewBased="YES" indentationPerLevel="16" outlineTableColumn="Sgx-Fk-dFC" id="Jsz-AD-4om">
                                             <rect key="frame" x="0.0" y="0.0" width="231" height="751"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -760,11 +773,11 @@
                                                             </connections>
                                                         </tableCellView>
                                                         <tableCellView identifier="child" id="YEb-im-Ksw" customClass="EHInterviewDateCustomCell" customModule="EHire" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="31" width="228" height="35"/>
+                                                            <rect key="frame" x="1" y="31" width="228" height="22"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZzN-oS-NS7">
-                                                                    <rect key="frame" x="10" y="10" width="174" height="16"/>
+                                                                    <rect key="frame" x="10" y="5" width="174" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="OaO-7S-sJt">
                                                                         <font key="font" metaFont="cellTitle"/>
                                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -773,7 +786,7 @@
                                                                 </textField>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="ZzN-oS-NS7" firstAttribute="centerY" secondItem="YEb-im-Ksw" secondAttribute="centerY" id="DP8-Ru-cqb"/>
+                                                                <constraint firstItem="ZzN-oS-NS7" firstAttribute="centerY" secondItem="YEb-im-Ksw" secondAttribute="centerY" constant="-2" id="DP8-Ru-cqb"/>
                                                                 <constraint firstAttribute="trailing" secondItem="ZzN-oS-NS7" secondAttribute="trailing" constant="46" id="oca-tM-2PA"/>
                                                                 <constraint firstItem="ZzN-oS-NS7" firstAttribute="leading" secondItem="YEb-im-Ksw" secondAttribute="leading" constant="12" id="pbz-pY-j4V"/>
                                                             </constraints>
@@ -809,19 +822,6 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Yji-KJ-iak">
-                                <rect key="frame" x="113" y="22" width="80" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="OGJ-W5-yQH"/>
-                                </constraints>
-                                <buttonCell key="cell" type="smallSquare" title="Add Date" bezelStyle="smallSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5q0-bf-uUd">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="addDateAction:" target="XfG-lQ-9wD" id="EFy-YO-R0h"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="eBm-x4-76f" secondAttribute="bottom" constant="23" id="1lA-kX-LH1"/>

@@ -314,7 +314,12 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     //This delegate returns the height of a row for the outlineView.
     func outlineView(outlineView: NSOutlineView, heightOfRowByItem item: AnyObject) -> CGFloat
     {
-        return 35
+        if item is Technology
+        {
+          return 35
+        }
+        
+        return 20
     }
     
     
