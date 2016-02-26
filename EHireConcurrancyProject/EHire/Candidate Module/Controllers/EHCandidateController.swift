@@ -45,6 +45,10 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
       addCandidateButton.toolTip = "Add Candidate"
         candidateAccessLayer = EHCandidateAccessLayer()
         candidateAccessLayer?.managedObjectContext = self.managedObjectContext
+        candidateSearchField.appearance = NSAppearance(named:NSAppearanceNameVibrantLight)
+        
+        
+        
         
     }
     
@@ -54,6 +58,10 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
      {
        tableView.selectRowIndexes(NSIndexSet(index: tablePreserved), byExtendingSelection: false)
      }
+        
+        
+        
+
     }
     
     //MARK: This data source method returns tableview rows
