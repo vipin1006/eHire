@@ -204,15 +204,30 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             selectedRowTitle = cellSelected.titleName.stringValue
             if cellSelected.titleName.stringValue == "Communication" || cellSelected.titleName.stringValue == "Organisation Stability" || cellSelected.titleName.stringValue == "Leadership(if applicable)" || cellSelected.titleName.stringValue == "Growth Potential"
             {
+                
                 tableView.selectionHighlightStyle = .None
                 cellSelected.titleName.editable = false
                 deleteExistingBtn.enabled = false
+                
             }
             else
             {
+               if managerialRoundFeedback.isSubmitted == false
+               {
                tableView.selectionHighlightStyle = .Regular
                deleteExistingBtn.enabled = true
                cellSelected.titleName.editable = true
+                }
+                else if managerialRoundFeedback.isSubmitted == true
+               {
+                deleteExistingBtn.enabled = false
+               }
+               else
+               {
+                tableView.selectionHighlightStyle = .Regular
+                deleteExistingBtn.enabled = true
+                cellSelected.titleName.editable = true
+                }
                 
             }
         }
@@ -796,6 +811,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         {
             return
         }
+        
         managerialRoundFeedback.commentsOnCandidate = NSAttributedString(string: textViewCommentsForOverAllCandidateAssessment.string!)
         managerialRoundFeedback.commentsOnTechnology = NSAttributedString(string: textViewCommentsForOverAllTechnologyAssessment.string!)
         managerialRoundFeedback.commitments = NSAttributedString(string: textViewCommitments.string!)
@@ -848,6 +864,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     func updateUIElements(feedback: ManagerFeedBack)
     {
         managerFeedbackObject = feedback
+        
         if feedback.commentsOnCandidate != nil
         {
             textViewCommentsForOverAllCandidateAssessment.string = feedback.commentsOnCandidate!
@@ -925,6 +942,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     }
     
     func sortArray (allObj : [AnyObject],index:Int) ->Bool{
+        self.deleteExistingBtn.enabled = false
         isFeedBackSaved = true
         selectedSegment = index
         let arra = NSArray(array: allObj)
