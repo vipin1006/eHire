@@ -9,14 +9,26 @@
 import Cocoa
 
 class EHMainWindowController: NSWindowController {
+    
+    var selectedCandidatesViewController:EHShowSelectedCandidatesViewController?
 
     override func windowDidLoad() {
         super.windowDidLoad()
        
     }
-    @IBAction func showSelectedCandidates(sender: AnyObject) {
+    @IBAction func showSelectedCandidates(sender:NSToolbarItem) {
         
-        print("Selected Candidates")
+        
+        
+        if selectedCandidatesViewController != nil
+        {
+            return
+        }
+        
+       selectedCandidatesViewController = self.storyboard?.instantiateControllerWithIdentifier("toSelectedCandidates") as? EHShowSelectedCandidatesViewController
+        
+        self.contentViewController = selectedCandidatesViewController
+      
     }
 
 }

@@ -33,7 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func iniatializeWindowController()
     {
         self.storyBoard = NSStoryboard.init(name: "Main", bundle: NSBundle.mainBundle())
-        self.mainWindowController = self.storyBoard?.instantiateControllerWithIdentifier("MainWindowController") as? NSWindowController
+        self.mainWindowController = self.storyBoard?.instantiateControllerWithIdentifier("MainWindowController") as? EHMainWindowController
       
         self.mainWindowController?.showWindow(nil)
         self.mainWindowController?.window?.makeKeyAndOrderFront(self)

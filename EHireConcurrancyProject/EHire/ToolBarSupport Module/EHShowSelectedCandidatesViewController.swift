@@ -9,10 +9,16 @@
 import Cocoa
 
 class EHShowSelectedCandidatesViewController: NSViewController {
+    
+    @IBOutlet var technologyPopUP: NSPopUpButton!
+    var tech:EHTechnologyViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
+        self.view.wantsLayer = true
+        self.view.layer?.backgroundColor = NSColor(red: 222, green: 222, blue: 222, alpha: 0.5).CGColor
     }
+    
+    
     
 }
