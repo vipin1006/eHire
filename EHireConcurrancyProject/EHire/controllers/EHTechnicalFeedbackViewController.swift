@@ -408,9 +408,22 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             }
             else
             {
-                tableView.selectionHighlightStyle = .Regular
-                deleteExistingSkill.enabled = true
-                cellSelected.skilsAndRatingsTitlefield.editable = true
+                if isFeedBackSaved == false
+                {
+                    tableView.selectionHighlightStyle = .Regular
+                    deleteExistingSkill.enabled = true
+                    cellSelected.skilsAndRatingsTitlefield.editable = true
+                }
+                else if isFeedBackSaved == true
+                {
+                    deleteExistingSkill.enabled = false
+                }
+                else
+                {
+                    tableView.selectionHighlightStyle = .Regular
+                    deleteExistingSkill.enabled = true
+                    cellSelected.skilsAndRatingsTitlefield.editable = true
+                }
             }
         }
     }
