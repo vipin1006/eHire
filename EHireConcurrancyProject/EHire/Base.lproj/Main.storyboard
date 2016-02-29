@@ -661,6 +661,15 @@
                         <rect key="contentRect" x="419" y="50" width="900" height="900"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <value key="minSize" type="size" width="800" height="500"/>
+                        <toolbar key="toolbar" implicitIdentifier="BC79BD68-5427-4863-97B8-A7CA13BA6145" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="FzY-sB-DUt">
+                            <allowedToolbarItems>
+                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="AVH-aE-BeC"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="SDt-Cz-gTE"/>
+                            </allowedToolbarItems>
+                            <defaultToolbarItems>
+                                <toolbarItem reference="SDt-Cz-gTE"/>
+                            </defaultToolbarItems>
+                        </toolbar>
                     </window>
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1801,7 +1810,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="BXy-AF-l2m">
-                                            <rect key="frame" x="399" y="0.0" width="5" height="101"/>
+                                            <rect key="frame" x="399" y="0.0" width="4" height="101"/>
                                             <animations/>
                                             <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2981,7 +2990,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <box horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="9aR-FT-Txf">
-                                            <rect key="frame" x="399" y="-10" width="5" height="111"/>
+                                            <rect key="frame" x="399" y="-10" width="4" height="111"/>
                                             <animations/>
                                             <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
