@@ -90,6 +90,8 @@
 		806C9CA61C2433FF0039FCF2 /* EHTechnicalFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806C9CA51C2433FF0039FCF2 /* EHTechnicalFeedbackViewController.swift */; };
 		8070F59A1C24194C00FCEA98 /* selectStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8070F5981C24194C00FCEA98 /* selectStar.png */; };
 		8070F59B1C24194C00FCEA98 /* deselectStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8070F5991C24194C00FCEA98 /* deselectStar.png */; };
+		807FA9B61C8439F5009D7F14 /* EHMainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807FA9B41C8439F5009D7F14 /* EHMainWindowController.swift */; };
+		807FA9B71C8439F5009D7F14 /* EHShowSelectedCandidatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807FA9B51C8439F5009D7F14 /* EHShowSelectedCandidatesViewController.swift */; };
 		944783131C2A9A1C00AE33FA /* EHTechnicalFeedbackDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944783121C2A9A1C00AE33FA /* EHTechnicalFeedbackDataAccess.swift */; };
 		9491D7D01C32D22C0088D61A /* EHTechnicalFeedbackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9491D7CF1C32D22C0088D61A /* EHTechnicalFeedbackModel.swift */; };
 		9C4B97FF1C324EE20033412F /* EHCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B97FE1C324EE20033412F /* EHCoreDataStack.swift */; };
@@ -208,6 +210,8 @@
 		806C9CA51C2433FF0039FCF2 /* EHTechnicalFeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHTechnicalFeedbackViewController.swift; path = EHire/controllers/EHTechnicalFeedbackViewController.swift; sourceTree = SOURCE_ROOT; };
 		8070F5981C24194C00FCEA98 /* selectStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selectStar.png; sourceTree = "<group>"; };
 		8070F5991C24194C00FCEA98 /* deselectStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deselectStar.png; sourceTree = "<group>"; };
+		807FA9B41C8439F5009D7F14 /* EHMainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHMainWindowController.swift; sourceTree = "<group>"; };
+		807FA9B51C8439F5009D7F14 /* EHShowSelectedCandidatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHShowSelectedCandidatesViewController.swift; sourceTree = "<group>"; };
 		944783121C2A9A1C00AE33FA /* EHTechnicalFeedbackDataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnicalFeedbackDataAccess.swift; sourceTree = SOURCE_ROOT; };
 		9491D7CF1C32D22C0088D61A /* EHTechnicalFeedbackModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnicalFeedbackModel.swift; sourceTree = SOURCE_ROOT; };
 		9C4B97FE1C324EE20033412F /* EHCoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCoreDataStack.swift; sourceTree = "<group>"; };
@@ -637,6 +641,7 @@
 		804288031C17EBC0003033B4 /* EHire */ = {
 			isa = PBXGroup;
 			children = (
+				807FA9B31C8439F5009D7F14 /* ToolBarSupport Module */,
 				9C527DEE1C3A42E0001B62B2 /* Utilities */,
 				8042880D1C17EBC0003033B4 /* Main.storyboard */,
 				804288041C17EBC0003033B4 /* AppDelegate.swift */,
@@ -701,6 +706,15 @@
 			);
 			name = CustomViewCells;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		807FA9B31C8439F5009D7F14 /* ToolBarSupport Module */ = {
+			isa = PBXGroup;
+			children = (
+				807FA9B41C8439F5009D7F14 /* EHMainWindowController.swift */,
+				807FA9B51C8439F5009D7F14 /* EHShowSelectedCandidatesViewController.swift */,
+			);
+			path = "ToolBarSupport Module";
 			sourceTree = "<group>";
 		};
 		945D4D321C43D40C0012FDB7 /* Model */ = {
@@ -856,6 +870,7 @@
 				8029FFE21C2A81970041C74C /* CandidateBasicProfessionalInfo+CoreDataProperties.swift in Sources */,
 				4F7BCAC91C325CBD00D60546 /* EHCandidateDetails.swift in Sources */,
 				41A97FF91C195E500016CAB4 /* EHTechnologyCustomCell.swift in Sources */,
+				807FA9B61C8439F5009D7F14 /* EHMainWindowController.swift in Sources */,
 				9CB11FC51C328C1100939D42 /* EHManagerFeedbackDataAccessLayer.swift in Sources */,
 				4F2536ED1C2179EC000E8C95 /* EHTechnologyViewController.swift in Sources */,
 				8029FFED1C2A81970041C74C /* Date.swift in Sources */,
@@ -875,6 +890,7 @@
 				9CFE9EA51C465EFE008C6C15 /* CoreDataStack.swift in Sources */,
 				806C9CA31C2433D80039FCF2 /* EHManagerFeedBackCustomTableView.swift in Sources */,
 				8029FFE91C2A81970041C74C /* CandidatePreviousEmploymentInfo.swift in Sources */,
+				807FA9B71C8439F5009D7F14 /* EHShowSelectedCandidatesViewController.swift in Sources */,
 				9CFE9EA31C44D519008C6C15 /* ManagerFeedBack.swift in Sources */,
 				8029FFEB1C2A81970041C74C /* CandidateQualification.swift in Sources */,
 				8029FFF21C2A81970041C74C /* SkillSet.swift in Sources */,
