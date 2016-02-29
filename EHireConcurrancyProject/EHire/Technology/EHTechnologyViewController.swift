@@ -983,9 +983,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     }
 
     
-   
-   
-
 }
 
 //Reference Copy
