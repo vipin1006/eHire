@@ -1039,7 +1039,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="31" rowSizeStyle="automatic" viewBased="YES" id="8Yz-sC-NTj">
-                                            <rect key="frame" x="0.0" y="0.0" width="898" height="746"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="898" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -1072,19 +1072,27 @@
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Eh-lZ-iXY">
-                                                                    <rect key="frame" x="183" y="7" width="176" height="17"/>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Ft-15-g38">
+                                                                    <rect key="frame" x="364" y="7" width="173" height="17"/>
                                                                     <animations/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="62t-KF-i00">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="Jmq-En-K03">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Ft-15-g38">
-                                                                    <rect key="frame" x="364" y="7" width="173" height="17"/>
+                                                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yYe-Z3-Hck">
+                                                                    <rect key="frame" x="539" y="3" width="30" height="25"/>
                                                                     <animations/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="Jmq-En-K03">
+                                                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSInfo" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="ylw-pE-wcu">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                    </buttonCell>
+                                                                </button>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Eh-lZ-iXY">
+                                                                    <rect key="frame" x="184" y="7" width="176" height="17"/>
+                                                                    <animations/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="62t-KF-i00">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -2156,7 +2164,7 @@
                                 <font key="titleFont" metaFont="system"/>
                             </box>
                             <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="J7x-8R-hqn">
-                                <rect key="frame" x="17" y="327" width="782" height="5"/>
+                                <rect key="frame" x="17" y="327" width="782" height="4"/>
                                 <animations/>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2233,7 +2241,7 @@
                                 <animations/>
                             </customView>
                             <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="snN-4u-Yyi">
-                                <rect key="frame" x="17" y="503" width="782" height="5"/>
+                                <rect key="frame" x="17" y="503" width="782" height="4"/>
                                 <animations/>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -5054,6 +5062,7 @@
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSGoLeftTemplate" width="9" height="12"/>
+        <image name="NSInfo" width="32" height="32"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
         <image name="NSUserGroup" width="32" height="32"/>
         <image name="Welcome" width="512" height="400"/>
