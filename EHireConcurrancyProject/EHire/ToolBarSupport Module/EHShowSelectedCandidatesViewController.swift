@@ -14,6 +14,7 @@ class EHShowSelectedCandidatesViewController: NSViewController,NSTableViewDataSo
     
     @IBOutlet var candidatesTableView: NSTableView!
     
+    @IBOutlet var techDates: NSPopUpButton!
     
     var techVC:EHTechnologyViewController?
     
@@ -27,7 +28,7 @@ class EHShowSelectedCandidatesViewController: NSViewController,NSTableViewDataSo
     
     var shortlistedCandidsates = NSMutableArray()
     
-    @IBOutlet var techDates: NSPopUpButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

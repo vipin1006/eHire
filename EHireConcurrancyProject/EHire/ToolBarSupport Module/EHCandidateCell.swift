@@ -21,7 +21,7 @@ class EHCandidateCell: NSTableCellView {
         override func drawRect(dirtyRect: NSRect) {
             super.drawRect(dirtyRect)
             
-            // Drawing code here.
+            ///Drawing code here.
         }
         
     }
