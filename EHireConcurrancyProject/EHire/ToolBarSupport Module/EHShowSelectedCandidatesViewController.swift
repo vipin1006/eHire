@@ -295,19 +295,36 @@ class EHShowSelectedCandidatesViewController: NSViewController,NSTableViewDataSo
     
     func showCandidateInfo(sender:NSButton)
     {
+        if self.candidatesTableView.selectedRow != -1
+        {
+            self.candidatesTableView.deselectRow(self.candidatesTableView.selectedRow)
+
+        }
+        
+        self.candidatesTableView.selectRowIndexes(NSIndexSet(index:sender.tag), byExtendingSelection:true)
+        
+       
+        
+        
+        
         if showCandidateDetails == nil
         {
             showCandidateDetails = self.storyboard?.instantiateControllerWithIdentifier("ShowDetailsViewController") as? ShowDetailsViewController
-            
+            showCandidateDetails!.candidate = shortlistedCandidsates[sender.tag] as? Candidate
             
             self.presentViewControllerAsSheet(showCandidateDetails!)
             
         }
         else
         {
+            showCandidateDetails!.candidate = shortlistedCandidsates[sender.tag] as? Candidate
             self.presentViewControllerAsSheet(showCandidateDetails!)
  
         }
+        
+        
+        
+        
         
     }
     
