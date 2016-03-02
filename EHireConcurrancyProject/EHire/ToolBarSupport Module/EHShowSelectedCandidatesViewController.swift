@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class EHShowSelectedCandidatesViewController: NSViewController,NSTableViewDataSource,NSTableViewDelegate {
+class EHShowSelectedCandidatesViewController: NSViewController,NSTableViewDataSource,NSTableViewDelegate, NSSharingServiceDelegate {
     
     @IBOutlet var technologyPopUP: NSPopUpButton!
     
@@ -27,6 +27,8 @@ class EHShowSelectedCandidatesViewController: NSViewController,NSTableViewDataSo
     var  technologies:[Technology]?
     
     var shortlistedCandidsates = NSMutableArray()
+    
+    var  showCandidateDetails:ShowDetailsViewController?
     
     
     
@@ -244,6 +246,13 @@ class EHShowSelectedCandidatesViewController: NSViewController,NSTableViewDataSo
             
             cell.candidateMail.stringValue = basicInfo.officialEmailId!
             
+            cell.sendMail.action = Selector("sendMailToCandidate:")
+            
+            cell.sendMail.tag = row
+            
+            cell.showInfo.action = Selector("showCandidateInfo:")
+            
+            cell.showInfo.tag = row
             
         }
         
@@ -263,27 +272,46 @@ class EHShowSelectedCandidatesViewController: NSViewController,NSTableViewDataSo
         
     }
     
+    func sendMailToCandidate(sender:NSButton)
+    {
+        
+         let mailToCandidate = shortlistedCandidsates[sender.tag] as! Candidate
+        
+         let basicInfo = mailToCandidate.professionalInfo as! CandidateBasicProfessionalInfo
+        
+         let mailService = NSSharingService(named: NSSharingServiceNameComposeEmail)
+        
+         let body = "Hello \(basicInfo.officialEmailId!)"
+        
+         mailService?.subject = "Hello!"
+    
+         mailService?.recipients = [basicInfo.officialEmailId!]
+        
+         mailService?.performWithItems([body])
+        
+        
+    }
+    
+    
+    func showCandidateInfo(sender:NSButton)
+    {
+        if showCandidateDetails == nil
+        {
+            showCandidateDetails = self.storyboard?.instantiateControllerWithIdentifier("ShowDetailsViewController") as? ShowDetailsViewController
+            
+            
+            self.presentViewControllerAsSheet(showCandidateDetails!)
+            
+        }
+        else
+        {
+            self.presentViewControllerAsSheet(showCandidateDetails!)
+ 
+        }
+        
+    }
+    
+    
     
 }
 
-//Future reference
-
-//        let item = self.techVC?.sourceList.itemAtRow((self.techVC?.sourceList.selectedRow)!)
-//
-//        if item is Technology
-//        {
-//            print("Technology")
-//        }
-//    else
-//        {
-//            let selectedDate = self.techVC?.sourceList.parentForItem(item) as! Technology
-//
-//            print(selectedDate.technologyName)
-//
-//            let d = item as! Date
-//
-//            print(d.interviewDate)
-//
-//
-//       }
-//

@@ -1098,12 +1098,22 @@
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
+                                                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JZM-E3-flY">
+                                                                    <rect key="frame" x="619" y="3" width="30" height="25"/>
+                                                                    <animations/>
+                                                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="email3" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="2vC-bZ-ao4">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                    </buttonCell>
+                                                                </button>
                                                             </subviews>
                                                             <animations/>
                                                             <connections>
                                                                 <outlet property="candidateMail" destination="6Ft-15-g38" id="azX-aC-hgm"/>
                                                                 <outlet property="candidateName" destination="FbN-65-HRD" id="ntG-hP-lZF"/>
                                                                 <outlet property="candidatePhone" destination="4Eh-lZ-iXY" id="aB1-pq-Sz3"/>
+                                                                <outlet property="sendMail" destination="JZM-E3-flY" id="4In-ZR-O2e"/>
+                                                                <outlet property="showInfo" destination="yYe-Z3-Hck" id="OWD-76-bje"/>
                                                                 <outlet property="textField" destination="FbN-65-HRD" id="FLg-ln-ALS"/>
                                                             </connections>
                                                         </tableCellView>
@@ -1160,6 +1170,36 @@
                 <customObject id="diR-f0-pfI" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-490" y="-982.5"/>
+        </scene>
+        <!--Show Details View Controller-->
+        <scene sceneID="HJh-aR-VXF">
+            <objects>
+                <viewController storyboardIdentifier="ShowDetailsViewController" id="44m-ym-Qpz" customClass="ShowDetailsViewController" customModule="EHire" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Gi5-um-UJg">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j24-BW-y6r">
+                                <rect key="frame" x="184" y="13" width="82" height="32"/>
+                                <animations/>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Xgm-Y0-1gu">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="cancelSheet:" target="44m-ym-Qpz" id="k4j-yN-h1D"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                    </view>
+                </viewController>
+                <customObject id="v5K-rn-NbO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="197" y="-1254"/>
         </scene>
         <!--Candidate Controller-->
         <scene sceneID="3sb-Ci-qTI">
@@ -2014,7 +2054,7 @@
                                 </clipView>
                                 <animations/>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="8Qf-9y-atl">
-                                    <rect key="frame" x="0.0" y="8" width="0.0" height="15"/>
+                                    <rect key="frame" x="0.0" y="7" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                 </scroller>
@@ -2164,7 +2204,7 @@
                                 <font key="titleFont" metaFont="system"/>
                             </box>
                             <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="J7x-8R-hqn">
-                                <rect key="frame" x="17" y="327" width="782" height="4"/>
+                                <rect key="frame" x="17" y="327" width="782" height="5"/>
                                 <animations/>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2241,7 +2281,7 @@
                                 <animations/>
                             </customView>
                             <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="snN-4u-Yyi">
-                                <rect key="frame" x="17" y="503" width="782" height="4"/>
+                                <rect key="frame" x="17" y="503" width="782" height="5"/>
                                 <animations/>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2752,7 +2792,7 @@
                                 </clipView>
                                 <animations/>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="GEk-zd-Ygz">
-                                    <rect key="frame" x="0.0" y="8" width="0.0" height="15"/>
+                                    <rect key="frame" x="0.0" y="7" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                 </scroller>
@@ -5067,5 +5107,6 @@
         <image name="NSUserGroup" width="32" height="32"/>
         <image name="Welcome" width="512" height="400"/>
         <image name="deselectStar" width="16" height="16"/>
+        <image name="email3" width="80" height="51"/>
     </resources>
 </document>

@@ -104,7 +104,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         technologyArray = technologyArray.sort({$0.technologyName < $1.technologyName})
 
         self.sourceList.reloadData()
-
+ 
     }
     
     //PRAGMAMARK: - outlineview datasource  methods
@@ -118,7 +118,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 let technology = item as! Technology
                 let allObjectsAraay = technology.interviewDates?.allObjects
                 
-                return allObjectsAraay![index]
+            return allObjectsAraay![index]
             }
         }
         return self.technologyArray[index]

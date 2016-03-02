@@ -80,6 +80,8 @@
 		8029FFF51C2A81970041C74C /* TechnicalFeedBack+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFDC1C2A81970041C74C /* TechnicalFeedBack+CoreDataProperties.swift */; };
 		8029FFF61C2A81970041C74C /* Technology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFDD1C2A81970041C74C /* Technology.swift */; };
 		8029FFF71C2A81970041C74C /* Technology+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFDE1C2A81970041C74C /* Technology+CoreDataProperties.swift */; };
+		802C2DFB1C86B13C00139189 /* email3.png in Resources */ = {isa = PBXBuildFile; fileRef = 802C2DFA1C86B13C00139189 /* email3.png */; };
+		802C2DFD1C86C49E00139189 /* ShowDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802C2DFC1C86C49E00139189 /* ShowDetailsViewController.swift */; };
 		804288051C17EBC0003033B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804288041C17EBC0003033B4 /* AppDelegate.swift */; };
 		8042880A1C17EBC0003033B4 /* EHire.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 804288081C17EBC0003033B4 /* EHire.xcdatamodeld */; };
 		8042880C1C17EBC0003033B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8042880B1C17EBC0003033B4 /* Assets.xcassets */; };
@@ -195,6 +197,8 @@
 		8029FFDD1C2A81970041C74C /* Technology.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Technology.swift; sourceTree = "<group>"; };
 		8029FFDE1C2A81970041C74C /* Technology+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Technology+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8029FFFA1C2A83A10041C74C /* EHHrFeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHHrFeedbackViewController.swift; sourceTree = "<group>"; };
+		802C2DFA1C86B13C00139189 /* email3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = email3.png; sourceTree = "<group>"; };
+		802C2DFC1C86C49E00139189 /* ShowDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowDetailsViewController.swift; sourceTree = "<group>"; };
 		804288011C17EBC0003033B4 /* EHire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EHire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		804288041C17EBC0003033B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		804288091C17EBC0003033B4 /* EHire.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EHire.xcdatamodel; sourceTree = "<group>"; };
@@ -681,6 +685,7 @@
 		804288481C17F139003033B4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				802C2DFA1C86B13C00139189 /* email3.png */,
 				2FB0ABA31C3CD92F0027E34C /* Welcome.png */,
 				8070F5981C24194C00FCEA98 /* selectStar.png */,
 				8070F5991C24194C00FCEA98 /* deselectStar.png */,
@@ -716,6 +721,7 @@
 				807FA9B41C8439F5009D7F14 /* EHMainWindowController.swift */,
 				807FA9B51C8439F5009D7F14 /* EHShowSelectedCandidatesViewController.swift */,
 				8028C3411C85991300A9E418 /* EHCandidateCell.swift */,
+				802C2DFC1C86C49E00139189 /* ShowDetailsViewController.swift */,
 			);
 			path = "ToolBarSupport Module";
 			sourceTree = "<group>";
@@ -844,6 +850,7 @@
 				8070F59A1C24194C00FCEA98 /* selectStar.png in Resources */,
 				8070F59B1C24194C00FCEA98 /* deselectStar.png in Resources */,
 				2FB0ABA41C3CD92F0027E34C /* Welcome.png in Resources */,
+				802C2DFB1C86B13C00139189 /* email3.png in Resources */,
 				8042880C1C17EBC0003033B4 /* Assets.xcassets in Resources */,
 				8042880F1C17EBC0003033B4 /* Main.storyboard in Resources */,
 			);
@@ -910,6 +917,7 @@
 				4F7BCA841C2BED8B00D60546 /* EHManagerFeedbackViewController.swift in Sources */,
 				8029FFE71C2A81970041C74C /* CandidatePersonalInfo.swift in Sources */,
 				802900021C2A83CE0041C74C /* HrFeedbackDataAccess.swift in Sources */,
+				802C2DFD1C86C49E00139189 /* ShowDetailsViewController.swift in Sources */,
 				8029FFF61C2A81970041C74C /* Technology.swift in Sources */,
 				8028C3421C85991300A9E418 /* EHCandidateCell.swift in Sources */,
 				52CB4A581C31379800934A84 /* EHCandidateController.swift in Sources */,

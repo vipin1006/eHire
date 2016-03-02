@@ -17,12 +17,18 @@ class EHCandidateCell: NSTableCellView {
         
         @IBOutlet var candidateMail: NSTextField!
         
+        @IBOutlet var sendMail: NSButton!
+    
+        @IBOutlet var showInfo: NSButton!
         
         override func drawRect(dirtyRect: NSRect) {
             super.drawRect(dirtyRect)
             
             ///Drawing code here.
         }
+    
+    
+    
         
     }
 
