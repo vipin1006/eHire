@@ -95,6 +95,7 @@
 		9C4B97FF1C324EE20033412F /* EHCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B97FE1C324EE20033412F /* EHCoreDataStack.swift */; };
 		9C527DF01C3A431B001B62B2 /* EHOnlyDecimalValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C527DEF1C3A431B001B62B2 /* EHOnlyDecimalValueFormatter.swift */; };
 		9CB11FC51C328C1100939D42 /* EHManagerFeedbackDataAccessLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB11FC41C328C1100939D42 /* EHManagerFeedbackDataAccessLayer.swift */; };
+		9CC245C41C7B0229002D6171 /* EHTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC245C31C7B0229002D6171 /* EHTransitionAnimator.swift */; };
 		9CFE9EA21C44D519008C6C15 /* ManagerFeedBack+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFE9EA01C44D519008C6C15 /* ManagerFeedBack+CoreDataProperties.swift */; };
 		9CFE9EA31C44D519008C6C15 /* ManagerFeedBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFE9EA11C44D519008C6C15 /* ManagerFeedBack.swift */; };
 		9CFE9EA51C465EFE008C6C15 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFE9EA41C465EFE008C6C15 /* CoreDataStack.swift */; };
@@ -213,6 +214,7 @@
 		9C4B97FE1C324EE20033412F /* EHCoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCoreDataStack.swift; sourceTree = "<group>"; };
 		9C527DEF1C3A431B001B62B2 /* EHOnlyDecimalValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHOnlyDecimalValueFormatter.swift; sourceTree = "<group>"; };
 		9CB11FC41C328C1100939D42 /* EHManagerFeedbackDataAccessLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHManagerFeedbackDataAccessLayer.swift; sourceTree = SOURCE_ROOT; };
+		9CC245C31C7B0229002D6171 /* EHTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTransitionAnimator.swift; sourceTree = "<group>"; };
 		9CFE9EA01C44D519008C6C15 /* ManagerFeedBack+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagerFeedBack+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9CFE9EA11C44D519008C6C15 /* ManagerFeedBack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerFeedBack.swift; sourceTree = "<group>"; };
 		9CFE9EA41C465EFE008C6C15 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -716,6 +718,7 @@
 			children = (
 				9C527DEF1C3A431B001B62B2 /* EHOnlyDecimalValueFormatter.swift */,
 				4F767C7C1C3BE48700514A89 /* Utility.swift */,
+				9CC245C31C7B0229002D6171 /* EHTransitionAnimator.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -899,6 +902,7 @@
 				8029FFE81C2A81970041C74C /* CandidatePersonalInfo+CoreDataProperties.swift in Sources */,
 				9CFE9EA21C44D519008C6C15 /* ManagerFeedBack+CoreDataProperties.swift in Sources */,
 				41A97FF51C1956B70016CAB4 /* EHInterviewDateCustomCell.swift in Sources */,
+				9CC245C41C7B0229002D6171 /* EHTransitionAnimator.swift in Sources */,
 				4F69D1291C3299880003389E /* EhTechnologyDataLayer.swift in Sources */,
 				4F2536EC1C2179EC000E8C95 /* EHPopOverController.swift in Sources */,
 				806C9CA61C2433FF0039FCF2 /* EHTechnicalFeedbackViewController.swift in Sources */,
