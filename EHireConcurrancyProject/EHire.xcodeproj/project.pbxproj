@@ -54,6 +54,7 @@
 		4F7BCAC91C325CBD00D60546 /* EHCandidateDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BCAC71C325CBD00D60546 /* EHCandidateDetails.swift */; };
 		52B599311C3F8BBB003FE140 /* EHCandidateAccessLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B599301C3F8BBB003FE140 /* EHCandidateAccessLayer.swift */; };
 		52CB4A581C31379800934A84 /* EHCandidateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CB4A501C31379800934A84 /* EHCandidateController.swift */; };
+		8028C3421C85991300A9E418 /* EHCandidateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8028C3411C85991300A9E418 /* EHCandidateCell.swift */; };
 		802900001C2A83A10041C74C /* EHHrFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFFA1C2A83A10041C74C /* EHHrFeedbackViewController.swift */; };
 		802900021C2A83CE0041C74C /* HrFeedbackDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802900011C2A83CE0041C74C /* HrFeedbackDataAccess.swift */; };
 		8029FFC51C2A80E90041C74C /* EHCoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFC41C2A80E90041C74C /* EHCoreDataHelper.swift */; };
@@ -79,6 +80,8 @@
 		8029FFF51C2A81970041C74C /* TechnicalFeedBack+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFDC1C2A81970041C74C /* TechnicalFeedBack+CoreDataProperties.swift */; };
 		8029FFF61C2A81970041C74C /* Technology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFDD1C2A81970041C74C /* Technology.swift */; };
 		8029FFF71C2A81970041C74C /* Technology+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8029FFDE1C2A81970041C74C /* Technology+CoreDataProperties.swift */; };
+		802C2DFB1C86B13C00139189 /* email3.png in Resources */ = {isa = PBXBuildFile; fileRef = 802C2DFA1C86B13C00139189 /* email3.png */; };
+		802C2DFD1C86C49E00139189 /* ShowDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802C2DFC1C86C49E00139189 /* ShowDetailsViewController.swift */; };
 		804288051C17EBC0003033B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804288041C17EBC0003033B4 /* AppDelegate.swift */; };
 		8042880A1C17EBC0003033B4 /* EHire.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 804288081C17EBC0003033B4 /* EHire.xcdatamodeld */; };
 		8042880C1C17EBC0003033B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8042880B1C17EBC0003033B4 /* Assets.xcassets */; };
@@ -90,6 +93,8 @@
 		806C9CA61C2433FF0039FCF2 /* EHTechnicalFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806C9CA51C2433FF0039FCF2 /* EHTechnicalFeedbackViewController.swift */; };
 		8070F59A1C24194C00FCEA98 /* selectStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8070F5981C24194C00FCEA98 /* selectStar.png */; };
 		8070F59B1C24194C00FCEA98 /* deselectStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8070F5991C24194C00FCEA98 /* deselectStar.png */; };
+		807FA9B61C8439F5009D7F14 /* EHMainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807FA9B41C8439F5009D7F14 /* EHMainWindowController.swift */; };
+		807FA9B71C8439F5009D7F14 /* EHShowSelectedCandidatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807FA9B51C8439F5009D7F14 /* EHShowSelectedCandidatesViewController.swift */; };
 		944783131C2A9A1C00AE33FA /* EHTechnicalFeedbackDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944783121C2A9A1C00AE33FA /* EHTechnicalFeedbackDataAccess.swift */; };
 		9491D7D01C32D22C0088D61A /* EHTechnicalFeedbackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9491D7CF1C32D22C0088D61A /* EHTechnicalFeedbackModel.swift */; };
 		9C4B97FF1C324EE20033412F /* EHCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B97FE1C324EE20033412F /* EHCoreDataStack.swift */; };
@@ -167,6 +172,7 @@
 		4F7BCAC71C325CBD00D60546 /* EHCandidateDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCandidateDetails.swift; sourceTree = "<group>"; };
 		52B599301C3F8BBB003FE140 /* EHCandidateAccessLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCandidateAccessLayer.swift; sourceTree = "<group>"; };
 		52CB4A501C31379800934A84 /* EHCandidateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCandidateController.swift; sourceTree = "<group>"; };
+		8028C3411C85991300A9E418 /* EHCandidateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCandidateCell.swift; sourceTree = "<group>"; };
 		802900011C2A83CE0041C74C /* HrFeedbackDataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HrFeedbackDataAccess.swift; sourceTree = "<group>"; };
 		8029FFC41C2A80E90041C74C /* EHCoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCoreDataHelper.swift; sourceTree = "<group>"; };
 		8029FFC61C2A81970041C74C /* Candidate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Candidate.swift; sourceTree = "<group>"; };
@@ -192,6 +198,8 @@
 		8029FFDD1C2A81970041C74C /* Technology.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Technology.swift; sourceTree = "<group>"; };
 		8029FFDE1C2A81970041C74C /* Technology+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Technology+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8029FFFA1C2A83A10041C74C /* EHHrFeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHHrFeedbackViewController.swift; sourceTree = "<group>"; };
+		802C2DFA1C86B13C00139189 /* email3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = email3.png; sourceTree = "<group>"; };
+		802C2DFC1C86C49E00139189 /* ShowDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowDetailsViewController.swift; sourceTree = "<group>"; };
 		804288011C17EBC0003033B4 /* EHire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EHire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		804288041C17EBC0003033B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		804288091C17EBC0003033B4 /* EHire.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EHire.xcdatamodel; sourceTree = "<group>"; };
@@ -209,6 +217,8 @@
 		806C9CA51C2433FF0039FCF2 /* EHTechnicalFeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EHTechnicalFeedbackViewController.swift; path = EHire/controllers/EHTechnicalFeedbackViewController.swift; sourceTree = SOURCE_ROOT; };
 		8070F5981C24194C00FCEA98 /* selectStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selectStar.png; sourceTree = "<group>"; };
 		8070F5991C24194C00FCEA98 /* deselectStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deselectStar.png; sourceTree = "<group>"; };
+		807FA9B41C8439F5009D7F14 /* EHMainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHMainWindowController.swift; sourceTree = "<group>"; };
+		807FA9B51C8439F5009D7F14 /* EHShowSelectedCandidatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHShowSelectedCandidatesViewController.swift; sourceTree = "<group>"; };
 		944783121C2A9A1C00AE33FA /* EHTechnicalFeedbackDataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnicalFeedbackDataAccess.swift; sourceTree = SOURCE_ROOT; };
 		9491D7CF1C32D22C0088D61A /* EHTechnicalFeedbackModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHTechnicalFeedbackModel.swift; sourceTree = SOURCE_ROOT; };
 		9C4B97FE1C324EE20033412F /* EHCoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EHCoreDataStack.swift; sourceTree = "<group>"; };
@@ -639,6 +649,7 @@
 		804288031C17EBC0003033B4 /* EHire */ = {
 			isa = PBXGroup;
 			children = (
+				807FA9B31C8439F5009D7F14 /* ToolBarSupport Module */,
 				9C527DEE1C3A42E0001B62B2 /* Utilities */,
 				8042880D1C17EBC0003033B4 /* Main.storyboard */,
 				804288041C17EBC0003033B4 /* AppDelegate.swift */,
@@ -676,6 +687,7 @@
 		804288481C17F139003033B4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				802C2DFA1C86B13C00139189 /* email3.png */,
 				2FB0ABA31C3CD92F0027E34C /* Welcome.png */,
 				8070F5981C24194C00FCEA98 /* selectStar.png */,
 				8070F5991C24194C00FCEA98 /* deselectStar.png */,
@@ -703,6 +715,17 @@
 			);
 			name = CustomViewCells;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		807FA9B31C8439F5009D7F14 /* ToolBarSupport Module */ = {
+			isa = PBXGroup;
+			children = (
+				807FA9B41C8439F5009D7F14 /* EHMainWindowController.swift */,
+				807FA9B51C8439F5009D7F14 /* EHShowSelectedCandidatesViewController.swift */,
+				8028C3411C85991300A9E418 /* EHCandidateCell.swift */,
+				802C2DFC1C86C49E00139189 /* ShowDetailsViewController.swift */,
+			);
+			path = "ToolBarSupport Module";
 			sourceTree = "<group>";
 		};
 		945D4D321C43D40C0012FDB7 /* Model */ = {
@@ -830,6 +853,7 @@
 				8070F59A1C24194C00FCEA98 /* selectStar.png in Resources */,
 				8070F59B1C24194C00FCEA98 /* deselectStar.png in Resources */,
 				2FB0ABA41C3CD92F0027E34C /* Welcome.png in Resources */,
+				802C2DFB1C86B13C00139189 /* email3.png in Resources */,
 				8042880C1C17EBC0003033B4 /* Assets.xcassets in Resources */,
 				8042880F1C17EBC0003033B4 /* Main.storyboard in Resources */,
 			);
@@ -859,6 +883,7 @@
 				8029FFE21C2A81970041C74C /* CandidateBasicProfessionalInfo+CoreDataProperties.swift in Sources */,
 				4F7BCAC91C325CBD00D60546 /* EHCandidateDetails.swift in Sources */,
 				41A97FF91C195E500016CAB4 /* EHTechnologyCustomCell.swift in Sources */,
+				807FA9B61C8439F5009D7F14 /* EHMainWindowController.swift in Sources */,
 				9CB11FC51C328C1100939D42 /* EHManagerFeedbackDataAccessLayer.swift in Sources */,
 				4F2536ED1C2179EC000E8C95 /* EHTechnologyViewController.swift in Sources */,
 				8029FFED1C2A81970041C74C /* Date.swift in Sources */,
@@ -878,6 +903,7 @@
 				9CFE9EA51C465EFE008C6C15 /* CoreDataStack.swift in Sources */,
 				806C9CA31C2433D80039FCF2 /* EHManagerFeedBackCustomTableView.swift in Sources */,
 				8029FFE91C2A81970041C74C /* CandidatePreviousEmploymentInfo.swift in Sources */,
+				807FA9B71C8439F5009D7F14 /* EHShowSelectedCandidatesViewController.swift in Sources */,
 				9CFE9EA31C44D519008C6C15 /* ManagerFeedBack.swift in Sources */,
 				8029FFEB1C2A81970041C74C /* CandidateQualification.swift in Sources */,
 				8029FFF21C2A81970041C74C /* SkillSet.swift in Sources */,
@@ -894,7 +920,9 @@
 				4F7BCA841C2BED8B00D60546 /* EHManagerFeedbackViewController.swift in Sources */,
 				8029FFE71C2A81970041C74C /* CandidatePersonalInfo.swift in Sources */,
 				802900021C2A83CE0041C74C /* HrFeedbackDataAccess.swift in Sources */,
+				802C2DFD1C86C49E00139189 /* ShowDetailsViewController.swift in Sources */,
 				8029FFF61C2A81970041C74C /* Technology.swift in Sources */,
+				8028C3421C85991300A9E418 /* EHCandidateCell.swift in Sources */,
 				52CB4A581C31379800934A84 /* EHCandidateController.swift in Sources */,
 				8029FFEE1C2A81970041C74C /* Date+CoreDataProperties.swift in Sources */,
 				806C9CA41C2433D80039FCF2 /* EHRatingsTableCellView.swift in Sources */,

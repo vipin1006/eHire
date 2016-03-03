@@ -13,7 +13,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var coreDataStack: CoreDataStack?
     var storyBoard : NSStoryboard?
-    var mainWindowController: NSWindowController?
+    var mainWindowController: EHMainWindowController?
     var technologyViewController:EHTechnologyViewController?
 
     class func getDelegate() -> AppDelegate
@@ -33,7 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func iniatializeWindowController()
     {
         self.storyBoard = NSStoryboard.init(name: "Main", bundle: NSBundle.mainBundle())
-        self.mainWindowController = self.storyBoard?.instantiateControllerWithIdentifier("MainWindowController") as? NSWindowController
+        self.mainWindowController = self.storyBoard?.instantiateControllerWithIdentifier("MainWindowController") as? EHMainWindowController
       
         self.mainWindowController?.showWindow(nil)
         self.mainWindowController?.window?.makeKeyAndOrderFront(self)
@@ -45,6 +45,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     {
         self.technologyViewController = self.storyBoard!.instantiateControllerWithIdentifier(String(EHTechnologyViewController)) as? EHTechnologyViewController
         self.technologyViewController?.managedObjectContext = coreDataStack?.managedObjectContext
+        self.mainWindowController!.managedObjectContext = coreDataStack?.managedObjectContext
+        
         self.mainWindowController?.contentViewController = self.technologyViewController
     }
 

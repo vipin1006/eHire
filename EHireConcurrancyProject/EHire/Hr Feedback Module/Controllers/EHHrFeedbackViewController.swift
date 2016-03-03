@@ -94,6 +94,11 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
     {
         super.viewWillAppear()
         
+        self.view.wantsLayer = true
+        
+       // self.view.layer?.backgroundColor = NSColor(calibratedRed:202/255.0, green:210/255.0, blue:222/255.0, alpha: 1.0).CGColor
+        self.view.layer?.backgroundColor = NSColor(red: 222, green: 222, blue: 222, alpha: 0.5).CGColor
+        
         
         print("Value is \( candidate?.miscellaneousInfo?.isHrFormSubmitted)")
         

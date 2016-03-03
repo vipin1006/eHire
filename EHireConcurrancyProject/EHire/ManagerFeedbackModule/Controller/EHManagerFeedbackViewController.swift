@@ -73,6 +73,12 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        self.view.wantsLayer = true
+        
+       // self.view.layer?.backgroundColor = NSColor(calibratedRed:202/255.0, green:210/255.0, blue:222/255.0, alpha: 1.0).CGColor
+        self.view.layer?.backgroundColor = NSColor(red: 222, green: 222, blue: 222, alpha: 0.5).CGColor
+        
         clearBtn.enabled = false
         self.performSelector(Selector("test"), withObject: nil, afterDelay: 0.10)
         textFieldCandidateName.stringValue = (selectedCandidate?.name)!
@@ -82,7 +88,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         let dateInStringFormat = dateFormatter.stringFromDate((selectedCandidate?.interviewDate)!)
         dateOfInterviewField.stringValue = dateInStringFormat
         managerFeedbackMainView.wantsLayer = true
-        managerFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
+//        managerFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
         setDefaultCgDeviationAndInterviewMode()
         selectedSegment = 0
         print("name = \(managerialRoundFeedback.designation)")
@@ -183,6 +189,10 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             view.target = self
             view.action = "selectedStarCount:"
             }
+        if tableView.numberOfRows > 7
+        {
+            tableView.scrollToEndOfDocument("")
+        }
         return cell
     }
 
@@ -194,15 +204,30 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             selectedRowTitle = cellSelected.titleName.stringValue
             if cellSelected.titleName.stringValue == "Communication" || cellSelected.titleName.stringValue == "Organisation Stability" || cellSelected.titleName.stringValue == "Leadership(if applicable)" || cellSelected.titleName.stringValue == "Growth Potential"
             {
+                
                 tableView.selectionHighlightStyle = .None
                 cellSelected.titleName.editable = false
                 deleteExistingBtn.enabled = false
+                
             }
             else
             {
+               if managerialRoundFeedback.isSubmitted == false
+               {
                tableView.selectionHighlightStyle = .Regular
                deleteExistingBtn.enabled = true
                cellSelected.titleName.editable = true
+                }
+                else if managerialRoundFeedback.isSubmitted == true
+               {
+                deleteExistingBtn.enabled = false
+               }
+               else
+               {
+                tableView.selectionHighlightStyle = .Regular
+                deleteExistingBtn.enabled = true
+                cellSelected.titleName.editable = true
+                }
                 
             }
         }
@@ -230,15 +255,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     //MARK:- Delegate Method
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
     {
-        if (!(cell?.titleName.stringValue == ""))
-        {
-            if !Utility.isAlphabetsOnly(cell!.titleName.stringValue)
-            {
-                Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters for Skill Title.",isCancelBtnNeeded:false,okCompletionHandler: nil)
-                fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.characters.count)
-                return false
-            }
-        }
          return true
     }
     
@@ -795,6 +811,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         {
             return
         }
+        
         managerialRoundFeedback.commentsOnCandidate = NSAttributedString(string: textViewCommentsForOverAllCandidateAssessment.string!)
         managerialRoundFeedback.commentsOnTechnology = NSAttributedString(string: textViewCommentsForOverAllTechnologyAssessment.string!)
         managerialRoundFeedback.commitments = NSAttributedString(string: textViewCommitments.string!)
@@ -847,6 +864,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     func updateUIElements(feedback: ManagerFeedBack)
     {
         managerFeedbackObject = feedback
+        
         if feedback.commentsOnCandidate != nil
         {
             textViewCommentsForOverAllCandidateAssessment.string = feedback.commentsOnCandidate!
@@ -924,6 +942,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     }
     
     func sortArray (allObj : [AnyObject],index:Int) ->Bool{
+        self.deleteExistingBtn.enabled = false
         isFeedBackSaved = true
         selectedSegment = index
         let arra = NSArray(array: allObj)

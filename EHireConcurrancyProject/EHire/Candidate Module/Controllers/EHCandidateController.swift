@@ -45,6 +45,10 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
       addCandidateButton.toolTip = "Add Candidate"
         candidateAccessLayer = EHCandidateAccessLayer()
         candidateAccessLayer?.managedObjectContext = self.managedObjectContext
+        candidateSearchField.appearance = NSAppearance(named:NSAppearanceNameVibrantLight)
+        
+        
+        
         
     }
     
@@ -54,6 +58,10 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
      {
        tableView.selectRowIndexes(NSIndexSet(index: tablePreserved), byExtendingSelection: false)
      }
+        
+        
+        
+
     }
     
     //MARK: This data source method returns tableview rows
@@ -133,7 +141,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     //MARK: This method returns the height of the tableview row
     func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat
     {
-        return 35
+        return 22
     }
   
     func tableViewSelectionDidChange(notification: NSNotification)

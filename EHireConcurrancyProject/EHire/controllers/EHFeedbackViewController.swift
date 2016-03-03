@@ -38,21 +38,27 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        self.view.wantsLayer = true
+        
+        self.view.layer?.backgroundColor = NSColor(calibratedRed:247/255.0, green: 246/255.0, blue: 247/255.0, alpha: 1.0).CGColor
         techFeedback = storyboard?.instantiateControllerWithIdentifier("EHTechnicalFeedbackViewController") as? EHTechnicalFeedbackViewController
         techFeedback!.selectedCandidate = selectedCandidate
         techFeedback?.managedObjectContext = self.managedObjectContext
         self.scrollViewHr.documentView? = (techFeedback?.view)!
+        self.scrollViewHr.layer?.backgroundColor = NSColor(calibratedRed:125/255.0, green: 125/255.0, blue: 125/255.0, alpha: 1.0).CGColor
         self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1081))
         self.typeOfInterview.selectedSegment = 0
         self.subRound.selectedSegment = 0
         self.scrollViewHr.hasVerticalScroller = true
-        self.scrollViewHr.hasHorizontalScroller = true
+       // self.scrollViewHr.hasHorizontalScroller = true
+//        self.subRound.layer?.backgroundColor =  NSColor(calibratedRed:245/255.0, green: 245/255.0, blue: 245/255.0, alpha: 1.0).CGColor
     }
     
     @IBAction func roundType(sender: AnyObject)
     {
         self.subRound.hidden = false
         let mainRound:NSSegmentedControl = sender as! NSSegmentedControl
+
         let techLeadCount = (selectedCandidate?.interviewedByTechLeads)!.count
         let managerCount =  (selectedCandidate?.interviewedByManagers)!.count
         switch mainRound.selectedSegment
