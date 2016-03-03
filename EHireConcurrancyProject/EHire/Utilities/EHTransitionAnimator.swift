@@ -23,14 +23,13 @@ class EHTransitionAnimator: NSObject , NSViewControllerPresentationAnimator {
                     let slideInFromLeftTransition = CATransition()
                     slideInFromLeftTransition.delegate = self
                     slideInFromLeftTransition.type = kCATransitionPush
-                    slideInFromLeftTransition.subtype = kCATransitionFromRight
+                    slideInFromLeftTransition.subtype = kCATransition
                     slideInFromLeftTransition.duration = 0.4
                     slideInFromLeftTransition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
                     slideInFromLeftTransition.fillMode = kCAFillModeRemoved
                     //        appDelegate.mainWindowController?.contentViewController = feedbackViewController
                     viewController.view.wantsLayer = true
                     viewController.view.layer!.addAnimation(slideInFromLeftTransition, forKey: "slideInFromLeftTransition")
-                    
 //                    fromViewController.view.animator().animationForKey("slideInFromLeftTransition")
             })
         }
@@ -44,14 +43,14 @@ class EHTransitionAnimator: NSObject , NSViewControllerPresentationAnimator {
                 let slideInFromLeftTransition = CATransition()
                 slideInFromLeftTransition.delegate = self
                 slideInFromLeftTransition.type = kCATransitionPush
-                slideInFromLeftTransition.subtype = kCATransitionFromLeft
+                slideInFromLeftTransition.subtype = kCATransition
                 slideInFromLeftTransition.duration = 0.4
                 slideInFromLeftTransition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
                 slideInFromLeftTransition.fillMode = kCAFillModeRemoved
                 //        appDelegate.mainWindowController?.contentViewController = feedbackViewController
                 viewController.view.wantsLayer = true
                 viewController.view.layer!.addAnimation(slideInFromLeftTransition, forKey: "slideInFromRightTransition")
-                 viewController.view.alphaValue = 0
+               
                 //                fromViewController.view.animator().alphaValue = 0
                 }, completionHandler: { () -> Void in
                     
