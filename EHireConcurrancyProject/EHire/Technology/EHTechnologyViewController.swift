@@ -9,7 +9,9 @@
 //
 
 import Cocoa
+
 //typealias InsertReturn = ()->Void
+
 class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutlineViewDataSource,DataCommunicator,FeedbackDelegate,NSTextFieldDelegate,FeedbackControllerDelegate{
     
     var managedObjectContext : NSManagedObjectContext?
@@ -648,14 +650,21 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         feedbackViewController?.delegate = self
         
         let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.mainWindowController?.contentViewController = feedbackViewController
+        
+        
+        self.presentViewController(feedbackViewController!, animator: EHTransitionAnimator())
+        
     }
+    
+   
     
     func feedbackViewControllerDidFinish(selectedCandidate:Candidate)
     {
 
-        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.mainWindowController?.contentViewController = self
+//        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+//        
+//        appDelegate.mainWindowController?.contentViewController = self
+       
         candidateController?.refresh()
     }
     

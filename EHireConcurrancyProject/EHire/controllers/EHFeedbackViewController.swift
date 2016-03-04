@@ -533,8 +533,10 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                 }
         }
             
-        self.view.removeFromSuperview()
+//        self.view.removeFromSuperview()
+        self.presentingViewController?.dismissViewController(self)
         NSApp.windows.first?.title = "List of Candidates"
+        
         self.delegate?.feedbackViewControllerDidFinish(selectedCandidate!)
         
     }
