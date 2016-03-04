@@ -24,7 +24,7 @@ class EHTransitionAnimator: NSObject , NSViewControllerPresentationAnimator {
                     slideInFromLeftTransition.delegate = self
                     slideInFromLeftTransition.type = kCATransitionPush
                     slideInFromLeftTransition.subtype = kCATransition
-                    slideInFromLeftTransition.duration = 0.4
+                    slideInFromLeftTransition.duration = 0.2
                     slideInFromLeftTransition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
                     slideInFromLeftTransition.fillMode = kCAFillModeRemoved
                     //        appDelegate.mainWindowController?.contentViewController = feedbackViewController
@@ -39,26 +39,19 @@ class EHTransitionAnimator: NSObject , NSViewControllerPresentationAnimator {
     func animateDismissalOfViewController(viewController: NSViewController, fromViewController: NSViewController) {
         if let window = viewController.view.window {
             NSAnimationContext.runAnimationGroup({ (context) -> Void in
-                
-                let slideInFromLeftTransition = CATransition()
-                slideInFromLeftTransition.delegate = self
-                slideInFromLeftTransition.type = kCATransitionPush
-                slideInFromLeftTransition.subtype = kCATransition
-                slideInFromLeftTransition.duration = 0.4
-                slideInFromLeftTransition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-                slideInFromLeftTransition.fillMode = kCAFillModeRemoved
-                //        appDelegate.mainWindowController?.contentViewController = feedbackViewController
-                viewController.view.wantsLayer = true
-                viewController.view.layer!.addAnimation(slideInFromLeftTransition, forKey: "slideInFromRightTransition")
                
-                //                fromViewController.view.animator().alphaValue = 0
                 }, completionHandler: { () -> Void in
-                    
-                    
-                   
                     window.contentViewController  = fromViewController
-                   
-            })
+                    let slideInFromLeftTransition = CATransition()
+                    slideInFromLeftTransition.delegate = self
+                    slideInFromLeftTransition.type = kCATransitionPush
+                    slideInFromLeftTransition.subtype = kCATransition
+                    slideInFromLeftTransition.duration = 0.2
+                    slideInFromLeftTransition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                    slideInFromLeftTransition.fillMode = kCAFillModeRemoved
+                    window.contentViewController!.view.wantsLayer = true
+                    window.contentViewController!.view.layer!.addAnimation(slideInFromLeftTransition, forKey: "slideInFromRightTransition")
+               })
         }
     }
 }
