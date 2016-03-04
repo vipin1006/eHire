@@ -42,6 +42,9 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
         
         self.view.layer?.backgroundColor = NSColor(calibratedRed:247/255.0, green: 246/255.0, blue: 247/255.0, alpha: 1.0).CGColor
         techFeedback = storyboard?.instantiateControllerWithIdentifier("EHTechnicalFeedbackViewController") as? EHTechnicalFeedbackViewController
+        techFeedback?.feedback = self
+        defaultSegmentTech()
+        //defaultSegmentManager()
         techFeedback!.selectedCandidate = selectedCandidate
         techFeedback?.managedObjectContext = self.managedObjectContext
         self.scrollViewHr.documentView? = (techFeedback?.view)!
@@ -50,17 +53,23 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
         self.typeOfInterview.selectedSegment = 0
         self.subRound.selectedSegment = 0
         self.scrollViewHr.hasVerticalScroller = true
-       // self.scrollViewHr.hasHorizontalScroller = true
+        
+        
+       
+        // self.scrollViewHr.hasHorizontalScroller = true
 //        self.subRound.layer?.backgroundColor =  NSColor(calibratedRed:245/255.0, green: 245/255.0, blue: 245/255.0, alpha: 1.0).CGColor
     }
     
     @IBAction func roundType(sender: AnyObject)
     {
+        
         self.subRound.hidden = false
         let mainRound:NSSegmentedControl = sender as! NSSegmentedControl
 
         let techLeadCount = (selectedCandidate?.interviewedByTechLeads)!.count
         let managerCount =  (selectedCandidate?.interviewedByManagers)!.count
+        defaultSegmentManager()
+        
         switch mainRound.selectedSegment
         {
         case 0 :
@@ -100,7 +109,7 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                 }
             }
 
-            if techLeadCount < 3
+            if techLeadCount < 1
             {
                 Utility.alertPopup("Alert", informativeText: "Please complete the Technical Round(s) before proceeding to the Managerial Round",isCancelBtnNeeded:false, okCompletionHandler: nil)
                 subRound.selectedSegment = 0
@@ -111,6 +120,8 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
             if !isManagerLoaded
             {
                 managerFeedback = storyboard?.instantiateControllerWithIdentifier("EHManagerFeedbackViewController") as? EHManagerFeedbackViewController
+                   managerFeedback?.managerFeedbackData = self
+                
                 managerFeedback?.selectedCandidate = selectedCandidate
                  managerFeedback?.managedObjectContext = self.managedObjectContext
                 self.scrollViewHr.documentView = managerFeedback?.view
@@ -174,7 +185,7 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                 
                 if managerCount < 2
                 {
-                    Utility.alertPopup("Alert", informativeText: "Please complete Manager Round(s) before proceeding to the HR Round", isCancelBtnNeeded:false,okCompletionHandler: nil)
+//                    Utility.alertPopup("Alert", informativeText: "Please complete Manager Round(s) before proceeding to the HR Round", isCancelBtnNeeded:false,okCompletionHandler: nil)
                     
                     self.typeOfInterview.selectedSegment = 1
 
@@ -197,6 +208,8 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
     
     @IBAction func subRound(sender: AnyObject)
     {
+        //defaultSegmentManager()
+        //defaultSegmentTech()
         switch self.typeOfInterview.selectedSegment
         {
         //For Technical Feedback Rounds
@@ -221,6 +234,8 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                 case 0:
                        Utility.alertPopup("Alert", informativeText: "Please complete Round 1 before proceeding to Round 2.", isCancelBtnNeeded:false,okCompletionHandler: nil)
                        subRound.selectedSegment = 0
+                    
+                    
                 case 1:
                     
                     for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
@@ -341,6 +356,8 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
         case 1: // for managerial feedback sub rounds
         switch self.subRound.selectedSegment
         {
+        
+            
             case 0:
                 print("Round One")
                 if selectedCandidate?.interviewedByManagers?.count != 0
@@ -401,12 +418,16 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                     managerFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
                     
                 default: print("")
+                    
                 }
                 print("Round Two")
+                defaultSegmentManager()
                 
             default: print("")
             }
          default: print("")
+          
+        
         }
     }
     
@@ -534,5 +555,71 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
     self.scrollViewHr.documentView?.scrollPoint(point)
     
   }
+    func defaultSegmentManager()
+    {
+        if (selectedCandidate?.interviewedByManagers?.count == 0)
+        {
+            self.subRound.setEnabled(true, forSegment: 0)
+            self.subRound.setEnabled(false, forSegment: 1)
+            self.typeOfInterview.setEnabled(true, forSegment: 0)
+            self.typeOfInterview.setEnabled(true, forSegment: 1)
+            self.typeOfInterview.setEnabled(false, forSegment: 2)
+        }
+        else if (selectedCandidate?.interviewedByManagers?.count == 1)
+        {
+            self.subRound.setEnabled(true, forSegment: 0)
+            self.subRound.setEnabled(true, forSegment: 1)
+            self.typeOfInterview.setEnabled(true, forSegment:0 )
+            self.typeOfInterview.setEnabled(true, forSegment:1 )
+            self.typeOfInterview.setEnabled(false, forSegment:2 )
+        }else if(selectedCandidate?.interviewedByManagers?.count == 2)
+        {
+            
+            self.subRound.setEnabled(true, forSegment: 0)
+            self.subRound.setEnabled(true, forSegment: 1)
+            self.subRound.setEnabled(true, forSegment: 2)
+            self.typeOfInterview.setEnabled(true, forSegment:0 )
+            self.typeOfInterview.setEnabled(true, forSegment:1 )
+            self.typeOfInterview.setEnabled(true, forSegment:2 )
+        }
+        
+    }
+
+ func defaultSegmentTech()
+ {
+    if (selectedCandidate?.interviewedByTechLeads?.count == 0)
+    {
+    self.subRound.setEnabled(true, forSegment: 0)
+    self.subRound.setEnabled(false, forSegment: 1)
+    self.subRound.setEnabled(false, forSegment: 2)
+    self.typeOfInterview.setEnabled(true, forSegment: 0)
+    self.typeOfInterview.setEnabled(false, forSegment: 1)
+    self.typeOfInterview.setEnabled(false, forSegment: 2)
+    }else if (selectedCandidate?.interviewedByTechLeads?.count == 1)
+    {
+        self.subRound.setEnabled(true, forSegment: 0)
+        self.subRound.setEnabled(true, forSegment: 1)
+        self.subRound.setEnabled(false, forSegment: 2)
+        self.typeOfInterview.setEnabled(true, forSegment: 0)
+        self.typeOfInterview.setEnabled(false, forSegment: 1)
+        self.typeOfInterview.setEnabled(false, forSegment: 2)
+    }else if(selectedCandidate?.interviewedByTechLeads?.count == 2)
+    {
+        self.subRound.setEnabled(true, forSegment: 0)
+        self.subRound.setEnabled(true, forSegment: 1)
+        self.subRound.setEnabled(true, forSegment: 2)
+        self.typeOfInterview.setEnabled(true, forSegment: 0)
+        self.typeOfInterview.setEnabled(false, forSegment: 1)
+        self.typeOfInterview.setEnabled(false, forSegment: 2)
+    }else if(selectedCandidate?.interviewedByTechLeads?.count == 3)
+    {
+        self.subRound.setEnabled(true, forSegment: 0)
+        self.subRound.setEnabled(true, forSegment: 1)
+        self.subRound.setEnabled(true, forSegment: 2)
+        self.typeOfInterview.setEnabled(true, forSegment: 0)
+        self.typeOfInterview.setEnabled(true, forSegment: 1)
+        self.typeOfInterview.setEnabled(true, forSegment: 2)
+    }
+    }
     
 }

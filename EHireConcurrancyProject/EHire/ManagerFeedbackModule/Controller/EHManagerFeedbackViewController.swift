@@ -38,6 +38,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     @IBOutlet weak var tableView: NSTableView!
 
     //MARK: Properties
+    var managerFeedbackData = EHFeedbackViewController()
     var selectedRowTitle:String = ""
     var ratingTitle = NSMutableArray()
     var candidateDetails : EHCandidateDetails?
@@ -73,6 +74,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        self.managerFeedbackData.subRound.setEnabled(false, forSegment: 0)
         
         self.view.wantsLayer = true
         
@@ -475,6 +477,16 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                 Utility.alertPopup("Alert", informativeText: "Are you sure you want to ‘Submit’ the data ?", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
                     self.dataAccessModel.insertManagerFeedback(self,candidate: self.selectedCandidate!, managerFeedbackModel: self.managerialRoundFeedback, andCallBack: { (isSucess) -> Void in
                         if isSucess{
+                            if(self.managerFeedbackData.subRound.selectedSegment == 0)
+                            {
+                                self.managerFeedbackData.subRound.setEnabled(true, forSegment: 1)
+                                
+                                
+                            }else if(self.managerFeedbackData.subRound.selectedSegment == 1)
+                            {
+                                
+                                self.managerFeedbackData.typeOfInterview.setEnabled(true, forSegment: 2)
+                            }
                             Utility.alertPopup("Success", informativeText: "Feedback for Manager Round \((self.selectedCandidate?.interviewedByManagers?.count)!) has been sucessfully saved",isCancelBtnNeeded:false,okCompletionHandler: nil)
                             
                         }
@@ -492,6 +504,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                 
                 dataAccessModel.updateManagerFeedback(selectedCandidate!, managerFeedback: managerFeedback, managerFeedbackModel: managerialRoundFeedback, andCallBack: { (isSucess) -> Void in
                     if isSucess{
+                    
                         Utility.alertPopup("Success", informativeText: "Feedback for Managerround has been updated Successfully",isCancelBtnNeeded:false,okCompletionHandler: nil)
                     }
                     self.disableAndEnableFields(true)

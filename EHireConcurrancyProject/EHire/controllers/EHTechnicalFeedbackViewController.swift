@@ -96,6 +96,8 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     override func viewDidLoad()
     {
         super.viewDidLoad()
+       
+        
         clearButton.enabled = false
         
         self.performSelector(Selector("test"), withObject: nil, afterDelay: 0.01)
@@ -127,6 +129,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }
         setDefaultValues()
         selectedRound = 0
+        
     }
     
     func setDefaultValues()
@@ -818,8 +821,22 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 
                 self.dataAccessModel.insertIntoTechnicalFeedback(self,technicalFeedbackModel: self.technicalFeedbackModel, selectedCandidate: self.selectedCandidate!,andCallBack: {(isSucess)->Void in
                     if isSucess{
+                       if(self.feedback.subRound.selectedSegment == 0)
+                       {
+                      self.feedback.subRound.setEnabled(true, forSegment: 1)
+                      self.feedback.subRound.setEnabled(false, forSegment: 2)
+                        }else if(self.feedback.subRound.selectedSegment == 1)
+                       {
+                        self.feedback.subRound.setEnabled(true, forSegment: 2)
+                        
+                       }else if(self.feedback.subRound.selectedSegment == 2)
+                       {
+                            self.feedback.typeOfInterview.setEnabled(true, forSegment: 1)
+                       }
+                        
                         Utility.alertPopup("Success", informativeText: "Feedback for Technical Round \((self.selectedCandidate?.interviewedByTechLeads?.count)!) has been successfully saved", isCancelBtnNeeded:false,okCompletionHandler: nil)
                     }
+                    
                     self.disableAndEnableFields(true)
                     self.tableView.reloadData()
                 })
@@ -834,8 +851,10 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 
                 if isSucess
                 {
+                    
                     Utility.alertPopup("Success", informativeText: "Feedback for Technical Round has been updated Successfully", isCancelBtnNeeded:false,okCompletionHandler: nil)
                 }
+               
                 self.disableAndEnableFields(true)
                 self.tableView.reloadData()
             })
