@@ -4,7 +4,7 @@
 //  This is the ViewController for handling Technology list and Dates. This is the delegate for Date popover and AddTechnology sheet.
 //  This is a data source for the Outline view.
 //
-//  Created by ajaybabu singineedi on 09/12/15.
+//  Created by ajaybabu singineedi on 09/12/15. //sid
 //  Copyright © 2015 Exilant Technologies. All rights reserved.
 //
 
@@ -32,6 +32,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     //}
     //Set the content of source list in the outlineVew as the technology list/array
     var technologyArray = [Technology]()
+    var filteredTechnologyArray = NSMutableArray()
     
     var selectedTechnologyIndex:Int?
     
@@ -114,16 +115,19 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     func outlineView(outlineView: NSOutlineView, child index: Int, ofItem item: AnyObject?) -> AnyObject
     {
         // it 'item' is nil, technology has to be returned. Else, item's(technology) child(date) at that index has to be returned.
+      
         if   item != nil
         {
             if item is Technology{
                 let technology = item as! Technology
                 let allObjectsAraay = technology.interviewDates?.allObjects
                 
-            return allObjectsAraay![index]
+                return allObjectsAraay![index]
             }
         }
-        return self.technologyArray[index]
+        //return self.technologyArray[index]
+        
+        return self.filteredTechnologyArray.count > 0 ? self.filteredTechnologyArray[index] : self.technologyArray[index]
     }
     
     
@@ -145,6 +149,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     // or number of children(dates) when called for interview dates.
     func outlineView(outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int
     {
+        
         if   item != nil
         {
             if item is Technology{
@@ -152,7 +157,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 return technology.interviewDates!.count
             }
         }
-        return technologyArray.count
+        // return technologyArray.count
+        
+        return self.filteredTechnologyArray.count > 0 ? self.filteredTechnologyArray.count : self.technologyArray.count
     }
     
     //PRAGMAMARK: - outlineview delegate  methods
@@ -990,99 +997,25 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         return true
         
     }
+    
+    @IBAction func filteredSerachField(sender: NSSearchField)
+    {
+        filteredTechnologyArray.removeAllObjects()
+        let technologyPredicate =   NSPredicate(format:"technologyName contains[cd] %@ " ,sender.stringValue)
+        
+        print(technologyPredicate)
+        
+        let resultArray = technologyArray.filter{technologyPredicate.evaluateWithObject($0)}
+        filteredTechnologyArray.addObjectsFromArray(resultArray)
+        
+        
+        self.sourceList.reloadData()
+        
+    }
 
     
 }
 
-//Reference Copy
-
-
-/*
-
-override func rightMouseDown(theEvent: NSEvent) {
-
-
-let isOutlineView = self.view.hitTest(theEvent.locationInWindow)
-
-if isOutlineView is NSOutlineView
-{
-
-let mainContextMenu = NSMenu(title: "Main Contextual Menu")
-
-
-
-mainContextMenu.insertItemWithTitle("Add Technology", action:Selector.init("addBtnAction:"), keyEquivalent: "", atIndex: 0)
-mainContextMenu.insertItemWithTitle("Delete Technology", action:Selector.init("dummy") , keyEquivalent: "", atIndex: 1)
-mainContextMenu.insertItemWithTitle("Add Date", action:Selector.init("addDateToTechnologyFromContextMenu:"), keyEquivalent: "", atIndex: 2)
-mainContextMenu.insertItemWithTitle("Delete Date", action:Selector.init("dummy") , keyEquivalent: "addBtnAction:", atIndex: 3)
-
-
-
-let technologySubMenuOne = NSMenu(title: "Technology Menu One")
-
-let technologySubMenuTwo = NSMenu(title:"Technology Menu Two")
-
-let technologySubMenuThree = NSMenu(title:"Technology Menu Three")
-
-if technologyArray.count > 0
-{
-
-for var i = 0 ; i < technologyArray.count ; i++
-{
-
-
-let technology = technologyArray[i] as Technology
-
-technologySubMenuOne.insertItemWithTitle(technology.technologyName!, action: Selector.init("deleteTechnologyFromContextMenu:"), keyEquivalent: "", atIndex: i)
-
-technologySubMenuTwo.insertItemWithTitle(technology.technologyName!, action: Selector.init("addDateToTechnologyFromContextMenu:"), keyEquivalent: "", atIndex: i)
-
-technologySubMenuThree.insertItemWithTitle(technology.technologyName!, action: Selector.init("dummy"), keyEquivalent: "", atIndex: i)
-}
-
-mainContextMenu.setSubmenu(technologySubMenuOne, forItem:mainContextMenu.itemAtIndex(1)!)
-
-mainContextMenu.setSubmenu(technologySubMenuTwo, forItem:mainContextMenu.itemAtIndex(2)!)
-
-mainContextMenu.setSubmenu(technologySubMenuThree, forItem:mainContextMenu.itemAtIndex(3)!)
-
-}
-
-for var i = 0 ; i < technologyArray.count ; i++
-{
-
-let technology = technologyArray[i] as Technology
-
-let datesMenu = NSMenu(title:"Dates Menu")
-
-let allDates = technology.interviewDates?.allObjects
-
-if allDates?.count > 0
-{
-
-for  (index , value) in (allDates?.enumerate())!
-{
-let selectedDate = value as! Date
-
-datesMenu.insertItemWithTitle(getFormattedDate(selectedDate.interviewDate!), action: Selector.init("deleteDateFromTechnologyFromContextMenu:"), keyEquivalent:"", atIndex:index)
-}
-
-technologySubMenuThree.setSubmenu(datesMenu, forItem:technologySubMenuThree.itemAtIndex(i)!)
-
-}
-
-}
-
-NSMenu.popUpContextMenu(mainContextMenu, withEvent: theEvent, forView: self.view)
-
-}
-
-}
-
-
-
-
-*/
 
 
 
