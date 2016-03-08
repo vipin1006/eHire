@@ -418,6 +418,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         textFieldCorporateGrade.enabled = true
         textFieldGrossAnnualSalary.enabled = true
         matrixForCgDeviation.enabled = true
+        textViewCommitments.editable = true
+        textViewJustificationForHire.editable = true
     }
     
     //Disabling Position/Designation Field when candidate is rejected
@@ -428,12 +430,16 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         textFieldCorporateGrade.enabled = false
         textFieldGrossAnnualSalary.enabled = false
         matrixForCgDeviation.enabled = false
+        textViewCommitments.editable = false
+        textViewJustificationForHire.editable = false
         
         textFieldPosition.stringValue = ""
         textFieldDesignation.stringValue = ""
         textFieldCorporateGrade.stringValue = ""
         textFieldGrossAnnualSalary.stringValue = ""
         matrixForCgDeviation.stringValue = ""
+        textViewCommitments.string = ""
+        textViewJustificationForHire.string = ""
     }
     
     //To refresh fields
@@ -740,21 +746,37 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         if selectedColoumn != 0
         {
             managerialRoundFeedback.recommendation = "Rejected"
-            if (cell?.feedBackRating.stringValue == "" || textViewCommentsForOverAllCandidateAssessment.string == "" || textViewCommentsForOverAllTechnologyAssessment.string == "" || textViewJustificationForHire.string == "" || textViewCommitments.string == "" || textFieldInterviewedBy.stringValue == "" || labelOverAllAssessmentOfCandidate.stringValue == "" || labelOverAllAssessmentOfTechnology.stringValue == "")
+
+            if !validationForDefaultSkills()
             {
-                Utility.alertPopup("Alert", informativeText: "Please enter all details", isCancelBtnNeeded: false, okCompletionHandler: nil)
+                Utility.alertPopup("Select Stars", informativeText: "Please provide rating for default skills",isCancelBtnNeeded:false,okCompletionHandler: nil)
                 return isValid
             }
-            else if !validationForDefaultSkills()
+            else if !validationForTextView(textViewCommentsForOverAllTechnologyAssessment,title: "Overall Feedback On Technology",informativeText: "Overall assessment of Technology field shold not be blank")
             {
-                Utility.alertPopup("Alert", informativeText: "Please provide rating for default skills", isCancelBtnNeeded: false, okCompletionHandler: nil)
+                return isValid
+            }
+            else if !validationForTextfield(labelOverAllAssessmentOfTechnology,title: "Select Stars",informativeText: "Please  provide ratings for overall assessment on Technology")
+            {
+                return isValid
+            }
+            else if !validationForTextView(textViewCommentsForOverAllCandidateAssessment,title: "Overall Feedback Of Candidate",informativeText: "Overall assessment of Candidate field shold not be blank"){
+                
+                return isValid
+            }
+            else if !validationForTextfield(labelOverAllAssessmentOfCandidate,title: "Select Stars",informativeText: "Please  provide ratings for overall assessment of Candidate")
+            {
+                return isValid
+            }else if !validationForTextfield(textFieldInterviewedBy,title: "Interviewed By",informativeText: "Interviewed by field should not be empty")
+            {
                 return isValid
             }
             else
-            {
-                isValid = true
-                return isValid
-            }
+                {
+                    isValid = true
+                    return isValid
+                }
+
         }
         else
         {
