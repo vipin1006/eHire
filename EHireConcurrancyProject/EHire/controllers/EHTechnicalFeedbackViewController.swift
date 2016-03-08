@@ -817,7 +817,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             
             if isFeedBackSaved == false
             {
-                Utility.alertPopup("Alert", informativeText: "Are you sure you want to ‘Submit’ the data ?", isCancelBtnNeeded: true,buttonTitleOne:"",buttonTitleTwo:"", okCompletionHandler: { () -> Void in
+                Utility.alertPopup("Alert", informativeText: "Are you sure you want to ‘Submit’ the data ?", isCancelBtnNeeded: true,buttonTitleOne:"Submit",buttonTitleTwo:"Cancel", okCompletionHandler: { () -> Void in
                     
                     self.dataAccessModel.insertIntoTechnicalFeedback(self,technicalFeedbackModel: self.technicalFeedbackModel, selectedCandidate: self.selectedCandidate!,andCallBack: {(isSucess)->Void in
                         if isSucess{
