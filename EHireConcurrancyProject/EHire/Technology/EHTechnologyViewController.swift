@@ -558,7 +558,6 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
     }
     
-    
     func deleteItem()
     {
         if let technologyEntity = sourceList.itemAtRow(sourceList.selectedRow) as? Technology
@@ -574,18 +573,24 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             else
             {
                 technologyDataLayer!.removeTechnolgy(technologyEntity, completion:
-                { (error) -> Void in
-                    if CoreDataError.Success == error
-                    {
-                    self.technologyArray.removeAtIndex(self.technologyArray.indexOf(technologyEntity)!)
-                    self.addTechnology.enabled = true
-                   // self.addDate.enabled = false
-                    self.sortedSourceListReload()
-                    }
-                    else
-                    {
-                        print("Error in deletion")
-                    }
+                    { (error) -> Void in
+                        if CoreDataError.Success == error
+                        {
+                            self.technologyArray.removeAtIndex(self.technologyArray.indexOf(technologyEntity)!)
+                            if self.filteredTechnologyArray.count > 0
+                            {
+                                self.filteredTechnologyArray.removeObjectAtIndex(self.filteredTechnologyArray.indexOfObject(technologyEntity))
+                            }
+                            
+                            self.technologySearchFiled.stringValue = ""
+                            self.addTechnology.enabled = true
+                            // self.addDate.enabled = false
+                            self.sortedSourceListReload()
+                        }
+                        else
+                        {
+                            print("Error in deletion")
+                        }
                 })
             }
             
@@ -598,7 +603,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             self.technologyDataLayer!.removeInterviewDateFrom(technologyObject, forInterview: selectedInterviewDate!, andCompletion: { (error) -> Void in
                 if CoreDataError.Success == error
                 {
-                if self.isCandidatesViewLoaded
+                    if self.isCandidatesViewLoaded
                     {
                         self.candidateController?.view.removeFromSuperview()
                         self.isCandidatesViewLoaded = false
@@ -610,7 +615,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                     print("Error")
                 }
             })
-
+            
         }
         
     }
@@ -990,99 +995,28 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         return true
         
     }
+    
+    @IBAction func filteredSerachField(sender: NSSearchField)
+    {
+        addTechnology.enabled = false
+        filteredTechnologyArray.removeAllObjects()
+        let technologyPredicate =   NSPredicate(format:"technologyName contains[cd] %@ " ,sender.stringValue)
+        
+        print(technologyPredicate)
+        
+        let resultArray = technologyArray.filter{technologyPredicate.evaluateWithObject($0)}
+        filteredTechnologyArray.addObjectsFromArray(resultArray)
+        
+        
+        self.sourceList.reloadData()
+
+        
+    }
+
 
     
 }
 
-//Reference Copy
-
-
-/*
-
-override func rightMouseDown(theEvent: NSEvent) {
-
-
-let isOutlineView = self.view.hitTest(theEvent.locationInWindow)
-
-if isOutlineView is NSOutlineView
-{
-
-let mainContextMenu = NSMenu(title: "Main Contextual Menu")
-
-
-
-mainContextMenu.insertItemWithTitle("Add Technology", action:Selector.init("addBtnAction:"), keyEquivalent: "", atIndex: 0)
-mainContextMenu.insertItemWithTitle("Delete Technology", action:Selector.init("dummy") , keyEquivalent: "", atIndex: 1)
-mainContextMenu.insertItemWithTitle("Add Date", action:Selector.init("addDateToTechnologyFromContextMenu:"), keyEquivalent: "", atIndex: 2)
-mainContextMenu.insertItemWithTitle("Delete Date", action:Selector.init("dummy") , keyEquivalent: "addBtnAction:", atIndex: 3)
-
-
-
-let technologySubMenuOne = NSMenu(title: "Technology Menu One")
-
-let technologySubMenuTwo = NSMenu(title:"Technology Menu Two")
-
-let technologySubMenuThree = NSMenu(title:"Technology Menu Three")
-
-if technologyArray.count > 0
-{
-
-for var i = 0 ; i < technologyArray.count ; i++
-{
-
-
-let technology = technologyArray[i] as Technology
-
-technologySubMenuOne.insertItemWithTitle(technology.technologyName!, action: Selector.init("deleteTechnologyFromContextMenu:"), keyEquivalent: "", atIndex: i)
-
-technologySubMenuTwo.insertItemWithTitle(technology.technologyName!, action: Selector.init("addDateToTechnologyFromContextMenu:"), keyEquivalent: "", atIndex: i)
-
-technologySubMenuThree.insertItemWithTitle(technology.technologyName!, action: Selector.init("dummy"), keyEquivalent: "", atIndex: i)
-}
-
-mainContextMenu.setSubmenu(technologySubMenuOne, forItem:mainContextMenu.itemAtIndex(1)!)
-
-mainContextMenu.setSubmenu(technologySubMenuTwo, forItem:mainContextMenu.itemAtIndex(2)!)
-
-mainContextMenu.setSubmenu(technologySubMenuThree, forItem:mainContextMenu.itemAtIndex(3)!)
-
-}
-
-for var i = 0 ; i < technologyArray.count ; i++
-{
-
-let technology = technologyArray[i] as Technology
-
-let datesMenu = NSMenu(title:"Dates Menu")
-
-let allDates = technology.interviewDates?.allObjects
-
-if allDates?.count > 0
-{
-
-for  (index , value) in (allDates?.enumerate())!
-{
-let selectedDate = value as! Date
-
-datesMenu.insertItemWithTitle(getFormattedDate(selectedDate.interviewDate!), action: Selector.init("deleteDateFromTechnologyFromContextMenu:"), keyEquivalent:"", atIndex:index)
-}
-
-technologySubMenuThree.setSubmenu(datesMenu, forItem:technologySubMenuThree.itemAtIndex(i)!)
-
-}
-
-}
-
-NSMenu.popUpContextMenu(mainContextMenu, withEvent: theEvent, forView: self.view)
-
-}
-
-}
-
-
-
-
-*/
 
 
 
