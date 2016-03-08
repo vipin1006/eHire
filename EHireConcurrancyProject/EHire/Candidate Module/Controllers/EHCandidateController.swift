@@ -23,7 +23,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     @IBOutlet weak var feedbackButton: NSButton!
     @IBOutlet weak var removeButton: NSButton!
     
-   // @IBOutlet weak var phoneNumberTextField: NSTextField!
+    // @IBOutlet weak var phoneNumberTextField: NSTextField!
     //MARK: Properties
     var candidateArray = NSMutableArray()
     var filteredArray = NSMutableArray()
@@ -34,15 +34,15 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     var candidateDetails = Candidate()
     var candidateAccessLayer : EHCandidateAccessLayer?
     var managedObjectContext : NSManagedObjectContext?
-
+    
     
     override func viewDidLoad()
     {
-      super.viewDidLoad()
-      feedbackButton.enabled = false
-      removeButton.enabled = false
-      removeButton.toolTip = "Remove Candidate"
-      addCandidateButton.toolTip = "Add Candidate"
+        super.viewDidLoad()
+        feedbackButton.enabled = false
+        removeButton.enabled = false
+        removeButton.toolTip = "Remove Candidate"
+        addCandidateButton.toolTip = "Add Candidate"
         candidateAccessLayer = EHCandidateAccessLayer()
         candidateAccessLayer?.managedObjectContext = self.managedObjectContext
         candidateSearchField.appearance = NSAppearance(named:NSAppearanceNameVibrantLight)
@@ -54,14 +54,14 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     
     override func viewWillAppear()
     {
-     if let tablePreserved = preserveCandidate
-     {
-       tableView.selectRowIndexes(NSIndexSet(index: tablePreserved), byExtendingSelection: false)
-     }
+        if let tablePreserved = preserveCandidate
+        {
+            tableView.selectRowIndexes(NSIndexSet(index: tablePreserved), byExtendingSelection: false)
+        }
         
         
         
-
+        
     }
     
     //MARK: This data source method returns tableview rows
@@ -74,7 +74,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     }
     
     //Mark: This delegate method provides the content for each item of the table view
-
+    
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView?
     {
         
@@ -86,7 +86,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         }
         else {
             candidate = (candidateArray[row] as? Candidate)!
-             addCandidateButton.enabled = true
+            addCandidateButton.enabled = true
         }
         let cell = self.tableView.makeViewWithIdentifier((tableColumn?.identifier)!, owner: self) as! NSTableCellView
         
@@ -95,7 +95,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         {
             if candidate.name != nil
             {
-            cell.textField?.stringValue = (candidate.name)!
+                cell.textField?.stringValue = (candidate.name)!
             }
         }
             
@@ -123,17 +123,17 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         {
             let interviewTimePicker:NSDatePicker = cell.viewWithTag(10) as! NSDatePicker
             interviewTimePicker.dateValue = (candidate.interviewTime)!
-  
+            
         }
             
-            else if tableColumn?.identifier == "requisition"
+        else if tableColumn?.identifier == "requisition"
         {
             cell.textField?.stringValue = (candidate.requisition)!
         }
             
         else
         {
-           cell.textField?.stringValue = (candidate.phoneNumber)!
+            cell.textField?.stringValue = (candidate.phoneNumber)!
         }
         return cell
     }
@@ -143,80 +143,80 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     {
         return 22
     }
-  
+    
     func tableViewSelectionDidChange(notification: NSNotification)
     {
         let selectedRow = tableView.selectedRow
-       if selectedRow != -1
-       {
-       if let _:Candidate = candidateArray.objectAtIndex(selectedRow) as? Candidate
-       {
-        feedbackButton.enabled = true
-        removeButton.enabled = true
+        if selectedRow != -1
+        {
+            if let _:Candidate = candidateArray.objectAtIndex(selectedRow) as? Candidate
+            {
+                feedbackButton.enabled = true
+                removeButton.enabled = true
+            }
         }
-      }
-       else
-       {
-        feedbackButton.enabled = false
-        removeButton.enabled = false
+        else
+        {
+            feedbackButton.enabled = false
+            removeButton.enabled = false
         }
     }
-
+    
     //MARK:Actions
     @IBAction func addCandidate(sender: AnyObject)
     {
-      func addCandidate()
-      {
-
-         candidateAccessLayer!.addCandidate("", experience: nil, phoneNumber: "", requisition: "",interviewTime:self.interviewDate!, technologyName: self.technologyName!, interviewDate: self.interviewDate!,andCallBack: {(newCandidate) -> Void in
-            self.candidateArray.addObject(newCandidate)
-            self.tableView.reloadData()
-            let index : NSInteger = self.candidateArray.count - 1;
-            self.tableView.selectRowIndexes(NSIndexSet.init(index: index), byExtendingSelection: true)
-            let rowView:NSTableRowView = self.tableView.rowViewAtRow(self.tableView.selectedRow, makeIfNecessary: true)!
-
-            rowView.viewWithTag(1)?.becomeFirstResponder()
-            self.removeButton.enabled = false
+        func addCandidate()
+        {
             
+            candidateAccessLayer!.addCandidate("", experience: nil, phoneNumber: "", requisition: "",interviewTime:self.interviewDate!, technologyName: self.technologyName!, interviewDate: self.interviewDate!,andCallBack: {(newCandidate) -> Void in
+                self.candidateArray.addObject(newCandidate)
+                self.tableView.reloadData()
+                let index : NSInteger = self.candidateArray.count - 1;
+                self.tableView.selectRowIndexes(NSIndexSet.init(index: index), byExtendingSelection: true)
+                let rowView:NSTableRowView = self.tableView.rowViewAtRow(self.tableView.selectedRow, makeIfNecessary: true)!
+                
+                rowView.viewWithTag(1)?.becomeFirstResponder()
+                self.removeButton.enabled = false
+                
             })
-        
-      }
-      if candidateArray.count > 0
-      {
-        var allCandidatesValid:Bool = true
-        for candidateRecord in candidateArray
-        {
-          if candidateRecord.name! == "" || candidateRecord.phoneNumber! == "" || candidateRecord.experience! == nil || candidateRecord.experience! == nil || candidateRecord.requisition! == ""
-          {
-            Utility.alertPopup("Candidate can not be added", informativeText: "Please fill all the details of the selected candidate before adding a new candidate", isCancelBtnNeeded:true,okCompletionHandler:
-                { () -> Void in
-                        
-                })
-            allCandidatesValid = false
-            break
-          }
+            
         }
-        if allCandidatesValid == true
+        if candidateArray.count > 0
         {
-          addCandidate()
+            var allCandidatesValid:Bool = true
+            for candidateRecord in candidateArray
+            {
+                if candidateRecord.name! == "" || candidateRecord.phoneNumber! == "" || candidateRecord.experience! == nil || candidateRecord.experience! == nil || candidateRecord.requisition! == ""
+                {
+                    Utility.alertPopup("Candidate can not be added", informativeText: "Please fill all the details of the selected candidate before adding a new candidate", isCancelBtnNeeded:true,buttonTitleOne:"Cancel",buttonTitleTwo:"Ok",okCompletionHandler:
+                        { () -> Void in
+                            
+                    })
+                    allCandidatesValid = false
+                    break
+                }
+            }
+            if allCandidatesValid == true
+            {
+                addCandidate()
+            }
         }
-     }
-     else
-     {
-       addCandidate()
-     }
-  }
+        else
+        {
+            addCandidate()
+        }
+    }
     
     func refresh()
     {
-      getSourceListContent()
+        getSourceListContent()
         
     }
     
     func getSourceListContent()
     {
-      candidateArray.removeAllObjects()
-      candidateAccessLayer?.getCandiadteList(technologyName!, interviewDate:interviewDate!, andCallBack: { (recordsArray) -> Void in
+        candidateArray.removeAllObjects()
+        candidateAccessLayer?.getCandiadteList(technologyName!, interviewDate:interviewDate!, andCallBack: { (recordsArray) -> Void in
             if recordsArray.count > 0
             {
                 for aRec in recordsArray
@@ -252,19 +252,19 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             {
                 self.candidateSearchField.enabled = false
             }
-
+            
         })
     }
-
+    
     @IBAction func searchFieldTextDidChange(sender: NSSearchField)
     {
-      filteredArray.removeAllObjects()
-      
-      let predicate = self.experiencePredicateWithValue(sender.stringValue)
-      
-      filteredArray.addObjectsFromArray(candidateArray.filteredArrayUsingPredicate(predicate))
-            tableView.reloadData()
-      
+        filteredArray.removeAllObjects()
+        
+        let predicate = self.experiencePredicateWithValue(sender.stringValue)
+        
+        filteredArray.addObjectsFromArray(candidateArray.filteredArrayUsingPredicate(predicate))
+        tableView.reloadData()
+        
     }
     
     
@@ -289,167 +289,167 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         let compoundPredicate:NSCompoundPredicate =  NSCompoundPredicate.init(orPredicateWithSubpredicates: [otherPredicate, predicate])
         return compoundPredicate
     }
-
     
-   @IBAction func removeCandidate(sender: AnyObject)
-   {
-   
-    Utility.alertPopup("Are you sure you want to delete the Candidate?", informativeText: "", isCancelBtnNeeded:true,okCompletionHandler:{() in
-        self.deleteCandidate()
-      })
-   }
+    
+    @IBAction func removeCandidate(sender: AnyObject)
+    {
+        
+        Utility.alertPopup("Are you sure you want to delete the Candidate?", informativeText: "All the related data will also be deleted.", isCancelBtnNeeded:true,buttonTitleOne:"Delete",buttonTitleTwo:"Cancel",okCompletionHandler:{() in
+            self.deleteCandidate()
+        })
+    }
     
     @IBAction func addInterviewTime(sender: AnyObject)
     {
-      let selectedCandidate:Candidate = candidateArray.objectAtIndex(tableView.selectedRow) as! Candidate
-      selectedCandidate.interviewTime = sender.dateValue
-      EHCoreDataHelper.saveToCoreData(selectedCandidate)
+        let selectedCandidate:Candidate = candidateArray.objectAtIndex(tableView.selectedRow) as! Candidate
+        selectedCandidate.interviewTime = sender.dateValue
+        EHCoreDataHelper.saveToCoreData(selectedCandidate)
         
     }
     
     @IBAction func enterFeedback(sender: AnyObject)
     {
-      if tableView.selectedRow > -1
-      {
-        if let delegate = self.delegate
+        if tableView.selectedRow > -1
         {
-          let selectedRow:NSInteger = tableView.selectedRow
-          let selectedCandidate:Candidate = candidateArray.objectAtIndex(selectedRow) as! Candidate
-
-          NSApp.windows.first?.title = "Candidate Feedback"
-          if candidateArray.count > 0
+            if let delegate = self.delegate
             {
-              let candidateRecord = candidateArray.objectAtIndex(tableView.selectedRow) as! Candidate
-              if  candidateRecord.name! == "" || candidateRecord.phoneNumber! == "" || candidateRecord.experience == -1 || candidateRecord.experience == nil || candidateRecord.requisition! == ""
-              {
-                Utility.alertPopup("Candidate details are not complete. Cannot proceed to provide feedback.", informativeText:"Please enter all the candidate information before proceeding.",isCancelBtnNeeded:false, okCompletionHandler: { () -> Void in
+                let selectedRow:NSInteger = tableView.selectedRow
+                let selectedCandidate:Candidate = candidateArray.objectAtIndex(selectedRow) as! Candidate
+                
+                NSApp.windows.first?.title = "Candidate Feedback"
+                if candidateArray.count > 0
+                {
+                    let candidateRecord = candidateArray.objectAtIndex(tableView.selectedRow) as! Candidate
+                    if  candidateRecord.name! == "" || candidateRecord.phoneNumber! == "" || candidateRecord.experience == -1 || candidateRecord.experience == nil || candidateRecord.requisition! == ""
+                    {
+                        Utility.alertPopup("Candidate details are not complete. Can not proceed to provide feedback.", informativeText:"Please enter all the candidate information before proceeding.",isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"", okCompletionHandler: { () -> Void in
                         })
-              }
-              else
-              {
-                delegate.showFeedbackViewController(selectedCandidate)
-              }
+                    }
+                    else
+                    {
+                        delegate.showFeedbackViewController(selectedCandidate)
+                    }
+                }
             }
+            
         }
-        
-       }
-     }
-        
+    }
+    
     
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
     {
-      let textField = control as! NSTextField
-      let candidate = self.candidateArray.objectAtIndex(self.tableView.selectedRow) as! Candidate
-
+        let textField = control as! NSTextField
+        let candidate = self.candidateArray.objectAtIndex(self.tableView.selectedRow) as! Candidate
+        
         var textShouldEndEditing = true
-      switch textField.tag
-      {
+        switch textField.tag
+        {
         case 1,4:
-        if (!(textField.stringValue == ""))
-        {
-         if !Utility.isAlphabetsOnly(textField.stringValue)
-         {
-          Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters for candidate.",isCancelBtnNeeded:false,okCompletionHandler: nil)
-          fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.characters.count)
-          textShouldEndEditing = false
-            
-         }
-         else
-         {
-            if textField.tag == 1 {
-            candidate.name = fieldEditor.string
-
-            }
-            else{
-                candidate.requisition = fieldEditor.string
-            }
-            candidateSearchField.enabled = true
-         }
-        }
-        else
-        {
-         if textField.tag == 1
+            if (!(textField.stringValue == ""))
             {
-              candidate.name = fieldEditor.string
+                if !Utility.isAlphabetsOnly(textField.stringValue)
+                {
+                    Utility.alertPopup("Invalid candidate name", informativeText: "Please enter alphabetical characters for candidate name.",isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"",okCompletionHandler: nil)
+                    fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.characters.count)
+                    textShouldEndEditing = false
+                    
+                }
+                else
+                {
+                    if textField.tag == 1 {
+                        candidate.name = fieldEditor.string
+                        
+                    }
+                    else{
+                        candidate.requisition = fieldEditor.string
+                    }
+                    candidateSearchField.enabled = true
+                }
             }
             else
-             {
-              candidate.requisition = fieldEditor.string
-             }
-          candidateSearchField.enabled = false
-        }
-       
-        case 2:
-        if (!(textField.stringValue == ""))
-        {
-        let experience = textField.doubleValue
-          if !EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
-          {
-            Utility.alertPopup("Error", informativeText: "Please enter a numerical value for experience.",isCancelBtnNeeded:false,okCompletionHandler:nil)
-            fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
-            textShouldEndEditing = false
-
-          }
-          else if experience <= 50
-          {
-            let numberFormatter = NSNumberFormatter()
-            let number:NSNumber? = numberFormatter.numberFromString(fieldEditor.string!)
-            if let number = number
             {
-              let double = Double(number)
-              candidate.experience = double
+                if textField.tag == 1
+                {
+                    candidate.name = fieldEditor.string
+                }
+                else
+                {
+                    candidate.requisition = fieldEditor.string
+                }
+                candidateSearchField.enabled = false
             }
-              candidateSearchField.enabled = false
-          }
             
-          else
-          {
-            Utility.alertPopup("Error", informativeText: "Please enter a appropriate  experience.",isCancelBtnNeeded:false,okCompletionHandler: nil)
-            fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
-            textShouldEndEditing = false
-
-          }
-        }
-        else
-        {
-           candidate.experience = nil
-           self.candidateSearchField.enabled = false
-        }
-       
-
-       case 3:
-       if (!(textField.stringValue == ""))
-       {
-        if !EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
-        {
-          Utility.alertPopup("Error", informativeText: "Please enter a appropriate mobile number. ",isCancelBtnNeeded:false,okCompletionHandler: nil)
-          fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
-          textShouldEndEditing = false
-        }
-        else if ((fieldEditor.string?.characters.count >= 10) && (fieldEditor.string?.characters.count <= 12))
-        {
-          candidate.phoneNumber = fieldEditor.string
-          self.candidateSearchField.enabled = true
-        }
-        else
-        {
-          Utility.alertPopup("Error", informativeText: "Please enter a 11 digit mobile phone number.",isCancelBtnNeeded:false,okCompletionHandler: nil)
-          fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
-          textShouldEndEditing = false
-        }
-       }
-       else
-       {
-         candidate.phoneNumber = fieldEditor.string
-         candidateSearchField.enabled = false
-       }
+        case 2:
+            if (!(textField.stringValue == ""))
+            {
+                let experience = textField.doubleValue
+                if !EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
+                {
+                    Utility.alertPopup("Invalid experience", informativeText: "Please enter a numerical value for experience.",isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"",okCompletionHandler:nil)
+                    fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+                    textShouldEndEditing = false
+                    
+                }
+                else if experience <= 50
+                {
+                    let numberFormatter = NSNumberFormatter()
+                    let number:NSNumber? = numberFormatter.numberFromString(fieldEditor.string!)
+                    if let number = number
+                    {
+                        let double = Double(number)
+                        candidate.experience = double
+                    }
+                    candidateSearchField.enabled = false
+                }
+                    
+                else
+                {
+                    Utility.alertPopup("Invalid experience", informativeText: "Please enter an appropriate  experience.",isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"",okCompletionHandler: nil)
+                    fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+                    textShouldEndEditing = false
+                    
+                }
+            }
+            else
+            {
+                candidate.experience = nil
+                self.candidateSearchField.enabled = false
+            }
+            
+            
+        case 3:
+            if (!(textField.stringValue == ""))
+            {
+                if !EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
+                {
+                    Utility.alertPopup("Invalid mobile number", informativeText: "Please enter an appropriate mobile number. ",isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"",okCompletionHandler: nil)
+                    fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+                    textShouldEndEditing = false
+                }
+                else if ((fieldEditor.string?.characters.count >= 10) && (fieldEditor.string?.characters.count <= 12))
+                {
+                    candidate.phoneNumber = fieldEditor.string
+                    self.candidateSearchField.enabled = true
+                }
+                else
+                {
+                    Utility.alertPopup("Invalid mobile number", informativeText: "Please enter a 11 digit mobile number.",isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"",okCompletionHandler: nil)
+                    fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+                    textShouldEndEditing = false
+                }
+            }
+            else
+            {
+                candidate.phoneNumber = fieldEditor.string
+                candidateSearchField.enabled = false
+            }
         default: break
-       
-     }
+            
+        }
         
         if candidate.name != "" && candidate.phoneNumber != ""  && candidate.experience != nil && candidate.requisition != ""   {
             EHCoreDataHelper.saveToCoreData(candidate)
-
+            
         }
         else {
             print("Cannot save , fields are empty")
@@ -461,21 +461,21 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     func deleteCandidate()
     {
         
-     if tableView.selectedRow > -1
-     {
-      let editCandidate = candidateArray.objectAtIndex(tableView.selectedRow) as! Candidate
-      candidateAccessLayer!.removeCandidate(editCandidate)
-      candidateArray.removeObjectAtIndex(tableView.selectedRow)
-      feedbackButton.enabled = false
-      removeButton.enabled = false
-     }
-      tableView.reloadData()
+        if tableView.selectedRow > -1
+        {
+            let editCandidate = candidateArray.objectAtIndex(tableView.selectedRow) as! Candidate
+            candidateAccessLayer!.removeCandidate(editCandidate)
+            candidateArray.removeObjectAtIndex(tableView.selectedRow)
+            feedbackButton.enabled = false
+            removeButton.enabled = false
+        }
+        tableView.reloadData()
     }
     
     override func controlTextDidBeginEditing(obj: NSNotification) {
-       
+        
         removeButton.enabled = false
         //feedbackButton.enabled = false
-       
+        
     }
 }

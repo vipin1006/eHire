@@ -10,16 +10,16 @@ import Cocoa
 
 class Utility: NSObject
 {
-    class func alertPopup(data:String,informativeText:String ,isCancelBtnNeeded:Bool , let okCompletionHandler:(() -> Void)?)
+    class func alertPopup(data:String,informativeText:String ,isCancelBtnNeeded:Bool,buttonTitleOne:String,buttonTitleTwo:String, let okCompletionHandler:(() -> Void)?)
     {
         let alert:NSAlert = NSAlert()
         alert.messageText = data
         
         alert.informativeText = informativeText
         if isCancelBtnNeeded{
-            alert.addButtonWithTitle("YES")
-            alert.addButtonWithTitle("NO")
-
+            alert.addButtonWithTitle(buttonTitleOne)
+            alert.addButtonWithTitle(buttonTitleTwo)
+            
         }
         else{
             alert.addButtonWithTitle("OK")
@@ -40,5 +40,5 @@ class Utility: NSObject
         let newString = string.stringByTrimmingCharactersInSet(alphaCharSet.invertedSet)
         return (newString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == string.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
     }
-
+    
 }

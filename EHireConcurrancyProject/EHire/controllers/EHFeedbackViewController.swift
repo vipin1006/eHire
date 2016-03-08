@@ -55,9 +55,9 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
         self.scrollViewHr.hasVerticalScroller = true
         
         
-       
+        
         // self.scrollViewHr.hasHorizontalScroller = true
-//        self.subRound.layer?.backgroundColor =  NSColor(calibratedRed:245/255.0, green: 245/255.0, blue: 245/255.0, alpha: 1.0).CGColor
+        //        self.subRound.layer?.backgroundColor =  NSColor(calibratedRed:245/255.0, green: 245/255.0, blue: 245/255.0, alpha: 1.0).CGColor
     }
     
     @IBAction func roundType(sender: AnyObject)
@@ -65,7 +65,7 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
         
         self.subRound.hidden = false
         let mainRound:NSSegmentedControl = sender as! NSSegmentedControl
-
+        
         let techLeadCount = (selectedCandidate?.interviewedByTechLeads)!.count
         let managerCount =  (selectedCandidate?.interviewedByManagers)!.count
         defaultSegmentManager()
@@ -101,29 +101,29 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                 
                 if feedback.recommendation == "Rejected"
                 {
-                    Utility.alertPopup("Alert", informativeText: "This candidate has been 'Rejected' in the Technical Round. Hence you cannot proceed to this round.",isCancelBtnNeeded:false, okCompletionHandler: nil)
+                    Utility.alertPopup("Candidate rejected.", informativeText: "This candidate has been 'Rejected' in the Technical Round. Hence you cannot proceed to further rounds.",isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"", okCompletionHandler: nil)
                     
                     self.typeOfInterview.selectedSegment = 0
                     
                     return
                 }
             }
-
+            
             if techLeadCount < 1
             {
-                Utility.alertPopup("Alert", informativeText: "Please complete the Technical Round(s) before proceeding to the Managerial Round",isCancelBtnNeeded:false, okCompletionHandler: nil)
+                Utility.alertPopup("Incomplete Technical Rounds", informativeText: "Please complete the Technical Rounds before proceeding to the Managerial Round",isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"", okCompletionHandler: nil)
                 subRound.selectedSegment = 0
                 typeOfInterview.setSelected(true, forSegment: 0)
                 return
             }
-           
+            
             if !isManagerLoaded
             {
                 managerFeedback = storyboard?.instantiateControllerWithIdentifier("EHManagerFeedbackViewController") as? EHManagerFeedbackViewController
-                   managerFeedback?.managerFeedbackData = self
+                managerFeedback?.managerFeedbackData = self
                 
                 managerFeedback?.selectedCandidate = selectedCandidate
-                 managerFeedback?.managedObjectContext = self.managedObjectContext
+                managerFeedback?.managedObjectContext = self.managedObjectContext
                 self.scrollViewHr.documentView = managerFeedback?.view
                 self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1565))
             }
@@ -143,7 +143,7 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                 
                 if feedback.recommendation == "Rejected"
                 {
-                    Utility.alertPopup("Alert", informativeText: "This candidate has been 'Rejected' in the Technical Round. Hence you cannot proceed to this round.",isCancelBtnNeeded:false, okCompletionHandler: nil)
+                    Utility.alertPopup("Candiadte rejected", informativeText: "This candidate has been 'Rejected' in the Technical Round. Hence you cannot proceed to further rounds.",isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"", okCompletionHandler: nil)
                     
                     self.typeOfInterview.selectedSegment = 0
                     
@@ -157,7 +157,7 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                 
                 if feedback.recommendation == "Rejected"
                 {
-                    Utility.alertPopup("Alert", informativeText: "This candidate has been 'Rejected' in the Manager Round. Hence you cannot proceed to this round.",isCancelBtnNeeded:false, okCompletionHandler: nil)
+                    Utility.alertPopup("Candiadte rejected", informativeText: "This candidate has been 'Rejected' in the Manager Round. Hence you cannot proceed to further rounds.",isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"", okCompletionHandler: nil)
                     
                     if self.subRound.segmentCount == 3
                     {
@@ -170,37 +170,37 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                     return
                 }
             }
-
+            
             
             if techLeadCount < 3
             {
-                Utility.alertPopup("Alert", informativeText: "Please complete Technical Round(s) before proceeding to the HR Round", isCancelBtnNeeded:false,okCompletionHandler: nil)
+                Utility.alertPopup("Incomplete Technical rounds", informativeText: "Please complete Technical Rounds before proceeding to the HR Round", isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"",okCompletionHandler: nil)
                 subRound.selectedSegment = 0
                 typeOfInterview.setSelected(true, forSegment: 0)
                 return
             }
             else
             {
-               
+                
                 
                 if managerCount < 2
                 {
-//                    Utility.alertPopup("Alert", informativeText: "Please complete Manager Round(s) before proceeding to the HR Round", isCancelBtnNeeded:false,okCompletionHandler: nil)
+                    //                    Utility.alertPopup("Alert", informativeText: "Please complete Manager Round(s) before proceeding to the HR Round", isCancelBtnNeeded:false,okCompletionHandler: nil)
                     
                     self.typeOfInterview.selectedSegment = 1
-
+                    
                     return
                 }
                 
-            if !isHrLoaded
-            {
-               self.addHrFeedBackView()
-                
+                if !isHrLoaded
+                {
+                    self.addHrFeedBackView()
+                    
+                }
+                self.managerFeedback?.view.removeFromSuperview()
+                self.techFeedback?.view.removeFromSuperview()
+                self.subRound.hidden = true
             }
-            self.managerFeedback?.view.removeFromSuperview()
-            self.techFeedback?.view.removeFromSuperview()
-            self.subRound.hidden = true
-         }
         default:
             print("Other")
         }
@@ -212,8 +212,8 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
         //defaultSegmentTech()
         switch self.typeOfInterview.selectedSegment
         {
-        //For Technical Feedback Rounds
-         case 0:
+            //For Technical Feedback Rounds
+        case 0:
             switch self.subRound.selectedSegment
             {
             case 0:
@@ -223,8 +223,8 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                     let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
                     techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
                 }
-
-        case 1:
+                
+            case 1:
                 
                 print("Round Two")
                 
@@ -232,23 +232,23 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                 switch techLeadCount
                 {
                 case 0:
-                       Utility.alertPopup("Alert", informativeText: "Please complete Round 1 before proceeding to Round 2.", isCancelBtnNeeded:false,okCompletionHandler: nil)
-                       subRound.selectedSegment = 0
+                    Utility.alertPopup("Incomplete Technical round", informativeText: "Please complete Round 1 before proceeding to Round 2.", isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"",okCompletionHandler: nil)
+                    subRound.selectedSegment = 0
                     
                     
                 case 1:
                     
                     for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
-                     {
+                    {
                         let feedback = feedbackOfTechLead as! TechnicalFeedBack
                         if feedback.recommendation == "Rejected"
                         {
-                            Utility.alertPopup("Candidate Rejected", informativeText: "This candidate has been 'Rejected' in Round One. Hence you cannot proceed to this round.",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                            Utility.alertPopup("Candidate Rejected", informativeText: "This candidate has been 'Rejected' in Round One. Hence you cannot proceed to further rounds.",isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"",okCompletionHandler: nil)
                             subRound.selectedSegment = 0
                         }
                         else if feedback.isFeedbackSubmitted == false
                         {
-                             Utility.alertPopup("Candidate Rejected", informativeText: "Please complete Round 1 before proceeding to Round 2.",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                            Utility.alertPopup("Candidate is rejected", informativeText: "Please complete Round 1 before proceeding to Round 2.",isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"",okCompletionHandler: nil)
                             subRound.selectedSegment = 0
                         }
                         else
@@ -256,9 +256,9 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                             techFeedback?.refreshAllFields()
                             techFeedback?.selectedRound = self.subRound.selectedSegment
                         }
-                      break
-                     }
-
+                        break
+                    }
+                    
                 default:
                     if techLeadCount > 1
                     {
@@ -276,7 +276,7 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                 {
                 case 0:
                     
-                    Utility.alertPopup("Alert", informativeText: "RoundOne not yet Completed", isCancelBtnNeeded:false,okCompletionHandler: nil)
+                    Utility.alertPopup("Incomplete Technical rounds", informativeText: "Round one not yet completed", isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"",okCompletionHandler: nil)
                     subRound.selectedSegment = 0
                     
                     
@@ -284,80 +284,80 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                     for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
                     {
                         let feedback = feedbackOfTechLead as! TechnicalFeedBack
-
                         
-                            if feedback.recommendation == "Rejected"
-                            {
-                                Utility.alertPopup("Candidate Rejected", informativeText: "Selected Candidate Rejected has been in Technical Round One. Hence you cannot proceed to round three.", isCancelBtnNeeded:false,okCompletionHandler: nil)
-                                subRound.selectedSegment = 0
-                            }
                         
-                            else if feedback.isFeedbackSubmitted == false
-                            {
-                                Utility.alertPopup("Alert", informativeText: "Round 1 is not yet Submitted.", isCancelBtnNeeded:false,okCompletionHandler: nil)
-                                subRound.selectedSegment = 0
-                            }
-                            else
-                            {
-                                techFeedback?.refreshAllFields()
-                                subRound.selectedSegment = 1
-                                techFeedback?.selectedRound = self.subRound.selectedSegment
-                                Utility.alertPopup("Alert", informativeText: "Please complete Round 2 before proceeding to Round 3.", isCancelBtnNeeded:false,okCompletionHandler: nil)
-                            }
-
-                    break
+                        if feedback.recommendation == "Rejected"
+                        {
+                            Utility.alertPopup("Candidate is rejected", informativeText: "Candidate  has been rejected in Technical Round One. Hence you cannot proceed to further rounds.", isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"",okCompletionHandler: nil)
+                            subRound.selectedSegment = 0
+                        }
+                            
+                        else if feedback.isFeedbackSubmitted == false
+                        {
+                            Utility.alertPopup("Incomplete feedback submission", informativeText: "Round 1 is not yet Submitted.", isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"",okCompletionHandler: nil)
+                            subRound.selectedSegment = 0
+                        }
+                        else
+                        {
+                            techFeedback?.refreshAllFields()
+                            subRound.selectedSegment = 1
+                            techFeedback?.selectedRound = self.subRound.selectedSegment
+                            Utility.alertPopup("Incomplete Technical rounds", informativeText: "Please complete Round 2 before proceeding to Round 3.", isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"",okCompletionHandler: nil)
+                        }
+                        
+                        break
                     }
                 case 2:
                     var count = 0
                     for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
                     {
                         count++
-                    let feedback = feedbackOfTechLead as! TechnicalFeedBack
-                    if feedback.recommendation == "Rejected"
-                    {
-                        Utility.alertPopup("Alert", informativeText: "Selected Candidate Rejected has been in Technical Round Two. Hence you cannot proceed to round three.", isCancelBtnNeeded:false,okCompletionHandler: nil)
-                        subRound.selectedSegment = 1
-                        let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
-                        techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
-                         break
-                    }
-                    else if feedback.isFeedbackSubmitted == false
-                    {
-                        Utility.alertPopup("Candidate Rejected", informativeText: "Please complete Round 2 before proceeding to Round 3.",isCancelBtnNeeded:false,okCompletionHandler: nil)
-                        subRound.selectedSegment = 1
-                        let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
-                        techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
-                        break
-                    }
-
-                    else
-                    {
-                        if count == 2
+                        let feedback = feedbackOfTechLead as! TechnicalFeedBack
+                        if feedback.recommendation == "Rejected"
                         {
-                        techFeedback?.refreshAllFields()
-
-                        techFeedback?.selectedRound = self.subRound.selectedSegment
-
-
+                            Utility.alertPopup("Candidate is rejected", informativeText: "Candidate has been rejected in Technical Round Two. Hence you cannot proceed to further rounds.", isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"",okCompletionHandler: nil)
+                            subRound.selectedSegment = 1
+                            let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
+                            techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
+                            break
                         }
-
+                        else if feedback.isFeedbackSubmitted == false
+                        {
+                            Utility.alertPopup("Candidate is rejected", informativeText: "Please complete Round 2 before proceeding to Round 3.",isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"",okCompletionHandler: nil)
+                            subRound.selectedSegment = 1
+                            let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
+                            techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
+                            break
+                        }
+                            
+                        else
+                        {
+                            if count == 2
+                            {
+                                techFeedback?.refreshAllFields()
+                                
+                                techFeedback?.selectedRound = self.subRound.selectedSegment
+                                
+                                
+                            }
+                            
+                        }
                     }
-                }
                 default:
                     if selectedCandidate?.interviewedByTechLeads?.count > 2
                     {
-                       let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
-                       techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
+                        let candidateObjects = selectedCandidate?.interviewedByTechLeads?.allObjects
+                        techFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
                     }
                 }
             default: print("")
-        }
+            }
             
         case 1: // for managerial feedback sub rounds
-        switch self.subRound.selectedSegment
-        {
-        
-            
+            switch self.subRound.selectedSegment
+            {
+                
+                
             case 0:
                 print("Round One")
                 if selectedCandidate?.interviewedByManagers?.count != 0
@@ -365,15 +365,15 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                     let allObjects = selectedCandidate?.interviewedByManagers?.allObjects
                     managerFeedback?.sortArray(allObjects!, index:self.subRound.selectedSegment)
                 }
-  
+                
             case 1:
-
+                
                 print (self.subRound.selectedSegment)
                 let managerFeedbackCount = (selectedCandidate?.interviewedByManagers)!.count
                 switch managerFeedbackCount
                 {
                 case 0:
-                    Utility.alertPopup("Alert", informativeText: "Please complete Round 1   before proceeding to Round 2.",isCancelBtnNeeded:false, okCompletionHandler: nil)
+                    Utility.alertPopup("Incomplete Manager rounds", informativeText: "Please complete Round 1   before proceeding to Round 2.",isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"", okCompletionHandler: nil)
                     //Disabling proceeding to next round
                     subRound.selectedSegment = 0
                     
@@ -385,33 +385,33 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                         if feedback.recommendation == "Rejected"
                         {
                             
-                            Utility.alertPopup("Candidate Rejected", informativeText: "This candidate has been 'Rejected' in Round One. Hence you cannot proceed to this round.",isCancelBtnNeeded:false, okCompletionHandler: nil)
+                            Utility.alertPopup("Candidate is rejected", informativeText: "This candidate has been 'Rejected' in Round One. Hence you cannot proceed to further rounds.",isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"", okCompletionHandler: nil)
                             
                             //Disabling proceeding to next round
                             subRound.selectedSegment = 0
-
-                         
-                         }
-                        //Disabling proceeding to next round before submitting previous round.
+                            
+                            
+                        }
+                            //Disabling proceeding to next round before submitting previous round.
                         else if feedback.isSubmitted == false
                         {
-                            Utility.alertPopup("Round One not submitted", informativeText: "Please submit round 1 to proceed to round 2", isCancelBtnNeeded: false, okCompletionHandler: nil)
+                            Utility.alertPopup("Round one feedback is not submitted", informativeText: "Please submit round 1 to proceed to round 2", isCancelBtnNeeded: false,buttonTitleOne:"",buttonTitleTwo:"", okCompletionHandler: nil)
                             subRound.selectedSegment = 0
                         }
                         else if managerFeedback?.selectedCandidate?.interviewedByManagers?.count > self.subRound.selectedSegment{
                             
                             let candidateObjects = selectedCandidate?.interviewedByManagers?.allObjects
                             managerFeedback?.sortArray(candidateObjects!, index:self.subRound.selectedSegment)
-                           
+                            
                         }
-                    
-                       
+                            
+                            
                         else
                         {
                             managerFeedback?.refreshAllFields()
                             managerFeedback?.selectedSegment = self.subRound.selectedSegment
                         }
-                     }
+                    }
                 case 2:
                     
                     let candidateObjects = selectedCandidate?.interviewedByManagers?.allObjects
@@ -425,9 +425,9 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                 
             default: print("")
             }
-         default: print("")
-          
-        
+        default: print("")
+            
+            
         }
     }
     
@@ -452,88 +452,88 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
     @IBAction func dismissFeedbackView(sender: AnyObject)
     {
         
-            switch self.typeOfInterview.selectedSegment
+        switch self.typeOfInterview.selectedSegment
+        {
+            
+        case 0:
+            
+            if techFeedback?.submitButton.enabled == true
             {
-                
-            case 0:
-                
-                if techFeedback?.submitButton.enabled == true
+                if techFeedback?.isFeedBackSaved == false
                 {
-                    if techFeedback?.isFeedBackSaved == false
+                    if techFeedback?.clearButton.enabled == true
                     {
-                        if techFeedback?.clearButton.enabled == true
-                        {
-                   Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
-                    print("Technical")
-                    self.techFeedback?.saveDetailsAction("")
-                   })
-                        }
-                     }
-                    else
-                    {
-                        Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
+                        Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Save to keep all the entered feedback", isCancelBtnNeeded: true,buttonTitleOne:"Save",buttonTitleTwo:"Cancel", okCompletionHandler: { () -> Void in
                             print("Technical")
                             self.techFeedback?.saveDetailsAction("")
-                             })
-                    }
-                
-                 }
-                
-            case 1:
-                if managerFeedback?.submitBtn.enabled == true
-                {
-                    if managerFeedback?.isFeedBackSaved == false
-                    {
-                        if managerFeedback?.clearBtn.enabled == true
-                        {
-                            Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
-                                print("Manager")
-                                self.managerFeedback?.saveData("")
-                            })
-                        }
-                    }
-                    else
-                    {
-                        Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
-                            print("Manager")
-                            self.self.managerFeedback?.saveData("")
                         })
                     }
-                    
                 }
-
-//                if managerFeedback?.submitBtn.enabled == true
-//                {
-//                    Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
-//                        self.managerFeedback?.saveData("")
-//                        self.techFeedback?.clearButton.enabled = false
-//                        print("Manager")
-//
-//                    })
-//                }
-            default:
-             
-                if hrFeedBackViewController!.submitButton.enabled == true
+                else
                 {
-                    if hrFeedBackViewController!.clearButton.enabled == true
-                    {
-                    Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
-                self.hrFeedBackViewController?.saveCandidate()
-                         })
+                    Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Save to keep all the entered feedback", isCancelBtnNeeded: true,buttonTitleOne:"Save",buttonTitleTwo:"Cancel", okCompletionHandler: { () -> Void in
+                        print("Technical")
+                        self.techFeedback?.saveDetailsAction("")
+                    })
                 }
-                    else{
-                        
-                        if selectedCandidate?.miscellaneousInfo?.isHrFormSaved == true
-                        {
-                            Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
-                                self.hrFeedBackViewController?.saveCandidate()
-                            })
-                            }
+                
+            }
+            
+        case 1:
+            if managerFeedback?.submitBtn.enabled == true
+            {
+                if managerFeedback?.isFeedBackSaved == false
+                {
+                    if managerFeedback?.clearBtn.enabled == true
+                    {
+                        Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Save to keep all the entered feedback", isCancelBtnNeeded: true,buttonTitleOne:"Save",buttonTitleTwo:"Cancel", okCompletionHandler: { () -> Void in
+                            print("Manager")
+                            self.managerFeedback?.saveData("")
+                        })
                     }
                 }
-        }
+                else
+                {
+                    Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Save to keep all the entered feedback", isCancelBtnNeeded: true,buttonTitleOne:"Save",buttonTitleTwo:"Cancel", okCompletionHandler: { () -> Void in
+                        print("Manager")
+                        self.self.managerFeedback?.saveData("")
+                    })
+                }
+                
+            }
             
-//        self.view.removeFromSuperview()
+            //                if managerFeedback?.submitBtn.enabled == true
+            //                {
+            //                    Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
+            //                        self.managerFeedback?.saveData("")
+            //                        self.techFeedback?.clearButton.enabled = false
+            //                        print("Manager")
+            //
+            //                    })
+            //                }
+        default:
+            
+            if hrFeedBackViewController!.submitButton.enabled == true
+            {
+                if hrFeedBackViewController!.clearButton.enabled == true
+                {
+                    Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Save to keep all the entered feedback", isCancelBtnNeeded: true,buttonTitleOne:"Save",buttonTitleTwo:"Cancel", okCompletionHandler: { () -> Void in
+                        self.hrFeedBackViewController?.saveCandidate()
+                    })
+                }
+                else{
+                    
+                    if selectedCandidate?.miscellaneousInfo?.isHrFormSaved == true
+                    {
+                        Utility.alertPopup("Do you want to save the changes?", informativeText: "click on Save to keet the entered feedback", isCancelBtnNeeded: true,buttonTitleOne:"Save",buttonTitleTwo:"Cancel", okCompletionHandler: { () -> Void in
+                            self.hrFeedBackViewController?.saveCandidate()
+                        })
+                    }
+                }
+            }
+        }
+        
+        //        self.view.removeFromSuperview()
         self.presentingViewController?.dismissViewController(self)
         NSApp.windows.first?.title = "List of Candidates"
         
@@ -552,11 +552,11 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
     }
     
     
-  func scrollHrFormToPoint(point:NSPoint)
-  {
-    self.scrollViewHr.documentView?.scrollPoint(point)
-    
-  }
+    func scrollHrFormToPoint(point:NSPoint)
+    {
+        self.scrollViewHr.documentView?.scrollPoint(point)
+        
+    }
     func defaultSegmentManager()
     {
         if (selectedCandidate?.interviewedByManagers?.count == 0)
@@ -586,42 +586,42 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
         }
         
     }
-
- func defaultSegmentTech()
- {
-    if (selectedCandidate?.interviewedByTechLeads?.count == 0)
+    
+    func defaultSegmentTech()
     {
-    self.subRound.setEnabled(true, forSegment: 0)
-    self.subRound.setEnabled(false, forSegment: 1)
-    self.subRound.setEnabled(false, forSegment: 2)
-    self.typeOfInterview.setEnabled(true, forSegment: 0)
-    self.typeOfInterview.setEnabled(false, forSegment: 1)
-    self.typeOfInterview.setEnabled(false, forSegment: 2)
-    }else if (selectedCandidate?.interviewedByTechLeads?.count == 1)
-    {
-        self.subRound.setEnabled(true, forSegment: 0)
-        self.subRound.setEnabled(true, forSegment: 1)
-        self.subRound.setEnabled(false, forSegment: 2)
-        self.typeOfInterview.setEnabled(true, forSegment: 0)
-        self.typeOfInterview.setEnabled(false, forSegment: 1)
-        self.typeOfInterview.setEnabled(false, forSegment: 2)
-    }else if(selectedCandidate?.interviewedByTechLeads?.count == 2)
-    {
-        self.subRound.setEnabled(true, forSegment: 0)
-        self.subRound.setEnabled(true, forSegment: 1)
-        self.subRound.setEnabled(true, forSegment: 2)
-        self.typeOfInterview.setEnabled(true, forSegment: 0)
-        self.typeOfInterview.setEnabled(false, forSegment: 1)
-        self.typeOfInterview.setEnabled(false, forSegment: 2)
-    }else if(selectedCandidate?.interviewedByTechLeads?.count == 3)
-    {
-        self.subRound.setEnabled(true, forSegment: 0)
-        self.subRound.setEnabled(true, forSegment: 1)
-        self.subRound.setEnabled(true, forSegment: 2)
-        self.typeOfInterview.setEnabled(true, forSegment: 0)
-        self.typeOfInterview.setEnabled(true, forSegment: 1)
-        self.typeOfInterview.setEnabled(true, forSegment: 2)
-    }
+        if (selectedCandidate?.interviewedByTechLeads?.count == 0)
+        {
+            self.subRound.setEnabled(true, forSegment: 0)
+            self.subRound.setEnabled(false, forSegment: 1)
+            self.subRound.setEnabled(false, forSegment: 2)
+            self.typeOfInterview.setEnabled(true, forSegment: 0)
+            self.typeOfInterview.setEnabled(false, forSegment: 1)
+            self.typeOfInterview.setEnabled(false, forSegment: 2)
+        }else if (selectedCandidate?.interviewedByTechLeads?.count == 1)
+        {
+            self.subRound.setEnabled(true, forSegment: 0)
+            self.subRound.setEnabled(true, forSegment: 1)
+            self.subRound.setEnabled(false, forSegment: 2)
+            self.typeOfInterview.setEnabled(true, forSegment: 0)
+            self.typeOfInterview.setEnabled(false, forSegment: 1)
+            self.typeOfInterview.setEnabled(false, forSegment: 2)
+        }else if(selectedCandidate?.interviewedByTechLeads?.count == 2)
+        {
+            self.subRound.setEnabled(true, forSegment: 0)
+            self.subRound.setEnabled(true, forSegment: 1)
+            self.subRound.setEnabled(true, forSegment: 2)
+            self.typeOfInterview.setEnabled(true, forSegment: 0)
+            self.typeOfInterview.setEnabled(false, forSegment: 1)
+            self.typeOfInterview.setEnabled(false, forSegment: 2)
+        }else if(selectedCandidate?.interviewedByTechLeads?.count == 3)
+        {
+            self.subRound.setEnabled(true, forSegment: 0)
+            self.subRound.setEnabled(true, forSegment: 1)
+            self.subRound.setEnabled(true, forSegment: 2)
+            self.typeOfInterview.setEnabled(true, forSegment: 0)
+            self.typeOfInterview.setEnabled(true, forSegment: 1)
+            self.typeOfInterview.setEnabled(true, forSegment: 2)
+        }
     }
     
 }

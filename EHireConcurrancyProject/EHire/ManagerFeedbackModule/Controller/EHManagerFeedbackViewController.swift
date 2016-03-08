@@ -36,7 +36,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     @IBOutlet weak var matrixForRecommendationState: NSMatrix!
     @IBOutlet weak var matrixForCgDeviation: NSMatrix!
     @IBOutlet weak var tableView: NSTableView!
-
+    
     //MARK: Properties
     var managerFeedbackData = EHFeedbackViewController()
     var selectedRowTitle:String = ""
@@ -62,7 +62,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     //MARK: Constants
     let dataAccessModel = EHManagerFeedbackDataAccessLayer()
     let  managerialRoundFeedback = EHManagerialFeedbackModel()
-
+    
     //MARK:- ViewLife Cycle Methods
     override func loadView()
     {
@@ -78,7 +78,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         
         self.view.wantsLayer = true
         
-       // self.view.layer?.backgroundColor = NSColor(calibratedRed:202/255.0, green:210/255.0, blue:222/255.0, alpha: 1.0).CGColor
+        // self.view.layer?.backgroundColor = NSColor(calibratedRed:202/255.0, green:210/255.0, blue:222/255.0, alpha: 1.0).CGColor
         self.view.layer?.backgroundColor = NSColor(red: 222, green: 222, blue: 222, alpha: 0.5).CGColor
         
         clearBtn.enabled = false
@@ -90,7 +90,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         let dateInStringFormat = dateFormatter.stringFromDate((selectedCandidate?.interviewDate)!)
         dateOfInterviewField.stringValue = dateInStringFormat
         managerFeedbackMainView.wantsLayer = true
-//        managerFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
+        //        managerFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
         setDefaultCgDeviationAndInterviewMode()
         selectedSegment = 0
         print("name = \(managerialRoundFeedback.designation)")
@@ -100,12 +100,12 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     func addDefalutSkillSet()
     {
         let skillArray = [ "Communication","Organisation Stability","Leadership(if applicable)","Growth Potential"] as NSMutableArray
-         dataAccessModel.createdefaultSkillSetObject(skillArray,feedBackControllerObj: self,andCallBack:
+        dataAccessModel.createdefaultSkillSetObject(skillArray,feedBackControllerObj: self,andCallBack:
             {(
-            communication)->Void in
-            self.skillsAndRatingsTitleArray = communication as [SkillSet]
-            self.tableView.reloadData()
-            })
+                communication)->Void in
+                self.skillsAndRatingsTitleArray = communication as [SkillSet]
+                self.tableView.reloadData()
+        })
     }
     
     func test()
@@ -190,14 +190,14 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             }
             view.target = self
             view.action = "selectedStarCount:"
-            }
+        }
         if tableView.numberOfRows > 7
         {
             tableView.scrollToEndOfDocument("")
         }
         return cell
     }
-
+    
     func tableViewSelectionIsChanging(notification: NSNotification)
     {
         if tableView.selectedRow != -1
@@ -214,21 +214,21 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             }
             else
             {
-               if managerialRoundFeedback.isSubmitted == false
-               {
-               tableView.selectionHighlightStyle = .Regular
-               deleteExistingBtn.enabled = true
-               cellSelected.titleName.editable = true
+                if managerialRoundFeedback.isSubmitted == false
+                {
+                    tableView.selectionHighlightStyle = .Regular
+                    deleteExistingBtn.enabled = true
+                    cellSelected.titleName.editable = true
                 }
                 else if managerialRoundFeedback.isSubmitted == true
-               {
-                deleteExistingBtn.enabled = false
-               }
-               else
-               {
-                tableView.selectionHighlightStyle = .Regular
-                deleteExistingBtn.enabled = true
-                cellSelected.titleName.editable = true
+                {
+                    deleteExistingBtn.enabled = false
+                }
+                else
+                {
+                    tableView.selectionHighlightStyle = .Regular
+                    deleteExistingBtn.enabled = true
+                    cellSelected.titleName.editable = true
                 }
                 
             }
@@ -248,7 +248,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         let ratingCell = sender.superview?.superview as! EHManagerFeedBackCustomTableView
         if ratingCell.titleName.stringValue == "Enter Title"
         {
-            Utility.alertPopup("Enter the Title", informativeText: "Please select and click on Enter Title field to give title name",isCancelBtnNeeded:false,okCompletionHandler: nil)
+            Utility.alertPopup("Enter the Title", informativeText: "Please select and click on Enter Title field to give title name",isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"",okCompletionHandler: nil)
             return
         }
         displayStar(ratingCell, lbl: ratingCell.feedBackRating, sender: sender )
@@ -257,7 +257,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     //MARK:- Delegate Method
     func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool
     {
-         return true
+        return true
     }
     
     func textDidChange(notification: NSNotification)
@@ -293,8 +293,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         {
             if skillsAndRatingsTitleArray.count > 4
             {
-            let skillSetObject =  skillsAndRatingsTitleArray[textFieldObject.tag]
-            skillSetObject.skillName = textFieldObject.stringValue
+                let skillSetObject =  skillsAndRatingsTitleArray[textFieldObject.tag]
+                skillSetObject.skillName = textFieldObject.stringValue
             }
         }
     }
@@ -305,10 +305,10 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     {
         if skillsAndRatingsTitleArray.count > 0 && cell?.titleName.stringValue == "Enter Title"
         {
-            Utility.alertPopup("Enter Title", informativeText: "Please enter previous selected title",isCancelBtnNeeded:false,okCompletionHandler: nil)
+            Utility.alertPopup("Enter Title", informativeText: "Please enter previous selected title",isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"",okCompletionHandler: nil)
         }else if  cell?.titleName.stringValue == ""
         {
-            Utility.alertPopup("Enter Title", informativeText: "Skill name should not be blank",isCancelBtnNeeded:false, okCompletionHandler: nil)
+            Utility.alertPopup("Enter Title", informativeText: "Skill name should not be blank",isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"", okCompletionHandler: nil)
         }
         else
         {
@@ -325,10 +325,10 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             else
             {
                 dataAccessModel.createSkillSetObject({(newSkill)->Void in
-                newSkill.skillName = "Enter Title"
-                self.skillsAndRatingsTitleArray.append(newSkill)
-                self.tableView.reloadData()
-                self.setSkillNameTextfieldAsFirstReponder()
+                    newSkill.skillName = "Enter Title"
+                    self.skillsAndRatingsTitleArray.append(newSkill)
+                    self.tableView.reloadData()
+                    self.setSkillNameTextfieldAsFirstReponder()
                 })
             }
         }
@@ -408,7 +408,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             managerialRoundFeedback.isCgDeviation = false
         }
     }
-
+    
     
     //Enabling Position/Designation Field when candidate is shortlisted
     @IBAction func shortListedBtn(sender: AnyObject)
@@ -418,8 +418,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         textFieldCorporateGrade.enabled = true
         textFieldGrossAnnualSalary.enabled = true
         matrixForCgDeviation.enabled = true
-        textViewCommitments.editable = true
-        textViewJustificationForHire.editable = true
     }
     
     //Disabling Position/Designation Field when candidate is rejected
@@ -430,16 +428,12 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         textFieldCorporateGrade.enabled = false
         textFieldGrossAnnualSalary.enabled = false
         matrixForCgDeviation.enabled = false
-        textViewCommitments.editable = false
-        textViewJustificationForHire.editable = false
         
         textFieldPosition.stringValue = ""
         textFieldDesignation.stringValue = ""
         textFieldCorporateGrade.stringValue = ""
         textFieldGrossAnnualSalary.stringValue = ""
         matrixForCgDeviation.stringValue = ""
-        textViewCommitments.string = ""
-        textViewJustificationForHire.string = ""
     }
     
     //To refresh fields
@@ -480,7 +474,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             
             if isFeedBackSaved==false
             {
-                Utility.alertPopup("Alert", informativeText: "Are you sure you want to ‘Submit’ the data ?", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
+                Utility.alertPopup("Are you sure you want to ‘Submit’ the data?", informativeText: "Once you submit you can not edit the feedback.", isCancelBtnNeeded: true,buttonTitleOne:"Submit",buttonTitleTwo:"Cancel", okCompletionHandler: { () -> Void in
                     self.dataAccessModel.insertManagerFeedback(self,candidate: self.selectedCandidate!, managerFeedbackModel: self.managerialRoundFeedback, andCallBack: { (isSucess) -> Void in
                         if isSucess{
                             if(self.managerFeedbackData.subRound.selectedSegment == 0)
@@ -493,7 +487,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                                 
                                 self.managerFeedbackData.typeOfInterview.setEnabled(true, forSegment: 2)
                             }
-                            Utility.alertPopup("Success", informativeText: "Feedback for Manager Round \((self.selectedCandidate?.interviewedByManagers?.count)!) has been sucessfully saved",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                            Utility.alertPopup("Success", informativeText: "Feedback for Manager Round \((self.selectedCandidate?.interviewedByManagers?.count)!) has been sucessfully ",isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"Submit",okCompletionHandler: nil)
                             
                         }
                         self.disableAndEnableFields(true)
@@ -510,8 +504,8 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                 
                 dataAccessModel.updateManagerFeedback(selectedCandidate!, managerFeedback: managerFeedback, managerFeedbackModel: managerialRoundFeedback, andCallBack: { (isSucess) -> Void in
                     if isSucess{
-                    
-                        Utility.alertPopup("Success", informativeText: "Feedback for Managerround has been updated Successfully",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                        
+                        Utility.alertPopup("Success", informativeText: "Feedback for Managerround has been updated Successfully",isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"",okCompletionHandler: nil)
                     }
                     self.disableAndEnableFields(true)
                     self.tableView.reloadData()
@@ -519,7 +513,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             }
         }
     }
-
+    
     
     //Method to enable/disable stars
     func displayStar(customView:AnyObject,lbl:NSTextField,sender:NSButton)
@@ -711,7 +705,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     {
         if subView.string == ""
         {
-            Utility.alertPopup(title, informativeText: informativeText,isCancelBtnNeeded:false,okCompletionHandler: nil)
+            Utility.alertPopup(title, informativeText: informativeText,isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"",okCompletionHandler: nil)
             
             return false
         }
@@ -727,7 +721,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     {
         if subView.stringValue == ""
         {
-            Utility.alertPopup(title, informativeText: informativeText,isCancelBtnNeeded:false,okCompletionHandler: nil)
+            Utility.alertPopup(title, informativeText: informativeText,isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"",okCompletionHandler: nil)
             return false
         }
             
@@ -736,7 +730,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             return true
         }
     }
-
+    
     
     //Method to validate to all fields
     func validation() -> Bool
@@ -746,44 +740,28 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         if selectedColoumn != 0
         {
             managerialRoundFeedback.recommendation = "Rejected"
-
-            if !validationForDefaultSkills()
+            if (cell?.feedBackRating.stringValue == "" || textViewCommentsForOverAllCandidateAssessment.string == "" || textViewCommentsForOverAllTechnologyAssessment.string == "" || textViewJustificationForHire.string == "" || textViewCommitments.string == "" || textFieldInterviewedBy.stringValue == "" || labelOverAllAssessmentOfCandidate.stringValue == "" || labelOverAllAssessmentOfTechnology.stringValue == "")
             {
-                Utility.alertPopup("Select Stars", informativeText: "Please provide rating for default skills",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                Utility.alertPopup("Alert", informativeText: "Please enter all details", isCancelBtnNeeded: false,buttonTitleOne:"",buttonTitleTwo:"", okCompletionHandler: nil)
                 return isValid
             }
-            else if !validationForTextView(textViewCommentsForOverAllTechnologyAssessment,title: "Overall Feedback On Technology",informativeText: "Overall assessment of Technology field shold not be blank")
+            else if !validationForDefaultSkills()
             {
-                return isValid
-            }
-            else if !validationForTextfield(labelOverAllAssessmentOfTechnology,title: "Select Stars",informativeText: "Please  provide ratings for overall assessment on Technology")
-            {
-                return isValid
-            }
-            else if !validationForTextView(textViewCommentsForOverAllCandidateAssessment,title: "Overall Feedback Of Candidate",informativeText: "Overall assessment of Candidate field shold not be blank"){
-                
-                return isValid
-            }
-            else if !validationForTextfield(labelOverAllAssessmentOfCandidate,title: "Select Stars",informativeText: "Please  provide ratings for overall assessment of Candidate")
-            {
-                return isValid
-            }else if !validationForTextfield(textFieldInterviewedBy,title: "Interviewed By",informativeText: "Interviewed by field should not be empty")
-            {
+                Utility.alertPopup("Alert", informativeText: "Please provide rating for default skills", isCancelBtnNeeded: false,buttonTitleOne:"",buttonTitleTwo:"", okCompletionHandler: nil)
                 return isValid
             }
             else
-                {
-                    isValid = true
-                    return isValid
-                }
-
+            {
+                isValid = true
+                return isValid
+            }
         }
         else
         {
             managerialRoundFeedback.recommendation = "Shortlisted"
             if !validationForDefaultSkills()
             {
-                Utility.alertPopup("Select Stars", informativeText: "Please provide rating for default skills",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                Utility.alertPopup("Select Stars", informativeText: "Please provide rating for default skills",isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"",okCompletionHandler: nil)
                 return isValid
             }
             else if !validationForTextView(textViewCommentsForOverAllTechnologyAssessment,title: "Overall Feedback On Technology",informativeText: "Overall assessment of Technology field shold not be blank")
@@ -877,10 +855,10 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                     self.isFeedBackSaved = true
                     self.sortArray((self.selectedCandidate?.interviewedByManagers?.allObjects)!,index:self.selectedSegment!
                     )
-                    Utility.alertPopup("Success", informativeText: "Feedback for Manager Round has been Saved Successfully", isCancelBtnNeeded:false,okCompletionHandler: nil)
+                    Utility.alertPopup("Success", informativeText: "Feedback for Manager Round has been Saved Successfully", isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"",okCompletionHandler: nil)
                 }
             })
-          }
+        }
         else
         {
             let sortedResults = toSortArray((selectedCandidate?.interviewedByManagers?.allObjects)!)
@@ -888,13 +866,13 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             dataAccessModel.updateManagerFeedback(selectedCandidate!, managerFeedback: managerFeedback, managerFeedbackModel: managerialRoundFeedback, andCallBack:
                 {
                     (isSucess) -> Void in
-                if isSucess{
-                    Utility.alertPopup("Success", informativeText: "Feedback for Manager round has been updated Successfully",isCancelBtnNeeded:false,okCompletionHandler: nil)
-                }
+                    if isSucess{
+                        Utility.alertPopup("Success", informativeText: "Feedback for Manager round has been updated Successfully",isCancelBtnNeeded:false,buttonTitleOne:"",buttonTitleTwo:"",okCompletionHandler: nil)
+                    }
             })
         }
-      }
- 
+    }
+    
     //MARK:- Update UI
     func updateUIElements(feedback: ManagerFeedBack)
     {
@@ -935,9 +913,9 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         {
             dataAccessModel.createSavedSkillSetObject(feedback,skillSetArray: (feedback.candidateSkills?.allObjects)!, andCallBack:
                 { (newSkill) -> Void in
-                self.skillsAndRatingsTitleArray = newSkill as [SkillSet]
-                self.tableView.reloadData()
-              })
+                    self.skillsAndRatingsTitleArray = newSkill as [SkillSet]
+                    self.tableView.reloadData()
+            })
         }
         else
         {
@@ -945,13 +923,13 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             {
                 let skillset = object as! SkillSet
                 dataAccessModel.createSkillSetObject({ (newSkill) -> Void in
-                newSkill.skillName   = skillset.skillName
-                newSkill.skillRating = skillset.skillRating
-                self.skillsAndRatingsTitleArray.append(newSkill)
-                if feedback.candidateSkills?.count == self.skillsAndRatingsTitleArray.count
-                {
-                    self.tableView.reloadData()
-                }
+                    newSkill.skillName   = skillset.skillName
+                    newSkill.skillRating = skillset.skillRating
+                    self.skillsAndRatingsTitleArray.append(newSkill)
+                    if feedback.candidateSkills?.count == self.skillsAndRatingsTitleArray.count
+                    {
+                        self.tableView.reloadData()
+                    }
                 })
             }
         }
@@ -1104,6 +1082,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             }
         }
     }
-
+    
 }
 

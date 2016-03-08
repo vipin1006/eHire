@@ -14,7 +14,7 @@ protocol HRFormScroller:class
 }
 
 class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextViewDelegate {
-
+    
     //MARK: HR Feedback Form IBOutlets
     
     @IBOutlet weak var candidateName: NSTextField!
@@ -81,8 +81,8 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
     var candidate:Candidate?
     var managedObjectContext : NSManagedObjectContext?
     weak var delegate:HRFormScroller?
- 
- 
+    
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -96,7 +96,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         
         self.view.wantsLayer = true
         
-       // self.view.layer?.backgroundColor = NSColor(calibratedRed:202/255.0, green:210/255.0, blue:222/255.0, alpha: 1.0).CGColor
+        // self.view.layer?.backgroundColor = NSColor(calibratedRed:202/255.0, green:210/255.0, blue:222/255.0, alpha: 1.0).CGColor
         self.view.layer?.backgroundColor = NSColor(red: 222, green: 222, blue: 222, alpha: 0.5).CGColor
         
         
@@ -149,7 +149,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         {
             if numericValidations()
             {
-                Utility.alertPopup("Are you sure you want to \'Submit\' the details?", informativeText:"",isCancelBtnNeeded:true) { () -> Void in
+                Utility.alertPopup("Are you sure you want to \'Submit\' the details?", informativeText:"Once you submit you can not edit the feedback",isCancelBtnNeeded:true, buttonTitleOne:"Cancel",buttonTitleTwo:"Submit") { () -> Void in
                     
                     self.candidateInfo["isHrFormSubmitted"] = 1
                     
@@ -398,7 +398,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         {
             setBoarderColor(highestEducationBoardOrUniversity)
             scrollToTextField(NSPoint(x:0, y:750))
-
+            
             
             result = false
         }
@@ -426,7 +426,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
                 result = false
             }
         }
-
+        
         
         if allDocumentsYes.intValue == 1 {
             
@@ -450,7 +450,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
             setBoarderColor(expectedSalary)
             scrollToTextField(NSPoint(x:0, y:0))
             result = false
-        
+            
         }
         if anyLegalObligationsYes.intValue == 1{
             
@@ -466,11 +466,11 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         if candidateNoticePeriod.stringValue == ""
         {
             setBoarderColor(candidateNoticePeriod)
-             scrollToTextField(NSPoint(x:0, y:0))
+            scrollToTextField(NSPoint(x:0, y:0))
             
             result = false
         }
-       
+        
         if inetrviewedBy.stringValue == ""
         {
             
@@ -607,13 +607,13 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
             
             
         }
-       if !EHOnlyDecimalValueFormatter.isNumberValid(candidateNoticePeriod.stringValue)
-       {
-           showAlert("Invalid official notice period", info:"official notice period must ba a number")
-           scrollToTextField(NSPoint(x:0, y:200))
-           candidateNoticePeriod.becomeFirstResponder()
-        
-        return false
+        if !EHOnlyDecimalValueFormatter.isNumberValid(candidateNoticePeriod.stringValue)
+        {
+            showAlert("Invalid official notice period", info:"official notice period must ba a number")
+            scrollToTextField(NSPoint(x:0, y:200))
+            candidateNoticePeriod.becomeFirstResponder()
+            
+            return false
         }
         return true
         
