@@ -53,11 +53,6 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
         self.typeOfInterview.selectedSegment = 0
         self.subRound.selectedSegment = 0
         self.scrollViewHr.hasVerticalScroller = true
-        
-        
-       
-        // self.scrollViewHr.hasHorizontalScroller = true
-//        self.subRound.layer?.backgroundColor =  NSColor(calibratedRed:245/255.0, green: 245/255.0, blue: 245/255.0, alpha: 1.0).CGColor
     }
     
     @IBAction func roundType(sender: AnyObject)
@@ -68,14 +63,15 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
 
         let techLeadCount = (selectedCandidate?.interviewedByTechLeads)!.count
         let managerCount =  (selectedCandidate?.interviewedByManagers)!.count
-        defaultSegmentManager()
-        
+       // defaultSegmentManager()
+      //  defaultSegmentTech()
         switch mainRound.selectedSegment
         {
         case 0 :
             if !isTechnicalLoaded
             {
                 self.scrollViewHr.documentView? = (techFeedback?.view)!
+                animateView(self.scrollViewHr.documentView!)
                 self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1081))
             }
             if isHrLoaded
@@ -119,12 +115,12 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
            
             if !isManagerLoaded
             {
-                managerFeedback = storyboard?.instantiateControllerWithIdentifier("EHManagerFeedbackViewController") as? EHManagerFeedbackViewController
-                   managerFeedback?.managerFeedbackData = self
-                
+               managerFeedback = storyboard?.instantiateControllerWithIdentifier("EHManagerFeedbackViewController") as? EHManagerFeedbackViewController
+                managerFeedback?.managerFeedbackData = self
                 managerFeedback?.selectedCandidate = selectedCandidate
-                 managerFeedback?.managedObjectContext = self.managedObjectContext
+                managerFeedback?.managedObjectContext = self.managedObjectContext
                 self.scrollViewHr.documentView = managerFeedback?.view
+                animateView(self.scrollViewHr.documentView!)
                 self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1565))
             }
             self.hrView?.removeFromSuperview()
@@ -214,9 +210,11 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
         {
         //For Technical Feedback Rounds
          case 0:
+            
             switch self.subRound.selectedSegment
             {
             case 0:
+                animateView(scrollViewHr.documentView!)
                 print("Round One")
                 if selectedCandidate?.interviewedByTechLeads?.count != 0
                 {
@@ -225,7 +223,7 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                 }
 
         case 1:
-                
+                animateView(scrollViewHr.documentView!)
                 print("Round Two")
                 
                 let techLeadCount = (selectedCandidate?.interviewedByTechLeads)!.count
@@ -270,7 +268,7 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
             case 2:
                 
                 print("Round Three")
-                
+                 animateView(scrollViewHr.documentView!)
                 let techLeadCount = (selectedCandidate?.interviewedByTechLeads)!.count
                 switch techLeadCount
                 {
@@ -360,6 +358,7 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
             
             case 0:
                 print("Round One")
+                animateView(scrollViewHr.documentView!)
                 if selectedCandidate?.interviewedByManagers?.count != 0
                 {
                     let allObjects = selectedCandidate?.interviewedByManagers?.allObjects
@@ -367,6 +366,7 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                 }
   
             case 1:
+                animateView(scrollViewHr.documentView!)
 
                 print (self.subRound.selectedSegment)
                 let managerFeedbackCount = (selectedCandidate?.interviewedByManagers)!.count
@@ -444,9 +444,22 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
             hrView = hrViewController.view
             hrView!.frame = NSMakeRect(self.scrollViewHr.frame.origin.x,self.scrollViewHr.frame.origin.y,self.scrollViewHr.frame.size.width,1450)
             self.scrollViewHr.documentView = hrView
+            animateView(self.scrollViewHr.documentView!)
+            
             self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1200))
             isHrLoaded = true
         }
+    }
+    
+    func animateView(docview : AnyObject)
+    {
+        let animate = CATransition()
+        animate.delegate = self
+        animate.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        animate.duration = 0.3
+        animate.type = kCATransitionPush
+        animate.subtype = kCATransition
+        docview.layer?.addAnimation(animate, forKey: "")
     }
     
     @IBAction func dismissFeedbackView(sender: AnyObject)

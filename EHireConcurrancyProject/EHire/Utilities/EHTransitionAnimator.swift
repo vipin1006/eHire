@@ -24,8 +24,8 @@ class EHTransitionAnimator: NSObject , NSViewControllerPresentationAnimator {
                     slideInFromLeftTransition.delegate = self
                     slideInFromLeftTransition.type = kCATransitionPush
                     slideInFromLeftTransition.subtype = kCATransition
-                    slideInFromLeftTransition.duration = 0.2
-                    slideInFromLeftTransition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                    slideInFromLeftTransition.duration = 0.7
+                    slideInFromLeftTransition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
                     slideInFromLeftTransition.fillMode = kCAFillModeRemoved
                     //        appDelegate.mainWindowController?.contentViewController = feedbackViewController
                     viewController.view.wantsLayer = true
@@ -46,8 +46,9 @@ class EHTransitionAnimator: NSObject , NSViewControllerPresentationAnimator {
                     slideInFromLeftTransition.delegate = self
                     slideInFromLeftTransition.type = kCATransitionPush
                     slideInFromLeftTransition.subtype = kCATransition
-                    slideInFromLeftTransition.duration = 0.2
-                    slideInFromLeftTransition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                    slideInFromLeftTransition.duration = 0.7
+                    
+                    slideInFromLeftTransition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
                     slideInFromLeftTransition.fillMode = kCAFillModeRemoved
                     window.contentViewController!.view.wantsLayer = true
                     window.contentViewController!.view.layer!.addAnimation(slideInFromLeftTransition, forKey: "slideInFromRightTransition")
