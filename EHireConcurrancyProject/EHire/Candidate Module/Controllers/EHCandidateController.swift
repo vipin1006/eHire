@@ -454,6 +454,8 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
            candidateAccessLayer!.removeCandidate(candidateArray.objectAtIndex(self.tableView.selectedRow) as! Candidate)
            candidateArray.removeObjectAtIndex(self.tableView.selectedRow)
         }
+        feedbackButton.enabled = false
+        removeButton.enabled = false
         tableView.reloadData()
       }
     }
