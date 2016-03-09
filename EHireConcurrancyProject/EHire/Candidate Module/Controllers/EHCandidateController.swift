@@ -43,13 +43,9 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
       removeButton.enabled = false
       removeButton.toolTip = "Remove Candidate"
       addCandidateButton.toolTip = "Add Candidate"
-        candidateAccessLayer = EHCandidateAccessLayer()
-        candidateAccessLayer?.managedObjectContext = self.managedObjectContext
-        candidateSearchField.appearance = NSAppearance(named:NSAppearanceNameVibrantLight)
-        
-        
-        
-        
+      candidateAccessLayer = EHCandidateAccessLayer()
+      candidateAccessLayer?.managedObjectContext = self.managedObjectContext
+      candidateSearchField.appearance = NSAppearance(named:NSAppearanceNameVibrantLight)
     }
     
     override func viewWillAppear()
@@ -59,9 +55,6 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
        tableView.selectRowIndexes(NSIndexSet(index: tablePreserved), byExtendingSelection: false)
      }
         
-        
-        
-
     }
     
     //MARK: This data source method returns tableview rows
@@ -77,8 +70,6 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
 
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView?
     {
-        
-        
         var candidate:Candidate
         if candidateSearchField.stringValue.characters.count > 0 {
             candidate = (filteredArray[row] as? Candidate)!
@@ -123,10 +114,8 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         {
             let interviewTimePicker:NSDatePicker = cell.viewWithTag(10) as! NSDatePicker
             interviewTimePicker.dateValue = (candidate.interviewTime)!
-  
         }
-            
-            else if tableColumn?.identifier == "requisition"
+        else if tableColumn?.identifier == "requisition"
         {
             cell.textField?.stringValue = (candidate.requisition)!
         }
@@ -167,19 +156,16 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     {
       func addCandidate()
       {
-
          candidateAccessLayer!.addCandidate("", experience: nil, phoneNumber: "", requisition: "",interviewTime:self.interviewDate!, technologyName: self.technologyName!, interviewDate: self.interviewDate!,andCallBack: {(newCandidate) -> Void in
-            self.candidateArray.addObject(newCandidate)
-            self.tableView.reloadData()
-            let index : NSInteger = self.candidateArray.count - 1;
-            self.tableView.selectRowIndexes(NSIndexSet.init(index: index), byExtendingSelection: true)
-            let rowView:NSTableRowView = self.tableView.rowViewAtRow(self.tableView.selectedRow, makeIfNecessary: true)!
+         self.candidateArray.addObject(newCandidate)
+         self.tableView.reloadData()
+         let index : NSInteger = self.candidateArray.count - 1;
+         self.tableView.selectRowIndexes(NSIndexSet.init(index: index), byExtendingSelection: true)
+         let rowView:NSTableRowView = self.tableView.rowViewAtRow(self.tableView.selectedRow, makeIfNecessary: true)!
 
-            rowView.viewWithTag(1)?.becomeFirstResponder()
-            self.removeButton.enabled = false
-            
-            })
-        
+         rowView.viewWithTag(1)?.becomeFirstResponder()
+         self.removeButton.enabled = false
+        })
       }
       if candidateArray.count > 0
       {
@@ -210,7 +196,6 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     func refresh()
     {
       getSourceListContent()
-        
     }
     
     func getSourceListContent()
@@ -219,13 +204,12 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
       candidateAccessLayer?.getCandiadteList(technologyName!, interviewDate:interviewDate!, andCallBack: { (recordsArray) -> Void in
             if recordsArray.count > 0
             {
-                for aRec in recordsArray
-                {
-                    let cEntity = aRec as! Candidate
-                    self.candidateArray.addObject(cEntity);
-                }
+              for aRec in recordsArray
+              {
+                let cEntity = aRec as! Candidate
+                self.candidateArray.addObject(cEntity);
+              }
             }
-            
             self.tableView.reloadData()
             if self.tableView.selectedRow == -1
             {
@@ -252,23 +236,19 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             {
                 self.candidateSearchField.enabled = false
             }
-
-        })
-    }
+          })
+     }
 
     @IBAction func searchFieldTextDidChange(sender: NSSearchField)
     {
       filteredArray.removeAllObjects()
-      
       let predicate = self.experiencePredicateWithValue(sender.stringValue)
-      
       filteredArray.addObjectsFromArray(candidateArray.filteredArrayUsingPredicate(predicate))
             tableView.reloadData()
-      
     }
     
-    
-    func experiencePredicateWithValue(value: String) -> NSPredicate {
+    func experiencePredicateWithValue(value: String) -> NSPredicate
+    {
         let floatValue = (value as NSString).floatValue
         
         let lhs:NSExpression = NSExpression.init(forKeyPath: "experience")
@@ -344,38 +324,24 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         var textShouldEndEditing = true
       switch textField.tag
       {
-        case 1,4:
+        case 1:
         if (!(textField.stringValue == ""))
         {
-         if !Utility.isAlphabetsOnly(textField.stringValue)
-         {
-          Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters for candidate.",isCancelBtnNeeded:false,okCompletionHandler: nil)
-          fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.characters.count)
-          textShouldEndEditing = false
-            
-         }
+          if !Utility.isAlphabetsOnly(textField.stringValue)
+          {
+            Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters.",isCancelBtnNeeded:false,okCompletionHandler: nil)
+            fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.characters.count)
+            textShouldEndEditing = false
+          }
          else
          {
-            if textField.tag == 1 {
-            candidate.name = fieldEditor.string
-
-            }
-            else{
-                candidate.requisition = fieldEditor.string
-            }
-            candidateSearchField.enabled = true
+           candidate.name = fieldEditor.string
          }
-        }
+           candidateSearchField.enabled = true
+       }
         else
         {
-         if textField.tag == 1
-            {
-              candidate.name = fieldEditor.string
-            }
-            else
-             {
-              candidate.requisition = fieldEditor.string
-             }
+          candidate.name = fieldEditor.string
           candidateSearchField.enabled = false
         }
        
@@ -388,8 +354,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             Utility.alertPopup("Error", informativeText: "Please enter a numerical value for experience.",isCancelBtnNeeded:false,okCompletionHandler:nil)
             fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
             textShouldEndEditing = false
-
-          }
+        }
           else if experience <= 50
           {
             let numberFormatter = NSNumberFormatter()
@@ -415,8 +380,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
            candidate.experience = nil
            self.candidateSearchField.enabled = false
         }
-       
-
+        
        case 3:
        if (!(textField.stringValue == ""))
        {
@@ -433,7 +397,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         }
         else
         {
-          Utility.alertPopup("Error", informativeText: "Please enter a 11 digit mobile phone number.",isCancelBtnNeeded:false,okCompletionHandler: nil)
+          Utility.alertPopup("Error", informativeText: "Please enter a 10 digit mobile phone number.",isCancelBtnNeeded:false,okCompletionHandler: nil)
           fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
           textShouldEndEditing = false
         }
@@ -443,39 +407,59 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
          candidate.phoneNumber = fieldEditor.string
          candidateSearchField.enabled = false
        }
-        default: break
-       
-     }
         
-        if candidate.name != "" && candidate.phoneNumber != ""  && candidate.experience != nil && candidate.requisition != ""   {
-            EHCoreDataHelper.saveToCoreData(candidate)
-
+      case 4:
+        if (!(textField.stringValue == ""))
+        {
+            if !Utility.isAlphabetsOnly(textField.stringValue)
+            {
+                Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters.",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.characters.count)
+                textShouldEndEditing = false
+            }
+            else
+            {
+                candidate.requisition = fieldEditor.string
+            }
+            candidateSearchField.enabled = true
         }
-        else {
-            print("Cannot save , fields are empty")
+        else
+        {
+            candidate.requisition = fieldEditor.string
+            candidateSearchField.enabled = false
+        }
+        default: break
+    }
+        if candidate.name != "" && candidate.phoneNumber != ""  && candidate.experience != nil && candidate.requisition != ""
+        {
+            EHCoreDataHelper.saveToCoreData(candidate)
         }
         return textShouldEndEditing
     }
     
-    
     func deleteCandidate()
     {
-        
-     if tableView.selectedRow > -1
-     {
-      let editCandidate = candidateArray.objectAtIndex(tableView.selectedRow) as! Candidate
-      candidateAccessLayer!.removeCandidate(editCandidate)
-      candidateArray.removeObjectAtIndex(tableView.selectedRow)
-      feedbackButton.enabled = false
-      removeButton.enabled = false
-     }
-      tableView.reloadData()
+      if tableView.selectedRow != -1
+      {
+        if filteredArray.count > 0
+        {
+           let can = filteredArray.objectAtIndex(tableView.selectedRow) as! Candidate
+           candidateAccessLayer!.removeCandidate(can)
+           filteredArray.removeObject(can)
+           candidateArray.removeObject(can)
+           self.candidateSearchField.stringValue = ""
+        }
+        else
+        {
+           candidateAccessLayer!.removeCandidate(candidateArray.objectAtIndex(self.tableView.selectedRow) as! Candidate)
+           candidateArray.removeObjectAtIndex(self.tableView.selectedRow)
+        }
+        tableView.reloadData()
+      }
     }
     
-    override func controlTextDidBeginEditing(obj: NSNotification) {
-       
-        removeButton.enabled = false
-        //feedbackButton.enabled = false
-       
+    override func controlTextDidBeginEditing(obj: NSNotification)
+    {
+      removeButton.enabled = false
     }
 }
