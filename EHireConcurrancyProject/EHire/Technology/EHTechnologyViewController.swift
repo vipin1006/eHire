@@ -32,6 +32,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     //}
     //Set the content of source list in the outlineVew as the technology list/array
     var technologyArray = [Technology]()
+
+     var filteredTechnologyArray = NSMutableArray()
+    
     
     var selectedTechnologyIndex:Int?
     
