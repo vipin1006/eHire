@@ -116,17 +116,19 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     //This datasource method returns the child at a given index
     func outlineView(outlineView: NSOutlineView, child index: Int, ofItem item: AnyObject?) -> AnyObject
     {
-        // it 'item' is nil, technology has to be returned. Else, item's(technology) child(date) at that index has to be returned.
+        // it 'item' is nil, technology has to be returned. Else, item's(technology) child(date) at that index
         if   item != nil
         {
             if item is Technology{
                 let technology = item as! Technology
                 let allObjectsAraay = technology.interviewDates?.allObjects
                 
-            return allObjectsAraay![index]
+                return allObjectsAraay![index]
             }
         }
-        return self.technologyArray[index]
+        //return self.technologyArray[index]
+        
+        return self.filteredTechnologyArray.count > 0 ? self.filteredTechnologyArray[index] : self.technologyArray[index]
     }
     
     
@@ -155,8 +157,9 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 return technology.interviewDates!.count
             }
         }
-        return technologyArray.count
-    }
+        // return technologyArray.count
+        
+        return self.filteredTechnologyArray.count > 0 ? self.filteredTechnologyArray.count : self.technologyArray.count    }
     
     //PRAGMAMARK: - outlineview delegate  methods
     //This delegate method sets isCandidatesViewLoaded based on which item (technology/date) is selected.
