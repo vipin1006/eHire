@@ -181,7 +181,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             let view = ratingsView as! NSButton
             if managerialRoundFeedback.isSubmitted == true{
                 view.enabled = false
-                cell.titleName.enabled = false
+                cell.titleName.selectable = false
                 cell.feedBackRating.enabled = false
             }else{
                 view.enabled = true

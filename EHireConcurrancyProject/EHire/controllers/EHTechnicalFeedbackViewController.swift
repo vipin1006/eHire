@@ -166,7 +166,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 technicalFeedbackModel.ratingOnTechnical = Int16((feedback.ratingOnTechnical?.integerValue)!)
                 textViewOfTechnologyAssessment.string = feedback.commentsOnTechnology
                 technicalFeedbackModel.ratingOnCandidate = Int16((feedback.ratingOnCandidate?.integerValue)!)
-                                interviewedByField.stringValue = feedback.techLeadName!
+                interviewedByField.stringValue = feedback.techLeadName!
                 technicalFeedbackModel.modeOfInterview = feedback.modeOfInterview!
                 technicalFeedbackModel.recommendation = feedback.recommendation!
                 if technicalFeedbackModel.recommendation == "Shortlisted"
@@ -378,7 +378,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             if technicalFeedbackModel.isFeedbackSubmitted == true
             {
                 feedbackview.enabled = false
-                cellView.skilsAndRatingsTitlefield.enabled = false
+                cellView.skilsAndRatingsTitlefield.selectable = false
                 cellView.feedback.enabled = false
             }
             else
