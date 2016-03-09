@@ -33,6 +33,8 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
     var selectedCandidate:Candidate?
     let dataAccess = EHTechnicalFeedbackDataAccess()
     var managedObjectContext : NSManagedObjectContext?
+    var technicalFeedbackData : TechnicalFeedBack?
+    var managerialFeedbackData :  ManagerFeedBack?
     
     //MARK: View Life Cycle
     override func viewDidLoad()
@@ -43,8 +45,6 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
         self.view.layer?.backgroundColor = NSColor(calibratedRed:247/255.0, green: 246/255.0, blue: 247/255.0, alpha: 1.0).CGColor
         techFeedback = storyboard?.instantiateControllerWithIdentifier("EHTechnicalFeedbackViewController") as? EHTechnicalFeedbackViewController
         techFeedback?.feedback = self
-        defaultSegmentTech()
-        //defaultSegmentManager()
         techFeedback!.selectedCandidate = selectedCandidate
         techFeedback?.managedObjectContext = self.managedObjectContext
         self.scrollViewHr.documentView? = (techFeedback?.view)!
@@ -52,19 +52,18 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
         self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1081))
         self.typeOfInterview.selectedSegment = 0
         self.subRound.selectedSegment = 0
+        enablingAndDisablingOfSegments()
         self.scrollViewHr.hasVerticalScroller = true
     }
     
     @IBAction func roundType(sender: AnyObject)
     {
-        
         self.subRound.hidden = false
         let mainRound:NSSegmentedControl = sender as! NSSegmentedControl
 
         let techLeadCount = (selectedCandidate?.interviewedByTechLeads)!.count
         let managerCount =  (selectedCandidate?.interviewedByManagers)!.count
-       // defaultSegmentManager()
-      //  defaultSegmentTech()
+        enablingAndDisablingOfSegments()
         switch mainRound.selectedSegment
         {
         case 0 :
@@ -122,6 +121,7 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                 self.scrollViewHr.documentView = managerFeedback?.view
                 animateView(self.scrollViewHr.documentView!)
                 self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1565))
+                self.subRound.setEnabled(true, forSegment: 0)
             }
             self.hrView?.removeFromSuperview()
             self.techFeedback?.view.removeFromSuperview()
@@ -168,25 +168,25 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
             }
 
             
-            if techLeadCount < 3
-            {
-                Utility.alertPopup("Alert", informativeText: "Please complete Technical Round(s) before proceeding to the HR Round", isCancelBtnNeeded:false,okCompletionHandler: nil)
-                subRound.selectedSegment = 0
-                typeOfInterview.setSelected(true, forSegment: 0)
-                return
-            }
-            else
-            {
+//            if techLeadCount < 3
+//            {
+//                Utility.alertPopup("Alert", informativeText: "Please complete Technical Round(s) before proceeding to the HR Round", isCancelBtnNeeded:false,okCompletionHandler: nil)
+//                subRound.selectedSegment = 0
+//                typeOfInterview.setSelected(true, forSegment: 0)
+//                return
+//            }
+          //  else
+          //  {
                
                 
-                if managerCount < 2
-                {
+             //   if managerCount < 2
+              //  {
 //                    Utility.alertPopup("Alert", informativeText: "Please complete Manager Round(s) before proceeding to the HR Round", isCancelBtnNeeded:false,okCompletionHandler: nil)
                     
-                    self.typeOfInterview.selectedSegment = 1
+                  //  self.typeOfInterview.selectedSegment = 1
 
-                    return
-                }
+                  //  return
+               // }
                 
             if !isHrLoaded
             {
@@ -196,7 +196,7 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
             self.managerFeedback?.view.removeFromSuperview()
             self.techFeedback?.view.removeFromSuperview()
             self.subRound.hidden = true
-         }
+        // }
         default:
             print("Other")
         }
@@ -204,8 +204,6 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
     
     @IBAction func subRound(sender: AnyObject)
     {
-        //defaultSegmentManager()
-        //defaultSegmentTech()
         switch self.typeOfInterview.selectedSegment
         {
         //For Technical Feedback Rounds
@@ -421,8 +419,7 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                     
                 }
                 print("Round Two")
-                defaultSegmentManager()
-                
+                               
             default: print("")
             }
          default: print("")
@@ -570,71 +567,308 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
     self.scrollViewHr.documentView?.scrollPoint(point)
     
   }
-    func defaultSegmentManager()
+    func enablingAndDisablingOfSegments()
     {
-        if (selectedCandidate?.interviewedByManagers?.count == 0)
-        {
-            self.subRound.setEnabled(true, forSegment: 0)
-            self.subRound.setEnabled(false, forSegment: 1)
-            self.typeOfInterview.setEnabled(true, forSegment: 0)
-            self.typeOfInterview.setEnabled(true, forSegment: 1)
-            self.typeOfInterview.setEnabled(false, forSegment: 2)
-        }
-        else if (selectedCandidate?.interviewedByManagers?.count == 1)
-        {
-            self.subRound.setEnabled(true, forSegment: 0)
-            self.subRound.setEnabled(true, forSegment: 1)
-            self.typeOfInterview.setEnabled(true, forSegment:0 )
-            self.typeOfInterview.setEnabled(true, forSegment:1 )
-            self.typeOfInterview.setEnabled(false, forSegment:2 )
-        }else if(selectedCandidate?.interviewedByManagers?.count == 2)
-        {
-            
-            self.subRound.setEnabled(true, forSegment: 0)
-            self.subRound.setEnabled(true, forSegment: 1)
-            self.subRound.setEnabled(true, forSegment: 2)
-            self.typeOfInterview.setEnabled(true, forSegment:0 )
-            self.typeOfInterview.setEnabled(true, forSegment:1 )
-            self.typeOfInterview.setEnabled(true, forSegment:2 )
-        }
         
+        for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
+        {
+            technicalFeedbackData = feedbackOfTechLead as? TechnicalFeedBack
+        }
+        for feedbackOfTechLead in (selectedCandidate?.interviewedByManagers)!
+        {
+            managerialFeedbackData = feedbackOfTechLead as? ManagerFeedBack
+        }
+
+        if self.typeOfInterview.selectedSegment == 0
+        {
+            if (selectedCandidate?.interviewedByTechLeads?.count == 0)
+            {
+                self.subRound.setEnabled(true, forSegment: 0)
+                self.subRound.setEnabled(false, forSegment: 1)
+                self.subRound.setEnabled(false, forSegment: 2)
+                self.typeOfInterview.setEnabled(true, forSegment: 0)
+                self.typeOfInterview.setEnabled(false, forSegment: 1)
+                self.typeOfInterview.setEnabled(false, forSegment: 2)
+            }
+            else if (selectedCandidate?.interviewedByTechLeads?.count == 1)
+            {
+                if technicalFeedbackData!.isFeedbackSubmitted == true
+                    {
+                        if technicalFeedbackData!.recommendation == "Rejected"
+                        {
+                            self.subRound.setEnabled(true, forSegment: 0)
+                            self.subRound.setEnabled(false, forSegment: 1)
+                            self.subRound.setEnabled(false, forSegment: 2)
+                            self.typeOfInterview.setEnabled(true, forSegment: 0)
+                            self.typeOfInterview.setEnabled(false, forSegment: 1)
+                            self.typeOfInterview.setEnabled(false, forSegment: 2)
+                        }
+                        else
+                        {
+                            self.subRound.setEnabled(true, forSegment: 0)
+                            self.subRound.setEnabled(true, forSegment: 1)
+                            self.subRound.setEnabled(false, forSegment: 2)
+                            self.typeOfInterview.setEnabled(true, forSegment: 0)
+                            self.typeOfInterview.setEnabled(false, forSegment: 1)
+                            self.typeOfInterview.setEnabled(false, forSegment: 2)
+                            
+                        }
+                    }
+                    else
+                    {
+                        self.subRound.setEnabled(true, forSegment: 0)
+                        self.subRound.setEnabled(false, forSegment: 1)
+                        self.subRound.setEnabled(false, forSegment: 2)
+                        self.typeOfInterview.setEnabled(true, forSegment: 0)
+                        self.typeOfInterview.setEnabled(false, forSegment: 1)
+                        self.typeOfInterview.setEnabled(false, forSegment: 2)
+                    }
+                }
+            else if(selectedCandidate?.interviewedByTechLeads?.count == 2)
+            {
+                if technicalFeedbackData!.isFeedbackSubmitted == true
+                    {
+                        if technicalFeedbackData!.recommendation == "Rejected"
+                        {
+                            self.subRound.setEnabled(true, forSegment: 0)
+                            self.subRound.setEnabled(true, forSegment: 1)
+                            self.subRound.setEnabled(false, forSegment: 2)
+                            self.typeOfInterview.setEnabled(true, forSegment: 0)
+                            self.typeOfInterview.setEnabled(false, forSegment: 1)
+                            self.typeOfInterview.setEnabled(false, forSegment: 2)
+                        }
+                        else
+                        {
+                            self.subRound.setEnabled(true, forSegment: 0)
+                            self.subRound.setEnabled(true, forSegment: 1)
+                            self.subRound.setEnabled(true, forSegment: 2)
+                            self.typeOfInterview.setEnabled(true, forSegment: 0)
+                            self.typeOfInterview.setEnabled(true, forSegment: 1)
+                            if managerialFeedbackData != nil
+                            {
+                            if managerialFeedbackData!.isSubmitted == true
+                            {
+                                if managerialFeedbackData!.recommendation == "Rejected"
+                                {
+                                    self.typeOfInterview.setEnabled(false, forSegment: 2)
+                                }
+                                else
+                                {
+                                    self.typeOfInterview.setEnabled(true, forSegment: 2)
+                                }
+                             }
+                            }
+                            else
+                            {
+                                self.typeOfInterview.setEnabled(false, forSegment: 2)
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        self.subRound.setEnabled(true, forSegment: 0)
+                        self.subRound.setEnabled(true, forSegment: 1)
+                        self.subRound.setEnabled(false, forSegment: 2)
+                        self.typeOfInterview.setEnabled(true, forSegment: 0)
+                        self.typeOfInterview.setEnabled(false, forSegment: 1)
+                        self.typeOfInterview.setEnabled(false, forSegment: 2)
+                    }
+                    
+            }
+            else //if(selectedCandidate?.interviewedByTechLeads?.count == 3)
+            {
+                    if technicalFeedbackData!.isFeedbackSubmitted == true
+                    {
+                        if technicalFeedbackData!.recommendation == "Rejected"
+                        {
+                            
+                            self.subRound.setEnabled(true, forSegment: 0)
+                            self.subRound.setEnabled(true, forSegment: 1)
+                            self.subRound.setEnabled(true, forSegment: 2)
+                            self.typeOfInterview.setEnabled(true, forSegment: 0)
+                            self.typeOfInterview.setEnabled(false, forSegment: 1)
+                            self.typeOfInterview.setEnabled(false, forSegment: 2)
+                        }
+                        else
+                        {
+                            self.subRound.setEnabled(true, forSegment: 0)
+                            self.subRound.setEnabled(true, forSegment: 1)
+                            self.subRound.setEnabled(true, forSegment: 2)
+                            self.typeOfInterview.setEnabled(true, forSegment: 0)
+                            self.typeOfInterview.setEnabled(true, forSegment: 1)
+                            if managerialFeedbackData != nil
+                            {
+                            if managerialFeedbackData!.isSubmitted == true
+                            {
+                                if managerialFeedbackData!.recommendation == "Rejected"
+                                {
+                                    self.typeOfInterview.setEnabled(false, forSegment: 2)
+                                }
+                                else
+                                {
+                                    self.typeOfInterview.setEnabled(true, forSegment: 2)
+                                }
+                            }
+                            }
+                            else
+                            {
+                                self.typeOfInterview.setEnabled(false, forSegment: 2)
+                            }
+                        }
+                    }
+                    else
+                    {
+                        self.subRound.setEnabled(true, forSegment: 0)
+                        self.subRound.setEnabled(true, forSegment: 1)
+                        self.subRound.setEnabled(true, forSegment: 2)
+                        self.typeOfInterview.setEnabled(true, forSegment: 0)
+                        self.typeOfInterview.setEnabled(false, forSegment: 1)
+                        self.typeOfInterview.setEnabled(false, forSegment: 2)
+                    }
+            }
+        }
+        else if typeOfInterview.selectedSegment == 1
+        {
+            if selectedCandidate?.interviewedByManagers?.count == 0
+            {
+                self.subRound.setEnabled(true, forSegment: 0)
+                self.subRound.setEnabled(false, forSegment: 1)
+                self.typeOfInterview.setEnabled(true, forSegment: 0)
+                self.typeOfInterview.setEnabled(true, forSegment: 1)
+                self.typeOfInterview.setEnabled(false, forSegment: 2)
+            }
+            else if (selectedCandidate?.interviewedByManagers?.count == 1)
+            {
+                
+                    if managerialFeedbackData!.isSubmitted == true
+                    {
+                        if managerialFeedbackData!.recommendation == "Rejected"
+                        {
+                            self.subRound.setEnabled(true, forSegment: 0)
+                            self.subRound.setEnabled(false, forSegment: 1)
+                            self.typeOfInterview.setEnabled(true, forSegment:0 )
+                            self.typeOfInterview.setEnabled(true, forSegment:1 )
+                            self.typeOfInterview.setEnabled(false, forSegment:2 )
+                        }
+                        else
+                        {
+                            self.subRound.setEnabled(true, forSegment: 0)
+                            self.subRound.setEnabled(true, forSegment: 1)
+                            self.typeOfInterview.setEnabled(true, forSegment:0 )
+                            self.typeOfInterview.setEnabled(true, forSegment:1 )
+                            self.typeOfInterview.setEnabled(true, forSegment:2 )
+                        }
+                    }
+                    else
+                    {
+                        self.subRound.setEnabled(true, forSegment: 0)
+                        self.subRound.setEnabled(false, forSegment: 1)
+                        self.typeOfInterview.setEnabled(true, forSegment:0 )
+                        self.typeOfInterview.setEnabled(true, forSegment:1 )
+                        self.typeOfInterview.setEnabled(false, forSegment:2 )
+                        
+                    }
+            }
+                
+            else if(selectedCandidate?.interviewedByManagers?.count == 2)
+            {
+                   if managerialFeedbackData!.isSubmitted == true
+                    {
+                        if managerialFeedbackData!.recommendation == "Rejected"
+                        {
+                            self.subRound.setEnabled(true, forSegment: 0)
+                            self.subRound.setEnabled(true, forSegment: 1)
+                            self.typeOfInterview.setEnabled(true, forSegment:0 )
+                            self.typeOfInterview.setEnabled(true, forSegment:1 )
+                            self.typeOfInterview.setEnabled(false, forSegment:2 )
+                        }
+                        else
+                        {
+                            self.subRound.setEnabled(true, forSegment: 0)
+                            self.subRound.setEnabled(true, forSegment: 1)
+                            self.typeOfInterview.setEnabled(true, forSegment:0 )
+                            self.typeOfInterview.setEnabled(true, forSegment:1 )
+                            self.typeOfInterview.setEnabled(true, forSegment:2 )
+                        }
+                    }
+                    else
+                    {
+                        self.subRound.setEnabled(true, forSegment: 0)
+                        self.subRound.setEnabled(true, forSegment: 1)
+                        self.typeOfInterview.setEnabled(true, forSegment:0 )
+                        self.typeOfInterview.setEnabled(true, forSegment:1 )
+                        self.typeOfInterview.setEnabled(false, forSegment:2 )
+                    }
+            }
+        }
     }
 
- func defaultSegmentTech()
- {
-    if (selectedCandidate?.interviewedByTechLeads?.count == 0)
-    {
-    self.subRound.setEnabled(true, forSegment: 0)
-    self.subRound.setEnabled(false, forSegment: 1)
-    self.subRound.setEnabled(false, forSegment: 2)
-    self.typeOfInterview.setEnabled(true, forSegment: 0)
-    self.typeOfInterview.setEnabled(false, forSegment: 1)
-    self.typeOfInterview.setEnabled(false, forSegment: 2)
-    }else if (selectedCandidate?.interviewedByTechLeads?.count == 1)
-    {
-        self.subRound.setEnabled(true, forSegment: 0)
-        self.subRound.setEnabled(true, forSegment: 1)
-        self.subRound.setEnabled(false, forSegment: 2)
-        self.typeOfInterview.setEnabled(true, forSegment: 0)
-        self.typeOfInterview.setEnabled(false, forSegment: 1)
-        self.typeOfInterview.setEnabled(false, forSegment: 2)
-    }else if(selectedCandidate?.interviewedByTechLeads?.count == 2)
-    {
-        self.subRound.setEnabled(true, forSegment: 0)
-        self.subRound.setEnabled(true, forSegment: 1)
-        self.subRound.setEnabled(true, forSegment: 2)
-        self.typeOfInterview.setEnabled(true, forSegment: 0)
-        self.typeOfInterview.setEnabled(false, forSegment: 1)
-        self.typeOfInterview.setEnabled(false, forSegment: 2)
-    }else if(selectedCandidate?.interviewedByTechLeads?.count == 3)
-    {
-        self.subRound.setEnabled(true, forSegment: 0)
-        self.subRound.setEnabled(true, forSegment: 1)
-        self.subRound.setEnabled(true, forSegment: 2)
-        self.typeOfInterview.setEnabled(true, forSegment: 0)
-        self.typeOfInterview.setEnabled(true, forSegment: 1)
-        self.typeOfInterview.setEnabled(true, forSegment: 2)
-    }
-    }
     
+//    func defaultSegmentManager()
+//    {
+//        if (selectedCandidate?.interviewedByManagers?.count == 0)
+//        {
+//            self.subRound.setEnabled(true, forSegment: 0)
+//            self.subRound.setEnabled(false, forSegment: 1)
+//            self.typeOfInterview.setEnabled(true, forSegment: 0)
+//            self.typeOfInterview.setEnabled(true, forSegment: 1)
+//            self.typeOfInterview.setEnabled(false, forSegment: 2)
+//        }
+//        else if (selectedCandidate?.interviewedByManagers?.count == 1)
+//        {
+//            self.subRound.setEnabled(true, forSegment: 0)
+//            self.subRound.setEnabled(true, forSegment: 1)
+//            self.typeOfInterview.setEnabled(true, forSegment:0 )
+//            self.typeOfInterview.setEnabled(true, forSegment:1 )
+//            self.typeOfInterview.setEnabled(false, forSegment:2 )
+//        }else if(selectedCandidate?.interviewedByManagers?.count == 2)
+//        {
+//            
+//            self.subRound.setEnabled(true, forSegment: 0)
+//            self.subRound.setEnabled(true, forSegment: 1)
+//            self.subRound.setEnabled(true, forSegment: 2)
+//            self.typeOfInterview.setEnabled(true, forSegment:0 )
+//            self.typeOfInterview.setEnabled(true, forSegment:1 )
+//            self.typeOfInterview.setEnabled(true, forSegment:2 )
+//        }
+//        
+//    }
+//
+// func defaultSegmentTech()
+// {
+//    if (selectedCandidate?.interviewedByTechLeads?.count == 0)
+//    {
+//    self.subRound.setEnabled(true, forSegment: 0)
+//    self.subRound.setEnabled(false, forSegment: 1)
+//    self.subRound.setEnabled(false, forSegment: 2)
+//    self.typeOfInterview.setEnabled(true, forSegment: 0)
+//    self.typeOfInterview.setEnabled(false, forSegment: 1)
+//    self.typeOfInterview.setEnabled(false, forSegment: 2)
+//    }else if (selectedCandidate?.interviewedByTechLeads?.count == 1)
+//    {
+//        self.subRound.setEnabled(true, forSegment: 0)
+//        self.subRound.setEnabled(true, forSegment: 1)
+//        self.subRound.setEnabled(false, forSegment: 2)
+//        self.typeOfInterview.setEnabled(true, forSegment: 0)
+//        self.typeOfInterview.setEnabled(false, forSegment: 1)
+//        self.typeOfInterview.setEnabled(false, forSegment: 2)
+//    }else if(selectedCandidate?.interviewedByTechLeads?.count == 2)
+//    {
+//        self.subRound.setEnabled(true, forSegment: 0)
+//        self.subRound.setEnabled(true, forSegment: 1)
+//        self.subRound.setEnabled(true, forSegment: 2)
+//        self.typeOfInterview.setEnabled(true, forSegment: 0)
+//        self.typeOfInterview.setEnabled(false, forSegment: 1)
+//        self.typeOfInterview.setEnabled(false, forSegment: 2)
+//    }else if(selectedCandidate?.interviewedByTechLeads?.count == 3)
+//    {
+//        self.subRound.setEnabled(true, forSegment: 0)
+//        self.subRound.setEnabled(true, forSegment: 1)
+//        self.subRound.setEnabled(true, forSegment: 2)
+//        self.typeOfInterview.setEnabled(true, forSegment: 0)
+//        self.typeOfInterview.setEnabled(true, forSegment: 1)
+//        self.typeOfInterview.setEnabled(true, forSegment: 2)
+//    }
+//    }
 }

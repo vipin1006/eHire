@@ -477,18 +477,9 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                 Utility.alertPopup("Alert", informativeText: "Are you sure you want to ‘Submit’ the data ?", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
                     self.dataAccessModel.insertManagerFeedback(self,candidate: self.selectedCandidate!, managerFeedbackModel: self.managerialRoundFeedback, andCallBack: { (isSucess) -> Void in
                         if isSucess{
-                            if(self.managerFeedbackData.subRound.selectedSegment == 0)
-                            {
-                                self.managerFeedbackData.subRound.setEnabled(true, forSegment: 1)
-                                
-                                
-                            }else if(self.managerFeedbackData.subRound.selectedSegment == 1)
-                            {
-                                
-                                self.managerFeedbackData.typeOfInterview.setEnabled(true, forSegment: 2)
-                            }
-                            Utility.alertPopup("Success", informativeText: "Feedback for Manager Round \((self.selectedCandidate?.interviewedByManagers?.count)!) has been sucessfully saved",isCancelBtnNeeded:false,okCompletionHandler: nil)
                             
+                            Utility.alertPopup("Success", informativeText: "Feedback for Manager Round \((self.selectedCandidate?.interviewedByManagers?.count)!) has been sucessfully saved",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                            self.enablingAndDisablingOfSegments()
                         }
                         self.disableAndEnableFields(true)
                         self.tableView.reloadData()
@@ -506,6 +497,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                     if isSucess{
                     
                         Utility.alertPopup("Success", informativeText: "Feedback for Managerround has been updated Successfully",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                        self.enablingAndDisablingOfSegments()
                     }
                     self.disableAndEnableFields(true)
                     self.tableView.reloadData()
@@ -514,6 +506,41 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         }
     }
 
+    func enablingAndDisablingOfSegments()
+    {
+        if(self.managerFeedbackData.subRound.selectedSegment == 0)
+        {
+            if self.managerialRoundFeedback.recommendation == "Rejected"
+            {
+                self.managerFeedbackData.subRound.setEnabled(true, forSegment: 0)
+                self.managerFeedbackData.subRound.setEnabled(false, forSegment: 1)
+                self.managerFeedbackData.typeOfInterview.setEnabled(false, forSegment: 2)
+            }
+            else
+            {
+                self.managerFeedbackData.subRound.setEnabled(true, forSegment: 0)
+                self.managerFeedbackData.subRound.setEnabled(true, forSegment: 1)
+                self.managerFeedbackData.typeOfInterview.setEnabled(true, forSegment: 2)
+            }
+        }
+            
+        else if(self.managerFeedbackData.subRound.selectedSegment == 1)
+        {
+            if self.managerialRoundFeedback.recommendation == "Rejected"
+            {
+                self.managerFeedbackData.subRound.setEnabled(true, forSegment: 0)
+                self.managerFeedbackData.subRound.setEnabled(true, forSegment: 1)
+                self.managerFeedbackData.typeOfInterview.setEnabled(false, forSegment: 2)
+            }
+            else
+            {
+                self.managerFeedbackData.subRound.setEnabled(true, forSegment: 0)
+                self.managerFeedbackData.subRound.setEnabled(true, forSegment: 1)
+                self.managerFeedbackData.typeOfInterview.setEnabled(true, forSegment: 2)
+            }
+        }
+
+    }
     
     //Method to enable/disable stars
     func displayStar(customView:AnyObject,lbl:NSTextField,sender:NSButton)
