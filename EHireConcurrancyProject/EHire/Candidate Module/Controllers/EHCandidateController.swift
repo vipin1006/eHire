@@ -456,6 +456,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         }
         feedbackButton.enabled = false
         removeButton.enabled = false
+        addCandidateButton.enabled = true
         tableView.reloadData()
       }
     }
