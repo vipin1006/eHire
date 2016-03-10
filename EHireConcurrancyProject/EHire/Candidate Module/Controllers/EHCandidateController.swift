@@ -332,6 +332,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters.",isCancelBtnNeeded:false,okCompletionHandler: nil)
             fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.characters.count)
             textShouldEndEditing = false
+            
           }
          else
          {
@@ -389,24 +390,26 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
           Utility.alertPopup("Error", informativeText: "Please enter a appropriate mobile number. ",isCancelBtnNeeded:false,okCompletionHandler: nil)
           fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
           textShouldEndEditing = false
+           
         }
         else if ((fieldEditor.string?.characters.count >= 10) && (fieldEditor.string?.characters.count <= 12))
         {
           candidate.phoneNumber = fieldEditor.string
           self.candidateSearchField.enabled = true
-        }
+                   }
         else
         {
           Utility.alertPopup("Error", informativeText: "Please enter a 10 digit mobile phone number.",isCancelBtnNeeded:false,okCompletionHandler: nil)
           fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
           textShouldEndEditing = false
+            
         }
        }
        else
        {
          candidate.phoneNumber = fieldEditor.string
          candidateSearchField.enabled = false
-       }
+               }
         
       case 4:
         if (!(textField.stringValue == ""))
@@ -464,5 +467,6 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     override func controlTextDidBeginEditing(obj: NSNotification)
     {
       removeButton.enabled = false
+      feedbackButton.enabled = false
     }
 }
