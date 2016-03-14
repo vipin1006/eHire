@@ -218,7 +218,7 @@ class EHShowSelectedCandidatesViewController: NSViewController,NSTableViewDataSo
     }
     @IBAction func goBack(sender: AnyObject) {
         
-        NSApp.mainWindow?.contentViewController = self.techVC
+        //NSApp.mainWindow?.contentViewController = self.techVC
         
         let mwc = NSApp.mainWindow?.windowController as! EHMainWindowController
         
