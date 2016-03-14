@@ -38,21 +38,21 @@ class EHTransitionAnimator: NSObject , NSViewControllerPresentationAnimator {
     
     func animateDismissalOfViewController(viewController: NSViewController, fromViewController: NSViewController) {
         if let window = viewController.view.window {
+           
             NSAnimationContext.runAnimationGroup({ (context) -> Void in
                
                 }, completionHandler: { () -> Void in
+                    
                     window.contentViewController  = fromViewController
                     let slideInFromLeftTransition = CATransition()
                     slideInFromLeftTransition.delegate = self
-                    slideInFromLeftTransition.type = kCATransitionPush
-                    slideInFromLeftTransition.subtype = kCATransition
-                    slideInFromLeftTransition.duration = 0.7
-                    
-                    slideInFromLeftTransition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-                    slideInFromLeftTransition.fillMode = kCAFillModeRemoved
-                    window.contentViewController!.view.wantsLayer = true
-                    window.contentViewController!.view.layer!.addAnimation(slideInFromLeftTransition, forKey: "slideInFromRightTransition")
-               })
+                    slideInFromLeftTransition.duration = 0.4
+                    slideInFromLeftTransition.type = kCATransitionFade
+                    slideInFromLeftTransition.subtype = kCATransitionFade
+                    slideInFromLeftTransition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                    slideInFromLeftTransition.fillMode = kCAFillModeBackwards
+                     window.contentViewController!.view.layer!.addAnimation(slideInFromLeftTransition, forKey: "slideInFromLeftTransition")
+                    })
         }
     }
 }

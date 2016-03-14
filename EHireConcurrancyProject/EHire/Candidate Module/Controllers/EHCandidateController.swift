@@ -307,6 +307,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
               }
               else
               {
+                self.tableView.deselectRow(self.tableView.selectedRow)
                 delegate.showFeedbackViewController(selectedCandidate)
               }
             }
