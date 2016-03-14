@@ -17,12 +17,12 @@ class Utility: NSObject
         
         alert.informativeText = informativeText
         if isCancelBtnNeeded{
-            alert.addButtonWithTitle("YES")
-            alert.addButtonWithTitle("NO")
+            alert.addButtonWithTitle("Yes")
+            alert.addButtonWithTitle("No")
 
         }
         else{
-            alert.addButtonWithTitle("OK")
+            alert.addButtonWithTitle("Ok")
         }
         alert.alertStyle = NSAlertStyle.CriticalAlertStyle
         let res = alert.runModal()
