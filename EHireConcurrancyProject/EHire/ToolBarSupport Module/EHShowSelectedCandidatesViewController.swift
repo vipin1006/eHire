@@ -224,6 +224,7 @@ class EHShowSelectedCandidatesViewController: NSViewController,NSTableViewDataSo
         
         mwc.goBack.view?.hidden = true
         
+        self.presentingViewController?.dismissViewController(self)
     }
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int

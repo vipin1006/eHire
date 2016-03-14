@@ -36,7 +36,9 @@ class EHMainWindowController: NSWindowController,NSWindowDelegate {
         
         if selectedCandidatesViewController != nil
         {
-            self.contentViewController = selectedCandidatesViewController
+            //self.contentViewController = selectedCandidatesViewController
+            
+             self.contentViewController?.presentViewController(selectedCandidatesViewController!, animator:EHTransitionAnimator())
             self.goBack.view?.hidden = false
           
         }else
@@ -50,14 +52,11 @@ class EHMainWindowController: NSWindowController,NSWindowDelegate {
             
             selectedCandidatesViewController!.s = self
             
-            self.contentViewController = selectedCandidatesViewController
+            self.contentViewController?.presentViewController(selectedCandidatesViewController!, animator:EHTransitionAnimator())
             
             self.goBack.view?.hidden = false
             
-          
-            
-        }
-        
+          }
         
     }
     
