@@ -941,8 +941,11 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     {
         Utility.alertPopup("Are you sure you want to delete the Technology?", informativeText: "All the data of this item will also be deleted.",isCancelBtnNeeded:true) { () -> Void in
             
+            self.technologyDataLayer?.removeTechnolgy(self.technologyArray.removeAtIndex(self.sourceList.selectedRow), completion: { (error) -> Void in
+                
+                  
+            })
             
-            self.technologyArray.removeAtIndex(self.sourceList.selectedRow)
             self.sortedSourceListReload()
             
         }
