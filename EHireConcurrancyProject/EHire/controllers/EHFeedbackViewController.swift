@@ -439,7 +439,7 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
         if let hrViewController = hrFeedBackViewController
         {
             hrView = hrViewController.view
-            hrView!.frame = NSMakeRect(self.scrollViewHr.frame.origin.x,self.scrollViewHr.frame.origin.y,self.scrollViewHr.frame.size.width,1450)
+            hrView!.frame = NSMakeRect(self.scrollViewHr.frame.origin.x,self.scrollViewHr.frame.origin.y,self.scrollViewHr.frame.size.width,1380)//1450
             self.scrollViewHr.documentView = hrView
             animateView(self.scrollViewHr.documentView!)
             
