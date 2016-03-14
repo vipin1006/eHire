@@ -17,6 +17,7 @@ class EHMainWindowController: NSWindowController,NSWindowDelegate {
     
     @IBOutlet var goBack: NSToolbarItem!
     
+    @IBOutlet var shortlistedToolbarItem: NSToolbarItem!
     
     override func windowDidLoad() {
         super.windowDidLoad()
@@ -26,18 +27,18 @@ class EHMainWindowController: NSWindowController,NSWindowDelegate {
         self.goBack.toolTip = "Show the previous screen"
         
         self.goBack.view?.hidden = true
-        
+    
     }
     
     
     
     @IBAction func showSelectedCandidates(sender:NSToolbarItem) {
         
-        
         if selectedCandidatesViewController != nil
         {
             self.contentViewController = selectedCandidatesViewController
             self.goBack.view?.hidden = false
+          
         }else
         {
             selectedCandidatesViewController = self.storyboard?.instantiateControllerWithIdentifier("toSelectedCandidates") as? EHShowSelectedCandidatesViewController
@@ -47,9 +48,13 @@ class EHMainWindowController: NSWindowController,NSWindowDelegate {
             
             selectedCandidatesViewController!.managedObjectContext = managedObjectContext
             
+            selectedCandidatesViewController!.s = self
+            
             self.contentViewController = selectedCandidatesViewController
             
             self.goBack.view?.hidden = false
+            
+          
             
         }
         

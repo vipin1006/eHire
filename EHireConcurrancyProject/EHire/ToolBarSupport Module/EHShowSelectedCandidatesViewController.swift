@@ -30,6 +30,8 @@ class EHShowSelectedCandidatesViewController: NSViewController,NSTableViewDataSo
     
     var  showCandidateDetails:ShowDetailsViewController?
     
+    var s:EHMainWindowController?
+    
     
     
     override func viewDidLoad() {
@@ -59,8 +61,12 @@ class EHShowSelectedCandidatesViewController: NSViewController,NSTableViewDataSo
                         
                         for x in self!.technologies!
                         {
+                            if x.interviewDates?.count > 0
+                            {
+                                self!.technologyPopUP.addItemWithTitle(x.technologyName!)
+
+                            }
                             
-                            self!.technologyPopUP.addItemWithTitle(x.technologyName!)
                             
                         }
                         
@@ -68,8 +74,6 @@ class EHShowSelectedCandidatesViewController: NSViewController,NSTableViewDataSo
                         
                         if self!.shortlistedCandidsates.count > 0
                         {
-                            print("PRAISE THE LORD")
-                            
                             self?.candidatesTableView.reloadData()
                             
                         }
@@ -283,7 +287,7 @@ class EHShowSelectedCandidatesViewController: NSViewController,NSTableViewDataSo
         
          let body = "Hello \(basicInfo.officialEmailId!)"
         
-         mailService?.subject = "Hello!"
+         mailService?.subject = "yet to be decided..."
     
          mailService?.recipients = [basicInfo.officialEmailId!]
         

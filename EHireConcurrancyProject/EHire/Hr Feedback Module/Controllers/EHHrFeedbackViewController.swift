@@ -93,14 +93,8 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
     override func viewWillAppear()
     {
         super.viewWillAppear()
-        
         self.view.wantsLayer = true
-        
-       // self.view.layer?.backgroundColor = NSColor(calibratedRed:202/255.0, green:210/255.0, blue:222/255.0, alpha: 1.0).CGColor
         self.view.layer?.backgroundColor = NSColor(red: 222, green: 222, blue: 222, alpha: 0.5).CGColor
-        
-        
-        print("Value is \( candidate?.miscellaneousInfo?.isHrFormSubmitted)")
         
         if candidate?.miscellaneousInfo?.isHrFormSubmitted == 1
         {
@@ -152,7 +146,6 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
                 Utility.alertPopup("Are you sure you want to \'Submit\' the details?", informativeText:"",isCancelBtnNeeded:true) { () -> Void in
                     
                     self.candidateInfo["isHrFormSubmitted"] = 1
-                    
                     self.isHrFormEnable = false
                     self.clearButton.enabled = false
                     self.saveCandidateDetails("")
@@ -622,7 +615,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
     func setBoarderColor(hrTextFiled:NSTextField)
     {
         hrTextFiled.wantsLayer = true
-        hrTextFiled.layer?.borderColor =  NSColor(calibratedRed:110.0/250.0, green:157.0/250.0, blue:215.0/250.0, alpha:1.0).CGColor//105,200,250//NSColor.orangeColor().CGColor
+        hrTextFiled.layer?.borderColor =  NSColor(calibratedRed:110.0/250.0, green:157.0/250.0, blue:215.0/250.0, alpha:1.0).CGColor
         hrTextFiled.layer?.borderWidth = 2.0
     }
     
