@@ -48,10 +48,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
       candidateAccessLayer?.managedObjectContext = self.managedObjectContext
       candidateSearchField.appearance = NSAppearance(named:NSAppearanceNameVibrantLight)
       center.delegate = self
-        
-        scheduleNotification(NSDate(timeInterval:5, sinceDate: NSDate()))
-      
-    }
+   }
     
     override func viewWillAppear()
     {
