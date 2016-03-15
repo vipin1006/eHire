@@ -13,7 +13,7 @@ protocol FeedbackDelegate
     func showFeedbackViewController(selectedCandidate:Candidate)
 }
 
-class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewDelegate,NSTextFieldDelegate{
+class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewDelegate,NSTextFieldDelegate,NSUserNotificationCenterDelegate{
     
     //MARK: IBOutlets
     @IBOutlet weak var tableView: NSTableView!
@@ -34,6 +34,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     var candidateDetails = Candidate()
     var candidateAccessLayer : EHCandidateAccessLayer?
     var managedObjectContext : NSManagedObjectContext?
+    let center = NSUserNotificationCenter.defaultUserNotificationCenter()
 
     
     override func viewDidLoad()
@@ -46,6 +47,10 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
       candidateAccessLayer = EHCandidateAccessLayer()
       candidateAccessLayer?.managedObjectContext = self.managedObjectContext
       candidateSearchField.appearance = NSAppearance(named:NSAppearanceNameVibrantLight)
+      center.delegate = self
+        
+        scheduleNotification(NSDate(timeInterval:5, sinceDate: NSDate()))
+      
     }
     
     override func viewWillAppear()
@@ -112,6 +117,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             
         else if tableColumn?.identifier == "interviewTime"
         {
+           
             let interviewTimePicker:NSDatePicker = cell.viewWithTag(10) as! NSDatePicker
             interviewTimePicker.dateValue = (candidate.interviewTime)!
         }
@@ -237,7 +243,12 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
                 self.candidateSearchField.enabled = false
             }
           })
-     }
+        
+        
+     
+   
+    
+    }
 
     @IBAction func searchFieldTextDidChange(sender: NSSearchField)
     {
@@ -282,8 +293,14 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     @IBAction func addInterviewTime(sender: AnyObject)
     {
       let selectedCandidate:Candidate = candidateArray.objectAtIndex(tableView.selectedRow) as! Candidate
-      selectedCandidate.interviewTime = sender.dateValue
-      EHCoreDataHelper.saveToCoreData(selectedCandidate)
+      
+        selectedCandidate.interviewTime = (sender.dateValue!!)
+        
+        selectedCandidate.interviewDate = convertGmtToLocal(sender.dateValue!!)
+        
+        EHCoreDataHelper.saveToCoreData(selectedCandidate)
+        
+       
         
     }
     
@@ -469,5 +486,53 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     {
       removeButton.enabled = false
       feedbackButton.enabled = false
+    }
+    
+    func convertGmtToLocal(gmt:NSDate)->NSDate{
+        
+        let formatter = NSDateFormatter()
+        
+        formatter.timeZone = NSTimeZone(abbreviation:"IST")
+        
+        formatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        
+        let s = formatter.stringFromDate(gmt)
+        
+        let another = NSDateFormatter()
+    
+        another.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        
+        another.timeZone = NSTimeZone(abbreviation:"GMT")
+        
+        let localDate = another.dateFromString(s)
+        
+        return localDate!
+        
+    }
+    
+    func scheduleNotification(withDate:NSDate)
+    {
+        
+            print(withDate)
+        
+            let notification = NSUserNotification()
+            
+            notification.title = "eHire"
+            
+            notification.informativeText = "Interview is scheduled for today"
+            
+            notification.hasActionButton = true
+        
+            notification.deliveryDate = withDate
+            
+            notification.soundName = NSUserNotificationDefaultSoundName
+        
+            center.scheduleNotification(notification)
+      
+            print(center.scheduledNotifications.count)
+    }
+    
+    func userNotificationCenter(center: NSUserNotificationCenter, shouldPresentNotification notification: NSUserNotification) -> Bool {
+        return true
     }
 }

@@ -62,29 +62,8 @@ class EHMainWindowController: NSWindowController,NSWindowDelegate {
                 
                 if showSelectedCandidatesViewController
                 {
-                    if selectedCandidatesViewController != nil
-                    {
-                        //self.contentViewController = selectedCandidatesViewController
-                        
-                        self.contentViewController?.presentViewController(selectedCandidatesViewController!, animator:EHTransitionAnimator())
-                        self.goBack.view?.hidden = false
-                        
-                    }else
-                    {
-                        selectedCandidatesViewController = self.storyboard?.instantiateControllerWithIdentifier("toSelectedCandidates") as? EHShowSelectedCandidatesViewController
-                        
-                        selectedCandidatesViewController?.techVC =  self.contentViewController as? EHTechnologyViewController
-                        
-                        
-                        selectedCandidatesViewController!.managedObjectContext = managedObjectContext
-                        
-                        selectedCandidatesViewController!.s = self
-                        
-                        self.contentViewController?.presentViewController(selectedCandidatesViewController!, animator:EHTransitionAnimator())
-                        
-                        self.goBack.view?.hidden = false
-                        
-                    }
+                    presentShortlistedViewController()
+                
                 }
                 else
                 {
@@ -102,13 +81,40 @@ class EHMainWindowController: NSWindowController,NSWindowDelegate {
         }
         else
         {
-            
+            presentShortlistedViewController()
         
         }
         
         
     }
     
-    
+    func presentShortlistedViewController()
+    {
+        
+        if selectedCandidatesViewController != nil
+        {
+            //self.contentViewController = selectedCandidatesViewController
+            
+            self.contentViewController?.presentViewController(selectedCandidatesViewController!, animator:EHTransitionAnimator())
+            self.goBack.view?.hidden = false
+            
+        }else
+        {
+            selectedCandidatesViewController = self.storyboard?.instantiateControllerWithIdentifier("toSelectedCandidates") as? EHShowSelectedCandidatesViewController
+            
+            selectedCandidatesViewController?.techVC =  self.contentViewController as? EHTechnologyViewController
+            
+            
+            selectedCandidatesViewController!.managedObjectContext = managedObjectContext
+            
+            selectedCandidatesViewController!.s = self
+            
+            self.contentViewController?.presentViewController(selectedCandidatesViewController!, animator:EHTransitionAnimator())
+            
+            self.goBack.view?.hidden = false
+            
+        }
+ 
+    }
     
 }
