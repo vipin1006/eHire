@@ -49,11 +49,8 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
       candidateSearchField.appearance = NSAppearance(named:NSAppearanceNameVibrantLight)
       center.delegate = self
         
-<<<<<<< HEAD
+
         /*scheduleNotification(NSDate(timeInterval:5, sinceDate: NSDate()))*/
-=======
-        scheduleNotification(NSDate(timeInterval:5, sinceDate: NSDate()))
->>>>>>> f55354c4b078f6a7f6d3e6200b3a8f40e8433719
   
     }
     
@@ -544,10 +541,10 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         
         center.removeDeliveredNotification(notification)
 <<<<<<< HEAD
+
+
     }*/
-=======
-    }
->>>>>>> f55354c4b078f6a7f6d3e6200b3a8f40e8433719
+
     
 
 }
