@@ -444,59 +444,11 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         NSMenu.popUpContextMenu(AddMenu, withEvent:event!, forView:sender)
         
-        
-
-        
-      
-        
-        
-        
-        
-        
-        
-      /*  if  ((sourceList.itemAtRow(sourceList.selectedRow) as? Technology) != nil){ // adding new date
-            
-            // Condition to check dates cannot be added when technology is editing
-            if !lastCellAddedForTechnology!.textFieldTechnology.editable{
-                
-                addDateAction(addDate)
-            }
-        }
-            
-        else{ // adding new technology
-            if technologyArray.count > 0 && lastCellAddedForTechnology?.textFieldTechnology.stringValue == ""{
-                Utility.alertPopup("Error", informativeText: "Please provide a name for the new technology before proceeding.",isCancelBtnNeeded:false,okCompletionHandler: nil)
-            }else
-            {
-                technologyDataLayer?.createEntityWith("", completion:
-                { (newTechnology,error) -> Void in
-                   
-                        self.technologyArray.append(newTechnology)
-                        self.reloadTableView()
-                        self.sourceList.selectRowIndexes(NSIndexSet(index:self.sourceList.numberOfRows-1), byExtendingSelection: true)
-                        self.rowView = self.sourceList.rowViewAtRow(self.sourceList.selectedRow, makeIfNecessary:true)!
-                        self.rowView!.viewWithTag(1)?.becomeFirstResponder()
-                        self.deleteTechnologyDate.enabled = true
-                    
-                })
-            }
-        }*/
     }
     
     func addTechnologyToList()
     {
-        
-       /* if  ((sourceList.itemAtRow(sourceList.selectedRow) as? Technology) != nil){ // adding new date
-        
-        // Condition to check dates cannot be added when technology is editing
-        if !lastCellAddedForTechnology!.textFieldTechnology.editable{
-        
-          addDateAction(addDate)
-        }
-        
-        }*/
-        
-        //else{ // adding new technology
+       
         if technologyArray.count > 0 && lastCellAddedForTechnology?.textFieldTechnology.stringValue == ""{
         Utility.alertPopup("Error", informativeText: "Please provide a name for the new technology before proceeding.",isCancelBtnNeeded:false,okCompletionHandler: nil)
         }else
@@ -513,7 +465,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         })
         }
-       // }
+      
 
         
         
