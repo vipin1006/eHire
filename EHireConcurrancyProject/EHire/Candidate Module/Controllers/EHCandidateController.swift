@@ -48,6 +48,8 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
       candidateAccessLayer?.managedObjectContext = self.managedObjectContext
       candidateSearchField.appearance = NSAppearance(named:NSAppearanceNameVibrantLight)
       center.delegate = self
+        
+        /*scheduleNotification(NSDate(timeInterval:5, sinceDate: NSDate()))*/
    }
     
     override func viewWillAppear()
@@ -344,7 +346,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         {
           if !Utility.isAlphabetsOnly(textField.stringValue)
           {
-            Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters.",isCancelBtnNeeded:false,okCompletionHandler: nil)
+            Utility.alertPopup("Candidate name should not be a number", informativeText: "Please enter alphabetical characters.",isCancelBtnNeeded:false,okCompletionHandler: nil)
             fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.characters.count)
             textShouldEndEditing = false
             
@@ -367,7 +369,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         let experience = textField.doubleValue
           if !EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
           {
-            Utility.alertPopup("Error", informativeText: "Please enter a numerical value for experience.",isCancelBtnNeeded:false,okCompletionHandler:nil)
+            Utility.alertPopup("Candidate experience should not contain alphabets", informativeText: "Please enter a numerical value for experience.",isCancelBtnNeeded:false,okCompletionHandler:nil)
             fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
             textShouldEndEditing = false
         }
@@ -385,7 +387,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
             
           else
           {
-            Utility.alertPopup("Error", informativeText: "Please enter a appropriate  experience.",isCancelBtnNeeded:false,okCompletionHandler: nil)
+            Utility.alertPopup("Invalid experience range", informativeText: "Please enter a valid  experience between 0 - 50",isCancelBtnNeeded:false,okCompletionHandler: nil)
             fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
             textShouldEndEditing = false
 
@@ -402,7 +404,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
        {
         if !EHOnlyDecimalValueFormatter.isNumberValid(textField.stringValue)
         {
-          Utility.alertPopup("Error", informativeText: "Please enter a appropriate mobile number. ",isCancelBtnNeeded:false,okCompletionHandler: nil)
+          Utility.alertPopup("Mobile number should not contain alphabets", informativeText: "Please enter an appropriate mobile number. ",isCancelBtnNeeded:false,okCompletionHandler: nil)
           fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
           textShouldEndEditing = false
            
@@ -414,7 +416,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
                    }
         else
         {
-          Utility.alertPopup("Error", informativeText: "Please enter a 10 digit mobile phone number.",isCancelBtnNeeded:false,okCompletionHandler: nil)
+          Utility.alertPopup("Mobile number should contain atleast 10 digits", informativeText: "Please enter a valid mobile number.",isCancelBtnNeeded:false,okCompletionHandler: nil)
           fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
           textShouldEndEditing = false
             
@@ -431,7 +433,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         {
             if !Utility.isAlphabetsOnly(textField.stringValue)
             {
-                Utility.alertPopup("Error", informativeText: "Please enter alphabetical characters.",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                Utility.alertPopup("Candidate requisition should not be numeric", informativeText: "Please enter proper requisition",isCancelBtnNeeded:false,okCompletionHandler: nil)
                 fieldEditor.selectedRange = NSRange.init(location: 0, length:fieldEditor.string!.characters.count)
                 textShouldEndEditing = false
             }
@@ -507,7 +509,7 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
         
     }
     
-    func scheduleNotification(withDate:NSDate)
+  /*  func scheduleNotification(withDate:NSDate)
     {
         
             print(withDate)
@@ -532,4 +534,11 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     func userNotificationCenter(center: NSUserNotificationCenter, shouldPresentNotification notification: NSUserNotification) -> Bool {
         return true
     }
+    
+    func userNotificationCenter(center: NSUserNotificationCenter, didDeliverNotification notification: NSUserNotification) {
+        
+        center.removeDeliveredNotification(notification)
+    }*/
+    
+
 }

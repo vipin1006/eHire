@@ -248,7 +248,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         let ratingCell = sender.superview?.superview as! EHManagerFeedBackCustomTableView
         if ratingCell.titleName.stringValue == "Enter Title"
         {
-            Utility.alertPopup("Enter the Title", informativeText: "Please select and click on Enter Title field to give title name",isCancelBtnNeeded:false,okCompletionHandler: nil)
+            Utility.alertPopup("Enter the Title", informativeText: "Please select and click on Enter Title field to give title name.",isCancelBtnNeeded:false,okCompletionHandler: nil)
             return
         }
         displayStar(ratingCell, lbl: ratingCell.feedBackRating, sender: sender )
@@ -305,10 +305,10 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     {
         if skillsAndRatingsTitleArray.count > 0 && cell?.titleName.stringValue == "Enter Title"
         {
-            Utility.alertPopup("Enter Title", informativeText: "Please enter previous selected title",isCancelBtnNeeded:false,okCompletionHandler: nil)
+            Utility.alertPopup("Enter Title", informativeText: "Please enter previous selected title.",isCancelBtnNeeded:false,okCompletionHandler: nil)
         }else if  cell?.titleName.stringValue == ""
         {
-            Utility.alertPopup("Enter Title", informativeText: "Skill name should not be blank",isCancelBtnNeeded:false, okCompletionHandler: nil)
+            Utility.alertPopup("Enter Title", informativeText: "Skill name should not be blank.",isCancelBtnNeeded:false, okCompletionHandler: nil)
         }
         else
         {
@@ -474,11 +474,11 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             
             if isFeedBackSaved==false
             {
-                Utility.alertPopup("Alert", informativeText: "Are you sure you want to ‘Submit’ the data ?", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
+               Utility.alertPopup("Are you sure you want to ‘Submit’ the data ?", informativeText: "Once submitted you cannot edit feedback information.", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
                     self.dataAccessModel.insertManagerFeedback(self,candidate: self.selectedCandidate!, managerFeedbackModel: self.managerialRoundFeedback, andCallBack: { (isSucess) -> Void in
                         if isSucess{
                             
-                            Utility.alertPopup("Success", informativeText: "Feedback for Manager Round \((self.selectedCandidate?.interviewedByManagers?.count)!) has been sucessfully saved",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                            Utility.alertPopup("Feedback submitted", informativeText: "Feedback for Manager Round \((self.selectedCandidate?.interviewedByManagers?.count)!) has been successfully submitted.",isCancelBtnNeeded:false,okCompletionHandler: nil)
                             self.enablingAndDisablingOfSegments()
                         }
                         self.disableAndEnableFields(true)
@@ -496,7 +496,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                 dataAccessModel.updateManagerFeedback(selectedCandidate!, managerFeedback: managerFeedback, managerFeedbackModel: managerialRoundFeedback, andCallBack: { (isSucess) -> Void in
                     if isSucess{
                     
-                        Utility.alertPopup("Success", informativeText: "Feedback for Managerround has been updated Successfully",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                        Utility.alertPopup("Feedback updated", informativeText: "Feedback for Managerround has been updated Successfully.",isCancelBtnNeeded:false,okCompletionHandler: nil)
                         self.enablingAndDisablingOfSegments()
                     }
                     self.disableAndEnableFields(true)
@@ -788,51 +788,51 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             managerialRoundFeedback.recommendation = "Shortlisted"
             if !validationForDefaultSkills()
             {
-                Utility.alertPopup("Select Stars", informativeText: "Please provide rating for default skills",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                Utility.alertPopup("Rating on Technical/Personality", informativeText: "Please provide rating for Technical/Personality skills.",isCancelBtnNeeded:false,okCompletionHandler: nil)
                 return isValid
             }
-            else if !validationForTextView(textViewCommentsForOverAllTechnologyAssessment,title: "Overall Feedback On Technology",informativeText: "Overall assessment of Technology field shold not be blank")
+            else if !validationForTextView(textViewCommentsForOverAllTechnologyAssessment,title: "Overall Feedback On Technology",informativeText: "Overall assessment of Technology field should not be blank.")
             {
                 return isValid
             }
-            else if !validationForTextfield(labelOverAllAssessmentOfTechnology,title: "Select Stars",informativeText: "Please  provide ratings for overall assessment on Technology")
+            else if !validationForTextfield(labelOverAllAssessmentOfTechnology,title: "Overall assessment on Technology",informativeText: "Please provide ratings for overall assessment on Technology.")
             {
                 return isValid
             }
-            else if !validationForTextView(textViewCommentsForOverAllCandidateAssessment,title: "Overall Feedback Of Candidate",informativeText: "Overall assessment of Candidate field shold not be blank"){
+            else if !validationForTextView(textViewCommentsForOverAllCandidateAssessment,title: "Overall assessment Of Candidate",informativeText: "Overall assessment of Candidate field should not be blank."){
                 
                 return isValid
             }
-            else if !validationForTextfield(labelOverAllAssessmentOfCandidate,title: "Select Stars",informativeText: "Please  provide ratings for overall assessment of Candidate")
+            else if !validationForTextfield(labelOverAllAssessmentOfCandidate,title: "Overall assessment of Candidate",informativeText: "Please  provide ratings for overall assessment of Candidate.")
             {
                 return isValid
             }
-            else if !validationForTextfield(textFieldPosition,title: "Position",informativeText: "Position Field Should not be empty")
+            else if !validationForTextfield(textFieldPosition,title: "Position",informativeText: "Position Field should not be empty.")
             {
                 return isValid
             }
-            else if !validationForTextfield(textFieldCorporateGrade,title: "Corporate Grade",informativeText: "Corporate grade field should not be blank"){
+            else if !validationForTextfield(textFieldCorporateGrade,title: "Corporate Grade",informativeText: "Corporate grade field should not be blank."){
                 
                 return isValid
             }
-            else if !validationForTextfield(textFieldDesignation,title: "Designation",informativeText: "Designation field should not be blank"){
+            else if !validationForTextfield(textFieldDesignation,title: "Designation",informativeText: "Designation field should not be blank."){
                 
                 return isValid
             }
-            else if !validationForTextfield(textFieldGrossAnnualSalary,title: "Annual Salary",informativeText: "Annual Salay Field should not be empty")
+            else if !validationForTextfield(textFieldGrossAnnualSalary,title: "Annual Salary",informativeText: "Annual Salay Field should not be empty.")
             {
                 return isValid
             }
                 
-            else if !validationForTextView(textViewJustificationForHire,title: "Justification For Hire",informativeText: "Justification for hire field should not be blank")
+            else if !validationForTextView(textViewJustificationForHire,title: "Justification For Hire",informativeText: "Justification for hire field should not be blank.")
             {
                 return isValid
             }
-            else if !validationForTextView(textViewCommitments,title: "Commitments",informativeText: "Commitments field should not be blank")
+            else if !validationForTextView(textViewCommitments,title: "Commitments",informativeText: "Commitments field should not be blank.")
             {
                 return isValid
             }
-            else if !validationForTextfield(textFieldInterviewedBy,title: "Interviewed By",informativeText: "Interviewed by field should not be empty")
+            else if !validationForTextfield(textFieldInterviewedBy,title: "Interviewed By",informativeText: "Interviewed by field should not be empty.")
             {
                 return isValid
             }
@@ -882,7 +882,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                     self.isFeedBackSaved = true
                     self.sortArray((self.selectedCandidate?.interviewedByManagers?.allObjects)!,index:self.selectedSegment!
                     )
-                    Utility.alertPopup("Success", informativeText: "Feedback for Manager Round has been Saved Successfully", isCancelBtnNeeded:false,okCompletionHandler: nil)
+                    Utility.alertPopup("Feedback saved", informativeText: "Feedback for Manager Round has been Saved Successfully.", isCancelBtnNeeded:false,okCompletionHandler: nil)
                 }
             })
           }
@@ -894,7 +894,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                 {
                     (isSucess) -> Void in
                 if isSucess{
-                    Utility.alertPopup("Success", informativeText: "Feedback for Manager round has been updated Successfully",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                     Utility.alertPopup("Feedback updated", informativeText: "Feedback for Manager Round has been updated Successfully.", isCancelBtnNeeded:false,okCompletionHandler: nil)
                 }
             })
         }

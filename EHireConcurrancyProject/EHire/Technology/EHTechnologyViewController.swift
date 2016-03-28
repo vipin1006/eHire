@@ -190,7 +190,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         if cellTechnology?.textFieldTechnology.editable == true{
             cellTechnology?.textFieldTechnology.becomeFirstResponder()
-            Utility.alertPopup("Error", informativeText: "Enter an appropriate Technology name",isCancelBtnNeeded:false,okCompletionHandler: {() -> Void in
+            Utility.alertPopup("Technology name alreday exist", informativeText: "Enter an appropriate Technology name",isCancelBtnNeeded:false,okCompletionHandler: {() -> Void in
                 
                
                 
@@ -376,7 +376,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             }
             else
             {
-                Utility.alertPopup("Error", informativeText: "Interview date cannot be same",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                Utility.alertPopup("Interview date already exist", informativeText: "Interview date should be unique",isCancelBtnNeeded:false,okCompletionHandler: nil)
             }
             datePopOver.close()
         }
@@ -444,61 +444,13 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         NSMenu.popUpContextMenu(AddMenu, withEvent:event!, forView:sender)
         
-        
-
-        
-      
-        
-        
-        
-        
-        
-        
-      /*  if  ((sourceList.itemAtRow(sourceList.selectedRow) as? Technology) != nil){ // adding new date
-            
-            // Condition to check dates cannot be added when technology is editing
-            if !lastCellAddedForTechnology!.textFieldTechnology.editable{
-                
-                addDateAction(addDate)
-            }
-        }
-            
-        else{ // adding new technology
-            if technologyArray.count > 0 && lastCellAddedForTechnology?.textFieldTechnology.stringValue == ""{
-                Utility.alertPopup("Error", informativeText: "Please provide a name for the new technology before proceeding.",isCancelBtnNeeded:false,okCompletionHandler: nil)
-            }else
-            {
-                technologyDataLayer?.createEntityWith("", completion:
-                { (newTechnology,error) -> Void in
-                   
-                        self.technologyArray.append(newTechnology)
-                        self.reloadTableView()
-                        self.sourceList.selectRowIndexes(NSIndexSet(index:self.sourceList.numberOfRows-1), byExtendingSelection: true)
-                        self.rowView = self.sourceList.rowViewAtRow(self.sourceList.selectedRow, makeIfNecessary:true)!
-                        self.rowView!.viewWithTag(1)?.becomeFirstResponder()
-                        self.deleteTechnologyDate.enabled = true
-                    
-                })
-            }
-        }*/
     }
     
     func addTechnologyToList()
     {
-        
-       /* if  ((sourceList.itemAtRow(sourceList.selectedRow) as? Technology) != nil){ // adding new date
-        
-        // Condition to check dates cannot be added when technology is editing
-        if !lastCellAddedForTechnology!.textFieldTechnology.editable{
-        
-          addDateAction(addDate)
-        }
-        
-        }*/
-        
-        //else{ // adding new technology
+       
         if technologyArray.count > 0 && lastCellAddedForTechnology?.textFieldTechnology.stringValue == ""{
-        Utility.alertPopup("Error", informativeText: "Please provide a name for the new technology before proceeding.",isCancelBtnNeeded:false,okCompletionHandler: nil)
+        Utility.alertPopup("Technology name is empty", informativeText: "Please provide a name for the technology before proceeding.",isCancelBtnNeeded:false,okCompletionHandler: nil)
         }else
         {
         technologyDataLayer?.createEntityWith("", completion:
@@ -513,7 +465,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         })
         }
-       // }
+      
 
         
         
@@ -530,7 +482,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         //this if statement is added to avoid crash. To be removed once - is disabled when no technology is selected
         if self.sourceList.selectedRow == -1
         {
-            Utility.alertPopup("Error", informativeText: "Please select any Item to delete",isCancelBtnNeeded:false,okCompletionHandler: nil)
+            Utility.alertPopup("No item is selected", informativeText: "Please select any Item to delete",isCancelBtnNeeded:false,okCompletionHandler: nil)
             return
         }
         
@@ -630,7 +582,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
     {
         if cellTechnology?.textFieldTechnology.stringValue == ""
         {
-            Utility.alertPopup("Alert", informativeText: "Please add a Technology before adding a Date", isCancelBtnNeeded:false,okCompletionHandler: nil)
+            Utility.alertPopup("Technology name is empty", informativeText: "Please add a Technology before adding a Date", isCancelBtnNeeded:false,okCompletionHandler: nil)
             
             addTechnology.enabled = true
         }
@@ -695,7 +647,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             {
                 if isNumberValid(textFieldObject.stringValue) == true
                 {
-                    Utility.alertPopup("Error", informativeText: "Enter an appropriate Technology name",isCancelBtnNeeded:false,okCompletionHandler: {() -> Void in
+                    Utility.alertPopup("Technology name already exist", informativeText: "Enter an appropriate Technology name",isCancelBtnNeeded:false,okCompletionHandler: {() -> Void in
                         
                         textFieldObject.stringValue = ""
                     })
@@ -728,7 +680,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             }
             else
             {
-                Utility.alertPopup("Error", informativeText: "Technology name should be unique",isCancelBtnNeeded:false,okCompletionHandler: {() -> Void in
+                Utility.alertPopup("Technology name already exist", informativeText: "Technology name should be unique",isCancelBtnNeeded:false,okCompletionHandler: {() -> Void in
                     
                     textFieldObject.stringValue = ""
                     self.deleteTechnologyDate.enabled = true

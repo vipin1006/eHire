@@ -143,7 +143,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         {
             if numericValidations()
             {
-                Utility.alertPopup("Are you sure you want to \'Submit\' the details?", informativeText:"",isCancelBtnNeeded:true) { () -> Void in
+                Utility.alertPopup("Are you sure want to \'Submit\' the details?", informativeText:"Once submitted you cannot edit feedback info.",isCancelBtnNeeded:true) { () -> Void in
                     
                     self.candidateInfo["isHrFormSubmitted"] = 1
                     self.isHrFormEnable = false
@@ -155,7 +155,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         }
         else
         {
-            self.showAlert("Some fileds are missing", info:"Please fill up all the required fileds")
+            self.showAlert("More information needed", info:"Please fill up all the required fields")
         }
     }
     

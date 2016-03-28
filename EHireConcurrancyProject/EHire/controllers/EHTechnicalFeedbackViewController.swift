@@ -774,7 +774,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 self.isFeedBackSaved = true
                 self.sortArray((self.selectedCandidate?.interviewedByTechLeads?.allObjects)!,index:self.selectedRound!
                     )
-                Utility.alertPopup("Success", informativeText: "Feedback for Technical Round has been Saved Successfully", isCancelBtnNeeded:false,okCompletionHandler: nil)
+                Utility.alertPopup("Feedback saved", informativeText: "Feedback for Technical Round has been Saved Successfully.", isCancelBtnNeeded:false,okCompletionHandler: nil)
                 }
             })
             }
@@ -786,7 +786,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             dataAccessModel.updateManagerFeedback(selectedCandidate!, technicalFeedback: technicalFeedback, technicalFeedbackmodel: technicalFeedbackModel,andCallBack: {(isSucess)->Void in
                 
                 if isSucess{
-                    Utility.alertPopup("Success", informativeText: "Feedback for Technical Round has been updated Successfully", isCancelBtnNeeded:false,okCompletionHandler: nil)
+                    Utility.alertPopup("Feedback updated", informativeText: "Feedback for Technical Round has been updated Successfully.", isCancelBtnNeeded:false,okCompletionHandler: nil)
                 }
             })
         }
@@ -817,12 +817,12 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
             
         if isFeedBackSaved == false
         {
-            Utility.alertPopup("Alert", informativeText: "Are you sure you want to ‘Submit’ the data ?", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
+            Utility.alertPopup("Are you sure you want to ‘Submit’ the data ?", informativeText: "Once submitted you cannot edit feedback information.", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
                 
                 self.dataAccessModel.insertIntoTechnicalFeedback(self,technicalFeedbackModel: self.technicalFeedbackModel, selectedCandidate: self.selectedCandidate!,andCallBack: {(isSucess)->Void in
                     if isSucess
                     {
-                        Utility.alertPopup("Success", informativeText: "Feedback for Technical Round \((self.selectedCandidate?.interviewedByTechLeads?.count)!) has been successfully saved", isCancelBtnNeeded:false,okCompletionHandler: nil)
+                        Utility.alertPopup("Feedback submitted", informativeText: "Feedback for Technical Round \((self.selectedCandidate?.interviewedByTechLeads?.count)!) has been successfully submitted.", isCancelBtnNeeded:false,okCompletionHandler: nil)
                         self.enablingAndDisablingOfSegments()
                     }
                     
@@ -840,7 +840,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 
                 if isSucess
                 {
-                    Utility.alertPopup("Success", informativeText: "Feedback for Technical Round has been updated Successfully", isCancelBtnNeeded:false,okCompletionHandler: nil)
+                    Utility.alertPopup("Feedback updated", informativeText: "Feedback for Technical Round has been updated Successfully.", isCancelBtnNeeded:false,okCompletionHandler: nil)
                      self.enablingAndDisablingOfSegments()
                 }
                
@@ -1015,22 +1015,22 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         {
             technicalFeedbackModel.recommendation = "Shortlisted"
             if !validationForDefaultSkills(){
-                Utility.alertPopup("Select Stars", informativeText: "Please provide rating for default skills",isCancelBtnNeeded:false,okCompletionHandler: nil)
+                Utility.alertPopup("Rating on Technical/Personality", informativeText: "Please provide rating for Technical/Personality skills",isCancelBtnNeeded:false,okCompletionHandler: nil)
                 return isValid
             }
             else if !validationForTextView(textViewOfTechnologyAssessment,title: "Overall Feedback On Technology",informativeText: "Overall assessment of Technology field shold not be blank")
             {
                 return isValid
             }
-            else if !validationForTextfield(ratingOnTechnologyField,title: "Select Stars",informativeText: "Please  provide ratings for overall assessment on Technology"){
+            else if !validationForTextfield(ratingOnTechnologyField,title: "Overall assessment on Technology",informativeText: "Please provide ratings for overall assessment on Technology"){
                 
                 return isValid
             }
-            else if !validationForTextView(textViewOfCandidateAssessment,title: "Overall Feedback Of Candidate",informativeText: "Overall assessment of Candidate field shold not be blank")
+            else if !validationForTextView(textViewOfCandidateAssessment,title: "Overall assessment Of Candidate",informativeText: "Overall assessment of Candidate field shold not be blank")
             {
                return isValid
             }
-            else if !validationForTextfield(ratingOfCandidateField,title: "Select Stars",informativeText: "Please  provide ratings for overall assessment of Candidate")
+            else if !validationForTextfield(ratingOfCandidateField,title: "Overall assessment of Candidate",informativeText: "Please provide ratings for overall assessment of Candidate")
             {
                 return isValid
             }
