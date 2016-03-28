@@ -48,6 +48,8 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
       candidateAccessLayer?.managedObjectContext = self.managedObjectContext
       candidateSearchField.appearance = NSAppearance(named:NSAppearanceNameVibrantLight)
       center.delegate = self
+        
+        scheduleNotification(NSDate(timeInterval:5, sinceDate: NSDate()))
    }
     
     override func viewWillAppear()
@@ -532,4 +534,11 @@ class EHCandidateController: NSViewController,NSTableViewDataSource,NSTableViewD
     func userNotificationCenter(center: NSUserNotificationCenter, shouldPresentNotification notification: NSUserNotification) -> Bool {
         return true
     }
+    
+    func userNotificationCenter(center: NSUserNotificationCenter, didDeliverNotification notification: NSUserNotification) {
+        
+        center.removeDeliveredNotification(notification)
+    }
+    
+
 }
