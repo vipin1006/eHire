@@ -251,11 +251,11 @@ class EHShowSelectedCandidatesViewController: NSViewController,NSTableViewDataSo
             
             cell.candidateMail.stringValue = basicInfo.officialEmailId!
             
-            cell.sendMail.action = Selector("sendMailToCandidate:")
+            cell.sendMail.action = #selector(EHShowSelectedCandidatesViewController.sendMailToCandidate(_:))
             
             cell.sendMail.tag = row
             
-            cell.showInfo.action = Selector("showCandidateInfo:")
+            cell.showInfo.action = #selector(EHShowSelectedCandidatesViewController.showCandidateInfo(_:))
             
             cell.showInfo.tag = row
             

@@ -414,7 +414,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
         
         if self.sourceList.selectedRow == -1
         {
-            AddMenu.insertItemWithTitle("New Technology...", action: Selector("addTechnologyToList"), keyEquivalent:"", atIndex: 0)
+            AddMenu.insertItemWithTitle("New Technology...", action: #selector(EHTechnologyViewController.addTechnologyToList), keyEquivalent:"", atIndex: 0)
         }
         else
         {
@@ -422,16 +422,16 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
             if selectedItem is Technology{
                 
-                AddMenu.insertItemWithTitle("Add Date...", action: Selector("addDateToTechnologyFromContextMenu:"), keyEquivalent:"", atIndex: 0)
+                AddMenu.insertItemWithTitle("Add Date...", action: #selector(EHTechnologyViewController.addDateToTechnologyFromContextMenu(_:)), keyEquivalent:"", atIndex: 0)
                 
-                AddMenu.insertItemWithTitle("New Technology...", action: Selector("addTechnologyToList"), keyEquivalent:"", atIndex: 1)
+                AddMenu.insertItemWithTitle("New Technology...", action: #selector(EHTechnologyViewController.addTechnologyToList), keyEquivalent:"", atIndex: 1)
                 
                 height = 50
                
             }
             else
             {
-              AddMenu.insertItemWithTitle("New Technology...", action: Selector("addTechnologyToList"), keyEquivalent:"", atIndex: 0)
+              AddMenu.insertItemWithTitle("New Technology...", action: #selector(EHTechnologyViewController.addTechnologyToList), keyEquivalent:"", atIndex: 0)
                 
             }
             
@@ -859,7 +859,7 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
             
             if self.sourceList.selectedRow == -1
             {
-                mainContextMenu.insertItemWithTitle("Add Technology", action:Selector.init("addTechnologyToList"), keyEquivalent: "", atIndex: 0)
+                mainContextMenu.insertItemWithTitle("Add Technology", action:#selector(EHTechnologyViewController.addTechnologyToList), keyEquivalent: "", atIndex: 0)
             }
             else
             {
@@ -868,13 +868,13 @@ class EHTechnologyViewController: NSViewController,NSOutlineViewDelegate,NSOutli
                 
                 if selectedItem is Technology{
                     
-                    mainContextMenu.insertItemWithTitle("Add Date", action:Selector("addDateToTechnologyFromContextMenu:"), keyEquivalent: "", atIndex: 0)
+                    mainContextMenu.insertItemWithTitle("Add Date", action:#selector(EHTechnologyViewController.addDateToTechnologyFromContextMenu(_:)), keyEquivalent: "", atIndex: 0)
                     
-                    mainContextMenu.insertItemWithTitle("Delete Technology", action:Selector("deleteTechnologyFromContextMenu:"), keyEquivalent: "", atIndex: 1)
+                    mainContextMenu.insertItemWithTitle("Delete Technology", action:#selector(EHTechnologyViewController.deleteTechnologyFromContextMenu(_:)), keyEquivalent: "", atIndex: 1)
                 }
                 else
                 {
-                   mainContextMenu.insertItemWithTitle("Delete Date", action:Selector("deleteDateFromTechnologyFromContextMenu:"), keyEquivalent: "", atIndex: 0)
+                   mainContextMenu.insertItemWithTitle("Delete Date", action:#selector(EHTechnologyViewController.deleteDateFromTechnologyFromContextMenu(_:)), keyEquivalent: "", atIndex: 0)
                    
                 }
                 

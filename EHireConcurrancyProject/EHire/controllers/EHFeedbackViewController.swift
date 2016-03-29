@@ -307,7 +307,7 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                     var count = 0
                     for feedbackOfTechLead in (selectedCandidate?.interviewedByTechLeads)!
                     {
-                        count++
+                        count += 1
                     let feedback = feedbackOfTechLead as! TechnicalFeedBack
                     if feedback.recommendation == "Rejected"
                     {

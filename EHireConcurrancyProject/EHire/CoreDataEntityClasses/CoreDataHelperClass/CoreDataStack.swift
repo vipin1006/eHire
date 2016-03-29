@@ -56,7 +56,7 @@ class CoreDataStack: NSObject {
                 {
                     print(error.localizedDescription)
                 }
-                NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("mocDidSaveNotification:"), name: NSManagedObjectContextDidSaveNotification, object: nil)
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CoreDataStack.mocDidSaveNotification(_:)), name: NSManagedObjectContextDidSaveNotification, object: nil)
                 if !(self.initCallBack != nil)
                 {
                     return
@@ -76,10 +76,10 @@ class CoreDataStack: NSObject {
         {
             return
         }
-        if self.privateContext?.persistentStoreCoordinator != savedContext?.persistentStoreCoordinator
-        {
-            return
-        }
+//        if self.privateContext?.persistentStoreCoordinator != savedContext?.parentContext!!.persistentStoreCoordinator
+//        {
+//            return
+//        }
         savedContext?.parentContext!?.performBlock({ () -> Void in
             savedContext?.parentContext??.mergeChangesFromContextDidSaveNotification(notification)
             do

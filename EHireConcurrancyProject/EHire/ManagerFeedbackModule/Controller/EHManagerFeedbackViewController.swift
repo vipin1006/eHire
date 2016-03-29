@@ -82,7 +82,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         self.view.layer?.backgroundColor = NSColor(red: 222, green: 222, blue: 222, alpha: 0.5).CGColor
         
         clearBtn.enabled = false
-        self.performSelector(Selector("test"), withObject: nil, afterDelay: 0.10)
+        self.performSelector(#selector(EHManagerFeedbackViewController.test), withObject: nil, afterDelay: 0.10)
         textFieldCandidateName.stringValue = (selectedCandidate?.name)!
         textFieldCandidateRequisition.stringValue = (selectedCandidate?.requisition)!
         let dateFormatter = NSDateFormatter()
@@ -110,7 +110,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     
     func test()
     {
-        NSObject.cancelPreviousPerformRequestsWithTarget(self, selector: Selector("test"), object: nil)
+        NSObject.cancelPreviousPerformRequestsWithTarget(self, selector: #selector(EHManagerFeedbackViewController.test), object: nil)
         if arrTemp.count==0 {
             
             if self.selectedCandidate != nil
@@ -128,7 +128,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         }
         else
         {
-            self.performSelector(Selector("test"), withObject: nil, afterDelay: 0.10)
+            self.performSelector(#selector(EHManagerFeedbackViewController.test), withObject: nil, afterDelay: 0.10)
         }
     }
     
@@ -189,7 +189,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
                 cell.feedBackRating.enabled = true
             }
             view.target = self
-            view.action = "selectedStarCount:"
+            view.action = #selector(EHManagerFeedbackViewController.selectedStarCount(_:))
             }
         if tableView.numberOfRows > 7
         {
@@ -769,12 +769,12 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             managerialRoundFeedback.recommendation = "Rejected"
             if (cell?.feedBackRating.stringValue == "" || textViewCommentsForOverAllCandidateAssessment.string == "" || textViewCommentsForOverAllTechnologyAssessment.string == "" || textViewJustificationForHire.string == "" || textViewCommitments.string == "" || textFieldInterviewedBy.stringValue == "" || labelOverAllAssessmentOfCandidate.stringValue == "" || labelOverAllAssessmentOfTechnology.stringValue == "")
             {
-                Utility.alertPopup("Alert", informativeText: "Please enter all details", isCancelBtnNeeded: false, okCompletionHandler: nil)
+                Utility.alertPopup("Required Fields are missing", informativeText: "Please enter all details", isCancelBtnNeeded: false, okCompletionHandler: nil)
                 return isValid
             }
             else if !validationForDefaultSkills()
             {
-                Utility.alertPopup("Alert", informativeText: "Please provide rating for default skills", isCancelBtnNeeded: false, okCompletionHandler: nil)
+                Utility.alertPopup("Rating on Technical/Personality", informativeText: "Please provide rating for Technical/Personality skills.", isCancelBtnNeeded: false, okCompletionHandler: nil)
                 return isValid
             }
             else

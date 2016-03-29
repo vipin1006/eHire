@@ -64,7 +64,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
     
     func test()
     {
-        NSObject.cancelPreviousPerformRequestsWithTarget(self, selector: Selector("test"), object: nil)
+        NSObject.cancelPreviousPerformRequestsWithTarget(self, selector: #selector(EHTechnicalFeedbackViewController.test), object: nil)
         if arrTemp.count==0
         {
             if self.selectedCandidate != nil
@@ -82,7 +82,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         }
         else
         {
-            self.performSelector(Selector("test"), withObject: nil, afterDelay: 0.10)
+            self.performSelector(#selector(EHTechnicalFeedbackViewController.test), withObject: nil, afterDelay: 0.10)
         }
     }
     
@@ -100,7 +100,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         
         clearButton.enabled = false
         
-        self.performSelector(Selector("test"), withObject: nil, afterDelay: 0.01)
+        self.performSelector(#selector(EHTechnicalFeedbackViewController.test), withObject: nil, afterDelay: 0.01)
         candidateNameField.stringValue = (selectedCandidate?.name)!
         requisitionNameField.stringValue = (selectedCandidate?.requisition)!
         print(selectedCandidate?.interviewDate)
@@ -118,14 +118,14 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
         {
             let view = rating as! NSButton
             view.target = self
-            view.action = "assessmentOnTechnology:"
+            view.action = #selector(EHTechnicalFeedbackViewController.assessmentOnTechnology(_:))
         }
         
         for ratingView in overallAssessmentOfCandidateStarView.subviews
         {
             let view = ratingView as! NSButton
             view.target = self
-            view.action = "assessmentOfCandidate:"
+            view.action = #selector(EHTechnicalFeedbackViewController.assessmentOfCandidate(_:))
         }
         setDefaultValues()
         selectedRound = 0
@@ -388,7 +388,7 @@ class EHTechnicalFeedbackViewController: NSViewController,NSTableViewDataSource,
                 cellView.feedback.enabled = true
             }
             feedbackview.target = self
-            feedbackview.action = "starRatingCount:"
+            feedbackview.action = #selector(EHTechnicalFeedbackViewController.starRatingCount(_:))
         }   
         return cellView
     }
