@@ -123,7 +123,6 @@ class EHTechnicalFeedbackDataAccess: NSObject
                 
                 technicalFeedback!.setValue(technicalFeedbackModel.recommendation, forKey: "recommendation")
             
-                technicalFeedback!.setValue(technicalFeedbackModel.designation, forKey: "designation")
                 technicalFeedback!.setValue(technicalFeedbackModel.techLeadName, forKey: "techLeadName")
                 
                 let candidateObjectId = selectedCandidate.objectID
@@ -212,7 +211,6 @@ class EHTechnicalFeedbackDataAccess: NSObject
         technicalFeedback.setValue(NSNumber(short: (technicalFeedbackmodel.ratingOnTechnical)!), forKey: "ratingOnTechnical")
         technicalFeedback.setValue(technicalFeedbackmodel.modeOfInterview, forKey: "modeOfInterview")
         technicalFeedback.setValue(technicalFeedbackmodel.recommendation, forKey: "recommendation")
-        technicalFeedback.setValue(technicalFeedbackmodel.designation, forKey: "designation")
         technicalFeedback.setValue(technicalFeedbackmodel.techLeadName, forKey: "techLeadName")
         let candidateObjectId = candidate.objectID
         technicalFeedback.setValue(technicalFeedback.managedObjectContext!.objectWithID(candidateObjectId), forKey: "candidate")

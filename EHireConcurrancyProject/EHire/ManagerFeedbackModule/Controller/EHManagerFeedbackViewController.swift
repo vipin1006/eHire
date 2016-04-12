@@ -13,8 +13,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     //MARK: IBOutlet
     @IBOutlet weak var deleteExistingBtn: NSButton!
     @IBOutlet weak var addNewSkillBtn: NSButton!
-    @IBOutlet weak var clearBtn: NSButton!
-    @IBOutlet weak var submitBtn: NSButton!
     @IBOutlet var managerFeedbackMainView: NSView!
     @IBOutlet weak var textFieldCandidateName: NSTextField!
     @IBOutlet weak var dateOfInterviewField: NSTextField!
@@ -23,7 +21,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     @IBOutlet weak var textFieldDesignation: NSTextField!
     @IBOutlet weak var textFieldGrossAnnualSalary: NSTextField!
     @IBOutlet weak var textFieldInterviewedBy: NSTextField!
-    @IBOutlet weak var textFieldPosition: NSTextField!
     @IBOutlet var textViewCommitments: NSTextView!
     @IBOutlet var textViewJustificationForHire: NSTextView!
     @IBOutlet weak var viewOverAllAssessmentOfCandidateStar: NSView!
@@ -75,13 +72,7 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     {
         super.viewDidLoad()
         self.managerFeedbackData.subRound.setEnabled(false, forSegment: 0)
-        
-        self.view.wantsLayer = true
-        
-       // self.view.layer?.backgroundColor = NSColor(calibratedRed:202/255.0, green:210/255.0, blue:222/255.0, alpha: 1.0).CGColor
-        self.view.layer?.backgroundColor = NSColor(red: 222, green: 222, blue: 222, alpha: 0.5).CGColor
-        
-        clearBtn.enabled = false
+        managerFeedbackData.clearButton.enabled = false
         self.performSelector(#selector(EHManagerFeedbackViewController.test), withObject: nil, afterDelay: 0.10)
         textFieldCandidateName.stringValue = (selectedCandidate?.name)!
         textFieldCandidateRequisition.stringValue = (selectedCandidate?.requisition)!
@@ -89,8 +80,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         dateFormatter.dateFormat = "dd MMM yyyy"
         let dateInStringFormat = dateFormatter.stringFromDate((selectedCandidate?.interviewDate)!)
         dateOfInterviewField.stringValue = dateInStringFormat
-        managerFeedbackMainView.wantsLayer = true
-//        managerFeedbackMainView.layer?.backgroundColor = NSColor.gridColor().colorWithAlphaComponent(0.5).CGColor
         setDefaultCgDeviationAndInterviewMode()
         selectedSegment = 0
         print("name = \(managerialRoundFeedback.designation)")
@@ -240,10 +229,10 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     {
         if isFeedBackSaved == false
         {
-            clearBtn.enabled = true
+            managerFeedbackData.clearButton.enabled = true
         }else
         {
-            clearBtn.enabled = false
+            managerFeedbackData.clearButton.enabled = false
         }
         let ratingCell = sender.superview?.superview as! EHManagerFeedBackCustomTableView
         if ratingCell.titleName.stringValue == "Enter Title"
@@ -264,10 +253,10 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     {
         if isFeedBackSaved == false
         {
-            clearBtn.enabled = true
+            managerFeedbackData.clearButton.enabled = true
         }else
         {
-            clearBtn.enabled = false
+            managerFeedbackData.clearButton.enabled = false
         }
     }
     
@@ -276,11 +265,11 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         if isFeedBackSaved == false
         {
             obj.object as! NSTextField
-            clearBtn.enabled = true
+            managerFeedbackData.clearButton.enabled = true
         }
         else
         {
-            clearBtn.enabled = false
+            managerFeedbackData.clearButton.enabled = false
         }
         deleteExistingBtn.enabled = false
     }
@@ -363,10 +352,10 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     {
         if isFeedBackSaved == true
         {
-            clearBtn.enabled = false
+            managerFeedbackData.clearButton.enabled = false
         }else
         {
-            clearBtn.enabled = true
+            managerFeedbackData.clearButton.enabled = true
         }
         displayStar(viewOverAllAssessmentOfTechnologyStar, lbl:labelOverAllAssessmentOfTechnology, sender: sender as! NSButton)
     }
@@ -376,10 +365,10 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     {
         if isFeedBackSaved == true
         {
-            clearBtn.enabled = false
+            managerFeedbackData.clearButton.enabled = false
         }else
         {
-            clearBtn.enabled = true
+            managerFeedbackData.clearButton.enabled = true
         }
         displayStar(viewOverAllAssessmentOfCandidateStar, lbl:labelOverAllAssessmentOfCandidate, sender: sender as! NSButton)
     }
@@ -413,7 +402,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     //Enabling Position/Designation Field when candidate is shortlisted
     @IBAction func shortListedBtn(sender: AnyObject)
     {
-        textFieldPosition.enabled = true
         textFieldDesignation.enabled = true
         textFieldCorporateGrade.enabled = true
         textFieldGrossAnnualSalary.enabled = true
@@ -423,13 +411,11 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     //Disabling Position/Designation Field when candidate is rejected
     @IBAction func rejectedBtn(sender: AnyObject)
     {
-        textFieldPosition.enabled = false
         textFieldDesignation.enabled = false
         textFieldCorporateGrade.enabled = false
         textFieldGrossAnnualSalary.enabled = false
         matrixForCgDeviation.enabled = false
         
-        textFieldPosition.stringValue = ""
         textFieldDesignation.stringValue = ""
         textFieldCorporateGrade.stringValue = ""
         textFieldGrossAnnualSalary.stringValue = ""
@@ -807,10 +793,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             {
                 return isValid
             }
-            else if !validationForTextfield(textFieldPosition,title: "Position",informativeText: "Position Field should not be empty.")
-            {
-                return isValid
-            }
             else if !validationForTextfield(textFieldCorporateGrade,title: "Corporate Grade",informativeText: "Corporate grade field should not be blank."){
                 
                 return isValid
@@ -917,7 +899,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         textFieldCorporateGrade.stringValue = feedback.recommendedCg!
         textViewCommitments.string = feedback.commitments
         textViewJustificationForHire.string = feedback.jestificationForHire!
-        textFieldPosition.stringValue = feedback.designation!
         textFieldDesignation.stringValue = feedback.designation!
         textFieldInterviewedBy.stringValue = feedback.managerName!
         textFieldGrossAnnualSalary.stringValue = (feedback.grossAnnualSalary?.stringValue)!
@@ -1011,7 +992,6 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
         textFieldCorporateGrade.stringValue = ""
         textViewCommitments.string = ""
         textViewJustificationForHire.string = ""
-        textFieldPosition.stringValue = ""
         textFieldDesignation.stringValue = ""
         textViewCommentsForOverAllCandidateAssessment.string = ""
         textViewCommentsForOverAllTechnologyAssessment.string = ""
@@ -1047,17 +1027,17 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
     //MARK: To Disable/Enable All Fields
     func disableAndEnableFields(isDataSubmitted:Bool)
     {
-        if isDataSubmitted==true{
+        if isDataSubmitted==true
+        {
             matrixForInterviewMode.enabled = false
             matrixForCgDeviation.enabled = false
             matrixForRecommendationState.enabled = false
-            submitBtn.enabled = false
-            clearBtn.enabled = false
+            managerFeedbackData.submitButton.enabled = false
+            managerFeedbackData.clearButton.enabled = false
             textFieldGrossAnnualSalary.editable = false
             textFieldDesignation.editable = false
             textFieldCorporateGrade.editable = false
             textFieldInterviewedBy.editable = false
-            textFieldPosition.editable = false
             textViewCommentsForOverAllCandidateAssessment.editable = false
             textViewCommentsForOverAllTechnologyAssessment.editable = false
             textViewCommitments.editable = false
@@ -1082,12 +1062,11 @@ class EHManagerFeedbackViewController: NSViewController,NSTableViewDelegate,NSTa
             matrixForInterviewMode.enabled = true
             matrixForCgDeviation.enabled = true
             matrixForRecommendationState.enabled = true
-            submitBtn.enabled = true
+            managerFeedbackData.submitButton.enabled = true
             textFieldGrossAnnualSalary.editable = true
             textFieldDesignation.editable = true
             textFieldCorporateGrade.editable = true
             textFieldInterviewedBy.editable = true
-            textFieldPosition.editable = true
             textViewCommentsForOverAllCandidateAssessment.editable = true
             textViewCommentsForOverAllTechnologyAssessment.editable = true
             textViewCommitments.editable = true

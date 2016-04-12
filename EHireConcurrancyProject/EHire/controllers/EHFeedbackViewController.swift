@@ -15,9 +15,12 @@ protocol FeedbackControllerDelegate
 class EHFeedbackViewController: NSViewController,HRFormScroller
 {
     //MARK: IBOutlets
+    @IBOutlet var feedbackMainView: NSView!
     @IBOutlet weak var typeOfInterview: NSSegmentedControl!
     @IBOutlet weak var subRound: NSSegmentedControl!
     @IBOutlet weak var scrollViewHr: NSScrollView!
+    @IBOutlet var clearButton: NSButton!
+    @IBOutlet var submitButton: NSButton!
     
     //MARK: Properties
     var delegate:FeedbackControllerDelegate?
@@ -40,15 +43,11 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        self.view.wantsLayer = true
-        
-        self.view.layer?.backgroundColor = NSColor(calibratedRed:247/255.0, green: 246/255.0, blue: 247/255.0, alpha: 1.0).CGColor
         techFeedback = storyboard?.instantiateControllerWithIdentifier("EHTechnicalFeedbackViewController") as? EHTechnicalFeedbackViewController
-        techFeedback?.feedback = self
+        techFeedback?.feedbackControl = self
         techFeedback!.selectedCandidate = selectedCandidate
         techFeedback?.managedObjectContext = self.managedObjectContext
         self.scrollViewHr.documentView? = (techFeedback?.view)!
-        self.scrollViewHr.layer?.backgroundColor = NSColor(calibratedRed:125/255.0, green: 125/255.0, blue: 125/255.0, alpha: 1.0).CGColor
         self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1081))
         self.typeOfInterview.selectedSegment = 0
         self.subRound.selectedSegment = 0
@@ -60,9 +59,8 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
     {
         self.subRound.hidden = false
         let mainRound:NSSegmentedControl = sender as! NSSegmentedControl
-
         let techLeadCount = (selectedCandidate?.interviewedByTechLeads)!.count
-        let managerCount =  (selectedCandidate?.interviewedByManagers)!.count
+        
         enablingAndDisablingOfSegments()
         switch mainRound.selectedSegment
         {
@@ -120,7 +118,7 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                 managerFeedback?.managedObjectContext = self.managedObjectContext
                 self.scrollViewHr.documentView = managerFeedback?.view
                 animateView(self.scrollViewHr.documentView!)
-                self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1565))
+                self.scrollViewHr.documentView?.scrollPoint(NSPoint(x:0, y:1542))
                 self.subRound.setEnabled(true, forSegment: 0)
             }
             self.hrView?.removeFromSuperview()
@@ -166,30 +164,10 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                     return
                 }
             }
-
-            
-//            if techLeadCount < 3
-//            {
-//                Utility.alertPopup("Alert", informativeText: "Please complete Technical Round(s) before proceeding to the HR Round", isCancelBtnNeeded:false,okCompletionHandler: nil)
-//                subRound.selectedSegment = 0
-//                typeOfInterview.setSelected(true, forSegment: 0)
-//                return
-//            }
-          //  else
-          //  {
-               
-                
-             //   if managerCount < 2
-              //  {
-//                    Utility.alertPopup("Alert", informativeText: "Please complete Manager Round(s) before proceeding to the HR Round", isCancelBtnNeeded:false,okCompletionHandler: nil)
-                    
-                  //  self.typeOfInterview.selectedSegment = 1
-
-                  //  return
-               // }
                 
             if !isHrLoaded
             {
+                
                self.addHrFeedBackView()
                 
             }
@@ -431,7 +409,7 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
     func addHrFeedBackView()
     {
         hrFeedBackViewController = self.storyboard?.instantiateControllerWithIdentifier("EHHrFeedbackViewController") as? EHHrFeedbackViewController
-        
+         hrFeedBackViewController?.feedbackControl = self
         hrFeedBackViewController?.candidate = selectedCandidate
         
         hrFeedBackViewController?.delegate = self
@@ -439,7 +417,7 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
         if let hrViewController = hrFeedBackViewController
         {
             hrView = hrViewController.view
-            hrView!.frame = NSMakeRect(self.scrollViewHr.frame.origin.x,self.scrollViewHr.frame.origin.y,self.scrollViewHr.frame.size.width,1380)//1450
+            hrView!.frame = NSMakeRect(self.scrollViewHr.frame.origin.x,self.scrollViewHr.frame.origin.y,self.scrollViewHr.frame.size.width,1328)//1450
             self.scrollViewHr.documentView = hrView
             animateView(self.scrollViewHr.documentView!)
             
@@ -467,11 +445,11 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                 
             case 0:
                 
-                if techFeedback?.submitButton.enabled == true
+                if submitButton.enabled == true
                 {
                     if techFeedback?.isFeedBackSaved == false
                     {
-                        if techFeedback?.clearButton.enabled == true
+                        if clearButton.enabled == true
                         {
                    Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
                     print("Technical")
@@ -490,11 +468,11 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                  }
                 
             case 1:
-                if managerFeedback?.submitBtn.enabled == true
+                if submitButton.enabled == true
                 {
                     if managerFeedback?.isFeedBackSaved == false
                     {
-                        if managerFeedback?.clearBtn.enabled == true
+                        if clearButton.enabled == true
                         {
                             Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
                                 print("Manager")
@@ -523,12 +501,12 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
 //                }
             default:
              
-                if hrFeedBackViewController!.submitButton.enabled == true
+                if submitButton.enabled == true
                 {
-                    if hrFeedBackViewController!.clearButton.enabled == true
+                    if clearButton.enabled == true
                     {
                     Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
-                self.hrFeedBackViewController?.saveCandidate()
+                        self.hrFeedBackViewController?.saveCandidate()
                          })
                 }
                     else{
@@ -538,7 +516,7 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
                             Utility.alertPopup("Do you want to save the changes?", informativeText: "Click on Yes to keep all the entered data", isCancelBtnNeeded: true, okCompletionHandler: { () -> Void in
                                 self.hrFeedBackViewController?.saveCandidate()
                             })
-                            }
+                        }
                     }
                 }
         }
@@ -804,6 +782,42 @@ class EHFeedbackViewController: NSViewController,HRFormScroller
         }
     }
 
+    @IBAction func clearAllFields(sender: AnyObject)
+    {
+        if typeOfInterview.selectedSegment == 0
+        {
+            techFeedback?.clearAllFields("")
+        }
+        else if typeOfInterview.selectedSegment == 1
+        {
+            managerFeedback?.clearAllFields("")
+        }
+        else
+        {
+            hrFeedBackViewController?.clearAllFields("")
+        }
+    }
+    
+    @IBAction func SubmitDetails(sender: AnyObject)
+    {
+        if typeOfInterview.selectedSegment == 0
+        {
+           techFeedback?.submitDetails("")
+        }
+        else if typeOfInterview.selectedSegment == 1
+        {
+            
+            managerFeedback?.submitFeedback("")
+        }
+        else{
+            
+           hrFeedBackViewController?.subbmitCandidateDetails("")
+        }
+
+        
+        
+    }
+    
     
 //    func defaultSegmentManager()
 //    {

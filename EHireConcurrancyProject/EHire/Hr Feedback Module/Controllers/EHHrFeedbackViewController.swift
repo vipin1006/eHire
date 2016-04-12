@@ -72,8 +72,6 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
     @IBOutlet weak var dummyLegalObligations: NSTextField!
     @IBOutlet weak var dummySpecifyLegalObligations: NSTextField!
     @IBOutlet weak var lastDesignation: NSTextField!
-    @IBOutlet weak var clearButton: NSButton!
-    @IBOutlet weak var submitButton: NSButton!
     @IBOutlet weak var hrFeedbackView: NSView!
     
     dynamic var isHrFormEnable = true
@@ -81,27 +79,27 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
     var candidate:Candidate?
     var managedObjectContext : NSManagedObjectContext?
     weak var delegate:HRFormScroller?
- 
+    var feedbackControl = EHFeedbackViewController()
  
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
         // Do view setup here.
     }
     
     override func viewWillAppear()
     {
         super.viewWillAppear()
-        self.view.wantsLayer = true
-        self.view.layer?.backgroundColor = NSColor(red: 222, green: 222, blue: 222, alpha: 0.5).CGColor
-        
+              
         if candidate?.miscellaneousInfo?.isHrFormSubmitted == 1
         {
             isHrFormEnable = false
-        }else
+            feedbackControl.submitButton.enabled = false
+        }
+        else
         {
-            clearButton.enabled = false
+           feedbackControl.submitButton.enabled = true
+           feedbackControl.clearButton.enabled = false
         }
         candidateInfo["isVisaAvailable"] = NSNumber(int:0)
         candidateInfo["isRelocationRequested"] = NSNumber(int:0)
@@ -114,7 +112,7 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         candidateInfo["isHrFormSubmitted"]   = NSNumber(int:0)
         if candidate?.miscellaneousInfo?.isHrFormSaved == 1
         {
-            clearButton.enabled = false
+            feedbackControl.clearButton.enabled = false
         }
         
         self.candidateJoinngPeriod.dateValue = NSDate()
@@ -132,12 +130,10 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         if saveValidations()
         {
             saveCandidate()
-            
         }
     }
     
     @IBAction func subbmitCandidateDetails(sender: AnyObject)
-        
     {
         if self.submitValidations()
         {
@@ -147,7 +143,8 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
                     
                     self.candidateInfo["isHrFormSubmitted"] = 1
                     self.isHrFormEnable = false
-                    self.clearButton.enabled = false
+                    self.feedbackControl.submitButton.enabled = false
+                    self.feedbackControl.clearButton.enabled = false
                     self.saveCandidateDetails("")
                 }
             }
@@ -915,10 +912,10 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
     {
         if candidate?.miscellaneousInfo?.isHrFormSaved == 1
         {
-            clearButton.enabled = false
+            feedbackControl.clearButton.enabled = false
         }else
         {
-            clearButton.enabled = true
+            feedbackControl.clearButton.enabled = true
         }
         
     }
@@ -929,10 +926,10 @@ class EHHrFeedbackViewController: NSViewController,NSTextFieldDelegate,NSTextVie
         {
             if candidate?.miscellaneousInfo?.isHrFormSaved == 1
             {
-                clearButton.enabled = false
+                feedbackControl.clearButton.enabled = false
             }else
             {
-                clearButton.enabled = true
+                feedbackControl.clearButton.enabled = true
             }
             
             let textField = control as! NSTextField
