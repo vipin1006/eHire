@@ -4700,6 +4700,13 @@ Gw
                                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <font key="titleFont" metaFont="system" size="14"/>
                                     </box>
+                                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PJa-Xy-TQF">
+                                        <rect key="frame" x="195" y="1030" width="52" height="18"/>
+                                        <buttonCell key="cell" type="check" title="No" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="veB-Ey-iBU">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="bLu-Tp-mhW" firstAttribute="leading" secondItem="Jb4-z3-6zN" secondAttribute="leading" constant="32" id="0SH-ne-MfN"/>
@@ -4792,6 +4799,7 @@ Gw
                                     <constraint firstItem="m3f-wT-zql" firstAttribute="top" secondItem="lgK-qI-j6k" secondAttribute="bottom" constant="13" id="UGf-a6-60d"/>
                                     <constraint firstItem="lwV-7a-rat" firstAttribute="leading" secondItem="0Tm-CG-9A3" secondAttribute="leading" id="UGg-nR-Jq7"/>
                                     <constraint firstItem="ZOj-Nw-6lF" firstAttribute="bottom" secondItem="uBE-9Q-K1K" secondAttribute="bottom" id="UcR-xg-4kO"/>
+                                    <constraint firstItem="PJa-Xy-TQF" firstAttribute="baseline" secondItem="WsU-jZ-7Ed" secondAttribute="baseline" id="V3F-Cd-ejn"/>
                                     <constraint firstItem="IZS-ci-ELe" firstAttribute="top" secondItem="5Lm-lm-bq0" secondAttribute="top" id="VBs-NR-6wc"/>
                                     <constraint firstItem="tRQ-DH-98U" firstAttribute="baseline" secondItem="mpo-jQ-HF6" secondAttribute="baseline" id="Ve0-Hi-e99"/>
                                     <constraint firstItem="h9i-UW-lyR" firstAttribute="centerY" secondItem="WsU-jZ-7Ed" secondAttribute="centerY" id="Vxi-FT-IMH"/>
@@ -4856,6 +4864,7 @@ Gw
                                     <constraint firstItem="BsD-WN-Nes" firstAttribute="top" secondItem="Jb4-z3-6zN" secondAttribute="top" constant="488" id="uFi-8E-lb1"/>
                                     <constraint firstItem="Bme-ka-X7t" firstAttribute="leading" secondItem="uBE-9Q-K1K" secondAttribute="trailing" constant="10" id="urA-A5-Xdc"/>
                                     <constraint firstItem="pBi-hN-zEG" firstAttribute="top" secondItem="gLd-Aw-RZS" secondAttribute="bottom" constant="11" id="vdM-Ud-QIP"/>
+                                    <constraint firstItem="PJa-Xy-TQF" firstAttribute="leading" secondItem="WsU-jZ-7Ed" secondAttribute="trailing" constant="1" id="vvG-ur-LcL"/>
                                     <constraint firstItem="XPJ-s1-Jt6" firstAttribute="bottom" secondItem="m3f-wT-zql" secondAttribute="bottom" id="w8v-Gg-IIY"/>
                                     <constraint firstItem="pBi-hN-zEG" firstAttribute="top" secondItem="B75-vY-nvL" secondAttribute="bottom" constant="17" id="wBf-cb-2Ts"/>
                                     <constraint firstAttribute="trailing" secondItem="48i-Ye-tP3" secondAttribute="trailing" constant="79" id="woS-Q6-xdH"/>
@@ -4919,6 +4928,7 @@ Gw
                         <outlet property="legalObligationDetails" destination="gLd-Aw-RZS" id="hqJ-06-a1e"/>
                         <outlet property="missingDocuments" destination="G4P-bR-bJi" id="st1-j7-SWA"/>
                         <outlet property="officialMailid" destination="5fZ-3C-KDp" id="gp8-jT-aM7"/>
+                        <outlet property="passportNo" destination="PJa-Xy-TQF" id="pGB-55-a93"/>
                         <outlet property="passportYes" destination="WsU-jZ-7Ed" id="PX2-bg-1UQ"/>
                         <outlet property="pastInterviedDate" destination="4z5-Ff-nIs" id="hIX-cB-oUE"/>
                         <outlet property="previousEmployerFromDate" destination="PHd-W4-LnM" id="kUD-Xg-F1Q"/>
